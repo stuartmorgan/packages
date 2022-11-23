@@ -6,6 +6,9 @@ import 'dart:io';
 
 import 'process_utils.dart';
 
+/// Runs a `flutter` [command] in the given Flutter [projectDirectory].
+///
+/// Any arguments to the command can be provided in [commandArguments].
 Future<int> runFlutterCommand(
   String projectDirectory,
   String command, [
@@ -22,6 +25,12 @@ Future<int> runFlutterCommand(
   );
 }
 
+/// Runs a 'flutter build [target]' in the given Flutter [projectDirectory].
+///
+/// Builds debug by default, but setting [debug] to false will give a release
+/// build.
+///
+/// Other build flags can be passed via [flags].
 Future<int> runFlutterBuild(
   String projectDirectory,
   String target, {
@@ -39,6 +48,10 @@ Future<int> runFlutterBuild(
   );
 }
 
+/// Runs an `xcodebuild` with the given arguments.
+///
+/// The [nativeProjectDirectory] must be the subdirectory of a Flutter project
+/// containing the native project (e.g., `ios/` or `macos/`).
 Future<int> runXcodeBuild(
   String nativeProjectDirectory, {
   String? sdk,
@@ -60,6 +73,10 @@ Future<int> runXcodeBuild(
   );
 }
 
+/// Runs Gradle build with the given arguments.
+///
+/// The [nativeProjectDirectory] must be the subdirectory of a Flutter project
+/// containing the native project (e.g., `android/`).
 Future<int> runGradleBuild(String nativeProjectDirectory, [String? command]) {
   return runProcess(
     './gradlew',

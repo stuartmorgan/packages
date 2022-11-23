@@ -4,6 +4,8 @@
 
 import 'dart:io' show Process, stderr, stdout;
 
+/// Attaches the `stdout` and `stdout` of [processFuture] to this process's
+/// output streams.
 Future<Process> _streamOutput(Future<Process> processFuture) async {
   final Process process = await processFuture;
   stdout.addStream(process.stdout);
@@ -11,6 +13,13 @@ Future<Process> _streamOutput(Future<Process> processFuture) async {
   return process;
 }
 
+/// Runs [command] with the given [arguments] and parameters.
+///
+/// If [streamOutput] is true, `stdout` and `stderr` will be forwarded from
+/// the subprocess.
+///
+/// If [logFailure] is true, the command and its output will be logged if the
+/// process exits with anything but 0.
 Future<int> runProcess(String command, List<String> arguments,
     {String? workingDirectory,
     bool streamOutput = true,

@@ -6,6 +6,7 @@ import 'package:path/path.dart' as p;
 
 import 'process_utils.dart';
 
+/// Output languages supported by Pigeon.
 enum GeneratorLanguages {
   cpp,
   java,
@@ -21,6 +22,7 @@ const Map<String, Set<GeneratorLanguages>> _unsupportedFiles =
   'enum_args': <GeneratorLanguages>{GeneratorLanguages.cpp},
 };
 
+/// Converts a string in snake_case to the equivalent PascalCase string.
 String _snakeToPascalCase(String snake) {
   final List<String> parts = snake.split('_');
   return parts
@@ -29,11 +31,13 @@ String _snakeToPascalCase(String snake) {
       .join();
 }
 
-// Remaps some file names for Java output, since the filename on Java will be
-// the name of the generated top-level class. In some cases this is necessary
-// (e.g., "list", which collides with the Java List class in tests), and in
-// others it is just preserving previous behavior from the earlier Bash version
-// of the generation to minimize churn during the migration.
+/// Remaps some file names for Java output, since the filename on Java will be
+/// the name of the generated top-level class.
+///
+/// In some cases this is necessary (e.g., "list", which collides with the Java
+/// List class in tests), and in others it is just preserving previous behavior
+/// from the earlier Bash version of the generation to minimize churn during the
+/// migration.
 // TODO(stuartmorgan): Remove the need for this when addressing
 // https://github.com/flutter/flutter/issues/115168.
 String _javaFilenameForName(String inputName) {
@@ -48,6 +52,10 @@ String _javaFilenameForName(String inputName) {
   return specialCases[inputName] ?? _snakeToPascalCase(inputName);
 }
 
+/// Generates all of the output files necessary for running the native tests
+/// in platform_tests/.
+///
+/// [baseDir] must be the root directory of the 'pigeon' package.
 Future<int> generatePigeons({required String baseDir}) async {
   // TODO(stuartmorgan): Make this dynamic rather than hard-coded. Or eliminate
   // it entirely; see https://github.com/flutter/flutter/issues/115169.
@@ -82,6 +90,8 @@ Future<int> generatePigeons({required String baseDir}) async {
   final String iosObjCBase =
       p.join(baseDir, 'platform_tests', 'ios_unit_tests');
 
+  // TODO(gaaclarke): Make this run the jobs in parallel.  A bug in Dart
+  // blocked this (https://github.com/dart-lang/pub/pull/3285).
   for (final String input in inputs) {
     final String pascalCaseName = _snakeToPascalCase(input);
     final Set<GeneratorLanguages> skipLanguages =
@@ -153,6 +163,9 @@ Future<int> generatePigeons({required String baseDir}) async {
   return 0;
 }
 
+/// Runs `pigeon` with the provided arguments to generate output files.
+// TODO(stuartmorgan): Switch to using Pigeon via library calls rather than
+// process invocations.
 Future<int> runPigeon({
   required String input,
   String? kotlinOut,
