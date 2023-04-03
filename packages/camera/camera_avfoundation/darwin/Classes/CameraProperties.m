@@ -110,6 +110,8 @@ FLTFocusMode FLTGetFLTFocusModeForString(NSString *mode) {
 
 #pragma mark - device orientation
 
+#if TARGET_OS_IOS
+
 UIDeviceOrientation FLTGetUIDeviceOrientationForString(NSString *orientation) {
   if ([orientation isEqualToString:@"portraitDown"]) {
     return UIDeviceOrientationPortraitUpsideDown;
@@ -144,6 +146,8 @@ NSString *FLTGetStringForUIDeviceOrientation(UIDeviceOrientation orientation) {
       return @"portraitUp";
   };
 }
+
+#endif
 
 #pragma mark - resolution preset
 

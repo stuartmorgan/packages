@@ -15,7 +15,7 @@
 @implementation CameraMethodChannelTests
 
 - (void)testCreate_ShouldCallResultOnMainThread {
-  CameraPlugin *camera = [[CameraPlugin alloc] initWithRegistry:nil messenger:nil];
+  FCPCameraPlugin *camera = [[FCPCameraPlugin alloc] initWithRegistry:nil messenger:nil];
 
   XCTestExpectation *expectation = [self expectationWithDescription:@"Result finished"];
 

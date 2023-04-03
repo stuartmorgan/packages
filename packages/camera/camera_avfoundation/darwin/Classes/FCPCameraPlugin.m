@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#import "CameraPlugin.h"
-#import "CameraPlugin_Test.h"
+#import "FCPCameraPlugin.h"
+#import "FCPCameraPlugin_Test.h"
 
 @import AVFoundation;
 
@@ -16,19 +16,19 @@
 #import "FLTThreadSafeTextureRegistry.h"
 #import "QueueUtils.h"
 
-@interface CameraPlugin ()
+@interface FCPCameraPlugin ()
 @property(readonly, nonatomic) FLTThreadSafeTextureRegistry *registry;
 @property(readonly, nonatomic) NSObject<FlutterBinaryMessenger> *messenger;
 @end
 
-@implementation CameraPlugin
+@implementation FCPCameraPlugin
 
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar> *)registrar {
   FlutterMethodChannel *channel =
       [FlutterMethodChannel methodChannelWithName:@"plugins.flutter.io/camera_avfoundation"
                                   binaryMessenger:[registrar messenger]];
-  CameraPlugin *instance = [[CameraPlugin alloc] initWithRegistry:[registrar textures]
-                                                        messenger:[registrar messenger]];
+  FCPCameraPlugin *instance = [[FCPCameraPlugin alloc] initWithRegistry:[registrar textures]
+                                                              messenger:[registrar messenger]];
   [registrar addMethodCallDelegate:instance channel:channel];
 }
 
@@ -80,7 +80,7 @@
   dispatch_async(self.captureSessionQueue, ^{
     // `FLTCam::setDeviceOrientation` must be called on capture session queue.
     [weakSelf.camera setDeviceOrientation:orientation];
-    // `CameraPlugin::sendDeviceOrientation` can be called on any queue.
+    // `-[FCPCameraPlugin sendDeviceOrientation]` can be called on any queue.
     [weakSelf sendDeviceOrientation:orientation];
   });
 }
@@ -155,7 +155,7 @@
       NSString *videoFormatValue = ((NSString *)argsMap[@"imageFormatGroup"]);
       [_camera setVideoFormat:FLTGetVideoFormatFromString(videoFormatValue)];
 
-      __weak CameraPlugin *weakSelf = self;
+      __weak FCPCameraPlugin *weakSelf = self;
       _camera.onFrameAvailable = ^{
         if (![weakSelf.camera isPreviewPaused]) {
           [weakSelf.registry textureFrameAvailable:cameraId];

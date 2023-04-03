@@ -4,13 +4,18 @@
 
 @import AVFoundation;
 @import Foundation;
-@import Flutter;
 
 #import "CameraProperties.h"
 #import "FLTThreadSafeEventChannel.h"
 #import "FLTThreadSafeFlutterResult.h"
 #import "FLTThreadSafeMethodChannel.h"
 #import "FLTThreadSafeTextureRegistry.h"
+
+#if TARGET_OS_OSX
+@import FlutterMacOS;
+#else
+@import Flutter;
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 

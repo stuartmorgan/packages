@@ -16,7 +16,8 @@
 
 - (void)testOrientationNotifications {
   id mockMessenger = OCMProtocolMock(@protocol(FlutterBinaryMessenger));
-  CameraPlugin *cameraPlugin = [[CameraPlugin alloc] initWithRegistry:nil messenger:mockMessenger];
+  FCPCameraPlugin *cameraPlugin = [[FCPCameraPlugin alloc] initWithRegistry:nil
+                                                                  messenger:mockMessenger];
 
   [mockMessenger setExpectationOrderMatters:YES];
 
@@ -53,7 +54,7 @@
   XCTestExpectation *queueExpectation = [self
       expectationWithDescription:@"Orientation update must happen on the capture session queue"];
 
-  CameraPlugin *camera = [[CameraPlugin alloc] initWithRegistry:nil messenger:nil];
+  FCPCameraPlugin *camera = [[FCPCameraPlugin alloc] initWithRegistry:nil messenger:nil];
   const char *captureSessionQueueSpecific = "capture_session_queue";
   dispatch_queue_set_specific(camera.captureSessionQueue, captureSessionQueueSpecific,
                               (void *)captureSessionQueueSpecific, NULL);
@@ -73,7 +74,7 @@
 
 - (void)rotate:(UIDeviceOrientation)deviceOrientation
     expectedChannelOrientation:(NSString *)channelOrientation
-                  cameraPlugin:(CameraPlugin *)cameraPlugin
+                  cameraPlugin:(FCPCameraPlugin *)cameraPlugin
                      messenger:(NSObject<FlutterBinaryMessenger> *)messenger {
   XCTestExpectation *orientationExpectation = [self expectationWithDescription:channelOrientation];
 
@@ -97,10 +98,10 @@
   FLTCam *mockCam = OCMClassMock([FLTCam class]);
   FLTThreadSafeMethodChannel *mockChannel = OCMClassMock([FLTThreadSafeMethodChannel class]);
 
-  __weak CameraPlugin *weakCamera;
+  __weak FCPCameraPlugin *weakCamera;
 
   @autoreleasepool {
-    CameraPlugin *camera = [[CameraPlugin alloc] initWithRegistry:nil messenger:nil];
+    FCPCameraPlugin *camera = [[FCPCameraPlugin alloc] initWithRegistry:nil messenger:nil];
     weakCamera = camera;
     camera.captureSessionQueue = captureSessionQueue;
     camera.camera = mockCam;

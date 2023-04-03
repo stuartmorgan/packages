@@ -5,7 +5,7 @@ framework module camera_avfoundation {
   module * { export * }
 
   explicit module Test {
-    header "CameraPlugin_Test.h"
+    header "FCPCameraPlugin_Test.h"
     header "CameraPermissionUtils.h"
     header "CameraProperties.h"
     header "FLTCam.h"

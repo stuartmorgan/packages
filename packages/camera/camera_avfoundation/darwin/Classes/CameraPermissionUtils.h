@@ -3,7 +3,12 @@
 // found in the LICENSE file.
 
 @import Foundation;
-#import <Flutter/Flutter.h>
+
+#if TARGET_OS_OSX
+@import FlutterMacOS;
+#else
+@import Flutter;
+#endif
 
 typedef void (^FLTCameraPermissionRequestCompletionHandler)(FlutterError *);
 

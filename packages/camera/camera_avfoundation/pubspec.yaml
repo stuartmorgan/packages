@@ -13,8 +13,13 @@ flutter:
     implements: camera
     platforms:
       ios:
-        pluginClass: CameraPlugin
+        pluginClass: FCPCameraPlugin
         dartPluginClass: AVFoundationCamera
+        sharedDarwinSource: true
+      macos:
+        pluginClass: FCPCameraPlugin
+        dartPluginClass: AVFoundationCamera
+        sharedDarwinSource: true
 
 dependencies:
   camera_platform_interface: ^2.4.0

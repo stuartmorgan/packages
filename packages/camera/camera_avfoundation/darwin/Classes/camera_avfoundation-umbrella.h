@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 #import <Foundation/Foundation.h>
-#import <camera_avfoundation/CameraPlugin.h>
+#import <camera_avfoundation/FCPCameraPlugin.h>
 
 FOUNDATION_EXPORT double cameraVersionNumber;
 FOUNDATION_EXPORT const unsigned char cameraVersionString[];

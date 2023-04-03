@@ -15,7 +15,7 @@
 @implementation AvailableCamerasTest
 
 - (void)testAvailableCamerasShouldReturnAllCamerasOnMultiCameraIPhone {
-  CameraPlugin *camera = [[CameraPlugin alloc] initWithRegistry:nil messenger:nil];
+  FCPCameraPlugin *camera = [[FCPCameraPlugin alloc] initWithRegistry:nil messenger:nil];
   XCTestExpectation *expectation =
       [[XCTestExpectation alloc] initWithDescription:@"Result finished"];
 
@@ -74,7 +74,7 @@
   }
 }
 - (void)testAvailableCamerasShouldReturnOneCameraOnSingleCameraIPhone {
-  CameraPlugin *camera = [[CameraPlugin alloc] initWithRegistry:nil messenger:nil];
+  FCPCameraPlugin *camera = [[FCPCameraPlugin alloc] initWithRegistry:nil messenger:nil];
   XCTestExpectation *expectation =
       [[XCTestExpectation alloc] initWithDescription:@"Result finished"];
 

@@ -77,6 +77,8 @@ extern FLTFocusMode FLTGetFLTFocusModeForString(NSString *mode);
 
 #pragma mark - device orientation
 
+#if TARGET_OS_IOS
+
 /**
  * Gets UIDeviceOrientation from its string representation.
  */
@@ -86,6 +88,8 @@ extern UIDeviceOrientation FLTGetUIDeviceOrientationForString(NSString *orientat
  * Gets a string representation of UIDeviceOrientation.
  */
 extern NSString *FLTGetStringForUIDeviceOrientation(UIDeviceOrientation orientation);
+
+#endif
 
 #pragma mark - resolution preset
 
