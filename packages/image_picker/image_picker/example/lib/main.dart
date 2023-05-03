@@ -10,7 +10,10 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:image_picker_platform_interface/image_picker_platform_interface.dart';
 import 'package:video_player/video_player.dart';
+
+import 'desktop_camera_delegate.dart';
 
 void main() {
   runApp(const MyApp());
@@ -39,6 +42,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<XFile>? _imageFileList;
+  final DesktopCameraDelegate _cameraDelegate = DesktopCameraDelegate();
 
   void _setImageFileListFromFile(XFile? value) {
     _imageFileList = value == null ? null : <XFile>[value];
@@ -126,6 +130,15 @@ class _MyHomePageState extends State<MyHomePage> {
           });
         }
       });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    final ImagePickerPlatform instance = ImagePickerPlatform.instance;
+    if (instance is CameraDelegatingImagePickerPlatform) {
+      instance.cameraDelegate = _cameraDelegate;
     }
   }
 
@@ -248,6 +261,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    _cameraDelegate.displayCameraCapturePage = (Route<void> modalRoute) {
+      Navigator.of(context).push(modalRoute);
+    };
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title!),
@@ -418,8 +435,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     final int? quality = qualityController.text.isNotEmpty
                         ? int.parse(qualityController.text)
                         : null;
-                    onPick(width, height, quality);
                     Navigator.of(context).pop();
+                    onPick(width, height, quality);
                   }),
             ],
           );
