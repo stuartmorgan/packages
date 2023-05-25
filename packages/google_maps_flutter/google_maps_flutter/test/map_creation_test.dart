@@ -75,7 +75,7 @@ void main() {
 }
 
 // A dummy implementation of the platform interface for tests.
-class TestGoogleMapsFlutterPlatform extends GoogleMapsFlutterPlatform {
+base class TestGoogleMapsFlutterPlatform extends GoogleMapsFlutterPlatform {
   TestGoogleMapsFlutterPlatform();
 
   // The IDs passed to each call to buildView, in call order.

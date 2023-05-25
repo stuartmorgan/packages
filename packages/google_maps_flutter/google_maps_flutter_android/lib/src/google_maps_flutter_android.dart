@@ -55,7 +55,7 @@ enum AndroidMapRenderer {
 }
 
 /// An implementation of [GoogleMapsFlutterPlatform] for Android.
-class GoogleMapsFlutterAndroid extends GoogleMapsFlutterPlatform {
+final class GoogleMapsFlutterAndroid extends GoogleMapsFlutterPlatform {
   /// Registers the Android implementation of GoogleMapsFlutterPlatform.
   static void registerWith() {
     GoogleMapsFlutterPlatform.instance = GoogleMapsFlutterAndroid();

@@ -2,42 +2,17 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'package:plugin_platform_interface/plugin_platform_interface.dart';
-
 import '../../google_maps_flutter_platform_interface.dart';
 
 /// The interface that platform-specific implementations of
 /// `google_maps_flutter` can extend to support state inpsection in tests.
-///
-/// Avoid `implements` of this interface. Using `implements` makes adding any
-/// new methods here a breaking change for end users of your platform!
-///
-/// Do `extends GoogleMapsInspectorPlatform` instead, so new methods
-/// added here are inherited in your code with the default implementation (that
-/// throws at runtime), rather than breaking your users at compile time.
-abstract class GoogleMapsInspectorPlatform extends PlatformInterface {
-  /// Constructs a GoogleMapsFlutterPlatform.
-  GoogleMapsInspectorPlatform() : super(token: _token);
-
-  static final Object _token = Object();
-
-  static GoogleMapsInspectorPlatform? _instance;
-
+abstract base class GoogleMapsInspectorPlatform {
   /// The instance of [GoogleMapsInspectorPlatform], if any.
   ///
-  /// This is usually populated by calling
-  /// [GoogleMapsFlutterPlatform.enableDebugInspection].
-  static GoogleMapsInspectorPlatform? get instance => _instance;
-
-  /// Platform-specific plugins should set this with their own platform-specific
+  /// Platform implementations should set this with their own platform-specific
   /// class that extends [GoogleMapsInspectorPlatform] in their
   /// implementation of [GoogleMapsFlutterPlatform.enableDebugInspection].
-  static set instance(GoogleMapsInspectorPlatform? instance) {
-    if (instance != null) {
-      PlatformInterface.verify(instance, _token);
-    }
-    _instance = instance;
-  }
+  static GoogleMapsInspectorPlatform? instance;
 
   /// Returns the minimum and maxmimum zoom level settings.
   Future<MinMaxZoomPreference> getMinMaxZoomLevels({required int mapId}) {

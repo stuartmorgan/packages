@@ -4,7 +4,6 @@
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
-import 'package:mockito/mockito.dart';
 
 void main() {
   // Store the initial instance before any tests change it.
@@ -15,19 +14,10 @@ void main() {
     expect(initialInstance, isNull);
   });
 
-  test('cannot be implemented with `implements`', () {
-    expect(() {
-      GoogleMapsInspectorPlatform.instance =
-          ImplementsGoogleMapsInspectorPlatform();
-    }, throwsA(isInstanceOf<AssertionError>()));
-  });
-
   test('can be implement with `extends`', () {
     GoogleMapsInspectorPlatform.instance = ExtendsGoogleMapsInspectorPlatform();
   });
 }
 
-class ImplementsGoogleMapsInspectorPlatform extends Mock
-    implements GoogleMapsInspectorPlatform {}
-
-class ExtendsGoogleMapsInspectorPlatform extends GoogleMapsInspectorPlatform {}
+base class ExtendsGoogleMapsInspectorPlatform
+    extends GoogleMapsInspectorPlatform {}

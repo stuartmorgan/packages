@@ -2,50 +2,28 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'dart:async';
-// TODO(a14n): remove this import once Flutter 3.1 or later reaches stable (including flutter/flutter#104231)
-// ignore: unnecessary_import
-import 'dart:typed_data';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import '../../google_maps_flutter_platform_interface.dart';
 import '../types/utils/map_configuration_serialization.dart';
 
-/// The interface that platform-specific implementations of `google_maps_flutter` must extend.
-///
-/// Avoid `implements` of this interface. Using `implements` makes adding any new
-/// methods here a breaking change for end users of your platform!
-///
-/// Do `extends GoogleMapsFlutterPlatform` instead, so new methods added here are
-/// inherited in your code with the default implementation (that throws at runtime),
-/// rather than breaking your users at compile time.
-abstract class GoogleMapsFlutterPlatform extends PlatformInterface {
-  /// Constructs a GoogleMapsFlutterPlatform.
-  GoogleMapsFlutterPlatform() : super(token: _token);
-
-  static final Object _token = Object();
-
-  static GoogleMapsFlutterPlatform _instance = MethodChannelGoogleMapsFlutter();
-
+/// The interface that platform-specific implementations of
+/// `google_maps_flutter` must extend.
+abstract base class GoogleMapsFlutterPlatform {
   /// The default instance of [GoogleMapsFlutterPlatform] to use.
   ///
+  /// Platform implementations should set this with their own platform-specific
+  /// class that extends [GoogleMapsFlutterPlatform] when they register
+  /// themselves.
+  ///
   /// Defaults to [MethodChannelGoogleMapsFlutter].
-  static GoogleMapsFlutterPlatform get instance => _instance;
+  static GoogleMapsFlutterPlatform instance = MethodChannelGoogleMapsFlutter();
 
-  /// Platform-specific plugins should set this with their own platform-specific
-  /// class that extends [GoogleMapsFlutterPlatform] when they register themselves.
-  static set instance(GoogleMapsFlutterPlatform instance) {
-    PlatformInterface.verify(instance, _token);
-    _instance = instance;
-  }
-
-  /// /// Initializes the platform interface with [id].
+  /// Initializes the platform interface with [id].
   ///
   /// This method is called when the plugin is first initialized.
   Future<void> init(int mapId) {

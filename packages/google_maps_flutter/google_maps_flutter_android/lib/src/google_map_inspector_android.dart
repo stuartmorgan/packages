@@ -8,7 +8,7 @@ import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platf
 
 /// An Android of implementation of [GoogleMapsInspectorPlatform].
 @visibleForTesting
-class GoogleMapsInspectorAndroid extends GoogleMapsInspectorPlatform {
+base class GoogleMapsInspectorAndroid extends GoogleMapsInspectorPlatform {
   /// Creates a method-channel-based inspector instance that gets the channel
   /// for a given map ID from [channelProvider].
   GoogleMapsInspectorAndroid(MethodChannel? Function(int mapId) channelProvider)

@@ -7,7 +7,7 @@ part of google_maps_flutter_web;
 /// The web implementation of [GoogleMapsFlutterPlatform].
 ///
 /// This class implements the `package:google_maps_flutter` functionality for the web.
-class GoogleMapsPlugin extends GoogleMapsFlutterPlatform {
+final class GoogleMapsPlugin extends GoogleMapsFlutterPlatform {
   /// Registers this class as the default instance of [GoogleMapsFlutterPlatform].
   static void registerWith(Registrar registrar) {
     GoogleMapsFlutterPlatform.instance = GoogleMapsPlugin();

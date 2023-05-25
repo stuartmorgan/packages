@@ -41,7 +41,7 @@ class UnknownMapIDError extends Error {
 }
 
 /// An implementation of [GoogleMapsFlutterPlatform] for iOS.
-class GoogleMapsFlutterIOS extends GoogleMapsFlutterPlatform {
+final class GoogleMapsFlutterIOS extends GoogleMapsFlutterPlatform {
   /// Registers the iOS implementation of GoogleMapsFlutterPlatform.
   static void registerWith() {
     GoogleMapsFlutterPlatform.instance = GoogleMapsFlutterIOS();

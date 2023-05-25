@@ -8,8 +8,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
-import 'package:mockito/mockito.dart';
-import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -21,26 +19,6 @@ void main() {
   group('$GoogleMapsFlutterPlatform', () {
     test('$MethodChannelGoogleMapsFlutter() is the default instance', () {
       expect(initialInstance, isInstanceOf<MethodChannelGoogleMapsFlutter>());
-    });
-
-    test('Cannot be implemented with `implements`', () {
-      expect(() {
-        GoogleMapsFlutterPlatform.instance =
-            ImplementsGoogleMapsFlutterPlatform();
-        // In versions of `package:plugin_platform_interface` prior to fixing
-        // https://github.com/flutter/flutter/issues/109339, an attempt to
-        // implement a platform interface using `implements` would sometimes
-        // throw a `NoSuchMethodError` and other times throw an
-        // `AssertionError`.  After the issue is fixed, an `AssertionError` will
-        // always be thrown.  For the purpose of this test, we don't really care
-        // what exception is thrown, so just allow any exception.
-      }, throwsA(anything));
-    });
-
-    test('Can be mocked with `implements`', () {
-      final GoogleMapsFlutterPlatformMock mock =
-          GoogleMapsFlutterPlatformMock();
-      GoogleMapsFlutterPlatform.instance = mock;
     });
 
     test('Can be extended', () {
@@ -86,16 +64,10 @@ void main() {
   });
 }
 
-class GoogleMapsFlutterPlatformMock extends Mock
-    with MockPlatformInterfaceMixin
-    implements GoogleMapsFlutterPlatform {}
+base class ExtendsGoogleMapsFlutterPlatform extends GoogleMapsFlutterPlatform {}
 
-class ImplementsGoogleMapsFlutterPlatform extends Mock
-    implements GoogleMapsFlutterPlatform {}
-
-class ExtendsGoogleMapsFlutterPlatform extends GoogleMapsFlutterPlatform {}
-
-class BuildViewGoogleMapsFlutterPlatform extends GoogleMapsFlutterPlatform {
+base class BuildViewGoogleMapsFlutterPlatform
+    extends GoogleMapsFlutterPlatform {
   @override
   Widget buildView(
     int creationId,

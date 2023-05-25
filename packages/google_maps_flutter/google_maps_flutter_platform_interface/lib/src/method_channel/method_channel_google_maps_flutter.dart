@@ -49,7 +49,7 @@ class UnknownMapIDError extends Error {
 ///
 /// This is the instance that runs when the native side talks to your Flutter app through MethodChannels,
 /// like the Android and iOS platforms.
-class MethodChannelGoogleMapsFlutter extends GoogleMapsFlutterPlatform {
+base class MethodChannelGoogleMapsFlutter extends GoogleMapsFlutterPlatform {
   // Keep a collection of id -> channel
   // Every method call passes the int mapId
   final Map<int, MethodChannel> _channels = <int, MethodChannel>{};
