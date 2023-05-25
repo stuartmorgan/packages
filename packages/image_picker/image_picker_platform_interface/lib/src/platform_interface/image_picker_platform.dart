@@ -5,39 +5,19 @@
 import 'dart:async';
 
 import 'package:cross_file/cross_file.dart';
-import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import '../method_channel/method_channel_image_picker.dart';
 import '../types/types.dart';
 
 /// The interface that implementations of image_picker must implement.
-///
-/// Platform implementations should extend this class rather than implement it as `image_picker`
-/// does not consider newly added methods to be breaking changes. Extending this class
-/// (using `extends`) ensures that the subclass will get the default implementation, while
-/// platform implementations that `implements` this interface will be broken by newly added
-/// [ImagePickerPlatform] methods.
-abstract class ImagePickerPlatform extends PlatformInterface {
-  /// Constructs a ImagePickerPlatform.
-  ImagePickerPlatform() : super(token: _token);
-
-  static final Object _token = Object();
-
-  static ImagePickerPlatform _instance = MethodChannelImagePicker();
-
-  /// The default instance of [ImagePickerPlatform] to use.
+abstract base class ImagePickerPlatform {
+  /// The instance of [ImagePickerPlatform] to use.
   ///
-  /// Defaults to [MethodChannelImagePicker].
-  static ImagePickerPlatform get instance => _instance;
-
   /// Platform-specific plugins should set this with their own platform-specific
   /// class that extends [ImagePickerPlatform] when they register themselves.
-  // TODO(amirh): Extract common platform interface logic.
-  // https://github.com/flutter/flutter/issues/43368
-  static set instance(ImagePickerPlatform instance) {
-    PlatformInterface.verify(instance, _token);
-    _instance = instance;
-  }
+  ///
+  /// Defaults to [MethodChannelImagePicker].
+  static ImagePickerPlatform instance = MethodChannelImagePicker();
 
   // Next version of the API.
 

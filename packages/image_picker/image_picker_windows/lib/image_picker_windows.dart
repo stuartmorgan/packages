@@ -13,7 +13,7 @@ import 'package:image_picker_platform_interface/image_picker_platform_interface.
 ///
 /// This class implements the `package:image_picker` functionality for
 /// Windows.
-class ImagePickerWindows extends ImagePickerPlatform {
+final class ImagePickerWindows extends ImagePickerPlatform {
   /// Constructs a ImagePickerWindows.
   ImagePickerWindows();
 

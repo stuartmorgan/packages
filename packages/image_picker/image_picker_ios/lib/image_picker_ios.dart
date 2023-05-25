@@ -42,7 +42,7 @@ SourceCamera _convertCamera(CameraDevice camera) {
 }
 
 /// An implementation of [ImagePickerPlatform] for iOS.
-class ImagePickerIOS extends ImagePickerPlatform {
+final class ImagePickerIOS extends ImagePickerPlatform {
   final ImagePickerApi _hostApi = ImagePickerApi();
 
   /// Registers this class as the default platform implementation.

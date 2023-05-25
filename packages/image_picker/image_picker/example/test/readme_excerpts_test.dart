@@ -30,7 +30,7 @@ void main() {
   });
 }
 
-class FakeImagePicker extends ImagePickerPlatform {
+final class FakeImagePicker extends ImagePickerPlatform {
   @override
   Future<XFile?> getImageFromSource(
       {required ImageSource source,

@@ -10,7 +10,7 @@ import 'package:image_picker_platform_interface/image_picker_platform_interface.
 import 'src/messages.g.dart';
 
 /// An Android implementation of [ImagePickerPlatform].
-class ImagePickerAndroid extends ImagePickerPlatform {
+final class ImagePickerAndroid extends ImagePickerPlatform {
   /// Creates a new plugin implemenation instance.
   ImagePickerAndroid({@visibleForTesting ImagePickerApi? api})
       : _hostApi = api ?? ImagePickerApi();
