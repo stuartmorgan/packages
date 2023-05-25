@@ -306,7 +306,7 @@ void main() {
   });
 }
 
-class FakeSharedPreferencesStore extends SharedPreferencesStorePlatform {
+base class FakeSharedPreferencesStore extends SharedPreferencesStorePlatform {
   FakeSharedPreferencesStore(Map<String, Object> data)
       : backend = InMemorySharedPreferencesStore.withData(data);
 
@@ -344,7 +344,7 @@ class FakeSharedPreferencesStore extends SharedPreferencesStorePlatform {
   }
 }
 
-class UnimplementedSharedPreferencesStore
+base class UnimplementedSharedPreferencesStore
     extends SharedPreferencesStorePlatform {
   @override
   Future<bool> clear() {
@@ -367,7 +367,8 @@ class UnimplementedSharedPreferencesStore
   }
 }
 
-class ThrowingSharedPreferencesStore extends SharedPreferencesStorePlatform {
+base class ThrowingSharedPreferencesStore
+    extends SharedPreferencesStorePlatform {
   @override
   Future<bool> clear() {
     throw UnimplementedError();

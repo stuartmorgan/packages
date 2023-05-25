@@ -12,7 +12,7 @@ import 'package:shared_preferences_platform_interface/shared_preferences_platfor
 /// The web implementation of [SharedPreferencesStorePlatform].
 ///
 /// This class implements the `package:shared_preferences` functionality for the web.
-class SharedPreferencesPlugin extends SharedPreferencesStorePlatform {
+final class SharedPreferencesPlugin extends SharedPreferencesStorePlatform {
   /// Registers this class as the default instance of [SharedPreferencesStorePlatform].
   static void registerWith(Registrar? registrar) {
     SharedPreferencesStorePlatform.instance = SharedPreferencesPlugin();

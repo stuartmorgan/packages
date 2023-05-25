@@ -15,7 +15,7 @@ const MethodChannel _kChannel =
 /// a persistent store for simple data.
 ///
 /// Data is persisted to disk asynchronously.
-class MethodChannelSharedPreferencesStore
+base class MethodChannelSharedPreferencesStore
     extends SharedPreferencesStorePlatform {
   @override
   Future<bool> remove(String key) async {

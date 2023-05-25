@@ -9,7 +9,7 @@ import 'messages.g.dart';
 typedef _Setter = Future<void> Function(String key, Object value);
 
 /// iOS and macOS implementation of shared_preferences.
-class SharedPreferencesFoundation extends SharedPreferencesStorePlatform {
+final class SharedPreferencesFoundation extends SharedPreferencesStorePlatform {
   final UserDefaultsApi _api = UserDefaultsApi();
 
   static const String _defautPrefix = 'flutter.';

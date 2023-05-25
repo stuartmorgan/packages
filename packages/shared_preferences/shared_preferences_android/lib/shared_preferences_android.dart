@@ -11,7 +11,7 @@ import 'src/messages.g.dart';
 /// The Android implementation of [SharedPreferencesStorePlatform].
 ///
 /// This class implements the `package:shared_preferences` functionality for Android.
-class SharedPreferencesAndroid extends SharedPreferencesStorePlatform {
+final class SharedPreferencesAndroid extends SharedPreferencesStorePlatform {
   /// Creates a new plugin implementation instance.
   SharedPreferencesAndroid({
     @visibleForTesting SharedPreferencesApi? api,
