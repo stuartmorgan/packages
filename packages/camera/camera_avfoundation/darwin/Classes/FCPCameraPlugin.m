@@ -112,9 +112,7 @@
 - (void)handleMethodCallAsync:(FlutterMethodCall *)call
                        result:(FLTThreadSafeFlutterResult *)result {
   if ([@"availableCameras" isEqualToString:call.method]) {
-    NSMutableArray *discoveryDevices =
-        [@[ AVCaptureDeviceTypeBuiltInWideAngleCamera ]
-            mutableCopy];
+    NSMutableArray *discoveryDevices = [@[ AVCaptureDeviceTypeBuiltInWideAngleCamera ] mutableCopy];
 #if !TARGET_OS_OSX
     [discoveryDevices addObject:AVCaptureDeviceTypeBuiltInTelephotoCamera];
     if (@available(iOS 13.0, *)) {
@@ -126,7 +124,6 @@
                               mediaType:AVMediaTypeVideo
                                position:AVCaptureDevicePositionUnspecified];
     NSArray<AVCaptureDevice *> *devices = discoverySession.devices;
-    NSLog(@"XXX %@", devices);
     NSMutableArray<NSDictionary<NSString *, NSObject *> *> *reply =
         [[NSMutableArray alloc] initWithCapacity:devices.count];
     for (AVCaptureDevice *device in devices) {
@@ -336,13 +333,12 @@
      [[FCPOrientation alloc] initWithOrientation:FCPDeviceOrientationLandscapeLeft];
 #endif
     NSError *error;
-    FLTCam *cam =
-        [[FLTCam alloc] initWithCameraName:cameraName
-                          resolutionPreset:resolutionPreset
-                               enableAudio:[enableAudio boolValue]
-                               orientation:orientation
-                       captureSessionQueue:strongSelf.captureSessionQueue
-                                     error:&error];
+    FLTCam *cam = [[FLTCam alloc] initWithCameraName:cameraName
+                                    resolutionPreset:resolutionPreset
+                                         enableAudio:[enableAudio boolValue]
+                                         orientation:orientation
+                                 captureSessionQueue:strongSelf.captureSessionQueue
+                                               error:&error];
 
     if (error) {
       [result sendError:error];

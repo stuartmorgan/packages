@@ -799,8 +799,8 @@ NSString *const errorMethod = @"error";
     BOOL supportsFlashMode = NO;
     if (@available(macOS 13.0, *)) {
       AVCaptureFlashMode avFlashMode = FLTGetAVCaptureFlashModeForFLTFlashMode(mode);
-      supportsFlashMode =[_capturePhotoOutput.supportedFlashModes
-                          containsObject:[NSNumber numberWithInt:((int)avFlashMode)]];
+      supportsFlashMode = [_capturePhotoOutput.supportedFlashModes
+          containsObject:[NSNumber numberWithInt:((int)avFlashMode)]];
     } else {
       // Fallback on earlier versions
     }
@@ -975,10 +975,9 @@ NSString *const errorMethod = @"error";
     return;
   }
   [_captureDevice lockForConfiguration:nil];
-  [_captureDevice
-      setExposurePointOfInterest:[self pointForCoordsWithOrientation:_deviceOrientation
-                                                                        x:x
-                                                                        y:y]];
+  [_captureDevice setExposurePointOfInterest:[self pointForCoordsWithOrientation:_deviceOrientation
+                                                                               x:x
+                                                                               y:y]];
   [_captureDevice unlockForConfiguration];
   // Retrigger auto exposure
   [self applyExposureMode];
@@ -994,8 +993,9 @@ NSString *const errorMethod = @"error";
   }
   [_captureDevice lockForConfiguration:nil];
 
-  [_captureDevice
-      setFocusPointOfInterest:[self pointForCoordsWithOrientation:_deviceOrientation x:x y:y]];
+  [_captureDevice setFocusPointOfInterest:[self pointForCoordsWithOrientation:_deviceOrientation
+                                                                            x:x
+                                                                            y:y]];
   [_captureDevice unlockForConfiguration];
   // Retrigger auto focus
   [self applyFocusMode];
