@@ -251,9 +251,11 @@ NSString *const errorMethod = @"error";
     [settings setHighResolutionPhotoEnabled:YES];
   }
 
-  AVCaptureFlashMode avFlashMode = FLTGetAVCaptureFlashModeForFLTFlashMode(_flashMode);
-  if (avFlashMode != -1) {
-    [settings setFlashMode:avFlashMode];
+  if (@available(macOS 13.0, *)) {
+    AVCaptureFlashMode avFlashMode = FLTGetAVCaptureFlashModeForFLTFlashMode(_flashMode);
+    if (avFlashMode != -1) {
+      [settings setFlashMode:avFlashMode];
+    }
   }
   NSError *error;
   NSString *path = [self getTemporaryFilePathWithExtension:@"jpg"
@@ -786,9 +788,15 @@ NSString *const errorMethod = @"error";
                         details:nil];
       return;
     }
-    AVCaptureFlashMode avFlashMode = FLTGetAVCaptureFlashModeForFLTFlashMode(mode);
-    if (![_capturePhotoOutput.supportedFlashModes
-            containsObject:[NSNumber numberWithInt:((int)avFlashMode)]]) {
+    BOOL supportsFlashMode = NO;
+    if (@available(macOS 13.0, *)) {
+      AVCaptureFlashMode avFlashMode = FLTGetAVCaptureFlashModeForFLTFlashMode(mode);
+      supportsFlashMode =[_capturePhotoOutput.supportedFlashModes
+                          containsObject:[NSNumber numberWithInt:((int)avFlashMode)]];
+    } else {
+      // Fallback on earlier versions
+    }
+    if (!supportsFlashMode) {
       [result sendErrorWithCode:@"setFlashModeFailed"
                         message:@"Device does not support this specific flash mode"
                         details:nil];
@@ -960,7 +968,7 @@ NSString *const errorMethod = @"error";
   }
   [_captureDevice lockForConfiguration:nil];
   [_captureDevice
-      setExposurePointOfInterest:[self getCGPointForCoordsWithOrientation:_deviceOrientation
+      setExposurePointOfInterest:[self pointForCoordsWithOrientation:_deviceOrientation
                                                                         x:x
                                                                         y:y]];
   [_captureDevice unlockForConfiguration];
@@ -979,7 +987,7 @@ NSString *const errorMethod = @"error";
   [_captureDevice lockForConfiguration:nil];
 
   [_captureDevice
-      setFocusPointOfInterest:[self getCGPointForCoordsWithOrientation:_deviceOrientation x:x y:y]];
+      setFocusPointOfInterest:[self pointForCoordsWithOrientation:_deviceOrientation x:x y:y]];
   [_captureDevice unlockForConfiguration];
   // Retrigger auto focus
   [self applyFocusMode];
@@ -1044,19 +1052,19 @@ NSString *const errorMethod = @"error";
 }
 
 - (void)getMaxZoomLevelWithResult:(FLTThreadSafeFlutterResult *)result {
-  CGFloat maxZoomFactor = [self getMaxAvailableZoomFactor];
+  CGFloat maxZoomFactor = [self maxAvailableZoomFactor];
 
   [result sendSuccessWithData:[NSNumber numberWithFloat:maxZoomFactor]];
 }
 
 - (void)getMinZoomLevelWithResult:(FLTThreadSafeFlutterResult *)result {
-  CGFloat minZoomFactor = [self getMinAvailableZoomFactor];
+  CGFloat minZoomFactor = [self minAvailableZoomFactor];
   [result sendSuccessWithData:[NSNumber numberWithFloat:minZoomFactor]];
 }
 
 - (void)setZoomLevel:(CGFloat)zoom Result:(FLTThreadSafeFlutterResult *)result {
-  CGFloat maxAvailableZoomFactor = [self getMaxAvailableZoomFactor];
-  CGFloat minAvailableZoomFactor = [self getMinAvailableZoomFactor];
+  CGFloat maxAvailableZoomFactor = [self maxAvailableZoomFactor];
+  CGFloat minAvailableZoomFactor = [self minAvailableZoomFactor];
 
   if (maxAvailableZoomFactor < zoom || minAvailableZoomFactor > zoom) {
     NSString *errorMessage = [NSString
@@ -1067,6 +1075,9 @@ NSString *const errorMethod = @"error";
     return;
   }
 
+  // No-op for macOS where this isn't available; no need to report an error since the only allowed
+  // zoom level reported for macOS is 1.0, so a no-op is correct.
+#if !TARGET_OS_OSX
   NSError *error = nil;
   if (![_captureDevice lockForConfiguration:&error]) {
     [result sendError:error];
@@ -1074,16 +1085,25 @@ NSString *const errorMethod = @"error";
   }
   _captureDevice.videoZoomFactor = zoom;
   [_captureDevice unlockForConfiguration];
+#endif
 
   [result sendSuccess];
 }
 
-- (CGFloat)getMinAvailableZoomFactor {
+- (CGFloat)minAvailableZoomFactor {
+#if TARGET_OS_OSX
+  return 1.0;
+#else
   return _captureDevice.minAvailableVideoZoomFactor;
+#endif
 }
 
-- (CGFloat)getMaxAvailableZoomFactor {
+- (CGFloat)maxAvailableZoomFactor {
+#if TARGET_OS_OSX
+  return 1.0;
+#else
   return _captureDevice.maxAvailableVideoZoomFactor;
+#endif
 }
 
 - (BOOL)setupWriterForPath:(NSString *)path {

@@ -19,6 +19,6 @@ A Flutter plugin to use the camera from your Flutter app.
   s.ios.dependency 'Flutter'
   s.macos.dependency 'FlutterMacOS'
   s.ios.deployment_target = '11.0'
-  s.macos.deployment_target = '10.14'
+  s.macos.deployment_target = '10.15'
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
 end
