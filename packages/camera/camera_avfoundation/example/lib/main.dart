@@ -825,7 +825,10 @@ class _CameraExampleHomeState extends State<CameraExampleHome>
       if (file != null) {
         showInSnackBar('Video recorded to ${file.path}');
         videoFile = file;
-        _startVideoPlayer();
+        // macOS does not yet support video_player.
+        if (!Platform.isMacOS) {
+          _startVideoPlayer();
+        }
       }
     });
   }
