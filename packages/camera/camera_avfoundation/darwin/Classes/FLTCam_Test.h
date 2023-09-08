@@ -3,6 +3,8 @@
 // found in the LICENSE file.
 
 #import "FLTCam.h"
+
+#import "FCPOrientation.h"
 #import "FLTSavePhotoDelegate.h"
 
 @interface FLTImageStreamHandler : NSObject <FlutterStreamHandler>
@@ -49,7 +51,7 @@
 - (instancetype)initWithCameraName:(NSString *)cameraName
                   resolutionPreset:(NSString *)resolutionPreset
                        enableAudio:(BOOL)enableAudio
-                       orientation:(UIDeviceOrientation)orientation
+                       orientation:(FCPOrientation*)orientation
                videoCaptureSession:(AVCaptureSession *)videoCaptureSession
                audioCaptureSession:(AVCaptureSession *)audioCaptureSession
                captureSessionQueue:(dispatch_queue_t)captureSessionQueue

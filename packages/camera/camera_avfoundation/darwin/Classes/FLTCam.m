@@ -351,8 +351,13 @@ NSString *const errorMethod = @"error";
       if ([_videoCaptureSession canSetSessionPreset:AVCaptureSessionPresetHigh]) {
         _videoCaptureSession.sessionPreset = AVCaptureSessionPresetHigh;
         _previewSize =
+#if TARGET_OS_OSX
+            // TODO(stuartmorgan): Use supportedMaxPhotoDimensions for macOS 13+ and iOS 16+.
+            CGSizeMake(1920, 1080);
+#else
             CGSizeMake(_captureDevice.activeFormat.highResolutionStillImageDimensions.width,
                        _captureDevice.activeFormat.highResolutionStillImageDimensions.height);
+#endif
         break;
       }
     case FLTResolutionPresetVeryHigh:
@@ -484,11 +489,14 @@ NSString *const errorMethod = @"error";
       imageBuffer[@"height"] = [NSNumber numberWithUnsignedLong:imageHeight];
       imageBuffer[@"format"] = @(_videoFormat);
       imageBuffer[@"planes"] = planes;
+#if !TARGET_OS_OSX
+      // These are not supported on macOS, and are optional on the Dart side.
       imageBuffer[@"lensAperture"] = [NSNumber numberWithFloat:[_captureDevice lensAperture]];
       Float64 exposureDuration = CMTimeGetSeconds([_captureDevice exposureDuration]);
       Float64 nsExposureDuration = 1000000000 * exposureDuration;
       imageBuffer[@"sensorExposureTime"] = [NSNumber numberWithInt:nsExposureDuration];
       imageBuffer[@"sensorSensitivity"] = [NSNumber numberWithFloat:[_captureDevice ISO]];
+#endif
 
       dispatch_async(dispatch_get_main_queue(), ^{
         eventSink(imageBuffer);
@@ -995,9 +1003,13 @@ NSString *const errorMethod = @"error";
 }
 
 - (void)setExposureOffsetWithResult:(FLTThreadSafeFlutterResult *)result offset:(double)offset {
+  // No-op for macOS; since it's not supported, the plugin-reported offset range only includes 0.0,
+  // so a no-op is consistent with that.
+#if !TARGET_OS_OSX
   [_captureDevice lockForConfiguration:nil];
   [_captureDevice setExposureTargetBias:offset completionHandler:nil];
   [_captureDevice unlockForConfiguration];
+#endif
   [result sendSuccessWithData:@(offset)];
 }
 

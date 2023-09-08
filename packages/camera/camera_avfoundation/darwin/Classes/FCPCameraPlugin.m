@@ -113,16 +113,20 @@
                        result:(FLTThreadSafeFlutterResult *)result {
   if ([@"availableCameras" isEqualToString:call.method]) {
     NSMutableArray *discoveryDevices =
-        [@[ AVCaptureDeviceTypeBuiltInWideAngleCamera, AVCaptureDeviceTypeBuiltInTelephotoCamera ]
+        [@[ AVCaptureDeviceTypeBuiltInWideAngleCamera ]
             mutableCopy];
+#if !TARGET_OS_OSX
+    [discoveryDevices addObject:AVCaptureDeviceTypeBuiltInTelephotoCamera];
     if (@available(iOS 13.0, *)) {
       [discoveryDevices addObject:AVCaptureDeviceTypeBuiltInUltraWideCamera];
     }
+#endif
     AVCaptureDeviceDiscoverySession *discoverySession = [AVCaptureDeviceDiscoverySession
         discoverySessionWithDeviceTypes:discoveryDevices
                               mediaType:AVMediaTypeVideo
                                position:AVCaptureDevicePositionUnspecified];
     NSArray<AVCaptureDevice *> *devices = discoverySession.devices;
+    NSLog(@"XXX %@", devices);
     NSMutableArray<NSDictionary<NSString *, NSObject *> *> *reply =
         [[NSMutableArray alloc] initWithCapacity:devices.count];
     for (AVCaptureDevice *device in devices) {
@@ -236,9 +240,17 @@
       }
       [_camera setExposurePointWithResult:result x:x y:y];
     } else if ([@"getMinExposureOffset" isEqualToString:call.method]) {
+#if TARGET_OS_OSX
+      [result sendSuccessWithData:@(0.0)];
+#else
       [result sendSuccessWithData:@(_camera.captureDevice.minExposureTargetBias)];
+#endif
     } else if ([@"getMaxExposureOffset" isEqualToString:call.method]) {
+#if TARGET_OS_OSX
+      [result sendSuccessWithData:@(0.0)];
+#else
       [result sendSuccessWithData:@(_camera.captureDevice.maxExposureTargetBias)];
+#endif
     } else if ([@"getExposureOffsetStepSize" isEqualToString:call.method]) {
       [result sendSuccessWithData:@(0.0)];
     } else if ([@"setExposureOffset" isEqualToString:call.method]) {
@@ -328,7 +340,8 @@
         [[FLTCam alloc] initWithCameraName:cameraName
                           resolutionPreset:resolutionPreset
                                enableAudio:[enableAudio boolValue]
-                               orientation:captureSessionQueue:strongSelf.captureSessionQueue
+                               orientation:orientation
+                       captureSessionQueue:strongSelf.captureSessionQueue
                                      error:&error];
 
     if (error) {
