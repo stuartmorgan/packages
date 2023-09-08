@@ -108,47 +108,6 @@ FLTFocusMode FLTGetFLTFocusModeForString(NSString *mode) {
   }
 }
 
-#pragma mark - device orientation
-
-#if TARGET_OS_IOS
-
-UIDeviceOrientation FLTGetUIDeviceOrientationForString(NSString *orientation) {
-  if ([orientation isEqualToString:@"portraitDown"]) {
-    return UIDeviceOrientationPortraitUpsideDown;
-  } else if ([orientation isEqualToString:@"landscapeLeft"]) {
-    return UIDeviceOrientationLandscapeRight;
-  } else if ([orientation isEqualToString:@"landscapeRight"]) {
-    return UIDeviceOrientationLandscapeLeft;
-  } else if ([orientation isEqualToString:@"portraitUp"]) {
-    return UIDeviceOrientationPortrait;
-  } else {
-    NSError *error = [NSError
-        errorWithDomain:NSCocoaErrorDomain
-                   code:NSURLErrorUnknown
-               userInfo:@{
-                 NSLocalizedDescriptionKey :
-                     [NSString stringWithFormat:@"Unknown device orientation %@", orientation]
-               }];
-    @throw error;
-  }
-}
-
-NSString *FLTGetStringForUIDeviceOrientation(UIDeviceOrientation orientation) {
-  switch (orientation) {
-    case UIDeviceOrientationPortraitUpsideDown:
-      return @"portraitDown";
-    case UIDeviceOrientationLandscapeRight:
-      return @"landscapeLeft";
-    case UIDeviceOrientationLandscapeLeft:
-      return @"landscapeRight";
-    case UIDeviceOrientationPortrait:
-    default:
-      return @"portraitUp";
-  };
-}
-
-#endif
-
 #pragma mark - resolution preset
 
 FLTResolutionPreset FLTGetFLTResolutionPresetForString(NSString *preset) {

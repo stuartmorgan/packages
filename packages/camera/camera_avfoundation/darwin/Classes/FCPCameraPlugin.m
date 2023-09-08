@@ -9,6 +9,7 @@
 
 #import "CameraPermissionUtils.h"
 #import "CameraProperties.h"
+#import "FCPOrientation.h"
 #import "FLTCam.h"
 #import "FLTThreadSafeEventChannel.h"
 #import "FLTThreadSafeFlutterResult.h"
@@ -43,7 +44,9 @@
                               (void *)FLTCaptureSessionQueueSpecific, NULL);
 
   [self initDeviceEventMethodChannel];
+#if TARGET_OS_IOS
   [self startOrientationListener];
+#endif
   return self;
 }
 
@@ -56,9 +59,12 @@
 }
 
 - (void)detachFromEngineForRegistrar:(NSObject<FlutterPluginRegistrar> *)registrar {
+#if TARGET_OS_IOS
   [UIDevice.currentDevice endGeneratingDeviceOrientationNotifications];
+#endif
 }
 
+#if TARGET_OS_IOS
 - (void)startOrientationListener {
   [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
   [[NSNotificationCenter defaultCenter] addObserver:self
@@ -86,10 +92,12 @@
 }
 
 - (void)sendDeviceOrientation:(UIDeviceOrientation)orientation {
-  [_deviceEventMethodChannel
-      invokeMethod:@"orientation_changed"
-         arguments:@{@"orientation" : FLTGetStringForUIDeviceOrientation(orientation)}];
+  NSString *orientationString =
+      [[FCPOrientation alloc] initWithUIDeviceOrientation:orientation].channelSerialization;
+  [_deviceEventMethodChannel invokeMethod:@"orientation_changed"
+                                arguments:@{@"orientation" : orientationString}];
 }
+#endif
 
 - (void)handleMethodCall:(FlutterMethodCall *)call result:(FlutterResult)result {
   // Invoke the plugin on another dispatch queue to avoid blocking the UI.
@@ -180,7 +188,9 @@
                    @([_camera.captureDevice isExposurePointOfInterestSupported]),
                @"focusPointSupported" : @([_camera.captureDevice isFocusPointOfInterestSupported]),
              }];
+#if TARGET_OS_IOS
       [self sendDeviceOrientation:[UIDevice currentDevice].orientation];
+#endif
       [_camera start];
       [result sendSuccess];
     } else if ([@"takePicture" isEqualToString:call.method]) {
@@ -305,13 +315,21 @@
     NSString *cameraName = createMethodCall.arguments[@"cameraName"];
     NSString *resolutionPreset = createMethodCall.arguments[@"resolutionPreset"];
     NSNumber *enableAudio = createMethodCall.arguments[@"enableAudio"];
+    FCPOrientation *orientation =
+#if TARGET_OS_IOS
+        [[FCPOrientation alloc] initWithUIDeviceOrientation:[[UIDevice currentDevice] orientation]];
+#else
+    // TODO(stuartmorgan): Investigate whether this needs to be queried from the device. For
+    // now, assume landscape.
+     [[FCPOrientation alloc] initWithOrientation:FCPDeviceOrientationLandscapeLeft];
+#endif
     NSError *error;
-    FLTCam *cam = [[FLTCam alloc] initWithCameraName:cameraName
-                                    resolutionPreset:resolutionPreset
-                                         enableAudio:[enableAudio boolValue]
-                                         orientation:[[UIDevice currentDevice] orientation]
-                                 captureSessionQueue:strongSelf.captureSessionQueue
-                                               error:&error];
+    FLTCam *cam =
+        [[FLTCam alloc] initWithCameraName:cameraName
+                          resolutionPreset:resolutionPreset
+                               enableAudio:[enableAudio boolValue]
+                               orientation:captureSessionQueue:strongSelf.captureSessionQueue
+                                     error:&error];
 
     if (error) {
       [result sendError:error];

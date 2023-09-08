@@ -46,12 +46,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithCameraName:(NSString *)cameraName
                   resolutionPreset:(NSString *)resolutionPreset
                        enableAudio:(BOOL)enableAudio
-                       orientation:(UIDeviceOrientation)orientation
+                       orientation:(FCPOrientation *)orientation
                captureSessionQueue:(dispatch_queue_t)captureSessionQueue
                              error:(NSError **)error;
 - (void)start;
 - (void)stop;
-- (void)setDeviceOrientation:(UIDeviceOrientation)orientation;
+- (void)setDeviceOrientation:(FCPOrientation *)orientation;
 - (void)captureToFile:(FLTThreadSafeFlutterResult *)result;
 - (void)close;
 - (void)startVideoRecordingWithResult:(FLTThreadSafeFlutterResult *)result;

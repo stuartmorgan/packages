@@ -70,7 +70,8 @@
 /// Maximum number of frames pending processing.
 @property(assign, nonatomic) int maxStreamingPendingFramesCount;
 
-@property(assign, nonatomic) UIDeviceOrientation lockedCaptureOrientation;
+@property(strong, nonatomic) FCPOrientation *deviceOrientation;
+@property(strong, nonatomic) FCPOrientation *lockedDeviceOrientation;
 @property(assign, nonatomic) CMTime lastVideoSampleTime;
 @property(assign, nonatomic) CMTime lastAudioSampleTime;
 @property(assign, nonatomic) CMTime videoTimeOffset;
@@ -85,7 +86,6 @@
 /// The queue on which captured photos (not videos) are written to disk.
 /// Videos are written to disk by `videoAdaptor` on an internal queue managed by AVFoundation.
 @property(strong, nonatomic) dispatch_queue_t photoIOQueue;
-@property(assign, nonatomic) UIDeviceOrientation deviceOrientation;
 @end
 
 @implementation FLTCam
@@ -95,7 +95,7 @@ NSString *const errorMethod = @"error";
 - (instancetype)initWithCameraName:(NSString *)cameraName
                   resolutionPreset:(NSString *)resolutionPreset
                        enableAudio:(BOOL)enableAudio
-                       orientation:(UIDeviceOrientation)orientation
+                       orientation:(FCPOrientation *)orientation
                captureSessionQueue:(dispatch_queue_t)captureSessionQueue
                              error:(NSError **)error {
   return [self initWithCameraName:cameraName
@@ -111,7 +111,7 @@ NSString *const errorMethod = @"error";
 - (instancetype)initWithCameraName:(NSString *)cameraName
                   resolutionPreset:(NSString *)resolutionPreset
                        enableAudio:(BOOL)enableAudio
-                       orientation:(UIDeviceOrientation)orientation
+                       orientation:(FCPOrientation *)orientation
                videoCaptureSession:(AVCaptureSession *)videoCaptureSession
                audioCaptureSession:(AVCaptureSession *)audioCaptureSession
                captureSessionQueue:(dispatch_queue_t)captureSessionQueue
@@ -134,7 +134,6 @@ NSString *const errorMethod = @"error";
   _flashMode = _captureDevice.hasFlash ? FLTFlashModeAuto : FLTFlashModeOff;
   _exposureMode = FLTExposureModeAuto;
   _focusMode = FLTFocusModeAuto;
-  _lockedCaptureOrientation = UIDeviceOrientationUnknown;
   _deviceOrientation = orientation;
   _videoFormat = kCVPixelFormatType_32BGRA;
   _inProgressSavePhotoDelegates = [NSMutableDictionary dictionary];
@@ -210,8 +209,8 @@ NSString *const errorMethod = @"error";
       @{(NSString *)kCVPixelBufferPixelFormatTypeKey : @(videoFormat)};
 }
 
-- (void)setDeviceOrientation:(UIDeviceOrientation)orientation {
-  if (_deviceOrientation == orientation) {
+- (void)setDeviceOrientation:(FCPOrientation *)orientation {
+  if (_deviceOrientation.value == orientation.value) {
     return;
   }
 
@@ -224,23 +223,21 @@ NSString *const errorMethod = @"error";
     return;
   }
 
-  UIDeviceOrientation orientation = (_lockedCaptureOrientation != UIDeviceOrientationUnknown)
-                                        ? _lockedCaptureOrientation
-                                        : _deviceOrientation;
+  FCPOrientation *orientation = self.lockedDeviceOrientation ?: self.deviceOrientation;
 
   [self updateOrientation:orientation forCaptureOutput:_capturePhotoOutput];
   [self updateOrientation:orientation forCaptureOutput:_captureVideoOutput];
 }
 
-- (void)updateOrientation:(UIDeviceOrientation)orientation
+- (void)updateOrientation:(FCPOrientation *)orientation
          forCaptureOutput:(AVCaptureOutput *)captureOutput {
   if (!captureOutput) {
     return;
   }
 
   AVCaptureConnection *connection = [captureOutput connectionWithMediaType:AVMediaTypeVideo];
-  if (connection && connection.isVideoOrientationSupported) {
-    connection.videoOrientation = [self getVideoOrientationForDeviceOrientation:orientation];
+  if (connection.isVideoOrientationSupported) {
+    connection.videoOrientation = [self videoOrientationForDeviceOrientation:orientation];
   }
 }
 
@@ -292,22 +289,21 @@ NSString *const errorMethod = @"error";
   [self.capturePhotoOutput capturePhotoWithSettings:settings delegate:savePhotoDelegate];
 }
 
-- (AVCaptureVideoOrientation)getVideoOrientationForDeviceOrientation:
-    (UIDeviceOrientation)deviceOrientation {
-  if (deviceOrientation == UIDeviceOrientationPortrait) {
-    return AVCaptureVideoOrientationPortrait;
-  } else if (deviceOrientation == UIDeviceOrientationLandscapeLeft) {
-    // Note: device orientation is flipped compared to video orientation. When UIDeviceOrientation
-    // is landscape left the video orientation should be landscape right.
-    return AVCaptureVideoOrientationLandscapeRight;
-  } else if (deviceOrientation == UIDeviceOrientationLandscapeRight) {
-    // Note: device orientation is flipped compared to video orientation. When UIDeviceOrientation
-    // is landscape right the video orientation should be landscape left.
-    return AVCaptureVideoOrientationLandscapeLeft;
-  } else if (deviceOrientation == UIDeviceOrientationPortraitUpsideDown) {
-    return AVCaptureVideoOrientationPortraitUpsideDown;
-  } else {
-    return AVCaptureVideoOrientationPortrait;
+- (AVCaptureVideoOrientation)videoOrientationForDeviceOrientation:
+    (FCPOrientation *)deviceOrientation {
+  switch (deviceOrientation.value) {
+    case FCPDeviceOrientationPortraitUp:
+      return AVCaptureVideoOrientationPortrait;
+    case FCPDeviceOrientationPortraitDown:
+      return AVCaptureVideoOrientationPortraitUpsideDown;
+    case FCPDeviceOrientationLandscapeLeft:
+      // Note: device orientation is flipped compared to video orientation. When the device
+      // is landscape left the video orientation should be landscape right.
+      return AVCaptureVideoOrientationLandscapeRight;
+    case FCPDeviceOrientationLandscapeRight:
+      // Note: device orientation is flipped compared to video orientation. When the device
+      // is landscape right the video orientation should be landscape left.
+      return AVCaptureVideoOrientationLandscapeLeft;
   }
 }
 
@@ -718,18 +714,27 @@ NSString *const errorMethod = @"error";
   [result sendSuccess];
 }
 
+// TODO(stuartmorgan): Rename this and the channel method string; the current naming is confusing
+// since the parameter is the device orientation to lock to, not the capture orientation of the
+// video itself (see videoOrientationForDeviceOrientation).
 - (void)lockCaptureOrientationWithResult:(FLTThreadSafeFlutterResult *)result
                              orientation:(NSString *)orientationStr {
-  UIDeviceOrientation orientation;
-  @try {
-    orientation = FLTGetUIDeviceOrientationForString(orientationStr);
-  } @catch (NSError *e) {
-    [result sendError:e];
+  FCPOrientation *orientation =
+      [[FCPOrientation alloc] initWithChannelSerialization:orientationStr];
+  if (!orientation) {
+    NSError *error = [NSError
+        errorWithDomain:NSCocoaErrorDomain
+                   code:NSURLErrorUnknown
+               userInfo:@{
+                 NSLocalizedDescriptionKey :
+                     [NSString stringWithFormat:@"Unknown device orientation %@", orientationStr]
+               }];
+    [result sendError:error];
     return;
   }
 
-  if (_lockedCaptureOrientation != orientation) {
-    _lockedCaptureOrientation = orientation;
+  if (!_lockedDeviceOrientation || _lockedDeviceOrientation.value != orientation.value) {
+    _lockedDeviceOrientation = orientation;
     [self updateOrientation];
   }
 
@@ -737,7 +742,7 @@ NSString *const errorMethod = @"error";
 }
 
 - (void)unlockCaptureOrientationWithResult:(FLTThreadSafeFlutterResult *)result {
-  _lockedCaptureOrientation = UIDeviceOrientationUnknown;
+  _lockedDeviceOrientation = nil;
   [self updateOrientation];
   [result sendSuccess];
 }
@@ -918,25 +923,22 @@ NSString *const errorMethod = @"error";
   [result sendSuccess];
 }
 
-- (CGPoint)getCGPointForCoordsWithOrientation:(UIDeviceOrientation)orientation
-                                            x:(double)x
-                                            y:(double)y {
+- (CGPoint)pointForCoordsWithOrientation:(FCPOrientation *)orientation x:(double)x y:(double)y {
   double oldX = x, oldY = y;
-  switch (orientation) {
-    case UIDeviceOrientationPortrait:  // 90 ccw
+  switch (orientation.value) {
+    case FCPDeviceOrientationPortraitUp:  // 90 ccw
       y = 1 - oldX;
       x = oldY;
       break;
-    case UIDeviceOrientationPortraitUpsideDown:  // 90 cw
+    case FCPDeviceOrientationPortraitDown:  // 90 cw
       x = 1 - oldY;
       y = oldX;
       break;
-    case UIDeviceOrientationLandscapeRight:  // 180
+    case FCPDeviceOrientationLandscapeRight:  // 180
       x = 1 - x;
       y = 1 - y;
       break;
-    case UIDeviceOrientationLandscapeLeft:
-    default:
+    case FCPDeviceOrientationLandscapeLeft:
       // No rotation required
       break;
   }
@@ -950,11 +952,11 @@ NSString *const errorMethod = @"error";
                       details:nil];
     return;
   }
-  UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
   [_captureDevice lockForConfiguration:nil];
-  [_captureDevice setExposurePointOfInterest:[self getCGPointForCoordsWithOrientation:orientation
-                                                                                    x:x
-                                                                                    y:y]];
+  [_captureDevice
+      setExposurePointOfInterest:[self getCGPointForCoordsWithOrientation:_deviceOrientation
+                                                                        x:x
+                                                                        y:y]];
   [_captureDevice unlockForConfiguration];
   // Retrigger auto exposure
   [self applyExposureMode];
@@ -968,12 +970,10 @@ NSString *const errorMethod = @"error";
                       details:nil];
     return;
   }
-  UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
   [_captureDevice lockForConfiguration:nil];
 
-  [_captureDevice setFocusPointOfInterest:[self getCGPointForCoordsWithOrientation:orientation
-                                                                                 x:x
-                                                                                 y:y]];
+  [_captureDevice
+      setFocusPointOfInterest:[self getCGPointForCoordsWithOrientation:_deviceOrientation x:x y:y]];
   [_captureDevice unlockForConfiguration];
   // Retrigger auto focus
   [self applyFocusMode];

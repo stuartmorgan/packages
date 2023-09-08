@@ -36,11 +36,13 @@
 /// on the main dispatch queue.
 - (void)handleMethodCallAsync:(FlutterMethodCall *)call result:(FLTThreadSafeFlutterResult *)result;
 
+#if TARGET_OS_IOS
 /// Called by the @c NSNotificationManager each time the device's orientation is changed.
 ///
 /// @param notification @c NSNotification instance containing a reference to the `UIDevice` object
 /// that triggered the orientation change.
 - (void)orientationChanged:(NSNotification *)notification;
+#endif
 
 /// Creates FLTCam on session queue and reports the creation result.
 /// @param createMethodCall the create method call
