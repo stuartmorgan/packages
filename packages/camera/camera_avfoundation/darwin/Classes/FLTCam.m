@@ -76,7 +76,6 @@
 @property(assign, nonatomic) CMTime lastAudioSampleTime;
 @property(assign, nonatomic) CMTime videoTimeOffset;
 @property(assign, nonatomic) CMTime audioTimeOffset;
-@property(nonatomic) CMMotionManager *motionManager;
 @property AVAssetWriterInputPixelBufferAdaptor *videoAdaptor;
 /// All FLTCam's state access and capture session related operations should be on run on this queue.
 @property(strong, nonatomic) dispatch_queue_t captureSessionQueue;
@@ -86,6 +85,9 @@
 /// The queue on which captured photos (not videos) are written to disk.
 /// Videos are written to disk by `videoAdaptor` on an internal queue managed by AVFoundation.
 @property(strong, nonatomic) dispatch_queue_t photoIOQueue;
+#if TARGET_OS_IOS
+@property(nonatomic) CMMotionManager *motionManager;
+#endif
 @end
 
 @implementation FLTCam
@@ -158,8 +160,10 @@ NSString *const errorMethod = @"error";
   [_capturePhotoOutput setHighResolutionCaptureEnabled:YES];
   [_videoCaptureSession addOutput:_capturePhotoOutput];
 
+#if TARGET_OS_IOS
   _motionManager = [[CMMotionManager alloc] init];
   [_motionManager startAccelerometerUpdates];
+#endif
 
   [self setCaptureSessionPreset:_resolutionPreset];
   [self updateOrientation];
@@ -626,7 +630,9 @@ NSString *const errorMethod = @"error";
   if (_latestPixelBuffer) {
     CFRelease(_latestPixelBuffer);
   }
+#if TARGET_OS_IOS
   [_motionManager stopAccelerometerUpdates];
+#endif
 }
 
 - (CVPixelBufferRef)copyPixelBuffer {
