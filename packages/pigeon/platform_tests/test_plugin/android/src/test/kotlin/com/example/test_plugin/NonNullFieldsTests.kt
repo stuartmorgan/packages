@@ -8,9 +8,9 @@ import junit.framework.TestCase
 import org.junit.Test
 
 class NonNullFieldsTests : TestCase() {
-  @Test
-  fun testMake() {
-    val request = NonNullFieldSearchRequest("hello")
-    assertEquals("hello", request.query)
-  }
+    @Test
+    fun testMake() {
+        val request = NonNullFieldSearchRequest("hello")
+        assertEquals("hello", request.query)
+    }
 }

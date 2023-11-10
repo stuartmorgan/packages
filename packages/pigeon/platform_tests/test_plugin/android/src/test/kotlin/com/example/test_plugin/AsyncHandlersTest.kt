@@ -14,110 +14,110 @@ import junit.framework.TestCase
 import org.junit.Test
 
 internal class AsyncHandlersTest : TestCase() {
-  @Test
-  fun testAsyncHost2Flutter() {
-    val binaryMessenger = mockk<BinaryMessenger>()
-    val api = FlutterIntegrationCoreApi(binaryMessenger)
+    @Test
+    fun testAsyncHost2Flutter() {
+        val binaryMessenger = mockk<BinaryMessenger>()
+        val api = FlutterIntegrationCoreApi(binaryMessenger)
 
-    val value = "Test"
+        val value = "Test"
 
-    every { binaryMessenger.send(any(), any(), any()) } answers
-        {
-          val codec = FlutterIntegrationCoreApi.codec
-          val message = arg<ByteBuffer>(1)
-          val reply = arg<BinaryMessenger.BinaryReply>(2)
-          message.position(0)
-          val replyData = codec.encodeMessage(listOf(value))
-          replyData?.position(0)
-          reply.reply(replyData)
+        every { binaryMessenger.send(any(), any(), any()) } answers
+            {
+                val codec = FlutterIntegrationCoreApi.codec
+                val message = arg<ByteBuffer>(1)
+                val reply = arg<BinaryMessenger.BinaryReply>(2)
+                message.position(0)
+                val replyData = codec.encodeMessage(listOf(value))
+                replyData?.position(0)
+                reply.reply(replyData)
+            }
+
+        var didCall = false
+        api.echoAsyncString(value) {
+            didCall = true
+            assertEquals(it.getOrNull(), value)
         }
 
-    var didCall = false
-    api.echoAsyncString(value) {
-      didCall = true
-      assertEquals(it.getOrNull(), value)
+        assertTrue(didCall)
+
+        verify {
+            binaryMessenger.send(
+                "dev.flutter.pigeon.pigeon_integration_tests.FlutterIntegrationCoreApi.echoAsyncString",
+                any(),
+                any())
+        }
     }
 
-    assertTrue(didCall)
+    @Test
+    fun testAsyncFlutter2HostEcho() {
+        val binaryMessenger = mockk<BinaryMessenger>()
+        val api = mockk<HostSmallApi>()
 
-    verify {
-      binaryMessenger.send(
-          "dev.flutter.pigeon.pigeon_integration_tests.FlutterIntegrationCoreApi.echoAsyncString",
-          any(),
-          any())
-    }
-  }
+        val handlerSlot = slot<BinaryMessenger.BinaryMessageHandler>()
 
-  @Test
-  fun testAsyncFlutter2HostEcho() {
-    val binaryMessenger = mockk<BinaryMessenger>()
-    val api = mockk<HostSmallApi>()
+        val input = "Test"
+        val output = input
+        val channelName = "dev.flutter.pigeon.pigeon_integration_tests.HostSmallApi.echo"
 
-    val handlerSlot = slot<BinaryMessenger.BinaryMessageHandler>()
+        every {
+            binaryMessenger.setMessageHandler(
+                "dev.flutter.pigeon.pigeon_integration_tests.HostSmallApi.voidVoid", any())
+        } returns Unit
+        every { binaryMessenger.setMessageHandler(channelName, capture(handlerSlot)) } returns Unit
+        every { api.echo(any(), any()) } answers
+            {
+                val callback = arg<(Result<String>) -> Unit>(1)
+                callback(Result.success(output))
+            }
 
-    val input = "Test"
-    val output = input
-    val channelName = "dev.flutter.pigeon.pigeon_integration_tests.HostSmallApi.echo"
+        HostSmallApi.setUp(binaryMessenger, api)
 
-    every {
-      binaryMessenger.setMessageHandler(
-          "dev.flutter.pigeon.pigeon_integration_tests.HostSmallApi.voidVoid", any())
-    } returns Unit
-    every { binaryMessenger.setMessageHandler(channelName, capture(handlerSlot)) } returns Unit
-    every { api.echo(any(), any()) } answers
-        {
-          val callback = arg<(Result<String>) -> Unit>(1)
-          callback(Result.success(output))
+        val codec = HostSmallApi.codec
+        val message = codec.encodeMessage(listOf(input))
+        message?.rewind()
+        handlerSlot.captured.onMessage(message) {
+            assertNotNull(it)
+            it?.rewind()
+            @Suppress("UNCHECKED_CAST") val wrapped = codec.decodeMessage(it) as MutableList<Any>?
+            assertNotNull(wrapped)
+            wrapped?.let { assertEquals(output, wrapped.first()) }
         }
 
-    HostSmallApi.setUp(binaryMessenger, api)
-
-    val codec = HostSmallApi.codec
-    val message = codec.encodeMessage(listOf(input))
-    message?.rewind()
-    handlerSlot.captured.onMessage(message) {
-      assertNotNull(it)
-      it?.rewind()
-      @Suppress("UNCHECKED_CAST") val wrapped = codec.decodeMessage(it) as MutableList<Any>?
-      assertNotNull(wrapped)
-      wrapped?.let { assertEquals(output, wrapped.first()) }
+        verify { binaryMessenger.setMessageHandler(channelName, handlerSlot.captured) }
+        verify { api.echo(input, any()) }
     }
 
-    verify { binaryMessenger.setMessageHandler(channelName, handlerSlot.captured) }
-    verify { api.echo(input, any()) }
-  }
+    @Test
+    fun asyncFlutter2HostVoidVoid() {
+        val binaryMessenger = mockk<BinaryMessenger>()
+        val api = mockk<HostSmallApi>()
 
-  @Test
-  fun asyncFlutter2HostVoidVoid() {
-    val binaryMessenger = mockk<BinaryMessenger>()
-    val api = mockk<HostSmallApi>()
+        val handlerSlot = slot<BinaryMessenger.BinaryMessageHandler>()
 
-    val handlerSlot = slot<BinaryMessenger.BinaryMessageHandler>()
+        val channelName = "dev.flutter.pigeon.pigeon_integration_tests.HostSmallApi.voidVoid"
 
-    val channelName = "dev.flutter.pigeon.pigeon_integration_tests.HostSmallApi.voidVoid"
+        every { binaryMessenger.setMessageHandler(channelName, capture(handlerSlot)) } returns Unit
+        every {
+            binaryMessenger.setMessageHandler(
+                "dev.flutter.pigeon.pigeon_integration_tests.HostSmallApi.echo", any())
+        } returns Unit
+        every { api.voidVoid(any()) } answers
+            {
+                val callback = arg<() -> Unit>(0)
+                callback()
+            }
 
-    every { binaryMessenger.setMessageHandler(channelName, capture(handlerSlot)) } returns Unit
-    every {
-      binaryMessenger.setMessageHandler(
-          "dev.flutter.pigeon.pigeon_integration_tests.HostSmallApi.echo", any())
-    } returns Unit
-    every { api.voidVoid(any()) } answers
-        {
-          val callback = arg<() -> Unit>(0)
-          callback()
+        HostSmallApi.setUp(binaryMessenger, api)
+
+        val codec = HostSmallApi.codec
+        val message = codec.encodeMessage(null)
+        handlerSlot.captured.onMessage(message) {
+            it?.rewind()
+            @Suppress("UNCHECKED_CAST") val wrapped = codec.decodeMessage(it) as MutableList<Any>?
+            assertNull(wrapped)
         }
 
-    HostSmallApi.setUp(binaryMessenger, api)
-
-    val codec = HostSmallApi.codec
-    val message = codec.encodeMessage(null)
-    handlerSlot.captured.onMessage(message) {
-      it?.rewind()
-      @Suppress("UNCHECKED_CAST") val wrapped = codec.decodeMessage(it) as MutableList<Any>?
-      assertNull(wrapped)
+        verify { binaryMessenger.setMessageHandler(channelName, handlerSlot.captured) }
+        verify { api.voidVoid(any()) }
     }
-
-    verify { binaryMessenger.setMessageHandler(channelName, handlerSlot.captured) }
-    verify { api.voidVoid(any()) }
-  }
 }
