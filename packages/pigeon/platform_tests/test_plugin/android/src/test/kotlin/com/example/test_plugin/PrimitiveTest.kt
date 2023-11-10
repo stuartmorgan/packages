@@ -33,7 +33,8 @@ class PrimitiveTest : TestCase() {
         message?.rewind()
         handlerSlot.captured.onMessage(message) {
             it?.rewind()
-            @Suppress("UNCHECKED_CAST") val wrapped = codec.decodeMessage(it) as List<Any>?
+            @Suppress("UNCHECKED_CAST")
+            val wrapped = codec.decodeMessage(it) as List<Any>?
             assertNotNull(wrapped)
             wrapped?.let { assertEquals(input.toLong(), wrapped[0]) }
         }
@@ -78,7 +79,8 @@ class PrimitiveTest : TestCase() {
         message?.rewind()
         handlerSlot.captured.onMessage(message) {
             it?.rewind()
-            @Suppress("UNCHECKED_CAST") val wrapped = codec.decodeMessage(it) as List<Any>?
+            @Suppress("UNCHECKED_CAST")
+            val wrapped = codec.decodeMessage(it) as List<Any>?
             assertNotNull(wrapped)
             wrapped?.let { assertEquals(input, wrapped[0]) }
         }
@@ -123,7 +125,8 @@ class PrimitiveTest : TestCase() {
         message?.rewind()
         handlerSlot.captured.onMessage(message) {
             it?.rewind()
-            @Suppress("UNCHECKED_CAST") val wrapped = codec.decodeMessage(it) as List<Any>?
+            @Suppress("UNCHECKED_CAST")
+            val wrapped = codec.decodeMessage(it) as List<Any>?
             assertNotNull(wrapped)
             wrapped?.let { assertEquals(input, wrapped[0]) }
         }
@@ -152,7 +155,8 @@ class PrimitiveTest : TestCase() {
         message?.rewind()
         handlerSlot.captured.onMessage(message) {
             it?.rewind()
-            @Suppress("UNCHECKED_CAST") val wrapped = codec.decodeMessage(it) as List<Any>?
+            @Suppress("UNCHECKED_CAST")
+            val wrapped = codec.decodeMessage(it) as List<Any>?
             assertNotNull(wrapped)
             wrapped?.let { assertEquals(input, wrapped[0]) }
         }
@@ -197,7 +201,8 @@ class PrimitiveTest : TestCase() {
         message?.rewind()
         handlerSlot.captured.onMessage(message) {
             it?.rewind()
-            @Suppress("UNCHECKED_CAST") val wrapped = codec.decodeMessage(it) as List<Any>?
+            @Suppress("UNCHECKED_CAST")
+            val wrapped = codec.decodeMessage(it) as List<Any>?
             assertNotNull(wrapped)
             wrapped?.let { assertEquals(input, wrapped[0]) }
         }
@@ -242,7 +247,8 @@ class PrimitiveTest : TestCase() {
         message?.rewind()
         handlerSlot.captured.onMessage(message) {
             it?.rewind()
-            @Suppress("UNCHECKED_CAST") val wrapped = codec.decodeMessage(it) as List<Any>?
+            @Suppress("UNCHECKED_CAST")
+            val wrapped = codec.decodeMessage(it) as List<Any>?
             assertNotNull(wrapped)
             wrapped?.let { assertEquals(input, wrapped[0]) }
         }
@@ -287,7 +293,8 @@ class PrimitiveTest : TestCase() {
         message?.rewind()
         handlerSlot.captured.onMessage(message) {
             it?.rewind()
-            @Suppress("UNCHECKED_CAST") val wrapped = codec.decodeMessage(it) as List<Any>?
+            @Suppress("UNCHECKED_CAST")
+            val wrapped = codec.decodeMessage(it) as List<Any>?
             assertNotNull(wrapped)
             wrapped?.let { assertTrue(input.contentEquals(wrapped[0] as IntArray)) }
         }
@@ -332,7 +339,8 @@ class PrimitiveTest : TestCase() {
         message?.rewind()
         handlerSlot.captured.onMessage(message) {
             it?.rewind()
-            @Suppress("UNCHECKED_CAST") val wrapped = codec.decodeMessage(it) as List<Any>?
+            @Suppress("UNCHECKED_CAST")
+            val wrapped = codec.decodeMessage(it) as List<Any>?
             assertNotNull(wrapped)
             wrapped?.let { assertEquals(input, wrapped[0]) }
         }
@@ -378,7 +386,8 @@ class PrimitiveTest : TestCase() {
         message?.rewind()
         handlerSlot.captured.onMessage(message) {
             it?.rewind()
-            @Suppress("UNCHECKED_CAST") val wrapped = codec.decodeMessage(it) as List<Any>?
+            @Suppress("UNCHECKED_CAST")
+            val wrapped = codec.decodeMessage(it) as List<Any>?
             assertNotNull(wrapped)
             wrapped?.let { assertEquals(input, wrapped[0]) }
         }

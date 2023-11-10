@@ -9,9 +9,9 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.slot
 import io.mockk.verify
-import java.nio.ByteBuffer
 import junit.framework.TestCase
 import org.junit.Test
+import java.nio.ByteBuffer
 
 internal class AsyncHandlersTest : TestCase() {
     @Test
@@ -44,7 +44,8 @@ internal class AsyncHandlersTest : TestCase() {
             binaryMessenger.send(
                 "dev.flutter.pigeon.pigeon_integration_tests.FlutterIntegrationCoreApi.echoAsyncString",
                 any(),
-                any())
+                any(),
+            )
         }
     }
 
@@ -61,7 +62,8 @@ internal class AsyncHandlersTest : TestCase() {
 
         every {
             binaryMessenger.setMessageHandler(
-                "dev.flutter.pigeon.pigeon_integration_tests.HostSmallApi.voidVoid", any())
+                "dev.flutter.pigeon.pigeon_integration_tests.HostSmallApi.voidVoid", any(),
+            )
         } returns Unit
         every { binaryMessenger.setMessageHandler(channelName, capture(handlerSlot)) } returns Unit
         every { api.echo(any(), any()) } answers
@@ -78,7 +80,8 @@ internal class AsyncHandlersTest : TestCase() {
         handlerSlot.captured.onMessage(message) {
             assertNotNull(it)
             it?.rewind()
-            @Suppress("UNCHECKED_CAST") val wrapped = codec.decodeMessage(it) as MutableList<Any>?
+            @Suppress("UNCHECKED_CAST")
+            val wrapped = codec.decodeMessage(it) as MutableList<Any>?
             assertNotNull(wrapped)
             wrapped?.let { assertEquals(output, wrapped.first()) }
         }
@@ -99,7 +102,8 @@ internal class AsyncHandlersTest : TestCase() {
         every { binaryMessenger.setMessageHandler(channelName, capture(handlerSlot)) } returns Unit
         every {
             binaryMessenger.setMessageHandler(
-                "dev.flutter.pigeon.pigeon_integration_tests.HostSmallApi.echo", any())
+                "dev.flutter.pigeon.pigeon_integration_tests.HostSmallApi.echo", any(),
+            )
         } returns Unit
         every { api.voidVoid(any()) } answers
             {
@@ -113,7 +117,8 @@ internal class AsyncHandlersTest : TestCase() {
         val message = codec.encodeMessage(null)
         handlerSlot.captured.onMessage(message) {
             it?.rewind()
-            @Suppress("UNCHECKED_CAST") val wrapped = codec.decodeMessage(it) as MutableList<Any>?
+            @Suppress("UNCHECKED_CAST")
+            val wrapped = codec.decodeMessage(it) as MutableList<Any>?
             assertNull(wrapped)
         }
 

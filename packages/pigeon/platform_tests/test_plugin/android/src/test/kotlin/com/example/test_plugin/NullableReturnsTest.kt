@@ -33,7 +33,8 @@ class NullableReturnsTest : TestCase() {
         message?.rewind()
         handlerSlot.captured.onMessage(message) {
             it?.rewind()
-            @Suppress("UNCHECKED_CAST") val wrapped = codec.decodeMessage(it) as List<Any>?
+            @Suppress("UNCHECKED_CAST")
+            val wrapped = codec.decodeMessage(it) as List<Any>?
             assertNotNull(wrapped)
             wrapped?.let { assertEquals(output, wrapped[0]) }
         }

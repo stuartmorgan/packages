@@ -23,7 +23,8 @@ private fun wrapError(exception: Throwable): List<Any?> {
         return listOf(
             exception.javaClass.simpleName,
             exception.toString(),
-            "Cause: " + exception.cause + ", Stacktrace: " + Log.getStackTraceString(exception))
+            "Cause: " + exception.cause + ", Stacktrace: " + Log.getStackTraceString(exception),
+        )
     }
 }
 
@@ -37,12 +38,13 @@ private fun wrapError(exception: Throwable): List<Any?> {
 class FlutterError(
     val code: String,
     override val message: String? = null,
-    val details: Any? = null
+    val details: Any? = null,
 ) : Throwable()
 
 enum class Code(val raw: Int) {
     ONE(0),
-    TWO(1);
+    TWO(1),
+    ;
 
     companion object {
         fun ofRaw(raw: Int): Code? {
@@ -56,7 +58,7 @@ data class MessageData(
     val name: String? = null,
     val description: String? = null,
     val code: Code,
-    val data: Map<String?, String?>
+    val data: Map<String?, String?>,
 ) {
     companion object {
         @Suppress("UNCHECKED_CAST")
@@ -81,7 +83,10 @@ data class MessageData(
 
 @Suppress("UNCHECKED_CAST")
 private object ExampleHostApiCodec : StandardMessageCodec() {
-    override fun readValueOfType(type: Byte, buffer: ByteBuffer): Any? {
+    override fun readValueOfType(
+        type: Byte,
+        buffer: ByteBuffer,
+    ): Any? {
         return when (type) {
             128.toByte() -> {
                 return (readValue(buffer) as? List<Any?>)?.let { MessageData.fromList(it) }
@@ -90,7 +95,10 @@ private object ExampleHostApiCodec : StandardMessageCodec() {
         }
     }
 
-    override fun writeValue(stream: ByteArrayOutputStream, value: Any?) {
+    override fun writeValue(
+        stream: ByteArrayOutputStream,
+        value: Any?,
+    ) {
         when (value) {
             is MessageData -> {
                 stream.write(128)
@@ -105,24 +113,35 @@ private object ExampleHostApiCodec : StandardMessageCodec() {
 interface ExampleHostApi {
     fun getHostLanguage(): String
 
-    fun add(a: Long, b: Long): Long
+    fun add(
+        a: Long,
+        b: Long,
+    ): Long
 
-    fun sendMessage(message: MessageData, callback: (Result<Boolean>) -> Unit)
+    fun sendMessage(
+        message: MessageData,
+        callback: (Result<Boolean>) -> Unit,
+    )
 
     companion object {
         /** The codec used by ExampleHostApi. */
         val codec: MessageCodec<Any?> by lazy { ExampleHostApiCodec }
+
         /**
          * Sets up an instance of `ExampleHostApi` to handle messages through the `binaryMessenger`.
          */
         @Suppress("UNCHECKED_CAST")
-        fun setUp(binaryMessenger: BinaryMessenger, api: ExampleHostApi?) {
+        fun setUp(
+            binaryMessenger: BinaryMessenger,
+            api: ExampleHostApi?,
+        ) {
             run {
                 val channel =
                     BasicMessageChannel<Any?>(
                         binaryMessenger,
                         "dev.flutter.pigeon.pigeon_example_package.ExampleHostApi.getHostLanguage",
-                        codec)
+                        codec,
+                    )
                 if (api != null) {
                     channel.setMessageHandler { _, reply ->
                         var wrapped: List<Any?>
@@ -142,7 +161,8 @@ interface ExampleHostApi {
                     BasicMessageChannel<Any?>(
                         binaryMessenger,
                         "dev.flutter.pigeon.pigeon_example_package.ExampleHostApi.add",
-                        codec)
+                        codec,
+                    )
                 if (api != null) {
                     channel.setMessageHandler { message, reply ->
                         val args = message as List<Any?>
@@ -165,7 +185,8 @@ interface ExampleHostApi {
                     BasicMessageChannel<Any?>(
                         binaryMessenger,
                         "dev.flutter.pigeon.pigeon_example_package.ExampleHostApi.sendMessage",
-                        codec)
+                        codec,
+                    )
                 if (api != null) {
                     channel.setMessageHandler { message, reply ->
                         val args = message as List<Any?>
@@ -187,6 +208,7 @@ interface ExampleHostApi {
         }
     }
 }
+
 /** Generated class from Pigeon that represents Flutter messages that can be called from Kotlin. */
 @Suppress("UNCHECKED_CAST")
 class MessageFlutterApi(private val binaryMessenger: BinaryMessenger) {
@@ -195,25 +217,34 @@ class MessageFlutterApi(private val binaryMessenger: BinaryMessenger) {
         val codec: MessageCodec<Any?> by lazy { StandardMessageCodec() }
     }
 
-    fun flutterMethod(aStringArg: String?, callback: (Result<String>) -> Unit) {
+    fun flutterMethod(
+        aStringArg: String?,
+        callback: (Result<String>) -> Unit,
+    ) {
         val channel =
             BasicMessageChannel<Any?>(
                 binaryMessenger,
                 "dev.flutter.pigeon.pigeon_example_package.MessageFlutterApi.flutterMethod",
-                codec)
+                codec,
+            )
         channel.send(listOf(aStringArg)) {
             if (it is List<*>) {
                 if (it.size > 1) {
                     callback(
                         Result.failure(
-                            FlutterError(it[0] as String, it[1] as String, it[2] as String?)))
+                            FlutterError(it[0] as String, it[1] as String, it[2] as String?),
+                        ),
+                    )
                 } else if (it[0] == null) {
                     callback(
                         Result.failure(
                             FlutterError(
                                 "null-error",
                                 "Flutter api returned null value for non-null return value.",
-                                "")))
+                                "",
+                            ),
+                        ),
+                    )
                 } else {
                     val output = it[0] as String
                     callback(Result.success(output))
@@ -222,7 +253,12 @@ class MessageFlutterApi(private val binaryMessenger: BinaryMessenger) {
                 callback(
                     Result.failure(
                         FlutterError(
-                            "channel-error", "Unable to establish connection on channel.", "")))
+                            "channel-error",
+                            "Unable to establish connection on channel.",
+                            "",
+                        ),
+                    ),
+                )
             }
         }
     }

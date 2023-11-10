@@ -7,13 +7,16 @@ package com.example.test_plugin
 import io.flutter.plugin.common.BinaryMessenger
 import io.mockk.every
 import io.mockk.mockk
-import java.nio.ByteBuffer
-import java.util.ArrayList
 import junit.framework.TestCase
 import org.junit.Test
+import java.nio.ByteBuffer
+import java.util.ArrayList
 
 internal class AllDatatypesTest : TestCase() {
-    fun compareAllTypes(firstTypes: AllTypes?, secondTypes: AllTypes?) {
+    fun compareAllTypes(
+        firstTypes: AllTypes?,
+        secondTypes: AllTypes?,
+    ) {
         assertEquals(firstTypes == null, secondTypes == null)
         if (firstTypes == null || secondTypes == null) {
             return
@@ -33,7 +36,10 @@ internal class AllDatatypesTest : TestCase() {
         assertEquals(firstTypes.anObject, secondTypes.anObject)
     }
 
-    fun compareAllNullableTypes(firstTypes: AllNullableTypes?, secondTypes: AllNullableTypes?) {
+    fun compareAllNullableTypes(
+        firstTypes: AllNullableTypes?,
+        secondTypes: AllNullableTypes?,
+    ) {
         assertEquals(firstTypes == null, secondTypes == null)
         if (firstTypes == null || secondTypes == null) {
             return
@@ -160,7 +166,8 @@ internal class AllDatatypesTest : TestCase() {
                 null,
                 null,
                 null,
-                null)
+                null,
+            )
         val everything2 = AllNullableTypes.fromList(list2)
 
         assertEquals(everything.aNullableInt, everything2.aNullableInt)

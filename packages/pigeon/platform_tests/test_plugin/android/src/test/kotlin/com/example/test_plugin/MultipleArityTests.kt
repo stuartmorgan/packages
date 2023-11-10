@@ -8,10 +8,10 @@ import io.flutter.plugin.common.BinaryMessenger
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.slot
-import java.nio.ByteBuffer
-import java.util.ArrayList
 import junit.framework.TestCase
 import org.junit.Test
+import java.nio.ByteBuffer
+import java.util.ArrayList
 
 class MultipleArityTests : TestCase() {
     @Test
@@ -36,7 +36,8 @@ class MultipleArityTests : TestCase() {
         message?.rewind()
         handlerSlot.captured.onMessage(message) {
             it?.rewind()
-            @Suppress("UNCHECKED_CAST") val wrapped = codec.decodeMessage(it) as List<Any>?
+            @Suppress("UNCHECKED_CAST")
+            val wrapped = codec.decodeMessage(it) as List<Any>?
             assertNotNull(wrapped)
             wrapped?.let { assertEquals(inputX - inputY, wrapped[0]) }
         }

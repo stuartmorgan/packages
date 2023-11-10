@@ -7,10 +7,10 @@ package com.example.test_plugin
 import io.flutter.plugin.common.BinaryMessenger
 import io.mockk.every
 import io.mockk.mockk
-import java.nio.ByteBuffer
-import java.util.ArrayList
 import junit.framework.TestCase
 import org.junit.Test
+import java.nio.ByteBuffer
+import java.util.ArrayList
 
 class ListTest : TestCase() {
     @Test

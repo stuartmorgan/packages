@@ -10,14 +10,17 @@ import java.nio.ByteBuffer
 import java.util.ArrayList
 
 internal class EchoBinaryMessenger(private val codec: MessageCodec<Any?>) : BinaryMessenger {
-    override fun send(channel: String, message: ByteBuffer?) {
+    override fun send(
+        channel: String,
+        message: ByteBuffer?,
+    ) {
         // Method not implemented because this messenger is just for echoing.
     }
 
     override fun send(
         channel: String,
         message: ByteBuffer?,
-        callback: BinaryMessenger.BinaryReply?
+        callback: BinaryMessenger.BinaryReply?,
     ) {
         message?.rewind()
         val args = codec.decodeMessage(message) as ArrayList<*>
@@ -28,7 +31,7 @@ internal class EchoBinaryMessenger(private val codec: MessageCodec<Any?>) : Bina
 
     override fun setMessageHandler(
         channel: String,
-        handler: BinaryMessenger.BinaryMessageHandler?
+        handler: BinaryMessenger.BinaryMessageHandler?,
     ) {
         // Method not implemented because this messenger is just for echoing.
     }

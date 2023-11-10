@@ -19,14 +19,20 @@ private class PigeonApiImplementation : ExampleHostApi {
         return "Kotlin"
     }
 
-    override fun add(a: Long, b: Long): Long {
+    override fun add(
+        a: Long,
+        b: Long,
+    ): Long {
         if (a < 0L || b < 0L) {
             throw FlutterError("code", "message", "details")
         }
         return a + b
     }
 
-    override fun sendMessage(message: MessageData, callback: (Result<Boolean>) -> Unit) {
+    override fun sendMessage(
+        message: MessageData,
+        callback: (Result<Boolean>) -> Unit,
+    ) {
         if (message.code == Code.ONE) {
             callback(Result.failure(FlutterError("code", "message", "details")))
             return
@@ -38,21 +44,25 @@ private class PigeonApiImplementation : ExampleHostApi {
 
 // #docregion kotlin-class-flutter
 private class PigeonFlutterApi {
-
     var flutterApi: MessageFlutterApi? = null
 
     constructor(binding: FlutterPlugin.FlutterPluginBinding) {
         flutterApi = MessageFlutterApi(binding.getBinaryMessenger())
     }
 
-    fun callFlutterMethod(aString: String, callback: (Result<String>) -> Unit) {
+    fun callFlutterMethod(
+        aString: String,
+        callback: (Result<String>) -> Unit,
+    ) {
         flutterApi!!.flutterMethod(aString) { echo -> callback(Result.success(echo)) }
     }
 }
 // #enddocregion kotlin-class-flutter
 
 class MainActivity : FlutterActivity() {
-    override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
+    override fun configureFlutterEngine(
+        @NonNull flutterEngine: FlutterEngine,
+    ) {
         super.configureFlutterEngine(flutterEngine)
 
         val api = PigeonApiImplementation()
