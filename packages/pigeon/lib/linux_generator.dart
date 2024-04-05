@@ -484,9 +484,13 @@ class LinuxSourceGenerator extends StructuredGenerator<LinuxOptions> {
       _writeObjectNew(indent, generatorOptions.module, classDefinition.name);
       for (final NamedType field in classDefinition.fields) {
         final String fieldName = _snakeCaseFromCamelCase(field.name);
-        final String value = _referenceValue(field.type, fieldName);
-
-        indent.writeln('self->$fieldName = $value;');
+        if (_isNumericListType(field.type)) {
+          // TODO(stuartmorgan): Multi-statement copying involving a size
+          // variable and malloc.
+        } else {
+          final String value = _referenceValue(field.type, fieldName);
+          indent.writeln('self->$fieldName = $value;');
+        }
       }
       indent.writeln('return self;');
     });
@@ -511,8 +515,13 @@ class LinuxSourceGenerator extends StructuredGenerator<LinuxOptions> {
       indent.writeln('FlValue* values = fl_value_new_list();');
       for (final NamedType field in classDefinition.fields) {
         final String fieldName = _snakeCaseFromCamelCase(field.name);
-        indent.writeln(
-            'fl_value_append_take(values, ${_makeFlValue(generatorOptions.module, field.type, 'self->$fieldName')});');
+        // TODO(stuartmorgan): Make and pass an actual length variable so that
+        // numeric lists work.
+        const String fieldLengthName = '0';
+        final String makeValueExpression = _makeFlValue(
+            generatorOptions.module, field.type, 'self->$fieldName',
+            lengthVariableName: fieldLengthName);
+        indent.writeln('fl_value_append_take(values, $makeValueExpression);');
       }
       indent.writeln('return values;');
     });
@@ -526,8 +535,10 @@ class LinuxSourceGenerator extends StructuredGenerator<LinuxOptions> {
       ];
       for (int i = 0; i < classDefinition.fields.length; i++) {
         final NamedType field = classDefinition.fields[i];
-        checks.add(
-            'fl_value_get_type(fl_value_get_list_value(values, $i)) != ${_getFlValueType(field.type)}');
+        if (field.type.baseName != 'Object') {
+          checks.add(
+              'fl_value_get_type(fl_value_get_list_value(values, $i)) != ${_getFlValueType(field.type)}');
+        }
       }
       indent.addScoped("if (${checks.join(' || ')}) {", '}', () {
         indent.writeln('return nullptr;');
@@ -879,8 +890,10 @@ class LinuxSourceGenerator extends StructuredGenerator<LinuxOptions> {
               'fl_value_get_length(message) != ${method.parameters.length}');
           for (int i = 0; i < method.parameters.length; i++) {
             final Parameter param = method.parameters[i];
-            checks.add(
-                'fl_value_get_type(fl_value_get_list_value(message, $i)) != ${_getFlValueType(param.type)}');
+            if (param.type.baseName != 'Object') {
+              checks.add(
+                  'fl_value_get_type(fl_value_get_list_value(message, $i)) != ${_getFlValueType(param.type)}');
+            }
             methodArgs.add(_fromFlValue(generatorOptions.module, param.type,
                 'fl_value_get_list_value(message, $i)'));
           }
@@ -1167,7 +1180,7 @@ String _getType(String module, TypeDeclaration type, {bool isOutput = false}) {
     return '${_getClassName(module, type.baseName)}*';
   } else if (type.isEnum) {
     return _getClassName(module, type.baseName);
-  } else if (type.baseName == 'List' || type.baseName == 'Map') {
+  } else if (_isFlValueWrappedType(type)) {
     return 'FlValue*';
   } else if (type.baseName == 'void') {
     return 'void';
@@ -1179,18 +1192,45 @@ String _getType(String module, TypeDeclaration type, {bool isOutput = false}) {
     return 'double';
   } else if (type.baseName == 'String') {
     return isOutput ? 'gchar*' : 'const gchar*';
+  } else if (type.baseName == 'Uint8List') {
+    return isOutput ? 'uint8_t*' : 'const uint8_t*';
+  } else if (type.baseName == 'Int32List') {
+    return isOutput ? 'int32_t*' : 'const int32_t*';
+  } else if (type.baseName == 'Int64List') {
+    return isOutput ? 'int64_t*' : 'const int64_t*';
+  } else if (type.baseName == 'Float32List') {
+    return isOutput ? 'float*' : 'const float*';
+  } else if (type.baseName == 'Float64List') {
+    return isOutput ? 'double*' : 'const double*';
   } else {
     throw Exception('Unknown type ${type.baseName}');
   }
+}
+
+/// Whether [type] is a *List typed numeric list type.
+bool _isNumericListType(TypeDeclaration type) {
+  return type.baseName == 'Uint8List' ||
+      type.baseName == 'Int32List' ||
+      type.baseName == 'Int64List' ||
+      type.baseName == 'Float32List' ||
+      type.baseName == 'Float64List';
+}
+
+/// Whether [type] is a type that needs to stay an FLValue* since it can't be
+/// expressed as a more concrete type.
+bool _isFlValueWrappedType(TypeDeclaration type) {
+  return type.baseName == 'List' ||
+      type.baseName == 'Map' ||
+      type.baseName == 'Object';
 }
 
 // Returns code to clear a value stored in [variableName], or null if no function required.
 String? _getClearFunction(TypeDeclaration type, String variableName) {
   if (type.isClass) {
     return 'g_clear_object(&$variableName)';
-  } else if (type.baseName == 'List' || type.baseName == 'Map') {
+  } else if (_isFlValueWrappedType(type)) {
     return 'g_clear_pointer(&$variableName, fl_value_unref)';
-  } else if (type.baseName == 'String') {
+  } else if (type.baseName == 'String' || _isNumericListType(type)) {
     return 'g_clear_pointer(&$variableName, g_free)';
   } else {
     return null;
@@ -1204,7 +1244,7 @@ String _getDefaultValue(String module, TypeDeclaration type) {
   } else if (type.isEnum) {
     final String enumName = _getClassName(module, type.baseName);
     return 'static_cast<$enumName>(0)';
-  } else if (type.baseName == 'List' || type.baseName == 'Map') {
+  } else if (_isFlValueWrappedType(type)) {
     return 'nullptr';
   } else if (type.baseName == 'void') {
     return '';
@@ -1214,7 +1254,7 @@ String _getDefaultValue(String module, TypeDeclaration type) {
     return '0';
   } else if (type.baseName == 'double') {
     return '0.0';
-  } else if (type.baseName == 'String') {
+  } else if (type.baseName == 'String' || _isNumericListType(type)) {
     return 'nullptr';
   } else {
     throw Exception('Unknown type ${type.baseName}');
@@ -1223,7 +1263,7 @@ String _getDefaultValue(String module, TypeDeclaration type) {
 
 // Returns code to copy the native data type stored in [variableName].
 String _referenceValue(TypeDeclaration type, String variableName) {
-  if (type.isClass || type.baseName == 'List' || type.baseName == 'Map') {
+  if (type.isClass || _isFlValueWrappedType(type)) {
     return 'g_object_ref($variableName)';
   } else if (type.baseName == 'String') {
     return 'g_strdup($variableName)';
@@ -1232,13 +1272,16 @@ String _referenceValue(TypeDeclaration type, String variableName) {
   }
 }
 
-// Returns code to convert the native data type stored in [variableName] to a FlValue.
-String _makeFlValue(String module, TypeDeclaration type, String variableName) {
+/// Returns code to convert the native data type stored in [variableName] to a FlValue.
+///
+/// [lengthVariableName] must be provided for the typed numeric *List types.
+String _makeFlValue(String module, TypeDeclaration type, String variableName,
+    {String? lengthVariableName}) {
   if (type.isClass) {
     return 'fl_value_new_custom_object(0, G_OBJECT($variableName))';
   } else if (type.isEnum) {
     return 'fl_value_new_int($variableName)';
-  } else if (type.baseName == 'List' || type.baseName == 'Map') {
+  } else if (_isFlValueWrappedType(type)) {
     return 'fl_value_ref($variableName)';
   } else if (type.baseName == 'void') {
     return 'fl_value_new_null()';
@@ -1250,6 +1293,16 @@ String _makeFlValue(String module, TypeDeclaration type, String variableName) {
     return 'fl_value_new_double($variableName)';
   } else if (type.baseName == 'String') {
     return 'fl_value_new_string($variableName)';
+  } else if (type.baseName == 'Uint8List') {
+    return 'fl_value_new_uint8_list_from_bytes($variableName, $lengthVariableName)';
+  } else if (type.baseName == 'Int32List') {
+    return 'fl_value_new_int32_list_from_bytes($variableName, $lengthVariableName)';
+  } else if (type.baseName == 'Int64List') {
+    return 'fl_value_new_int64_list_from_bytes($variableName, $lengthVariableName)';
+  } else if (type.baseName == 'Float32List') {
+    return 'fl_value_new_float32_list_from_bytes($variableName, $lengthVariableName)';
+  } else if (type.baseName == 'Float64List') {
+    return 'fl_value_new_float_list_from_bytes($variableName, $lengthVariableName)';
   } else {
     throw Exception('Unknown type ${type.baseName}');
   }
@@ -1263,7 +1316,7 @@ String _fromFlValue(String module, TypeDeclaration type, String variableName) {
   } else if (type.isEnum) {
     final String enumName = _getClassName(module, type.baseName);
     return 'static_cast<$enumName>(fl_value_get_int($variableName))';
-  } else if (type.baseName == 'List' || type.baseName == 'Map') {
+  } else if (_isFlValueWrappedType(type)) {
     return variableName;
   } else if (type.baseName == 'bool') {
     return 'fl_value_get_bool($variableName)';
@@ -1273,6 +1326,16 @@ String _fromFlValue(String module, TypeDeclaration type, String variableName) {
     return 'fl_value_get_double($variableName)';
   } else if (type.baseName == 'String') {
     return 'fl_value_get_string($variableName)';
+  } else if (type.baseName == 'Uint8List') {
+    return 'fl_value_get_uint8_list($variableName)';
+  } else if (type.baseName == 'Int32List') {
+    return 'fl_value_get_int32_list($variableName)';
+  } else if (type.baseName == 'Int64List') {
+    return 'fl_value_get_int64_list($variableName)';
+  } else if (type.baseName == 'Float32List') {
+    return 'fl_value_get_float32_list($variableName)';
+  } else if (type.baseName == 'Float64List') {
+    return 'fl_value_get_float_list($variableName)';
   } else {
     throw Exception('Unknown type ${type.baseName}');
   }
@@ -1294,6 +1357,16 @@ String _getFlValueType(TypeDeclaration type) {
     return 'FL_VALUE_TYPE_INT';
   } else if (type.baseName == 'double') {
     return 'FL_VALUE_TYPE_DOUBLE';
+  } else if (type.baseName == 'Uint8List') {
+    return 'FL_VALUE_TYPE_UINT8_LIST';
+  } else if (type.baseName == 'Int32List') {
+    return 'FL_VALUE_TYPE_INT32_LIST';
+  } else if (type.baseName == 'Int64List') {
+    return 'FL_VALUE_TYPE_INT64_LIST';
+  } else if (type.baseName == 'Float32List') {
+    return 'FL_VALUE_TYPE_FLOAT32_LIST';
+  } else if (type.baseName == 'Float64List') {
+    return 'FL_VALUE_TYPE_FLOAT_LIST';
   } else if (type.baseName == 'String') {
     return 'FL_VALUE_TYPE_STRING';
   } else {
