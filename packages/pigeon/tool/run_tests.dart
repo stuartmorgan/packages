@@ -143,7 +143,7 @@ Set<String> _extensionsForLanguage(GeneratorLanguage language) {
     GeneratorLanguage.dart => <String>{'dart'},
     GeneratorLanguage.java => <String>{'java'},
     GeneratorLanguage.kotlin => <String>{'kt'},
-    GeneratorLanguage.linux => <String>{'linux'},
+    GeneratorLanguage.linux => <String>{'cc', 'h'},
     GeneratorLanguage.swift => <String>{'swift'},
     GeneratorLanguage.objc => <String>{'h', 'm', 'mm'},
   };
@@ -179,6 +179,8 @@ Future<void> main(List<String> args) async {
     androidKotlinUnitTests,
     androidJavaIntegrationTests,
     androidKotlinIntegrationTests,
+    linuxUnitTests,
+    linuxIntegrationTests,
   ];
   const List<String> macOSHostTests = <String>[
     iOSObjCUnitTests,

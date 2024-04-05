@@ -93,6 +93,8 @@ Future<int> generateTestPigeons({required String baseDir}) async {
     int generateCode = await runPigeon(
       input: './pigeons/$input.dart',
       dartOut: '$sharedDartOutputBase/lib/src/generated/$input.gen.dart',
+      dartPackageName: 'pigeon_integration_tests',
+      suppressVersion: true,
       // Android
       kotlinOut: skipLanguages.contains(GeneratorLanguage.kotlin)
           ? null
@@ -104,6 +106,14 @@ Future<int> generateTestPigeons({required String baseDir}) async {
       swiftOut: skipLanguages.contains(GeneratorLanguage.swift)
           ? null
           : '$outputBase/ios/Classes/$pascalCaseName.gen.swift',
+      // Linux
+      linuxHeaderOut: skipLanguages.contains(GeneratorLanguage.linux)
+          ? null
+          : '$outputBase/linux/pigeon/$input.gen.h',
+      linuxSourceOut: skipLanguages.contains(GeneratorLanguage.linux)
+          ? null
+          : '$outputBase/linux/pigeon/$input.gen.cc',
+      linuxModule: '${pascalCaseName}PigeonTest',
       // Windows
       cppHeaderOut: skipLanguages.contains(GeneratorLanguage.cpp)
           ? null
@@ -112,8 +122,6 @@ Future<int> generateTestPigeons({required String baseDir}) async {
           ? null
           : '$outputBase/windows/pigeon/$input.gen.cpp',
       cppNamespace: '${input}_pigeontest',
-      suppressVersion: true,
-      dartPackageName: 'pigeon_integration_tests',
     );
     if (generateCode != 0) {
       return generateCode;
@@ -194,6 +202,7 @@ Future<int> runPigeon({
   String? dartTestOut,
   String? linuxHeaderOut,
   String? linuxSourceOut,
+  String linuxModule = '',
   String? javaOut,
   String? javaPackage,
   String? objcHeaderOut,
@@ -227,7 +236,7 @@ Future<int> runPigeon({
     cppOptions: CppOptions(namespace: cppNamespace),
     linuxHeaderOut: linuxHeaderOut,
     linuxSourceOut: linuxSourceOut,
-    linuxOptions: const LinuxOptions(),
+    linuxOptions: LinuxOptions(module: linuxModule),
     javaOut: javaOut,
     javaOptions: JavaOptions(package: javaPackage),
     kotlinOut: kotlinOut,
