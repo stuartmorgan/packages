@@ -27,6 +27,7 @@ dependencies:
   video_player_platform_interface: ">=6.1.0 <7.0.0"
 
 dev_dependencies:
+  ffigen: ^11.0.0
   flutter_test:
     sdk: flutter
   pigeon: ^18.0.0

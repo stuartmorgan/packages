@@ -1,0 +1,12 @@
+name: FVPVideo
+description: Bindings for AVPlayer and related classes.
+language: objc
+output: 'lib/src/ffi_bindings.dart'
+headers:
+  entry-points:
+    - '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/AVFoundation.framework/Versions/A/Headers/AVPlayer.h'
+exclude-all-by-default: true
+objc-interfaces:
+  include:
+    - 'AVAudioSession'
+    - 'AVPlayer'
