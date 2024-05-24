@@ -12,6 +12,10 @@
 @end
 
 @implementation FWFWebView
+- (void)scrollWheel:(NSEvent *)event {
+    [[self nextResponder] scrollWheel:event];
+}
+
 - (instancetype)initWithFrame:(CGRect)frame
                 configuration:(nonnull WKWebViewConfiguration *)configuration
               binaryMessenger:(id<FlutterBinaryMessenger>)binaryMessenger
