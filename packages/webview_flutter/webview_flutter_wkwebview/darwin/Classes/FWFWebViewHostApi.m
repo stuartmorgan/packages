@@ -12,9 +12,12 @@
 @end
 
 @implementation FWFWebView
+#if TARGET_OS_OSX
 - (void)scrollWheel:(NSEvent *)event {
     [[self nextResponder] scrollWheel:event];
 }
+#endif
+
 
 - (instancetype)initWithFrame:(CGRect)frame
                 configuration:(nonnull WKWebViewConfiguration *)configuration
