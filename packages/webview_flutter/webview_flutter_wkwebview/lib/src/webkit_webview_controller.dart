@@ -537,18 +537,12 @@ class WebKitWebViewController extends PlatformWebViewController {
   @override
   Future<void> setBackgroundColor(Color color) {
     final WKWebView webView = _webView;
-    if (webView is WKWebViewIOS) {
-      return Future.wait(<Future<void>>[
-        webView.setOpaque(false),
-        webView.setBackgroundColor(Colors.transparent),
-        // This method must be called last.
-        webView.scrollView.setBackgroundColor(color),
-      ]);
-    } else {
-      // TODO(stuartmorgan): Implement background color support.
-      throw UnimplementedError(
-          'Background color is not yet supported on macOS.');
-    }
+    return Future.wait(<Future<void>>[
+      webView.setOpaque(false),
+      webView.setBackgroundColor(Colors.transparent),
+      // This method must be called last.
+      webView.scrollView.setBackgroundColor(color),
+    ]);
   }
 
   @override
