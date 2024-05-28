@@ -536,6 +536,7 @@ class WebKitWebViewController extends PlatformWebViewController {
 
   @override
   Future<void> setBackgroundColor(Color color) {
+    final WKWebView webView = _webView;
     if (webView is WKWebViewIOS) {
        return Future.wait(<Future<void>>[
          webView.setOpaque(false),
