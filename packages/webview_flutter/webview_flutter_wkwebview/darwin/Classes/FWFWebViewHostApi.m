@@ -34,6 +34,10 @@
       self.scrollView.automaticallyAdjustsScrollIndicatorInsets = NO;
     }
 #endif
+    
+#if TARGET_OS_OSX
+      [self setValue:[NSNumber numberWithBool:NO] forKey:@"drawsBackground"];
+#endif
   }
   return self;
 }
