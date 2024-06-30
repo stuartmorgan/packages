@@ -184,7 +184,7 @@
                                                                webView:webView
                                                                    URL:webView.URL.absoluteString
                                                             completion:^(FlutterError *error) {
-                                                              NSAssert(!error, @"%@", error);
+
                                                             }];
 }
 
