@@ -33138,6 +33138,10 @@ class FVPVideo {
       _registerName1("setClosedCaptionDisplayEnabled:");
   late final _sel_masterClock1 = _registerName1("masterClock");
   late final _sel_setMasterClock_1 = _registerName1("setMasterClock:");
+  late final _class_FVPFFIPlayer1 = _getClass1("FVPFFIPlayer");
+  late final _sel_initWithPlayer_1 = _registerName1("initWithPlayer:");
+  late final _sel_printTheInstanceForSanityChecking1 =
+      _registerName1("printTheInstanceForSanityChecking");
 }
 
 class _ObjCWrapper implements ffi.Finalizable {
@@ -75930,5 +75934,126 @@ class AVPlayerVideoOutput extends _ObjCWrapper {
   static bool isInstance(_ObjCWrapper obj) {
     return obj._lib._objc_msgSend_0(obj._id, obj._lib._sel_isKindOfClass_1,
         obj._lib._class_AVPlayerVideoOutput1);
+  }
+}
+
+class FVPFFIPlayer extends NSObject {
+  FVPFFIPlayer._(ffi.Pointer<ObjCObject> id, FVPVideo lib,
+      {bool retain = false, bool release = false})
+      : super._(id, lib, retain: retain, release: release);
+
+  /// Returns a [FVPFFIPlayer] that points to the same underlying object as [other].
+  static FVPFFIPlayer castFrom<T extends _ObjCWrapper>(T other) {
+    return FVPFFIPlayer._(other._id, other._lib, retain: true, release: true);
+  }
+
+  /// Returns a [FVPFFIPlayer] that wraps the given raw object pointer.
+  static FVPFFIPlayer castFromPointer(
+      FVPVideo lib, ffi.Pointer<ObjCObject> other,
+      {bool retain = false, bool release = false}) {
+    return FVPFFIPlayer._(other, lib, retain: retain, release: release);
+  }
+
+  /// Returns whether [obj] is an instance of [FVPFFIPlayer].
+  static bool isInstance(_ObjCWrapper obj) {
+    return obj._lib._objc_msgSend_0(
+        obj._id, obj._lib._sel_isKindOfClass_1, obj._lib._class_FVPFFIPlayer1);
+  }
+
+  FVPFFIPlayer initWithPlayer_(int fvpPluginRawPointer) {
+    final _ret = _lib._objc_msgSend_205(
+        _id, _lib._sel_initWithPlayer_1, fvpPluginRawPointer);
+    return FVPFFIPlayer._(_ret, _lib, retain: true, release: true);
+  }
+
+  void printTheInstanceForSanityChecking() {
+    _lib._objc_msgSend_1(_id, _lib._sel_printTheInstanceForSanityChecking1);
+  }
+
+  @override
+  FVPFFIPlayer init() {
+    final _ret = _lib._objc_msgSend_2(_id, _lib._sel_init1);
+    return FVPFFIPlayer._(_ret, _lib, retain: true, release: true);
+  }
+
+  static FVPFFIPlayer new1(FVPVideo _lib) {
+    final _ret =
+        _lib._objc_msgSend_2(_lib._class_FVPFFIPlayer1, _lib._sel_new1);
+    return FVPFFIPlayer._(_ret, _lib, retain: false, release: true);
+  }
+
+  static FVPFFIPlayer allocWithZone_(FVPVideo _lib, ffi.Pointer<_NSZone> zone) {
+    final _ret = _lib._objc_msgSend_3(
+        _lib._class_FVPFFIPlayer1, _lib._sel_allocWithZone_1, zone);
+    return FVPFFIPlayer._(_ret, _lib, retain: false, release: true);
+  }
+
+  static FVPFFIPlayer alloc(FVPVideo _lib) {
+    final _ret =
+        _lib._objc_msgSend_2(_lib._class_FVPFFIPlayer1, _lib._sel_alloc1);
+    return FVPFFIPlayer._(_ret, _lib, retain: false, release: true);
+  }
+
+  static void cancelPreviousPerformRequestsWithTarget_selector_object_(
+      FVPVideo _lib,
+      NSObject aTarget,
+      ffi.Pointer<ObjCSel> aSelector,
+      NSObject? anArgument) {
+    _lib._objc_msgSend_14(
+        _lib._class_FVPFFIPlayer1,
+        _lib._sel_cancelPreviousPerformRequestsWithTarget_selector_object_1,
+        aTarget._id,
+        aSelector,
+        anArgument?._id ?? ffi.nullptr);
+  }
+
+  static void cancelPreviousPerformRequestsWithTarget_(
+      FVPVideo _lib, NSObject aTarget) {
+    _lib._objc_msgSend_15(_lib._class_FVPFFIPlayer1,
+        _lib._sel_cancelPreviousPerformRequestsWithTarget_1, aTarget._id);
+  }
+
+  static bool getAccessInstanceVariablesDirectly(FVPVideo _lib) {
+    return _lib._objc_msgSend_12(
+        _lib._class_FVPFFIPlayer1, _lib._sel_accessInstanceVariablesDirectly1);
+  }
+
+  static bool useStoredAccessor(FVPVideo _lib) {
+    return _lib._objc_msgSend_12(
+        _lib._class_FVPFFIPlayer1, _lib._sel_useStoredAccessor1);
+  }
+
+  static NSSet keyPathsForValuesAffectingValueForKey_(
+      FVPVideo _lib, NSString key) {
+    final _ret = _lib._objc_msgSend_63(_lib._class_FVPFFIPlayer1,
+        _lib._sel_keyPathsForValuesAffectingValueForKey_1, key._id);
+    return NSSet._(_ret, _lib, retain: true, release: true);
+  }
+
+  static bool automaticallyNotifiesObserversForKey_(
+      FVPVideo _lib, NSString key) {
+    return _lib._objc_msgSend_64(_lib._class_FVPFFIPlayer1,
+        _lib._sel_automaticallyNotifiesObserversForKey_1, key._id);
+  }
+
+  static void setKeys_triggerChangeNotificationsForDependentKey_(
+      FVPVideo _lib, NSArray keys, NSString dependentKey) {
+    _lib._objc_msgSend_88(
+        _lib._class_FVPFFIPlayer1,
+        _lib._sel_setKeys_triggerChangeNotificationsForDependentKey_1,
+        keys._id,
+        dependentKey._id);
+  }
+
+  static NSArray classFallbacksForKeyedArchiver(FVPVideo _lib) {
+    final _ret = _lib._objc_msgSend_85(
+        _lib._class_FVPFFIPlayer1, _lib._sel_classFallbacksForKeyedArchiver1);
+    return NSArray._(_ret, _lib, retain: true, release: true);
+  }
+
+  static NSObject classForKeyedUnarchiver(FVPVideo _lib) {
+    final _ret = _lib._objc_msgSend_2(
+        _lib._class_FVPFFIPlayer1, _lib._sel_classForKeyedUnarchiver1);
+    return NSObject._(_ret, _lib, retain: true, release: true);
   }
 }

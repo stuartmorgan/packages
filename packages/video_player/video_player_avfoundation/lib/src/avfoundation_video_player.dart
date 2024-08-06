@@ -3,11 +3,13 @@
 // found in the LICENSE file.
 
 import 'dart:async';
+import 'dart:ffi' as ffi;
 
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:video_player_platform_interface/video_player_platform_interface.dart';
 
+import 'ffi_bindings.dart';
 import 'messages.g.dart';
 
 /// An iOS implementation of [VideoPlayerPlatform] that uses the
@@ -169,3 +171,16 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
     );
   }
 }
+
+const String _libName = 'video_player_avfoundation';
+
+/// The dynamic library in which the symbols for [FVPVideo] can be found.
+final ffi.DynamicLibrary _dylib = () {
+  return ffi.DynamicLibrary.open('$_libName.framework/$_libName');
+}();
+
+/// The bindings to the native functions in [_dylib].
+final FVPVideo _lib = () {
+  final lib = FVPVideo(_dylib);
+  return lib;
+}();
