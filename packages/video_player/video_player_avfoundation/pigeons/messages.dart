@@ -57,4 +57,8 @@ abstract class AVFoundationVideoPlayerApi {
   void pause(int textureId);
   @ObjCSelector('setMixWithOthers:')
   void setMixWithOthers(bool mixWithOthers);
+
+  /// Returns the pointer to the FVPVideoPlayerPlugin as a raw integer.
+  @ObjCSelector('instancePointerAsInteger')
+  int getInstancePointer();
 }

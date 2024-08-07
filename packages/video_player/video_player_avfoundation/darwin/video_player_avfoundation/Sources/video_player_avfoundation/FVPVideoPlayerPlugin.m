@@ -828,4 +828,8 @@ NS_INLINE CGFloat radiansToDegrees(CGFloat radians) {
 #endif
 }
 
+- (nullable NSNumber *)instancePointerAsInteger:(FlutterError *_Nullable *_Nonnull)error {
+  return @((long)self);
+}
+
 @end

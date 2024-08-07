@@ -90,6 +90,11 @@ class _ApiLogger implements TestHostVideoPlayerApi {
     playbackSpeed = speed;
     this.textureId = textureId;
   }
+
+  @override
+  int getInstancePointer() {
+    return 1;
+  }
 }
 
 void main() {
