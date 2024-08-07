@@ -385,7 +385,7 @@ class AVFoundationVideoPlayerApi {
   }
 
   /// Returns the pointer to the FVPVideoPlayerPlugin as a raw integer.
-  Future<int> getInstancePointer() async {
+  Future<int> getInstancePointer(int textureId) async {
     final String __pigeon_channelName =
         'dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.getInstancePointer$__pigeon_messageChannelSuffix';
     final BasicMessageChannel<Object?> __pigeon_channel =
@@ -395,7 +395,7 @@ class AVFoundationVideoPlayerApi {
       binaryMessenger: __pigeon_binaryMessenger,
     );
     final List<Object?>? __pigeon_replyList =
-        await __pigeon_channel.send(null) as List<Object?>?;
+        await __pigeon_channel.send(<Object?>[textureId]) as List<Object?>?;
     if (__pigeon_replyList == null) {
       throw _createConnectionError(__pigeon_channelName);
     } else if (__pigeon_replyList.length > 1) {

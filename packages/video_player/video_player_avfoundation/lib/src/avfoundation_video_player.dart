@@ -4,6 +4,7 @@
 
 import 'dart:async';
 import 'dart:ffi' as ffi;
+import 'dart:ui';
 
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -69,7 +70,16 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
   }
 
   @override
-  Future<void> play(int textureId) {
+  Future<void> play(int textureId) async {
+    final int pointer = await _api.getInstancePointer(textureId);
+    print(pointer);
+    unawaited(runOnPlatformThread(
+      () async {
+        final FVPFFIPlayer player = FVPFFIPlayer.castFromPointer(
+            _lib, ffi.Pointer<ObjCObject>.fromAddress(pointer));
+        player.printTheInstanceForSanityChecking();
+      },
+    ));
     return _api.play(textureId);
   }
 
@@ -172,15 +182,15 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
   }
 }
 
-const String _libName = 'video_player_avfoundation';
+//const String _libName = 'video_player_avfoundation';
 
 /// The dynamic library in which the symbols for [FVPVideo] can be found.
 final ffi.DynamicLibrary _dylib = () {
-  return ffi.DynamicLibrary.open('$_libName.framework/$_libName');
+  //return ffi.DynamicLibrary.open('$_libName.framework/$_libName');
+  return ffi.DynamicLibrary.executable();
 }();
 
 /// The bindings to the native functions in [_dylib].
 final FVPVideo _lib = () {
-  final lib = FVPVideo(_dylib);
-  return lib;
+  return FVPVideo(_dylib);
 }();

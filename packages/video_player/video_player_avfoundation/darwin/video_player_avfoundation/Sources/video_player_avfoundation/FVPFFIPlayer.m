@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#import "./include/video_player_avfoundation/FVPVideoPlayerPlugin.h"
+#import "./include/video_player_avfoundation/FVPFFIPlayer.h"
 
 #if TARGET_OS_OSX
 #import <FlutterMacOS/FlutterMacOS.h>
@@ -10,21 +10,25 @@
 #import <Flutter/Flutter.h>
 #endif
 
+#import "./include/video_player_avfoundation/FVPVideoPlayerPlugin.h"
+// Private interface for facade access.
+#import "./include/video_player_avfoundation/FVPVideoPlayerPlugin_Test.h"
+
 @interface FVPFFIPlayer ()
-@property(nonatomic) FVPVideoPlayerPlugin plugin;
+@property(nonatomic, weak) FVPVideoPlayer *player;
 @end
 
 @implementation FVPFFIPlayer
-- (instancetype)initWithPlayer:(long)fvpPluginRawPointer {
+- (instancetype)initWithPlayer:(id)player {
   self = [super init];
   if (self) {
-    // TODO(stuartmorgan): Something better than this, hopefully.
-    _plugin = (FVPVideoPlayerPlugin *)fvpPluginRawPointer;
+    _player = player;
   }
   return self;
 }
 
 - (void)printTheInstanceForSanityChecking {
-  NSLog([NSString stringWithFormat:@"%@", self.plugin]);
+  NSLog([NSString stringWithFormat:@"%@", self.player]);
+  NSLog([NSString stringWithFormat:@"Position: %ld", self.player.position]);
 }
 @end

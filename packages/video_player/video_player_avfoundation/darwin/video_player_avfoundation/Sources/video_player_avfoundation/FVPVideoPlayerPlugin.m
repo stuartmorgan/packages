@@ -10,6 +10,7 @@
 
 #import "./include/video_player_avfoundation/AVAssetTrackUtils.h"
 #import "./include/video_player_avfoundation/FVPDisplayLink.h"
+#import "./include/video_player_avfoundation/FVPFFIPlayer.h"
 #import "./include/video_player_avfoundation/messages.g.h"
 
 #if !__has_feature(objc_arc)
@@ -92,6 +93,8 @@
 // (e.g., after a seek while paused). If YES, the display link should continue to run until the next
 // frame is successfully provided.
 @property(nonatomic, assign) BOOL waitingForFrame;
+/// Temporary interop hack.
+@property(nonatomic) FVPFFIPlayer *ffiPlayer;
 
 - (instancetype)initWithURL:(NSURL *)url
                frameUpdater:(FVPFrameUpdater *)frameUpdater
@@ -268,6 +271,7 @@ NS_INLINE CGFloat radiansToDegrees(CGFloat radians) {
   self = [super init];
   NSAssert(self, @"super init cannot be nil");
 
+  _ffiPlayer = [[FVPFFIPlayer alloc] initWithPlayer:self];
   _registrar = registrar;
   _frameUpdater = frameUpdater;
 
@@ -828,8 +832,10 @@ NS_INLINE CGFloat radiansToDegrees(CGFloat radians) {
 #endif
 }
 
-- (nullable NSNumber *)instancePointerAsInteger:(FlutterError *_Nullable *_Nonnull)error {
-  return @((long)self);
+- (nullable NSNumber *)facadePointerForPlayer:(NSInteger)textureId
+                                        error:(FlutterError *_Nullable *_Nonnull)error {
+  FVPVideoPlayer *player = self.playersByTextureId[@(textureId)];
+  return @((long)player.ffiPlayer);
 }
 
 @end

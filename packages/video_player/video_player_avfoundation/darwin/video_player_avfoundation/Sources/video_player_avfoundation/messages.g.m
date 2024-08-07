@@ -409,13 +409,15 @@ void SetUpFVPAVFoundationVideoPlayerApiWithSuffix(id<FlutterBinaryMessenger> bin
         binaryMessenger:binaryMessenger
                   codec:FVPAVFoundationVideoPlayerApiGetCodec()];
     if (api) {
-      NSCAssert([api respondsToSelector:@selector(instancePointerAsInteger:)],
+      NSCAssert([api respondsToSelector:@selector(facadePointerForPlayer:error:)],
                 @"FVPAVFoundationVideoPlayerApi api (%@) doesn't respond to "
-                @"@selector(instancePointerAsInteger:)",
+                @"@selector(facadePointerForPlayer:error:)",
                 api);
       [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+        NSArray *args = message;
+        NSInteger arg_textureId = [GetNullableObjectAtIndex(args, 0) integerValue];
         FlutterError *error;
-        NSNumber *output = [api instancePointerAsInteger:&error];
+        NSNumber *output = [api facadePointerForPlayer:arg_textureId error:&error];
         callback(wrapResult(output, error));
       }];
     } else {
