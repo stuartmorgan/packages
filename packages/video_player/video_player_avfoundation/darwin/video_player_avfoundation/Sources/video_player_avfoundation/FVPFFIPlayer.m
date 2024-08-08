@@ -10,9 +10,10 @@
 #import <Flutter/Flutter.h>
 #endif
 
-#import "./include/video_player_avfoundation/FVPVideoPlayerPlugin.h"
+#import "./include/video_player_avfoundation/FVPVideoPlayer.h"
 // Private interface for facade access.
-#import "./include/video_player_avfoundation/FVPVideoPlayerPlugin_Test.h"
+#import "./include/video_player_avfoundation/FVPVideoPlayer_Test.h"
+#import "FVPVideoPlayer_Private.h"
 
 @interface FVPFFIPlayer ()
 @property(nonatomic, weak) FVPVideoPlayer *player;
