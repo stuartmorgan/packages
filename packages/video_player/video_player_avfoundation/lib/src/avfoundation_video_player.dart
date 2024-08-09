@@ -18,6 +18,14 @@ import 'messages.g.dart';
 class AVFoundationVideoPlayer extends VideoPlayerPlatform {
   final AVFoundationVideoPlayerApi _api = AVFoundationVideoPlayerApi();
 
+  /// A mapping of texture IDs to the corresponding FVPVideoPlayer raw pointer.
+  ///
+  /// Values *must* be removed from this before calling `_api.dispose` with the
+  /// corresponding texture ID, as the pointers become invalid after that point.
+  // TODO(stuartmorgan): Investigate using Dart-driven lifetimes for these to
+  // replace the dispose API call.
+  final Map<int, int> _playerPointersByTextureId = <int, int>{};
+
   /// Registers this class as the default instance of [VideoPlayerPlatform].
   static void registerWith() {
     VideoPlayerPlatform.instance = AVFoundationVideoPlayer();
@@ -30,6 +38,7 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
 
   @override
   Future<void> dispose(int textureId) {
+    _playerPointersByTextureId.remove(textureId);
     return _api.dispose(textureId);
   }
 
@@ -61,41 +70,45 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
       formatHint: formatHint,
     );
 
-    return _api.create(options);
+    final VideoPlayerNativeDetails playerDetails = await _api.create(options);
+    _playerPointersByTextureId[playerDetails.textureId] =
+        playerDetails.nativePlayerPointer;
+    return playerDetails.textureId;
   }
 
   @override
-  Future<void> setLooping(int textureId, bool looping) {
-    return _api.setLooping(looping, textureId);
+  Future<void> setLooping(int textureId, bool looping) async {
+    final int pointer = _pointerForTexture(textureId);
+    await runOnPlatformThread(
+        () async => _playerFromPointer(pointer).isLooping = looping);
   }
 
   @override
   Future<void> play(int textureId) async {
-    final int pointer = await _api.getPlayerPointer(textureId);
-    unawaited(runOnPlatformThread(
-      () async {
-        final FVPVideoPlayer player = FVPVideoPlayer.castFromPointer(
-            _lib, ffi.Pointer<ObjCObject>.fromAddress(pointer));
-        player.play();
-      },
-    ));
+    final int pointer = _pointerForTexture(textureId);
+    await runOnPlatformThread(() async => _playerFromPointer(pointer).play());
   }
 
   @override
-  Future<void> pause(int textureId) {
-    return _api.pause(textureId);
+  Future<void> pause(int textureId) async {
+    final int pointer = _pointerForTexture(textureId);
+    await runOnPlatformThread(() async => _playerFromPointer(pointer).pause());
   }
 
   @override
-  Future<void> setVolume(int textureId, double volume) {
-    return _api.setVolume(volume, textureId);
+  Future<void> setVolume(int textureId, double volume) async {
+    final int pointer = _pointerForTexture(textureId);
+    await runOnPlatformThread(
+        () async => _playerFromPointer(pointer).setVolume_(volume));
   }
 
   @override
-  Future<void> setPlaybackSpeed(int textureId, double speed) {
+  Future<void> setPlaybackSpeed(int textureId, double speed) async {
     assert(speed > 0);
 
-    return _api.setPlaybackSpeed(speed, textureId);
+    final int pointer = _pointerForTexture(textureId);
+    await runOnPlatformThread(
+        () async => _playerFromPointer(pointer).setPlaybackSpeed_(speed));
   }
 
   @override
@@ -157,6 +170,19 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
   @override
   Future<void> setMixWithOthers(bool mixWithOthers) {
     return _api.setMixWithOthers(mixWithOthers);
+  }
+
+  int _pointerForTexture(int textureId) {
+    final int? pointer = _playerPointersByTextureId[textureId];
+    if (pointer == null) {
+      throw StateError('methods must not be called on a disposed player');
+    }
+    return pointer;
+  }
+
+  FVPVideoPlayer _playerFromPointer(int pointer) {
+    return FVPVideoPlayer.castFromPointer(
+        _lib, ffi.Pointer<ObjCObject>.fromAddress(pointer));
   }
 
   EventChannel _eventChannelFor(int textureId) {

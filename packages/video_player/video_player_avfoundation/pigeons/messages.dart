@@ -31,34 +31,36 @@ class MixWithOthersMessage {
   bool mixWithOthers;
 }
 
+/// The information needed by the Dart side of the implementation when a new
+/// player instance is created.
+class VideoPlayerNativeDetails {
+  VideoPlayerNativeDetails(
+      {required this.textureId, required this.nativePlayerPointer});
+
+  /// The ID for the texture that this player instance renders to.
+  final int textureId;
+
+  /// The raw pointer to the native player object, for use with FFI. This is
+  /// guaranteed to be valid until AVFoundationVideoPlayerApi.dipose is called
+  /// with the corresponding texture ID, but should never be used after that
+  /// call.
+  final int nativePlayerPointer;
+}
+
 @HostApi(dartHostTestHandler: 'TestHostVideoPlayerApi')
 abstract class AVFoundationVideoPlayerApi {
   @ObjCSelector('initialize')
   void initialize();
   @ObjCSelector('createWithOptions:')
-  // Creates a new player and returns its ID.
-  int create(CreationOptions creationOptions);
+  // Creates a new player and returns its details.
+  VideoPlayerNativeDetails create(CreationOptions creationOptions);
   @ObjCSelector('disposePlayer:')
   void dispose(int textureId);
-  @ObjCSelector('setLooping:forPlayer:')
-  void setLooping(bool isLooping, int textureId);
-  @ObjCSelector('setVolume:forPlayer:')
-  void setVolume(double volume, int textureId);
-  @ObjCSelector('setPlaybackSpeed:forPlayer:')
-  void setPlaybackSpeed(double speed, int textureId);
-  @ObjCSelector('playPlayer:')
-  void play(int textureId);
   @ObjCSelector('positionForPlayer:')
   int getPosition(int textureId);
   @async
   @ObjCSelector('seekTo:forPlayer:')
   void seekTo(int position, int textureId);
-  @ObjCSelector('pausePlayer:')
-  void pause(int textureId);
   @ObjCSelector('setMixWithOthers:')
   void setMixWithOthers(bool mixWithOthers);
-
-  /// Returns the pointer to the FVPVideoPlayerPlugin as a raw integer.
-  @ObjCSelector('pointerForPlayer:')
-  int getPlayerPointer(int textureId);
 }

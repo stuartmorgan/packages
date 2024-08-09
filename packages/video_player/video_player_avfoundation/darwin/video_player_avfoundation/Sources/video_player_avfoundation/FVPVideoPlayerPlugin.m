@@ -119,8 +119,8 @@
   [self.playersByTextureId removeAllObjects];
 }
 
-- (nullable NSNumber *)createWithOptions:(nonnull FVPCreationOptions *)options
-                                   error:(FlutterError **)error {
+- (nullable FVPVideoPlayerNativeDetails *)createWithOptions:(nonnull FVPCreationOptions *)options
+                                                      error:(FlutterError **)error {
   FVPFrameUpdater *frameUpdater = [[FVPFrameUpdater alloc] initWithRegistry:_registry];
   FVPDisplayLink *displayLink =
       [self.displayLinkFactory displayLinkWithRegistrar:_registrar
@@ -142,7 +142,6 @@
                                          displayLink:displayLink
                                            avFactory:_avFactory
                                            registrar:self.registrar];
-      return @([self onPlayerSetup:player frameUpdater:frameUpdater]);
     } @catch (NSException *exception) {
       *error = [FlutterError errorWithCode:@"video_player" message:exception.reason details:nil];
       return nil;
@@ -154,11 +153,13 @@
                                      httpHeaders:options.httpHeaders
                                        avFactory:_avFactory
                                        registrar:self.registrar];
-    return @([self onPlayerSetup:player frameUpdater:frameUpdater]);
   } else {
     *error = [FlutterError errorWithCode:@"video_player" message:@"not implemented" details:nil];
     return nil;
   }
+  int64_t textureIdentifier = [self onPlayerSetup:player frameUpdater:frameUpdater];
+  return [FVPVideoPlayerNativeDetails makeWithTextureId:textureIdentifier
+                                    nativePlayerPointer:(intptr_t)player];
 }
 
 - (void)disposePlayer:(NSInteger)textureId error:(FlutterError **)error {
@@ -169,26 +170,6 @@
   if (!player.disposed) {
     [player dispose];
   }
-}
-
-- (void)setLooping:(BOOL)isLooping forPlayer:(NSInteger)textureId error:(FlutterError **)error {
-  FVPVideoPlayer *player = self.playersByTextureId[@(textureId)];
-  player.isLooping = isLooping;
-}
-
-- (void)setVolume:(double)volume forPlayer:(NSInteger)textureId error:(FlutterError **)error {
-  FVPVideoPlayer *player = self.playersByTextureId[@(textureId)];
-  [player setVolume:volume];
-}
-
-- (void)setPlaybackSpeed:(double)speed forPlayer:(NSInteger)textureId error:(FlutterError **)error {
-  FVPVideoPlayer *player = self.playersByTextureId[@(textureId)];
-  [player setPlaybackSpeed:speed];
-}
-
-- (void)playPlayer:(NSInteger)textureId error:(FlutterError **)error {
-  FVPVideoPlayer *player = self.playersByTextureId[@(textureId)];
-  [player play];
 }
 
 - (nullable NSNumber *)positionForPlayer:(NSInteger)textureId error:(FlutterError **)error {
@@ -226,12 +207,6 @@
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
   }
 #endif
-}
-
-- (nullable NSNumber *)pointerForPlayer:(NSInteger)textureId
-                                  error:(FlutterError *_Nullable *_Nonnull)error {
-  FVPVideoPlayer *player = self.playersByTextureId[@(textureId)];
-  return @((long)player);
 }
 
 @end

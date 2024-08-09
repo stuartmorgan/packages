@@ -33140,6 +33140,8 @@ class FVPVideo {
   late final _sel_setMasterClock_1 = _registerName1("setMasterClock:");
   late final _class_FVPVideoPlayer1 = _getClass1("FVPVideoPlayer");
   late final _sel_position1 = _registerName1("position");
+  late final _sel_isLooping1 = _registerName1("isLooping");
+  late final _sel_setIsLooping_1 = _registerName1("setIsLooping:");
   late final _sel_setPlaybackSpeed_1 = _registerName1("setPlaybackSpeed:");
   late final _sel_seekTo_completionHandler_1 =
       _registerName1("seekTo:completionHandler:");
@@ -75985,6 +75987,14 @@ class FVPVideoPlayer extends NSObject {
 
   int get position {
     return _lib._objc_msgSend_666(_id, _lib._sel_position1);
+  }
+
+  bool get isLooping {
+    return _lib._objc_msgSend_12(_id, _lib._sel_isLooping1);
+  }
+
+  set isLooping(bool value) {
+    return _lib._objc_msgSend_527(_id, _lib._sel_setIsLooping_1, value);
   }
 
   void setVolume_(double volume) {

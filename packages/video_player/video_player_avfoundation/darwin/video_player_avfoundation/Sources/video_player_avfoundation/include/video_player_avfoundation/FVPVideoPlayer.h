@@ -9,6 +9,8 @@
 
 @property(readonly, nonatomic) int64_t position;
 
+@property(nonatomic) BOOL isLooping;
+
 - (void)setVolume:(double)volume;
 
 - (void)setPlaybackSpeed:(double)speed;

@@ -21,10 +21,10 @@ class _ApiLogger implements TestHostVideoPlayerApi {
   bool? mixWithOthers;
 
   @override
-  int create(CreationOptions options) {
+  VideoPlayerNativeDetails create(CreationOptions options) {
     log.add('create');
     creationOptions = options;
-    return 3;
+    return VideoPlayerNativeDetails(textureId: 3, nativePlayerPointer: 99);
   }
 
   @override
@@ -68,32 +68,6 @@ class _ApiLogger implements TestHostVideoPlayerApi {
     log.add('seekTo');
     this.position = position;
     this.textureId = textureId;
-  }
-
-  @override
-  void setLooping(bool loop, int textureId) {
-    log.add('setLooping');
-    looping = loop;
-    this.textureId = textureId;
-  }
-
-  @override
-  void setVolume(double volume, int textureId) {
-    log.add('setVolume');
-    this.volume = volume;
-    this.textureId = textureId;
-  }
-
-  @override
-  void setPlaybackSpeed(double speed, int textureId) {
-    log.add('setPlaybackSpeed');
-    playbackSpeed = speed;
-    this.textureId = textureId;
-  }
-
-  @override
-  int getPlayerPointer(int textureId) {
-    return 1;
   }
 }
 

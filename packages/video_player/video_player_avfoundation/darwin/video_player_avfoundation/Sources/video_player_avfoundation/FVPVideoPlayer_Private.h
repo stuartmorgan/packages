@@ -36,7 +36,6 @@
 @property(nonatomic) CGAffineTransform preferredTransform;
 @property(nonatomic, readonly) BOOL disposed;
 @property(nonatomic, readonly) BOOL isPlaying;
-@property(nonatomic) BOOL isLooping;
 @property(nonatomic, readonly) BOOL isInitialized;
 // The updater that drives callbacks to the engine to indicate that a new frame is ready.
 @property(nonatomic) FVPFrameUpdater *frameUpdater;

@@ -14,6 +14,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class FVPCreationOptions;
+@class FVPVideoPlayerNativeDetails;
 
 @interface FVPCreationOptions : NSObject
 /// `init` unavailable to enforce nonnull fields, see the `make` class method.
@@ -30,38 +31,39 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy) NSDictionary<NSString *, NSString *> *httpHeaders;
 @end
 
+/// The information needed by the Dart side of the implementation when a new
+/// player instance is created.
+@interface FVPVideoPlayerNativeDetails : NSObject
+/// `init` unavailable to enforce nonnull fields, see the `make` class method.
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)makeWithTextureId:(NSInteger)textureId
+              nativePlayerPointer:(NSInteger)nativePlayerPointer;
+/// The ID for the texture that this player instance renders to.
+@property(nonatomic, assign) NSInteger textureId;
+/// The raw pointer to the native player object, for use with FFI. This is
+/// guaranteed to be valid until AVFoundationVideoPlayerApi.dipose is called
+/// with the corresponding texture ID, but should never be used after that
+/// call.
+@property(nonatomic, assign) NSInteger nativePlayerPointer;
+@end
+
 /// The codec used by FVPAVFoundationVideoPlayerApi.
 NSObject<FlutterMessageCodec> *FVPAVFoundationVideoPlayerApiGetCodec(void);
 
 @protocol FVPAVFoundationVideoPlayerApi
 - (void)initialize:(FlutterError *_Nullable *_Nonnull)error;
 /// @return `nil` only when `error != nil`.
-- (nullable NSNumber *)createWithOptions:(FVPCreationOptions *)creationOptions
-                                   error:(FlutterError *_Nullable *_Nonnull)error;
+- (nullable FVPVideoPlayerNativeDetails *)createWithOptions:(FVPCreationOptions *)creationOptions
+                                                      error:
+                                                          (FlutterError *_Nullable *_Nonnull)error;
 - (void)disposePlayer:(NSInteger)textureId error:(FlutterError *_Nullable *_Nonnull)error;
-- (void)setLooping:(BOOL)isLooping
-         forPlayer:(NSInteger)textureId
-             error:(FlutterError *_Nullable *_Nonnull)error;
-- (void)setVolume:(double)volume
-        forPlayer:(NSInteger)textureId
-            error:(FlutterError *_Nullable *_Nonnull)error;
-- (void)setPlaybackSpeed:(double)speed
-               forPlayer:(NSInteger)textureId
-                   error:(FlutterError *_Nullable *_Nonnull)error;
-- (void)playPlayer:(NSInteger)textureId error:(FlutterError *_Nullable *_Nonnull)error;
 /// @return `nil` only when `error != nil`.
 - (nullable NSNumber *)positionForPlayer:(NSInteger)textureId
                                    error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)seekTo:(NSInteger)position
      forPlayer:(NSInteger)textureId
     completion:(void (^)(FlutterError *_Nullable))completion;
-- (void)pausePlayer:(NSInteger)textureId error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)setMixWithOthers:(BOOL)mixWithOthers error:(FlutterError *_Nullable *_Nonnull)error;
-/// Returns the pointer to the FVPVideoPlayerPlugin as a raw integer.
-///
-/// @return `nil` only when `error != nil`.
-- (nullable NSNumber *)pointerForPlayer:(NSInteger)textureId
-                                  error:(FlutterError *_Nullable *_Nonnull)error;
 @end
 
 extern void SetUpFVPAVFoundationVideoPlayerApi(
