@@ -71,16 +71,14 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
 
   @override
   Future<void> play(int textureId) async {
-    final int pointer = await _api.getInstancePointer(textureId);
-    print(pointer);
+    final int pointer = await _api.getPlayerPointer(textureId);
     unawaited(runOnPlatformThread(
       () async {
-        final FVPFFIPlayer player = FVPFFIPlayer.castFromPointer(
+        final FVPVideoPlayer player = FVPVideoPlayer.castFromPointer(
             _lib, ffi.Pointer<ObjCObject>.fromAddress(pointer));
-        player.printTheInstanceForSanityChecking();
+        player.play();
       },
     ));
-    return _api.play(textureId);
   }
 
   @override

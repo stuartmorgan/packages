@@ -59,6 +59,6 @@ abstract class AVFoundationVideoPlayerApi {
   void setMixWithOthers(bool mixWithOthers);
 
   /// Returns the pointer to the FVPVideoPlayerPlugin as a raw integer.
-  @ObjCSelector('facadePointerForPlayer:')
-  int getInstancePointer(int textureId);
+  @ObjCSelector('pointerForPlayer:')
+  int getPlayerPointer(int textureId);
 }

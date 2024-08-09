@@ -92,7 +92,7 @@ class _ApiLogger implements TestHostVideoPlayerApi {
   }
 
   @override
-  int getInstancePointer() {
+  int getPlayerPointer(int textureId) {
     return 1;
   }
 }

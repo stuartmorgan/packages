@@ -60,8 +60,8 @@ NSObject<FlutterMessageCodec> *FVPAVFoundationVideoPlayerApiGetCodec(void);
 /// Returns the pointer to the FVPVideoPlayerPlugin as a raw integer.
 ///
 /// @return `nil` only when `error != nil`.
-- (nullable NSNumber *)facadePointerForPlayer:(NSInteger)textureId
-                                        error:(FlutterError *_Nullable *_Nonnull)error;
+- (nullable NSNumber *)pointerForPlayer:(NSInteger)textureId
+                                  error:(FlutterError *_Nullable *_Nonnull)error;
 @end
 
 extern void SetUpFVPAVFoundationVideoPlayerApi(

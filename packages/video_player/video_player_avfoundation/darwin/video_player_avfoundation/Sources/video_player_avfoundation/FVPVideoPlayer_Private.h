@@ -13,7 +13,6 @@
 #endif
 
 #import "./include/video_player_avfoundation/FVPDisplayLink.h"
-#import "./include/video_player_avfoundation/FVPFFIPlayer.h"
 #import "./include/video_player_avfoundation/InjectionProtocols.h"
 #import "FVPFrameUpdater.h"
 
@@ -47,8 +46,6 @@
 // (e.g., after a seek while paused). If YES, the display link should continue to run until the next
 // frame is successfully provided.
 @property(nonatomic, assign) BOOL waitingForFrame;
-/// Temporary interop hack.
-@property(nonatomic) FVPFFIPlayer *ffiPlayer;
 
 - (instancetype)initWithURL:(NSURL *)url
                frameUpdater:(FVPFrameUpdater *)frameUpdater

@@ -9,7 +9,6 @@
 
 #import "./include/video_player_avfoundation/AVAssetTrackUtils.h"
 #import "./include/video_player_avfoundation/FVPDisplayLink.h"
-#import "./include/video_player_avfoundation/FVPFFIPlayer.h"
 #import "./include/video_player_avfoundation/FVPVideoPlayer.h"
 #import "./include/video_player_avfoundation/InjectionProtocols.h"
 #import "./include/video_player_avfoundation/messages.g.h"
@@ -229,10 +228,10 @@
 #endif
 }
 
-- (nullable NSNumber *)facadePointerForPlayer:(NSInteger)textureId
-                                        error:(FlutterError *_Nullable *_Nonnull)error {
+- (nullable NSNumber *)pointerForPlayer:(NSInteger)textureId
+                                  error:(FlutterError *_Nullable *_Nonnull)error {
   FVPVideoPlayer *player = self.playersByTextureId[@(textureId)];
-  return @((long)player.ffiPlayer);
+  return @((long)player);
 }
 
 @end

@@ -11,7 +11,6 @@
 
 #import "./include/video_player_avfoundation/AVAssetTrackUtils.h"
 #import "./include/video_player_avfoundation/FVPDisplayLink.h"
-#import "./include/video_player_avfoundation/FVPFFIPlayer.h"
 #import "FVPFrameUpdater.h"
 
 static void *timeRangeContext = &timeRangeContext;
@@ -91,7 +90,6 @@ NS_INLINE CGFloat radiansToDegrees(CGFloat radians) {
   self = [super init];
   NSAssert(self, @"super init cannot be nil");
 
-  _ffiPlayer = [[FVPFFIPlayer alloc] initWithPlayer:self];
   _registrar = registrar;
   _frameUpdater = frameUpdater;
 

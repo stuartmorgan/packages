@@ -14,7 +14,8 @@
 
 #import "FVPDisplayLink.h"
 
-/// Protocol for AVFoundation object instance factory. Used for injecting framework objects in tests.
+/// Protocol for AVFoundation object instance factory. Used for injecting framework objects in
+/// tests.
 @protocol FVPAVFactory
 @required
 - (AVPlayer *)playerWithPlayerItem:(AVPlayerItem *)playerItem;

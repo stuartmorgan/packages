@@ -6,9 +6,9 @@
 
 #import <AVFoundation/AVFoundation.h>
 
-#import "messages.g.h"
-#import "InjectionProtocols.h"
 #import "FVPVideoPlayer.h"
+#import "InjectionProtocols.h"
+#import "messages.g.h"
 
 @interface FVPVideoPlayerPlugin () <FVPAVFoundationVideoPlayerApi>
 

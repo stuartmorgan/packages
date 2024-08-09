@@ -65,7 +65,7 @@ abstract class TestHostVideoPlayerApi {
   void setMixWithOthers(bool mixWithOthers);
 
   /// Returns the pointer to the FVPVideoPlayerPlugin as a raw integer.
-  int getInstancePointer(int textureId);
+  int getPlayerPointer(int textureId);
 
   static void setUp(
     TestHostVideoPlayerApi? api, {
@@ -425,7 +425,7 @@ abstract class TestHostVideoPlayerApi {
     {
       final BasicMessageChannel<Object?> __pigeon_channel = BasicMessageChannel<
               Object?>(
-          'dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.getInstancePointer$messageChannelSuffix',
+          'dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.getPlayerPointer$messageChannelSuffix',
           pigeonChannelCodec,
           binaryMessenger: binaryMessenger);
       if (api == null) {
@@ -436,13 +436,13 @@ abstract class TestHostVideoPlayerApi {
             .setMockDecodedMessageHandler<Object?>(__pigeon_channel,
                 (Object? message) async {
           assert(message != null,
-              'Argument for dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.getInstancePointer was null.');
+              'Argument for dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.getPlayerPointer was null.');
           final List<Object?> args = (message as List<Object?>?)!;
           final int? arg_textureId = (args[0] as int?);
           assert(arg_textureId != null,
-              'Argument for dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.getInstancePointer was null, expected non-null int.');
+              'Argument for dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.getPlayerPointer was null, expected non-null int.');
           try {
-            final int output = api.getInstancePointer(arg_textureId!);
+            final int output = api.getPlayerPointer(arg_textureId!);
             return <Object?>[output];
           } on PlatformException catch (e) {
             return wrapResponse(error: e);
