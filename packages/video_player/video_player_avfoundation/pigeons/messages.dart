@@ -56,11 +56,6 @@ abstract class AVFoundationVideoPlayerApi {
   VideoPlayerNativeDetails create(CreationOptions creationOptions);
   @ObjCSelector('disposePlayer:')
   void dispose(int textureId);
-  @ObjCSelector('positionForPlayer:')
-  int getPosition(int textureId);
-  @async
-  @ObjCSelector('seekTo:forPlayer:')
-  void seekTo(int position, int textureId);
   @ObjCSelector('setMixWithOthers:')
   void setMixWithOthers(bool mixWithOthers);
 }

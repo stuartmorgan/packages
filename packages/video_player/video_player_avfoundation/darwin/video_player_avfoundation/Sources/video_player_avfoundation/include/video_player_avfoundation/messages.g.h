@@ -57,12 +57,6 @@ NSObject<FlutterMessageCodec> *FVPAVFoundationVideoPlayerApiGetCodec(void);
                                                       error:
                                                           (FlutterError *_Nullable *_Nonnull)error;
 - (void)disposePlayer:(NSInteger)textureId error:(FlutterError *_Nullable *_Nonnull)error;
-/// @return `nil` only when `error != nil`.
-- (nullable NSNumber *)positionForPlayer:(NSInteger)textureId
-                                   error:(FlutterError *_Nullable *_Nonnull)error;
-- (void)seekTo:(NSInteger)position
-     forPlayer:(NSInteger)textureId
-    completion:(void (^)(FlutterError *_Nullable))completion;
 - (void)setMixWithOthers:(BOOL)mixWithOthers error:(FlutterError *_Nullable *_Nonnull)error;
 @end
 

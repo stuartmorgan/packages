@@ -77,48 +77,58 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
   }
 
   @override
-  Future<void> setLooping(int textureId, bool looping) async {
+  Future<void> setLooping(int textureId, bool looping) {
     final int pointer = _pointerForTexture(textureId);
-    await runOnPlatformThread(
-        () async => _playerFromPointer(pointer).isLooping = looping);
+    return runOnPlatformThread<void>(
+        () => _playerFromPointer(pointer).isLooping = looping);
   }
 
   @override
-  Future<void> play(int textureId) async {
+  Future<void> play(int textureId) {
     final int pointer = _pointerForTexture(textureId);
-    await runOnPlatformThread(() async => _playerFromPointer(pointer).play());
+    return runOnPlatformThread<void>(() => _playerFromPointer(pointer).play());
   }
 
   @override
-  Future<void> pause(int textureId) async {
+  Future<void> pause(int textureId) {
     final int pointer = _pointerForTexture(textureId);
-    await runOnPlatformThread(() async => _playerFromPointer(pointer).pause());
+    return runOnPlatformThread<void>(() => _playerFromPointer(pointer).pause());
   }
 
   @override
-  Future<void> setVolume(int textureId, double volume) async {
+  Future<void> setVolume(int textureId, double volume) {
     final int pointer = _pointerForTexture(textureId);
-    await runOnPlatformThread(
-        () async => _playerFromPointer(pointer).setVolume_(volume));
+    return runOnPlatformThread<void>(
+        () => _playerFromPointer(pointer).setVolume_(volume));
   }
 
   @override
-  Future<void> setPlaybackSpeed(int textureId, double speed) async {
+  Future<void> setPlaybackSpeed(int textureId, double speed) {
     assert(speed > 0);
 
     final int pointer = _pointerForTexture(textureId);
-    await runOnPlatformThread(
-        () async => _playerFromPointer(pointer).setPlaybackSpeed_(speed));
+    return runOnPlatformThread<void>(
+        () => _playerFromPointer(pointer).setPlaybackSpeed_(speed));
   }
 
   @override
   Future<void> seekTo(int textureId, Duration position) {
-    return _api.seekTo(position.inMilliseconds, textureId);
+    final int pointer = _pointerForTexture(textureId);
+    return runOnPlatformThread<void>(() {
+      final Completer<void> seekFinished = Completer<void>();
+      _playerFromPointer(pointer).seekTo_completionHandler_(
+          position.inMilliseconds,
+          ObjCBlock_ffiVoid_bool.listener(
+              _lib, (bool succeeded) => seekFinished.complete()));
+      return seekFinished.future;
+    });
   }
 
   @override
   Future<Duration> getPosition(int textureId) async {
-    final int position = await _api.getPosition(textureId);
+    final int pointer = _pointerForTexture(textureId);
+    final int position = await runOnPlatformThread<int>(
+        () => _playerFromPointer(pointer).position);
     return Duration(milliseconds: position);
   }
 

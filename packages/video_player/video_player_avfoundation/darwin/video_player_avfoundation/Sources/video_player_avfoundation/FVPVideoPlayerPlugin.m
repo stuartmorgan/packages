@@ -172,28 +172,6 @@
   }
 }
 
-- (nullable NSNumber *)positionForPlayer:(NSInteger)textureId error:(FlutterError **)error {
-  FVPVideoPlayer *player = self.playersByTextureId[@(textureId)];
-  return @([player position]);
-}
-
-- (void)seekTo:(NSInteger)position
-     forPlayer:(NSInteger)textureId
-    completion:(nonnull void (^)(FlutterError *_Nullable))completion {
-  FVPVideoPlayer *player = self.playersByTextureId[@(textureId)];
-  [player seekTo:position
-      completionHandler:^(BOOL finished) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-          completion(nil);
-        });
-      }];
-}
-
-- (void)pausePlayer:(NSInteger)textureId error:(FlutterError **)error {
-  FVPVideoPlayer *player = self.playersByTextureId[@(textureId)];
-  [player pause];
-}
-
 - (void)setMixWithOthers:(BOOL)mixWithOthers
                    error:(FlutterError *_Nullable __autoreleasing *)error {
 #if TARGET_OS_OSX

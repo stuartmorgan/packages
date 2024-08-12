@@ -39,35 +39,9 @@ class _ApiLogger implements TestHostVideoPlayerApi {
   }
 
   @override
-  void pause(int textureId) {
-    log.add('pause');
-    this.textureId = textureId;
-  }
-
-  @override
-  void play(int textureId) {
-    log.add('play');
-    this.textureId = textureId;
-  }
-
-  @override
   void setMixWithOthers(bool enabled) {
     log.add('setMixWithOthers');
     mixWithOthers = enabled;
-  }
-
-  @override
-  int getPosition(int textureId) {
-    log.add('position');
-    this.textureId = textureId;
-    return 234;
-  }
-
-  @override
-  Future<void> seekTo(int position, int textureId) async {
-    log.add('seekTo');
-    this.position = position;
-    this.textureId = textureId;
   }
 }
 
