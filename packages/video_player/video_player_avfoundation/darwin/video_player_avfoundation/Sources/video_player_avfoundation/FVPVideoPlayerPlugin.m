@@ -47,8 +47,6 @@
 #pragma mark -
 
 @interface FVPVideoPlayerPlugin ()
-@property(readonly, weak, nonatomic) NSObject<FlutterTextureRegistry> *registry;
-@property(readonly, weak, nonatomic) NSObject<FlutterBinaryMessenger> *messenger;
 @property(readonly, strong, nonatomic) NSObject<FlutterPluginRegistrar> *registrar;
 @property(nonatomic, strong) id<FVPDisplayLinkFactory> displayLinkFactory;
 @property(nonatomic, strong) id<FVPAVFactory> avFactory;
@@ -72,8 +70,6 @@
                         registrar:(NSObject<FlutterPluginRegistrar> *)registrar {
   self = [super init];
   NSAssert(self, @"super init cannot be nil");
-  _registry = [registrar textures];
-  _messenger = [registrar messenger];
   _registrar = registrar;
   _displayLinkFactory = displayLinkFactory ?: [[FVPDefaultDisplayLinkFactory alloc] init];
   _avFactory = avFactory ?: [[FVPDefaultAVFactory alloc] init];
@@ -88,12 +84,12 @@
 }
 
 - (int64_t)onPlayerSetup:(FVPVideoPlayer *)player frameUpdater:(FVPFrameUpdater *)frameUpdater {
-  int64_t textureId = [self.registry registerTexture:player];
+  int64_t textureId = [[self.registrar textures] registerTexture:player];
   frameUpdater.textureId = textureId;
   FlutterEventChannel *eventChannel = [FlutterEventChannel
       eventChannelWithName:[NSString stringWithFormat:@"flutter.io/videoPlayer/videoEvents%lld",
                                                       textureId]
-           binaryMessenger:_messenger];
+           binaryMessenger:[_registrar messenger]];
   [eventChannel setStreamHandler:player];
   player.eventChannel = eventChannel;
   self.playersByTextureId[@(textureId)] = player;
@@ -111,9 +107,10 @@
   [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
 #endif
 
+  NSObject<FlutterTextureRegistry> *textureRegistry = [self.registrar textures];
   [self.playersByTextureId
       enumerateKeysAndObjectsUsingBlock:^(NSNumber *textureId, FVPVideoPlayer *player, BOOL *stop) {
-        [self.registry unregisterTexture:textureId.unsignedIntegerValue];
+        [textureRegistry unregisterTexture:textureId.unsignedIntegerValue];
         [player dispose];
       }];
   [self.playersByTextureId removeAllObjects];
@@ -123,7 +120,7 @@
     createWithURL:(NSString *)url
           headers:(NSDictionary<NSString *, NSString *> *)httpHeaders
             error:(FlutterError *_Nullable *_Nonnull)error {
-  FVPFrameUpdater *frameUpdater = [[FVPFrameUpdater alloc] initWithRegistry:_registry];
+  FVPFrameUpdater *frameUpdater = [[FVPFrameUpdater alloc] initWithRegistry:[self.registrar textures]];
   FVPDisplayLink *displayLink =
       [self.displayLinkFactory displayLinkWithRegistrar:_registrar
                                                callback:^() {
@@ -145,7 +142,7 @@
 - (void)disposePlayer:(NSInteger)textureId error:(FlutterError **)error {
   NSNumber *playerKey = @(textureId);
   FVPVideoPlayer *player = self.playersByTextureId[playerKey];
-  [self.registry unregisterTexture:textureId];
+  [[self.registrar textures] unregisterTexture:textureId];
   [self.playersByTextureId removeObjectForKey:playerKey];
   if (!player.disposed) {
     [player dispose];
