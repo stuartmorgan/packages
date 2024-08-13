@@ -4,10 +4,12 @@
 
 import 'dart:async';
 import 'dart:ffi' as ffi;
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:objective_c/objective_c.dart';
 import 'package:video_player_platform_interface/video_player_platform_interface.dart';
 
 import 'ffi_bindings.dart';
@@ -119,7 +121,7 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
       _playerFromPointer(pointer).seekTo_completionHandler_(
           position.inMilliseconds,
           ObjCBlock_ffiVoid_bool.listener(
-              _lib, (bool succeeded) => seekFinished.complete()));
+              (bool succeeded) => seekFinished.complete()));
       return seekFinished.future;
     });
   }
@@ -178,8 +180,26 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
   }
 
   @override
-  Future<void> setMixWithOthers(bool mixWithOthers) {
-    return _api.setMixWithOthers(mixWithOthers);
+  Future<void> setMixWithOthers(bool mixWithOthers) async {
+    // AVAudioSession doesn't exist on macOS, and audio always mixes, so just
+    // no-op there.
+    if (!Platform.isMacOS) {
+      await runOnPlatformThread<void>(() {
+        // https://github.com/dart-lang/native/issues/1418
+        final NSString categoryPlayback =
+            NSString.castFromPointer(_lib.AVAudioSessionCategoryPlayback);
+        if (mixWithOthers) {
+          AVAudioSession.sharedInstance().setCategory_withOptions_error_(
+              categoryPlayback,
+              AVAudioSessionCategoryOptions
+                  .AVAudioSessionCategoryOptionMixWithOthers,
+              ffi.nullptr);
+        } else {
+          AVAudioSession.sharedInstance()
+              .setCategory_error_(categoryPlayback, ffi.nullptr);
+        }
+      });
+    }
   }
 
   int _pointerForTexture(int textureId) {
@@ -192,7 +212,7 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
 
   FVPVideoPlayer _playerFromPointer(int pointer) {
     return FVPVideoPlayer.castFromPointer(
-        _lib, ffi.Pointer<ObjCObject>.fromAddress(pointer));
+        ffi.Pointer<ObjCObject>.fromAddress(pointer));
   }
 
   EventChannel _eventChannelFor(int textureId) {
