@@ -17,13 +17,6 @@ import 'package:pigeon/pigeon.dart';
   ),
   copyrightHeader: 'pigeons/copyright.txt',
 ))
-class CreationOptions {
-  CreationOptions({required this.httpHeaders});
-  String? asset;
-  String? uri;
-  String? packageName;
-  Map<String?, String?> httpHeaders;
-}
 
 /// The information needed by the Dart side of the implementation when a new
 /// player instance is created.
@@ -45,9 +38,15 @@ class VideoPlayerNativeDetails {
 abstract class AVFoundationVideoPlayerApi {
   @ObjCSelector('initialize')
   void initialize();
-  @ObjCSelector('createWithOptions:')
+  @ObjCSelector('createWithURL:headers:')
   // Creates a new player and returns its details.
-  VideoPlayerNativeDetails create(CreationOptions creationOptions);
+  VideoPlayerNativeDetails create(
+      String url, Map<String?, String?> httpHeaders);
   @ObjCSelector('disposePlayer:')
   void dispose(int textureId);
+
+  /// Wraps registrar-based asset lookup, as that's not currently accessible via
+  /// FFI.
+  @ObjCSelector('pathForAssetWithName:package:')
+  String? pathForAsset(String assetName, String? packageName);
 }

@@ -119,8 +119,10 @@
   [self.playersByTextureId removeAllObjects];
 }
 
-- (nullable FVPVideoPlayerNativeDetails *)createWithOptions:(nonnull FVPCreationOptions *)options
-                                                      error:(FlutterError **)error {
+- (nullable FVPVideoPlayerNativeDetails *)
+    createWithURL:(NSString *)url
+          headers:(NSDictionary<NSString *, NSString *> *)httpHeaders
+            error:(FlutterError *_Nullable *_Nonnull)error {
   FVPFrameUpdater *frameUpdater = [[FVPFrameUpdater alloc] initWithRegistry:_registry];
   FVPDisplayLink *displayLink =
       [self.displayLinkFactory displayLinkWithRegistrar:_registrar
@@ -129,34 +131,12 @@
                                                }];
 
   FVPVideoPlayer *player;
-  if (options.asset) {
-    NSString *assetPath;
-    if (options.packageName) {
-      assetPath = [_registrar lookupKeyForAsset:options.asset fromPackage:options.packageName];
-    } else {
-      assetPath = [_registrar lookupKeyForAsset:options.asset];
-    }
-    @try {
-      player = [[FVPVideoPlayer alloc] initWithAsset:assetPath
-                                        frameUpdater:frameUpdater
-                                         displayLink:displayLink
-                                           avFactory:_avFactory
-                                           registrar:self.registrar];
-    } @catch (NSException *exception) {
-      *error = [FlutterError errorWithCode:@"video_player" message:exception.reason details:nil];
-      return nil;
-    }
-  } else if (options.uri) {
-    player = [[FVPVideoPlayer alloc] initWithURL:[NSURL URLWithString:options.uri]
-                                    frameUpdater:frameUpdater
-                                     displayLink:displayLink
-                                     httpHeaders:options.httpHeaders
-                                       avFactory:_avFactory
-                                       registrar:self.registrar];
-  } else {
-    *error = [FlutterError errorWithCode:@"video_player" message:@"not implemented" details:nil];
-    return nil;
-  }
+  player = [[FVPVideoPlayer alloc] initWithURL:[NSURL URLWithString:url]
+                                  frameUpdater:frameUpdater
+                                   displayLink:displayLink
+                                   httpHeaders:httpHeaders
+                                     avFactory:_avFactory
+                                     registrar:self.registrar];
   int64_t textureIdentifier = [self onPlayerSetup:player frameUpdater:frameUpdater];
   return [FVPVideoPlayerNativeDetails makeWithTextureId:textureIdentifier
                                     nativePlayerPointer:(intptr_t)player];
@@ -170,6 +150,23 @@
   if (!player.disposed) {
     [player dispose];
   }
+}
+
+- (nullable NSString *)pathForAssetWithName:(NSString *)assetName
+                                    package:(nullable NSString *)packageName
+                                      error:(FlutterError *_Nullable *_Nonnull)error {
+  NSString *lookupKey = packageName
+                            ? [_registrar lookupKeyForAsset:assetName fromPackage:packageName]
+                            : [_registrar lookupKeyForAsset:assetName];
+  NSString *path = [[NSBundle mainBundle] pathForResource:lookupKey ofType:nil];
+#if TARGET_OS_OSX
+  // See https://github.com/flutter/flutter/issues/135302
+  // TODO(stuartmorgan): Remove this if the asset APIs are adjusted to work better for macOS.
+  if (!path) {
+    path = [NSURL URLWithString:lookupKey relativeToURL:NSBundle.mainBundle.bundleURL].path;
+  }
+#endif
+  return path;
 }
 
 @end

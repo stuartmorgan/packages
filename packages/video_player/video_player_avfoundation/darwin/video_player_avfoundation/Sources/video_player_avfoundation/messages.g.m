@@ -30,49 +30,10 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
   return (result == [NSNull null]) ? nil : result;
 }
 
-@interface FVPCreationOptions ()
-+ (FVPCreationOptions *)fromList:(NSArray *)list;
-+ (nullable FVPCreationOptions *)nullableFromList:(NSArray *)list;
-- (NSArray *)toList;
-@end
-
 @interface FVPVideoPlayerNativeDetails ()
 + (FVPVideoPlayerNativeDetails *)fromList:(NSArray *)list;
 + (nullable FVPVideoPlayerNativeDetails *)nullableFromList:(NSArray *)list;
 - (NSArray *)toList;
-@end
-
-@implementation FVPCreationOptions
-+ (instancetype)makeWithAsset:(nullable NSString *)asset
-                          uri:(nullable NSString *)uri
-                  packageName:(nullable NSString *)packageName
-                  httpHeaders:(NSDictionary<NSString *, NSString *> *)httpHeaders {
-  FVPCreationOptions *pigeonResult = [[FVPCreationOptions alloc] init];
-  pigeonResult.asset = asset;
-  pigeonResult.uri = uri;
-  pigeonResult.packageName = packageName;
-  pigeonResult.httpHeaders = httpHeaders;
-  return pigeonResult;
-}
-+ (FVPCreationOptions *)fromList:(NSArray *)list {
-  FVPCreationOptions *pigeonResult = [[FVPCreationOptions alloc] init];
-  pigeonResult.asset = GetNullableObjectAtIndex(list, 0);
-  pigeonResult.uri = GetNullableObjectAtIndex(list, 1);
-  pigeonResult.packageName = GetNullableObjectAtIndex(list, 2);
-  pigeonResult.httpHeaders = GetNullableObjectAtIndex(list, 3);
-  return pigeonResult;
-}
-+ (nullable FVPCreationOptions *)nullableFromList:(NSArray *)list {
-  return (list) ? [FVPCreationOptions fromList:list] : nil;
-}
-- (NSArray *)toList {
-  return @[
-    self.asset ?: [NSNull null],
-    self.uri ?: [NSNull null],
-    self.packageName ?: [NSNull null],
-    self.httpHeaders ?: [NSNull null],
-  ];
-}
 @end
 
 @implementation FVPVideoPlayerNativeDetails
@@ -106,8 +67,6 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
 - (nullable id)readValueOfType:(UInt8)type {
   switch (type) {
     case 128:
-      return [FVPCreationOptions fromList:[self readValue]];
-    case 129:
       return [FVPVideoPlayerNativeDetails fromList:[self readValue]];
     default:
       return [super readValueOfType:type];
@@ -119,11 +78,8 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
 @end
 @implementation FVPAVFoundationVideoPlayerApiCodecWriter
 - (void)writeValue:(id)value {
-  if ([value isKindOfClass:[FVPCreationOptions class]]) {
+  if ([value isKindOfClass:[FVPVideoPlayerNativeDetails class]]) {
     [self writeByte:128];
-    [self writeValue:[value toList]];
-  } else if ([value isKindOfClass:[FVPVideoPlayerNativeDetails class]]) {
-    [self writeByte:129];
     [self writeValue:[value toList]];
   } else {
     [super writeValue:value];
@@ -194,16 +150,18 @@ void SetUpFVPAVFoundationVideoPlayerApiWithSuffix(id<FlutterBinaryMessenger> bin
         binaryMessenger:binaryMessenger
                   codec:FVPAVFoundationVideoPlayerApiGetCodec()];
     if (api) {
-      NSCAssert([api respondsToSelector:@selector(createWithOptions:error:)],
+      NSCAssert([api respondsToSelector:@selector(createWithURL:headers:error:)],
                 @"FVPAVFoundationVideoPlayerApi api (%@) doesn't respond to "
-                @"@selector(createWithOptions:error:)",
+                @"@selector(createWithURL:headers:error:)",
                 api);
       [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
         NSArray *args = message;
-        FVPCreationOptions *arg_creationOptions = GetNullableObjectAtIndex(args, 0);
+        NSString *arg_url = GetNullableObjectAtIndex(args, 0);
+        NSDictionary<NSString *, NSString *> *arg_httpHeaders = GetNullableObjectAtIndex(args, 1);
         FlutterError *error;
-        FVPVideoPlayerNativeDetails *output = [api createWithOptions:arg_creationOptions
-                                                               error:&error];
+        FVPVideoPlayerNativeDetails *output = [api createWithURL:arg_url
+                                                         headers:arg_httpHeaders
+                                                           error:&error];
         callback(wrapResult(output, error));
       }];
     } else {
@@ -229,6 +187,35 @@ void SetUpFVPAVFoundationVideoPlayerApiWithSuffix(id<FlutterBinaryMessenger> bin
         FlutterError *error;
         [api disposePlayer:arg_textureId error:&error];
         callback(wrapResult(nil, error));
+      }];
+    } else {
+      [channel setMessageHandler:nil];
+    }
+  }
+  /// Wraps registrar-based asset lookup, as that's not currently accessible via
+  /// FFI.
+  {
+    FlutterBasicMessageChannel *channel = [[FlutterBasicMessageChannel alloc]
+           initWithName:[NSString stringWithFormat:@"%@%@",
+                                                   @"dev.flutter.pigeon.video_player_avfoundation."
+                                                   @"AVFoundationVideoPlayerApi.pathForAsset",
+                                                   messageChannelSuffix]
+        binaryMessenger:binaryMessenger
+                  codec:FVPAVFoundationVideoPlayerApiGetCodec()];
+    if (api) {
+      NSCAssert([api respondsToSelector:@selector(pathForAssetWithName:package:error:)],
+                @"FVPAVFoundationVideoPlayerApi api (%@) doesn't respond to "
+                @"@selector(pathForAssetWithName:package:error:)",
+                api);
+      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+        NSArray *args = message;
+        NSString *arg_assetName = GetNullableObjectAtIndex(args, 0);
+        NSString *arg_packageName = GetNullableObjectAtIndex(args, 1);
+        FlutterError *error;
+        NSString *output = [api pathForAssetWithName:arg_assetName
+                                             package:arg_packageName
+                                               error:&error];
+        callback(wrapResult(output, error));
       }];
     } else {
       [channel setMessageHandler:nil];

@@ -29,43 +29,6 @@ List<Object?> wrapResponse(
   return <Object?>[error.code, error.message, error.details];
 }
 
-class CreationOptions {
-  CreationOptions({
-    this.asset,
-    this.uri,
-    this.packageName,
-    required this.httpHeaders,
-  });
-
-  String? asset;
-
-  String? uri;
-
-  String? packageName;
-
-  Map<String?, String?> httpHeaders;
-
-  Object encode() {
-    return <Object?>[
-      asset,
-      uri,
-      packageName,
-      httpHeaders,
-    ];
-  }
-
-  static CreationOptions decode(Object result) {
-    result as List<Object?>;
-    return CreationOptions(
-      asset: result[0] as String?,
-      uri: result[1] as String?,
-      packageName: result[2] as String?,
-      httpHeaders:
-          (result[3] as Map<Object?, Object?>?)!.cast<String?, String?>(),
-    );
-  }
-}
-
 /// The information needed by the Dart side of the implementation when a new
 /// player instance is created.
 class VideoPlayerNativeDetails {
@@ -103,11 +66,8 @@ class _AVFoundationVideoPlayerApiCodec extends StandardMessageCodec {
   const _AVFoundationVideoPlayerApiCodec();
   @override
   void writeValue(WriteBuffer buffer, Object? value) {
-    if (value is CreationOptions) {
+    if (value is VideoPlayerNativeDetails) {
       buffer.putUint8(128);
-      writeValue(buffer, value.encode());
-    } else if (value is VideoPlayerNativeDetails) {
-      buffer.putUint8(129);
       writeValue(buffer, value.encode());
     } else {
       super.writeValue(buffer, value);
@@ -118,8 +78,6 @@ class _AVFoundationVideoPlayerApiCodec extends StandardMessageCodec {
   Object? readValueOfType(int type, ReadBuffer buffer) {
     switch (type) {
       case 128:
-        return CreationOptions.decode(readValue(buffer)!);
-      case 129:
         return VideoPlayerNativeDetails.decode(readValue(buffer)!);
       default:
         return super.readValueOfType(type, buffer);
@@ -168,7 +126,7 @@ class AVFoundationVideoPlayerApi {
   }
 
   Future<VideoPlayerNativeDetails> create(
-      CreationOptions creationOptions) async {
+      String url, Map<String?, String?> httpHeaders) async {
     final String __pigeon_channelName =
         'dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.create$__pigeon_messageChannelSuffix';
     final BasicMessageChannel<Object?> __pigeon_channel =
@@ -178,7 +136,7 @@ class AVFoundationVideoPlayerApi {
       binaryMessenger: __pigeon_binaryMessenger,
     );
     final List<Object?>? __pigeon_replyList = await __pigeon_channel
-        .send(<Object?>[creationOptions]) as List<Object?>?;
+        .send(<Object?>[url, httpHeaders]) as List<Object?>?;
     if (__pigeon_replyList == null) {
       throw _createConnectionError(__pigeon_channelName);
     } else if (__pigeon_replyList.length > 1) {
@@ -218,6 +176,32 @@ class AVFoundationVideoPlayerApi {
       );
     } else {
       return;
+    }
+  }
+
+  /// Wraps registrar-based asset lookup, as that's not currently accessible via
+  /// FFI.
+  Future<String?> pathForAsset(String assetName, String? packageName) async {
+    final String __pigeon_channelName =
+        'dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.pathForAsset$__pigeon_messageChannelSuffix';
+    final BasicMessageChannel<Object?> __pigeon_channel =
+        BasicMessageChannel<Object?>(
+      __pigeon_channelName,
+      pigeonChannelCodec,
+      binaryMessenger: __pigeon_binaryMessenger,
+    );
+    final List<Object?>? __pigeon_replyList = await __pigeon_channel
+        .send(<Object?>[assetName, packageName]) as List<Object?>?;
+    if (__pigeon_replyList == null) {
+      throw _createConnectionError(__pigeon_channelName);
+    } else if (__pigeon_replyList.length > 1) {
+      throw PlatformException(
+        code: __pigeon_replyList[0]! as String,
+        message: __pigeon_replyList[1] as String?,
+        details: __pigeon_replyList[2],
+      );
+    } else {
+      return (__pigeon_replyList[0] as String?);
     }
   }
 }

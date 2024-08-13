@@ -13,7 +13,8 @@ import 'test_api.g.dart';
 class _ApiLogger implements TestHostVideoPlayerApi {
   final List<String> log = <String>[];
   int? textureId;
-  CreationOptions? creationOptions;
+  String? uri;
+  Map<String?, String?>? headers;
   int? position;
   bool? looping;
   double? volume;
@@ -21,9 +22,10 @@ class _ApiLogger implements TestHostVideoPlayerApi {
   bool? mixWithOthers;
 
   @override
-  VideoPlayerNativeDetails create(CreationOptions options) {
+  VideoPlayerNativeDetails create(String uri, Map<String?, String?> headers) {
     log.add('create');
-    creationOptions = options;
+    this.uri = uri;
+    this.headers = headers;
     return VideoPlayerNativeDetails(textureId: 3, nativePlayerPointer: 99);
   }
 
@@ -36,6 +38,11 @@ class _ApiLogger implements TestHostVideoPlayerApi {
   @override
   void initialize() {
     log.add('init');
+  }
+
+  @override
+  String? pathForAsset(String assetName, String? packageName) {
+    return 'file:///${packageName != null ? '$packageName/' : ''}$assetName';
   }
 }
 
@@ -77,8 +84,7 @@ void main() {
         package: 'somePackage',
       ));
       expect(log.log.last, 'create');
-      expect(log.creationOptions?.asset, 'someAsset');
-      expect(log.creationOptions?.packageName, 'somePackage');
+      expect(log.uri, 'file:///somePackage/someAsset');
       expect(textureId, 3);
     });
 
@@ -100,10 +106,8 @@ void main() {
         uri: 'someUri',
       ));
       expect(log.log.last, 'create');
-      expect(log.creationOptions?.asset, null);
-      expect(log.creationOptions?.uri, 'someUri');
-      expect(log.creationOptions?.packageName, null);
-      expect(log.creationOptions?.httpHeaders, <String, String>{});
+      expect(log.uri, 'someUri');
+      expect(log.headers, <String, String>{});
       expect(textureId, 3);
     });
 
@@ -114,11 +118,8 @@ void main() {
         httpHeaders: <String, String>{'Authorization': 'Bearer token'},
       ));
       expect(log.log.last, 'create');
-      expect(log.creationOptions?.asset, null);
-      expect(log.creationOptions?.uri, 'someUri');
-      expect(log.creationOptions?.packageName, null);
-      expect(log.creationOptions?.httpHeaders,
-          <String, String>{'Authorization': 'Bearer token'});
+      expect(log.uri, 'someUri');
+      expect(log.headers, <String, String>{'Authorization': 'Bearer token'});
       expect(textureId, 3);
     });
 
@@ -128,7 +129,7 @@ void main() {
         uri: 'someUri',
       ));
       expect(log.log.last, 'create');
-      expect(log.creationOptions?.uri, 'someUri');
+      expect(log.uri, 'someUri');
       expect(textureId, 3);
     });
 

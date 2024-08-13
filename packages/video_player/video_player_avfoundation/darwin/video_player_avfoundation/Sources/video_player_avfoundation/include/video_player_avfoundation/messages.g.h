@@ -13,21 +13,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class FVPCreationOptions;
 @class FVPVideoPlayerNativeDetails;
-
-@interface FVPCreationOptions : NSObject
-/// `init` unavailable to enforce nonnull fields, see the `make` class method.
-- (instancetype)init NS_UNAVAILABLE;
-+ (instancetype)makeWithAsset:(nullable NSString *)asset
-                          uri:(nullable NSString *)uri
-                  packageName:(nullable NSString *)packageName
-                  httpHeaders:(NSDictionary<NSString *, NSString *> *)httpHeaders;
-@property(nonatomic, copy, nullable) NSString *asset;
-@property(nonatomic, copy, nullable) NSString *uri;
-@property(nonatomic, copy, nullable) NSString *packageName;
-@property(nonatomic, copy) NSDictionary<NSString *, NSString *> *httpHeaders;
-@end
 
 /// The information needed by the Dart side of the implementation when a new
 /// player instance is created.
@@ -51,10 +37,16 @@ NSObject<FlutterMessageCodec> *FVPAVFoundationVideoPlayerApiGetCodec(void);
 @protocol FVPAVFoundationVideoPlayerApi
 - (void)initialize:(FlutterError *_Nullable *_Nonnull)error;
 /// @return `nil` only when `error != nil`.
-- (nullable FVPVideoPlayerNativeDetails *)createWithOptions:(FVPCreationOptions *)creationOptions
-                                                      error:
-                                                          (FlutterError *_Nullable *_Nonnull)error;
+- (nullable FVPVideoPlayerNativeDetails *)
+    createWithURL:(NSString *)url
+          headers:(NSDictionary<NSString *, NSString *> *)httpHeaders
+            error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)disposePlayer:(NSInteger)textureId error:(FlutterError *_Nullable *_Nonnull)error;
+/// Wraps registrar-based asset lookup, as that's not currently accessible via
+/// FFI.
+- (nullable NSString *)pathForAssetWithName:(NSString *)assetName
+                                    package:(nullable NSString *)packageName
+                                      error:(FlutterError *_Nullable *_Nonnull)error;
 @end
 
 extern void SetUpFVPAVFoundationVideoPlayerApi(

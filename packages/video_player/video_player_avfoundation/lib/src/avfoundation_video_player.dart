@@ -46,30 +46,37 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
 
   @override
   Future<int?> create(DataSource dataSource) async {
-    String? asset;
-    String? packageName;
     String? uri;
     Map<String, String> httpHeaders = <String, String>{};
     switch (dataSource.sourceType) {
       case DataSourceType.asset:
-        asset = dataSource.asset;
-        packageName = dataSource.package;
+        final String? asset = dataSource.asset;
+        if (asset == null) {
+          throw ArgumentError('"asset" must be set for DataSourceType.asset');
+        }
+        final String? assetPath =
+            await _api.pathForAsset(asset, dataSource.package);
+        if (assetPath == null) {
+          throw ArgumentError(
+              'Unable to load "$asset" from package "${dataSource.package}"');
+        }
+        uri = Uri.file(assetPath).toString();
       case DataSourceType.network:
         uri = dataSource.uri;
         httpHeaders = dataSource.httpHeaders;
       case DataSourceType.file:
         uri = dataSource.uri;
       case DataSourceType.contentUri:
-        uri = dataSource.uri;
+        throw UnsupportedError(
+            'Content URIs are not supported on this platform');
     }
-    final CreationOptions options = CreationOptions(
-      asset: asset,
-      packageName: packageName,
-      uri: uri,
-      httpHeaders: httpHeaders,
-    );
+    if (uri == null) {
+      throw UnimplementedError(
+          'Unsupported source type: ${dataSource.sourceType}');
+    }
 
-    final VideoPlayerNativeDetails playerDetails = await _api.create(options);
+    final VideoPlayerNativeDetails playerDetails =
+        await _api.create(uri, httpHeaders);
     _playerPointersByTextureId[playerDetails.textureId] =
         playerDetails.nativePlayerPointer;
     return playerDetails.textureId;
