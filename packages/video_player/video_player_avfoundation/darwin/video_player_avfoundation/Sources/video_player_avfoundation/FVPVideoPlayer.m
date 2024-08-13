@@ -42,26 +42,6 @@ NS_INLINE CGFloat radiansToDegrees(CGFloat radians) {
 };
 
 @implementation FVPVideoPlayer
-- (instancetype)initWithAsset:(NSString *)asset
-                 frameUpdater:(FVPFrameUpdater *)frameUpdater
-                  displayLink:(FVPDisplayLink *)displayLink
-                    avFactory:(id<FVPAVFactory>)avFactory
-                    registrar:(NSObject<FlutterPluginRegistrar> *)registrar {
-  NSString *path = [[NSBundle mainBundle] pathForResource:asset ofType:nil];
-#if TARGET_OS_OSX
-  // See https://github.com/flutter/flutter/issues/135302
-  // TODO(stuartmorgan): Remove this if the asset APIs are adjusted to work better for macOS.
-  if (!path) {
-    path = [NSURL URLWithString:asset relativeToURL:NSBundle.mainBundle.bundleURL].path;
-  }
-#endif
-  return [self initWithURL:[NSURL fileURLWithPath:path]
-              frameUpdater:frameUpdater
-               displayLink:displayLink
-               httpHeaders:@{}
-                 avFactory:avFactory
-                 registrar:registrar];
-}
 
 - (instancetype)initWithURL:(NSURL *)url
                frameUpdater:(FVPFrameUpdater *)frameUpdater
@@ -295,7 +275,8 @@ NS_INLINE CGFloat radiansToDegrees(CGFloat radians) {
     AVPlayer *player = (AVPlayer *)object;
     if (_eventSink != nil) {
       _eventSink(
-          @{@"event" : @"isPlayingStateUpdate", @"isPlaying" : player.rate > 0 ? @YES : @NO});
+          @{@"event" : @"isPlayingStateUpdate",
+            @"isPlaying" : player.rate > 0 ? @YES : @NO});
     }
   }
 }
