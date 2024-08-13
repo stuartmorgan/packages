@@ -26,11 +26,6 @@ class CreationOptions {
   Map<String?, String?> httpHeaders;
 }
 
-class MixWithOthersMessage {
-  MixWithOthersMessage(this.mixWithOthers);
-  bool mixWithOthers;
-}
-
 /// The information needed by the Dart side of the implementation when a new
 /// player instance is created.
 class VideoPlayerNativeDetails {
@@ -56,6 +51,4 @@ abstract class AVFoundationVideoPlayerApi {
   VideoPlayerNativeDetails create(CreationOptions creationOptions);
   @ObjCSelector('disposePlayer:')
   void dispose(int textureId);
-  @ObjCSelector('setMixWithOthers:')
-  void setMixWithOthers(bool mixWithOthers);
 }

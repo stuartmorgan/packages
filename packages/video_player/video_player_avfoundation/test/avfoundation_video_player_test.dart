@@ -37,12 +37,6 @@ class _ApiLogger implements TestHostVideoPlayerApi {
   void initialize() {
     log.add('init');
   }
-
-  @override
-  void setMixWithOthers(bool enabled) {
-    log.add('setMixWithOthers');
-    mixWithOthers = enabled;
-  }
 }
 
 void main() {

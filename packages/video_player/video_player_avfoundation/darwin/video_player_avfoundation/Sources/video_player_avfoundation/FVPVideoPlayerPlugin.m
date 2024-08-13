@@ -172,19 +172,4 @@
   }
 }
 
-- (void)setMixWithOthers:(BOOL)mixWithOthers
-                   error:(FlutterError *_Nullable __autoreleasing *)error {
-#if TARGET_OS_OSX
-  // AVAudioSession doesn't exist on macOS, and audio always mixes, so just no-op.
-#else
-  if (mixWithOthers) {
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback
-                                     withOptions:AVAudioSessionCategoryOptionMixWithOthers
-                                           error:nil];
-  } else {
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
-  }
-#endif
-}
-
 @end
