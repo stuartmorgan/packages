@@ -98,13 +98,11 @@ void main() {
       final int? textureId = await player.create(DataSource(
         sourceType: DataSourceType.network,
         uri: 'someUri',
-        formatHint: VideoFormat.dash,
       ));
       expect(log.log.last, 'create');
       expect(log.creationOptions?.asset, null);
       expect(log.creationOptions?.uri, 'someUri');
       expect(log.creationOptions?.packageName, null);
-      expect(log.creationOptions?.formatHint, 'dash');
       expect(log.creationOptions?.httpHeaders, <String, String>{});
       expect(textureId, 3);
     });
@@ -119,7 +117,6 @@ void main() {
       expect(log.creationOptions?.asset, null);
       expect(log.creationOptions?.uri, 'someUri');
       expect(log.creationOptions?.packageName, null);
-      expect(log.creationOptions?.formatHint, null);
       expect(log.creationOptions?.httpHeaders,
           <String, String>{'Authorization': 'Bearer token'});
       expect(textureId, 3);

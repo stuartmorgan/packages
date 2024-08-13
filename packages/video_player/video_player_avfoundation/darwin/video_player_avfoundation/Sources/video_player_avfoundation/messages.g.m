@@ -46,13 +46,11 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
 + (instancetype)makeWithAsset:(nullable NSString *)asset
                           uri:(nullable NSString *)uri
                   packageName:(nullable NSString *)packageName
-                   formatHint:(nullable NSString *)formatHint
                   httpHeaders:(NSDictionary<NSString *, NSString *> *)httpHeaders {
   FVPCreationOptions *pigeonResult = [[FVPCreationOptions alloc] init];
   pigeonResult.asset = asset;
   pigeonResult.uri = uri;
   pigeonResult.packageName = packageName;
-  pigeonResult.formatHint = formatHint;
   pigeonResult.httpHeaders = httpHeaders;
   return pigeonResult;
 }
@@ -61,8 +59,7 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
   pigeonResult.asset = GetNullableObjectAtIndex(list, 0);
   pigeonResult.uri = GetNullableObjectAtIndex(list, 1);
   pigeonResult.packageName = GetNullableObjectAtIndex(list, 2);
-  pigeonResult.formatHint = GetNullableObjectAtIndex(list, 3);
-  pigeonResult.httpHeaders = GetNullableObjectAtIndex(list, 4);
+  pigeonResult.httpHeaders = GetNullableObjectAtIndex(list, 3);
   return pigeonResult;
 }
 + (nullable FVPCreationOptions *)nullableFromList:(NSArray *)list {
@@ -73,7 +70,6 @@ static id GetNullableObjectAtIndex(NSArray *array, NSInteger key) {
     self.asset ?: [NSNull null],
     self.uri ?: [NSNull null],
     self.packageName ?: [NSNull null],
-    self.formatHint ?: [NSNull null],
     self.httpHeaders ?: [NSNull null],
   ];
 }

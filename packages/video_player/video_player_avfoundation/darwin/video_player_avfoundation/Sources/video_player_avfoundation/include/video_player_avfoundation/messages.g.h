@@ -22,12 +22,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)makeWithAsset:(nullable NSString *)asset
                           uri:(nullable NSString *)uri
                   packageName:(nullable NSString *)packageName
-                   formatHint:(nullable NSString *)formatHint
                   httpHeaders:(NSDictionary<NSString *, NSString *> *)httpHeaders;
 @property(nonatomic, copy, nullable) NSString *asset;
 @property(nonatomic, copy, nullable) NSString *uri;
 @property(nonatomic, copy, nullable) NSString *packageName;
-@property(nonatomic, copy, nullable) NSString *formatHint;
 @property(nonatomic, copy) NSDictionary<NSString *, NSString *> *httpHeaders;
 @end
 
