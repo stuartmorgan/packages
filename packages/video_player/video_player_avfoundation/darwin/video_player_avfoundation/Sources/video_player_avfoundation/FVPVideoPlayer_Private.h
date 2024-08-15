@@ -46,12 +46,11 @@
 // frame is successfully provided.
 @property(nonatomic, assign) BOOL waitingForFrame;
 
-- (instancetype)initWithURL:(NSURL *)url
-               frameUpdater:(FVPFrameUpdater *)frameUpdater
-                displayLink:(FVPDisplayLink *)displayLink
-                httpHeaders:(nonnull NSDictionary<NSString *, NSString *> *)headers
-                  avFactory:(id<FVPAVFactory>)avFactory
-                  registrar:(NSObject<FlutterPluginRegistrar> *)registrar;
+- (instancetype)initWithPlayerItem:(AVPlayerItem *)item
+                      frameUpdater:(FVPFrameUpdater *)frameUpdater
+                       displayLink:(FVPDisplayLink *)displayLink
+                         avFactory:(id<FVPAVFactory>)avFactory
+                         registrar:(NSObject<FlutterPluginRegistrar> *)registrar;
 
 // Tells the player to run its frame updater until it receives a frame, regardless of the
 // play/pause state.

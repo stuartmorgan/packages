@@ -120,20 +120,27 @@
     createWithURL:(NSString *)url
           headers:(NSDictionary<NSString *, NSString *> *)httpHeaders
             error:(FlutterError *_Nullable *_Nonnull)error {
-  FVPFrameUpdater *frameUpdater = [[FVPFrameUpdater alloc] initWithRegistry:[self.registrar textures]];
+  FVPFrameUpdater *frameUpdater =
+      [[FVPFrameUpdater alloc] initWithRegistry:[self.registrar textures]];
   FVPDisplayLink *displayLink =
       [self.displayLinkFactory displayLinkWithRegistrar:_registrar
                                                callback:^() {
                                                  [frameUpdater displayLinkFired];
                                                }];
 
-  FVPVideoPlayer *player;
-  player = [[FVPVideoPlayer alloc] initWithURL:[NSURL URLWithString:url]
-                                  frameUpdater:frameUpdater
-                                   displayLink:displayLink
-                                   httpHeaders:httpHeaders
-                                     avFactory:_avFactory
-                                     registrar:self.registrar];
+  // Create a player item from the parameters.
+  NSDictionary<NSString *, id> *options = nil;
+  if (httpHeaders.count != 0) {
+    options = @{@"AVURLAssetHTTPHeaderFieldsKey" : httpHeaders};
+  }
+  AVURLAsset *urlAsset = [AVURLAsset URLAssetWithURL:[NSURL URLWithString:url] options:options];
+  AVPlayerItem *avItem = [AVPlayerItem playerItemWithAsset:urlAsset];
+
+  FVPVideoPlayer *player = [[FVPVideoPlayer alloc] initWithPlayerItem:avItem
+                                                         frameUpdater:frameUpdater
+                                                          displayLink:displayLink
+                                                            avFactory:_avFactory
+                                                            registrar:self.registrar];
   int64_t textureIdentifier = [self onPlayerSetup:player frameUpdater:frameUpdater];
   return [FVPVideoPlayerNativeDetails makeWithTextureId:textureIdentifier
                                     nativePlayerPointer:(intptr_t)player];
