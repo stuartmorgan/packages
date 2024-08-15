@@ -30,7 +30,7 @@ NS_INLINE int64_t FVPCMTimeToMillis(CMTime time) {
   return time.value * 1000 / time.timescale;
 }
 
-NS_INLINE CGFloat radiansToDegrees(CGFloat radians) {
+NS_INLINE CGFloat FVPRadiansToDegrees(CGFloat radians) {
   // Input range [-pi, pi] or [-180, 180]
   CGFloat degrees = GLKMathRadiansToDegrees((float)radians);
   if (degrees < 0) {
@@ -40,6 +40,57 @@ NS_INLINE CGFloat radiansToDegrees(CGFloat radians) {
   // Output degrees in between [0, 360]
   return degrees;
 };
+
+// Returns the CALayer associated with the Flutter view that 'registrar' is associated with, if any.
+static CALayer *FVPFindFlutterViewLayer(NSObject<FlutterPluginRegistrar> *registrar) {
+#if TARGET_OS_OSX
+  return registrar.view.layer;
+#else
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+  // TODO(hellohuanlin): Provide a non-deprecated codepath. See
+  // https://github.com/flutter/flutter/issues/104117
+  UIViewController *root = UIApplication.sharedApplication.keyWindow.rootViewController;
+#pragma clang diagnostic pop
+  return root.view.layer;
+#endif
+}
+
+static void FVPRegisterObservers(AVPlayerItem *item ,AVPlayer *player, NSObject* observer) {
+  [item addObserver:observer
+         forKeyPath:@"loadedTimeRanges"
+            options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
+            context:timeRangeContext];
+  [item addObserver:observer
+         forKeyPath:@"status"
+            options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
+            context:statusContext];
+  [item addObserver:observer
+         forKeyPath:@"presentationSize"
+            options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
+            context:presentationSizeContext];
+  [item addObserver:observer
+         forKeyPath:@"duration"
+            options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
+            context:durationContext];
+  [item addObserver:observer
+         forKeyPath:@"playbackLikelyToKeepUp"
+            options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
+            context:playbackLikelyToKeepUpContext];
+
+  // Add observer to AVPlayer instead of AVPlayerItem since the AVPlayerItem does not have a "rate"
+  // property
+  [player addObserver:observer
+           forKeyPath:@"rate"
+              options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
+              context:rateContext];
+
+  // Add an observer that will respond to itemDidPlayToEndTime
+  [[NSNotificationCenter defaultCenter] addObserver:observer
+                                           selector:@selector(itemDidPlayToEndTime:)
+                                               name:AVPlayerItemDidPlayToEndTimeNotification
+                                             object:item];
+}
 
 @implementation FVPVideoPlayer
 
@@ -92,7 +143,7 @@ NS_INLINE CGFloat radiansToDegrees(CGFloat radians) {
   // invisible AVPlayerLayer is used to overwrite the protection of pixel buffers in those streams
   // for issue #1, and restore the correct width and height for issue #2.
   _playerLayer = [AVPlayerLayer playerLayerWithPlayer:_player];
-  [self.flutterViewLayer addSublayer:_playerLayer];
+  [FVPFindFlutterViewLayer(_registrar) addSublayer:_playerLayer];
 
   // Configure output.
   _displayLink = displayLink;
@@ -103,7 +154,7 @@ NS_INLINE CGFloat radiansToDegrees(CGFloat radians) {
   _videoOutput = [avFactory videoOutputWithPixelBufferAttributes:pixBuffAttributes];
   frameUpdater.videoOutput = _videoOutput;
 
-  [self addObserversForItem:item player:_player];
+  FVPRegisterObservers(item, _player, self);
 
   [asset loadValuesAsynchronouslyForKeys:@[ @"tracks" ] completionHandler:assetCompletionHandler];
 
@@ -114,42 +165,6 @@ NS_INLINE CGFloat radiansToDegrees(CGFloat radians) {
   if (!_disposed) {
     [self removeKeyValueObservers];
   }
-}
-
-- (void)addObserversForItem:(AVPlayerItem *)item player:(AVPlayer *)player {
-  [item addObserver:self
-         forKeyPath:@"loadedTimeRanges"
-            options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
-            context:timeRangeContext];
-  [item addObserver:self
-         forKeyPath:@"status"
-            options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
-            context:statusContext];
-  [item addObserver:self
-         forKeyPath:@"presentationSize"
-            options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
-            context:presentationSizeContext];
-  [item addObserver:self
-         forKeyPath:@"duration"
-            options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
-            context:durationContext];
-  [item addObserver:self
-         forKeyPath:@"playbackLikelyToKeepUp"
-            options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
-            context:playbackLikelyToKeepUpContext];
-
-  // Add observer to AVPlayer instead of AVPlayerItem since the AVPlayerItem does not have a "rate"
-  // property
-  [player addObserver:self
-           forKeyPath:@"rate"
-              options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
-              context:rateContext];
-
-  // Add an observer that will respond to itemDidPlayToEndTime
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(itemDidPlayToEndTime:)
-                                               name:AVPlayerItemDidPlayToEndTimeNotification
-                                             object:item];
 }
 
 - (void)itemDidPlayToEndTime:(NSNotification *)notification {
@@ -182,7 +197,7 @@ NS_INLINE CGFloat radiansToDegrees(CGFloat radians) {
   CGFloat width = videoTrack.naturalSize.width;
   CGFloat height = videoTrack.naturalSize.height;
   NSInteger rotationDegrees =
-      (NSInteger)round(radiansToDegrees(atan2(_preferredTransform.b, _preferredTransform.a)));
+      (NSInteger)round(FVPRadiansToDegrees(atan2(_preferredTransform.b, _preferredTransform.a)));
   if (rotationDegrees == 90 || rotationDegrees == 270) {
     width = videoTrack.naturalSize.height;
     height = videoTrack.naturalSize.width;
@@ -484,20 +499,6 @@ NS_INLINE CGFloat radiansToDegrees(CGFloat radians) {
 - (void)dispose {
   [self disposeSansEventChannel];
   [_eventChannel setStreamHandler:nil];
-}
-
-- (CALayer *)flutterViewLayer {
-#if TARGET_OS_OSX
-  return self.registrar.view.layer;
-#else
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-  // TODO(hellohuanlin): Provide a non-deprecated codepath. See
-  // https://github.com/flutter/flutter/issues/104117
-  UIViewController *root = UIApplication.sharedApplication.keyWindow.rootViewController;
-#pragma clang diagnostic pop
-  return root.view.layer;
-#endif
 }
 
 /// Removes all key-value observers set up for the player.

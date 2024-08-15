@@ -29,8 +29,6 @@
 @property(readonly, nonatomic) AVPlayerItemVideoOutput *videoOutput;
 // The plugin registrar, to obtain view information from.
 @property(nonatomic, weak) NSObject<FlutterPluginRegistrar> *registrar;
-// The CALayer associated with the Flutter view this plugin is associated with, if any.
-@property(nonatomic, readonly) CALayer *flutterViewLayer;
 @property(nonatomic) FlutterEventChannel *eventChannel;
 @property(nonatomic) FlutterEventSink eventSink;
 @property(nonatomic) CGAffineTransform preferredTransform;
