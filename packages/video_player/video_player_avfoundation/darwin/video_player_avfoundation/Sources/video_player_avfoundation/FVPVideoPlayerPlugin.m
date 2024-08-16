@@ -37,9 +37,9 @@
 @end
 
 @implementation FVPDefaultDisplayLinkFactory
-- (FVPDisplayLink *)displayLinkWithRegistrar:(id<FlutterPluginRegistrar>)registrar
-                                    callback:(void (^)(void))callback {
-  return [[FVPDisplayLink alloc] initWithRegistrar:registrar callback:callback];
+- (FVPDisplayLink *)displayLinkWithViewProvider:(id<FVPViewProvider>)viewProvider
+                                       callback:(void (^)(void))callback {
+  return [[FVPDisplayLink alloc] initWithViewProvider:viewProvider callback:callback];
 }
 
 @end
@@ -155,11 +155,11 @@
             error:(FlutterError *_Nullable *_Nonnull)error {
   FVPFrameUpdater *frameUpdater =
       [[FVPFrameUpdater alloc] initWithRegistry:[self.registrar textures]];
-  FVPDisplayLink *displayLink =
-      [self.displayLinkFactory displayLinkWithRegistrar:_registrar
-                                               callback:^() {
-                                                 [frameUpdater displayLinkFired];
-                                               }];
+  FVPDisplayLink *displayLink = [self.displayLinkFactory
+      displayLinkWithViewProvider:[[FVPDefaultViewProvider alloc] initWithRegistrar:self.registrar]
+                         callback:^() {
+                           [frameUpdater displayLinkFired];
+                         }];
 
   // Create a player item from the parameters.
   NSDictionary<NSString *, id> *options = nil;

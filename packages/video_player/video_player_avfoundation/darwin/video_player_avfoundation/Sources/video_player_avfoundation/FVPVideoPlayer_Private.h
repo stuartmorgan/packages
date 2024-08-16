@@ -13,6 +13,7 @@
 #endif
 
 #import "./include/video_player_avfoundation/FVPDisplayLink.h"
+#import "./include/video_player_avfoundation/FVPViewProvider.h"
 #import "./include/video_player_avfoundation/InjectionProtocols.h"
 #import "FVPFrameUpdater.h"
 

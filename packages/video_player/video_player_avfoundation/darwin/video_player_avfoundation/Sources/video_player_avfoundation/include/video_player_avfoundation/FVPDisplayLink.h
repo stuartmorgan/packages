@@ -4,11 +4,7 @@
 
 #import <Foundation/Foundation.h>
 
-#if TARGET_OS_OSX
-#import <FlutterMacOS/FlutterMacOS.h>
-#else
-#import <Flutter/Flutter.h>
-#endif
+#import "FVPViewProvider.h"
 
 // A cross-platform display link abstraction.
 @interface FVPDisplayLink : NSObject
@@ -22,8 +18,8 @@
 ///
 /// The display link starts paused, so must be started, by setting 'running' to YES, before the
 /// callback will fire.
-- (instancetype)initWithRegistrar:(id<FlutterPluginRegistrar>)registrar
-                         callback:(void (^)(void))callback NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithViewProvider:(id<FVPViewProvider>)viewProvider
+                            callback:(void (^)(void))callback NS_DESIGNATED_INITIALIZER;
 
 - (instancetype)init NS_UNAVAILABLE;
 

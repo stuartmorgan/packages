@@ -2,42 +2,23 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#import "FVPVideoPlayerPlugin.h"
-
 #import <AVFoundation/AVFoundation.h>
 
-#if TARGET_OS_OSX
-#import <FlutterMacOS/FlutterMacOS.h>
-#else
-#import <Flutter/Flutter.h>
-#endif
-
 #import "FVPDisplayLink.h"
+#import "FVPViewProvider.h"
 
 /// Protocol for AVFoundation object instance factory. Used for injecting framework objects in
 /// tests.
-@protocol FVPAVFactory
+@protocol FVPAVFactory <NSObject>
 @required
 - (AVPlayer *)playerWithPlayerItem:(AVPlayerItem *)playerItem;
 - (AVPlayerItemVideoOutput *)videoOutputWithPixelBufferAttributes:
     (NSDictionary<NSString *, id> *)attributes;
 @end
 
-/// Protocol for accessing the view that is displaying the Flutter content
-/// associated with a plugin instance.
-@protocol FVPViewProvider
-@required
-#if TARGET_OS_OSX
-@property(readonly, nonatomic) NSView *view;
-#else
-@property(readonly, nonatomic) UIView *view;
-#endif
-@end
-
 /// Protocol for an AVPlayer instance factory. Used for injecting display links in tests.
-// TODO(stuartmorgan): Abstract the registrar with a more minimal protocol.
-@protocol FVPDisplayLinkFactory
+@protocol FVPDisplayLinkFactory <NSObject>
 @required
-- (FVPDisplayLink *)displayLinkWithRegistrar:(id<FlutterPluginRegistrar>)registrar
-                                    callback:(void (^)(void))callback;
+- (FVPDisplayLink *)displayLinkWithViewProvider:(id<FVPViewProvider>)viewProvider
+                                       callback:(void (^)(void))callback;
 @end

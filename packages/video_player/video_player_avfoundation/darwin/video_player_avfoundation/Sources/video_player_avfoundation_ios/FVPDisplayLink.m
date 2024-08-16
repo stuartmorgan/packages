@@ -43,8 +43,8 @@
 
 @implementation FVPDisplayLink
 
-- (instancetype)initWithRegistrar:(id<FlutterPluginRegistrar>)registrar
-                         callback:(void (^)(void))callback {
+- (instancetype)initWithViewProvider:(id<FVPViewProvider>)viewProvider
+                            callback:(void (^)(void))callback {
   self = [super init];
   if (self) {
     _target = [[FVPDisplayLinkTarget alloc] initWithCallback:callback];
