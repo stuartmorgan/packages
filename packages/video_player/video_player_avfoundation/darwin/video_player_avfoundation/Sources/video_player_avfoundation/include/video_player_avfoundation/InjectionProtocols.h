@@ -23,9 +23,21 @@
     (NSDictionary<NSString *, id> *)attributes;
 @end
 
+/// Protocol for accessing the view that is displaying the Flutter content
+/// associated with a plugin instance.
+@protocol FVPViewProvider
+@required
+#if TARGET_OS_OSX
+@property(readonly, nonatomic) NSView *view;
+#else
+@property(readonly, nonatomic) UIView *view;
+#endif
+@end
+
 /// Protocol for an AVPlayer instance factory. Used for injecting display links in tests.
 // TODO(stuartmorgan): Abstract the registrar with a more minimal protocol.
 @protocol FVPDisplayLinkFactory
+@required
 - (FVPDisplayLink *)displayLinkWithRegistrar:(id<FlutterPluginRegistrar>)registrar
                                     callback:(void (^)(void))callback;
 @end

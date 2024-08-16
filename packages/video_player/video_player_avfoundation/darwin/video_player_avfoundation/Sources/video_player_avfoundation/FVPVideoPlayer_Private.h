@@ -27,8 +27,8 @@
 @property(nonatomic) AVPlayerLayer *playerLayer;
 
 @property(readonly, nonatomic) AVPlayerItemVideoOutput *videoOutput;
-// The plugin registrar, to obtain view information from.
-@property(nonatomic, weak) NSObject<FlutterPluginRegistrar> *registrar;
+// Provides access to the enclosing Flutter view.
+@property(nonatomic) NSObject<FVPViewProvider> *viewProvider;
 @property(nonatomic) FlutterEventChannel *eventChannel;
 @property(nonatomic) FlutterEventSink eventSink;
 @property(nonatomic) CGAffineTransform preferredTransform;
@@ -48,7 +48,7 @@
                       frameUpdater:(FVPFrameUpdater *)frameUpdater
                        displayLink:(FVPDisplayLink *)displayLink
                          avFactory:(id<FVPAVFactory>)avFactory
-                         registrar:(NSObject<FlutterPluginRegistrar> *)registrar;
+                      viewProvider:(id<FVPViewProvider>)viewProvider;
 
 // Tells the player to run its frame updater until it receives a frame, regardless of the
 // play/pause state.

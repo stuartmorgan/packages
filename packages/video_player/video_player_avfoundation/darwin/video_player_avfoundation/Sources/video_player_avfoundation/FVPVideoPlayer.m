@@ -41,22 +41,7 @@ NS_INLINE CGFloat FVPRadiansToDegrees(CGFloat radians) {
   return degrees;
 };
 
-// Returns the CALayer associated with the Flutter view that 'registrar' is associated with, if any.
-static CALayer *FVPFindFlutterViewLayer(NSObject<FlutterPluginRegistrar> *registrar) {
-#if TARGET_OS_OSX
-  return registrar.view.layer;
-#else
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-  // TODO(hellohuanlin): Provide a non-deprecated codepath. See
-  // https://github.com/flutter/flutter/issues/104117
-  UIViewController *root = UIApplication.sharedApplication.keyWindow.rootViewController;
-#pragma clang diagnostic pop
-  return root.view.layer;
-#endif
-}
-
-static void FVPRegisterObservers(AVPlayerItem *item ,AVPlayer *player, NSObject* observer) {
+static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject *observer) {
   [item addObserver:observer
          forKeyPath:@"loadedTimeRanges"
             options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
@@ -98,11 +83,11 @@ static void FVPRegisterObservers(AVPlayerItem *item ,AVPlayer *player, NSObject*
                       frameUpdater:(FVPFrameUpdater *)frameUpdater
                        displayLink:(FVPDisplayLink *)displayLink
                          avFactory:(id<FVPAVFactory>)avFactory
-                         registrar:(NSObject<FlutterPluginRegistrar> *)registrar {
+                      viewProvider:(id<FVPViewProvider>)viewProvider {
   self = [super init];
   NSAssert(self, @"super init cannot be nil");
 
-  _registrar = registrar;
+  _viewProvider = viewProvider;
   _frameUpdater = frameUpdater;
 
   AVAsset *asset = [item asset];
@@ -143,7 +128,7 @@ static void FVPRegisterObservers(AVPlayerItem *item ,AVPlayer *player, NSObject*
   // invisible AVPlayerLayer is used to overwrite the protection of pixel buffers in those streams
   // for issue #1, and restore the correct width and height for issue #2.
   _playerLayer = [AVPlayerLayer playerLayerWithPlayer:_player];
-  [FVPFindFlutterViewLayer(_registrar) addSublayer:_playerLayer];
+  [_viewProvider.view.layer addSublayer:_playerLayer];
 
   // Configure output.
   _displayLink = displayLink;

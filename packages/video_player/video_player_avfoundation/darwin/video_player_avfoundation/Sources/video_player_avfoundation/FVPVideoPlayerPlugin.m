@@ -44,6 +44,39 @@
 
 @end
 
+/// Non-test implementation of the view provider.
+@interface FVPDefaultViewProvider : NSObject <FVPViewProvider>
+// The registrar to query view information from.
+@property(readonly, nonatomic) NSObject<FlutterPluginRegistrar> *registrar;
+- (instancetype)initWithRegistrar:(NSObject<FlutterPluginRegistrar> *)registrar;
+@end
+
+@implementation FVPDefaultViewProvider
+- (instancetype)initWithRegistrar:(NSObject<FlutterPluginRegistrar> *)registrar {
+  self = [super init];
+  if (self) {
+    _registrar = registrar;
+  }
+  return self;
+}
+
+#if TARGET_OS_OSX
+- (NSView *)view {
+  return registrar.view.layer;
+}
+#else
+- (UIView *)view {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+  // TODO(hellohuanlin): Provide a non-deprecated codepath. See
+  // https://github.com/flutter/flutter/issues/104117
+  UIViewController *root = UIApplication.sharedApplication.keyWindow.rootViewController;
+#pragma clang diagnostic pop
+  return root.view;
+}
+#endif
+@end
+
 #pragma mark -
 
 @interface FVPVideoPlayerPlugin ()
@@ -136,11 +169,12 @@
   AVURLAsset *urlAsset = [AVURLAsset URLAssetWithURL:[NSURL URLWithString:url] options:options];
   AVPlayerItem *avItem = [AVPlayerItem playerItemWithAsset:urlAsset];
 
-  FVPVideoPlayer *player = [[FVPVideoPlayer alloc] initWithPlayerItem:avItem
-                                                         frameUpdater:frameUpdater
-                                                          displayLink:displayLink
-                                                            avFactory:_avFactory
-                                                            registrar:self.registrar];
+  FVPVideoPlayer *player = [[FVPVideoPlayer alloc]
+      initWithPlayerItem:avItem
+            frameUpdater:frameUpdater
+             displayLink:displayLink
+               avFactory:_avFactory
+            viewProvider:[[FVPDefaultViewProvider alloc] initWithRegistrar:self.registrar]];
   int64_t textureIdentifier = [self onPlayerSetup:player frameUpdater:frameUpdater];
   return [FVPVideoPlayerNativeDetails makeWithTextureId:textureIdentifier
                                     nativePlayerPointer:(intptr_t)player];
