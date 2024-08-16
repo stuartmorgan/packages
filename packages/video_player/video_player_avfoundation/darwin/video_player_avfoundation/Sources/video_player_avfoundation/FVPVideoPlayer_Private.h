@@ -47,7 +47,7 @@
 
 - (instancetype)initWithPlayerItem:(AVPlayerItem *)item
                       frameUpdater:(FVPFrameUpdater *)frameUpdater
-                       displayLink:(FVPDisplayLink *)displayLink
+                displayLinkFactory:(id<FVPDisplayLinkFactory>)displayLinkFactory
                          avFactory:(id<FVPAVFactory>)avFactory
                       viewProvider:(id<FVPViewProvider>)viewProvider;
 

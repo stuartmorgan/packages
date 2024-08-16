@@ -7,11 +7,10 @@
 #import <AVFoundation/AVFoundation.h>
 
 @implementation FVPFrameUpdater
-- (instancetype)initWithRegistry:(NSObject<FlutterTextureRegistry> *)registry {
+- (instancetype)init {
   self = [super init];
   NSAssert(self, @"super init cannot be nil");
   if (self) {
-    _registry = registry;
     _lastKnownAvailableTime = kCMTimeInvalid;
   }
   return self;
@@ -22,7 +21,9 @@
   CMTime outputItemTime = [self.videoOutput itemTimeForHostTime:CACurrentMediaTime()];
   if ([self.videoOutput hasNewPixelBufferForItemTime:outputItemTime]) {
     _lastKnownAvailableTime = outputItemTime;
-    [_registry textureFrameAvailable:_textureId];
+    if (self.onTextureAvailable) {
+      self.onTextureAvailable();
+    }
   }
 }
 @end

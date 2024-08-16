@@ -118,7 +118,10 @@
 
 - (int64_t)onPlayerSetup:(FVPVideoPlayer *)player frameUpdater:(FVPFrameUpdater *)frameUpdater {
   int64_t textureId = [[self.registrar textures] registerTexture:player];
-  frameUpdater.textureId = textureId;
+  __weak NSObject<FlutterPluginRegistrar> *weakRegistrar = self.registrar;
+  frameUpdater.onTextureAvailable = ^{
+    [[weakRegistrar textures] textureFrameAvailable:textureId];
+  };
   FlutterEventChannel *eventChannel = [FlutterEventChannel
       eventChannelWithName:[NSString stringWithFormat:@"flutter.io/videoPlayer/videoEvents%lld",
                                                       textureId]
@@ -153,13 +156,7 @@
     createWithURL:(NSString *)url
           headers:(NSDictionary<NSString *, NSString *> *)httpHeaders
             error:(FlutterError *_Nullable *_Nonnull)error {
-  FVPFrameUpdater *frameUpdater =
-      [[FVPFrameUpdater alloc] initWithRegistry:[self.registrar textures]];
-  FVPDisplayLink *displayLink = [self.displayLinkFactory
-      displayLinkWithViewProvider:[[FVPDefaultViewProvider alloc] initWithRegistrar:self.registrar]
-                         callback:^() {
-                           [frameUpdater displayLinkFired];
-                         }];
+  FVPFrameUpdater *frameUpdater = [[FVPFrameUpdater alloc] init];
 
   // Create a player item from the parameters.
   NSDictionary<NSString *, id> *options = nil;
@@ -172,8 +169,8 @@
   FVPVideoPlayer *player = [[FVPVideoPlayer alloc]
       initWithPlayerItem:avItem
             frameUpdater:frameUpdater
-             displayLink:displayLink
-               avFactory:_avFactory
+      displayLinkFactory:self.displayLinkFactory
+               avFactory:self.avFactory
             viewProvider:[[FVPDefaultViewProvider alloc] initWithRegistrar:self.registrar]];
   int64_t textureIdentifier = [self onPlayerSetup:player frameUpdater:frameUpdater];
   return [FVPVideoPlayerNativeDetails makeWithTextureId:textureIdentifier

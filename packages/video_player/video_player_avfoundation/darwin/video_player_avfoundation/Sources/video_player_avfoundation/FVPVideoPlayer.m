@@ -81,7 +81,7 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
 
 - (instancetype)initWithPlayerItem:(AVPlayerItem *)item
                       frameUpdater:(FVPFrameUpdater *)frameUpdater
-                       displayLink:(FVPDisplayLink *)displayLink
+                displayLinkFactory:(id<FVPDisplayLinkFactory>)displayLinkFactory
                          avFactory:(id<FVPAVFactory>)avFactory
                       viewProvider:(id<FVPViewProvider>)viewProvider {
   self = [super init];
@@ -131,7 +131,10 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
   [_viewProvider.view.layer addSublayer:_playerLayer];
 
   // Configure output.
-  _displayLink = displayLink;
+  _displayLink = [displayLinkFactory displayLinkWithViewProvider:_viewProvider
+                                                        callback:^() {
+                                                          [frameUpdater displayLinkFired];
+                                                        }];
   NSDictionary *pixBuffAttributes = @{
     (id)kCVPixelBufferPixelFormatTypeKey : @(kCVPixelFormatType_32BGRA),
     (id)kCVPixelBufferIOSurfacePropertiesKey : @{}
