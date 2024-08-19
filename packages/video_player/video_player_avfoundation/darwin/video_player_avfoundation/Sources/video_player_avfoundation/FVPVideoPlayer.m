@@ -80,15 +80,11 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
 @implementation FVPVideoPlayer
 
 - (instancetype)initWithPlayerItem:(AVPlayerItem *)item
-                      frameUpdater:(FVPFrameUpdater *)frameUpdater
-                displayLinkFactory:(id<FVPDisplayLinkFactory>)displayLinkFactory
-                         avFactory:(id<FVPAVFactory>)avFactory
-                      viewProvider:(id<FVPViewProvider>)viewProvider {
+                         avFactory:(id<FVPAVFactory>)avFactory {
   self = [super init];
   NSAssert(self, @"super init cannot be nil");
 
-  _viewProvider = viewProvider;
-  _frameUpdater = frameUpdater;
+  _frameUpdater = [[FVPFrameUpdater alloc] init];
 
   AVAsset *asset = [item asset];
   void (^assetCompletionHandler)(void) = ^{
@@ -122,31 +118,44 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
   _player = [avFactory playerWithPlayerItem:item];
   _player.actionAtItemEnd = AVPlayerActionAtItemEndNone;
 
-  // This is to fix 2 bugs: 1. blank video for encrypted video streams on iOS 16
-  // (https://github.com/flutter/flutter/issues/111457) and 2. swapped width and height for some
-  // video streams (not just iOS 16).  (https://github.com/flutter/flutter/issues/109116). An
-  // invisible AVPlayerLayer is used to overwrite the protection of pixel buffers in those streams
-  // for issue #1, and restore the correct width and height for issue #2.
-  _playerLayer = [AVPlayerLayer playerLayerWithPlayer:_player];
-  [_viewProvider.view.layer addSublayer:_playerLayer];
-
   // Configure output.
-  _displayLink = [displayLinkFactory displayLinkWithViewProvider:_viewProvider
-                                                        callback:^() {
-                                                          [frameUpdater displayLinkFired];
-                                                        }];
   NSDictionary *pixBuffAttributes = @{
     (id)kCVPixelBufferPixelFormatTypeKey : @(kCVPixelFormatType_32BGRA),
     (id)kCVPixelBufferIOSurfacePropertiesKey : @{}
   };
   _videoOutput = [avFactory videoOutputWithPixelBufferAttributes:pixBuffAttributes];
-  frameUpdater.videoOutput = _videoOutput;
+  _frameUpdater.videoOutput = _videoOutput;
 
   FVPRegisterObservers(item, _player, self);
 
   [asset loadValuesAsynchronouslyForKeys:@[ @"tracks" ] completionHandler:assetCompletionHandler];
 
   return self;
+}
+
+- (void)configureDisplayWithViewProvider:(id<FVPViewProvider>)viewProvider
+                      displayLinkFactory:(id<FVPDisplayLinkFactory>)displayLinkFactory
+                  availableFrameCallback:(void (^)())frameAvailable {
+  _viewProvider = viewProvider;
+
+  // This is to fix 2 bugs: 1. blank video for encrypted video streams on iOS 16
+  // (https://github.com/flutter/flutter/issues/111457) and 2. swapped width and height for some
+  // video streams (not just iOS 16).  (https://github.com/flutter/flutter/issues/109116). An
+  // invisible AVPlayerLayer is used to overwrite the protection of pixel buffers in those streams
+  // for issue #1, and restore the correct width and height for issue #2.
+  _playerLayer = [AVPlayerLayer playerLayerWithPlayer:_player];
+  [viewProvider.view.layer addSublayer:_playerLayer];
+
+  // Wire up the display link.
+  self.frameUpdater.onTextureAvailable = frameAvailable;
+  __weak FVPFrameUpdater *frameUpdater = _frameUpdater;
+  _displayLink = [displayLinkFactory displayLinkWithViewProvider:viewProvider
+                                                        callback:^() {
+                                                          [frameUpdater displayLinkFired];
+                                                        }];
+
+  // Ensure that the first frame is drawn once available, even if the video isn't played.
+  [self expectFrame];
 }
 
 - (void)dealloc {

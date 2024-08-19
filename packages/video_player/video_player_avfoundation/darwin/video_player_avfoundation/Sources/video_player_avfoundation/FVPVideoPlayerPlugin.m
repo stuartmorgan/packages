@@ -122,23 +122,6 @@
   SetUpFVPAVFoundationVideoPlayerApi(registrar.messenger, nil);
 }
 
-- (int64_t)onPlayerSetup:(FVPVideoPlayer *)player frameUpdater:(FVPFrameUpdater *)frameUpdater {
-  int64_t textureId = [[self.registrar textures] registerTexture:player];
-  __weak NSObject<FlutterPluginRegistrar> *weakRegistrar = self.registrar;
-  frameUpdater.onTextureAvailable = ^{
-    [[weakRegistrar textures] textureFrameAvailable:textureId];
-  };
-  player.delegate = [[FVPEventChannelVideoPlayerDelegate alloc] initWithRegistrar:self.registrar
-                                                                 playerIdentifier:textureId];
-  self.playersByTextureId[@(textureId)] = player;
-
-  // Ensure that the first frame is drawn once available, even if the video isn't played, since
-  // the engine is now expecting the texture to be populated.
-  [player expectFrame];
-
-  return textureId;
-}
-
 - (void)initialize:(FlutterError *__autoreleasing *)error {
 #if TARGET_OS_IOS
   // Allow audio playback when the Ring/Silent switch is set to silent
@@ -158,8 +141,6 @@
     createWithURL:(NSString *)url
           headers:(NSDictionary<NSString *, NSString *> *)httpHeaders
             error:(FlutterError *_Nullable *_Nonnull)error {
-  FVPFrameUpdater *frameUpdater = [[FVPFrameUpdater alloc] init];
-
   // Create a player item from the parameters.
   NSDictionary<NSString *, id> *options = nil;
   if (httpHeaders.count != 0) {
@@ -170,11 +151,18 @@
 
   FVPVideoPlayer *player = [[FVPVideoPlayer alloc]
       initWithPlayerItem:avItem
-            frameUpdater:frameUpdater
-      displayLinkFactory:self.displayLinkFactory
-               avFactory:self.avFactory
-            viewProvider:[[FVPDefaultViewProvider alloc] initWithRegistrar:self.registrar]];
-  int64_t textureIdentifier = [self onPlayerSetup:player frameUpdater:frameUpdater];
+               avFactory:self.avFactory];
+  int64_t textureIdentifier = [[self.registrar textures] registerTexture:player];
+  self.playersByTextureId[@(textureIdentifier)] = player;
+  __weak NSObject<FlutterPluginRegistrar> *weakRegistrar = self.registrar;
+  player.delegate = [[FVPEventChannelVideoPlayerDelegate alloc] initWithRegistrar:self.registrar
+                                                                 playerIdentifier:textureIdentifier];
+  [player configureDisplayWithViewProvider:[[FVPDefaultViewProvider alloc] initWithRegistrar:self.registrar]
+                        displayLinkFactory:self.displayLinkFactory
+  availableFrameCallback:^{
+    [[weakRegistrar textures] textureFrameAvailable:textureIdentifier];
+  }];
+
   return [FVPVideoPlayerNativeDetails makeWithTextureId:textureIdentifier
                                     nativePlayerPointer:(intptr_t)player];
 }
