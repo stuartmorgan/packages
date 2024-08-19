@@ -9,6 +9,7 @@
 
 #import "./include/video_player_avfoundation/AVAssetTrackUtils.h"
 #import "./include/video_player_avfoundation/FVPDisplayLink.h"
+#import "./include/video_player_avfoundation/FVPEventChannelVideoPlayerDelegate.h"
 #import "./include/video_player_avfoundation/FVPVideoPlayer.h"
 #import "./include/video_player_avfoundation/InjectionProtocols.h"
 #import "./include/video_player_avfoundation/messages.g.h"
@@ -111,7 +112,12 @@
 }
 
 - (void)detachFromEngineForRegistrar:(NSObject<FlutterPluginRegistrar> *)registrar {
-  [self.playersByTextureId.allValues makeObjectsPerformSelector:@selector(disposeSansEventChannel)];
+  for (FVPVideoPlayer *player in self.playersByTextureId.allValues) {
+    // Remove the delegate to ensure that the player doesn't message the engine that is no longer
+    // connected.
+    player.delegate = nil;
+    [player dispose];
+  }
   [self.playersByTextureId removeAllObjects];
   SetUpFVPAVFoundationVideoPlayerApi(registrar.messenger, nil);
 }
@@ -122,12 +128,8 @@
   frameUpdater.onTextureAvailable = ^{
     [[weakRegistrar textures] textureFrameAvailable:textureId];
   };
-  FlutterEventChannel *eventChannel = [FlutterEventChannel
-      eventChannelWithName:[NSString stringWithFormat:@"flutter.io/videoPlayer/videoEvents%lld",
-                                                      textureId]
-           binaryMessenger:[_registrar messenger]];
-  [eventChannel setStreamHandler:player];
-  player.eventChannel = eventChannel;
+  player.delegate = [[FVPEventChannelVideoPlayerDelegate alloc] initWithRegistrar:self.registrar
+                                                                 playerIdentifier:textureId];
   self.playersByTextureId[@(textureId)] = player;
 
   // Ensure that the first frame is drawn once available, even if the video isn't played, since

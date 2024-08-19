@@ -160,9 +160,7 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
     AVPlayerItem *p = [notification object];
     [p seekToTime:kCMTimeZero completionHandler:nil];
   } else {
-    if (_eventSink) {
-      _eventSink(@{@"event" : @"completed"});
-    }
+    [self.delegate videoPlayerDidComplete];
   }
 }
 
@@ -204,32 +202,26 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
                         change:(NSDictionary *)change
                        context:(void *)context {
   if (context == timeRangeContext) {
-    if (_eventSink != nil) {
-      NSMutableArray<NSArray<NSNumber *> *> *values = [[NSMutableArray alloc] init];
-      for (NSValue *rangeValue in [object loadedTimeRanges]) {
-        CMTimeRange range = [rangeValue CMTimeRangeValue];
-        int64_t start = FVPCMTimeToMillis(range.start);
-        [values addObject:@[ @(start), @(start + FVPCMTimeToMillis(range.duration)) ]];
-      }
-      _eventSink(@{@"event" : @"bufferingUpdate", @"values" : values});
+    NSMutableArray<NSArray<NSNumber *> *> *values = [[NSMutableArray alloc] init];
+    for (NSValue *rangeValue in [object loadedTimeRanges]) {
+      CMTimeRange range = [rangeValue CMTimeRangeValue];
+      int64_t start = FVPCMTimeToMillis(range.start);
+      [values addObject:@[ @(start), @(start + FVPCMTimeToMillis(range.duration)) ]];
     }
+    [self.delegate videoPlayerDidUpdateBufferRegions:values];
   } else if (context == statusContext) {
     AVPlayerItem *item = (AVPlayerItem *)object;
     switch (item.status) {
       case AVPlayerItemStatusFailed:
-        if (_eventSink != nil) {
-          _eventSink([FlutterError
-              errorWithCode:@"VideoError"
-                    message:[@"Failed to load video: "
-                                stringByAppendingString:[item.error localizedDescription]]
-                    details:nil]);
-        }
+        [self.delegate videoPlayerDidErrorWithMessage:
+                           [@"Failed to load video: "
+                               stringByAppendingString:[item.error localizedDescription]]];
         break;
       case AVPlayerItemStatusUnknown:
         break;
       case AVPlayerItemStatusReadyToPlay:
         [item addOutput:_videoOutput];
-        [self setupEventSinkIfReadyToPlay];
+        [self reportInitializedIfReadyToPlay];
         [self updatePlayingState];
         break;
     }
@@ -239,28 +231,21 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
       // Due to an apparent bug, when the player item is ready, it still may not have determined
       // its presentation size or duration. When these properties are finally set, re-check if
       // all required properties and instantiate the event sink if it is not already set up.
-      [self setupEventSinkIfReadyToPlay];
+      [self reportInitializedIfReadyToPlay];
       [self updatePlayingState];
     }
   } else if (context == playbackLikelyToKeepUpContext) {
     [self updatePlayingState];
     if ([[_player currentItem] isPlaybackLikelyToKeepUp]) {
-      if (_eventSink != nil) {
-        _eventSink(@{@"event" : @"bufferingEnd"});
-      }
+      [self.delegate videoPlayerDidEndBuffering];
     } else {
-      if (_eventSink != nil) {
-        _eventSink(@{@"event" : @"bufferingStart"});
-      }
+      [self.delegate videoPlayerDidStartBuffering];
     }
   } else if (context == rateContext) {
     // Important: Make sure to cast the object to AVPlayer when observing the rate property,
     // as it is not available in AVPlayerItem.
     AVPlayer *player = (AVPlayer *)object;
-    if (_eventSink != nil) {
-      _eventSink(
-          @{@"event" : @"isPlayingStateUpdate", @"isPlaying" : player.rate > 0 ? @YES : @NO});
-    }
+    [self.delegate videoPlayerDidSetPlaying:(player.rate > 0)];
   }
 }
 
@@ -278,12 +263,10 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
   _displayLink.running = _isPlaying || self.waitingForFrame;
 }
 
-- (void)setupEventSinkIfReadyToPlay {
-  if (_eventSink && !_isInitialized) {
+- (void)reportInitializedIfReadyToPlay {
+  if (!_isInitialized) {
     AVPlayerItem *currentItem = self.player.currentItem;
     CGSize size = currentItem.presentationSize;
-    CGFloat width = size.width;
-    CGFloat height = size.height;
 
     // Wait until tracks are loaded to check duration or if there are any videos.
     AVAsset *asset = currentItem.asset;
@@ -308,8 +291,8 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
     // The player has not yet initialized when it has no size, unless it is an audio-only track.
     // HLS m3u8 video files never load any tracks, and are also not yet initialized until they have
     // a size.
-    if ((hasVideoTracks || hasNoTracks) && height == CGSizeZero.height &&
-        width == CGSizeZero.width) {
+    if ((hasVideoTracks || hasNoTracks) && size.height == CGSizeZero.height &&
+        size.width == CGSizeZero.width) {
       return;
     }
     // The player may be initialized but still needs to determine the duration.
@@ -319,12 +302,7 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
     }
 
     _isInitialized = YES;
-    _eventSink(@{
-      @"event" : @"initialized",
-      @"duration" : @(duration),
-      @"width" : @(width),
-      @"height" : @(height)
-    });
+    [self.delegate videoPlayerDidInitializeWithDuration:duration size:size];
   }
 }
 
@@ -394,20 +372,12 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
   // See https://developer.apple.com/library/archive/qa/qa1772/_index.html for an explanation of
   // these checks.
   if (speed > 2.0 && !_player.currentItem.canPlayFastForward) {
-    if (_eventSink != nil) {
-      _eventSink([FlutterError errorWithCode:@"VideoError"
-                                     message:@"Video cannot be fast-forwarded beyond 2.0x"
-                                     details:nil]);
-    }
+    [self.delegate videoPlayerDidErrorWithMessage:@"Video cannot be fast-forwarded beyond 2.0x"];
     return;
   }
 
   if (speed < 1.0 && !_player.currentItem.canPlaySlowForward) {
-    if (_eventSink != nil) {
-      _eventSink([FlutterError errorWithCode:@"VideoError"
-                                     message:@"Video cannot be slow-forwarded"
-                                     details:nil]);
-    }
+    [self.delegate videoPlayerDidErrorWithMessage:@"Video cannot be slow-forwarded"];
     return;
   }
 
@@ -446,27 +416,7 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
   });
 }
 
-- (FlutterError *_Nullable)onCancelWithArguments:(id _Nullable)arguments {
-  _eventSink = nil;
-  return nil;
-}
-
-- (FlutterError *_Nullable)onListenWithArguments:(id _Nullable)arguments
-                                       eventSink:(nonnull FlutterEventSink)events {
-  _eventSink = events;
-  // TODO(@recastrodiaz): remove the line below when the race condition is resolved:
-  // https://github.com/flutter/flutter/issues/21483
-  // This line ensures the 'initialized' event is sent when the event
-  // 'AVPlayerItemStatusReadyToPlay' fires before _eventSink is set (this function
-  // onListenWithArguments is called)
-  [self setupEventSinkIfReadyToPlay];
-  return nil;
-}
-
-/// This method allows you to dispose without touching the event channel.  This
-/// is useful for the case where the Engine is in the process of deconstruction
-/// so the channel is going to die or is already dead.
-- (void)disposeSansEventChannel {
+- (void)dispose {
   // This check prevents the crash caused by removing the KVO observers twice.
   // When performing a Hot Restart, the leftover players are disposed once directly
   // by [FVPVideoPlayerPlugin initialize:] method and then disposed again by
@@ -482,11 +432,8 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
 
   [self.player replaceCurrentItemWithPlayerItem:nil];
   [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
 
-- (void)dispose {
-  [self disposeSansEventChannel];
-  [_eventChannel setStreamHandler:nil];
+  [self.delegate videoPlayerWasDisposed];
 }
 
 /// Removes all key-value observers set up for the player.

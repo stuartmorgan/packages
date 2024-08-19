@@ -13,12 +13,13 @@
 #endif
 
 #import "./include/video_player_avfoundation/FVPDisplayLink.h"
+#import "./include/video_player_avfoundation/FVPVideoPlayerDelegate.h"
 #import "./include/video_player_avfoundation/FVPViewProvider.h"
 #import "./include/video_player_avfoundation/InjectionProtocols.h"
 #import "FVPFrameUpdater.h"
 
 /// The native component of a single video player instance.
-@interface FVPVideoPlayer () <FlutterStreamHandler, FlutterTexture>
+@interface FVPVideoPlayer () <FlutterTexture>
 @property(nonatomic) AVPlayer *player;
 // This is to fix 2 bugs: 1. blank video for encrypted video streams on iOS 16
 // (https://github.com/flutter/flutter/issues/111457) and 2. swapped width and height for some video
@@ -28,10 +29,12 @@
 @property(nonatomic) AVPlayerLayer *playerLayer;
 
 @property(readonly, nonatomic) AVPlayerItemVideoOutput *videoOutput;
-// Provides access to the enclosing Flutter view.
-@property(nonatomic) NSObject<FVPViewProvider> *viewProvider;
-@property(nonatomic) FlutterEventChannel *eventChannel;
-@property(nonatomic) FlutterEventSink eventSink;
+/// Provides access to the enclosing Flutter view.
+@property(nonatomic) id<FVPViewProvider> viewProvider;
+/// The event delegate that communicates information back to the Dart side of the plugin.
+///
+/// Note that although this is a delegate, this is an owning reference.
+@property(nonatomic) id<FVPVideoPlayerDelegate> delegate;
 @property(nonatomic) CGAffineTransform preferredTransform;
 @property(nonatomic, readonly) BOOL disposed;
 @property(nonatomic, readonly) BOOL isPlaying;
