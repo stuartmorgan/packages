@@ -79,8 +79,7 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
 
 @implementation FVPVideoPlayer
 
-- (instancetype)initWithPlayerItem:(AVPlayerItem *)item
-                         avFactory:(id<FVPAVFactory>)avFactory {
+- (instancetype)initWithPlayerItem:(AVPlayerItem *)item AVFactory:(id<FVPAVFactory>)avFactory {
   self = [super init];
   NSAssert(self, @"super init cannot be nil");
 

@@ -48,15 +48,12 @@
 // frame is successfully provided.
 @property(nonatomic, assign) BOOL waitingForFrame;
 
-- (instancetype)initWithPlayerItem:(AVPlayerItem *)item
-                         avFactory:(id<FVPAVFactory>)avFactory;
-
 /// Configures the player to display with the given context.
 ///
 /// Until this is called, the player will not display any content, even if playing.
 - (void)configureDisplayWithViewProvider:(id<FVPViewProvider>)viewProvider
                       displayLinkFactory:(id<FVPDisplayLinkFactory>)displayLinkFactory
-availableFrameCallback:(void (^)())frameAvailable;
+                  availableFrameCallback:(void (^)())frameAvailable;
 
 // Tells the player to run its frame updater until it receives a frame, regardless of the
 // play/pause state.

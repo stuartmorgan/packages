@@ -17,31 +17,21 @@ import 'package:pigeon/pigeon.dart';
   ),
   copyrightHeader: 'pigeons/copyright.txt',
 ))
-
-/// The information needed by the Dart side of the implementation when a new
-/// player instance is created.
-class VideoPlayerNativeDetails {
-  VideoPlayerNativeDetails(
-      {required this.textureId, required this.nativePlayerPointer});
-
-  /// The ID for the texture that this player instance renders to.
-  final int textureId;
-
-  /// The raw pointer to the native player object, for use with FFI. This is
-  /// guaranteed to be valid until AVFoundationVideoPlayerApi.dipose is called
-  /// with the corresponding texture ID, but should never be used after that
-  /// call.
-  final int nativePlayerPointer;
-}
-
 @HostApi(dartHostTestHandler: 'TestHostVideoPlayerApi')
 abstract class AVFoundationVideoPlayerApi {
   @ObjCSelector('initialize')
   void initialize();
+
+  /// Creates a new player and returns the raw pointer to the FVPVideoPlayer
+  /// instance.
   @ObjCSelector('createWithURL:headers:')
-  // Creates a new player and returns its details.
-  VideoPlayerNativeDetails create(
-      String url, Map<String?, String?> httpHeaders);
+  int create(String url, Map<String?, String?> httpHeaders);
+
+  /// Configures the given player for display, and returns its texture ID.
+  @ObjCSelector('configurePlayerPointer:')
+  int configurePlayerPointer(int playerPointer);
+
+  /// Disposes of the given player.
   @ObjCSelector('disposePlayer:')
   void dispose(int textureId);
 

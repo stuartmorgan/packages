@@ -8,6 +8,7 @@
 #import <AVFoundation/AVFoundation.h>
 
 #import "./include/video_player_avfoundation/AVAssetTrackUtils.h"
+#import "./include/video_player_avfoundation/FVPDefaultAVFactory.h"
 #import "./include/video_player_avfoundation/FVPDisplayLink.h"
 #import "./include/video_player_avfoundation/FVPEventChannelVideoPlayerDelegate.h"
 #import "./include/video_player_avfoundation/FVPVideoPlayer.h"
@@ -19,19 +20,6 @@
 #if !__has_feature(objc_arc)
 #error Code Requires ARC.
 #endif
-
-@interface FVPDefaultAVFactory : NSObject <FVPAVFactory>
-@end
-
-@implementation FVPDefaultAVFactory
-- (AVPlayer *)playerWithPlayerItem:(AVPlayerItem *)playerItem {
-  return [AVPlayer playerWithPlayerItem:playerItem];
-}
-- (AVPlayerItemVideoOutput *)videoOutputWithPixelBufferAttributes:
-    (NSDictionary<NSString *, id> *)attributes {
-  return [[AVPlayerItemVideoOutput alloc] initWithPixelBufferAttributes:attributes];
-}
-@end
 
 /// Non-test implementation of the diplay link factory.
 @interface FVPDefaultDisplayLinkFactory : NSObject <FVPDisplayLinkFactory>
@@ -137,10 +125,9 @@
   [self.playersByTextureId removeAllObjects];
 }
 
-- (nullable FVPVideoPlayerNativeDetails *)
-    createWithURL:(NSString *)url
-          headers:(NSDictionary<NSString *, NSString *> *)httpHeaders
-            error:(FlutterError *_Nullable *_Nonnull)error {
+- (nullable NSNumber *)createWithURL:(NSString *)url
+                             headers:(NSDictionary<NSString *, NSString *> *)httpHeaders
+                               error:(FlutterError *_Nullable *_Nonnull)error {
   // Create a player item from the parameters.
   NSDictionary<NSString *, id> *options = nil;
   if (httpHeaders.count != 0) {
@@ -149,22 +136,28 @@
   AVURLAsset *urlAsset = [AVURLAsset URLAssetWithURL:[NSURL URLWithString:url] options:options];
   AVPlayerItem *avItem = [AVPlayerItem playerItemWithAsset:urlAsset];
 
-  FVPVideoPlayer *player = [[FVPVideoPlayer alloc]
-      initWithPlayerItem:avItem
-               avFactory:self.avFactory];
+  FVPVideoPlayer *player = [[FVPVideoPlayer alloc] initWithPlayerItem:avItem
+                                                            AVFactory:self.avFactory];
+  return @((NSInteger)((void *)CFBridgingRetain(player)));
+}
+
+- (nullable NSNumber *)configurePlayerPointer:(NSInteger)playerPointer
+                                        error:(FlutterError *_Nullable *_Nonnull)error {
+  FVPVideoPlayer *player = (FVPVideoPlayer *)CFBridgingRelease((void *)playerPointer);
   int64_t textureIdentifier = [[self.registrar textures] registerTexture:player];
   self.playersByTextureId[@(textureIdentifier)] = player;
   __weak NSObject<FlutterPluginRegistrar> *weakRegistrar = self.registrar;
-  player.delegate = [[FVPEventChannelVideoPlayerDelegate alloc] initWithRegistrar:self.registrar
-                                                                 playerIdentifier:textureIdentifier];
-  [player configureDisplayWithViewProvider:[[FVPDefaultViewProvider alloc] initWithRegistrar:self.registrar]
+  player.delegate =
+      [[FVPEventChannelVideoPlayerDelegate alloc] initWithRegistrar:self.registrar
+                                                   playerIdentifier:textureIdentifier];
+  [player configureDisplayWithViewProvider:[[FVPDefaultViewProvider alloc]
+                                               initWithRegistrar:self.registrar]
                         displayLinkFactory:self.displayLinkFactory
-  availableFrameCallback:^{
-    [[weakRegistrar textures] textureFrameAvailable:textureIdentifier];
-  }];
+                    availableFrameCallback:^{
+                      [[weakRegistrar textures] textureFrameAvailable:textureIdentifier];
+                    }];
 
-  return [FVPVideoPlayerNativeDetails makeWithTextureId:textureIdentifier
-                                    nativePlayerPointer:(intptr_t)player];
+  return @(textureIdentifier);
 }
 
 - (void)disposePlayer:(NSInteger)textureId error:(FlutterError **)error {

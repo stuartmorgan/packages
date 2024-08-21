@@ -13,34 +13,24 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class FVPVideoPlayerNativeDetails;
-
-/// The information needed by the Dart side of the implementation when a new
-/// player instance is created.
-@interface FVPVideoPlayerNativeDetails : NSObject
-/// `init` unavailable to enforce nonnull fields, see the `make` class method.
-- (instancetype)init NS_UNAVAILABLE;
-+ (instancetype)makeWithTextureId:(NSInteger)textureId
-              nativePlayerPointer:(NSInteger)nativePlayerPointer;
-/// The ID for the texture that this player instance renders to.
-@property(nonatomic, assign) NSInteger textureId;
-/// The raw pointer to the native player object, for use with FFI. This is
-/// guaranteed to be valid until AVFoundationVideoPlayerApi.dipose is called
-/// with the corresponding texture ID, but should never be used after that
-/// call.
-@property(nonatomic, assign) NSInteger nativePlayerPointer;
-@end
-
 /// The codec used by FVPAVFoundationVideoPlayerApi.
 NSObject<FlutterMessageCodec> *FVPAVFoundationVideoPlayerApiGetCodec(void);
 
 @protocol FVPAVFoundationVideoPlayerApi
 - (void)initialize:(FlutterError *_Nullable *_Nonnull)error;
+/// Creates a new player and returns the raw pointer to the FVPVideoPlayer
+/// instance.
+///
 /// @return `nil` only when `error != nil`.
-- (nullable FVPVideoPlayerNativeDetails *)
-    createWithURL:(NSString *)url
-          headers:(NSDictionary<NSString *, NSString *> *)httpHeaders
-            error:(FlutterError *_Nullable *_Nonnull)error;
+- (nullable NSNumber *)createWithURL:(NSString *)url
+                             headers:(NSDictionary<NSString *, NSString *> *)httpHeaders
+                               error:(FlutterError *_Nullable *_Nonnull)error;
+/// Configures the given player for display, and returns its texture ID.
+///
+/// @return `nil` only when `error != nil`.
+- (nullable NSNumber *)configurePlayerPointer:(NSInteger)playerPointer
+                                        error:(FlutterError *_Nullable *_Nonnull)error;
+/// Disposes of the given player.
 - (void)disposePlayer:(NSInteger)textureId error:(FlutterError *_Nullable *_Nonnull)error;
 /// Wraps registrar-based asset lookup, as that's not currently accessible via
 /// FFI.

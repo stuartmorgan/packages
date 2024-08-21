@@ -30,6 +30,12 @@ class _ApiLogger implements TestHostVideoPlayerApi {
   }
 
   @override
+  VideoPlayerNativeDetails configurePlayerPointer(int playerPointer) {
+    log.add('configure');
+    return VideoPlayerNativeDetails(textureId: 3, nativePlayerPointer: 99);
+  }
+
+  @override
   void dispose(int textureId) {
     log.add('dispose');
     this.textureId = textureId;

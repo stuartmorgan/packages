@@ -75,11 +75,19 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
           'Unsupported source type: ${dataSource.sourceType}');
     }
 
-    final VideoPlayerNativeDetails playerDetails =
-        await _api.create(uri, httpHeaders);
-    _playerPointersByTextureId[playerDetails.textureId] =
-        playerDetails.nativePlayerPointer;
-    return playerDetails.textureId;
+    final ffi.Pointer<ObjCObject> rawPointer =
+        await runOnPlatformThread<ffi.Pointer<ObjCObject>>(() {
+      NSURL? nsurl = NSURL.URLWithString_(NSString(uri!));
+      return nsurl?.retainAndReturnPointer() ?? ffi.nullptr;
+    });
+    final NSURL? nsurl = NSURL.castFromPointer(rawPointer, release: true);
+    print('Raw URL: ${nsurl?.absoluteString}');
+
+    final int nativePlayerPointer = await _api.create(uri, httpHeaders);
+    final int textureId =
+        await _api.configurePlayerPointer(nativePlayerPointer);
+    _playerPointersByTextureId[textureId] = nativePlayerPointer;
+    return textureId;
   }
 
   @override

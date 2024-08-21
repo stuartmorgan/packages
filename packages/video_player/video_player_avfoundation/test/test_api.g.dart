@@ -13,40 +13,22 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:video_player_avfoundation/src/messages.g.dart';
 
-class _TestHostVideoPlayerApiCodec extends StandardMessageCodec {
-  const _TestHostVideoPlayerApiCodec();
-  @override
-  void writeValue(WriteBuffer buffer, Object? value) {
-    if (value is VideoPlayerNativeDetails) {
-      buffer.putUint8(128);
-      writeValue(buffer, value.encode());
-    } else {
-      super.writeValue(buffer, value);
-    }
-  }
-
-  @override
-  Object? readValueOfType(int type, ReadBuffer buffer) {
-    switch (type) {
-      case 128:
-        return VideoPlayerNativeDetails.decode(readValue(buffer)!);
-      default:
-        return super.readValueOfType(type, buffer);
-    }
-  }
-}
-
 abstract class TestHostVideoPlayerApi {
   static TestDefaultBinaryMessengerBinding? get _testBinaryMessengerBinding =>
       TestDefaultBinaryMessengerBinding.instance;
   static const MessageCodec<Object?> pigeonChannelCodec =
-      _TestHostVideoPlayerApiCodec();
+      StandardMessageCodec();
 
   void initialize();
 
-  VideoPlayerNativeDetails create(
-      String url, Map<String?, String?> httpHeaders);
+  /// Creates a new player and returns the raw pointer to the FVPVideoPlayer
+  /// instance.
+  int create(String url, Map<String?, String?> httpHeaders);
 
+  /// Configures the given player for display, and returns its texture ID.
+  int configurePlayerPointer(int playerPointer);
+
+  /// Disposes of the given player.
   void dispose(int textureId);
 
   /// Wraps registrar-based asset lookup, as that's not currently accessible via
@@ -109,8 +91,38 @@ abstract class TestHostVideoPlayerApi {
           assert(arg_httpHeaders != null,
               'Argument for dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.create was null, expected non-null Map<String?, String?>.');
           try {
-            final VideoPlayerNativeDetails output =
-                api.create(arg_url!, arg_httpHeaders!);
+            final int output = api.create(arg_url!, arg_httpHeaders!);
+            return <Object?>[output];
+          } on PlatformException catch (e) {
+            return wrapResponse(error: e);
+          } catch (e) {
+            return wrapResponse(
+                error: PlatformException(code: 'error', message: e.toString()));
+          }
+        });
+      }
+    }
+    {
+      final BasicMessageChannel<Object?> __pigeon_channel = BasicMessageChannel<
+              Object?>(
+          'dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.configurePlayerPointer$messageChannelSuffix',
+          pigeonChannelCodec,
+          binaryMessenger: binaryMessenger);
+      if (api == null) {
+        _testBinaryMessengerBinding!.defaultBinaryMessenger
+            .setMockDecodedMessageHandler<Object?>(__pigeon_channel, null);
+      } else {
+        _testBinaryMessengerBinding!.defaultBinaryMessenger
+            .setMockDecodedMessageHandler<Object?>(__pigeon_channel,
+                (Object? message) async {
+          assert(message != null,
+              'Argument for dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.configurePlayerPointer was null.');
+          final List<Object?> args = (message as List<Object?>?)!;
+          final int? arg_playerPointer = (args[0] as int?);
+          assert(arg_playerPointer != null,
+              'Argument for dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.configurePlayerPointer was null, expected non-null int.');
+          try {
+            final int output = api.configurePlayerPointer(arg_playerPointer!);
             return <Object?>[output];
           } on PlatformException catch (e) {
             return wrapResponse(error: e);
