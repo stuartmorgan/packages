@@ -117,6 +117,7 @@
 #endif
 
   NSObject<FlutterTextureRegistry> *textureRegistry = [self.registrar textures];
+  // TODO(stuartmorgan): See if this can be managed via finalizers now instead.
   [self.playersByTextureId
       enumerateKeysAndObjectsUsingBlock:^(NSNumber *textureId, FVPVideoPlayer *player, BOOL *stop) {
         [textureRegistry unregisterTexture:textureId.unsignedIntegerValue];
@@ -125,25 +126,9 @@
   [self.playersByTextureId removeAllObjects];
 }
 
-- (nullable NSNumber *)createWithURL:(NSString *)url
-                             headers:(NSDictionary<NSString *, NSString *> *)httpHeaders
-                               error:(FlutterError *_Nullable *_Nonnull)error {
-  // Create a player item from the parameters.
-  NSDictionary<NSString *, id> *options = nil;
-  if (httpHeaders.count != 0) {
-    options = @{@"AVURLAssetHTTPHeaderFieldsKey" : httpHeaders};
-  }
-  AVURLAsset *urlAsset = [AVURLAsset URLAssetWithURL:[NSURL URLWithString:url] options:options];
-  AVPlayerItem *avItem = [AVPlayerItem playerItemWithAsset:urlAsset];
-
-  FVPVideoPlayer *player = [[FVPVideoPlayer alloc] initWithPlayerItem:avItem
-                                                            AVFactory:self.avFactory];
-  return @((NSInteger)((void *)CFBridgingRetain(player)));
-}
-
 - (nullable NSNumber *)configurePlayerPointer:(NSInteger)playerPointer
                                         error:(FlutterError *_Nullable *_Nonnull)error {
-  FVPVideoPlayer *player = (FVPVideoPlayer *)CFBridgingRelease((void *)playerPointer);
+  FVPVideoPlayer *player = (__bridge FVPVideoPlayer *)((void *)playerPointer);
   int64_t textureIdentifier = [[self.registrar textures] registerTexture:player];
   self.playersByTextureId[@(textureIdentifier)] = player;
   __weak NSObject<FlutterPluginRegistrar> *weakRegistrar = self.registrar;

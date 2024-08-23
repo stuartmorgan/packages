@@ -21,10 +21,6 @@ abstract class TestHostVideoPlayerApi {
 
   void initialize();
 
-  /// Creates a new player and returns the raw pointer to the FVPVideoPlayer
-  /// instance.
-  int create(String url, Map<String?, String?> httpHeaders);
-
   /// Configures the given player for display, and returns its texture ID.
   int configurePlayerPointer(int playerPointer);
 
@@ -58,41 +54,6 @@ abstract class TestHostVideoPlayerApi {
           try {
             api.initialize();
             return wrapResponse(empty: true);
-          } on PlatformException catch (e) {
-            return wrapResponse(error: e);
-          } catch (e) {
-            return wrapResponse(
-                error: PlatformException(code: 'error', message: e.toString()));
-          }
-        });
-      }
-    }
-    {
-      final BasicMessageChannel<Object?> __pigeon_channel = BasicMessageChannel<
-              Object?>(
-          'dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.create$messageChannelSuffix',
-          pigeonChannelCodec,
-          binaryMessenger: binaryMessenger);
-      if (api == null) {
-        _testBinaryMessengerBinding!.defaultBinaryMessenger
-            .setMockDecodedMessageHandler<Object?>(__pigeon_channel, null);
-      } else {
-        _testBinaryMessengerBinding!.defaultBinaryMessenger
-            .setMockDecodedMessageHandler<Object?>(__pigeon_channel,
-                (Object? message) async {
-          assert(message != null,
-              'Argument for dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.create was null.');
-          final List<Object?> args = (message as List<Object?>?)!;
-          final String? arg_url = (args[0] as String?);
-          assert(arg_url != null,
-              'Argument for dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.create was null, expected non-null String.');
-          final Map<String?, String?>? arg_httpHeaders =
-              (args[1] as Map<Object?, Object?>?)?.cast<String?, String?>();
-          assert(arg_httpHeaders != null,
-              'Argument for dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.create was null, expected non-null Map<String?, String?>.');
-          try {
-            final int output = api.create(arg_url!, arg_httpHeaders!);
-            return <Object?>[output];
           } on PlatformException catch (e) {
             return wrapResponse(error: e);
           } catch (e) {

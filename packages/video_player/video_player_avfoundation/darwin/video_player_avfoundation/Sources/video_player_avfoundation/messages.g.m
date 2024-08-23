@@ -68,33 +68,6 @@ void SetUpFVPAVFoundationVideoPlayerApiWithSuffix(id<FlutterBinaryMessenger> bin
       [channel setMessageHandler:nil];
     }
   }
-  /// Creates a new player and returns the raw pointer to the FVPVideoPlayer
-  /// instance.
-  {
-    FlutterBasicMessageChannel *channel = [[FlutterBasicMessageChannel alloc]
-           initWithName:[NSString stringWithFormat:@"%@%@",
-                                                   @"dev.flutter.pigeon.video_player_avfoundation."
-                                                   @"AVFoundationVideoPlayerApi.create",
-                                                   messageChannelSuffix]
-        binaryMessenger:binaryMessenger
-                  codec:FVPAVFoundationVideoPlayerApiGetCodec()];
-    if (api) {
-      NSCAssert([api respondsToSelector:@selector(createWithURL:headers:error:)],
-                @"FVPAVFoundationVideoPlayerApi api (%@) doesn't respond to "
-                @"@selector(createWithURL:headers:error:)",
-                api);
-      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
-        NSArray *args = message;
-        NSString *arg_url = GetNullableObjectAtIndex(args, 0);
-        NSDictionary<NSString *, NSString *> *arg_httpHeaders = GetNullableObjectAtIndex(args, 1);
-        FlutterError *error;
-        NSNumber *output = [api createWithURL:arg_url headers:arg_httpHeaders error:&error];
-        callback(wrapResult(output, error));
-      }];
-    } else {
-      [channel setMessageHandler:nil];
-    }
-  }
   /// Configures the given player for display, and returns its texture ID.
   {
     FlutterBasicMessageChannel *channel = [[FlutterBasicMessageChannel alloc]

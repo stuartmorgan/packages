@@ -18,13 +18,6 @@ NSObject<FlutterMessageCodec> *FVPAVFoundationVideoPlayerApiGetCodec(void);
 
 @protocol FVPAVFoundationVideoPlayerApi
 - (void)initialize:(FlutterError *_Nullable *_Nonnull)error;
-/// Creates a new player and returns the raw pointer to the FVPVideoPlayer
-/// instance.
-///
-/// @return `nil` only when `error != nil`.
-- (nullable NSNumber *)createWithURL:(NSString *)url
-                             headers:(NSDictionary<NSString *, NSString *> *)httpHeaders
-                               error:(FlutterError *_Nullable *_Nonnull)error;
 /// Configures the given player for display, and returns its texture ID.
 ///
 /// @return `nil` only when `error != nil`.

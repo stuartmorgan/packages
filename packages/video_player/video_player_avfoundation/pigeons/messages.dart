@@ -22,11 +22,6 @@ abstract class AVFoundationVideoPlayerApi {
   @ObjCSelector('initialize')
   void initialize();
 
-  /// Creates a new player and returns the raw pointer to the FVPVideoPlayer
-  /// instance.
-  @ObjCSelector('createWithURL:headers:')
-  int create(String url, Map<String?, String?> httpHeaders);
-
   /// Configures the given player for display, and returns its texture ID.
   @ObjCSelector('configurePlayerPointer:')
   int configurePlayerPointer(int playerPointer);

@@ -15,17 +15,17 @@ import 'package:video_player_platform_interface/video_player_platform_interface.
 import 'ffi_bindings.dart';
 import 'messages.g.dart';
 
+/// Maps from raw pointers to player instances. This is intended to be populated
+/// and used only from within runOnPlatformThread, to ensure that owning
+/// references--and thus deallocations--are restricted to that thread.
+final Map<int, FVPVideoPlayer> _playersByPointer = <int, FVPVideoPlayer>{};
+
 /// An iOS implementation of [VideoPlayerPlatform] that uses the
 /// Pigeon-generated [VideoPlayerApi].
 class AVFoundationVideoPlayer extends VideoPlayerPlatform {
   final AVFoundationVideoPlayerApi _api = AVFoundationVideoPlayerApi();
 
-  /// A mapping of texture IDs to the corresponding FVPVideoPlayer raw pointer.
-  ///
-  /// Values *must* be removed from this before calling `_api.dispose` with the
-  /// corresponding texture ID, as the pointers become invalid after that point.
-  // TODO(stuartmorgan): Investigate using Dart-driven lifetimes for these to
-  // replace the dispose API call.
+  /// A mapping of texture IDs to the corresponding FVPVideoPlayer pointer.
   final Map<int, int> _playerPointersByTextureId = <int, int>{};
 
   /// Registers this class as the default instance of [VideoPlayerPlatform].
@@ -39,9 +39,15 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
   }
 
   @override
-  Future<void> dispose(int textureId) {
-    _playerPointersByTextureId.remove(textureId);
-    return _api.dispose(textureId);
+  Future<void> dispose(int textureId) async {
+    final int? pointer = _playerPointersByTextureId.remove(textureId);
+    await _api.dispose(textureId);
+    if (pointer != null) {
+      // Remove the owning reference to the player on the platform thread.
+      await runOnPlatformThread<void>(() {
+        _playersByPointer.remove(pointer);
+      });
+    }
   }
 
   @override
@@ -77,13 +83,32 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
 
     final ffi.Pointer<ObjCObject> rawPointer =
         await runOnPlatformThread<ffi.Pointer<ObjCObject>>(() {
-      NSURL? nsurl = NSURL.URLWithString_(NSString(uri!));
-      return nsurl?.retainAndReturnPointer() ?? ffi.nullptr;
+      final NSURL? nsurl = NSURL.URLWithString_(NSString(uri!));
+      if (nsurl == null) {
+        return ffi.nullptr;
+      }
+      NSDictionary? options;
+      if (httpHeaders.isNotEmpty) {
+        options = _convertMap(
+            <String?, Object>{'AVURLAssetHTTPHeaderFieldsKey': httpHeaders});
+      }
+      final AVURLAsset asset =
+          AVURLAsset.URLAssetWithURL_options_(nsurl, options);
+      final AVPlayerItem avItem = AVPlayerItem.playerItemWithAsset_(asset);
+      // TODO(stuartmorgan): Check if this does the right thing.
+      final FVPDefaultAVFactory avFactory = FVPDefaultAVFactory.alloc().init();
+      final FVPVideoPlayer player = FVPVideoPlayer.alloc()
+          .initWithPlayerItem_AVFactory_(avItem, avFactory);
+      _playersByPointer[player.pointer.address] = player;
+      return player.pointer;
     });
-    final NSURL? nsurl = NSURL.castFromPointer(rawPointer, release: true);
-    print('Raw URL: ${nsurl?.absoluteString}');
+    if (rawPointer == ffi.nullptr) {
+      throw PlatformException(
+          code: 'player initialization',
+          message: 'Failed to create native player');
+    }
 
-    final int nativePlayerPointer = await _api.create(uri, httpHeaders);
+    final int nativePlayerPointer = rawPointer.address;
     final int textureId =
         await _api.configurePlayerPointer(nativePlayerPointer);
     _playerPointersByTextureId[textureId] = nativePlayerPointer;
@@ -222,11 +247,6 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
     return pointer;
   }
 
-  FVPVideoPlayer _playerFromPointer(int pointer) {
-    return FVPVideoPlayer.castFromPointer(
-        ffi.Pointer<ObjCObject>.fromAddress(pointer));
-  }
-
   EventChannel _eventChannelFor(int textureId) {
     return EventChannel('flutter.io/videoPlayer/videoEvents$textureId');
   }
@@ -238,6 +258,14 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
       Duration(milliseconds: pair[1] as int),
     );
   }
+}
+
+FVPVideoPlayer _playerFromPointer(int pointer) {
+  final FVPVideoPlayer? player = _playersByPointer[pointer];
+  if (player == null) {
+    throw StateError('Attempting to use a disposed pointer');
+  }
+  return player;
 }
 
 //const String _libName = 'video_player_avfoundation';
@@ -252,3 +280,37 @@ final ffi.DynamicLibrary _dylib = () {
 final FVPVideo _lib = () {
   return FVPVideo(_dylib);
 }();
+
+NSDictionary _convertMap(Map<Object?, Object?> map) {
+  final NSMutableDictionary dict =
+      NSMutableDictionary.dictionaryWithCapacity_(map.length);
+  for (final MapEntry<Object?, Object?> entry in map.entries) {
+    dict.setObject_forKey_(_covertKnownTypeWithNSNull(entry.value),
+        _covertKnownTypeWithNSNull(entry.key));
+  }
+  return dict;
+}
+
+NSArray _convertList(List<Object?> list) {
+  final NSMutableArray array = NSMutableArray.arrayWithCapacity_(list.length);
+  for (final Object? o in list) {
+    array.addObject_(_covertKnownTypeWithNSNull(o));
+  }
+  return array;
+}
+
+NSObject? _convertKnownType(Object? o) {
+  return switch (o) {
+    null => null,
+    final String s => NSString(s),
+    final List<Object?> l => _convertList(l),
+    final Map<Object?, Object?> m => _convertMap(m),
+    final int i => NSNumber.numberWithInt_(i),
+    final double d => NSNumber.numberWithDouble_(d),
+    _ => throw UnimplementedError('No conversion for $o'),
+  };
+}
+
+NSObject _covertKnownTypeWithNSNull(Object? o) {
+  return _convertKnownType(o) ?? NSNull.null1();
+}
