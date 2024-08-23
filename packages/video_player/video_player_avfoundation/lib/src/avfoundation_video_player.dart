@@ -34,8 +34,19 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
   }
 
   @override
-  Future<void> init() {
-    return _api.initialize();
+  Future<void> init() async {
+    // no-op there.
+    if (!Platform.isMacOS) {
+      // Allow audio playback when the Ring/Silent switch is set to silent.
+      await runOnPlatformThread<void>(() {
+        // https://github.com/dart-lang/native/issues/1418
+        final NSString categoryPlayback =
+            NSString.castFromPointer(_lib.AVAudioSessionCategoryPlayback);
+        AVAudioSession.sharedInstance()
+            .setCategory_error_(categoryPlayback, ffi.nullptr);
+      });
+    }
+    await _api.initialize();
   }
 
   @override
