@@ -8,7 +8,6 @@
 #import <AVFoundation/AVFoundation.h>
 
 #import "./include/video_player_avfoundation/AVAssetTrackUtils.h"
-#import "./include/video_player_avfoundation/FVPDefaultAVFactory.h"
 #import "./include/video_player_avfoundation/FVPDisplayLink.h"
 #import "./include/video_player_avfoundation/FVPEventChannelVideoPlayerDelegate.h"
 #import "./include/video_player_avfoundation/FVPVideoPlayer.h"
@@ -71,7 +70,6 @@
 @interface FVPVideoPlayerPlugin ()
 @property(readonly, strong, nonatomic) NSObject<FlutterPluginRegistrar> *registrar;
 @property(nonatomic, strong) id<FVPDisplayLinkFactory> displayLinkFactory;
-@property(nonatomic, strong) id<FVPAVFactory> avFactory;
 @end
 
 @implementation FVPVideoPlayerPlugin
@@ -82,19 +80,16 @@
 }
 
 - (instancetype)initWithRegistrar:(NSObject<FlutterPluginRegistrar> *)registrar {
-  return [self initWithAVFactory:[[FVPDefaultAVFactory alloc] init]
-              displayLinkFactory:[[FVPDefaultDisplayLinkFactory alloc] init]
-                       registrar:registrar];
+  return [self initWithDisplayLinkFactory:[[FVPDefaultDisplayLinkFactory alloc] init]
+                                registrar:registrar];
 }
 
-- (instancetype)initWithAVFactory:(id<FVPAVFactory>)avFactory
-               displayLinkFactory:(id<FVPDisplayLinkFactory>)displayLinkFactory
-                        registrar:(NSObject<FlutterPluginRegistrar> *)registrar {
+- (instancetype)initWithDisplayLinkFactory:(id<FVPDisplayLinkFactory>)displayLinkFactory
+                                 registrar:(NSObject<FlutterPluginRegistrar> *)registrar {
   self = [super init];
   NSAssert(self, @"super init cannot be nil");
   _registrar = registrar;
   _displayLinkFactory = displayLinkFactory ?: [[FVPDefaultDisplayLinkFactory alloc] init];
-  _avFactory = avFactory ?: [[FVPDefaultAVFactory alloc] init];
   _playersByTextureId = [NSMutableDictionary dictionaryWithCapacity:1];
   return self;
 }
