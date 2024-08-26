@@ -69,6 +69,7 @@
 }
 
 - (instancetype)initWithRegistrar:(NSObject<FlutterPluginRegistrar> *)registrar {
+  NSLog(@"### Native init");
   self = [super init];
   NSAssert(self, @"super init cannot be nil");
   _registrar = registrar;
@@ -80,6 +81,7 @@
 }
 
 - (void)detachFromEngineForRegistrar:(NSObject<FlutterPluginRegistrar> *)registrar {
+  NSLog(@"### Native detach");
   for (FVPVideoPlayer *player in self.players.keyEnumerator) {
     // Remove the delegate to ensure that the player doesn't message the engine that is no longer
     // connected.
@@ -90,15 +92,6 @@
   }
   [self.players removeAllObjects];
   SetUpFVPAVFoundationVideoPlayerApi(registrar.messenger, nil);
-}
-
-- (void)initialize:(FlutterError *__autoreleasing *)error {
-  NSObject<FlutterTextureRegistry> *textureRegistry = [self.registrar textures];
-  // TODO(stuartmorgan): See if this can be managed via finalizers now instead.
-  for (FVPVideoPlayer *player in self.players.keyEnumerator) {
-    [player dispose];
-  }
-  [self.players removeAllObjects];
 }
 
 - (nullable NSNumber *)viewProviderPointer:(FlutterError *_Nullable *_Nonnull)error {

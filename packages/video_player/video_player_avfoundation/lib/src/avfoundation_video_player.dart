@@ -45,7 +45,6 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
             .setCategory_error_(categoryPlayback, ffi.nullptr);
       });
     }
-    await _api.initialize();
   }
 
   @override

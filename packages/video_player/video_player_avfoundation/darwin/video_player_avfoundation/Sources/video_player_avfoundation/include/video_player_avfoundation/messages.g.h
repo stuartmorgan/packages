@@ -17,7 +17,6 @@ NS_ASSUME_NONNULL_BEGIN
 NSObject<FlutterMessageCodec> *FVPAVFoundationVideoPlayerApiGetCodec(void);
 
 @protocol FVPAVFoundationVideoPlayerApi
-- (void)initialize:(FlutterError *_Nullable *_Nonnull)error;
 /// Returns the raw pointer to the view provider.
 ///
 /// The implementation is responsible for ensuring that this pointer remains

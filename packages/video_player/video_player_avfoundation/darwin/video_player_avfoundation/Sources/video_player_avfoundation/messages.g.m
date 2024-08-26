@@ -47,27 +47,6 @@ void SetUpFVPAVFoundationVideoPlayerApiWithSuffix(id<FlutterBinaryMessenger> bin
   messageChannelSuffix = messageChannelSuffix.length > 0
                              ? [NSString stringWithFormat:@".%@", messageChannelSuffix]
                              : @"";
-  {
-    FlutterBasicMessageChannel *channel = [[FlutterBasicMessageChannel alloc]
-           initWithName:[NSString stringWithFormat:@"%@%@",
-                                                   @"dev.flutter.pigeon.video_player_avfoundation."
-                                                   @"AVFoundationVideoPlayerApi.initialize",
-                                                   messageChannelSuffix]
-        binaryMessenger:binaryMessenger
-                  codec:FVPAVFoundationVideoPlayerApiGetCodec()];
-    if (api) {
-      NSCAssert([api respondsToSelector:@selector(initialize:)],
-                @"FVPAVFoundationVideoPlayerApi api (%@) doesn't respond to @selector(initialize:)",
-                api);
-      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
-        FlutterError *error;
-        [api initialize:&error];
-        callback(wrapResult(nil, error));
-      }];
-    } else {
-      [channel setMessageHandler:nil];
-    }
-  }
   /// Returns the raw pointer to the view provider.
   ///
   /// The implementation is responsible for ensuring that this pointer remains

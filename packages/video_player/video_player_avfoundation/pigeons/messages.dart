@@ -19,9 +19,6 @@ import 'package:pigeon/pigeon.dart';
 ))
 @HostApi(dartHostTestHandler: 'TestHostVideoPlayerApi')
 abstract class AVFoundationVideoPlayerApi {
-  @ObjCSelector('initialize')
-  void initialize();
-
   /// Returns the raw pointer to the view provider.
   ///
   /// The implementation is responsible for ensuring that this pointer remains

@@ -83,6 +83,7 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
                       viewProvider:(id<FVPViewProvider>)viewProvider
                          AVFactory:(id<FVPAVFactory>)avFactory
                 displayLinkFactory:(id<FVPDisplayLinkFactory>)displayLinkFactory {
+  NSLog(@"### Native player init");
   self = [super init];
   NSAssert(self, @"super init cannot be nil");
 
@@ -159,6 +160,7 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
 }
 
 - (void)dealloc {
+  NSLog(@"### Native player dealloc");
   if (!_disposed) {
     [self removeKeyValueObservers];
   }
@@ -426,13 +428,16 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
 }
 
 - (void)dispose {
+  NSLog(@"### Native player dispose");
   // This check prevents the crash caused by removing the KVO observers twice.
   // When performing a Hot Restart, the leftover players are disposed once directly
   // by [FVPVideoPlayerPlugin initialize:] method and then disposed again by
   // [FVPVideoPlayer onTextureUnregistered:] call leading to possible over-release.
   if (_disposed) {
+    NSLog(@"### Native player dispose - bailed");
     return;
   }
+  NSLog(@"### Native player dispose - continued");
 
   _disposed = YES;
   [_playerLayer removeFromSuperlayer];
