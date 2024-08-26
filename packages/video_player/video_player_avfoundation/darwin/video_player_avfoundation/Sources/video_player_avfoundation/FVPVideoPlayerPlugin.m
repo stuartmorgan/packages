@@ -69,7 +69,6 @@
 }
 
 - (instancetype)initWithRegistrar:(NSObject<FlutterPluginRegistrar> *)registrar {
-  NSLog(@"### Native init");
   self = [super init];
   NSAssert(self, @"super init cannot be nil");
   _registrar = registrar;
@@ -81,14 +80,12 @@
 }
 
 - (void)detachFromEngineForRegistrar:(NSObject<FlutterPluginRegistrar> *)registrar {
-  NSLog(@"### Native detach");
   for (FVPVideoPlayer *player in self.players.keyEnumerator) {
     // Remove the delegate to ensure that the player doesn't message the engine that is no longer
     // connected.
     player.delegate = nil;
-    // Similarly, don't try to unregister the texture.
+    // Similarly, don't try to unregister the texture during a later dispose.
     player.onDisposed = nil;
-    [player dispose];
   }
   [self.players removeAllObjects];
   SetUpFVPAVFoundationVideoPlayerApi(registrar.messenger, nil);
