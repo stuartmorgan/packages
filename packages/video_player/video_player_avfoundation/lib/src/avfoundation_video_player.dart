@@ -35,7 +35,6 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
 
   @override
   Future<void> init() async {
-    // no-op there.
     if (!Platform.isMacOS) {
       // Allow audio playback when the Ring/Silent switch is set to silent.
       await runOnPlatformThread<void>(() {
@@ -47,6 +46,11 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
       });
     }
     await _api.initialize();
+    // TODO(stuartmorgan): See if this is actually necessary, or if hot reload
+    // and restart already do the right thing.
+    await runOnPlatformThread<void>(() {
+      _playersByPointer.clear();
+    });
   }
 
   @override
