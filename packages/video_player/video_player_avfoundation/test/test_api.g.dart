@@ -21,11 +21,17 @@ abstract class TestHostVideoPlayerApi {
 
   void initialize();
 
+  /// Returns the raw pointer to the view provider.
+  ///
+  /// The implementation is responsible for ensuring that this pointer remains
+  /// valid for the lifetime of the plugin.
+  int getViewProviderPointer();
+
   /// Configures the given player for display, and returns its texture ID.
   int configurePlayerPointer(int playerPointer);
 
   /// Disposes of the given player.
-  void dispose(int playerPointer);
+  void disposePlayerPointer(int playerPointer);
 
   /// Wraps registrar-based asset lookup, as that's not currently accessible via
   /// FFI.
@@ -54,6 +60,31 @@ abstract class TestHostVideoPlayerApi {
           try {
             api.initialize();
             return wrapResponse(empty: true);
+          } on PlatformException catch (e) {
+            return wrapResponse(error: e);
+          } catch (e) {
+            return wrapResponse(
+                error: PlatformException(code: 'error', message: e.toString()));
+          }
+        });
+      }
+    }
+    {
+      final BasicMessageChannel<Object?> __pigeon_channel = BasicMessageChannel<
+              Object?>(
+          'dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.getViewProviderPointer$messageChannelSuffix',
+          pigeonChannelCodec,
+          binaryMessenger: binaryMessenger);
+      if (api == null) {
+        _testBinaryMessengerBinding!.defaultBinaryMessenger
+            .setMockDecodedMessageHandler<Object?>(__pigeon_channel, null);
+      } else {
+        _testBinaryMessengerBinding!.defaultBinaryMessenger
+            .setMockDecodedMessageHandler<Object?>(__pigeon_channel,
+                (Object? message) async {
+          try {
+            final int output = api.getViewProviderPointer();
+            return <Object?>[output];
           } on PlatformException catch (e) {
             return wrapResponse(error: e);
           } catch (e) {
@@ -97,7 +128,7 @@ abstract class TestHostVideoPlayerApi {
     {
       final BasicMessageChannel<Object?> __pigeon_channel = BasicMessageChannel<
               Object?>(
-          'dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.dispose$messageChannelSuffix',
+          'dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.disposePlayerPointer$messageChannelSuffix',
           pigeonChannelCodec,
           binaryMessenger: binaryMessenger);
       if (api == null) {
@@ -108,13 +139,13 @@ abstract class TestHostVideoPlayerApi {
             .setMockDecodedMessageHandler<Object?>(__pigeon_channel,
                 (Object? message) async {
           assert(message != null,
-              'Argument for dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.dispose was null.');
+              'Argument for dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.disposePlayerPointer was null.');
           final List<Object?> args = (message as List<Object?>?)!;
           final int? arg_playerPointer = (args[0] as int?);
           assert(arg_playerPointer != null,
-              'Argument for dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.dispose was null, expected non-null int.');
+              'Argument for dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.disposePlayerPointer was null, expected non-null int.');
           try {
-            api.dispose(arg_playerPointer!);
+            api.disposePlayerPointer(arg_playerPointer!);
             return wrapResponse(empty: true);
           } on PlatformException catch (e) {
             return wrapResponse(error: e);

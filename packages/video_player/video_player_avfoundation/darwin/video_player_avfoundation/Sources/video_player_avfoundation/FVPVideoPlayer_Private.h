@@ -50,12 +50,10 @@
 // frame is successfully provided.
 @property(nonatomic, assign) BOOL waitingForFrame;
 
-/// Configures the player to display with the given context.
+/// Configures the player to display with the given frame callback.
 ///
 /// Until this is called, the player will not display any content, even if playing.
-- (void)configureDisplayWithViewProvider:(id<FVPViewProvider>)viewProvider
-                      displayLinkFactory:(id<FVPDisplayLinkFactory>)displayLinkFactory
-                  availableFrameCallback:(void (^)())frameAvailable;
+- (void)configureDisplayWithAvailableFrameCallback:(void (^)())frameAvailable;
 
 // Tells the player to run its frame updater until it receives a frame, regardless of the
 // play/pause state.

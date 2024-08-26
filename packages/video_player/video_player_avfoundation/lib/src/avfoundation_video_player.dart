@@ -46,18 +46,13 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
       });
     }
     await _api.initialize();
-    // TODO(stuartmorgan): See if this is actually necessary, or if hot reload
-    // and restart already do the right thing.
-    await runOnPlatformThread<void>(() {
-      _playersByPointer.clear();
-    });
   }
 
   @override
   Future<void> dispose(int textureId) async {
     final int? pointer = _playerPointersByTextureId.remove(textureId);
     if (pointer != null) {
-      await _api.dispose(pointer);
+      await _api.disposePlayerPointer(pointer);
       // Remove the owning reference to the player on the platform thread.
       await runOnPlatformThread<void>(() {
         _playersByPointer.remove(pointer);
@@ -96,6 +91,8 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
           'Unsupported source type: ${dataSource.sourceType}');
     }
 
+    final int nativeViewProviderPointer = await _api.getViewProviderPointer();
+
     final ffi.Pointer<ObjCObject> rawPointer =
         await runOnPlatformThread<ffi.Pointer<ObjCObject>>(() {
       final NSURL? nsurl = NSURL.URLWithString_(NSString(uri!));
@@ -110,10 +107,16 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
       final AVURLAsset asset =
           AVURLAsset.URLAssetWithURL_options_(nsurl, options);
       final AVPlayerItem avItem = AVPlayerItem.playerItemWithAsset_(asset);
-      // TODO(stuartmorgan): Check if this does the right thing.
       final FVPDefaultAVFactory avFactory = FVPDefaultAVFactory.alloc().init();
+      final FVPDefaultDisplayLinkFactory displayLinkFactory =
+          FVPDefaultDisplayLinkFactory.alloc().init();
       final FVPVideoPlayer player = FVPVideoPlayer.alloc()
-          .initWithPlayerItem_AVFactory_(avItem, avFactory);
+          .initWithPlayerItem_viewProvider_AVFactory_displayLinkFactory_(
+              avItem,
+              NSObject.castFromPointer(ffi.Pointer<ObjCObject>.fromAddress(
+                  nativeViewProviderPointer)),
+              avFactory,
+              displayLinkFactory);
       _playersByPointer[player.pointer.address] = player;
       return player.pointer;
     });

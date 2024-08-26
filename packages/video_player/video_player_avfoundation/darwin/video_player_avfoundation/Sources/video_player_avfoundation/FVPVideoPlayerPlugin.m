@@ -11,6 +11,7 @@
 #import "./include/video_player_avfoundation/FVPDisplayLink.h"
 #import "./include/video_player_avfoundation/FVPEventChannelVideoPlayerDelegate.h"
 #import "./include/video_player_avfoundation/FVPVideoPlayer.h"
+#import "./include/video_player_avfoundation/FVPViewProvider.h"
 #import "./include/video_player_avfoundation/InjectionProtocols.h"
 #import "./include/video_player_avfoundation/messages.g.h"
 #import "FVPFrameUpdater.h"
@@ -19,18 +20,6 @@
 #if !__has_feature(objc_arc)
 #error Code Requires ARC.
 #endif
-
-/// Non-test implementation of the diplay link factory.
-@interface FVPDefaultDisplayLinkFactory : NSObject <FVPDisplayLinkFactory>
-@end
-
-@implementation FVPDefaultDisplayLinkFactory
-- (FVPDisplayLink *)displayLinkWithViewProvider:(id<FVPViewProvider>)viewProvider
-                                       callback:(void (^)(void))callback {
-  return [[FVPDisplayLink alloc] initWithViewProvider:viewProvider callback:callback];
-}
-
-@end
 
 /// Non-test implementation of the view provider.
 @interface FVPDefaultViewProvider : NSObject <FVPViewProvider>
@@ -69,7 +58,7 @@
 
 @interface FVPVideoPlayerPlugin ()
 @property(readonly, strong, nonatomic) NSObject<FlutterPluginRegistrar> *registrar;
-@property(nonatomic, strong) id<FVPDisplayLinkFactory> displayLinkFactory;
+@property(nonatomic) NSObject<FVPViewProvider> *viewProvider;
 @end
 
 @implementation FVPVideoPlayerPlugin
@@ -80,16 +69,10 @@
 }
 
 - (instancetype)initWithRegistrar:(NSObject<FlutterPluginRegistrar> *)registrar {
-  return [self initWithDisplayLinkFactory:[[FVPDefaultDisplayLinkFactory alloc] init]
-                                registrar:registrar];
-}
-
-- (instancetype)initWithDisplayLinkFactory:(id<FVPDisplayLinkFactory>)displayLinkFactory
-                                 registrar:(NSObject<FlutterPluginRegistrar> *)registrar {
   self = [super init];
   NSAssert(self, @"super init cannot be nil");
   _registrar = registrar;
-  _displayLinkFactory = displayLinkFactory ?: [[FVPDefaultDisplayLinkFactory alloc] init];
+  _viewProvider = [[FVPDefaultViewProvider alloc] initWithRegistrar:_registrar];
   _players =
       [NSMapTable mapTableWithKeyOptions:(NSMapTableWeakMemory | NSMapTableObjectPointerPersonality)
                             valueOptions:NSMapTableStrongMemory];
@@ -118,6 +101,10 @@
   [self.players removeAllObjects];
 }
 
+- (nullable NSNumber *)viewProviderPointer:(FlutterError *_Nullable *_Nonnull)error {
+  return @((NSInteger)(__bridge void *)self.viewProvider);
+}
+
 - (nullable NSNumber *)configurePlayerPointer:(NSInteger)playerPointer
                                         error:(FlutterError *_Nullable *_Nonnull)error {
   FVPVideoPlayer *player = (__bridge FVPVideoPlayer *)((void *)playerPointer);
@@ -131,12 +118,9 @@
   player.delegate =
       [[FVPEventChannelVideoPlayerDelegate alloc] initWithRegistrar:self.registrar
                                                    playerIdentifier:textureIdentifier];
-  [player configureDisplayWithViewProvider:[[FVPDefaultViewProvider alloc]
-                                               initWithRegistrar:self.registrar]
-                        displayLinkFactory:self.displayLinkFactory
-                    availableFrameCallback:^{
-                      [[weakRegistrar textures] textureFrameAvailable:textureIdentifier];
-                    }];
+  [player configureDisplayWithAvailableFrameCallback:^{
+    [[weakRegistrar textures] textureFrameAvailable:textureIdentifier];
+  }];
 
   return @(textureIdentifier);
 }

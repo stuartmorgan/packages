@@ -14,7 +14,10 @@
 
 @property(nonatomic) BOOL isLooping;
 
-- (instancetype)initWithPlayerItem:(AVPlayerItem *)item AVFactory:(id<FVPAVFactory>)avFactory;
+- (instancetype)initWithPlayerItem:(AVPlayerItem *)item
+                      viewProvider:(id<FVPViewProvider>)viewProvider
+                         AVFactory:(id<FVPAVFactory>)avFactory
+                displayLinkFactory:(id<FVPDisplayLinkFactory>)displayLinkFactory;
 
 - (void)setVolume:(double)volume;
 

@@ -14,8 +14,4 @@
 
 @property(readonly, strong, nonatomic) NSMapTable *players;
 
-- (instancetype)initWithAVFactory:(id<FVPAVFactory>)avFactory
-               displayLinkFactory:(id<FVPDisplayLinkFactory>)displayLinkFactory
-                        registrar:(NSObject<FlutterPluginRegistrar> *)registrar;
-
 @end

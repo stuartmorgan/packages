@@ -68,6 +68,33 @@ void SetUpFVPAVFoundationVideoPlayerApiWithSuffix(id<FlutterBinaryMessenger> bin
       [channel setMessageHandler:nil];
     }
   }
+  /// Returns the raw pointer to the view provider.
+  ///
+  /// The implementation is responsible for ensuring that this pointer remains
+  /// valid for the lifetime of the plugin.
+  {
+    FlutterBasicMessageChannel *channel = [[FlutterBasicMessageChannel alloc]
+           initWithName:[NSString
+                            stringWithFormat:@"%@%@",
+                                             @"dev.flutter.pigeon.video_player_avfoundation."
+                                             @"AVFoundationVideoPlayerApi.getViewProviderPointer",
+                                             messageChannelSuffix]
+        binaryMessenger:binaryMessenger
+                  codec:FVPAVFoundationVideoPlayerApiGetCodec()];
+    if (api) {
+      NSCAssert([api respondsToSelector:@selector(viewProviderPointer:)],
+                @"FVPAVFoundationVideoPlayerApi api (%@) doesn't respond to "
+                @"@selector(viewProviderPointer:)",
+                api);
+      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
+        FlutterError *error;
+        NSNumber *output = [api viewProviderPointer:&error];
+        callback(wrapResult(output, error));
+      }];
+    } else {
+      [channel setMessageHandler:nil];
+    }
+  }
   /// Configures the given player for display, and returns its texture ID.
   {
     FlutterBasicMessageChannel *channel = [[FlutterBasicMessageChannel alloc]
@@ -97,10 +124,11 @@ void SetUpFVPAVFoundationVideoPlayerApiWithSuffix(id<FlutterBinaryMessenger> bin
   /// Disposes of the given player.
   {
     FlutterBasicMessageChannel *channel = [[FlutterBasicMessageChannel alloc]
-           initWithName:[NSString stringWithFormat:@"%@%@",
-                                                   @"dev.flutter.pigeon.video_player_avfoundation."
-                                                   @"AVFoundationVideoPlayerApi.dispose",
-                                                   messageChannelSuffix]
+           initWithName:[NSString
+                            stringWithFormat:@"%@%@",
+                                             @"dev.flutter.pigeon.video_player_avfoundation."
+                                             @"AVFoundationVideoPlayerApi.disposePlayerPointer",
+                                             messageChannelSuffix]
         binaryMessenger:binaryMessenger
                   codec:FVPAVFoundationVideoPlayerApiGetCodec()];
     if (api) {

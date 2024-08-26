@@ -18,6 +18,13 @@ NSObject<FlutterMessageCodec> *FVPAVFoundationVideoPlayerApiGetCodec(void);
 
 @protocol FVPAVFoundationVideoPlayerApi
 - (void)initialize:(FlutterError *_Nullable *_Nonnull)error;
+/// Returns the raw pointer to the view provider.
+///
+/// The implementation is responsible for ensuring that this pointer remains
+/// valid for the lifetime of the plugin.
+///
+/// @return `nil` only when `error != nil`.
+- (nullable NSNumber *)viewProviderPointer:(FlutterError *_Nullable *_Nonnull)error;
 /// Configures the given player for display, and returns its texture ID.
 ///
 /// @return `nil` only when `error != nil`.
