@@ -100,7 +100,7 @@ class AVFoundationVideoPlayerApi {
   }
 
   /// Disposes of the given player.
-  Future<void> dispose(int textureId) async {
+  Future<void> dispose(int playerPointer) async {
     final String __pigeon_channelName =
         'dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.dispose$__pigeon_messageChannelSuffix';
     final BasicMessageChannel<Object?> __pigeon_channel =
@@ -110,7 +110,7 @@ class AVFoundationVideoPlayerApi {
       binaryMessenger: __pigeon_binaryMessenger,
     );
     final List<Object?>? __pigeon_replyList =
-        await __pigeon_channel.send(<Object?>[textureId]) as List<Object?>?;
+        await __pigeon_channel.send(<Object?>[playerPointer]) as List<Object?>?;
     if (__pigeon_replyList == null) {
       throw _createConnectionError(__pigeon_channelName);
     } else if (__pigeon_replyList.length > 1) {

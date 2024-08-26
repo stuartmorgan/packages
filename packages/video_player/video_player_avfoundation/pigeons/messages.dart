@@ -27,8 +27,8 @@ abstract class AVFoundationVideoPlayerApi {
   int configurePlayerPointer(int playerPointer);
 
   /// Disposes of the given player.
-  @ObjCSelector('disposePlayer:')
-  void dispose(int textureId);
+  @ObjCSelector('disposePlayerPointer:')
+  void disposePlayerPointer(int playerPointer);
 
   /// Wraps registrar-based asset lookup, as that's not currently accessible via
   /// FFI.

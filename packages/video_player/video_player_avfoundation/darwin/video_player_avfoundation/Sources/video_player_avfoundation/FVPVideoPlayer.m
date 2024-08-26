@@ -442,6 +442,9 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 
   [self.delegate videoPlayerWasDisposed];
+  if (self.onDisposed) {
+    self.onDisposed();
+  }
 }
 
 /// Removes all key-value observers set up for the player.

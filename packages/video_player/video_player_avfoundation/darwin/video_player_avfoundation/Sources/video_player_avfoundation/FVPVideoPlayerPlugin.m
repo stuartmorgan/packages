@@ -90,38 +90,44 @@
   NSAssert(self, @"super init cannot be nil");
   _registrar = registrar;
   _displayLinkFactory = displayLinkFactory ?: [[FVPDefaultDisplayLinkFactory alloc] init];
-  _playersByTextureId = [NSMutableDictionary dictionaryWithCapacity:1];
+  _players =
+      [NSMapTable mapTableWithKeyOptions:(NSMapTableWeakMemory | NSMapTableObjectPointerPersonality)
+                            valueOptions:NSMapTableStrongMemory];
   return self;
 }
 
 - (void)detachFromEngineForRegistrar:(NSObject<FlutterPluginRegistrar> *)registrar {
-  for (FVPVideoPlayer *player in self.playersByTextureId.allValues) {
+  for (FVPVideoPlayer *player in self.players.keyEnumerator) {
     // Remove the delegate to ensure that the player doesn't message the engine that is no longer
     // connected.
     player.delegate = nil;
+    // Similarly, don't try to unregister the texture.
+    player.onDisposed = nil;
     [player dispose];
   }
-  [self.playersByTextureId removeAllObjects];
+  [self.players removeAllObjects];
   SetUpFVPAVFoundationVideoPlayerApi(registrar.messenger, nil);
 }
 
 - (void)initialize:(FlutterError *__autoreleasing *)error {
   NSObject<FlutterTextureRegistry> *textureRegistry = [self.registrar textures];
   // TODO(stuartmorgan): See if this can be managed via finalizers now instead.
-  [self.playersByTextureId
-      enumerateKeysAndObjectsUsingBlock:^(NSNumber *textureId, FVPVideoPlayer *player, BOOL *stop) {
-        [textureRegistry unregisterTexture:textureId.unsignedIntegerValue];
-        [player dispose];
-      }];
-  [self.playersByTextureId removeAllObjects];
+  for (FVPVideoPlayer *player in self.players.keyEnumerator) {
+    [player dispose];
+  }
+  [self.players removeAllObjects];
 }
 
 - (nullable NSNumber *)configurePlayerPointer:(NSInteger)playerPointer
                                         error:(FlutterError *_Nullable *_Nonnull)error {
   FVPVideoPlayer *player = (__bridge FVPVideoPlayer *)((void *)playerPointer);
-  int64_t textureIdentifier = [[self.registrar textures] registerTexture:player];
-  self.playersByTextureId[@(textureIdentifier)] = player;
   __weak NSObject<FlutterPluginRegistrar> *weakRegistrar = self.registrar;
+  int64_t textureIdentifier = [[self.registrar textures] registerTexture:player];
+  player.onDisposed = ^{
+    [[weakRegistrar textures] unregisterTexture:textureIdentifier];
+  };
+  // The value is ignored, NSMapTable is just easier to use than NSPointerArray.
+  [self.players setObject:@(YES) forKey:player];
   player.delegate =
       [[FVPEventChannelVideoPlayerDelegate alloc] initWithRegistrar:self.registrar
                                                    playerIdentifier:textureIdentifier];
@@ -135,14 +141,10 @@
   return @(textureIdentifier);
 }
 
-- (void)disposePlayer:(NSInteger)textureId error:(FlutterError **)error {
-  NSNumber *playerKey = @(textureId);
-  FVPVideoPlayer *player = self.playersByTextureId[playerKey];
-  [[self.registrar textures] unregisterTexture:textureId];
-  [self.playersByTextureId removeObjectForKey:playerKey];
-  if (!player.disposed) {
-    [player dispose];
-  }
+- (void)disposePlayerPointer:(NSInteger)playerPointer error:(FlutterError **)error {
+  FVPVideoPlayer *player = (__bridge FVPVideoPlayer *)((void *)playerPointer);
+  [self.players removeObjectForKey:player];
+  [player dispose];
 }
 
 - (nullable NSString *)pathForAssetWithName:(NSString *)assetName

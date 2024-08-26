@@ -25,7 +25,7 @@ abstract class TestHostVideoPlayerApi {
   int configurePlayerPointer(int playerPointer);
 
   /// Disposes of the given player.
-  void dispose(int textureId);
+  void dispose(int playerPointer);
 
   /// Wraps registrar-based asset lookup, as that's not currently accessible via
   /// FFI.
@@ -110,11 +110,11 @@ abstract class TestHostVideoPlayerApi {
           assert(message != null,
               'Argument for dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.dispose was null.');
           final List<Object?> args = (message as List<Object?>?)!;
-          final int? arg_textureId = (args[0] as int?);
-          assert(arg_textureId != null,
+          final int? arg_playerPointer = (args[0] as int?);
+          assert(arg_playerPointer != null,
               'Argument for dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.dispose was null, expected non-null int.');
           try {
-            api.dispose(arg_textureId!);
+            api.dispose(arg_playerPointer!);
             return wrapResponse(empty: true);
           } on PlatformException catch (e) {
             return wrapResponse(error: e);

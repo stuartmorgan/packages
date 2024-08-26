@@ -31,6 +31,8 @@
 @property(readonly, nonatomic) AVPlayerItemVideoOutput *videoOutput;
 /// Provides access to the enclosing Flutter view.
 @property(nonatomic) id<FVPViewProvider> viewProvider;
+// A callback to call during 'dispose'.
+@property(nonatomic, copy, nullable) void (^onDisposed)();
 /// The event delegate that communicates information back to the Dart side of the plugin.
 ///
 /// Note that although this is a delegate, this is an owning reference.

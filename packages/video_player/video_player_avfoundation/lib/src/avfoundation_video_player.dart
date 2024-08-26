@@ -52,8 +52,8 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
   @override
   Future<void> dispose(int textureId) async {
     final int? pointer = _playerPointersByTextureId.remove(textureId);
-    await _api.dispose(textureId);
     if (pointer != null) {
+      await _api.dispose(pointer);
       // Remove the owning reference to the player on the platform thread.
       await runOnPlatformThread<void>(() {
         _playersByPointer.remove(pointer);

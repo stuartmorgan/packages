@@ -12,8 +12,7 @@
 
 @interface FVPVideoPlayerPlugin () <FVPAVFoundationVideoPlayerApi>
 
-@property(readonly, strong, nonatomic)
-    NSMutableDictionary<NSNumber *, FVPVideoPlayer *> *playersByTextureId;
+@property(readonly, strong, nonatomic) NSMapTable *players;
 
 - (instancetype)initWithAVFactory:(id<FVPAVFactory>)avFactory
                displayLinkFactory:(id<FVPDisplayLinkFactory>)displayLinkFactory
