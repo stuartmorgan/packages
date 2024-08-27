@@ -5,7 +5,6 @@
 import 'dart:async';
 import 'dart:ffi' as ffi;
 import 'dart:io';
-import 'dart:ui';
 
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -15,18 +14,13 @@ import 'package:video_player_platform_interface/video_player_platform_interface.
 import 'ffi_bindings.dart';
 import 'messages.g.dart';
 
-/// Maps from raw pointers to player instances. This is intended to be populated
-/// and used only from within runOnPlatformThread, to ensure that owning
-/// references--and thus deallocations--are restricted to that thread.
-final Map<int, FVPVideoPlayer> _playersByPointer = <int, FVPVideoPlayer>{};
-
 /// An iOS implementation of [VideoPlayerPlatform] that uses the
 /// Pigeon-generated [VideoPlayerApi].
 class AVFoundationVideoPlayer extends VideoPlayerPlatform {
   final AVFoundationVideoPlayerApi _api = AVFoundationVideoPlayerApi();
 
   /// A mapping of texture IDs to the corresponding FVPVideoPlayer pointer.
-  final Map<int, int> _playerPointersByTextureId = <int, int>{};
+  final Map<int, FVPVideoPlayer> _playersByTextureId = <int, FVPVideoPlayer>{};
 
   /// Registers this class as the default instance of [VideoPlayerPlatform].
   static void registerWith() {
@@ -37,25 +31,20 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
   Future<void> init() async {
     if (!Platform.isMacOS) {
       // Allow audio playback when the Ring/Silent switch is set to silent.
-      await runOnPlatformThread<void>(() {
-        // https://github.com/dart-lang/native/issues/1418
-        final NSString categoryPlayback =
-            NSString.castFromPointer(_lib.AVAudioSessionCategoryPlayback);
-        AVAudioSession.sharedInstance()
-            .setCategory_error_(categoryPlayback, ffi.nullptr);
-      });
+
+      // https://github.com/dart-lang/native/issues/1418
+      final NSString categoryPlayback =
+          NSString.castFromPointer(_lib.AVAudioSessionCategoryPlayback);
+      AVAudioSession.sharedInstance()
+          .setCategory_error_(categoryPlayback, ffi.nullptr);
     }
   }
 
   @override
   Future<void> dispose(int textureId) async {
-    final int? pointer = _playerPointersByTextureId.remove(textureId);
-    if (pointer != null) {
-      await _api.disposePlayerPointer(pointer);
-      // Remove the owning reference to the player on the platform thread.
-      await runOnPlatformThread<void>(() {
-        _playersByPointer.remove(pointer);
-      });
+    final FVPVideoPlayer? player = _playersByTextureId.remove(textureId);
+    if (player != null) {
+      await _api.disposePlayerPointer(player.pointer.address);
     }
   }
 
@@ -92,100 +81,78 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
 
     final int nativeViewProviderPointer = await _api.getViewProviderPointer();
 
-    final ffi.Pointer<ObjCObject> rawPointer =
-        await runOnPlatformThread<ffi.Pointer<ObjCObject>>(() {
-      final NSURL? nsurl = NSURL.URLWithString_(NSString(uri!));
-      if (nsurl == null) {
-        return ffi.nullptr;
-      }
-      NSDictionary? options;
-      if (httpHeaders.isNotEmpty) {
-        options = _convertMap(
-            <String?, Object>{'AVURLAssetHTTPHeaderFieldsKey': httpHeaders});
-      }
-      final AVURLAsset asset =
-          AVURLAsset.URLAssetWithURL_options_(nsurl, options);
-      final AVPlayerItem avItem = AVPlayerItem.playerItemWithAsset_(asset);
-      final FVPDefaultAVFactory avFactory = FVPDefaultAVFactory.alloc().init();
-      final FVPDefaultDisplayLinkFactory displayLinkFactory =
-          FVPDefaultDisplayLinkFactory.alloc().init();
-      final FVPVideoPlayer player = FVPVideoPlayer.alloc()
-          .initWithPlayerItem_viewProvider_AVFactory_displayLinkFactory_(
-              avItem,
-              NSObject.castFromPointer(ffi.Pointer<ObjCObject>.fromAddress(
-                  nativeViewProviderPointer)),
-              avFactory,
-              displayLinkFactory);
-      _playersByPointer[player.pointer.address] = player;
-      return player.pointer;
-    });
-    if (rawPointer == ffi.nullptr) {
+    final NSURL? nsurl = NSURL.URLWithString_(NSString(uri));
+    if (nsurl == null) {
       throw PlatformException(
-          code: 'player initialization',
-          message: 'Failed to create native player');
+          code: 'player initialization', message: 'Failed to create NSURL');
     }
+    NSDictionary? options;
+    if (httpHeaders.isNotEmpty) {
+      options = _convertMap(
+          <String?, Object>{'AVURLAssetHTTPHeaderFieldsKey': httpHeaders});
+    }
+    final AVURLAsset asset =
+        AVURLAsset.URLAssetWithURL_options_(nsurl, options);
+    final AVPlayerItem avItem = AVPlayerItem.playerItemWithAsset_(asset);
+    final FVPDefaultAVFactory avFactory = FVPDefaultAVFactory.alloc().init();
+    final FVPDefaultDisplayLinkFactory displayLinkFactory =
+        FVPDefaultDisplayLinkFactory.alloc().init();
+    final FVPVideoPlayer player = FVPVideoPlayer.alloc()
+        .initWithPlayerItem_viewProvider_AVFactory_displayLinkFactory_(
+            avItem,
+            NSObject.castFromPointer(
+                ffi.Pointer<ObjCObject>.fromAddress(nativeViewProviderPointer)),
+            avFactory,
+            displayLinkFactory);
 
-    final int nativePlayerPointer = rawPointer.address;
     final int textureId =
-        await _api.configurePlayerPointer(nativePlayerPointer);
-    _playerPointersByTextureId[textureId] = nativePlayerPointer;
+        await _api.configurePlayerPointer(player.pointer.address);
+    _playersByTextureId[textureId] = player;
     return textureId;
   }
 
   @override
-  Future<void> setLooping(int textureId, bool looping) {
-    final int pointer = _pointerForTexture(textureId);
-    return runOnPlatformThread<void>(
-        () => _playerFromPointer(pointer).isLooping = looping);
+  Future<void> setLooping(int textureId, bool looping) async {
+    _playerForTexture(textureId).isLooping = looping;
   }
 
   @override
-  Future<void> play(int textureId) {
-    final int pointer = _pointerForTexture(textureId);
-    return runOnPlatformThread<void>(() => _playerFromPointer(pointer).play());
+  Future<void> play(int textureId) async {
+    _playerForTexture(textureId).play();
   }
 
   @override
-  Future<void> pause(int textureId) {
-    final int pointer = _pointerForTexture(textureId);
-    return runOnPlatformThread<void>(() => _playerFromPointer(pointer).pause());
+  Future<void> pause(int textureId) async {
+    _playerForTexture(textureId).pause();
   }
 
   @override
-  Future<void> setVolume(int textureId, double volume) {
-    final int pointer = _pointerForTexture(textureId);
-    return runOnPlatformThread<void>(
-        () => _playerFromPointer(pointer).setVolume_(volume));
+  Future<void> setVolume(int textureId, double volume) async {
+    _playerForTexture(textureId).setVolume_(volume);
   }
 
   @override
-  Future<void> setPlaybackSpeed(int textureId, double speed) {
+  Future<void> setPlaybackSpeed(int textureId, double speed) async {
     assert(speed > 0);
 
-    final int pointer = _pointerForTexture(textureId);
-    return runOnPlatformThread<void>(
-        () => _playerFromPointer(pointer).setPlaybackSpeed_(speed));
+    _playerForTexture(textureId).setPlaybackSpeed_(speed);
   }
 
   @override
   Future<void> seekTo(int textureId, Duration position) {
-    final int pointer = _pointerForTexture(textureId);
-    return runOnPlatformThread<void>(() {
-      final Completer<void> seekFinished = Completer<void>();
-      _playerFromPointer(pointer).seekTo_completionHandler_(
-          position.inMilliseconds,
-          ObjCBlock_ffiVoid_bool.listener(
-              (bool succeeded) => seekFinished.complete()));
-      return seekFinished.future;
-    });
+    final FVPVideoPlayer player = _playerForTexture(textureId);
+    final Completer<void> seekFinished = Completer<void>();
+    player.seekTo_completionHandler_(
+        position.inMilliseconds,
+        ObjCBlock_ffiVoid_bool.listener(
+            (bool succeeded) => seekFinished.complete()));
+    return seekFinished.future;
   }
 
   @override
   Future<Duration> getPosition(int textureId) async {
-    final int pointer = _pointerForTexture(textureId);
-    final int position = await runOnPlatformThread<int>(
-        () => _playerFromPointer(pointer).position);
-    return Duration(milliseconds: position);
+    final int positionInMilliseconds = _playerForTexture(textureId).position;
+    return Duration(milliseconds: positionInMilliseconds);
   }
 
   @override
@@ -238,30 +205,20 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
     // AVAudioSession doesn't exist on macOS, and audio always mixes, so just
     // no-op there.
     if (!Platform.isMacOS) {
-      await runOnPlatformThread<void>(() {
-        // https://github.com/dart-lang/native/issues/1418
-        final NSString categoryPlayback =
-            NSString.castFromPointer(_lib.AVAudioSessionCategoryPlayback);
-        if (mixWithOthers) {
-          AVAudioSession.sharedInstance().setCategory_withOptions_error_(
-              categoryPlayback,
-              AVAudioSessionCategoryOptions
-                  .AVAudioSessionCategoryOptionMixWithOthers,
-              ffi.nullptr);
-        } else {
-          AVAudioSession.sharedInstance()
-              .setCategory_error_(categoryPlayback, ffi.nullptr);
-        }
-      });
+      // https://github.com/dart-lang/native/issues/1418
+      final NSString categoryPlayback =
+          NSString.castFromPointer(_lib.AVAudioSessionCategoryPlayback);
+      if (mixWithOthers) {
+        AVAudioSession.sharedInstance().setCategory_withOptions_error_(
+            categoryPlayback,
+            AVAudioSessionCategoryOptions
+                .AVAudioSessionCategoryOptionMixWithOthers,
+            ffi.nullptr);
+      } else {
+        AVAudioSession.sharedInstance()
+            .setCategory_error_(categoryPlayback, ffi.nullptr);
+      }
     }
-  }
-
-  int _pointerForTexture(int textureId) {
-    final int? pointer = _playerPointersByTextureId[textureId];
-    if (pointer == null) {
-      throw StateError('methods must not be called on a disposed player');
-    }
-    return pointer;
   }
 
   EventChannel _eventChannelFor(int textureId) {
@@ -275,14 +232,14 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
       Duration(milliseconds: pair[1] as int),
     );
   }
-}
 
-FVPVideoPlayer _playerFromPointer(int pointer) {
-  final FVPVideoPlayer? player = _playersByPointer[pointer];
-  if (player == null) {
-    throw StateError('Attempting to use a disposed pointer');
+  FVPVideoPlayer _playerForTexture(int textureId) {
+    final FVPVideoPlayer? player = _playersByTextureId[textureId];
+    if (player == null) {
+      throw StateError('Methods must not be called on a disposed player');
+    }
+    return player;
   }
-  return player;
 }
 
 //const String _libName = 'video_player_avfoundation';

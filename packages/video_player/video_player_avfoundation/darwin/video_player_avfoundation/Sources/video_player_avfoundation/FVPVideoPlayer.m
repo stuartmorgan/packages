@@ -83,6 +83,7 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
                       viewProvider:(id<FVPViewProvider>)viewProvider
                          AVFactory:(id<FVPAVFactory>)avFactory
                 displayLinkFactory:(id<FVPDisplayLinkFactory>)displayLinkFactory {
+  NSAssert([NSThread isMainThread], @"Must be called on main thread");
   self = [super init];
   NSAssert(self, @"super init cannot be nil");
 
@@ -159,6 +160,7 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
 }
 
 - (void)dealloc {
+  NSAssert([NSThread isMainThread], @"Must be called on main thread");
   if (!_disposed) {
     [self removeKeyValueObservers];
   }
@@ -420,6 +422,7 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
 }
 
 - (void)dispose {
+  NSAssert([NSThread isMainThread], @"Must be called on main thread");
   _disposed = YES;
   [_playerLayer removeFromSuperlayer];
   _displayLink = nil;
