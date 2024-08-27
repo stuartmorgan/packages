@@ -84,8 +84,6 @@
     // Remove the delegate to ensure that the player doesn't message the engine that is no longer
     // connected.
     player.delegate = nil;
-    // Similarly, don't try to unregister the texture during a later dispose.
-    player.onDisposed = nil;
   }
   [self.players removeAllObjects];
   SetUpFVPAVFoundationVideoPlayerApi(registrar.messenger, nil);
