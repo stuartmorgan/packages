@@ -31,12 +31,8 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
   Future<void> init() async {
     if (!Platform.isMacOS) {
       // Allow audio playback when the Ring/Silent switch is set to silent.
-
-      // https://github.com/dart-lang/native/issues/1418
-      final NSString categoryPlayback =
-          NSString.castFromPointer(_lib.AVAudioSessionCategoryPlayback);
       AVAudioSession.sharedInstance()
-          .setCategory_error_(categoryPlayback, ffi.nullptr);
+          .setCategory_error_(_lib.AVAudioSessionCategoryPlayback, ffi.nullptr);
     }
   }
 
@@ -205,18 +201,15 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
     // AVAudioSession doesn't exist on macOS, and audio always mixes, so just
     // no-op there.
     if (!Platform.isMacOS) {
-      // https://github.com/dart-lang/native/issues/1418
-      final NSString categoryPlayback =
-          NSString.castFromPointer(_lib.AVAudioSessionCategoryPlayback);
       if (mixWithOthers) {
         AVAudioSession.sharedInstance().setCategory_withOptions_error_(
-            categoryPlayback,
+            _lib.AVAudioSessionCategoryPlayback,
             AVAudioSessionCategoryOptions
                 .AVAudioSessionCategoryOptionMixWithOthers,
             ffi.nullptr);
       } else {
-        AVAudioSession.sharedInstance()
-            .setCategory_error_(categoryPlayback, ffi.nullptr);
+        AVAudioSession.sharedInstance().setCategory_error_(
+            _lib.AVAudioSessionCategoryPlayback, ffi.nullptr);
       }
     }
   }

@@ -3,9 +3,7 @@ description: Bindings for AVPlayer and related classes.
 language: objc
 output:
   bindings: 'lib/src/ffi_bindings.dart'
-  # Currently not built; hopefully can be removed via method filtering once
-  # implemented since we probably don't actually need them.
-  objc-bindings: 'darwin/ffi_bindings.dart.m'
+  objc-bindings: 'darwin/video_player_avfoundation/Sources/video_player_avfoundation/ffi_bindings.dart.m'
 headers:
   entry-points:
     - '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/AVFoundation.framework/Versions/A/Headers/AVFoundation.h'
