@@ -2,19 +2,13 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#if TARGET_OS_OSX
-#import <Cocoa/Cocoa.h>
-#else
-#import <UIKit/UIKit.h>
-#endif
+#import <Foundation/Foundation.h>
 
 /// Protocol for accessing the view that is displaying the Flutter content
 /// associated with a plugin instance.
 @protocol FVPViewProvider <NSObject>
 @required
-#if TARGET_OS_OSX
-@property(readonly, nonatomic) NSView *view;
-#else
-@property(readonly, nonatomic) UIView *view;
-#endif
+// TODO(stuartmorgan): Make this UIView/NSView once pruning is implemented for ffigen; for now use
+// id to avoid bringing in a ton of unwanted transitive dependencies via extensions.
+@property(readonly, nonatomic) id view;
 @end
