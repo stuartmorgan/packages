@@ -4,8 +4,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FVPVideoPlayer.h"
-
 /// Handles event/status callbacks from FVPVideoPlayer.
 ///
 /// This is an abstraction around the event channel to allow FVPVideoPlayer to be completely

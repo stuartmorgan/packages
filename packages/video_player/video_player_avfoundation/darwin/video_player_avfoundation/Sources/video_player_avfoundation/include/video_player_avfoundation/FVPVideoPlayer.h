@@ -5,10 +5,22 @@
 #import <AVFoundation/AVFoundation.h>
 #import <Foundation/Foundation.h>
 
+#import "FVPVideoPlayerDelegate.h"
 #import "InjectionProtocols.h"
 
 /// The native component of a single video player instance.
 @interface FVPVideoPlayer : NSObject
+
+/// The event delegate that communicates information back to the Dart side of the plugin.
+///
+/// Note that although this is a delegate, this is an owning reference.
+// TODO(stuartmorgan): Change to weak once this is on the Dart side instead of
+// an object we need to keep around.
+@property(nonatomic, strong) id<FVPVideoPlayerDelegate> delegate;
+
+@property(nonatomic, readonly) BOOL disposed;
+
+@property(nonatomic, readonly) BOOL isPlaying;
 
 @property(readonly, nonatomic) int64_t position;
 

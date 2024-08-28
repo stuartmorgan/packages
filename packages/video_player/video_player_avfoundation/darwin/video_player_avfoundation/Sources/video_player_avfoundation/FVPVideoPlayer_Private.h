@@ -33,13 +33,7 @@
 @property(nonatomic) id<FVPViewProvider> viewProvider;
 // A callback to call during 'dispose'.
 @property(nonatomic, copy, nullable) void (^onDisposed)();
-/// The event delegate that communicates information back to the Dart side of the plugin.
-///
-/// Note that although this is a delegate, this is an owning reference.
-@property(nonatomic) id<FVPVideoPlayerDelegate> delegate;
 @property(nonatomic) CGAffineTransform preferredTransform;
-@property(nonatomic, readonly) BOOL disposed;
-@property(nonatomic, readonly) BOOL isPlaying;
 @property(nonatomic, readonly) BOOL isInitialized;
 // The updater that drives callbacks to the engine to indicate that a new frame is ready.
 @property(nonatomic) FVPFrameUpdater *frameUpdater;

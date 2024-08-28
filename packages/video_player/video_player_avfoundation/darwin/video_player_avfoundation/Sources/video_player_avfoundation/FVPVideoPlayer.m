@@ -214,7 +214,8 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
                        context:(void *)context {
   if (context == timeRangeContext) {
     NSMutableArray<NSArray<NSNumber *> *> *values = [[NSMutableArray alloc] init];
-    for (NSValue *rangeValue in [object loadedTimeRanges]) {
+    AVPlayerItem *item = (AVPlayerItem *)object;
+    for (NSValue *rangeValue in [item loadedTimeRanges]) {
       CMTimeRange range = [rangeValue CMTimeRangeValue];
       int64_t start = FVPCMTimeToMillis(range.start);
       [values addObject:@[ @(start), @(start + FVPCMTimeToMillis(range.duration)) ]];
@@ -246,8 +247,9 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
       [self updatePlayingState];
     }
   } else if (context == playbackLikelyToKeepUpContext) {
+    AVPlayerItem *item = (AVPlayerItem *)object;
     [self updatePlayingState];
-    if ([[_player currentItem] isPlaybackLikelyToKeepUp]) {
+    if ([item isPlaybackLikelyToKeepUp]) {
       [self.delegate videoPlayerDidEndBuffering];
     } else {
       [self.delegate videoPlayerDidStartBuffering];

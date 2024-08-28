@@ -10,6 +10,8 @@ headers:
     - 'darwin/video_player_avfoundation/Sources/video_player_avfoundation/include/video_player_avfoundation/FVPDefaultAVFactory.h'
     - 'darwin/video_player_avfoundation/Sources/video_player_avfoundation/include/video_player_avfoundation/FVPDefaultDisplayLinkFactory.h'
     - 'darwin/video_player_avfoundation/Sources/video_player_avfoundation/include/video_player_avfoundation/FVPVideoPlayer.h'
+    - 'darwin/video_player_avfoundation/Sources/video_player_avfoundation/include/video_player_avfoundation/FVPVideoPlayerDelegate.h'
+    - 'darwin/video_player_avfoundation/Sources/video_player_avfoundation/include/video_player_avfoundation/FVPBlockAdapterVideoPlayerDelegate.h'
 exclude-all-by-default: true
 objc-interfaces:
   include:
@@ -18,6 +20,7 @@ objc-interfaces:
     - 'FVPDefaultAVFactory'
     - 'FVPDefaultDisplayLinkFactory'
     - 'FVPVideoPlayer'
+    - 'FVPBlockAdapterVideoPlayerDelegate'
 enums:
   include:
     - 'AVAudioSessionCategoryOptions'
