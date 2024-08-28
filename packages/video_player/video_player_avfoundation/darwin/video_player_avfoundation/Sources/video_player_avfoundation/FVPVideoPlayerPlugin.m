@@ -9,7 +9,6 @@
 
 #import "./include/video_player_avfoundation/AVAssetTrackUtils.h"
 #import "./include/video_player_avfoundation/FVPDisplayLink.h"
-#import "./include/video_player_avfoundation/FVPEventChannelVideoPlayerDelegate.h"
 #import "./include/video_player_avfoundation/FVPVideoPlayer.h"
 #import "./include/video_player_avfoundation/FVPViewProvider.h"
 #import "./include/video_player_avfoundation/InjectionProtocols.h"
@@ -103,9 +102,6 @@
   };
   // The value is ignored, NSMapTable is just easier to use than NSPointerArray.
   [self.players setObject:@(YES) forKey:player];
-  player.delegate =
-      [[FVPEventChannelVideoPlayerDelegate alloc] initWithRegistrar:self.registrar
-                                                   playerIdentifier:textureIdentifier];
   [player configureDisplayWithAvailableFrameCallback:^{
     [[weakRegistrar textures] textureFrameAvailable:textureIdentifier];
   }];

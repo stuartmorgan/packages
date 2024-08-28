@@ -41,7 +41,10 @@
 }
 
 - (void)videoPlayerWasDisposed {
-  self.videoPlayerWasDisposedHandler();
+  // TODO(stuartmorgan): Remove this from the delegate; it's unused.
+  if (self.videoPlayerWasDisposedHandler) {
+    self.videoPlayerWasDisposedHandler();
+  }
 }
 
 @end

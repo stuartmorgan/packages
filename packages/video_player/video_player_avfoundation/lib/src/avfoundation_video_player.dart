@@ -19,8 +19,9 @@ import 'messages.g.dart';
 class AVFoundationVideoPlayer extends VideoPlayerPlatform {
   final AVFoundationVideoPlayerApi _api = AVFoundationVideoPlayerApi();
 
-  /// A mapping of texture IDs to the corresponding FVPVideoPlayer pointer.
-  final Map<int, FVPVideoPlayer> _playersByTextureId = <int, FVPVideoPlayer>{};
+  /// A mapping of texture IDs to the corresponding player objects.
+  final Map<int, (FVPVideoPlayer, _DelegateEventAdapter)> _playersByTextureId =
+      <int, (FVPVideoPlayer, _DelegateEventAdapter)>{};
 
   /// Registers this class as the default instance of [VideoPlayerPlatform].
   static void registerWith() {
@@ -42,9 +43,10 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
 
   @override
   Future<void> dispose(int textureId) async {
-    final FVPVideoPlayer? player = _playersByTextureId.remove(textureId);
+    final (FVPVideoPlayer, _DelegateEventAdapter)? player =
+        _playersByTextureId.remove(textureId);
     if (player != null) {
-      await _api.disposePlayerPointer(player.pointer.address);
+      await _api.disposePlayerPointer(player.$1.pointer.address);
     }
   }
 
@@ -107,7 +109,7 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
 
     final int textureId =
         await _api.configurePlayerPointer(player.pointer.address);
-    _playersByTextureId[textureId] = player;
+    _playersByTextureId[textureId] = (player, _DelegateEventAdapter(player));
     return textureId;
   }
 
@@ -157,42 +159,11 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
 
   @override
   Stream<VideoEvent> videoEventsFor(int textureId) {
-    return _eventChannelFor(textureId)
-        .receiveBroadcastStream()
-        .map((dynamic event) {
-      final Map<dynamic, dynamic> map = event as Map<dynamic, dynamic>;
-      switch (map['event']) {
-        case 'initialized':
-          return VideoEvent(
-            eventType: VideoEventType.initialized,
-            duration: Duration(milliseconds: map['duration'] as int),
-            size: Size((map['width'] as num?)?.toDouble() ?? 0.0,
-                (map['height'] as num?)?.toDouble() ?? 0.0),
-          );
-        case 'completed':
-          return VideoEvent(
-            eventType: VideoEventType.completed,
-          );
-        case 'bufferingUpdate':
-          final List<dynamic> values = map['values'] as List<dynamic>;
-
-          return VideoEvent(
-            buffered: values.map<DurationRange>(_toDurationRange).toList(),
-            eventType: VideoEventType.bufferingUpdate,
-          );
-        case 'bufferingStart':
-          return VideoEvent(eventType: VideoEventType.bufferingStart);
-        case 'bufferingEnd':
-          return VideoEvent(eventType: VideoEventType.bufferingEnd);
-        case 'isPlayingStateUpdate':
-          return VideoEvent(
-            eventType: VideoEventType.isPlayingStateUpdate,
-            isPlaying: map['isPlaying'] as bool,
-          );
-        default:
-          return VideoEvent(eventType: VideoEventType.unknown);
-      }
-    });
+    final _DelegateEventAdapter? adapter = _playersByTextureId[textureId]?.$2;
+    if (adapter == null) {
+      throw StateError('No player with id $textureId currently exists');
+    }
+    return adapter.stream;
   }
 
   @override
@@ -221,24 +192,79 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
     }
   }
 
-  EventChannel _eventChannelFor(int textureId) {
-    return EventChannel('flutter.io/videoPlayer/videoEvents$textureId');
-  }
-
-  DurationRange _toDurationRange(dynamic value) {
-    final List<dynamic> pair = value as List<dynamic>;
-    return DurationRange(
-      Duration(milliseconds: pair[0] as int),
-      Duration(milliseconds: pair[1] as int),
-    );
-  }
-
   FVPVideoPlayer _playerForTexture(int textureId) {
-    final FVPVideoPlayer? player = _playersByTextureId[textureId];
+    final FVPVideoPlayer? player = _playersByTextureId[textureId]?.$1;
     if (player == null) {
       throw StateError('Methods must not be called on a disposed player');
     }
     return player;
+  }
+}
+
+class _DelegateEventAdapter {
+  _DelegateEventAdapter(FVPVideoPlayer player) {
+    final FVPBlockAdapterVideoPlayerDelegate delegate =
+        FVPBlockAdapterVideoPlayerDelegate.alloc().init();
+    delegate.videoPlayerDidInitializeHandler =
+        ObjCBlock_ffiVoid_Int64_CGSize.listener((int duration, CGSize size) {
+      _controller.add(VideoEvent(
+        eventType: VideoEventType.initialized,
+        duration: Duration(milliseconds: duration),
+        size: Size(size.width, size.height),
+      ));
+    });
+    delegate.videoPlayerDidCompleteHandler = ObjCBlock_ffiVoid.listener(() {
+      _controller.add(VideoEvent(
+        eventType: VideoEventType.completed,
+      ));
+    });
+    delegate.videoPlayerDidUpdateBufferRegionsHandler =
+        ObjCBlock_ffiVoid_NSArray1.listener((NSArray regions) {
+      _controller.add(VideoEvent(
+        buffered: _listFromArray(regions)
+            .map((ObjCObjectBase o) => NSArray.castFrom(o))
+            .map(_durationRangeFromNSArray)
+            .toList(),
+        eventType: VideoEventType.bufferingUpdate,
+      ));
+    });
+    delegate.videoPlayerDidStartBufferingHandler =
+        ObjCBlock_ffiVoid.listener(() {
+      _controller.add(VideoEvent(eventType: VideoEventType.bufferingStart));
+    });
+    delegate.videoPlayerDidEndBufferingHandler = ObjCBlock_ffiVoid.listener(() {
+      _controller.add(VideoEvent(eventType: VideoEventType.bufferingEnd));
+    });
+    delegate.videoPlayerDidSetPlayingHandler =
+        ObjCBlock_ffiVoid_bool.listener((bool playing) {
+      _controller.add(VideoEvent(
+        eventType: VideoEventType.isPlayingStateUpdate,
+        isPlaying: playing,
+      ));
+    });
+    // TODO(stuartmorgan): Handle errors. Previously they were just turned into
+    // 'unknown' events with no details :| For now, print them for my own
+    // debugging.
+    delegate.videoPlayerDidErrorHandler =
+        ObjCBlock_ffiVoid_NSString.listener((NSString error) {
+      debugPrint(error.toString());
+    });
+
+    player.delegate = delegate;
+  }
+
+  final StreamController<VideoEvent> _controller =
+      StreamController<VideoEvent>.broadcast();
+
+  Stream<VideoEvent> get stream => _controller.stream;
+
+  DurationRange _durationRangeFromNSArray(NSArray regions) {
+    return DurationRange(
+      Duration(
+          milliseconds: NSNumber.castFrom(regions.objectAtIndex_(0)).intValue),
+      Duration(
+          milliseconds: NSNumber.castFrom(regions.objectAtIndex_(1)).intValue),
+    );
   }
 }
 
@@ -254,6 +280,14 @@ final ffi.DynamicLibrary _dylib = () {
 final FVPVideo _lib = () {
   return FVPVideo(_dylib);
 }();
+
+List<ObjCObjectBase> _listFromArray(NSArray array) {
+  final List<ObjCObjectBase> list = <ObjCObjectBase>[];
+  for (int i = 0; i < array.count; i++) {
+    list.add(array.objectAtIndex_(i));
+  }
+  return list;
+}
 
 NSDictionary _convertMap(Map<Object?, Object?> map) {
   final NSMutableDictionary dict =
