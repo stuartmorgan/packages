@@ -5,6 +5,7 @@
 import 'dart:async';
 import 'dart:ffi' as ffi;
 import 'dart:io';
+import 'dart:math' as math;
 
 import 'package:ffi/ffi.dart';
 import 'package:flutter/services.dart';
@@ -20,9 +21,8 @@ import 'messages.g.dart';
 class AVFoundationVideoPlayer extends VideoPlayerPlatform {
   final AVFoundationVideoPlayerApi _api = AVFoundationVideoPlayerApi();
 
-  /// A mapping of texture IDs to the corresponding player objects.
-  final Map<int, (FVPVideoPlayer, _DelegateEventAdapter)> _playersByTextureId =
-      <int, (FVPVideoPlayer, _DelegateEventAdapter)>{};
+  /// A mapping of texture IDs to the corresponding player instances.
+  final Map<int, _VideoPlayer> _playersByTextureId = <int, _VideoPlayer>{};
 
   /// Registers this class as the default instance of [VideoPlayerPlatform].
   static void registerWith() {
@@ -40,10 +40,9 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
 
   @override
   Future<void> dispose(int textureId) async {
-    final (FVPVideoPlayer, _DelegateEventAdapter)? player =
-        _playersByTextureId.remove(textureId);
+    final _VideoPlayer? player = _playersByTextureId.remove(textureId);
     if (player != null) {
-      await _api.disposePlayerPointer(player.$1.pointer.address);
+      await _api.disposePlayerPointer(player.nativePlayer.pointer.address);
     }
   }
 
@@ -92,27 +91,17 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
     }
     final AVURLAsset asset =
         AVURLAsset.URLAssetWithURL_options_(nsurl, options);
-    final AVPlayerItem avItem = AVPlayerItem.playerItemWithAsset_(asset);
-    final FVPDefaultAVFactory avFactory = FVPDefaultAVFactory.alloc().init();
-    final FVPDefaultDisplayLinkFactory displayLinkFactory =
-        FVPDefaultDisplayLinkFactory.alloc().init();
-    final FVPVideoPlayer player = FVPVideoPlayer.alloc()
-        .initWithPlayerItem_viewProvider_AVFactory_displayLinkFactory_(
-            avItem,
-            NSObject.castFromPointer(
-                ffi.Pointer<ObjCObject>.fromAddress(nativeViewProviderPointer)),
-            avFactory,
-            displayLinkFactory);
+    final _VideoPlayer player = _VideoPlayer(asset, nativeViewProviderPointer);
 
     final int textureId =
-        await _api.configurePlayerPointer(player.pointer.address);
-    _playersByTextureId[textureId] = (player, _DelegateEventAdapter(player));
+        await _api.configurePlayerPointer(player.nativePlayer.pointer.address);
+    _playersByTextureId[textureId] = player;
     return textureId;
   }
 
   @override
   Future<void> setLooping(int textureId, bool looping) async {
-    _playerForTexture(textureId).isLooping = looping;
+    _playerForTexture(textureId).looping = looping;
   }
 
   @override
@@ -127,44 +116,29 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
 
   @override
   Future<void> setVolume(int textureId, double volume) async {
-    _playerForTexture(textureId).setVolume_(volume);
+    final double clamped = math.min(1.0, math.max(0.0, volume));
+    _playerForTexture(textureId).volume = clamped;
   }
 
   @override
   Future<void> setPlaybackSpeed(int textureId, double speed) async {
     assert(speed > 0);
-
-    _playerForTexture(textureId).setPlaybackSpeed_(speed);
+    _playerForTexture(textureId).setPlaybackSpeed(speed);
   }
 
   @override
   Future<void> seekTo(int textureId, Duration position) {
-    final FVPVideoPlayer player = _playerForTexture(textureId);
-    final Completer<void> seekFinished = Completer<void>();
-    player.seekTo_completionHandler_(
-        position.inMilliseconds,
-        ObjCBlock_ffiVoid_bool.listener(
-            (bool succeeded) => seekFinished.complete()));
-    return seekFinished.future;
+    return _playerForTexture(textureId).seekTo(position);
   }
 
   @override
   Future<Duration> getPosition(int textureId) async {
-    // Work around https://github.com/dart-lang/native/issues/1480
-    final ffi.Pointer<CMTime> currentTimePtr = calloc<CMTime>();
-    _playerForTexture(textureId).player.currentTime(currentTimePtr);
-    final int milliseconds = _millisecondsFromCMTime(currentTimePtr.ref);
-    calloc.free(currentTimePtr);
-    return Duration(milliseconds: milliseconds);
+    return _playerForTexture(textureId).position;
   }
 
   @override
   Stream<VideoEvent> videoEventsFor(int textureId) {
-    final _DelegateEventAdapter? adapter = _playersByTextureId[textureId]?.$2;
-    if (adapter == null) {
-      throw StateError('No player with id $textureId currently exists');
-    }
-    return adapter.stream;
+    return _playerForTexture(textureId).stream;
   }
 
   @override
@@ -190,12 +164,83 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
     }
   }
 
-  FVPVideoPlayer _playerForTexture(int textureId) {
-    final FVPVideoPlayer? player = _playersByTextureId[textureId]?.$1;
+  _VideoPlayer _playerForTexture(int textureId) {
+    final _VideoPlayer? player = _playersByTextureId[textureId];
     if (player == null) {
       throw StateError('Methods must not be called on a disposed player');
     }
     return player;
+  }
+}
+
+/// An instance of a video player.
+class _VideoPlayer {
+  _VideoPlayer(AVAsset asset, int nativeViewProviderPointer) {
+    final AVPlayerItem avItem = AVPlayerItem.playerItemWithAsset_(asset);
+    final FVPDefaultAVFactory avFactory = FVPDefaultAVFactory.alloc().init();
+    final FVPDefaultDisplayLinkFactory displayLinkFactory =
+        FVPDefaultDisplayLinkFactory.alloc().init();
+    nativePlayer = FVPVideoPlayer.alloc()
+        .initWithPlayerItem_viewProvider_AVFactory_displayLinkFactory_(
+            avItem,
+            NSObject.castFromPointer(
+                ffi.Pointer<ObjCObject>.fromAddress(nativeViewProviderPointer)),
+            avFactory,
+            displayLinkFactory);
+    _eventAdapter = _DelegateEventAdapter(nativePlayer);
+  }
+
+  late final FVPVideoPlayer nativePlayer;
+  _DelegateEventAdapter? _eventAdapter;
+
+  Stream<VideoEvent> get stream {
+    final _DelegateEventAdapter? adapter = _eventAdapter;
+    if (adapter == null) {
+      throw StateError('Attempting to get stream for disposed player');
+    }
+    return adapter.stream;
+  }
+
+  set looping(bool looping) {
+    nativePlayer.isLooping = looping;
+  }
+
+  bool get looping => nativePlayer.isLooping;
+
+  void play() {
+    nativePlayer.play();
+  }
+
+  void pause() {
+    nativePlayer.pause();
+  }
+
+  set volume(double volume) {
+    nativePlayer.player.volume = volume;
+  }
+
+  double get volume => nativePlayer.player.volume;
+
+  void setPlaybackSpeed(double speed) {
+    nativePlayer.setPlaybackSpeed_(speed);
+  }
+
+  Future<void> seekTo(Duration position) {
+    final Completer<void> seekFinished = Completer<void>();
+    nativePlayer.seekTo_completionHandler_(
+        position.inMilliseconds,
+        ObjCBlock_ffiVoid_bool.listener(
+            (bool succeeded) => seekFinished.complete()));
+    return seekFinished.future;
+  }
+
+  Duration get position {
+    // Work around https://github.com/dart-lang/native/issues/1480
+    final ffi.Pointer<CMTime> currentTimePtr = calloc<CMTime>();
+    nativePlayer.player.currentTime(currentTimePtr);
+    final int milliseconds = _millisecondsFromCMTime(currentTimePtr.ref);
+    calloc.free(currentTimePtr);
+    return Duration(milliseconds: milliseconds);
   }
 }
 
@@ -272,6 +317,7 @@ class _DelegateEventAdapter {
 
 /// The dynamic library in which the symbols for [FVPVideo] can be found.
 final ffi.DynamicLibrary _dylib = () {
+  // TODO(stuartmorgan): Make this work both ways.
   //return ffi.DynamicLibrary.open('$_libName.framework/$_libName');
   return ffi.DynamicLibrary.executable();
 }();
@@ -349,8 +395,10 @@ int _millisecondsFromCMTime(CMTime time) {
 }
 
 // https://github.com/dart-lang/native/issues/1478
-late final _sel_CMTimeRangeValue = registerName('CMTimeRangeValue');
-final _objc_msgSend_CMTimeRangeValue = msgSendPointer
+final ffi.Pointer<ObjCSelector> _selCMTimeRangeValue =
+    registerName('CMTimeRangeValue');
+// ignore: always_specify_types
+final _objcMsgSendCMTimeRangeValue = msgSendPointer
     .cast<
         ffi.NativeFunction<
             CMTimeRange Function(
@@ -360,7 +408,8 @@ final _objc_msgSend_CMTimeRangeValue = msgSendPointer
             ffi.Pointer<ObjCObject>, ffi.Pointer<ObjCSelector>)>();
 
 extension _NSValueAVFoundationExtensions on NSValue {
+  // ignore: non_constant_identifier_names
   CMTimeRange get CMTimeRangeValue {
-    return _objc_msgSend_CMTimeRangeValue(this.pointer, _sel_CMTimeRangeValue);
+    return _objcMsgSendCMTimeRangeValue(pointer, _selCMTimeRangeValue);
   }
 }
