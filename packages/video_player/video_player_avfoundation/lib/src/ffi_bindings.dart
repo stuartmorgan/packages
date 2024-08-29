@@ -104793,16 +104793,6 @@ class FVPVideoPlayer extends objc.NSObject {
     return _objc_msgSend_13(this.pointer, _sel_isPlaying);
   }
 
-  /// isLooping
-  bool get isLooping {
-    return _objc_msgSend_13(this.pointer, _sel_isLooping);
-  }
-
-  /// setIsLooping:
-  set isLooping(bool value) {
-    return _objc_msgSend_14(this.pointer, _sel_setIsLooping_, value);
-  }
-
   /// initWithPlayerItem:viewProvider:AVFactory:displayLinkFactory:
   FVPVideoPlayer initWithPlayerItem_viewProvider_AVFactory_displayLinkFactory_(
       AVPlayerItem item,
@@ -104961,8 +104951,6 @@ final _objc_msgSend_1573 = objc.msgSendPointer
         void Function(ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCObject>)>();
 late final _sel_disposed = objc.registerName("disposed");
-late final _sel_isLooping = objc.registerName("isLooping");
-late final _sel_setIsLooping_ = objc.registerName("setIsLooping:");
 late final _sel_initWithPlayerItem_viewProvider_AVFactory_displayLinkFactory_ =
     objc.registerName(
         "initWithPlayerItem:viewProvider:AVFactory:displayLinkFactory:");

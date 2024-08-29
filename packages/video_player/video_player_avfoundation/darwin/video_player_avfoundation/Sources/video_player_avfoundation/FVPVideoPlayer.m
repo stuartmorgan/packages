@@ -172,12 +172,7 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
 }
 
 - (void)itemDidPlayToEndTime:(NSNotification *)notification {
-  if (_isLooping) {
-    AVPlayerItem *p = [notification object];
-    [p seekToTime:kCMTimeZero completionHandler:nil];
-  } else {
-    [self.delegate videoPlayerDidComplete];
-  }
+  [self.delegate videoPlayerDidComplete];
 }
 
 - (AVMutableVideoComposition *)getVideoCompositionWithTransform:(CGAffineTransform)transform
@@ -366,10 +361,6 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
 - (void)expectFrame {
   self.waitingForFrame = YES;
   self.displayLink.running = YES;
-}
-
-- (void)setIsLooping:(BOOL)isLooping {
-  _isLooping = isLooping;
 }
 
 - (CVPixelBufferRef)copyPixelBuffer {

@@ -188,7 +188,8 @@ class _VideoPlayer {
                 ffi.Pointer<ObjCObject>.fromAddress(nativeViewProviderPointer)),
             avFactory,
             displayLinkFactory);
-    _eventAdapter = _DelegateEventAdapter(nativePlayer);
+    _eventAdapter = _DelegateEventAdapter(nativePlayer,
+        onPlaybackCompleted: onPlaybackCompleted);
   }
 
   late final FVPVideoPlayer nativePlayer;
@@ -202,11 +203,7 @@ class _VideoPlayer {
     return adapter.stream;
   }
 
-  set looping(bool looping) {
-    nativePlayer.isLooping = looping;
-  }
-
-  bool get looping => nativePlayer.isLooping;
+  bool looping = false;
 
   void play() {
     nativePlayer.play();
@@ -257,10 +254,21 @@ class _VideoPlayer {
     calloc.free(currentTimePtr);
     return Duration(milliseconds: milliseconds);
   }
+
+  void onPlaybackCompleted() {
+    if (looping) {
+      seekTo(Duration.zero);
+    } else {
+      _eventAdapter?.streamController.add(VideoEvent(
+        eventType: VideoEventType.completed,
+      ));
+    }
+  }
 }
 
 class _DelegateEventAdapter {
-  _DelegateEventAdapter(FVPVideoPlayer player) {
+  _DelegateEventAdapter(FVPVideoPlayer player,
+      {void Function()? onPlaybackCompleted}) {
     final FVPBlockAdapterVideoPlayerDelegate delegate =
         FVPBlockAdapterVideoPlayerDelegate.alloc().init();
     delegate.videoPlayerDidInitializeHandler =
@@ -269,7 +277,9 @@ class _DelegateEventAdapter {
           Duration(milliseconds: duration), Size(size.width, size.height));
     });
     delegate.videoPlayerDidCompleteHandler = ObjCBlock_ffiVoid.listener(() {
-      onPlaybackCompleted();
+      if (onPlaybackCompleted != null) {
+        onPlaybackCompleted();
+      }
     });
     delegate.videoPlayerDidUpdateBufferRegionsHandler =
         ObjCBlock_ffiVoid_AVPlayerItem.listener((AVPlayerItem playerItem) {
@@ -297,31 +307,25 @@ class _DelegateEventAdapter {
     player.delegate = delegate;
   }
 
-  final StreamController<VideoEvent> _controller =
+  final StreamController<VideoEvent> streamController =
       StreamController<VideoEvent>.broadcast();
 
-  Stream<VideoEvent> get stream => _controller.stream;
+  Stream<VideoEvent> get stream => streamController.stream;
 
   void onInitialized(Duration duration, Size size) {
-    _controller.add(VideoEvent(
+    streamController.add(VideoEvent(
       eventType: VideoEventType.initialized,
       duration: duration,
       size: size,
     ));
   }
 
-  void onPlaybackCompleted() {
-    _controller.add(VideoEvent(
-      eventType: VideoEventType.completed,
-    ));
-  }
-
   void onBufferingStarted() {
-    _controller.add(VideoEvent(eventType: VideoEventType.bufferingStart));
+    streamController.add(VideoEvent(eventType: VideoEventType.bufferingStart));
   }
 
   void onBufferingUpdated(AVPlayerItem playerItem) {
-    _controller.add(VideoEvent(
+    streamController.add(VideoEvent(
       buffered: _listFromArray(playerItem.loadedTimeRanges)
           .map((ObjCObjectBase o) => NSValue.castFrom(o))
           .map((NSValue e) => e.CMTimeRangeValue)
@@ -332,11 +336,11 @@ class _DelegateEventAdapter {
   }
 
   void onBufferingEnded() {
-    _controller.add(VideoEvent(eventType: VideoEventType.bufferingEnd));
+    streamController.add(VideoEvent(eventType: VideoEventType.bufferingEnd));
   }
 
   void onPlayStateChanged(bool playing) {
-    _controller.add(VideoEvent(
+    streamController.add(VideoEvent(
       eventType: VideoEventType.isPlayingStateUpdate,
       isPlaying: playing,
     ));

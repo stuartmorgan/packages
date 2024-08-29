@@ -24,8 +24,6 @@
 
 @property(nonatomic, readonly) BOOL isPlaying;
 
-@property(nonatomic) BOOL isLooping;
-
 - (instancetype)initWithPlayerItem:(AVPlayerItem *)item
                       viewProvider:(id<FVPViewProvider>)viewProvider
                          AVFactory:(id<FVPAVFactory>)avFactory
