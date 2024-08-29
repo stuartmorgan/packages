@@ -265,41 +265,26 @@ class _DelegateEventAdapter {
         FVPBlockAdapterVideoPlayerDelegate.alloc().init();
     delegate.videoPlayerDidInitializeHandler =
         ObjCBlock_ffiVoid_Int64_CGSize.listener((int duration, CGSize size) {
-      _controller.add(VideoEvent(
-        eventType: VideoEventType.initialized,
-        duration: Duration(milliseconds: duration),
-        size: Size(size.width, size.height),
-      ));
+      onInitialized(
+          Duration(milliseconds: duration), Size(size.width, size.height));
     });
     delegate.videoPlayerDidCompleteHandler = ObjCBlock_ffiVoid.listener(() {
-      _controller.add(VideoEvent(
-        eventType: VideoEventType.completed,
-      ));
+      onPlaybackCompleted();
     });
     delegate.videoPlayerDidUpdateBufferRegionsHandler =
         ObjCBlock_ffiVoid_AVPlayerItem.listener((AVPlayerItem playerItem) {
-      _controller.add(VideoEvent(
-        buffered: _listFromArray(playerItem.loadedTimeRanges)
-            .map((ObjCObjectBase o) => NSValue.castFrom(o))
-            .map((NSValue e) => e.CMTimeRangeValue)
-            .map(_durationRangeFromTimeRange)
-            .toList(),
-        eventType: VideoEventType.bufferingUpdate,
-      ));
+      onBufferingUpdated(playerItem);
     });
     delegate.videoPlayerDidStartBufferingHandler =
         ObjCBlock_ffiVoid.listener(() {
-      _controller.add(VideoEvent(eventType: VideoEventType.bufferingStart));
+      onBufferingStarted();
     });
     delegate.videoPlayerDidEndBufferingHandler = ObjCBlock_ffiVoid.listener(() {
-      _controller.add(VideoEvent(eventType: VideoEventType.bufferingEnd));
+      onBufferingEnded();
     });
     delegate.videoPlayerDidSetPlayingHandler =
         ObjCBlock_ffiVoid_bool.listener((bool playing) {
-      _controller.add(VideoEvent(
-        eventType: VideoEventType.isPlayingStateUpdate,
-        isPlaying: playing,
-      ));
+      onPlayStateChanged(playing);
     });
     // TODO(stuartmorgan): Handle errors. Previously they were just turned into
     // 'unknown' events with no details :| For now, print them for my own
@@ -316,6 +301,46 @@ class _DelegateEventAdapter {
       StreamController<VideoEvent>.broadcast();
 
   Stream<VideoEvent> get stream => _controller.stream;
+
+  void onInitialized(Duration duration, Size size) {
+    _controller.add(VideoEvent(
+      eventType: VideoEventType.initialized,
+      duration: duration,
+      size: size,
+    ));
+  }
+
+  void onPlaybackCompleted() {
+    _controller.add(VideoEvent(
+      eventType: VideoEventType.completed,
+    ));
+  }
+
+  void onBufferingStarted() {
+    _controller.add(VideoEvent(eventType: VideoEventType.bufferingStart));
+  }
+
+  void onBufferingUpdated(AVPlayerItem playerItem) {
+    _controller.add(VideoEvent(
+      buffered: _listFromArray(playerItem.loadedTimeRanges)
+          .map((ObjCObjectBase o) => NSValue.castFrom(o))
+          .map((NSValue e) => e.CMTimeRangeValue)
+          .map(_durationRangeFromTimeRange)
+          .toList(),
+      eventType: VideoEventType.bufferingUpdate,
+    ));
+  }
+
+  void onBufferingEnded() {
+    _controller.add(VideoEvent(eventType: VideoEventType.bufferingEnd));
+  }
+
+  void onPlayStateChanged(bool playing) {
+    _controller.add(VideoEvent(
+      eventType: VideoEventType.isPlayingStateUpdate,
+      isPlaying: playing,
+    ));
+  }
 
   DurationRange _durationRangeFromTimeRange(CMTimeRange range) {
     final int startMilliseconds = _millisecondsFromCMTime(range.start);
