@@ -2,6 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+#import <AVFoundation/AVFoundation.h>
 #import <Foundation/Foundation.h>
 
 /// Handles event/status callbacks from FVPVideoPlayer.
@@ -19,12 +20,7 @@
 /// Called when the video player has buffered enough to likely be able to play witohut stopping.
 - (void)videoPlayerDidEndBuffering;
 /// Called when the buffered regions change.
-///
-/// The array elements are two-element arrays, each containing the start and end time, in
-/// milliseconds, of a buffered region.
-- (void)videoPlayerDidUpdateBufferRegions:(NSArray<NSArray<NSValue *> *> *)regions;
+- (void)videoPlayerDidUpdateBufferRegionsForItem:(AVPlayerItem *)item;
 /// Called when the player starts or stops playing.
 - (void)videoPlayerDidSetPlaying:(BOOL)playing;
-/// Called when the video player has been disposed on the Dart side.
-- (void)videoPlayerWasDisposed;
 @end

@@ -32,19 +32,12 @@
   self.videoPlayerDidEndBufferingHandler();
 }
 
-- (void)videoPlayerDidUpdateBufferRegions:(NSArray<NSArray<NSValue *> *> *)regions {
-  self.videoPlayerDidUpdateBufferRegionsHandler(regions);
+- (void)videoPlayerDidUpdateBufferRegionsForItem:(AVPlayerItem *)item {
+  self.videoPlayerDidUpdateBufferRegionsHandler(item);
 }
 
 - (void)videoPlayerDidSetPlaying:(BOOL)playing {
   self.videoPlayerDidSetPlayingHandler(playing);
-}
-
-- (void)videoPlayerWasDisposed {
-  // TODO(stuartmorgan): Remove this from the delegate; it's unused.
-  if (self.videoPlayerWasDisposedHandler) {
-    self.videoPlayerWasDisposedHandler();
-  }
 }
 
 @end

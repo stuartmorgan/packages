@@ -173,6 +173,7 @@ ListenerBlock19 wrapListenerBlock_ObjCBlock_ffiVoid_NSURL_NSURLResponse_NSError(
   };
 }
 
+#if TARGET_OS_OSX
 typedef void (^ListenerBlock20)(NSTask *);
 ListenerBlock20 wrapListenerBlock_ObjCBlock_ffiVoid_NSTask(ListenerBlock20 block)
     NS_RETURNS_RETAINED {
@@ -180,6 +181,7 @@ ListenerBlock20 wrapListenerBlock_ObjCBlock_ffiVoid_NSTask(ListenerBlock20 block
     block(objc_retain(arg0));
   };
 }
+#endif
 
 typedef void (^ListenerBlock21)(NSData *, NSError *);
 ListenerBlock21 wrapListenerBlock_ObjCBlock_ffiVoid_NSData_NSError(ListenerBlock21 block)
@@ -420,6 +422,14 @@ typedef void (^ListenerBlock50)(NSString *);
 ListenerBlock50 wrapListenerBlock_ObjCBlock_ffiVoid_NSString(ListenerBlock50 block)
     NS_RETURNS_RETAINED {
   return ^void(NSString *arg0) {
+    block(objc_retain(arg0));
+  };
+}
+
+typedef void (^ListenerBlock51)(AVPlayerItem *);
+ListenerBlock51 wrapListenerBlock_ObjCBlock_ffiVoid_AVPlayerItem(ListenerBlock51 block)
+    NS_RETURNS_RETAINED {
+  return ^void(AVPlayerItem *arg0) {
     block(objc_retain(arg0));
   };
 }

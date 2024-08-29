@@ -69,7 +69,7 @@ static CVReturn DisplayLinkCallback(CVDisplayLinkRef displayLink, const CVTimeSt
     // TODO(stuartmorgan): Move this to init + a screen change listener; this won't correctly
     // handle windows being dragged to another screen until the next pause/play cycle. That will
     // likely require new plugin registrar APIs.
-    NSScreen *screen = self.viewProvider.view.window.screen;
+    NSScreen *screen = ((NSView *)(self.viewProvider.view)).window.screen;
     if (screen) {
       CGDirectDisplayID viewDisplayID =
           (CGDirectDisplayID)[screen.deviceDescription[@"NSScreenNumber"] unsignedIntegerValue];

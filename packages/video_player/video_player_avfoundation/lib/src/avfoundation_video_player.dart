@@ -212,11 +212,12 @@ class _DelegateEventAdapter {
       ));
     });
     delegate.videoPlayerDidUpdateBufferRegionsHandler =
-        ObjCBlock_ffiVoid_NSArray1.listener((NSArray regions) {
+        ObjCBlock_ffiVoid_AVPlayerItem.listener((AVPlayerItem playerItem) {
       _controller.add(VideoEvent(
-        buffered: _listFromArray(regions)
-            .map((ObjCObjectBase o) => NSArray.castFrom(o))
-            .map(_durationRangeFromNSArray)
+        buffered: _listFromArray(playerItem.loadedTimeRanges)
+            .map((ObjCObjectBase o) => NSValue.castFrom(o))
+            .map((NSValue e) => e.CMTimeRangeValue)
+            .map(_durationRangeFromTimeRange)
             .toList(),
         eventType: VideoEventType.bufferingUpdate,
       ));
@@ -251,12 +252,13 @@ class _DelegateEventAdapter {
 
   Stream<VideoEvent> get stream => _controller.stream;
 
-  DurationRange _durationRangeFromNSArray(NSArray regions) {
+  DurationRange _durationRangeFromTimeRange(CMTimeRange range) {
+    final int startMilliseconds = _millisecondsFromCMTime(range.start);
     return DurationRange(
+      Duration(milliseconds: startMilliseconds),
       Duration(
-          milliseconds: NSNumber.castFrom(regions.objectAtIndex_(0)).intValue),
-      Duration(
-          milliseconds: NSNumber.castFrom(regions.objectAtIndex_(1)).intValue),
+          milliseconds:
+              startMilliseconds + _millisecondsFromCMTime(range.duration)),
     );
   }
 }
@@ -314,4 +316,46 @@ NSObject? _convertKnownType(Object? o) {
 
 NSObject _covertKnownTypeWithNSNull(Object? o) {
   return _convertKnownType(o) ?? NSNull.null1();
+}
+
+// From CMTIME_IS_VALID definition in CMTime.h.
+bool _cmTimeIsValid(CMTime time) {
+  return time.flags & CMTimeFlags.kCMTimeFlags_Valid.value != 0;
+}
+
+// From CMTIME_IS_INDEFINITE definition in CMTime.h.
+bool _cmTimeIsIndefinite(CMTime time) {
+  return _cmTimeIsValid(time) &&
+      (time.flags & CMTimeFlags.kCMTimeFlags_Indefinite.value != 0);
+}
+
+int _millisecondsFromCMTime(CMTime time) {
+  // When CMTIME_IS_INDEFINITE return a value that matches TIME_UNSET from
+  // ExoPlayer2 on Android.
+  // Fixes https://github.com/flutter/flutter/issues/48670
+  const int timeUnset = -9223372036854775807;
+  if (_cmTimeIsIndefinite(time)) {
+    return timeUnset;
+  }
+  if (time.timescale == 0) {
+    return 0;
+  }
+  return (time.value * 1000 / time.timescale).truncate();
+}
+
+// https://github.com/dart-lang/native/issues/1478
+late final _sel_CMTimeRangeValue = registerName('CMTimeRangeValue');
+final _objc_msgSend_CMTimeRangeValue = msgSendPointer
+    .cast<
+        ffi.NativeFunction<
+            CMTimeRange Function(
+                ffi.Pointer<ObjCObject>, ffi.Pointer<ObjCSelector>)>>()
+    .asFunction<
+        CMTimeRange Function(
+            ffi.Pointer<ObjCObject>, ffi.Pointer<ObjCSelector>)>();
+
+extension _NSValueAVFoundationExtensions on NSValue {
+  CMTimeRange get CMTimeRangeValue {
+    return _objc_msgSend_CMTimeRangeValue(this.pointer, _sel_CMTimeRangeValue);
+  }
 }

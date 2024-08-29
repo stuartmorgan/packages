@@ -128,7 +128,12 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
   // invisible AVPlayerLayer is used to overwrite the protection of pixel buffers in those streams
   // for issue #1, and restore the correct width and height for issue #2.
   _playerLayer = [AVPlayerLayer playerLayerWithPlayer:_player];
-  [viewProvider.view.layer addSublayer:_playerLayer];
+#if TARGET_OS_OSX
+  NSView *view = viewProvider.view;
+#else
+  UIView *view = viewProvider.view;
+#endif
+  [view.layer addSublayer:_playerLayer];
 
   // Configure output.
   NSDictionary *pixBuffAttributes = @{
@@ -213,14 +218,8 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
                         change:(NSDictionary *)change
                        context:(void *)context {
   if (context == timeRangeContext) {
-    NSMutableArray<NSArray<NSNumber *> *> *values = [[NSMutableArray alloc] init];
     AVPlayerItem *item = (AVPlayerItem *)object;
-    for (NSValue *rangeValue in [item loadedTimeRanges]) {
-      CMTimeRange range = [rangeValue CMTimeRangeValue];
-      int64_t start = FVPCMTimeToMillis(range.start);
-      [values addObject:@[ @(start), @(start + FVPCMTimeToMillis(range.duration)) ]];
-    }
-    [self.delegate videoPlayerDidUpdateBufferRegions:values];
+    [self.delegate videoPlayerDidUpdateBufferRegionsForItem:item];
   } else if (context == statusContext) {
     AVPlayerItem *item = (AVPlayerItem *)object;
     switch (item.status) {
@@ -433,7 +432,6 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
   [self.player replaceCurrentItemWithPlayerItem:nil];
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 
-  [self.delegate videoPlayerWasDisposed];
   if (self.onDisposed) {
     self.onDisposed();
   }

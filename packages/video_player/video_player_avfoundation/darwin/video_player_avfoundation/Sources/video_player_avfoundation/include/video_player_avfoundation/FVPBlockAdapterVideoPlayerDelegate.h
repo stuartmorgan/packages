@@ -16,9 +16,7 @@
 @property(nonatomic) void (^videoPlayerDidCompleteHandler)();
 @property(nonatomic) void (^videoPlayerDidStartBufferingHandler)();
 @property(nonatomic) void (^videoPlayerDidEndBufferingHandler)();
-@property(nonatomic) void (^videoPlayerDidUpdateBufferRegionsHandler)
-    (NSArray<NSArray<NSValue *> *> *regions);
+@property(nonatomic) void (^videoPlayerDidUpdateBufferRegionsHandler)(AVPlayerItem *item);
 @property(nonatomic) void (^videoPlayerDidSetPlayingHandler)(BOOL playing);
-@property(nonatomic) void (^videoPlayerWasDisposedHandler)();
 
 @end
