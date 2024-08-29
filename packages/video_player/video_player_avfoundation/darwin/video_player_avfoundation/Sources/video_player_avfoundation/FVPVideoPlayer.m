@@ -372,26 +372,6 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
   _isLooping = isLooping;
 }
 
-- (void)setVolume:(double)volume {
-  _player.volume = (float)((volume < 0.0) ? 0.0 : ((volume > 1.0) ? 1.0 : volume));
-}
-
-- (void)setPlaybackSpeed:(double)speed {
-  // See https://developer.apple.com/library/archive/qa/qa1772/_index.html for an explanation of
-  // these checks.
-  if (speed > 2.0 && !_player.currentItem.canPlayFastForward) {
-    [self.delegate videoPlayerDidErrorWithMessage:@"Video cannot be fast-forwarded beyond 2.0x"];
-    return;
-  }
-
-  if (speed < 1.0 && !_player.currentItem.canPlaySlowForward) {
-    [self.delegate videoPlayerDidErrorWithMessage:@"Video cannot be slow-forwarded"];
-    return;
-  }
-
-  _player.rate = speed;
-}
-
 - (CVPixelBufferRef)copyPixelBuffer {
   CVPixelBufferRef buffer = NULL;
   CMTime outputItemTime = [_videoOutput itemTimeForHostTime:CACurrentMediaTime()];

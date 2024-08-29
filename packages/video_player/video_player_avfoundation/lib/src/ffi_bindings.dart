@@ -104819,16 +104819,6 @@ class FVPVideoPlayer extends objc.NSObject {
     return FVPVideoPlayer.castFromPointer(_ret, retain: true, release: true);
   }
 
-  /// setVolume:
-  void setVolume_(double volume) {
-    _objc_msgSend_574(this.pointer, _sel_setVolume_, volume);
-  }
-
-  /// setPlaybackSpeed:
-  void setPlaybackSpeed_(double speed) {
-    _objc_msgSend_574(this.pointer, _sel_setPlaybackSpeed_, speed);
-  }
-
   /// play
   void play() {
     _objc_msgSend_7(this.pointer, _sel_play);
@@ -104994,7 +104984,6 @@ final _objc_msgSend_1574 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCObject>)>();
-late final _sel_setPlaybackSpeed_ = objc.registerName("setPlaybackSpeed:");
 late final _sel_seekTo_completionHandler_ =
     objc.registerName("seekTo:completionHandler:");
 final _objc_msgSend_1575 = objc.msgSendPointer

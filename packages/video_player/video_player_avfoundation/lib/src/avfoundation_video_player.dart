@@ -223,7 +223,21 @@ class _VideoPlayer {
   double get volume => nativePlayer.player.volume;
 
   void setPlaybackSpeed(double speed) {
-    nativePlayer.setPlaybackSpeed_(speed);
+    // See https://developer.apple.com/library/archive/qa/qa1772/_index.html for an explanation of
+    // these checks.
+    const double maxAlwaysSupportedSpeed = 2.0;
+    const double minAlwaysSupportedSpeed = 1.0;
+    double clamped = speed;
+    if (speed > maxAlwaysSupportedSpeed &&
+        !(nativePlayer.player.currentItem?.canPlayFastForward ?? false)) {
+      clamped = maxAlwaysSupportedSpeed;
+    }
+    if (speed < 1.0 &&
+        !(nativePlayer.player.currentItem?.canPlaySlowForward ?? false)) {
+      clamped = minAlwaysSupportedSpeed;
+    }
+
+    nativePlayer.player.rate = clamped;
   }
 
   Future<void> seekTo(Duration position) {

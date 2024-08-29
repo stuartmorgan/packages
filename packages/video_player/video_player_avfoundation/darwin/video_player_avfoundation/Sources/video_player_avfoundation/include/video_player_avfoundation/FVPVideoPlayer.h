@@ -31,10 +31,6 @@
                          AVFactory:(id<FVPAVFactory>)avFactory
                 displayLinkFactory:(id<FVPDisplayLinkFactory>)displayLinkFactory;
 
-- (void)setVolume:(double)volume;
-
-- (void)setPlaybackSpeed:(double)speed;
-
 - (void)play;
 
 - (void)pause;
