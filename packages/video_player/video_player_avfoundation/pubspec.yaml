@@ -22,7 +22,8 @@ flutter:
         sharedDarwinSource: true
 
 dependencies:
-  ffi: ^2.1.2
+  # Only needed for https://github.com/dart-lang/native/issues/1480 workaround.
+  ffi: ^2.1.3
   flutter:
     sdk: flutter
   objective_c: #^1.1.0

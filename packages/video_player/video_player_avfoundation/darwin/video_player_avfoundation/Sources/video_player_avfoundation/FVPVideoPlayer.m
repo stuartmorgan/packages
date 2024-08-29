@@ -328,10 +328,6 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
   [self updatePlayingState];
 }
 
-- (int64_t)position {
-  return FVPCMTimeToMillis([_player currentTime]);
-}
-
 - (int64_t)duration {
   // Note: https://openradar.appspot.com/radar?id=4968600712511488
   // `[AVPlayerItem duration]` can be `kCMTimeIndefinite`,

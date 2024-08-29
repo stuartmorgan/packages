@@ -20,7 +20,6 @@
 
 /// The native component of a single video player instance.
 @interface FVPVideoPlayer () <FlutterTexture>
-@property(nonatomic) AVPlayer *player;
 // This is to fix 2 bugs: 1. blank video for encrypted video streams on iOS 16
 // (https://github.com/flutter/flutter/issues/111457) and 2. swapped width and height for some video
 // streams (not just iOS 16).  (https://github.com/flutter/flutter/issues/109116).

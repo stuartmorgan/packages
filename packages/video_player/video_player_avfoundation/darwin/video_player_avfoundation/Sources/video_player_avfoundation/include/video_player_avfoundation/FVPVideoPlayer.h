@@ -18,11 +18,11 @@
 // an object we need to keep around.
 @property(nonatomic, strong) id<FVPVideoPlayerDelegate> delegate;
 
+@property(nonatomic, strong) AVPlayer *player;
+
 @property(nonatomic, readonly) BOOL disposed;
 
 @property(nonatomic, readonly) BOOL isPlaying;
-
-@property(readonly, nonatomic) int64_t position;
 
 @property(nonatomic) BOOL isLooping;
 

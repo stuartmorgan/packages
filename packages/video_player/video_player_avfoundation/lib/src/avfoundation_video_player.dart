@@ -6,6 +6,7 @@ import 'dart:async';
 import 'dart:ffi' as ffi;
 import 'dart:io';
 
+import 'package:ffi/ffi.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:objective_c/objective_c.dart';
@@ -149,8 +150,12 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
 
   @override
   Future<Duration> getPosition(int textureId) async {
-    final int positionInMilliseconds = _playerForTexture(textureId).position;
-    return Duration(milliseconds: positionInMilliseconds);
+    // Work around https://github.com/dart-lang/native/issues/1480
+    final ffi.Pointer<CMTime> currentTimePtr = calloc<CMTime>();
+    _playerForTexture(textureId).player.currentTime(currentTimePtr);
+    final int milliseconds = _millisecondsFromCMTime(currentTimePtr.ref);
+    calloc.free(currentTimePtr);
+    return Duration(milliseconds: milliseconds);
   }
 
   @override

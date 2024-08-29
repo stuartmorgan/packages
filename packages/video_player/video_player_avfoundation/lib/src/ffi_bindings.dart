@@ -104772,6 +104772,17 @@ class FVPVideoPlayer extends objc.NSObject {
     return _objc_msgSend_1571(this.pointer, _sel_setDelegate_, value.pointer);
   }
 
+  /// player
+  AVPlayer get player {
+    final _ret = _objc_msgSend_1572(this.pointer, _sel_player);
+    return AVPlayer.castFromPointer(_ret, retain: true, release: true);
+  }
+
+  /// setPlayer:
+  set player(AVPlayer value) {
+    return _objc_msgSend_1573(this.pointer, _sel_setPlayer_, value.pointer);
+  }
+
   /// disposed
   bool get disposed {
     return _objc_msgSend_13(this.pointer, _sel_disposed);
@@ -104780,11 +104791,6 @@ class FVPVideoPlayer extends objc.NSObject {
   /// isPlaying
   bool get isPlaying {
     return _objc_msgSend_13(this.pointer, _sel_isPlaying);
-  }
-
-  /// position
-  int get position {
-    return _objc_msgSend_9(this.pointer, _sel_position);
   }
 
   /// isLooping
@@ -104803,7 +104809,7 @@ class FVPVideoPlayer extends objc.NSObject {
       objc.ObjCObjectBase viewProvider,
       objc.ObjCObjectBase avFactory,
       objc.ObjCObjectBase displayLinkFactory) {
-    final _ret = _objc_msgSend_1572(
+    final _ret = _objc_msgSend_1574(
         this.pointer,
         _sel_initWithPlayerItem_viewProvider_AVFactory_displayLinkFactory_,
         item.pointer,
@@ -104836,7 +104842,7 @@ class FVPVideoPlayer extends objc.NSObject {
   /// seekTo:completionHandler:
   void seekTo_completionHandler_(int location,
       objc.ObjCBlock<ffi.Void Function(ffi.Bool)> completionHandler) {
-    _objc_msgSend_1573(this.pointer, _sel_seekTo_completionHandler_, location,
+    _objc_msgSend_1575(this.pointer, _sel_seekTo_completionHandler_, location,
         completionHandler.pointer);
   }
 
@@ -104945,13 +104951,32 @@ final _objc_msgSend_1571 = objc.msgSendPointer
     .asFunction<
         void Function(ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCObject>)>();
+final _objc_msgSend_1572 = objc.msgSendPointer
+    .cast<
+        ffi.NativeFunction<
+            ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
+                ffi.Pointer<objc.ObjCSelector>)>>()
+    .asFunction<
+        ffi.Pointer<objc.ObjCObject> Function(
+            ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
+late final _sel_setPlayer_ = objc.registerName("setPlayer:");
+final _objc_msgSend_1573 = objc.msgSendPointer
+    .cast<
+        ffi.NativeFunction<
+            ffi.Void Function(
+                ffi.Pointer<objc.ObjCObject>,
+                ffi.Pointer<objc.ObjCSelector>,
+                ffi.Pointer<objc.ObjCObject>)>>()
+    .asFunction<
+        void Function(ffi.Pointer<objc.ObjCObject>,
+            ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCObject>)>();
 late final _sel_disposed = objc.registerName("disposed");
 late final _sel_isLooping = objc.registerName("isLooping");
 late final _sel_setIsLooping_ = objc.registerName("setIsLooping:");
 late final _sel_initWithPlayerItem_viewProvider_AVFactory_displayLinkFactory_ =
     objc.registerName(
         "initWithPlayerItem:viewProvider:AVFactory:displayLinkFactory:");
-final _objc_msgSend_1572 = objc.msgSendPointer
+final _objc_msgSend_1574 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             instancetype Function(
@@ -104972,7 +104997,7 @@ final _objc_msgSend_1572 = objc.msgSendPointer
 late final _sel_setPlaybackSpeed_ = objc.registerName("setPlaybackSpeed:");
 late final _sel_seekTo_completionHandler_ =
     objc.registerName("seekTo:completionHandler:");
-final _objc_msgSend_1573 = objc.msgSendPointer
+final _objc_msgSend_1575 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -105016,7 +105041,7 @@ class FVPBlockAdapterVideoPlayerDelegate extends objc.NSObject {
   objc.ObjCBlock<ffi.Void Function(ffi.Int64, CGSize)>
       get videoPlayerDidInitializeHandler {
     final _ret =
-        _objc_msgSend_1574(this.pointer, _sel_videoPlayerDidInitializeHandler);
+        _objc_msgSend_1576(this.pointer, _sel_videoPlayerDidInitializeHandler);
     return ObjCBlock_ffiVoid_Int64_CGSize.castFromPointer(_ret,
         retain: true, release: true);
   }
@@ -105024,7 +105049,7 @@ class FVPBlockAdapterVideoPlayerDelegate extends objc.NSObject {
   /// setVideoPlayerDidInitializeHandler:
   set videoPlayerDidInitializeHandler(
       objc.ObjCBlock<ffi.Void Function(ffi.Int64, CGSize)> value) {
-    return _objc_msgSend_1575(
+    return _objc_msgSend_1577(
         this.pointer, _sel_setVideoPlayerDidInitializeHandler_, value.pointer);
   }
 
@@ -105032,7 +105057,7 @@ class FVPBlockAdapterVideoPlayerDelegate extends objc.NSObject {
   objc.ObjCBlock<ffi.Void Function(objc.NSString)>
       get videoPlayerDidErrorHandler {
     final _ret =
-        _objc_msgSend_1576(this.pointer, _sel_videoPlayerDidErrorHandler);
+        _objc_msgSend_1578(this.pointer, _sel_videoPlayerDidErrorHandler);
     return ObjCBlock_ffiVoid_NSString.castFromPointer(_ret,
         retain: true, release: true);
   }
@@ -105040,26 +105065,26 @@ class FVPBlockAdapterVideoPlayerDelegate extends objc.NSObject {
   /// setVideoPlayerDidErrorHandler:
   set videoPlayerDidErrorHandler(
       objc.ObjCBlock<ffi.Void Function(objc.NSString)> value) {
-    return _objc_msgSend_1577(
+    return _objc_msgSend_1579(
         this.pointer, _sel_setVideoPlayerDidErrorHandler_, value.pointer);
   }
 
   /// videoPlayerDidCompleteHandler
   objc.ObjCBlock<ffi.Void Function()> get videoPlayerDidCompleteHandler {
     final _ret =
-        _objc_msgSend_1578(this.pointer, _sel_videoPlayerDidCompleteHandler);
+        _objc_msgSend_1580(this.pointer, _sel_videoPlayerDidCompleteHandler);
     return ObjCBlock_ffiVoid.castFromPointer(_ret, retain: true, release: true);
   }
 
   /// setVideoPlayerDidCompleteHandler:
   set videoPlayerDidCompleteHandler(objc.ObjCBlock<ffi.Void Function()> value) {
-    return _objc_msgSend_1579(
+    return _objc_msgSend_1581(
         this.pointer, _sel_setVideoPlayerDidCompleteHandler_, value.pointer);
   }
 
   /// videoPlayerDidStartBufferingHandler
   objc.ObjCBlock<ffi.Void Function()> get videoPlayerDidStartBufferingHandler {
-    final _ret = _objc_msgSend_1578(
+    final _ret = _objc_msgSend_1580(
         this.pointer, _sel_videoPlayerDidStartBufferingHandler);
     return ObjCBlock_ffiVoid.castFromPointer(_ret, retain: true, release: true);
   }
@@ -105067,13 +105092,13 @@ class FVPBlockAdapterVideoPlayerDelegate extends objc.NSObject {
   /// setVideoPlayerDidStartBufferingHandler:
   set videoPlayerDidStartBufferingHandler(
       objc.ObjCBlock<ffi.Void Function()> value) {
-    return _objc_msgSend_1579(this.pointer,
+    return _objc_msgSend_1581(this.pointer,
         _sel_setVideoPlayerDidStartBufferingHandler_, value.pointer);
   }
 
   /// videoPlayerDidEndBufferingHandler
   objc.ObjCBlock<ffi.Void Function()> get videoPlayerDidEndBufferingHandler {
-    final _ret = _objc_msgSend_1578(
+    final _ret = _objc_msgSend_1580(
         this.pointer, _sel_videoPlayerDidEndBufferingHandler);
     return ObjCBlock_ffiVoid.castFromPointer(_ret, retain: true, release: true);
   }
@@ -105081,14 +105106,14 @@ class FVPBlockAdapterVideoPlayerDelegate extends objc.NSObject {
   /// setVideoPlayerDidEndBufferingHandler:
   set videoPlayerDidEndBufferingHandler(
       objc.ObjCBlock<ffi.Void Function()> value) {
-    return _objc_msgSend_1579(this.pointer,
+    return _objc_msgSend_1581(this.pointer,
         _sel_setVideoPlayerDidEndBufferingHandler_, value.pointer);
   }
 
   /// videoPlayerDidUpdateBufferRegionsHandler
   objc.ObjCBlock<ffi.Void Function(AVPlayerItem)>
       get videoPlayerDidUpdateBufferRegionsHandler {
-    final _ret = _objc_msgSend_1580(
+    final _ret = _objc_msgSend_1582(
         this.pointer, _sel_videoPlayerDidUpdateBufferRegionsHandler);
     return ObjCBlock_ffiVoid_AVPlayerItem.castFromPointer(_ret,
         retain: true, release: true);
@@ -105097,7 +105122,7 @@ class FVPBlockAdapterVideoPlayerDelegate extends objc.NSObject {
   /// setVideoPlayerDidUpdateBufferRegionsHandler:
   set videoPlayerDidUpdateBufferRegionsHandler(
       objc.ObjCBlock<ffi.Void Function(AVPlayerItem)> value) {
-    return _objc_msgSend_1581(this.pointer,
+    return _objc_msgSend_1583(this.pointer,
         _sel_setVideoPlayerDidUpdateBufferRegionsHandler_, value.pointer);
   }
 
@@ -105105,7 +105130,7 @@ class FVPBlockAdapterVideoPlayerDelegate extends objc.NSObject {
   objc.ObjCBlock<ffi.Void Function(ffi.Bool)>
       get videoPlayerDidSetPlayingHandler {
     final _ret =
-        _objc_msgSend_1582(this.pointer, _sel_videoPlayerDidSetPlayingHandler);
+        _objc_msgSend_1584(this.pointer, _sel_videoPlayerDidSetPlayingHandler);
     return ObjCBlock_ffiVoid_bool.castFromPointer(_ret,
         retain: true, release: true);
   }
@@ -105113,7 +105138,7 @@ class FVPBlockAdapterVideoPlayerDelegate extends objc.NSObject {
   /// setVideoPlayerDidSetPlayingHandler:
   set videoPlayerDidSetPlayingHandler(
       objc.ObjCBlock<ffi.Void Function(ffi.Bool)> value) {
-    return _objc_msgSend_1583(
+    return _objc_msgSend_1585(
         this.pointer, _sel_setVideoPlayerDidSetPlayingHandler_, value.pointer);
   }
 
@@ -105326,7 +105351,7 @@ extension ObjCBlock_ffiVoid_Int64_CGSize_CallExtension
 
 late final _sel_videoPlayerDidInitializeHandler =
     objc.registerName("videoPlayerDidInitializeHandler");
-final _objc_msgSend_1574 = objc.msgSendPointer
+final _objc_msgSend_1576 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCBlockImpl> Function(
@@ -105337,7 +105362,7 @@ final _objc_msgSend_1574 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_setVideoPlayerDidInitializeHandler_ =
     objc.registerName("setVideoPlayerDidInitializeHandler:");
-final _objc_msgSend_1575 = objc.msgSendPointer
+final _objc_msgSend_1577 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -105458,7 +105483,7 @@ extension ObjCBlock_ffiVoid_NSString_CallExtension
 
 late final _sel_videoPlayerDidErrorHandler =
     objc.registerName("videoPlayerDidErrorHandler");
-final _objc_msgSend_1576 = objc.msgSendPointer
+final _objc_msgSend_1578 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCBlockImpl> Function(
@@ -105469,7 +105494,7 @@ final _objc_msgSend_1576 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_setVideoPlayerDidErrorHandler_ =
     objc.registerName("setVideoPlayerDidErrorHandler:");
-final _objc_msgSend_1577 = objc.msgSendPointer
+final _objc_msgSend_1579 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -105481,7 +105506,7 @@ final _objc_msgSend_1577 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCBlockImpl>)>();
 late final _sel_videoPlayerDidCompleteHandler =
     objc.registerName("videoPlayerDidCompleteHandler");
-final _objc_msgSend_1578 = objc.msgSendPointer
+final _objc_msgSend_1580 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCBlockImpl> Function(
@@ -105492,7 +105517,7 @@ final _objc_msgSend_1578 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_setVideoPlayerDidCompleteHandler_ =
     objc.registerName("setVideoPlayerDidCompleteHandler:");
-final _objc_msgSend_1579 = objc.msgSendPointer
+final _objc_msgSend_1581 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -105621,7 +105646,7 @@ extension ObjCBlock_ffiVoid_AVPlayerItem_CallExtension
 
 late final _sel_videoPlayerDidUpdateBufferRegionsHandler =
     objc.registerName("videoPlayerDidUpdateBufferRegionsHandler");
-final _objc_msgSend_1580 = objc.msgSendPointer
+final _objc_msgSend_1582 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCBlockImpl> Function(
@@ -105632,7 +105657,7 @@ final _objc_msgSend_1580 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_setVideoPlayerDidUpdateBufferRegionsHandler_ =
     objc.registerName("setVideoPlayerDidUpdateBufferRegionsHandler:");
-final _objc_msgSend_1581 = objc.msgSendPointer
+final _objc_msgSend_1583 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -105644,7 +105669,7 @@ final _objc_msgSend_1581 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCBlockImpl>)>();
 late final _sel_videoPlayerDidSetPlayingHandler =
     objc.registerName("videoPlayerDidSetPlayingHandler");
-final _objc_msgSend_1582 = objc.msgSendPointer
+final _objc_msgSend_1584 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCBlockImpl> Function(
@@ -105655,7 +105680,7 @@ final _objc_msgSend_1582 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_setVideoPlayerDidSetPlayingHandler_ =
     objc.registerName("setVideoPlayerDidSetPlayingHandler:");
-final _objc_msgSend_1583 = objc.msgSendPointer
+final _objc_msgSend_1585 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
