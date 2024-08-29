@@ -48,49 +48,8 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
 
   @override
   Future<int?> create(DataSource dataSource) async {
-    String? uri;
-    Map<String, String> httpHeaders = <String, String>{};
-    switch (dataSource.sourceType) {
-      case DataSourceType.asset:
-        final String? asset = dataSource.asset;
-        if (asset == null) {
-          throw ArgumentError('"asset" must be set for DataSourceType.asset');
-        }
-        final String? assetPath =
-            await _api.pathForAsset(asset, dataSource.package);
-        if (assetPath == null) {
-          throw ArgumentError(
-              'Unable to load "$asset" from package "${dataSource.package}"');
-        }
-        uri = Uri.file(assetPath).toString();
-      case DataSourceType.network:
-        uri = dataSource.uri;
-        httpHeaders = dataSource.httpHeaders;
-      case DataSourceType.file:
-        uri = dataSource.uri;
-      case DataSourceType.contentUri:
-        throw UnsupportedError(
-            'Content URIs are not supported on this platform');
-    }
-    if (uri == null) {
-      throw UnimplementedError(
-          'Unsupported source type: ${dataSource.sourceType}');
-    }
-
+    final AVURLAsset asset = await _assetForDataSource(dataSource);
     final int nativeViewProviderPointer = await _api.getViewProviderPointer();
-
-    final NSURL? nsurl = NSURL.URLWithString_(NSString(uri));
-    if (nsurl == null) {
-      throw PlatformException(
-          code: 'player initialization', message: 'Failed to create NSURL');
-    }
-    NSDictionary? options;
-    if (httpHeaders.isNotEmpty) {
-      options = _convertMap(
-          <String?, Object>{'AVURLAssetHTTPHeaderFieldsKey': httpHeaders});
-    }
-    final AVURLAsset asset =
-        AVURLAsset.URLAssetWithURL_options_(nsurl, options);
     final _VideoPlayer player = _VideoPlayer(asset, nativeViewProviderPointer);
 
     final int textureId =
@@ -162,6 +121,48 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
             _lib.AVAudioSessionCategoryPlayback, ffi.nullptr);
       }
     }
+  }
+
+  Future<AVURLAsset> _assetForDataSource(DataSource source) async {
+    String? uri;
+    Map<String, String> httpHeaders = <String, String>{};
+    switch (source.sourceType) {
+      case DataSourceType.asset:
+        final String? asset = source.asset;
+        if (asset == null) {
+          throw ArgumentError('"asset" must be set for DataSourceType.asset');
+        }
+        final String? assetPath =
+            await _api.pathForAsset(asset, source.package);
+        if (assetPath == null) {
+          throw ArgumentError(
+              'Unable to load "$asset" from package "${source.package}"');
+        }
+        uri = Uri.file(assetPath).toString();
+      case DataSourceType.network:
+        uri = source.uri;
+        httpHeaders = source.httpHeaders;
+      case DataSourceType.file:
+        uri = source.uri;
+      case DataSourceType.contentUri:
+        throw UnsupportedError(
+            'Content URIs are not supported on this platform');
+    }
+    if (uri == null) {
+      throw UnimplementedError('Unsupported source type: ${source.sourceType}');
+    }
+
+    final NSURL? nsurl = NSURL.URLWithString_(NSString(uri));
+    if (nsurl == null) {
+      throw PlatformException(
+          code: 'player initialization', message: 'Failed to create NSURL');
+    }
+    NSDictionary? options;
+    if (httpHeaders.isNotEmpty) {
+      options = _convertMap(
+          <String?, Object>{'AVURLAssetHTTPHeaderFieldsKey': httpHeaders});
+    }
+    return AVURLAsset.URLAssetWithURL_options_(nsurl, options);
   }
 
   _VideoPlayer _playerForTexture(int textureId) {
