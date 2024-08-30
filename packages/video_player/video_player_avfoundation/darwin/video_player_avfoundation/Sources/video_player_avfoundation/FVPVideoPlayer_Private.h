@@ -41,10 +41,6 @@
 /// Until this is called, the player will not display any content, even if playing.
 - (void)configureDisplayWithAvailableFrameCallback:(void (^)())frameAvailable;
 
-// Tells the player to run its frame updater until it receives a frame, regardless of the
-// play/pause state.
-- (void)expectFrame;
-
 /// Informs the player that it won't be used from Dart any more and that it should clean up
 /// related resources.
 - (void)dispose;

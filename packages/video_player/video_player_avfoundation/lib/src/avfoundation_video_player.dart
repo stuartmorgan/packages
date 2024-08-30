@@ -246,12 +246,34 @@ class _VideoPlayer {
     nativePlayer.player.rate = clamped;
   }
 
-  Future<void> seekTo(Duration position) {
+  Future<void> seekTo(Duration targetPosition) {
+    // Work around https://github.com/dart-lang/native/issues/1480 by using
+    // position instead of the raw CMTime from player.currentTime.
+    final Duration previousPosition = position;
+    final CMTime targetCMTime =
+        _lib.CMTimeMake(targetPosition.inMilliseconds, 1000);
+    // Without adding tolerance when seeking to duration,
+    // seekToTime will never complete, and this call will hang.
+    // see issue https://github.com/flutter/flutter/issues/124475.
+    final CMTime tolerance = targetPosition == duration
+        ? _lib.CMTimeMake(1, 1000)
+        : _lib.kCMTimeZero;
     final Completer<void> seekFinished = Completer<void>();
-    nativePlayer.seekTo_completionHandler_(
-        position.inMilliseconds,
-        ObjCBlock_ffiVoid_bool.listener(
-            (bool succeeded) => seekFinished.complete()));
+    nativePlayer.player
+        .seekToTime_toleranceBefore_toleranceAfter_completionHandler_(
+            targetCMTime, tolerance, tolerance,
+            ObjCBlock_ffiVoid_bool.listener((bool completed) {
+      if (position != previousPosition) {
+        // Ensure that a frame is drawn once available, even if currently paused. In theory a race
+        // is possible here where the new frame has already drawn by the time this code runs, and
+        // the display link stays on indefinitely, but that should be relatively harmless. This
+        // must use the display link rather than just informing the engine that a new frame is
+        // available because the seek completing doesn't guarantee that the pixel buffer is
+        // already available.
+        nativePlayer.expectFrame();
+      }
+      seekFinished.complete();
+    }));
     return seekFinished.future;
   }
 

@@ -40,10 +40,8 @@
                          AVFactory:(id<FVPAVFactory>)avFactory
                 displayLinkFactory:(id<FVPDisplayLinkFactory>)displayLinkFactory;
 
-- (void)play;
-
-- (void)pause;
-
-- (void)seekTo:(int64_t)location completionHandler:(void (^)(BOOL))completionHandler;
+// Tells the player to run its frame updater until it receives a frame, regardless of the
+// play/pause state.
+- (void)expectFrame;
 
 @end

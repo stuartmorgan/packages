@@ -21,6 +21,9 @@ objc-interfaces:
     - 'FVPDefaultDisplayLinkFactory'
     - 'FVPVideoPlayer'
     - 'FVPBlockAdapterVideoPlayerDelegate'
+functions:
+  include:
+    - 'CMTimeMake'
 enums:
   include:
     - 'AVAudioSessionCategoryOptions'
@@ -28,3 +31,4 @@ globals:
   include:
     - 'AVAudioSessionCategoryPlayback'
     - 'AVMediaTypeVideo'
+    - 'kCMTimeZero'
