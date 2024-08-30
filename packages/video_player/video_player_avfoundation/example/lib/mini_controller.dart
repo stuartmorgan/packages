@@ -315,7 +315,7 @@ class MiniController extends ValueNotifier<VideoPlayerValue> {
       await _platform.play(_textureId);
 
       _timer = Timer.periodic(
-        const Duration(milliseconds: 500),
+        const Duration(milliseconds: 10),
         (Timer timer) async {
           final Duration? newPosition = await position;
           if (newPosition == null) {
