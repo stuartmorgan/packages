@@ -33,15 +33,8 @@
 // A callback to call during 'dispose'.
 @property(nonatomic, copy, nullable) void (^onDisposed)();
 @property(nonatomic) CGAffineTransform preferredTransform;
-@property(nonatomic, readonly) BOOL isInitialized;
 // The updater that drives callbacks to the engine to indicate that a new frame is ready.
 @property(nonatomic) FVPFrameUpdater *frameUpdater;
-// The display link that drives frameUpdater.
-@property(nonatomic) FVPDisplayLink *displayLink;
-// Whether a new frame needs to be provided to the engine regardless of the current play/pause state
-// (e.g., after a seek while paused). If YES, the display link should continue to run until the next
-// frame is successfully provided.
-@property(nonatomic, assign) BOOL waitingForFrame;
 
 /// Configures the player to display with the given frame callback.
 ///

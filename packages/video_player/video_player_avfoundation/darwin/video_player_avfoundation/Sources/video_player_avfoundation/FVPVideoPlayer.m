@@ -227,8 +227,7 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
         break;
       case AVPlayerItemStatusReadyToPlay:
         [item addOutput:_videoOutput];
-        [self reportInitializedIfReadyToPlay];
-        [self updatePlayingState];
+        [self.delegate videoPlayerMayBeInitialized];
         break;
     }
   } else if (context == presentationSizeContext || context == durationContext) {
@@ -237,8 +236,7 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
       // Due to an apparent bug, when the player item is ready, it still may not have determined
       // its presentation size or duration. When these properties are finally set, re-check if
       // all required properties and instantiate the event sink if it is not already set up.
-      [self reportInitializedIfReadyToPlay];
-      [self updatePlayingState];
+      [self.delegate videoPlayerMayBeInitialized];
     }
   } else if (context == playbackLikelyToKeepUpContext) {
     AVPlayerItem *item = (AVPlayerItem *)object;
@@ -257,70 +255,17 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
 }
 
 - (void)updatePlayingState {
-  if (!_isInitialized) {
+  if (!self.initialized) {
     return;
   }
-  if (_isPlaying) {
+  if (self.playing) {
     [_player play];
   } else {
     [_player pause];
   }
   // If the texture is still waiting for an expected frame, the display link needs to keep
   // running until it arrives regardless of the play/pause state.
-  _displayLink.running = _isPlaying || self.waitingForFrame;
-}
-
-- (void)reportInitializedIfReadyToPlay {
-  if (!_isInitialized) {
-    AVPlayerItem *currentItem = self.player.currentItem;
-    CGSize size = currentItem.presentationSize;
-
-    // Wait until tracks are loaded to check duration or if there are any videos.
-    AVAsset *asset = currentItem.asset;
-    if ([asset statusOfValueForKey:@"tracks" error:nil] != AVKeyValueStatusLoaded) {
-      void (^trackCompletionHandler)(void) = ^{
-        if ([asset statusOfValueForKey:@"tracks" error:nil] != AVKeyValueStatusLoaded) {
-          // Cancelled, or something failed.
-          return;
-        }
-        // This completion block will run on an AVFoundation background queue.
-        // Hop back to the main thread to set up event sink.
-        [self performSelector:_cmd onThread:NSThread.mainThread withObject:self waitUntilDone:NO];
-      };
-      [asset loadValuesAsynchronouslyForKeys:@[ @"tracks" ]
-                           completionHandler:trackCompletionHandler];
-      return;
-    }
-
-    BOOL hasVideoTracks = [asset tracksWithMediaType:AVMediaTypeVideo].count != 0;
-    BOOL hasNoTracks = asset.tracks.count == 0;
-
-    // The player has not yet initialized when it has no size, unless it is an audio-only track.
-    // HLS m3u8 video files never load any tracks, and are also not yet initialized until they have
-    // a size.
-    if ((hasVideoTracks || hasNoTracks) && size.height == CGSizeZero.height &&
-        size.width == CGSizeZero.width) {
-      return;
-    }
-    // The player may be initialized but still needs to determine the duration.
-    int64_t duration = [self duration];
-    if (duration == 0) {
-      return;
-    }
-
-    _isInitialized = YES;
-    [self.delegate videoPlayerDidInitializeWithDuration:duration size:size];
-  }
-}
-
-- (void)play {
-  _isPlaying = YES;
-  [self updatePlayingState];
-}
-
-- (void)pause {
-  _isPlaying = NO;
-  [self updatePlayingState];
+  _displayLink.running = self.playing || self.waitingForFrame;
 }
 
 - (int64_t)duration {
@@ -364,6 +309,7 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
 }
 
 - (CVPixelBufferRef)copyPixelBuffer {
+  // TODO(stuartmorgan): Fix the threading here; this is method is not called on the main thread.
   CVPixelBufferRef buffer = NULL;
   CMTime outputItemTime = [_videoOutput itemTimeForHostTime:CACurrentMediaTime()];
   if ([_videoOutput hasNewPixelBufferForItemTime:outputItemTime]) {
@@ -377,14 +323,18 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
     }
   }
 
-  if (self.waitingForFrame && buffer) {
-    self.waitingForFrame = NO;
-    // If the display link was only running temporarily to pick up a new frame while the video was
-    // paused, stop it again.
-    if (!self.isPlaying) {
-      self.displayLink.running = NO;
+  BOOL returnedBuffer = buffer != NULL;
+
+  dispatch_async(dispatch_get_main_queue(), ^{
+    if (self.waitingForFrame && returnedBuffer) {
+      self.waitingForFrame = NO;
+      // If the display link was only running temporarily to pick up a new frame while the video was
+      // paused, stop it again.
+      if (!self.playing) {
+        self.displayLink.running = NO;
+      }
     }
-  }
+  });
 
   return buffer;
 }

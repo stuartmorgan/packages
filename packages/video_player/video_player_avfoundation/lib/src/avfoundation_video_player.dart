@@ -189,7 +189,8 @@ class _VideoPlayer {
             avFactory,
             displayLinkFactory);
     _eventAdapter = _DelegateEventAdapter(nativePlayer,
-        onPlaybackCompleted: onPlaybackCompleted);
+        checkInitializationStatus: _checkInitializationStatus,
+        onPlaybackCompleted: _onPlaybackCompleted);
   }
 
   late final FVPVideoPlayer nativePlayer;
@@ -206,11 +207,19 @@ class _VideoPlayer {
   bool looping = false;
 
   void play() {
-    nativePlayer.play();
+    nativePlayer.playing = true;
+    if (nativePlayer.initialized) {
+      nativePlayer.player.play();
+      nativePlayer.displayLink.running = true;
+    }
   }
 
   void pause() {
-    nativePlayer.pause();
+    nativePlayer.playing = false;
+    if (nativePlayer.initialized) {
+      nativePlayer.player.pause();
+      nativePlayer.displayLink.running = nativePlayer.waitingForFrame;
+    }
   }
 
   set volume(double volume) {
@@ -255,7 +264,82 @@ class _VideoPlayer {
     return Duration(milliseconds: milliseconds);
   }
 
-  void onPlaybackCompleted() {
+  Duration get duration {
+    // Note: https://openradar.appspot.com/radar?id=4968600712511488
+    // `[AVPlayerItem duration]` can be `kCMTimeIndefinite`,
+    // use `[[AVPlayerItem asset] duration]` instead.
+    final AVPlayerItem? currentItem = nativePlayer.player.currentItem;
+    if (currentItem == null) {
+      return Duration.zero;
+    }
+    // Work around https://github.com/dart-lang/native/issues/1480
+    final ffi.Pointer<CMTime> currentTimePtr = calloc<CMTime>();
+    currentItem.asset.getDuration(currentTimePtr);
+    final int milliseconds = _millisecondsFromCMTime(currentTimePtr.ref);
+    calloc.free(currentTimePtr);
+    return Duration(milliseconds: milliseconds);
+  }
+
+  void _checkInitializationStatus() {
+    if (nativePlayer.initialized) {
+      return;
+    }
+    final AVPlayerItem? currentItem = nativePlayer.player.currentItem;
+    if (currentItem == null) {
+      return;
+    }
+    // Work around https://github.com/dart-lang/native/issues/1480
+    final ffi.Pointer<CGSize> sizePtr = calloc<CGSize>();
+    currentItem.getPresentationSize(sizePtr);
+    final Size size = Size(sizePtr.ref.width, sizePtr.ref.height);
+    calloc.free(sizePtr);
+
+    // Wait until tracks are loaded to check duration or if there are any videos.
+    final AVAsset asset = currentItem.asset;
+    if (asset.statusOfValueForKey_error_(NSString('tracks'), ffi.nullptr) !=
+        AVKeyValueStatus.AVKeyValueStatusLoaded) {
+      asset.loadValuesAsynchronouslyForKeys_completionHandler_(
+          _convertList(<String>['tracks']), ObjCBlock_ffiVoid.listener(() {
+        if (asset.statusOfValueForKey_error_(NSString('tracks'), ffi.nullptr) !=
+            AVKeyValueStatus.AVKeyValueStatusLoaded) {
+          // Cancelled, or something failed.
+          return;
+        }
+        _checkInitializationStatus();
+      }));
+      return;
+    }
+
+    final bool hasVideoTracks =
+        asset.tracksWithMediaType_(_lib.AVMediaTypeVideo).count != 0;
+    final bool hasTracks = asset.tracks.count != 0;
+
+    // The player has not yet initialized when it has no size, unless it is an audio-only track.
+    // HLS m3u8 video files never load any tracks, and are also not yet initialized until they have
+    // a size.
+    if ((hasVideoTracks || !hasTracks) && size.height == 0 && size.width == 0) {
+      return;
+    }
+    // The player may be initialized but still needs to determine the duration.
+    final Duration duration = this.duration;
+    if (duration == Duration.zero) {
+      return;
+    }
+
+    nativePlayer.initialized = true;
+    _eventAdapter?.streamController.add(VideoEvent(
+      eventType: VideoEventType.initialized,
+      duration: duration,
+      size: size,
+    ));
+    // If the player had a pending play state, start playing.
+    // TDOO(stuartmorgan): Give this bool a better name when moving it.
+    if (nativePlayer.playing) {
+      play();
+    }
+  }
+
+  void _onPlaybackCompleted() {
     if (looping) {
       seekTo(Duration.zero);
     } else {
@@ -268,13 +352,13 @@ class _VideoPlayer {
 
 class _DelegateEventAdapter {
   _DelegateEventAdapter(FVPVideoPlayer player,
-      {void Function()? onPlaybackCompleted}) {
+      {required void Function() checkInitializationStatus,
+      void Function()? onPlaybackCompleted}) {
     final FVPBlockAdapterVideoPlayerDelegate delegate =
         FVPBlockAdapterVideoPlayerDelegate.alloc().init();
-    delegate.videoPlayerDidInitializeHandler =
-        ObjCBlock_ffiVoid_Int64_CGSize.listener((int duration, CGSize size) {
-      onInitialized(
-          Duration(milliseconds: duration), Size(size.width, size.height));
+    delegate.videoPlayerMayBeInitializedHandler =
+        ObjCBlock_ffiVoid.listener(() {
+      checkInitializationStatus();
     });
     delegate.videoPlayerDidCompleteHandler = ObjCBlock_ffiVoid.listener(() {
       if (onPlaybackCompleted != null) {
@@ -311,14 +395,6 @@ class _DelegateEventAdapter {
       StreamController<VideoEvent>.broadcast();
 
   Stream<VideoEvent> get stream => streamController.stream;
-
-  void onInitialized(Duration duration, Size size) {
-    streamController.add(VideoEvent(
-      eventType: VideoEventType.initialized,
-      duration: duration,
-      size: size,
-    ));
-  }
 
   void onBufferingStarted() {
     streamController.add(VideoEvent(eventType: VideoEventType.bufferingStart));
@@ -455,5 +531,58 @@ extension _NSValueAVFoundationExtensions on NSValue {
   // ignore: non_constant_identifier_names
   CMTimeRange get CMTimeRangeValue {
     return _objcMsgSendCMTimeRangeValue(pointer, _selCMTimeRangeValue);
+  }
+}
+
+// https://github.com/dart-lang/native/issues/1487
+final ffi.Pointer<ObjCSelector> _selStatusOfValueForKeyError =
+    registerName('statusOfValueForKey:error:');
+// ignore: always_specify_types
+final _objcMsgSendStatusOfValueForKeyError = msgSendPointer
+    .cast<
+        ffi.NativeFunction<
+            ffi.UnsignedLong Function(
+                ffi.Pointer<ObjCObject>,
+                ffi.Pointer<ObjCSelector>,
+                ffi.Pointer<ObjCObject>,
+                ffi.Pointer<ffi.Pointer<ObjCObject>>)>>()
+    .asFunction<
+        int Function(ffi.Pointer<ObjCObject>, ffi.Pointer<ObjCSelector>,
+            ffi.Pointer<ObjCObject>, ffi.Pointer<ffi.Pointer<ObjCObject>>)>();
+final ffi.Pointer<ObjCSelector>
+    _selLoadValuesAsynchronouslyForKeysCompletionHandler =
+    registerName('loadValuesAsynchronouslyForKeys:completionHandler:');
+// ignore: always_specify_types
+final _objcMsgSendLoadValuesAsynchronouslyForKeysCompletionHandler =
+    msgSendPointer
+        .cast<
+            ffi.NativeFunction<
+                ffi.Void Function(
+                    ffi.Pointer<ObjCObject>,
+                    ffi.Pointer<ObjCSelector>,
+                    ffi.Pointer<ObjCObject>,
+                    ffi.Pointer<ObjCBlockImpl>)>>()
+        .asFunction<
+            void Function(ffi.Pointer<ObjCObject>, ffi.Pointer<ObjCSelector>,
+                ffi.Pointer<ObjCObject>, ffi.Pointer<ObjCBlockImpl>)>();
+
+extension _AVAsynchronousKeyValueLoading on AVAsset {
+  // ignore: non_constant_identifier_names
+  AVKeyValueStatus statusOfValueForKey_error_(
+      NSString key, ffi.Pointer<ffi.Pointer<ObjCObject>> outError) {
+    // ignore: always_specify_types
+    final ret = _objcMsgSendStatusOfValueForKeyError(
+        pointer, _selStatusOfValueForKeyError, key.pointer, outError);
+    return AVKeyValueStatus.fromValue(ret);
+  }
+
+  // ignore: non_constant_identifier_names
+  void loadValuesAsynchronouslyForKeys_completionHandler_(
+      NSArray keys, ObjCBlock<ffi.Void Function()>? handler) {
+    _objcMsgSendLoadValuesAsynchronouslyForKeysCompletionHandler(
+        pointer,
+        _selLoadValuesAsynchronouslyForKeysCompletionHandler,
+        keys.pointer,
+        handler?.pointer ?? ffi.nullptr);
   }
 }

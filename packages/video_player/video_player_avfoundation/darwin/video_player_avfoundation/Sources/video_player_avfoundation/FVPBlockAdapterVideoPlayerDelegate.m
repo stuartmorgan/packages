@@ -12,8 +12,8 @@
 // fine for temporary code.
 #pragma mark FVPVideoPlayerDelegate
 
-- (void)videoPlayerDidInitializeWithDuration:(int64_t)duration size:(CGSize)size {
-  self.videoPlayerDidInitializeHandler(duration, size);
+- (void)videoPlayerMayBeInitialized {
+  self.videoPlayerMayBeInitializedHandler();
 }
 
 - (void)videoPlayerDidErrorWithMessage:(NSString *)errorMessage {

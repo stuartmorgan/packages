@@ -11,7 +11,9 @@
 /// disconnected from implementation details specific to the plugin system.
 @protocol FVPVideoPlayerDelegate <NSObject>
 @required
-- (void)videoPlayerDidInitializeWithDuration:(int64_t)duration size:(CGSize)size;
+// Called when there's a state change that should trigger a re-check of whether the player is
+// now ready.
+- (void)videoPlayerMayBeInitialized;
 - (void)videoPlayerDidErrorWithMessage:(NSString *)errorMessage;
 /// Called when the video player plays to the end and then stops (i.e., looping is not enabled).
 - (void)videoPlayerDidComplete;

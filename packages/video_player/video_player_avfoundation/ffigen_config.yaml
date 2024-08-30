@@ -27,3 +27,4 @@ enums:
 globals:
   include:
     - 'AVAudioSessionCategoryPlayback'
+    - 'AVMediaTypeVideo'

@@ -5,6 +5,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <Foundation/Foundation.h>
 
+#import "FVPDisplayLink.h"
 #import "FVPVideoPlayerDelegate.h"
 #import "InjectionProtocols.h"
 
@@ -18,11 +19,21 @@
 // an object we need to keep around.
 @property(nonatomic, strong) id<FVPVideoPlayerDelegate> delegate;
 
+// The display link that drives frameUpdater.
+@property(nonatomic, strong) FVPDisplayLink *displayLink;
+
 @property(nonatomic, strong) AVPlayer *player;
 
 @property(nonatomic, readonly) BOOL disposed;
 
-@property(nonatomic, readonly) BOOL isPlaying;
+@property(nonatomic, assign) BOOL initialized;
+
+@property(nonatomic, assign) BOOL playing;
+
+// Whether a new frame needs to be provided to the engine regardless of the current play/pause state
+// (e.g., after a seek while paused). If YES, the display link should continue to run until the next
+// frame is successfully provided.
+@property(nonatomic, assign) BOOL waitingForFrame;
 
 - (instancetype)initWithPlayerItem:(AVPlayerItem *)item
                       viewProvider:(id<FVPViewProvider>)viewProvider
