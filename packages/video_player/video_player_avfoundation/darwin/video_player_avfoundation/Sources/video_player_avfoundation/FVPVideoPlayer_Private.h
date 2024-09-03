@@ -27,12 +27,9 @@
 // for issue #1, and restore the correct width and height for issue #2.
 @property(nonatomic) AVPlayerLayer *playerLayer;
 
-@property(readonly, nonatomic) AVPlayerItemVideoOutput *videoOutput;
 /// Provides access to the enclosing Flutter view.
 @property(nonatomic) id<FVPViewProvider> viewProvider;
-// A callback to call during 'dispose'.
-@property(nonatomic, copy, nullable) void (^onDisposed)();
-@property(nonatomic) CGAffineTransform preferredTransform;
+
 // The updater that drives callbacks to the engine to indicate that a new frame is ready.
 @property(nonatomic) FVPFrameUpdater *frameUpdater;
 
@@ -41,7 +38,4 @@
 /// Until this is called, the player will not display any content, even if playing.
 - (void)configureDisplayWithAvailableFrameCallback:(void (^)())frameAvailable;
 
-/// Informs the player that it won't be used from Dart any more and that it should clean up
-/// related resources.
-- (void)dispose;
 @end

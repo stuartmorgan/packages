@@ -22,6 +22,9 @@
 // The display link that drives frameUpdater.
 @property(nonatomic, strong) FVPDisplayLink *displayLink;
 
+// The output to use for items being played.
+@property(nonatomic, strong) AVPlayerItemVideoOutput *videoOutput;
+
 @property(nonatomic, strong) AVPlayer *player;
 
 @property(nonatomic, readonly) BOOL disposed;
@@ -29,6 +32,11 @@
 @property(nonatomic, assign) BOOL initialized;
 
 @property(nonatomic, assign) BOOL playing;
+
+@property(nonatomic, assign) CGAffineTransform preferredTransform;
+
+// A callback to call during 'dispose'.
+@property(nonatomic, copy, nullable) void (^onDisposed)();
 
 // Whether a new frame needs to be provided to the engine regardless of the current play/pause state
 // (e.g., after a seek while paused). If YES, the display link should continue to run until the next
@@ -43,5 +51,9 @@
 // Tells the player to run its frame updater until it receives a frame, regardless of the
 // play/pause state.
 - (void)expectFrame;
+
+/// Informs the player that it won't be used from Dart any more and that it should clean up
+/// related resources.
+- (void)dispose;
 
 @end
