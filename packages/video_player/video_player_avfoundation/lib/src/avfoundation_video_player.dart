@@ -378,36 +378,51 @@ class _DelegateEventAdapter {
       void Function()? onPlaybackCompleted}) {
     final FVPBlockAdapterVideoPlayerDelegate delegate =
         FVPBlockAdapterVideoPlayerDelegate.alloc().init();
-    delegate.videoPlayerMayBeInitializedHandler =
+    delegate.videoPlayerItemDidChangePropertyHandler =
+        ObjCBlock_ffiVoid_AVPlayerItem_FVPItemProperty.listener(
+            (AVPlayerItem playerItem, FVPItemProperty property) {
+      switch (property) {
+        case FVPItemProperty.FVPItemPropertyLoadedTimeRanges:
+          onBufferingUpdated(playerItem);
+        case FVPItemProperty.FVPItemPropertyStatus:
+          switch (playerItem.status) {
+            case AVPlayerItemStatus.AVPlayerItemStatusFailed:
+              _reportError(
+                  'Failed to load video: ${playerItem.error?.localizedDescription}');
+            case AVPlayerItemStatus.AVPlayerItemStatusReadyToPlay:
+              playerItem.addOutput_(player.videoOutput);
+              checkInitializationStatus();
+            case AVPlayerItemStatus.AVPlayerItemStatusUnknown:
+              // No-op; wait for a known status.
+              break;
+          }
+        case FVPItemProperty.FVPItemPropertyPresentationSize:
+        case FVPItemProperty.FVPItemPropertyDuration:
+          if (playerItem.status ==
+              AVPlayerItemStatus.AVPlayerItemStatusReadyToPlay) {
+            // Due to an apparent bug, when the player item is ready, it
+            // still may not have determined its presentation size or
+            // duration. When these properties are finally set, re-check
+            // whether the player is ready.
+            checkInitializationStatus();
+          }
+        case FVPItemProperty.FVPItemPropertyPlaybackLikelyToKeepUp:
+          _updatePlayingState(player);
+          if (playerItem.playbackLikelyToKeepUp) {
+            onBufferingEnded();
+          } else {
+            onBufferingStarted();
+          }
+      }
+    });
+    delegate.videoPlayerDidChangePlaybackRateHandler =
         ObjCBlock_ffiVoid.listener(() {
-      checkInitializationStatus();
+      onPlayStateChanged(player.player.rate > 0);
     });
     delegate.videoPlayerDidCompleteHandler = ObjCBlock_ffiVoid.listener(() {
       if (onPlaybackCompleted != null) {
         onPlaybackCompleted();
       }
-    });
-    delegate.videoPlayerDidUpdateBufferRegionsHandler =
-        ObjCBlock_ffiVoid_AVPlayerItem.listener((AVPlayerItem playerItem) {
-      onBufferingUpdated(playerItem);
-    });
-    delegate.videoPlayerDidStartBufferingHandler =
-        ObjCBlock_ffiVoid.listener(() {
-      onBufferingStarted();
-    });
-    delegate.videoPlayerDidEndBufferingHandler = ObjCBlock_ffiVoid.listener(() {
-      onBufferingEnded();
-    });
-    delegate.videoPlayerDidSetPlayingHandler =
-        ObjCBlock_ffiVoid_bool.listener((bool playing) {
-      onPlayStateChanged(playing);
-    });
-    // TODO(stuartmorgan): Handle errors. Previously they were just turned into
-    // 'unknown' events with no details :| For now, print them for my own
-    // debugging.
-    delegate.videoPlayerDidErrorHandler =
-        ObjCBlock_ffiVoid_NSString.listener((NSString error) {
-      debugPrint(error.toString());
     });
 
     player.delegate = delegate;
@@ -444,6 +459,18 @@ class _DelegateEventAdapter {
     ));
   }
 
+  void _updatePlayingState(FVPVideoPlayer player) {
+    if (!player.initialized) {
+      return;
+    }
+    if (player.playing) {
+      player.player.play();
+    } else {
+      player.player.pause();
+    }
+    player.displayLink.running = player.playing || player.waitingForFrame;
+  }
+
   DurationRange _durationRangeFromTimeRange(CMTimeRange range) {
     final int startMilliseconds = _millisecondsFromCMTime(range.start);
     return DurationRange(
@@ -453,6 +480,13 @@ class _DelegateEventAdapter {
               startMilliseconds + _millisecondsFromCMTime(range.duration)),
     );
   }
+}
+
+void _reportError(String message) {
+  // TODO(stuartmorgan): Handle errors. Previously they were just turned into
+  // 'unknown' events with no details :| For now, print them for my own
+  // debugging.
+  debugPrint(message);
 }
 
 //const String _libName = 'video_player_avfoundation';

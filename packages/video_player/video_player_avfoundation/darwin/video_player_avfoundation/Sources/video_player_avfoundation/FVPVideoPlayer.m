@@ -20,16 +20,6 @@ static void *durationContext = &durationContext;
 static void *playbackLikelyToKeepUpContext = &playbackLikelyToKeepUpContext;
 static void *rateContext = &rateContext;
 
-static const int64_t TIME_UNSET = -9223372036854775807;
-
-NS_INLINE int64_t FVPCMTimeToMillis(CMTime time) {
-  // When CMTIME_IS_INDEFINITE return a value that matches TIME_UNSET from ExoPlayer2 on Android.
-  // Fixes https://github.com/flutter/flutter/issues/48670
-  if (CMTIME_IS_INDEFINITE(time)) return TIME_UNSET;
-  if (time.timescale == 0) return 0;
-  return time.value * 1000 / time.timescale;
-}
-
 NS_INLINE CGFloat FVPRadiansToDegrees(CGFloat radians) {
   // Input range [-pi, pi] or [-180, 180]
   CGFloat degrees = GLKMathRadiansToDegrees((float)radians);
@@ -213,66 +203,21 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
                         change:(NSDictionary *)change
                        context:(void *)context {
   if (context == timeRangeContext) {
-    AVPlayerItem *item = (AVPlayerItem *)object;
-    [self.delegate videoPlayerDidUpdateBufferRegionsForItem:item];
+    [self.delegate videoPlayerItem:((AVPlayerItem *)object)
+                 didChangeProperty:FVPItemPropertyLoadedTimeRanges];
   } else if (context == statusContext) {
-    AVPlayerItem *item = (AVPlayerItem *)object;
-    switch (item.status) {
-      case AVPlayerItemStatusFailed:
-        [self.delegate videoPlayerDidErrorWithMessage:
-                           [@"Failed to load video: "
-                               stringByAppendingString:[item.error localizedDescription]]];
-        break;
-      case AVPlayerItemStatusUnknown:
-        break;
-      case AVPlayerItemStatusReadyToPlay:
-        [item addOutput:_videoOutput];
-        [self.delegate videoPlayerMayBeInitialized];
-        break;
-    }
+    [self.delegate videoPlayerItem:((AVPlayerItem *)object)
+                 didChangeProperty:FVPItemPropertyStatus];
   } else if (context == presentationSizeContext || context == durationContext) {
-    AVPlayerItem *item = (AVPlayerItem *)object;
-    if (item.status == AVPlayerItemStatusReadyToPlay) {
-      // Due to an apparent bug, when the player item is ready, it still may not have determined
-      // its presentation size or duration. When these properties are finally set, re-check if
-      // all required properties and instantiate the event sink if it is not already set up.
-      [self.delegate videoPlayerMayBeInitialized];
-    }
+    [self.delegate videoPlayerItem:((AVPlayerItem *)object)
+                 didChangeProperty:FVPItemPropertyPresentationSize];
   } else if (context == playbackLikelyToKeepUpContext) {
-    AVPlayerItem *item = (AVPlayerItem *)object;
-    [self updatePlayingState];
-    if ([item isPlaybackLikelyToKeepUp]) {
-      [self.delegate videoPlayerDidEndBuffering];
-    } else {
-      [self.delegate videoPlayerDidStartBuffering];
-    }
+    [self.delegate videoPlayerItem:((AVPlayerItem *)object)
+                 didChangeProperty:FVPItemPropertyPlaybackLikelyToKeepUp];
   } else if (context == rateContext) {
-    // Important: Make sure to cast the object to AVPlayer when observing the rate property,
-    // as it is not available in AVPlayerItem.
-    AVPlayer *player = (AVPlayer *)object;
-    [self.delegate videoPlayerDidSetPlaying:(player.rate > 0)];
-  }
-}
-
-- (void)updatePlayingState {
-  if (!self.initialized) {
-    return;
-  }
-  if (self.playing) {
-    [_player play];
+    [self.delegate videoPlayerDidChangePlaybackRate];
   } else {
-    [_player pause];
   }
-  // If the texture is still waiting for an expected frame, the display link needs to keep
-  // running until it arrives regardless of the play/pause state.
-  _displayLink.running = self.playing || self.waitingForFrame;
-}
-
-- (int64_t)duration {
-  // Note: https://openradar.appspot.com/radar?id=4968600712511488
-  // `[AVPlayerItem duration]` can be `kCMTimeIndefinite`,
-  // use `[[AVPlayerItem asset] duration]` instead.
-  return FVPCMTimeToMillis([[[_player currentItem] asset] duration]);
 }
 
 - (void)expectFrame {

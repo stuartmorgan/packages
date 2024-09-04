@@ -418,18 +418,10 @@ wrapListenerBlock_ObjCBlock_ffiVoid_opaqueCMSampleBuffer_AVCaptureBracketedStill
   };
 }
 
-typedef void (^ListenerBlock50)(NSString *);
-ListenerBlock50 wrapListenerBlock_ObjCBlock_ffiVoid_NSString(ListenerBlock50 block)
-    NS_RETURNS_RETAINED {
-  return ^void(NSString *arg0) {
-    block(objc_retain(arg0));
-  };
-}
-
-typedef void (^ListenerBlock51)(AVPlayerItem *);
-ListenerBlock51 wrapListenerBlock_ObjCBlock_ffiVoid_AVPlayerItem(ListenerBlock51 block)
-    NS_RETURNS_RETAINED {
-  return ^void(AVPlayerItem *arg0) {
-    block(objc_retain(arg0));
+typedef void (^ListenerBlock50)(AVPlayerItem *, FVPItemProperty);
+ListenerBlock50 wrapListenerBlock_ObjCBlock_ffiVoid_AVPlayerItem_FVPItemProperty(
+    ListenerBlock50 block) NS_RETURNS_RETAINED {
+  return ^void(AVPlayerItem *arg0, FVPItemProperty arg1) {
+    block(objc_retain(arg0), arg1);
   };
 }

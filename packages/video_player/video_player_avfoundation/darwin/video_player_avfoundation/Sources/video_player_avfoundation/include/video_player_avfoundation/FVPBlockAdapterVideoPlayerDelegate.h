@@ -11,12 +11,9 @@
 /// This is a manual version of what future versions of ffigen will codegen, to unblock exploration.
 @interface FVPBlockAdapterVideoPlayerDelegate : NSObject <FVPVideoPlayerDelegate>
 
-@property(nonatomic) void (^videoPlayerMayBeInitializedHandler)();
-@property(nonatomic) void (^videoPlayerDidErrorHandler)(NSString *message);
+@property(nonatomic) void (^videoPlayerItemDidChangePropertyHandler)
+    (AVPlayerItem *item, FVPItemProperty property);
+@property(nonatomic) void (^videoPlayerDidChangePlaybackRateHandler)();
 @property(nonatomic) void (^videoPlayerDidCompleteHandler)();
-@property(nonatomic) void (^videoPlayerDidStartBufferingHandler)();
-@property(nonatomic) void (^videoPlayerDidEndBufferingHandler)();
-@property(nonatomic) void (^videoPlayerDidUpdateBufferRegionsHandler)(AVPlayerItem *item);
-@property(nonatomic) void (^videoPlayerDidSetPlayingHandler)(BOOL playing);
 
 @end

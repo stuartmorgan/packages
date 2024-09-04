@@ -12,32 +12,16 @@
 // fine for temporary code.
 #pragma mark FVPVideoPlayerDelegate
 
-- (void)videoPlayerMayBeInitialized {
-  self.videoPlayerMayBeInitializedHandler();
+- (void)videoPlayerItem:(AVPlayerItem *)item didChangeProperty:(FVPItemProperty)property {
+  self.videoPlayerItemDidChangePropertyHandler(item, property);
 }
 
-- (void)videoPlayerDidErrorWithMessage:(NSString *)errorMessage {
-  self.videoPlayerDidErrorHandler(errorMessage);
+- (void)videoPlayerDidChangePlaybackRate {
+  self.videoPlayerDidChangePlaybackRateHandler();
 }
 
 - (void)videoPlayerDidComplete {
   self.videoPlayerDidCompleteHandler();
-}
-
-- (void)videoPlayerDidStartBuffering {
-  self.videoPlayerDidStartBufferingHandler();
-}
-
-- (void)videoPlayerDidEndBuffering {
-  self.videoPlayerDidEndBufferingHandler();
-}
-
-- (void)videoPlayerDidUpdateBufferRegionsForItem:(AVPlayerItem *)item {
-  self.videoPlayerDidUpdateBufferRegionsHandler(item);
-}
-
-- (void)videoPlayerDidSetPlaying:(BOOL)playing {
-  self.videoPlayerDidSetPlayingHandler(playing);
 }
 
 @end
