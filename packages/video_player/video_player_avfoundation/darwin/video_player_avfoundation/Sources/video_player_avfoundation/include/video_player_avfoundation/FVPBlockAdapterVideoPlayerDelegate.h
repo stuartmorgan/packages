@@ -14,6 +14,5 @@
 @property(nonatomic) void (^videoPlayerItemDidChangePropertyHandler)
     (AVPlayerItem *item, FVPItemProperty property);
 @property(nonatomic) void (^videoPlayerDidChangePlaybackRateHandler)();
-@property(nonatomic) void (^videoPlayerDidCompleteHandler)();
 
 @end

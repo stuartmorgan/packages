@@ -59,12 +59,6 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
            forKeyPath:@"rate"
               options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
               context:rateContext];
-
-  // Add an observer that will respond to itemDidPlayToEndTime
-  [[NSNotificationCenter defaultCenter] addObserver:observer
-                                           selector:@selector(itemDidPlayToEndTime:)
-                                               name:AVPlayerItemDidPlayToEndTimeNotification
-                                             object:item];
 }
 
 @implementation FVPVideoPlayer
@@ -156,13 +150,10 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
 
 - (void)dealloc {
   NSAssert([NSThread isMainThread], @"Must be called on main thread");
+  NSLog(@"Dealloc'd");
   if (!_disposed) {
     [self removeKeyValueObservers];
   }
-}
-
-- (void)itemDidPlayToEndTime:(NSNotification *)notification {
-  [self.delegate videoPlayerDidComplete];
 }
 
 - (AVMutableVideoComposition *)getVideoCompositionWithTransform:(CGAffineTransform)transform
@@ -216,7 +207,6 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
                  didChangeProperty:FVPItemPropertyPlaybackLikelyToKeepUp];
   } else if (context == rateContext) {
     [self.delegate videoPlayerDidChangePlaybackRate];
-  } else {
   }
 }
 
@@ -264,7 +254,6 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
   [self removeKeyValueObservers];
 
   [self.player replaceCurrentItemWithPlayerItem:nil];
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
 
   if (self.onDisposed) {
     self.onDisposed();

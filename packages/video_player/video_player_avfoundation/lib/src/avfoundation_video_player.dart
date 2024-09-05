@@ -44,6 +44,12 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
     if (player != null) {
       await _api.disposePlayerPointer(player.nativePlayer.pointer.address);
     }
+    debugPrint('Top-level dispose');
+    // Temporarily removed to ensure that there are no retain loops that
+    // *require* this call.
+    // TODO(stuartmorgan): Re-add this at the end, since dispose at a known time
+    // is better than relying on finalizers in the usual case.
+    //player?.dispose();
   }
 
   @override
@@ -181,6 +187,8 @@ class _VideoPlayer {
     final FVPDefaultAVFactory avFactory = FVPDefaultAVFactory.alloc().init();
     final FVPDefaultDisplayLinkFactory displayLinkFactory =
         FVPDefaultDisplayLinkFactory.alloc().init();
+    final WeakReference<_VideoPlayer> weakSelf =
+        WeakReference<_VideoPlayer>(this);
     nativePlayer = FVPVideoPlayer.alloc()
         .initWithPlayerItem_viewProvider_AVFactory_displayLinkFactory_(
             avItem,
@@ -189,12 +197,34 @@ class _VideoPlayer {
             avFactory,
             displayLinkFactory);
     _eventAdapter = _DelegateEventAdapter(nativePlayer,
-        checkInitializationStatus: _checkInitializationStatus,
-        onPlaybackCompleted: _onPlaybackCompleted);
+        checkInitializationStatus: () =>
+            weakSelf.target?._checkInitializationStatus());
+
+    final ObjCObjectBase registrationToken =
+        NSNotificationCenter.getDefaultCenter()
+            .addObserverForName_object_queue_usingBlock_(
+                _lib.AVPlayerItemDidPlayToEndTimeNotification, avItem, null,
+                ObjCBlock_ffiVoid_NSNotification.listener(
+                    (NSNotification notification) {
+      weakSelf.target?._onPlaybackCompleted();
+    }));
+    _unregistrationFinalizer.attach(this, registrationToken, detach: this);
+    _xxxFinalizer.attach(this, null);
+    _observerRegistrationToken = registrationToken;
   }
+
+  static final Finalizer<ObjCObjectBase> _unregistrationFinalizer =
+      Finalizer<ObjCObjectBase>((ObjCObjectBase token) {
+    NSNotificationCenter.getDefaultCenter().removeObserver_(token);
+  });
+
+  static final Finalizer<void> _xxxFinalizer = Finalizer<void>((_) {
+    debugPrint('Finalized!');
+  });
 
   late final FVPVideoPlayer nativePlayer;
   _DelegateEventAdapter? _eventAdapter;
+  ObjCObjectBase? _observerRegistrationToken;
 
   Stream<VideoEvent> get stream {
     final _DelegateEventAdapter? adapter = _eventAdapter;
@@ -205,6 +235,22 @@ class _VideoPlayer {
   }
 
   bool looping = false;
+
+  void dispose() {
+    debugPrint('disposed!');
+    _unregisterListeners();
+  }
+
+  void _unregisterListeners() {
+    nativePlayer.delegate = null;
+
+    if (_observerRegistrationToken != null) {
+      NSNotificationCenter.getDefaultCenter()
+          .removeObserver_(_observerRegistrationToken!);
+      _unregistrationFinalizer.detach(this);
+      _observerRegistrationToken = null;
+    }
+  }
 
   void play() {
     nativePlayer.playing = true;
@@ -373,17 +419,27 @@ class _VideoPlayer {
 }
 
 class _DelegateEventAdapter {
-  _DelegateEventAdapter(FVPVideoPlayer player,
-      {required void Function() checkInitializationStatus,
-      void Function()? onPlaybackCompleted}) {
+  _DelegateEventAdapter(
+    FVPVideoPlayer player, {
+    required void Function() checkInitializationStatus,
+  }) {
     final FVPBlockAdapterVideoPlayerDelegate delegate =
         FVPBlockAdapterVideoPlayerDelegate.alloc().init();
+    final WeakReference<FVPVideoPlayer> weakPlayer =
+        WeakReference<FVPVideoPlayer>(player);
+    final WeakReference<_DelegateEventAdapter> weakSelf =
+        WeakReference<_DelegateEventAdapter>(this);
     delegate.videoPlayerItemDidChangePropertyHandler =
         ObjCBlock_ffiVoid_AVPlayerItem_FVPItemProperty.listener(
             (AVPlayerItem playerItem, FVPItemProperty property) {
+      final FVPVideoPlayer? player = weakPlayer.target;
+      final _DelegateEventAdapter? self = weakSelf.target;
+      if (self == null || player == null) {
+        return;
+      }
       switch (property) {
         case FVPItemProperty.FVPItemPropertyLoadedTimeRanges:
-          onBufferingUpdated(playerItem);
+          self.onBufferingUpdated(playerItem);
         case FVPItemProperty.FVPItemPropertyStatus:
           switch (playerItem.status) {
             case AVPlayerItemStatus.AVPlayerItemStatusFailed:
@@ -417,12 +473,11 @@ class _DelegateEventAdapter {
     });
     delegate.videoPlayerDidChangePlaybackRateHandler =
         ObjCBlock_ffiVoid.listener(() {
-      onPlayStateChanged(player.player.rate > 0);
-    });
-    delegate.videoPlayerDidCompleteHandler = ObjCBlock_ffiVoid.listener(() {
-      if (onPlaybackCompleted != null) {
-        onPlaybackCompleted();
+      final FVPVideoPlayer? player = weakPlayer.target;
+      if (player == null) {
+        return;
       }
+      onPlayStateChanged(player.player.rate > 0);
     });
 
     player.delegate = delegate;

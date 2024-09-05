@@ -17,7 +17,7 @@
 /// Note that although this is a delegate, this is an owning reference.
 // TODO(stuartmorgan): Change to weak once this is on the Dart side instead of
 // an object we need to keep around.
-@property(nonatomic, strong) id<FVPVideoPlayerDelegate> delegate;
+@property(nonatomic, strong, nullable) id<FVPVideoPlayerDelegate> delegate;
 
 // The display link that drives frameUpdater.
 @property(nonatomic, strong) FVPDisplayLink *displayLink;

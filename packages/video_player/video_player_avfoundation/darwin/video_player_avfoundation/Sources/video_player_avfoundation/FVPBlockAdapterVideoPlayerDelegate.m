@@ -20,8 +20,4 @@
   self.videoPlayerDidChangePlaybackRateHandler();
 }
 
-- (void)videoPlayerDidComplete {
-  self.videoPlayerDidCompleteHandler();
-}
-
 @end

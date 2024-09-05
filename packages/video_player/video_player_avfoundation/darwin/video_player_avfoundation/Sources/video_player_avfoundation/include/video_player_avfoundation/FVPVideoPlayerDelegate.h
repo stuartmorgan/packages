@@ -21,6 +21,4 @@ typedef NS_ENUM(NSInteger, FVPItemProperty) {
 @required
 - (void)videoPlayerItem:(AVPlayerItem *)item didChangeProperty:(FVPItemProperty)property;
 - (void)videoPlayerDidChangePlaybackRate;
-/// Called when the video player plays to the end and then stops (i.e., looping is not enabled).
-- (void)videoPlayerDidComplete;
 @end
