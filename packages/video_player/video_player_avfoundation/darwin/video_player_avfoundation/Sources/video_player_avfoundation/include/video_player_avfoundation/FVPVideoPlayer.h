@@ -6,21 +6,11 @@
 #import <Foundation/Foundation.h>
 
 #import "FVPDisplayLink.h"
-#import "FVPVideoPlayerDelegate.h"
+#import "FVPFrameUpdater.h"
 #import "InjectionProtocols.h"
 
 /// The native component of a single video player instance.
 @interface FVPVideoPlayer : NSObject
-
-/// The event delegate that communicates information back to the Dart side of the plugin.
-///
-/// Note that although this is a delegate, this is an owning reference.
-// TODO(stuartmorgan): Change to weak once this is on the Dart side instead of
-// an object we need to keep around.
-@property(nonatomic, strong, nullable) id<FVPVideoPlayerDelegate> delegate;
-
-// The display link that drives frameUpdater.
-@property(nonatomic, strong, nullable) FVPDisplayLink *displayLink;
 
 // The output to use for items being played.
 @property(nonatomic, strong, nullable) AVPlayerItemVideoOutput *videoOutput;
@@ -29,24 +19,17 @@
 
 @property(nonatomic, readonly) BOOL disposed;
 
-@property(nonatomic, assign) BOOL initialized;
-
-@property(nonatomic, assign) BOOL playing;
-
-@property(nonatomic, assign) CGAffineTransform preferredTransform;
+// Called when a new frame is provided to the engine.
+@property(nonatomic, copy, nonnull) void (^onFrameProvided)(void);
 
 // A callback to call during 'dispose'.
 @property(nonatomic, copy, nullable) void (^onDisposed)(void);
 
-// Whether a new frame needs to be provided to the engine regardless of the current play/pause state
-// (e.g., after a seek while paused). If YES, the display link should continue to run until the next
-// frame is successfully provided.
-@property(nonatomic, assign) BOOL waitingForFrame;
-
 - (instancetype)initWithPlayerItem:(nullable AVPlayerItem *)item
                       viewProvider:(nullable id<FVPViewProvider>)viewProvider
+                      frameUpdater:(nonnull FVPFrameUpdater *)frameUpdater
                          AVFactory:(nullable id<FVPAVFactory>)avFactory
-                displayLinkFactory:(nullable id<FVPDisplayLinkFactory>)displayLinkFactory;
+                     frameCallback:(void (^__nonnull)(void))frameCallback;
 
 /// Informs the player that it won't be used from Dart any more and that it should clean up
 /// related resources.

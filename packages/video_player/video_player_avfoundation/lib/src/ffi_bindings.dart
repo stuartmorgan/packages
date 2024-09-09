@@ -105288,513 +105288,6 @@ final _objc_msgSend_1580 = objc.msgSendPointer
 late final _sel_observerWithCallback_ =
     objc.registerName("observerWithCallback:");
 
-/// An implementation of FVPAVFactory that forwards directly to AVPlayer*.
-class FVPDefaultAVFactory extends objc.NSObject {
-  FVPDefaultAVFactory._(ffi.Pointer<objc.ObjCObject> pointer,
-      {bool retain = false, bool release = false})
-      : super.castFromPointer(pointer, retain: retain, release: release);
-
-  /// Constructs a [FVPDefaultAVFactory] that points to the same underlying object as [other].
-  FVPDefaultAVFactory.castFrom(objc.ObjCObjectBase other)
-      : this._(other.pointer, retain: true, release: true);
-
-  /// Constructs a [FVPDefaultAVFactory] that wraps the given raw object pointer.
-  FVPDefaultAVFactory.castFromPointer(ffi.Pointer<objc.ObjCObject> other,
-      {bool retain = false, bool release = false})
-      : this._(other, retain: retain, release: release);
-
-  /// Returns whether [obj] is an instance of [FVPDefaultAVFactory].
-  static bool isInstance(objc.ObjCObjectBase obj) {
-    return _objc_msgSend_0(
-        obj.pointer, _sel_isKindOfClass_, _class_FVPDefaultAVFactory);
-  }
-
-  /// init
-  FVPDefaultAVFactory init() {
-    final _ret = _objc_msgSend_19(this.pointer, _sel_init);
-    return FVPDefaultAVFactory.castFromPointer(_ret,
-        retain: true, release: true);
-  }
-
-  /// new
-  static FVPDefaultAVFactory new1() {
-    final _ret = _objc_msgSend_19(_class_FVPDefaultAVFactory, _sel_new);
-    return FVPDefaultAVFactory.castFromPointer(_ret,
-        retain: false, release: true);
-  }
-
-  /// allocWithZone:
-  static FVPDefaultAVFactory allocWithZone_(ffi.Pointer<_NSZone> zone) {
-    final _ret =
-        _objc_msgSend_28(_class_FVPDefaultAVFactory, _sel_allocWithZone_, zone);
-    return FVPDefaultAVFactory.castFromPointer(_ret,
-        retain: false, release: true);
-  }
-
-  /// alloc
-  static FVPDefaultAVFactory alloc() {
-    final _ret = _objc_msgSend_19(_class_FVPDefaultAVFactory, _sel_alloc);
-    return FVPDefaultAVFactory.castFromPointer(_ret,
-        retain: false, release: true);
-  }
-
-  /// cancelPreviousPerformRequestsWithTarget:selector:object:
-  static void cancelPreviousPerformRequestsWithTarget_selector_object_(
-      objc.ObjCObjectBase aTarget,
-      ffi.Pointer<objc.ObjCSelector> aSelector,
-      objc.ObjCObjectBase? anArgument) {
-    _objc_msgSend_29(
-        _class_FVPDefaultAVFactory,
-        _sel_cancelPreviousPerformRequestsWithTarget_selector_object_,
-        aTarget.pointer,
-        aSelector,
-        anArgument?.pointer ?? ffi.nullptr);
-  }
-
-  /// cancelPreviousPerformRequestsWithTarget:
-  static void cancelPreviousPerformRequestsWithTarget_(
-      objc.ObjCObjectBase aTarget) {
-    _objc_msgSend_27(_class_FVPDefaultAVFactory,
-        _sel_cancelPreviousPerformRequestsWithTarget_, aTarget.pointer);
-  }
-
-  /// accessInstanceVariablesDirectly
-  static bool getAccessInstanceVariablesDirectly() {
-    return _objc_msgSend_13(
-        _class_FVPDefaultAVFactory, _sel_accessInstanceVariablesDirectly);
-  }
-
-  /// useStoredAccessor
-  static bool useStoredAccessor() {
-    return _objc_msgSend_13(_class_FVPDefaultAVFactory, _sel_useStoredAccessor);
-  }
-
-  /// keyPathsForValuesAffectingValueForKey:
-  static objc.NSSet keyPathsForValuesAffectingValueForKey_(objc.NSString key) {
-    final _ret = _objc_msgSend_30(_class_FVPDefaultAVFactory,
-        _sel_keyPathsForValuesAffectingValueForKey_, key.pointer);
-    return objc.NSSet.castFromPointer(_ret, retain: true, release: true);
-  }
-
-  /// automaticallyNotifiesObserversForKey:
-  static bool automaticallyNotifiesObserversForKey_(objc.NSString key) {
-    return _objc_msgSend_31(_class_FVPDefaultAVFactory,
-        _sel_automaticallyNotifiesObserversForKey_, key.pointer);
-  }
-
-  /// setKeys:triggerChangeNotificationsForDependentKey:
-  static void setKeys_triggerChangeNotificationsForDependentKey_(
-      objc.NSArray keys, objc.NSString dependentKey) {
-    _objc_msgSend_32(
-        _class_FVPDefaultAVFactory,
-        _sel_setKeys_triggerChangeNotificationsForDependentKey_,
-        keys.pointer,
-        dependentKey.pointer);
-  }
-
-  /// classFallbacksForKeyedArchiver
-  static objc.NSArray classFallbacksForKeyedArchiver() {
-    final _ret = _objc_msgSend_33(
-        _class_FVPDefaultAVFactory, _sel_classFallbacksForKeyedArchiver);
-    return objc.NSArray.castFromPointer(_ret, retain: true, release: true);
-  }
-
-  /// classForKeyedUnarchiver
-  static objc.ObjCObjectBase classForKeyedUnarchiver() {
-    final _ret = _objc_msgSend_19(
-        _class_FVPDefaultAVFactory, _sel_classForKeyedUnarchiver);
-    return objc.ObjCObjectBase(_ret, retain: true, release: true);
-  }
-}
-
-late final _class_FVPDefaultAVFactory = objc.getClass("FVPDefaultAVFactory");
-
-/// Non-test implementation of the diplay link factory.
-class FVPDefaultDisplayLinkFactory extends objc.NSObject {
-  FVPDefaultDisplayLinkFactory._(ffi.Pointer<objc.ObjCObject> pointer,
-      {bool retain = false, bool release = false})
-      : super.castFromPointer(pointer, retain: retain, release: release);
-
-  /// Constructs a [FVPDefaultDisplayLinkFactory] that points to the same underlying object as [other].
-  FVPDefaultDisplayLinkFactory.castFrom(objc.ObjCObjectBase other)
-      : this._(other.pointer, retain: true, release: true);
-
-  /// Constructs a [FVPDefaultDisplayLinkFactory] that wraps the given raw object pointer.
-  FVPDefaultDisplayLinkFactory.castFromPointer(
-      ffi.Pointer<objc.ObjCObject> other,
-      {bool retain = false,
-      bool release = false})
-      : this._(other, retain: retain, release: release);
-
-  /// Returns whether [obj] is an instance of [FVPDefaultDisplayLinkFactory].
-  static bool isInstance(objc.ObjCObjectBase obj) {
-    return _objc_msgSend_0(
-        obj.pointer, _sel_isKindOfClass_, _class_FVPDefaultDisplayLinkFactory);
-  }
-
-  /// init
-  FVPDefaultDisplayLinkFactory init() {
-    final _ret = _objc_msgSend_19(this.pointer, _sel_init);
-    return FVPDefaultDisplayLinkFactory.castFromPointer(_ret,
-        retain: true, release: true);
-  }
-
-  /// new
-  static FVPDefaultDisplayLinkFactory new1() {
-    final _ret =
-        _objc_msgSend_19(_class_FVPDefaultDisplayLinkFactory, _sel_new);
-    return FVPDefaultDisplayLinkFactory.castFromPointer(_ret,
-        retain: false, release: true);
-  }
-
-  /// allocWithZone:
-  static FVPDefaultDisplayLinkFactory allocWithZone_(
-      ffi.Pointer<_NSZone> zone) {
-    final _ret = _objc_msgSend_28(
-        _class_FVPDefaultDisplayLinkFactory, _sel_allocWithZone_, zone);
-    return FVPDefaultDisplayLinkFactory.castFromPointer(_ret,
-        retain: false, release: true);
-  }
-
-  /// alloc
-  static FVPDefaultDisplayLinkFactory alloc() {
-    final _ret =
-        _objc_msgSend_19(_class_FVPDefaultDisplayLinkFactory, _sel_alloc);
-    return FVPDefaultDisplayLinkFactory.castFromPointer(_ret,
-        retain: false, release: true);
-  }
-
-  /// cancelPreviousPerformRequestsWithTarget:selector:object:
-  static void cancelPreviousPerformRequestsWithTarget_selector_object_(
-      objc.ObjCObjectBase aTarget,
-      ffi.Pointer<objc.ObjCSelector> aSelector,
-      objc.ObjCObjectBase? anArgument) {
-    _objc_msgSend_29(
-        _class_FVPDefaultDisplayLinkFactory,
-        _sel_cancelPreviousPerformRequestsWithTarget_selector_object_,
-        aTarget.pointer,
-        aSelector,
-        anArgument?.pointer ?? ffi.nullptr);
-  }
-
-  /// cancelPreviousPerformRequestsWithTarget:
-  static void cancelPreviousPerformRequestsWithTarget_(
-      objc.ObjCObjectBase aTarget) {
-    _objc_msgSend_27(_class_FVPDefaultDisplayLinkFactory,
-        _sel_cancelPreviousPerformRequestsWithTarget_, aTarget.pointer);
-  }
-
-  /// accessInstanceVariablesDirectly
-  static bool getAccessInstanceVariablesDirectly() {
-    return _objc_msgSend_13(_class_FVPDefaultDisplayLinkFactory,
-        _sel_accessInstanceVariablesDirectly);
-  }
-
-  /// useStoredAccessor
-  static bool useStoredAccessor() {
-    return _objc_msgSend_13(
-        _class_FVPDefaultDisplayLinkFactory, _sel_useStoredAccessor);
-  }
-
-  /// keyPathsForValuesAffectingValueForKey:
-  static objc.NSSet keyPathsForValuesAffectingValueForKey_(objc.NSString key) {
-    final _ret = _objc_msgSend_30(_class_FVPDefaultDisplayLinkFactory,
-        _sel_keyPathsForValuesAffectingValueForKey_, key.pointer);
-    return objc.NSSet.castFromPointer(_ret, retain: true, release: true);
-  }
-
-  /// automaticallyNotifiesObserversForKey:
-  static bool automaticallyNotifiesObserversForKey_(objc.NSString key) {
-    return _objc_msgSend_31(_class_FVPDefaultDisplayLinkFactory,
-        _sel_automaticallyNotifiesObserversForKey_, key.pointer);
-  }
-
-  /// setKeys:triggerChangeNotificationsForDependentKey:
-  static void setKeys_triggerChangeNotificationsForDependentKey_(
-      objc.NSArray keys, objc.NSString dependentKey) {
-    _objc_msgSend_32(
-        _class_FVPDefaultDisplayLinkFactory,
-        _sel_setKeys_triggerChangeNotificationsForDependentKey_,
-        keys.pointer,
-        dependentKey.pointer);
-  }
-
-  /// classFallbacksForKeyedArchiver
-  static objc.NSArray classFallbacksForKeyedArchiver() {
-    final _ret = _objc_msgSend_33(_class_FVPDefaultDisplayLinkFactory,
-        _sel_classFallbacksForKeyedArchiver);
-    return objc.NSArray.castFromPointer(_ret, retain: true, release: true);
-  }
-
-  /// classForKeyedUnarchiver
-  static objc.ObjCObjectBase classForKeyedUnarchiver() {
-    final _ret = _objc_msgSend_19(
-        _class_FVPDefaultDisplayLinkFactory, _sel_classForKeyedUnarchiver);
-    return objc.ObjCObjectBase(_ret, retain: true, release: true);
-  }
-}
-
-late final _class_FVPDefaultDisplayLinkFactory =
-    objc.getClass("FVPDefaultDisplayLinkFactory");
-
-/// The native component of a single video player instance.
-class FVPVideoPlayer extends objc.NSObject {
-  FVPVideoPlayer._(ffi.Pointer<objc.ObjCObject> pointer,
-      {bool retain = false, bool release = false})
-      : super.castFromPointer(pointer, retain: retain, release: release);
-
-  /// Constructs a [FVPVideoPlayer] that points to the same underlying object as [other].
-  FVPVideoPlayer.castFrom(objc.ObjCObjectBase other)
-      : this._(other.pointer, retain: true, release: true);
-
-  /// Constructs a [FVPVideoPlayer] that wraps the given raw object pointer.
-  FVPVideoPlayer.castFromPointer(ffi.Pointer<objc.ObjCObject> other,
-      {bool retain = false, bool release = false})
-      : this._(other, retain: retain, release: release);
-
-  /// Returns whether [obj] is an instance of [FVPVideoPlayer].
-  static bool isInstance(objc.ObjCObjectBase obj) {
-    return _objc_msgSend_0(
-        obj.pointer, _sel_isKindOfClass_, _class_FVPVideoPlayer);
-  }
-
-  /// The event delegate that communicates information back to the Dart side of the plugin.
-  ///
-  /// Note that although this is a delegate, this is an owning reference.
-  objc.ObjCObjectBase? get delegate {
-    final _ret = _objc_msgSend_107(this.pointer, _sel_delegate);
-    return _ret.address == 0
-        ? null
-        : objc.ObjCObjectBase(_ret, retain: true, release: true);
-  }
-
-  /// The event delegate that communicates information back to the Dart side of the plugin.
-  ///
-  /// Note that although this is a delegate, this is an owning reference.
-  set delegate(objc.ObjCObjectBase? value) {
-    return _objc_msgSend_222(
-        this.pointer, _sel_setDelegate_, value?.pointer ?? ffi.nullptr);
-  }
-
-  /// displayLink
-  FVPDisplayLink? get displayLink {
-    final _ret = _objc_msgSend_1582(this.pointer, _sel_displayLink);
-    return _ret.address == 0
-        ? null
-        : FVPDisplayLink.castFromPointer(_ret, retain: true, release: true);
-  }
-
-  /// setDisplayLink:
-  set displayLink(FVPDisplayLink? value) {
-    return _objc_msgSend_1583(
-        this.pointer, _sel_setDisplayLink_, value?.pointer ?? ffi.nullptr);
-  }
-
-  /// videoOutput
-  AVPlayerItemVideoOutput? get videoOutput {
-    final _ret = _objc_msgSend_1586(this.pointer, _sel_videoOutput);
-    return _ret.address == 0
-        ? null
-        : AVPlayerItemVideoOutput.castFromPointer(_ret,
-            retain: true, release: true);
-  }
-
-  /// setVideoOutput:
-  set videoOutput(AVPlayerItemVideoOutput? value) {
-    return _objc_msgSend_1587(
-        this.pointer, _sel_setVideoOutput_, value?.pointer ?? ffi.nullptr);
-  }
-
-  /// player
-  AVPlayer get player {
-    final _ret = _objc_msgSend_1588(this.pointer, _sel_player);
-    return AVPlayer.castFromPointer(_ret, retain: true, release: true);
-  }
-
-  /// setPlayer:
-  set player(AVPlayer value) {
-    return _objc_msgSend_1589(this.pointer, _sel_setPlayer_, value.pointer);
-  }
-
-  /// disposed
-  bool get disposed {
-    return _objc_msgSend_13(this.pointer, _sel_disposed);
-  }
-
-  /// initialized
-  bool get initialized {
-    return _objc_msgSend_13(this.pointer, _sel_initialized);
-  }
-
-  /// setInitialized:
-  set initialized(bool value) {
-    return _objc_msgSend_14(this.pointer, _sel_setInitialized_, value);
-  }
-
-  /// playing
-  bool get playing {
-    return _objc_msgSend_13(this.pointer, _sel_playing);
-  }
-
-  /// setPlaying:
-  set playing(bool value) {
-    return _objc_msgSend_14(this.pointer, _sel_setPlaying_, value);
-  }
-
-  /// preferredTransform
-  void getPreferredTransform(ffi.Pointer<CGAffineTransform> stret) {
-    objc.useMsgSendVariants
-        ? _objc_msgSend_720Stret(stret, this.pointer, _sel_preferredTransform)
-        : stret.ref = _objc_msgSend_720(this.pointer, _sel_preferredTransform);
-  }
-
-  /// setPreferredTransform:
-  set preferredTransform(CGAffineTransform value) {
-    return _objc_msgSend_1068(this.pointer, _sel_setPreferredTransform_, value);
-  }
-
-  /// onDisposed
-  objc.ObjCBlock<ffi.Void Function()>? get onDisposed {
-    final _ret = _objc_msgSend_15(this.pointer, _sel_onDisposed);
-    return _ret.address == 0
-        ? null
-        : ObjCBlock_ffiVoid.castFromPointer(_ret, retain: true, release: true);
-  }
-
-  /// setOnDisposed:
-  set onDisposed(objc.ObjCBlock<ffi.Void Function()>? value) {
-    return _objc_msgSend_16(
-        this.pointer, _sel_setOnDisposed_, value?.pointer ?? ffi.nullptr);
-  }
-
-  /// waitingForFrame
-  bool get waitingForFrame {
-    return _objc_msgSend_13(this.pointer, _sel_waitingForFrame);
-  }
-
-  /// setWaitingForFrame:
-  set waitingForFrame(bool value) {
-    return _objc_msgSend_14(this.pointer, _sel_setWaitingForFrame_, value);
-  }
-
-  /// initWithPlayerItem:viewProvider:AVFactory:displayLinkFactory:
-  FVPVideoPlayer initWithPlayerItem_viewProvider_AVFactory_displayLinkFactory_(
-      AVPlayerItem? item,
-      objc.ObjCObjectBase? viewProvider,
-      objc.ObjCObjectBase? avFactory,
-      objc.ObjCObjectBase? displayLinkFactory) {
-    final _ret = _objc_msgSend_1590(
-        this.pointer,
-        _sel_initWithPlayerItem_viewProvider_AVFactory_displayLinkFactory_,
-        item?.pointer ?? ffi.nullptr,
-        viewProvider?.pointer ?? ffi.nullptr,
-        avFactory?.pointer ?? ffi.nullptr,
-        displayLinkFactory?.pointer ?? ffi.nullptr);
-    return FVPVideoPlayer.castFromPointer(_ret, retain: true, release: true);
-  }
-
-  /// Informs the player that it won't be used from Dart any more and that it should clean up
-  /// related resources.
-  void dispose() {
-    _objc_msgSend_7(this.pointer, _sel_dispose);
-  }
-
-  /// init
-  FVPVideoPlayer init() {
-    final _ret = _objc_msgSend_19(this.pointer, _sel_init);
-    return FVPVideoPlayer.castFromPointer(_ret, retain: true, release: true);
-  }
-
-  /// new
-  static FVPVideoPlayer new1() {
-    final _ret = _objc_msgSend_19(_class_FVPVideoPlayer, _sel_new);
-    return FVPVideoPlayer.castFromPointer(_ret, retain: false, release: true);
-  }
-
-  /// allocWithZone:
-  static FVPVideoPlayer allocWithZone_(ffi.Pointer<_NSZone> zone) {
-    final _ret =
-        _objc_msgSend_28(_class_FVPVideoPlayer, _sel_allocWithZone_, zone);
-    return FVPVideoPlayer.castFromPointer(_ret, retain: false, release: true);
-  }
-
-  /// alloc
-  static FVPVideoPlayer alloc() {
-    final _ret = _objc_msgSend_19(_class_FVPVideoPlayer, _sel_alloc);
-    return FVPVideoPlayer.castFromPointer(_ret, retain: false, release: true);
-  }
-
-  /// cancelPreviousPerformRequestsWithTarget:selector:object:
-  static void cancelPreviousPerformRequestsWithTarget_selector_object_(
-      objc.ObjCObjectBase aTarget,
-      ffi.Pointer<objc.ObjCSelector> aSelector,
-      objc.ObjCObjectBase? anArgument) {
-    _objc_msgSend_29(
-        _class_FVPVideoPlayer,
-        _sel_cancelPreviousPerformRequestsWithTarget_selector_object_,
-        aTarget.pointer,
-        aSelector,
-        anArgument?.pointer ?? ffi.nullptr);
-  }
-
-  /// cancelPreviousPerformRequestsWithTarget:
-  static void cancelPreviousPerformRequestsWithTarget_(
-      objc.ObjCObjectBase aTarget) {
-    _objc_msgSend_27(_class_FVPVideoPlayer,
-        _sel_cancelPreviousPerformRequestsWithTarget_, aTarget.pointer);
-  }
-
-  /// accessInstanceVariablesDirectly
-  static bool getAccessInstanceVariablesDirectly() {
-    return _objc_msgSend_13(
-        _class_FVPVideoPlayer, _sel_accessInstanceVariablesDirectly);
-  }
-
-  /// useStoredAccessor
-  static bool useStoredAccessor() {
-    return _objc_msgSend_13(_class_FVPVideoPlayer, _sel_useStoredAccessor);
-  }
-
-  /// keyPathsForValuesAffectingValueForKey:
-  static objc.NSSet keyPathsForValuesAffectingValueForKey_(objc.NSString key) {
-    final _ret = _objc_msgSend_30(_class_FVPVideoPlayer,
-        _sel_keyPathsForValuesAffectingValueForKey_, key.pointer);
-    return objc.NSSet.castFromPointer(_ret, retain: true, release: true);
-  }
-
-  /// automaticallyNotifiesObserversForKey:
-  static bool automaticallyNotifiesObserversForKey_(objc.NSString key) {
-    return _objc_msgSend_31(_class_FVPVideoPlayer,
-        _sel_automaticallyNotifiesObserversForKey_, key.pointer);
-  }
-
-  /// setKeys:triggerChangeNotificationsForDependentKey:
-  static void setKeys_triggerChangeNotificationsForDependentKey_(
-      objc.NSArray keys, objc.NSString dependentKey) {
-    _objc_msgSend_32(
-        _class_FVPVideoPlayer,
-        _sel_setKeys_triggerChangeNotificationsForDependentKey_,
-        keys.pointer,
-        dependentKey.pointer);
-  }
-
-  /// classFallbacksForKeyedArchiver
-  static objc.NSArray classFallbacksForKeyedArchiver() {
-    final _ret = _objc_msgSend_33(
-        _class_FVPVideoPlayer, _sel_classFallbacksForKeyedArchiver);
-    return objc.NSArray.castFromPointer(_ret, retain: true, release: true);
-  }
-
-  /// classForKeyedUnarchiver
-  static objc.ObjCObjectBase classForKeyedUnarchiver() {
-    final _ret =
-        _objc_msgSend_19(_class_FVPVideoPlayer, _sel_classForKeyedUnarchiver);
-    return objc.ObjCObjectBase(_ret, retain: true, release: true);
-  }
-}
-
-late final _class_FVPVideoPlayer = objc.getClass("FVPVideoPlayer");
-
 /// FVPDisplayLink
 class FVPDisplayLink extends objc.NSObject {
   FVPDisplayLink._(ffi.Pointer<objc.ObjCObject> pointer,
@@ -105958,26 +105451,296 @@ final _objc_msgSend_1581 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCSelector>,
             ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCBlockImpl>)>();
-late final _sel_displayLink = objc.registerName("displayLink");
-final _objc_msgSend_1582 = objc.msgSendPointer
-    .cast<
-        ffi.NativeFunction<
-            ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
-                ffi.Pointer<objc.ObjCSelector>)>>()
-    .asFunction<
-        ffi.Pointer<objc.ObjCObject> Function(
-            ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
-late final _sel_setDisplayLink_ = objc.registerName("setDisplayLink:");
-final _objc_msgSend_1583 = objc.msgSendPointer
-    .cast<
-        ffi.NativeFunction<
-            ffi.Void Function(
-                ffi.Pointer<objc.ObjCObject>,
-                ffi.Pointer<objc.ObjCSelector>,
-                ffi.Pointer<objc.ObjCObject>)>>()
-    .asFunction<
-        void Function(ffi.Pointer<objc.ObjCObject>,
-            ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCObject>)>();
+
+/// An implementation of FVPAVFactory that forwards directly to AVPlayer*.
+class FVPDefaultAVFactory extends objc.NSObject {
+  FVPDefaultAVFactory._(ffi.Pointer<objc.ObjCObject> pointer,
+      {bool retain = false, bool release = false})
+      : super.castFromPointer(pointer, retain: retain, release: release);
+
+  /// Constructs a [FVPDefaultAVFactory] that points to the same underlying object as [other].
+  FVPDefaultAVFactory.castFrom(objc.ObjCObjectBase other)
+      : this._(other.pointer, retain: true, release: true);
+
+  /// Constructs a [FVPDefaultAVFactory] that wraps the given raw object pointer.
+  FVPDefaultAVFactory.castFromPointer(ffi.Pointer<objc.ObjCObject> other,
+      {bool retain = false, bool release = false})
+      : this._(other, retain: retain, release: release);
+
+  /// Returns whether [obj] is an instance of [FVPDefaultAVFactory].
+  static bool isInstance(objc.ObjCObjectBase obj) {
+    return _objc_msgSend_0(
+        obj.pointer, _sel_isKindOfClass_, _class_FVPDefaultAVFactory);
+  }
+
+  /// init
+  FVPDefaultAVFactory init() {
+    final _ret = _objc_msgSend_19(this.pointer, _sel_init);
+    return FVPDefaultAVFactory.castFromPointer(_ret,
+        retain: true, release: true);
+  }
+
+  /// new
+  static FVPDefaultAVFactory new1() {
+    final _ret = _objc_msgSend_19(_class_FVPDefaultAVFactory, _sel_new);
+    return FVPDefaultAVFactory.castFromPointer(_ret,
+        retain: false, release: true);
+  }
+
+  /// allocWithZone:
+  static FVPDefaultAVFactory allocWithZone_(ffi.Pointer<_NSZone> zone) {
+    final _ret =
+        _objc_msgSend_28(_class_FVPDefaultAVFactory, _sel_allocWithZone_, zone);
+    return FVPDefaultAVFactory.castFromPointer(_ret,
+        retain: false, release: true);
+  }
+
+  /// alloc
+  static FVPDefaultAVFactory alloc() {
+    final _ret = _objc_msgSend_19(_class_FVPDefaultAVFactory, _sel_alloc);
+    return FVPDefaultAVFactory.castFromPointer(_ret,
+        retain: false, release: true);
+  }
+
+  /// cancelPreviousPerformRequestsWithTarget:selector:object:
+  static void cancelPreviousPerformRequestsWithTarget_selector_object_(
+      objc.ObjCObjectBase aTarget,
+      ffi.Pointer<objc.ObjCSelector> aSelector,
+      objc.ObjCObjectBase? anArgument) {
+    _objc_msgSend_29(
+        _class_FVPDefaultAVFactory,
+        _sel_cancelPreviousPerformRequestsWithTarget_selector_object_,
+        aTarget.pointer,
+        aSelector,
+        anArgument?.pointer ?? ffi.nullptr);
+  }
+
+  /// cancelPreviousPerformRequestsWithTarget:
+  static void cancelPreviousPerformRequestsWithTarget_(
+      objc.ObjCObjectBase aTarget) {
+    _objc_msgSend_27(_class_FVPDefaultAVFactory,
+        _sel_cancelPreviousPerformRequestsWithTarget_, aTarget.pointer);
+  }
+
+  /// accessInstanceVariablesDirectly
+  static bool getAccessInstanceVariablesDirectly() {
+    return _objc_msgSend_13(
+        _class_FVPDefaultAVFactory, _sel_accessInstanceVariablesDirectly);
+  }
+
+  /// useStoredAccessor
+  static bool useStoredAccessor() {
+    return _objc_msgSend_13(_class_FVPDefaultAVFactory, _sel_useStoredAccessor);
+  }
+
+  /// keyPathsForValuesAffectingValueForKey:
+  static objc.NSSet keyPathsForValuesAffectingValueForKey_(objc.NSString key) {
+    final _ret = _objc_msgSend_30(_class_FVPDefaultAVFactory,
+        _sel_keyPathsForValuesAffectingValueForKey_, key.pointer);
+    return objc.NSSet.castFromPointer(_ret, retain: true, release: true);
+  }
+
+  /// automaticallyNotifiesObserversForKey:
+  static bool automaticallyNotifiesObserversForKey_(objc.NSString key) {
+    return _objc_msgSend_31(_class_FVPDefaultAVFactory,
+        _sel_automaticallyNotifiesObserversForKey_, key.pointer);
+  }
+
+  /// setKeys:triggerChangeNotificationsForDependentKey:
+  static void setKeys_triggerChangeNotificationsForDependentKey_(
+      objc.NSArray keys, objc.NSString dependentKey) {
+    _objc_msgSend_32(
+        _class_FVPDefaultAVFactory,
+        _sel_setKeys_triggerChangeNotificationsForDependentKey_,
+        keys.pointer,
+        dependentKey.pointer);
+  }
+
+  /// classFallbacksForKeyedArchiver
+  static objc.NSArray classFallbacksForKeyedArchiver() {
+    final _ret = _objc_msgSend_33(
+        _class_FVPDefaultAVFactory, _sel_classFallbacksForKeyedArchiver);
+    return objc.NSArray.castFromPointer(_ret, retain: true, release: true);
+  }
+
+  /// classForKeyedUnarchiver
+  static objc.ObjCObjectBase classForKeyedUnarchiver() {
+    final _ret = _objc_msgSend_19(
+        _class_FVPDefaultAVFactory, _sel_classForKeyedUnarchiver);
+    return objc.ObjCObjectBase(_ret, retain: true, release: true);
+  }
+}
+
+late final _class_FVPDefaultAVFactory = objc.getClass("FVPDefaultAVFactory");
+
+/// Manages the state to mediate between a display link callback and a texture update callback, to
+/// decide when and how to update frames in the texture.
+class FVPFrameUpdater extends objc.NSObject {
+  FVPFrameUpdater._(ffi.Pointer<objc.ObjCObject> pointer,
+      {bool retain = false, bool release = false})
+      : super.castFromPointer(pointer, retain: retain, release: release);
+
+  /// Constructs a [FVPFrameUpdater] that points to the same underlying object as [other].
+  FVPFrameUpdater.castFrom(objc.ObjCObjectBase other)
+      : this._(other.pointer, retain: true, release: true);
+
+  /// Constructs a [FVPFrameUpdater] that wraps the given raw object pointer.
+  FVPFrameUpdater.castFromPointer(ffi.Pointer<objc.ObjCObject> other,
+      {bool retain = false, bool release = false})
+      : this._(other, retain: retain, release: release);
+
+  /// Returns whether [obj] is an instance of [FVPFrameUpdater].
+  static bool isInstance(objc.ObjCObjectBase obj) {
+    return _objc_msgSend_0(
+        obj.pointer, _sel_isKindOfClass_, _class_FVPFrameUpdater);
+  }
+
+  /// onTextureAvailable
+  objc.ObjCBlock<ffi.Void Function()>? get onTextureAvailable {
+    final _ret = _objc_msgSend_15(this.pointer, _sel_onTextureAvailable);
+    return _ret.address == 0
+        ? null
+        : ObjCBlock_ffiVoid.castFromPointer(_ret, retain: true, release: true);
+  }
+
+  /// setOnTextureAvailable:
+  set onTextureAvailable(objc.ObjCBlock<ffi.Void Function()>? value) {
+    return _objc_msgSend_16(this.pointer, _sel_setOnTextureAvailable_,
+        value?.pointer ?? ffi.nullptr);
+  }
+
+  /// videoOutput
+  AVPlayerItemVideoOutput get videoOutput {
+    final _ret = _objc_msgSend_1584(this.pointer, _sel_videoOutput);
+    return AVPlayerItemVideoOutput.castFromPointer(_ret,
+        retain: true, release: true);
+  }
+
+  /// setVideoOutput:
+  set videoOutput(AVPlayerItemVideoOutput value) {
+    return _objc_msgSend_1585(
+        this.pointer, _sel_setVideoOutput_, value.pointer);
+  }
+
+  /// lastKnownAvailableTime
+  void getLastKnownAvailableTime(ffi.Pointer<CMTime> stret) {
+    objc.useMsgSendVariants
+        ? _objc_msgSend_719Stret(
+            stret, this.pointer, _sel_lastKnownAvailableTime)
+        : stret.ref =
+            _objc_msgSend_719(this.pointer, _sel_lastKnownAvailableTime);
+  }
+
+  /// setLastKnownAvailableTime:
+  set lastKnownAvailableTime(CMTime value) {
+    return _objc_msgSend_1033(
+        this.pointer, _sel_setLastKnownAvailableTime_, value);
+  }
+
+  /// Informs this object that the display link timer fired, so the frame should be updated if
+  /// possible.
+  void displayLinkFired() {
+    _objc_msgSend_7(this.pointer, _sel_displayLinkFired);
+  }
+
+  /// init
+  FVPFrameUpdater init() {
+    final _ret = _objc_msgSend_19(this.pointer, _sel_init);
+    return FVPFrameUpdater.castFromPointer(_ret, retain: true, release: true);
+  }
+
+  /// new
+  static FVPFrameUpdater new1() {
+    final _ret = _objc_msgSend_19(_class_FVPFrameUpdater, _sel_new);
+    return FVPFrameUpdater.castFromPointer(_ret, retain: false, release: true);
+  }
+
+  /// allocWithZone:
+  static FVPFrameUpdater allocWithZone_(ffi.Pointer<_NSZone> zone) {
+    final _ret =
+        _objc_msgSend_28(_class_FVPFrameUpdater, _sel_allocWithZone_, zone);
+    return FVPFrameUpdater.castFromPointer(_ret, retain: false, release: true);
+  }
+
+  /// alloc
+  static FVPFrameUpdater alloc() {
+    final _ret = _objc_msgSend_19(_class_FVPFrameUpdater, _sel_alloc);
+    return FVPFrameUpdater.castFromPointer(_ret, retain: false, release: true);
+  }
+
+  /// cancelPreviousPerformRequestsWithTarget:selector:object:
+  static void cancelPreviousPerformRequestsWithTarget_selector_object_(
+      objc.ObjCObjectBase aTarget,
+      ffi.Pointer<objc.ObjCSelector> aSelector,
+      objc.ObjCObjectBase? anArgument) {
+    _objc_msgSend_29(
+        _class_FVPFrameUpdater,
+        _sel_cancelPreviousPerformRequestsWithTarget_selector_object_,
+        aTarget.pointer,
+        aSelector,
+        anArgument?.pointer ?? ffi.nullptr);
+  }
+
+  /// cancelPreviousPerformRequestsWithTarget:
+  static void cancelPreviousPerformRequestsWithTarget_(
+      objc.ObjCObjectBase aTarget) {
+    _objc_msgSend_27(_class_FVPFrameUpdater,
+        _sel_cancelPreviousPerformRequestsWithTarget_, aTarget.pointer);
+  }
+
+  /// accessInstanceVariablesDirectly
+  static bool getAccessInstanceVariablesDirectly() {
+    return _objc_msgSend_13(
+        _class_FVPFrameUpdater, _sel_accessInstanceVariablesDirectly);
+  }
+
+  /// useStoredAccessor
+  static bool useStoredAccessor() {
+    return _objc_msgSend_13(_class_FVPFrameUpdater, _sel_useStoredAccessor);
+  }
+
+  /// keyPathsForValuesAffectingValueForKey:
+  static objc.NSSet keyPathsForValuesAffectingValueForKey_(objc.NSString key) {
+    final _ret = _objc_msgSend_30(_class_FVPFrameUpdater,
+        _sel_keyPathsForValuesAffectingValueForKey_, key.pointer);
+    return objc.NSSet.castFromPointer(_ret, retain: true, release: true);
+  }
+
+  /// automaticallyNotifiesObserversForKey:
+  static bool automaticallyNotifiesObserversForKey_(objc.NSString key) {
+    return _objc_msgSend_31(_class_FVPFrameUpdater,
+        _sel_automaticallyNotifiesObserversForKey_, key.pointer);
+  }
+
+  /// setKeys:triggerChangeNotificationsForDependentKey:
+  static void setKeys_triggerChangeNotificationsForDependentKey_(
+      objc.NSArray keys, objc.NSString dependentKey) {
+    _objc_msgSend_32(
+        _class_FVPFrameUpdater,
+        _sel_setKeys_triggerChangeNotificationsForDependentKey_,
+        keys.pointer,
+        dependentKey.pointer);
+  }
+
+  /// classFallbacksForKeyedArchiver
+  static objc.NSArray classFallbacksForKeyedArchiver() {
+    final _ret = _objc_msgSend_33(
+        _class_FVPFrameUpdater, _sel_classFallbacksForKeyedArchiver);
+    return objc.NSArray.castFromPointer(_ret, retain: true, release: true);
+  }
+
+  /// classForKeyedUnarchiver
+  static objc.ObjCObjectBase classForKeyedUnarchiver() {
+    final _ret =
+        _objc_msgSend_19(_class_FVPFrameUpdater, _sel_classForKeyedUnarchiver);
+    return objc.ObjCObjectBase(_ret, retain: true, release: true);
+  }
+}
+
+late final _class_FVPFrameUpdater = objc.getClass("FVPFrameUpdater");
+late final _sel_onTextureAvailable = objc.registerName("onTextureAvailable");
+late final _sel_setOnTextureAvailable_ =
+    objc.registerName("setOnTextureAvailable:");
 
 /// AVPlayerItemVideoOutput
 class AVPlayerItemVideoOutput extends AVPlayerItemOutput {
@@ -106022,14 +105785,14 @@ class AVPlayerItemVideoOutput extends AVPlayerItemOutput {
 
   /// hasNewPixelBufferForItemTime:
   bool hasNewPixelBufferForItemTime_(CMTime itemTime) {
-    return _objc_msgSend_1584(
+    return _objc_msgSend_1582(
         this.pointer, _sel_hasNewPixelBufferForItemTime_, itemTime);
   }
 
   /// copyPixelBufferForItemTime:itemTimeForDisplay:
   ffi.Pointer<__CVBuffer> copyPixelBufferForItemTime_itemTimeForDisplay_(
       CMTime itemTime, ffi.Pointer<CMTime> outItemTimeForDisplay) {
-    return _objc_msgSend_1585(
+    return _objc_msgSend_1583(
         this.pointer,
         _sel_copyPixelBufferForItemTime_itemTimeForDisplay_,
         itemTime,
@@ -106178,7 +105941,7 @@ late final _sel_initWithOutputSettings_ =
     objc.registerName("initWithOutputSettings:");
 late final _sel_hasNewPixelBufferForItemTime_ =
     objc.registerName("hasNewPixelBufferForItemTime:");
-final _objc_msgSend_1584 = objc.msgSendPointer
+final _objc_msgSend_1582 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Bool Function(ffi.Pointer<objc.ObjCObject>,
@@ -106188,7 +105951,7 @@ final _objc_msgSend_1584 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCSelector>, CMTime)>();
 late final _sel_copyPixelBufferForItemTime_itemTimeForDisplay_ =
     objc.registerName("copyPixelBufferForItemTime:itemTimeForDisplay:");
-final _objc_msgSend_1585 = objc.msgSendPointer
+final _objc_msgSend_1583 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<__CVBuffer> Function(ffi.Pointer<objc.ObjCObject>,
@@ -106198,6 +105961,228 @@ final _objc_msgSend_1585 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCSelector>, CMTime, ffi.Pointer<CMTime>)>();
 late final _sel_requestNotificationOfMediaDataChangeWithAdvanceInterval_ = objc
     .registerName("requestNotificationOfMediaDataChangeWithAdvanceInterval:");
+final _objc_msgSend_1584 = objc.msgSendPointer
+    .cast<
+        ffi.NativeFunction<
+            ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
+                ffi.Pointer<objc.ObjCSelector>)>>()
+    .asFunction<
+        ffi.Pointer<objc.ObjCObject> Function(
+            ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
+final _objc_msgSend_1585 = objc.msgSendPointer
+    .cast<
+        ffi.NativeFunction<
+            ffi.Void Function(
+                ffi.Pointer<objc.ObjCObject>,
+                ffi.Pointer<objc.ObjCSelector>,
+                ffi.Pointer<objc.ObjCObject>)>>()
+    .asFunction<
+        void Function(ffi.Pointer<objc.ObjCObject>,
+            ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCObject>)>();
+late final _sel_lastKnownAvailableTime =
+    objc.registerName("lastKnownAvailableTime");
+late final _sel_setLastKnownAvailableTime_ =
+    objc.registerName("setLastKnownAvailableTime:");
+late final _sel_displayLinkFired = objc.registerName("displayLinkFired");
+
+/// The native component of a single video player instance.
+class FVPVideoPlayer extends objc.NSObject {
+  FVPVideoPlayer._(ffi.Pointer<objc.ObjCObject> pointer,
+      {bool retain = false, bool release = false})
+      : super.castFromPointer(pointer, retain: retain, release: release);
+
+  /// Constructs a [FVPVideoPlayer] that points to the same underlying object as [other].
+  FVPVideoPlayer.castFrom(objc.ObjCObjectBase other)
+      : this._(other.pointer, retain: true, release: true);
+
+  /// Constructs a [FVPVideoPlayer] that wraps the given raw object pointer.
+  FVPVideoPlayer.castFromPointer(ffi.Pointer<objc.ObjCObject> other,
+      {bool retain = false, bool release = false})
+      : this._(other, retain: retain, release: release);
+
+  /// Returns whether [obj] is an instance of [FVPVideoPlayer].
+  static bool isInstance(objc.ObjCObjectBase obj) {
+    return _objc_msgSend_0(
+        obj.pointer, _sel_isKindOfClass_, _class_FVPVideoPlayer);
+  }
+
+  /// videoOutput
+  AVPlayerItemVideoOutput? get videoOutput {
+    final _ret = _objc_msgSend_1586(this.pointer, _sel_videoOutput);
+    return _ret.address == 0
+        ? null
+        : AVPlayerItemVideoOutput.castFromPointer(_ret,
+            retain: true, release: true);
+  }
+
+  /// setVideoOutput:
+  set videoOutput(AVPlayerItemVideoOutput? value) {
+    return _objc_msgSend_1587(
+        this.pointer, _sel_setVideoOutput_, value?.pointer ?? ffi.nullptr);
+  }
+
+  /// player
+  AVPlayer get player {
+    final _ret = _objc_msgSend_1588(this.pointer, _sel_player);
+    return AVPlayer.castFromPointer(_ret, retain: true, release: true);
+  }
+
+  /// setPlayer:
+  set player(AVPlayer value) {
+    return _objc_msgSend_1589(this.pointer, _sel_setPlayer_, value.pointer);
+  }
+
+  /// disposed
+  bool get disposed {
+    return _objc_msgSend_13(this.pointer, _sel_disposed);
+  }
+
+  /// onFrameProvided
+  objc.ObjCBlock<ffi.Void Function()> get onFrameProvided {
+    final _ret = _objc_msgSend_1590(this.pointer, _sel_onFrameProvided);
+    return ObjCBlock_ffiVoid.castFromPointer(_ret, retain: true, release: true);
+  }
+
+  /// setOnFrameProvided:
+  set onFrameProvided(objc.ObjCBlock<ffi.Void Function()> value) {
+    return _objc_msgSend_1591(
+        this.pointer, _sel_setOnFrameProvided_, value.pointer);
+  }
+
+  /// onDisposed
+  objc.ObjCBlock<ffi.Void Function()>? get onDisposed {
+    final _ret = _objc_msgSend_15(this.pointer, _sel_onDisposed);
+    return _ret.address == 0
+        ? null
+        : ObjCBlock_ffiVoid.castFromPointer(_ret, retain: true, release: true);
+  }
+
+  /// setOnDisposed:
+  set onDisposed(objc.ObjCBlock<ffi.Void Function()>? value) {
+    return _objc_msgSend_16(
+        this.pointer, _sel_setOnDisposed_, value?.pointer ?? ffi.nullptr);
+  }
+
+  /// initWithPlayerItem:viewProvider:frameUpdater:AVFactory:frameCallback:
+  FVPVideoPlayer
+      initWithPlayerItem_viewProvider_frameUpdater_AVFactory_frameCallback_(
+          AVPlayerItem? item,
+          objc.ObjCObjectBase? viewProvider,
+          FVPFrameUpdater frameUpdater,
+          objc.ObjCObjectBase? avFactory,
+          objc.ObjCBlock<ffi.Void Function()> frameCallback) {
+    final _ret = _objc_msgSend_1592(
+        this.pointer,
+        _sel_initWithPlayerItem_viewProvider_frameUpdater_AVFactory_frameCallback_,
+        item?.pointer ?? ffi.nullptr,
+        viewProvider?.pointer ?? ffi.nullptr,
+        frameUpdater.pointer,
+        avFactory?.pointer ?? ffi.nullptr,
+        frameCallback.pointer);
+    return FVPVideoPlayer.castFromPointer(_ret, retain: true, release: true);
+  }
+
+  /// Informs the player that it won't be used from Dart any more and that it should clean up
+  /// related resources.
+  void dispose() {
+    _objc_msgSend_7(this.pointer, _sel_dispose);
+  }
+
+  /// init
+  FVPVideoPlayer init() {
+    final _ret = _objc_msgSend_19(this.pointer, _sel_init);
+    return FVPVideoPlayer.castFromPointer(_ret, retain: true, release: true);
+  }
+
+  /// new
+  static FVPVideoPlayer new1() {
+    final _ret = _objc_msgSend_19(_class_FVPVideoPlayer, _sel_new);
+    return FVPVideoPlayer.castFromPointer(_ret, retain: false, release: true);
+  }
+
+  /// allocWithZone:
+  static FVPVideoPlayer allocWithZone_(ffi.Pointer<_NSZone> zone) {
+    final _ret =
+        _objc_msgSend_28(_class_FVPVideoPlayer, _sel_allocWithZone_, zone);
+    return FVPVideoPlayer.castFromPointer(_ret, retain: false, release: true);
+  }
+
+  /// alloc
+  static FVPVideoPlayer alloc() {
+    final _ret = _objc_msgSend_19(_class_FVPVideoPlayer, _sel_alloc);
+    return FVPVideoPlayer.castFromPointer(_ret, retain: false, release: true);
+  }
+
+  /// cancelPreviousPerformRequestsWithTarget:selector:object:
+  static void cancelPreviousPerformRequestsWithTarget_selector_object_(
+      objc.ObjCObjectBase aTarget,
+      ffi.Pointer<objc.ObjCSelector> aSelector,
+      objc.ObjCObjectBase? anArgument) {
+    _objc_msgSend_29(
+        _class_FVPVideoPlayer,
+        _sel_cancelPreviousPerformRequestsWithTarget_selector_object_,
+        aTarget.pointer,
+        aSelector,
+        anArgument?.pointer ?? ffi.nullptr);
+  }
+
+  /// cancelPreviousPerformRequestsWithTarget:
+  static void cancelPreviousPerformRequestsWithTarget_(
+      objc.ObjCObjectBase aTarget) {
+    _objc_msgSend_27(_class_FVPVideoPlayer,
+        _sel_cancelPreviousPerformRequestsWithTarget_, aTarget.pointer);
+  }
+
+  /// accessInstanceVariablesDirectly
+  static bool getAccessInstanceVariablesDirectly() {
+    return _objc_msgSend_13(
+        _class_FVPVideoPlayer, _sel_accessInstanceVariablesDirectly);
+  }
+
+  /// useStoredAccessor
+  static bool useStoredAccessor() {
+    return _objc_msgSend_13(_class_FVPVideoPlayer, _sel_useStoredAccessor);
+  }
+
+  /// keyPathsForValuesAffectingValueForKey:
+  static objc.NSSet keyPathsForValuesAffectingValueForKey_(objc.NSString key) {
+    final _ret = _objc_msgSend_30(_class_FVPVideoPlayer,
+        _sel_keyPathsForValuesAffectingValueForKey_, key.pointer);
+    return objc.NSSet.castFromPointer(_ret, retain: true, release: true);
+  }
+
+  /// automaticallyNotifiesObserversForKey:
+  static bool automaticallyNotifiesObserversForKey_(objc.NSString key) {
+    return _objc_msgSend_31(_class_FVPVideoPlayer,
+        _sel_automaticallyNotifiesObserversForKey_, key.pointer);
+  }
+
+  /// setKeys:triggerChangeNotificationsForDependentKey:
+  static void setKeys_triggerChangeNotificationsForDependentKey_(
+      objc.NSArray keys, objc.NSString dependentKey) {
+    _objc_msgSend_32(
+        _class_FVPVideoPlayer,
+        _sel_setKeys_triggerChangeNotificationsForDependentKey_,
+        keys.pointer,
+        dependentKey.pointer);
+  }
+
+  /// classFallbacksForKeyedArchiver
+  static objc.NSArray classFallbacksForKeyedArchiver() {
+    final _ret = _objc_msgSend_33(
+        _class_FVPVideoPlayer, _sel_classFallbacksForKeyedArchiver);
+    return objc.NSArray.castFromPointer(_ret, retain: true, release: true);
+  }
+
+  /// classForKeyedUnarchiver
+  static objc.ObjCObjectBase classForKeyedUnarchiver() {
+    final _ret =
+        _objc_msgSend_19(_class_FVPVideoPlayer, _sel_classForKeyedUnarchiver);
+    return objc.ObjCObjectBase(_ret, retain: true, release: true);
+  }
+}
+
+late final _class_FVPVideoPlayer = objc.getClass("FVPVideoPlayer");
 final _objc_msgSend_1586 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
@@ -106236,184 +106221,8 @@ final _objc_msgSend_1589 = objc.msgSendPointer
         void Function(ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCObject>)>();
 late final _sel_disposed = objc.registerName("disposed");
-late final _sel_initialized = objc.registerName("initialized");
-late final _sel_setInitialized_ = objc.registerName("setInitialized:");
-late final _sel_playing = objc.registerName("playing");
-late final _sel_setPlaying_ = objc.registerName("setPlaying:");
-late final _sel_onDisposed = objc.registerName("onDisposed");
-late final _sel_setOnDisposed_ = objc.registerName("setOnDisposed:");
-late final _sel_waitingForFrame = objc.registerName("waitingForFrame");
-late final _sel_setWaitingForFrame_ = objc.registerName("setWaitingForFrame:");
-late final _sel_initWithPlayerItem_viewProvider_AVFactory_displayLinkFactory_ =
-    objc.registerName(
-        "initWithPlayerItem:viewProvider:AVFactory:displayLinkFactory:");
+late final _sel_onFrameProvided = objc.registerName("onFrameProvided");
 final _objc_msgSend_1590 = objc.msgSendPointer
-    .cast<
-        ffi.NativeFunction<
-            instancetype Function(
-                ffi.Pointer<objc.ObjCObject>,
-                ffi.Pointer<objc.ObjCSelector>,
-                ffi.Pointer<objc.ObjCObject>,
-                ffi.Pointer<objc.ObjCObject>,
-                ffi.Pointer<objc.ObjCObject>,
-                ffi.Pointer<objc.ObjCObject>)>>()
-    .asFunction<
-        instancetype Function(
-            ffi.Pointer<objc.ObjCObject>,
-            ffi.Pointer<objc.ObjCSelector>,
-            ffi.Pointer<objc.ObjCObject>,
-            ffi.Pointer<objc.ObjCObject>,
-            ffi.Pointer<objc.ObjCObject>,
-            ffi.Pointer<objc.ObjCObject>)>();
-late final _sel_dispose = objc.registerName("dispose");
-
-/// An implementation of FVPVideoPlayerDelegate that forwards messages blocks.
-///
-/// This is a manual version of what future versions of ffigen will codegen, to unblock exploration.
-class FVPBlockAdapterVideoPlayerDelegate extends objc.NSObject {
-  FVPBlockAdapterVideoPlayerDelegate._(ffi.Pointer<objc.ObjCObject> pointer,
-      {bool retain = false, bool release = false})
-      : super.castFromPointer(pointer, retain: retain, release: release);
-
-  /// Constructs a [FVPBlockAdapterVideoPlayerDelegate] that points to the same underlying object as [other].
-  FVPBlockAdapterVideoPlayerDelegate.castFrom(objc.ObjCObjectBase other)
-      : this._(other.pointer, retain: true, release: true);
-
-  /// Constructs a [FVPBlockAdapterVideoPlayerDelegate] that wraps the given raw object pointer.
-  FVPBlockAdapterVideoPlayerDelegate.castFromPointer(
-      ffi.Pointer<objc.ObjCObject> other,
-      {bool retain = false,
-      bool release = false})
-      : this._(other, retain: retain, release: release);
-
-  /// Returns whether [obj] is an instance of [FVPBlockAdapterVideoPlayerDelegate].
-  static bool isInstance(objc.ObjCObjectBase obj) {
-    return _objc_msgSend_0(obj.pointer, _sel_isKindOfClass_,
-        _class_FVPBlockAdapterVideoPlayerDelegate);
-  }
-
-  /// videoPlayerDidChangePlaybackRateHandler
-  objc.ObjCBlock<ffi.Void Function()>
-      get videoPlayerDidChangePlaybackRateHandler {
-    final _ret = _objc_msgSend_1591(
-        this.pointer, _sel_videoPlayerDidChangePlaybackRateHandler);
-    return ObjCBlock_ffiVoid.castFromPointer(_ret, retain: true, release: true);
-  }
-
-  /// setVideoPlayerDidChangePlaybackRateHandler:
-  set videoPlayerDidChangePlaybackRateHandler(
-      objc.ObjCBlock<ffi.Void Function()> value) {
-    return _objc_msgSend_1592(this.pointer,
-        _sel_setVideoPlayerDidChangePlaybackRateHandler_, value.pointer);
-  }
-
-  /// init
-  FVPBlockAdapterVideoPlayerDelegate init() {
-    final _ret = _objc_msgSend_19(this.pointer, _sel_init);
-    return FVPBlockAdapterVideoPlayerDelegate.castFromPointer(_ret,
-        retain: true, release: true);
-  }
-
-  /// new
-  static FVPBlockAdapterVideoPlayerDelegate new1() {
-    final _ret =
-        _objc_msgSend_19(_class_FVPBlockAdapterVideoPlayerDelegate, _sel_new);
-    return FVPBlockAdapterVideoPlayerDelegate.castFromPointer(_ret,
-        retain: false, release: true);
-  }
-
-  /// allocWithZone:
-  static FVPBlockAdapterVideoPlayerDelegate allocWithZone_(
-      ffi.Pointer<_NSZone> zone) {
-    final _ret = _objc_msgSend_28(
-        _class_FVPBlockAdapterVideoPlayerDelegate, _sel_allocWithZone_, zone);
-    return FVPBlockAdapterVideoPlayerDelegate.castFromPointer(_ret,
-        retain: false, release: true);
-  }
-
-  /// alloc
-  static FVPBlockAdapterVideoPlayerDelegate alloc() {
-    final _ret =
-        _objc_msgSend_19(_class_FVPBlockAdapterVideoPlayerDelegate, _sel_alloc);
-    return FVPBlockAdapterVideoPlayerDelegate.castFromPointer(_ret,
-        retain: false, release: true);
-  }
-
-  /// cancelPreviousPerformRequestsWithTarget:selector:object:
-  static void cancelPreviousPerformRequestsWithTarget_selector_object_(
-      objc.ObjCObjectBase aTarget,
-      ffi.Pointer<objc.ObjCSelector> aSelector,
-      objc.ObjCObjectBase? anArgument) {
-    _objc_msgSend_29(
-        _class_FVPBlockAdapterVideoPlayerDelegate,
-        _sel_cancelPreviousPerformRequestsWithTarget_selector_object_,
-        aTarget.pointer,
-        aSelector,
-        anArgument?.pointer ?? ffi.nullptr);
-  }
-
-  /// cancelPreviousPerformRequestsWithTarget:
-  static void cancelPreviousPerformRequestsWithTarget_(
-      objc.ObjCObjectBase aTarget) {
-    _objc_msgSend_27(_class_FVPBlockAdapterVideoPlayerDelegate,
-        _sel_cancelPreviousPerformRequestsWithTarget_, aTarget.pointer);
-  }
-
-  /// accessInstanceVariablesDirectly
-  static bool getAccessInstanceVariablesDirectly() {
-    return _objc_msgSend_13(_class_FVPBlockAdapterVideoPlayerDelegate,
-        _sel_accessInstanceVariablesDirectly);
-  }
-
-  /// useStoredAccessor
-  static bool useStoredAccessor() {
-    return _objc_msgSend_13(
-        _class_FVPBlockAdapterVideoPlayerDelegate, _sel_useStoredAccessor);
-  }
-
-  /// keyPathsForValuesAffectingValueForKey:
-  static objc.NSSet keyPathsForValuesAffectingValueForKey_(objc.NSString key) {
-    final _ret = _objc_msgSend_30(_class_FVPBlockAdapterVideoPlayerDelegate,
-        _sel_keyPathsForValuesAffectingValueForKey_, key.pointer);
-    return objc.NSSet.castFromPointer(_ret, retain: true, release: true);
-  }
-
-  /// automaticallyNotifiesObserversForKey:
-  static bool automaticallyNotifiesObserversForKey_(objc.NSString key) {
-    return _objc_msgSend_31(_class_FVPBlockAdapterVideoPlayerDelegate,
-        _sel_automaticallyNotifiesObserversForKey_, key.pointer);
-  }
-
-  /// setKeys:triggerChangeNotificationsForDependentKey:
-  static void setKeys_triggerChangeNotificationsForDependentKey_(
-      objc.NSArray keys, objc.NSString dependentKey) {
-    _objc_msgSend_32(
-        _class_FVPBlockAdapterVideoPlayerDelegate,
-        _sel_setKeys_triggerChangeNotificationsForDependentKey_,
-        keys.pointer,
-        dependentKey.pointer);
-  }
-
-  /// classFallbacksForKeyedArchiver
-  static objc.NSArray classFallbacksForKeyedArchiver() {
-    final _ret = _objc_msgSend_33(_class_FVPBlockAdapterVideoPlayerDelegate,
-        _sel_classFallbacksForKeyedArchiver);
-    return objc.NSArray.castFromPointer(_ret, retain: true, release: true);
-  }
-
-  /// classForKeyedUnarchiver
-  static objc.ObjCObjectBase classForKeyedUnarchiver() {
-    final _ret = _objc_msgSend_19(_class_FVPBlockAdapterVideoPlayerDelegate,
-        _sel_classForKeyedUnarchiver);
-    return objc.ObjCObjectBase(_ret, retain: true, release: true);
-  }
-}
-
-late final _class_FVPBlockAdapterVideoPlayerDelegate =
-    objc.getClass("FVPBlockAdapterVideoPlayerDelegate");
-late final _sel_videoPlayerDidChangePlaybackRateHandler =
-    objc.registerName("videoPlayerDidChangePlaybackRateHandler");
-final _objc_msgSend_1591 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCBlockImpl> Function(
@@ -106422,9 +106231,8 @@ final _objc_msgSend_1591 = objc.msgSendPointer
     .asFunction<
         ffi.Pointer<objc.ObjCBlockImpl> Function(
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
-late final _sel_setVideoPlayerDidChangePlaybackRateHandler_ =
-    objc.registerName("setVideoPlayerDidChangePlaybackRateHandler:");
-final _objc_msgSend_1592 = objc.msgSendPointer
+late final _sel_setOnFrameProvided_ = objc.registerName("setOnFrameProvided:");
+final _objc_msgSend_1591 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -106434,3 +106242,29 @@ final _objc_msgSend_1592 = objc.msgSendPointer
     .asFunction<
         void Function(ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCBlockImpl>)>();
+late final _sel_onDisposed = objc.registerName("onDisposed");
+late final _sel_setOnDisposed_ = objc.registerName("setOnDisposed:");
+late final _sel_initWithPlayerItem_viewProvider_frameUpdater_AVFactory_frameCallback_ =
+    objc.registerName(
+        "initWithPlayerItem:viewProvider:frameUpdater:AVFactory:frameCallback:");
+final _objc_msgSend_1592 = objc.msgSendPointer
+    .cast<
+        ffi.NativeFunction<
+            instancetype Function(
+                ffi.Pointer<objc.ObjCObject>,
+                ffi.Pointer<objc.ObjCSelector>,
+                ffi.Pointer<objc.ObjCObject>,
+                ffi.Pointer<objc.ObjCObject>,
+                ffi.Pointer<objc.ObjCObject>,
+                ffi.Pointer<objc.ObjCObject>,
+                ffi.Pointer<objc.ObjCBlockImpl>)>>()
+    .asFunction<
+        instancetype Function(
+            ffi.Pointer<objc.ObjCObject>,
+            ffi.Pointer<objc.ObjCSelector>,
+            ffi.Pointer<objc.ObjCObject>,
+            ffi.Pointer<objc.ObjCObject>,
+            ffi.Pointer<objc.ObjCObject>,
+            ffi.Pointer<objc.ObjCObject>,
+            ffi.Pointer<objc.ObjCBlockImpl>)>();
+late final _sel_dispose = objc.registerName("dispose");

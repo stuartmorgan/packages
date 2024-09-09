@@ -10,8 +10,7 @@
 #import <GLKit/GLKit.h>
 
 #import "./include/video_player_avfoundation/AVAssetTrackUtils.h"
-#import "./include/video_player_avfoundation/FVPDisplayLink.h"
-#import "FVPFrameUpdater.h"
+#import "./include/video_player_avfoundation/FVPFrameUpdater.h"
 
 NS_INLINE CGFloat FVPRadiansToDegrees(CGFloat radians) {
   // Input range [-pi, pi] or [-180, 180]
@@ -24,25 +23,20 @@ NS_INLINE CGFloat FVPRadiansToDegrees(CGFloat radians) {
   return degrees;
 };
 
-static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject *observer) {
-  [player addObserver:observer
-           forKeyPath:@"rate"
-              options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
-              context:NULL];
-}
-
 @implementation FVPVideoPlayer
 
 - (instancetype)initWithPlayerItem:(AVPlayerItem *)item
                       viewProvider:(id<FVPViewProvider>)viewProvider
+                      frameUpdater:(nonnull FVPFrameUpdater *)frameUpdater
                          AVFactory:(id<FVPAVFactory>)avFactory
-                displayLinkFactory:(id<FVPDisplayLinkFactory>)displayLinkFactory {
+                     frameCallback:(void (^__nonnull)(void))frameCallback {
   NSAssert([NSThread isMainThread], @"Must be called on main thread");
   self = [super init];
   NSAssert(self, @"super init cannot be nil");
 
   _viewProvider = viewProvider;
-  _frameUpdater = [[FVPFrameUpdater alloc] init];
+  _frameUpdater = frameUpdater;
+  _onFrameProvided = frameCallback;
 
   AVAsset *asset = [item asset];
   void (^assetCompletionHandler)(void) = ^{
@@ -55,13 +49,13 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
           if ([videoTrack statusOfValueForKey:@"preferredTransform"
                                         error:nil] == AVKeyValueStatusLoaded) {
             // Rotate the video by using a videoComposition and the preferredTransform
-            self->_preferredTransform = FVPGetStandardizedTransformForTrack(videoTrack);
+            CGAffineTransform preferredTransform = FVPGetStandardizedTransformForTrack(videoTrack);
             // Note:
             // https://developer.apple.com/documentation/avfoundation/avplayeritem/1388818-videocomposition
             // Video composition can only be used with file-based media and is not supported for
             // use with media served using HTTP Live Streaming.
             AVMutableVideoComposition *videoComposition =
-                [self getVideoCompositionWithTransform:self->_preferredTransform
+                [self getVideoCompositionWithTransform:preferredTransform
                                              withAsset:asset
                                         withVideoTrack:videoTrack];
             item.videoComposition = videoComposition;
@@ -97,14 +91,6 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
   _videoOutput = [avFactory videoOutputWithPixelBufferAttributes:pixBuffAttributes];
   _frameUpdater.videoOutput = _videoOutput;
 
-  __weak FVPFrameUpdater *frameUpdater = _frameUpdater;
-  _displayLink = [displayLinkFactory displayLinkWithViewProvider:viewProvider
-                                                        callback:^() {
-                                                          [frameUpdater displayLinkFired];
-                                                        }];
-
-  FVPRegisterObservers(item, _player, self);
-
   [asset loadValuesAsynchronouslyForKeys:@[ @"tracks" ] completionHandler:assetCompletionHandler];
 
   return self;
@@ -120,9 +106,6 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
   if (![NSThread isMainThread]) {
     NSLog(@"  Uh-oh, on wrong thread!");
   }
-  if (!_disposed) {
-    [self removeKeyValueObservers];
-  }
 }
 
 - (AVMutableVideoComposition *)getVideoCompositionWithTransform:(CGAffineTransform)transform
@@ -134,7 +117,7 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
   AVMutableVideoCompositionLayerInstruction *layerInstruction =
       [AVMutableVideoCompositionLayerInstruction
           videoCompositionLayerInstructionWithAssetTrack:videoTrack];
-  [layerInstruction setTransform:_preferredTransform atTime:kCMTimeZero];
+  [layerInstruction setTransform:transform atTime:kCMTimeZero];
 
   AVMutableVideoComposition *videoComposition = [AVMutableVideoComposition videoComposition];
   instruction.layerInstructions = @[ layerInstruction ];
@@ -144,7 +127,7 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
   CGFloat width = videoTrack.naturalSize.width;
   CGFloat height = videoTrack.naturalSize.height;
   NSInteger rotationDegrees =
-      (NSInteger)round(FVPRadiansToDegrees(atan2(_preferredTransform.b, _preferredTransform.a)));
+      (NSInteger)round(FVPRadiansToDegrees(atan2(transform.b, transform.a)));
   if (rotationDegrees == 90 || rotationDegrees == 270) {
     width = videoTrack.naturalSize.height;
     height = videoTrack.naturalSize.width;
@@ -156,13 +139,6 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
   videoComposition.frameDuration = CMTimeMake(1, 30);
 
   return videoComposition;
-}
-
-- (void)observeValueForKeyPath:(NSString *)path
-                      ofObject:(id)object
-                        change:(NSDictionary *)change
-                       context:(void *)context {
-  [self.delegate videoPlayerDidChangePlaybackRate];
 }
 
 - (CVPixelBufferRef)copyPixelBuffer {
@@ -180,18 +156,11 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
     }
   }
 
-  BOOL returnedBuffer = buffer != NULL;
-
-  dispatch_async(dispatch_get_main_queue(), ^{
-    if (self.waitingForFrame && returnedBuffer) {
-      self.waitingForFrame = NO;
-      // If the display link was only running temporarily to pick up a new frame while the video was
-      // paused, stop it again.
-      if (!self.playing) {
-        self.displayLink.running = NO;
-      }
-    }
-  });
+  if (buffer != NULL) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+      _onFrameProvided();
+    });
+  }
 
   return buffer;
 }
@@ -200,21 +169,12 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
   NSAssert([NSThread isMainThread], @"Must be called on main thread");
   _disposed = YES;
   [_playerLayer removeFromSuperlayer];
-  _displayLink = nil;
-  [self removeKeyValueObservers];
 
   [self.player replaceCurrentItemWithPlayerItem:nil];
 
   if (self.onDisposed) {
     self.onDisposed();
   }
-}
-
-/// Removes all key-value observers set up for the player.
-///
-/// This is called from dealloc, so must not use any methods on self.
-- (void)removeKeyValueObservers {
-  [_player removeObserver:self forKeyPath:@"rate"];
 }
 
 @end

@@ -9,11 +9,11 @@
 
 #import "./include/video_player_avfoundation/AVAssetTrackUtils.h"
 #import "./include/video_player_avfoundation/FVPDisplayLink.h"
+#import "./include/video_player_avfoundation/FVPFrameUpdater.h"
 #import "./include/video_player_avfoundation/FVPVideoPlayer.h"
 #import "./include/video_player_avfoundation/FVPViewProvider.h"
 #import "./include/video_player_avfoundation/InjectionProtocols.h"
 #import "./include/video_player_avfoundation/messages.g.h"
-#import "FVPFrameUpdater.h"
 #import "FVPVideoPlayer_Private.h"
 
 #if !__has_feature(objc_arc)
@@ -72,19 +72,10 @@
   NSAssert(self, @"super init cannot be nil");
   _registrar = registrar;
   _viewProvider = [[FVPDefaultViewProvider alloc] initWithRegistrar:_registrar];
-  _players =
-      [NSMapTable mapTableWithKeyOptions:(NSMapTableWeakMemory | NSMapTableObjectPointerPersonality)
-                            valueOptions:NSMapTableStrongMemory];
   return self;
 }
 
 - (void)detachFromEngineForRegistrar:(NSObject<FlutterPluginRegistrar> *)registrar {
-  for (FVPVideoPlayer *player in self.players.keyEnumerator) {
-    // Remove the delegate to ensure that the player doesn't message the engine that is no longer
-    // connected.
-    player.delegate = nil;
-  }
-  [self.players removeAllObjects];
   SetUpFVPAVFoundationVideoPlayerApi(registrar.messenger, nil);
 }
 
@@ -100,19 +91,11 @@
   player.onDisposed = ^{
     [[weakRegistrar textures] unregisterTexture:textureIdentifier];
   };
-  // The value is ignored, NSMapTable is just easier to use than NSPointerArray.
-  [self.players setObject:@(YES) forKey:player];
   [player configureDisplayWithAvailableFrameCallback:^{
     [[weakRegistrar textures] textureFrameAvailable:textureIdentifier];
   }];
 
   return @(textureIdentifier);
-}
-
-- (void)disposePlayerPointer:(NSInteger)playerPointer error:(FlutterError **)error {
-  FVPVideoPlayer *player = (__bridge FVPVideoPlayer *)((void *)playerPointer);
-  [self.players removeObjectForKey:player];
-  [player dispose];
 }
 
 - (nullable NSString *)pathForAssetWithName:(NSString *)assetName

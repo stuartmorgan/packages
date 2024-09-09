@@ -11,10 +11,9 @@ headers:
     - '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/Foundation.framework/Versions/A/Headers/Foundation.h'
     - 'darwin/video_player_avfoundation/Sources/video_player_avfoundation/include/video_player_avfoundation/FVPBlockKeyValueObserver.h'
     - 'darwin/video_player_avfoundation/Sources/video_player_avfoundation/include/video_player_avfoundation/FVPDefaultAVFactory.h'
-    - 'darwin/video_player_avfoundation/Sources/video_player_avfoundation/include/video_player_avfoundation/FVPDefaultDisplayLinkFactory.h'
+    - 'darwin/video_player_avfoundation/Sources/video_player_avfoundation/include/video_player_avfoundation/FVPDisplayLink.h'
+    - 'darwin/video_player_avfoundation/Sources/video_player_avfoundation/include/video_player_avfoundation/FVPFrameUpdater.h'
     - 'darwin/video_player_avfoundation/Sources/video_player_avfoundation/include/video_player_avfoundation/FVPVideoPlayer.h'
-    - 'darwin/video_player_avfoundation/Sources/video_player_avfoundation/include/video_player_avfoundation/FVPVideoPlayerDelegate.h'
-    - 'darwin/video_player_avfoundation/Sources/video_player_avfoundation/include/video_player_avfoundation/FVPBlockAdapterVideoPlayerDelegate.h'
 exclude-all-by-default: true
 objc-interfaces:
   include:
@@ -22,9 +21,9 @@ objc-interfaces:
     - 'AVPlayer'
     - 'FVPBlockKeyValueObserver'
     - 'FVPDefaultAVFactory'
-    - 'FVPDefaultDisplayLinkFactory'
+    - 'FVPDisplayLink'
+    - 'FVPFrameUpdater'
     - 'FVPVideoPlayer'
-    - 'FVPBlockAdapterVideoPlayerDelegate'
     - 'NSNotificationCenter'
 functions:
   include:

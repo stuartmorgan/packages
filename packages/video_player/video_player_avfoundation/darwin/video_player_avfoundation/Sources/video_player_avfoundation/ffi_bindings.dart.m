@@ -1,11 +1,10 @@
 #import <AVFoundation/AVFoundation.h>
 #include <stdint.h>
-#import "include/video_player_avfoundation/FVPBlockAdapterVideoPlayerDelegate.h"
 #import "include/video_player_avfoundation/FVPBlockKeyValueObserver.h"
 #import "include/video_player_avfoundation/FVPDefaultAVFactory.h"
-#import "include/video_player_avfoundation/FVPDefaultDisplayLinkFactory.h"
+#import "include/video_player_avfoundation/FVPDisplayLink.h"
+#import "include/video_player_avfoundation/FVPFrameUpdater.h"
 #import "include/video_player_avfoundation/FVPVideoPlayer.h"
-#import "include/video_player_avfoundation/FVPVideoPlayerDelegate.h"
 
 #if !__has_feature(objc_arc)
 #error "This file must be compiled with ARC enabled"

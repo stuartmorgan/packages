@@ -13,10 +13,9 @@
 #endif
 
 #import "./include/video_player_avfoundation/FVPDisplayLink.h"
-#import "./include/video_player_avfoundation/FVPVideoPlayerDelegate.h"
+#import "./include/video_player_avfoundation/FVPFrameUpdater.h"
 #import "./include/video_player_avfoundation/FVPViewProvider.h"
 #import "./include/video_player_avfoundation/InjectionProtocols.h"
-#import "FVPFrameUpdater.h"
 
 /// The native component of a single video player instance.
 @interface FVPVideoPlayer () <FlutterTexture>

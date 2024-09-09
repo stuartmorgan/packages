@@ -50,11 +50,7 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
 
   @override
   Future<void> dispose(int textureId) async {
-    final _VideoPlayer? player = _playersByTextureId.remove(textureId);
-    player?.dispose();
-    if (player != null) {
-      await _api.disposePlayerPointer(player.nativePlayer.pointer.address);
-    }
+    _playersByTextureId.remove(textureId)?.dispose();
     debugPrint('Top-level dispose');
   }
 
@@ -62,7 +58,9 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
   Future<int?> create(DataSource dataSource) async {
     final AVURLAsset asset = await _assetForDataSource(dataSource);
     final int nativeViewProviderPointer = await _api.getViewProviderPointer();
-    final _VideoPlayer player = _VideoPlayer(asset, nativeViewProviderPointer);
+    final NSObject nativeViewProvider = NSObject.castFromPointer(
+        ffi.Pointer<ObjCObject>.fromAddress(nativeViewProviderPointer));
+    final _VideoPlayer player = _VideoPlayer(asset, nativeViewProvider);
 
     final int textureId =
         await _api.configurePlayerPointer(player.nativePlayer.pointer.address);
@@ -197,25 +195,34 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
 
 typedef _RegistrationState = ({
   ObjCObjectBase notificationCenterToken,
+  AVPlayer observedPlayer,
   AVPlayerItem observedPlayerItem,
-  FVPBlockKeyValueObserver observer,
+  FVPBlockKeyValueObserver playerObserver,
+  FVPBlockKeyValueObserver itemObserver,
 });
 
 /// An instance of a video player.
 class _VideoPlayer {
-  _VideoPlayer(AVAsset asset, int nativeViewProviderPointer) {
+  _VideoPlayer(AVAsset asset, NSObject nativeViewProvider) {
     final AVPlayerItem avItem = AVPlayerItem.playerItemWithAsset_(asset);
     final FVPDefaultAVFactory avFactory = FVPDefaultAVFactory.alloc().init();
-    final FVPDefaultDisplayLinkFactory displayLinkFactory =
-        FVPDefaultDisplayLinkFactory.alloc().init();
+    // TODO(stuartmorgan): Eliminate this completely? Or at least convert it to
+    // Dart.
+    final FVPFrameUpdater frameUpdater = FVPFrameUpdater.alloc().init();
+    _displayLink = FVPDisplayLink.alloc().initWithViewProvider_callback_(
+        nativeViewProvider,
+        ObjCBlock_ffiVoid.listener(() => frameUpdater.displayLinkFired()));
+    final WeakReference<_VideoPlayer> weakSelf =
+        WeakReference<_VideoPlayer>(this);
     nativePlayer = FVPVideoPlayer.alloc()
-        .initWithPlayerItem_viewProvider_AVFactory_displayLinkFactory_(
+        .initWithPlayerItem_viewProvider_frameUpdater_AVFactory_frameCallback_(
             avItem,
-            NSObject.castFromPointer(
-                ffi.Pointer<ObjCObject>.fromAddress(nativeViewProviderPointer)),
+            nativeViewProvider,
+            frameUpdater,
             avFactory,
-            displayLinkFactory);
-    _eventAdapter = _DelegateEventAdapter(nativePlayer);
+            ObjCBlock_ffiVoid.listener(
+                () => weakSelf.target?._onFrameProvided()));
+    _eventAdapter = _DelegateEventAdapter();
 
     // TODO(stuartmorgan): Remove this once the final version has been verified
     // to be retain-loop-free.
@@ -226,7 +233,8 @@ class _VideoPlayer {
       Finalizer<_RegistrationState>((_RegistrationState state) {
     NSNotificationCenter.getDefaultCenter()
         .removeObserver_(state.notificationCenterToken);
-    _unregisterItemObserver(state.observedPlayerItem, state.observer);
+    _unregisterPlayerObserver(state.observedPlayer, state.playerObserver);
+    _unregisterItemObserver(state.observedPlayerItem, state.itemObserver);
   });
 
   static final Finalizer<void> _xxxFinalizer = Finalizer<void>((_) {
@@ -234,9 +242,20 @@ class _VideoPlayer {
   });
 
   late final FVPVideoPlayer nativePlayer;
+  bool _initialized = false;
+  // Wether the player play if possible. This can temporarily be out of sync
+  // with the actual AVPlayer play state in some cases, such as while waiting
+  // for the player item to finish loading.
+  bool _shouldBePlaying = false;
+  // True if a new frame is expected while the player is not playing (e.g.,
+  // when seeking while paused). When true, the display link should continue to
+  // run until the next frame is successfully provided.
+  bool _waitingForFrame = false;
+  FVPDisplayLink? _displayLink;
   _DelegateEventAdapter? _eventAdapter;
   ObjCObjectBase? _observerRegistrationToken;
-  FVPBlockKeyValueObserver? _kvoBridge;
+  FVPBlockKeyValueObserver? _playerKvoBridge;
+  FVPBlockKeyValueObserver? _itemKvoBridge;
 
   static const List<String> _playerItemKeyPaths = <String>[
     _observerKeyPathStatus,
@@ -259,6 +278,8 @@ class _VideoPlayer {
   void dispose() {
     debugPrint('disposed!');
     _unregisterObservers();
+    _displayLink = null;
+    nativePlayer.dispose();
   }
 
   void registerObservers() {
@@ -266,7 +287,22 @@ class _VideoPlayer {
     final WeakReference<_VideoPlayer> weakSelf =
         WeakReference<_VideoPlayer>(this);
 
-    final FVPBlockKeyValueObserver kvoBridge =
+    final FVPBlockKeyValueObserver playerKvoBridge =
+        FVPBlockKeyValueObserver.observerWithCallback_(
+            ObjCBlock_ffiVoid_objcObjCObject_NSString.listener(
+                (ObjCObjectBase object, NSString keyPath) {
+      final _VideoPlayer? self = weakSelf.target;
+      final _DelegateEventAdapter? adapter = self?._eventAdapter;
+      if (self == null || adapter == null) {
+        return;
+      }
+      // No need to check keyPath because only one key path is observed.
+      adapter.onPlayStateChanged(self.nativePlayer.player.rate > 0);
+    }));
+    _registerPlayerObserver(nativePlayer.player, playerKvoBridge);
+    _playerKvoBridge = playerKvoBridge;
+
+    final FVPBlockKeyValueObserver itemKvoBridge =
         FVPBlockKeyValueObserver.observerWithCallback_(
             ObjCBlock_ffiVoid_objcObjCObject_NSString.listener(
                 (ObjCObjectBase object, NSString keyPath) {
@@ -309,8 +345,8 @@ class _VideoPlayer {
           }
       }
     }));
-    _registerItemObserver(avItem, kvoBridge);
-    _kvoBridge = kvoBridge;
+    _registerItemObserver(avItem, itemKvoBridge);
+    _itemKvoBridge = itemKvoBridge;
 
     final ObjCObjectBase registrationToken =
         NSNotificationCenter.getDefaultCenter()
@@ -324,22 +360,27 @@ class _VideoPlayer {
         this,
         (
           notificationCenterToken: registrationToken,
+          observedPlayer: nativePlayer.player,
           observedPlayerItem: avItem,
-          observer: kvoBridge,
+          playerObserver: playerKvoBridge,
+          itemObserver: itemKvoBridge,
         ),
         detach: this);
     _observerRegistrationToken = registrationToken;
   }
 
   void _unregisterObservers() {
-    nativePlayer.delegate = null;
-
-    if (_kvoBridge != null) {
+    if (_playerKvoBridge != null) {
+      final AVPlayer player = nativePlayer.player;
+      _unregisterPlayerObserver(player, _playerKvoBridge!);
+      _playerKvoBridge = null;
+    }
+    if (_itemKvoBridge != null) {
       final AVPlayerItem? item = nativePlayer.player.currentItem;
       if (item != null) {
-        _unregisterItemObserver(item, _kvoBridge!);
+        _unregisterItemObserver(item, _itemKvoBridge!);
       }
-      _kvoBridge = null;
+      _itemKvoBridge = null;
     }
 
     if (_observerRegistrationToken != null) {
@@ -368,30 +409,41 @@ class _VideoPlayer {
     }
   }
 
+  static void _registerPlayerObserver(
+      AVPlayer player, FVPBlockKeyValueObserver observer) {
+    player.addObserver_forKeyPath_options_context_(
+        observer,
+        NSString(_observerKeyPathRate),
+        NSKeyValueObservingOptions.NSKeyValueObservingOptionInitial,
+        ffi.nullptr);
+  }
+
+  static void _unregisterPlayerObserver(
+      AVPlayer player, FVPBlockKeyValueObserver observer) {
+    player.removeObserver_forKeyPath_(observer, NSString(_observerKeyPathRate));
+  }
+
   void play() {
-    nativePlayer.playing = true;
+    _shouldBePlaying = true;
     _updatePlayingState();
   }
 
   void pause() {
-    nativePlayer.playing = false;
+    _shouldBePlaying = false;
     _updatePlayingState();
   }
 
   void _updatePlayingState() {
-    if (!nativePlayer.initialized) {
+    final FVPDisplayLink? displayLink = _displayLink;
+    if (!_initialized || displayLink == null) {
       return;
     }
-    final FVPDisplayLink? displayLink = nativePlayer.displayLink;
-    if (displayLink == null) {
-      return;
-    }
-    if (nativePlayer.playing) {
+    if (_shouldBePlaying) {
       nativePlayer.player.play();
     } else {
       nativePlayer.player.pause();
     }
-    displayLink.running = nativePlayer.playing || nativePlayer.waitingForFrame;
+    displayLink.running = _shouldBePlaying || _waitingForFrame;
   }
 
   set volume(double volume) {
@@ -475,8 +527,19 @@ class _VideoPlayer {
     return Duration(milliseconds: milliseconds);
   }
 
+  void _onFrameProvided() {
+    if (_waitingForFrame) {
+      _waitingForFrame = false;
+      // If the display link was only running temporarily to pick up a new frame
+      // while the video was paused, stop it again.
+      if (!_shouldBePlaying) {
+        _displayLink?.running = false;
+      }
+    }
+  }
+
   void _checkInitializationStatus() {
-    if (nativePlayer.initialized) {
+    if (_initialized) {
       return;
     }
     final AVPlayerItem? currentItem = nativePlayer.player.currentItem;
@@ -521,25 +584,24 @@ class _VideoPlayer {
       return;
     }
 
-    nativePlayer.initialized = true;
+    _initialized = true;
     _eventAdapter?.streamController.add(VideoEvent(
       eventType: VideoEventType.initialized,
       duration: duration,
       size: size,
     ));
     // If the player had a pending play state, start playing.
-    // TDOO(stuartmorgan): Give this bool a better name when moving it.
-    if (nativePlayer.playing) {
+    if (_shouldBePlaying) {
       play();
     }
   }
 
   void expectFrame() {
-    final FVPDisplayLink? displayLink = nativePlayer.displayLink;
+    final FVPDisplayLink? displayLink = _displayLink;
     if (displayLink == null) {
       return;
     }
-    nativePlayer.waitingForFrame = true;
+    _waitingForFrame = true;
     displayLink.running = true;
   }
 
@@ -555,23 +617,6 @@ class _VideoPlayer {
 }
 
 class _DelegateEventAdapter {
-  _DelegateEventAdapter(FVPVideoPlayer player) {
-    final FVPBlockAdapterVideoPlayerDelegate delegate =
-        FVPBlockAdapterVideoPlayerDelegate.alloc().init();
-    final WeakReference<FVPVideoPlayer> weakPlayer =
-        WeakReference<FVPVideoPlayer>(player);
-    delegate.videoPlayerDidChangePlaybackRateHandler =
-        ObjCBlock_ffiVoid.listener(() {
-      final FVPVideoPlayer? player = weakPlayer.target;
-      if (player == null) {
-        return;
-      }
-      onPlayStateChanged(player.player.rate > 0);
-    });
-
-    player.delegate = delegate;
-  }
-
   final StreamController<VideoEvent> streamController =
       StreamController<VideoEvent>.broadcast();
 

@@ -6,12 +6,7 @@
 
 #import <AVFoundation/AVFoundation.h>
 
-#import "FVPVideoPlayer.h"
-#import "InjectionProtocols.h"
 #import "messages.g.h"
 
 @interface FVPVideoPlayerPlugin () <FVPAVFoundationVideoPlayerApi>
-
-@property(readonly, strong, nonatomic) NSMapTable *players;
-
 @end
