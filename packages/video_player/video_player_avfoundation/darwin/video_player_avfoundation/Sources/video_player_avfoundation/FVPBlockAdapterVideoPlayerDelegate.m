@@ -8,16 +8,12 @@
 
 @implementation FVPBlockAdapterVideoPlayerDelegate
 
-// These should all have null handling, or have an init making them all non-nullable, but this is
-// fine for temporary code.
 #pragma mark FVPVideoPlayerDelegate
 
-- (void)videoPlayerItem:(AVPlayerItem *)item didChangeProperty:(FVPItemProperty)property {
-  self.videoPlayerItemDidChangePropertyHandler(item, property);
-}
-
 - (void)videoPlayerDidChangePlaybackRate {
-  self.videoPlayerDidChangePlaybackRateHandler();
+  if (self.videoPlayerDidChangePlaybackRateHandler) {
+    self.videoPlayerDidChangePlaybackRateHandler();
+  }
 }
 
 @end

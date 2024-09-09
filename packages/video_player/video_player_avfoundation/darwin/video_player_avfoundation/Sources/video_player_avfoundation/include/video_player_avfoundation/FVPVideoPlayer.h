@@ -20,12 +20,12 @@
 @property(nonatomic, strong, nullable) id<FVPVideoPlayerDelegate> delegate;
 
 // The display link that drives frameUpdater.
-@property(nonatomic, strong) FVPDisplayLink *displayLink;
+@property(nonatomic, strong, nullable) FVPDisplayLink *displayLink;
 
 // The output to use for items being played.
-@property(nonatomic, strong) AVPlayerItemVideoOutput *videoOutput;
+@property(nonatomic, strong, nullable) AVPlayerItemVideoOutput *videoOutput;
 
-@property(nonatomic, strong) AVPlayer *player;
+@property(nonatomic, strong, nonnull) AVPlayer *player;
 
 @property(nonatomic, readonly) BOOL disposed;
 
@@ -36,21 +36,17 @@
 @property(nonatomic, assign) CGAffineTransform preferredTransform;
 
 // A callback to call during 'dispose'.
-@property(nonatomic, copy, nullable) void (^onDisposed)();
+@property(nonatomic, copy, nullable) void (^onDisposed)(void);
 
 // Whether a new frame needs to be provided to the engine regardless of the current play/pause state
 // (e.g., after a seek while paused). If YES, the display link should continue to run until the next
 // frame is successfully provided.
 @property(nonatomic, assign) BOOL waitingForFrame;
 
-- (instancetype)initWithPlayerItem:(AVPlayerItem *)item
-                      viewProvider:(id<FVPViewProvider>)viewProvider
-                         AVFactory:(id<FVPAVFactory>)avFactory
-                displayLinkFactory:(id<FVPDisplayLinkFactory>)displayLinkFactory;
-
-// Tells the player to run its frame updater until it receives a frame, regardless of the
-// play/pause state.
-- (void)expectFrame;
+- (instancetype)initWithPlayerItem:(nullable AVPlayerItem *)item
+                      viewProvider:(nullable id<FVPViewProvider>)viewProvider
+                         AVFactory:(nullable id<FVPAVFactory>)avFactory
+                displayLinkFactory:(nullable id<FVPDisplayLinkFactory>)displayLinkFactory;
 
 /// Informs the player that it won't be used from Dart any more and that it should clean up
 /// related resources.

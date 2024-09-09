@@ -1,6 +1,7 @@
 #import <AVFoundation/AVFoundation.h>
 #include <stdint.h>
 #import "include/video_player_avfoundation/FVPBlockAdapterVideoPlayerDelegate.h"
+#import "include/video_player_avfoundation/FVPBlockKeyValueObserver.h"
 #import "include/video_player_avfoundation/FVPDefaultAVFactory.h"
 #import "include/video_player_avfoundation/FVPDefaultDisplayLinkFactory.h"
 #import "include/video_player_avfoundation/FVPVideoPlayer.h"
@@ -426,10 +427,10 @@ wrapListenerBlock_ObjCBlock_ffiVoid_opaqueCMSampleBuffer_AVCaptureBracketedStill
   };
 }
 
-typedef void (^ListenerBlock51)(AVPlayerItem *, FVPItemProperty);
-ListenerBlock51 wrapListenerBlock_ObjCBlock_ffiVoid_AVPlayerItem_FVPItemProperty(
-    ListenerBlock51 block) NS_RETURNS_RETAINED {
-  return ^void(AVPlayerItem *arg0, FVPItemProperty arg1) {
-    block(objc_retain(arg0), arg1);
+typedef void (^ListenerBlock51)(id, NSString *);
+ListenerBlock51 wrapListenerBlock_ObjCBlock_ffiVoid_objcObjCObject_NSString(ListenerBlock51 block)
+    NS_RETURNS_RETAINED {
+  return ^void(id arg0, NSString *arg1) {
+    block(objc_retain(arg0), objc_retain(arg1));
   };
 }

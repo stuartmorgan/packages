@@ -9,6 +9,7 @@ headers:
     # See https://github.com/dart-lang/native/issues/471
     - '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/AVFoundation.framework/Versions/A/Headers/AVFoundation.h'
     - '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/Foundation.framework/Versions/A/Headers/Foundation.h'
+    - 'darwin/video_player_avfoundation/Sources/video_player_avfoundation/include/video_player_avfoundation/FVPBlockKeyValueObserver.h'
     - 'darwin/video_player_avfoundation/Sources/video_player_avfoundation/include/video_player_avfoundation/FVPDefaultAVFactory.h'
     - 'darwin/video_player_avfoundation/Sources/video_player_avfoundation/include/video_player_avfoundation/FVPDefaultDisplayLinkFactory.h'
     - 'darwin/video_player_avfoundation/Sources/video_player_avfoundation/include/video_player_avfoundation/FVPVideoPlayer.h'
@@ -19,6 +20,7 @@ objc-interfaces:
   include:
     - 'AVAudioSession'
     - 'AVPlayer'
+    - 'FVPBlockKeyValueObserver'
     - 'FVPDefaultAVFactory'
     - 'FVPDefaultDisplayLinkFactory'
     - 'FVPVideoPlayer'

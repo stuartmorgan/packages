@@ -489,7 +489,7 @@ external ffi.Pointer<objc.ObjCBlockImpl>
     ffi.Pointer<objc.ObjCBlockImpl> Function(
         ffi.Pointer<objc.ObjCBlockImpl>)>(isLeaf: true)
 external ffi.Pointer<objc.ObjCBlockImpl>
-    wrapListenerBlock_ObjCBlock_ffiVoid_AVPlayerItem_FVPItemProperty(
+    wrapListenerBlock_ObjCBlock_ffiVoid_objcObjCObject_NSString(
   ffi.Pointer<objc.ObjCBlockImpl> block,
 );
 
@@ -104958,6 +104958,336 @@ late final _sel_initWithReceivePort_sendPort_components_ =
     objc.registerName("initWithReceivePort:sendPort:components:");
 late final _sel_dispatch = objc.registerName("dispatch");
 
+/// An implementation of a KVO observer that delegates to a block.
+///
+/// This allows registering an observer from Dart.
+/// See https://github.com/dart-lang/native/issues/1508
+class FVPBlockKeyValueObserver extends objc.NSObject {
+  FVPBlockKeyValueObserver._(ffi.Pointer<objc.ObjCObject> pointer,
+      {bool retain = false, bool release = false})
+      : super.castFromPointer(pointer, retain: retain, release: release);
+
+  /// Constructs a [FVPBlockKeyValueObserver] that points to the same underlying object as [other].
+  FVPBlockKeyValueObserver.castFrom(objc.ObjCObjectBase other)
+      : this._(other.pointer, retain: true, release: true);
+
+  /// Constructs a [FVPBlockKeyValueObserver] that wraps the given raw object pointer.
+  FVPBlockKeyValueObserver.castFromPointer(ffi.Pointer<objc.ObjCObject> other,
+      {bool retain = false, bool release = false})
+      : this._(other, retain: retain, release: release);
+
+  /// Returns whether [obj] is an instance of [FVPBlockKeyValueObserver].
+  static bool isInstance(objc.ObjCObjectBase obj) {
+    return _objc_msgSend_0(
+        obj.pointer, _sel_isKindOfClass_, _class_FVPBlockKeyValueObserver);
+  }
+
+  /// observedValueDidChange
+  objc.ObjCBlock<ffi.Void Function(ffi.Pointer<objc.ObjCObject>, objc.NSString)>
+      get observedValueDidChange {
+    final _ret = _objc_msgSend_1578(this.pointer, _sel_observedValueDidChange);
+    return ObjCBlock_ffiVoid_objcObjCObject_NSString.castFromPointer(_ret,
+        retain: true, release: true);
+  }
+
+  /// setObservedValueDidChange:
+  set observedValueDidChange(
+      objc.ObjCBlock<
+              ffi.Void Function(ffi.Pointer<objc.ObjCObject>, objc.NSString)>
+          value) {
+    return _objc_msgSend_1579(
+        this.pointer, _sel_setObservedValueDidChange_, value.pointer);
+  }
+
+  /// initWithCallback:
+  FVPBlockKeyValueObserver initWithCallback_(
+      objc.ObjCBlock<
+              ffi.Void Function(ffi.Pointer<objc.ObjCObject>, objc.NSString)>
+          callback) {
+    final _ret = _objc_msgSend_1580(
+        this.pointer, _sel_initWithCallback_, callback.pointer);
+    return FVPBlockKeyValueObserver.castFromPointer(_ret,
+        retain: true, release: true);
+  }
+
+  /// observerWithCallback:
+  static FVPBlockKeyValueObserver observerWithCallback_(
+      objc.ObjCBlock<
+              ffi.Void Function(ffi.Pointer<objc.ObjCObject>, objc.NSString)>
+          callback) {
+    final _ret = _objc_msgSend_1580(_class_FVPBlockKeyValueObserver,
+        _sel_observerWithCallback_, callback.pointer);
+    return FVPBlockKeyValueObserver.castFromPointer(_ret,
+        retain: true, release: true);
+  }
+
+  /// init
+  FVPBlockKeyValueObserver init() {
+    final _ret = _objc_msgSend_19(this.pointer, _sel_init);
+    return FVPBlockKeyValueObserver.castFromPointer(_ret,
+        retain: true, release: true);
+  }
+
+  /// new
+  static FVPBlockKeyValueObserver new1() {
+    final _ret = _objc_msgSend_19(_class_FVPBlockKeyValueObserver, _sel_new);
+    return FVPBlockKeyValueObserver.castFromPointer(_ret,
+        retain: false, release: true);
+  }
+
+  /// allocWithZone:
+  static FVPBlockKeyValueObserver allocWithZone_(ffi.Pointer<_NSZone> zone) {
+    final _ret = _objc_msgSend_28(
+        _class_FVPBlockKeyValueObserver, _sel_allocWithZone_, zone);
+    return FVPBlockKeyValueObserver.castFromPointer(_ret,
+        retain: false, release: true);
+  }
+
+  /// alloc
+  static FVPBlockKeyValueObserver alloc() {
+    final _ret = _objc_msgSend_19(_class_FVPBlockKeyValueObserver, _sel_alloc);
+    return FVPBlockKeyValueObserver.castFromPointer(_ret,
+        retain: false, release: true);
+  }
+
+  /// cancelPreviousPerformRequestsWithTarget:selector:object:
+  static void cancelPreviousPerformRequestsWithTarget_selector_object_(
+      objc.ObjCObjectBase aTarget,
+      ffi.Pointer<objc.ObjCSelector> aSelector,
+      objc.ObjCObjectBase? anArgument) {
+    _objc_msgSend_29(
+        _class_FVPBlockKeyValueObserver,
+        _sel_cancelPreviousPerformRequestsWithTarget_selector_object_,
+        aTarget.pointer,
+        aSelector,
+        anArgument?.pointer ?? ffi.nullptr);
+  }
+
+  /// cancelPreviousPerformRequestsWithTarget:
+  static void cancelPreviousPerformRequestsWithTarget_(
+      objc.ObjCObjectBase aTarget) {
+    _objc_msgSend_27(_class_FVPBlockKeyValueObserver,
+        _sel_cancelPreviousPerformRequestsWithTarget_, aTarget.pointer);
+  }
+
+  /// accessInstanceVariablesDirectly
+  static bool getAccessInstanceVariablesDirectly() {
+    return _objc_msgSend_13(
+        _class_FVPBlockKeyValueObserver, _sel_accessInstanceVariablesDirectly);
+  }
+
+  /// useStoredAccessor
+  static bool useStoredAccessor() {
+    return _objc_msgSend_13(
+        _class_FVPBlockKeyValueObserver, _sel_useStoredAccessor);
+  }
+
+  /// keyPathsForValuesAffectingValueForKey:
+  static objc.NSSet keyPathsForValuesAffectingValueForKey_(objc.NSString key) {
+    final _ret = _objc_msgSend_30(_class_FVPBlockKeyValueObserver,
+        _sel_keyPathsForValuesAffectingValueForKey_, key.pointer);
+    return objc.NSSet.castFromPointer(_ret, retain: true, release: true);
+  }
+
+  /// automaticallyNotifiesObserversForKey:
+  static bool automaticallyNotifiesObserversForKey_(objc.NSString key) {
+    return _objc_msgSend_31(_class_FVPBlockKeyValueObserver,
+        _sel_automaticallyNotifiesObserversForKey_, key.pointer);
+  }
+
+  /// setKeys:triggerChangeNotificationsForDependentKey:
+  static void setKeys_triggerChangeNotificationsForDependentKey_(
+      objc.NSArray keys, objc.NSString dependentKey) {
+    _objc_msgSend_32(
+        _class_FVPBlockKeyValueObserver,
+        _sel_setKeys_triggerChangeNotificationsForDependentKey_,
+        keys.pointer,
+        dependentKey.pointer);
+  }
+
+  /// classFallbacksForKeyedArchiver
+  static objc.NSArray classFallbacksForKeyedArchiver() {
+    final _ret = _objc_msgSend_33(
+        _class_FVPBlockKeyValueObserver, _sel_classFallbacksForKeyedArchiver);
+    return objc.NSArray.castFromPointer(_ret, retain: true, release: true);
+  }
+
+  /// classForKeyedUnarchiver
+  static objc.ObjCObjectBase classForKeyedUnarchiver() {
+    final _ret = _objc_msgSend_19(
+        _class_FVPBlockKeyValueObserver, _sel_classForKeyedUnarchiver);
+    return objc.ObjCObjectBase(_ret, retain: true, release: true);
+  }
+}
+
+late final _class_FVPBlockKeyValueObserver =
+    objc.getClass("FVPBlockKeyValueObserver");
+void _ObjCBlock_ffiVoid_objcObjCObject_NSString_fnPtrTrampoline(
+        ffi.Pointer<objc.ObjCBlockImpl> block,
+        ffi.Pointer<objc.ObjCObject> arg0,
+        ffi.Pointer<objc.ObjCObject> arg1) =>
+    block.ref.target
+        .cast<
+            ffi.NativeFunction<
+                ffi.Void Function(ffi.Pointer<objc.ObjCObject> arg0,
+                    ffi.Pointer<objc.ObjCObject> arg1)>>()
+        .asFunction<
+            void Function(ffi.Pointer<objc.ObjCObject>,
+                ffi.Pointer<objc.ObjCObject>)>()(arg0, arg1);
+void _ObjCBlock_ffiVoid_objcObjCObject_NSString_closureTrampoline(
+        ffi.Pointer<objc.ObjCBlockImpl> block,
+        ffi.Pointer<objc.ObjCObject> arg0,
+        ffi.Pointer<objc.ObjCObject> arg1) =>
+    (objc.getBlockClosure(block) as void Function(ffi.Pointer<objc.ObjCObject>,
+        ffi.Pointer<objc.ObjCObject>))(arg0, arg1);
+
+/// Construction methods for `objc.ObjCBlock<ffi.Void Function(ffi.Pointer<objc.ObjCObject>, objc.NSString)>`.
+abstract final class ObjCBlock_ffiVoid_objcObjCObject_NSString {
+  /// Returns a block that wraps the given raw block pointer.
+  static objc
+      .ObjCBlock<ffi.Void Function(ffi.Pointer<objc.ObjCObject>, objc.NSString)>
+      castFromPointer(ffi.Pointer<objc.ObjCBlockImpl> pointer,
+              {bool retain = false, bool release = false}) =>
+          objc.ObjCBlock<
+              ffi.Void Function(ffi.Pointer<objc.ObjCObject>,
+                  objc.NSString)>(pointer, retain: retain, release: release);
+
+  /// Creates a block from a C function pointer.
+  ///
+  /// This block must be invoked by native code running on the same thread as
+  /// the isolate that registered it. Invoking the block on the wrong thread
+  /// will result in a crash.
+  static objc
+      .ObjCBlock<ffi.Void Function(ffi.Pointer<objc.ObjCObject>, objc.NSString)>
+      fromFunctionPointer(ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<objc.ObjCObject> arg0, ffi.Pointer<objc.ObjCObject> arg1)>> ptr) =>
+          objc.ObjCBlock<ffi.Void Function(ffi.Pointer<objc.ObjCObject>, objc.NSString)>(
+              objc.newPointerBlock(
+                  _cFuncTrampoline ??=
+                      ffi.Pointer.fromFunction<ffi.Void Function(ffi.Pointer<objc.ObjCBlockImpl>, ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCObject>)>(
+                              _ObjCBlock_ffiVoid_objcObjCObject_NSString_fnPtrTrampoline)
+                          .cast(),
+                  ptr.cast()),
+              retain: false,
+              release: true);
+  static ffi.Pointer<ffi.Void>? _cFuncTrampoline;
+
+  /// Creates a block from a Dart function.
+  ///
+  /// This block must be invoked by native code running on the same thread as
+  /// the isolate that registered it. Invoking the block on the wrong thread
+  /// will result in a crash.
+  static objc.ObjCBlock<ffi.Void Function(ffi.Pointer<objc.ObjCObject>, objc.NSString)> fromFunction(
+          void Function(objc.ObjCObjectBase, objc.NSString) fn) =>
+      objc.ObjCBlock<ffi.Void Function(ffi.Pointer<objc.ObjCObject>, objc.NSString)>(
+          objc.newClosureBlock(
+              _dartFuncTrampoline ??=
+                  ffi.Pointer.fromFunction<ffi.Void Function(ffi.Pointer<objc.ObjCBlockImpl>, ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCObject>)>(_ObjCBlock_ffiVoid_objcObjCObject_NSString_closureTrampoline)
+                      .cast(),
+              (ffi.Pointer<objc.ObjCObject> arg0, ffi.Pointer<objc.ObjCObject> arg1) => fn(
+                  objc.ObjCObjectBase(arg0, retain: true, release: true),
+                  objc.NSString.castFromPointer(arg1, retain: true, release: true))),
+          retain: false,
+          release: true);
+  static ffi.Pointer<ffi.Void>? _dartFuncTrampoline;
+
+  /// Creates a listener block from a Dart function.
+  ///
+  /// This is based on FFI's NativeCallable.listener, and has the same
+  /// capabilities and limitations. This block can be invoked from any thread,
+  /// but only supports void functions, and is not run synchronously. See
+  /// NativeCallable.listener for more details.
+  ///
+  /// Note that unlike the default behavior of NativeCallable.listener, listener
+  /// blocks do not keep the isolate alive.
+  static objc
+      .ObjCBlock<ffi.Void Function(ffi.Pointer<objc.ObjCObject>, objc.NSString)>
+      listener(void Function(objc.ObjCObjectBase, objc.NSString) fn) {
+    final raw = objc.newClosureBlock(
+        (_dartFuncListenerTrampoline ??= ffi.NativeCallable<
+                    ffi.Void Function(
+                        ffi.Pointer<objc.ObjCBlockImpl>,
+                        ffi.Pointer<objc.ObjCObject>,
+                        ffi.Pointer<objc.ObjCObject>)>.listener(
+                _ObjCBlock_ffiVoid_objcObjCObject_NSString_closureTrampoline)
+              ..keepIsolateAlive = false)
+            .nativeFunction
+            .cast(),
+        (ffi.Pointer<objc.ObjCObject> arg0,
+                ffi.Pointer<objc.ObjCObject> arg1) =>
+            fn(
+                objc.ObjCObjectBase(arg0, retain: false, release: true),
+                objc.NSString.castFromPointer(arg1,
+                    retain: false, release: true)));
+    final wrapper =
+        wrapListenerBlock_ObjCBlock_ffiVoid_objcObjCObject_NSString(raw);
+    objc.objectRelease(raw.cast());
+    return objc.ObjCBlock<
+        ffi.Void Function(ffi.Pointer<objc.ObjCObject>,
+            objc.NSString)>(wrapper, retain: false, release: true);
+  }
+
+  static ffi.NativeCallable<
+      ffi.Void Function(
+          ffi.Pointer<objc.ObjCBlockImpl>,
+          ffi.Pointer<objc.ObjCObject>,
+          ffi.Pointer<objc.ObjCObject>)>? _dartFuncListenerTrampoline;
+}
+
+/// Call operator for `objc.ObjCBlock<ffi.Void Function(ffi.Pointer<objc.ObjCObject>, objc.NSString)>`.
+extension ObjCBlock_ffiVoid_objcObjCObject_NSString_CallExtension on objc
+    .ObjCBlock<ffi.Void Function(ffi.Pointer<objc.ObjCObject>, objc.NSString)> {
+  void call(objc.ObjCObjectBase arg0, objc.NSString arg1) => pointer.ref.invoke
+          .cast<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<objc.ObjCBlockImpl> block,
+                      ffi.Pointer<objc.ObjCObject> arg0,
+                      ffi.Pointer<objc.ObjCObject> arg1)>>()
+          .asFunction<
+              void Function(
+                  ffi.Pointer<objc.ObjCBlockImpl>,
+                  ffi.Pointer<objc.ObjCObject>,
+                  ffi.Pointer<objc.ObjCObject>)>()(
+      pointer, arg0.pointer, arg1.pointer);
+}
+
+late final _sel_observedValueDidChange =
+    objc.registerName("observedValueDidChange");
+final _objc_msgSend_1578 = objc.msgSendPointer
+    .cast<
+        ffi.NativeFunction<
+            ffi.Pointer<objc.ObjCBlockImpl> Function(
+                ffi.Pointer<objc.ObjCObject>,
+                ffi.Pointer<objc.ObjCSelector>)>>()
+    .asFunction<
+        ffi.Pointer<objc.ObjCBlockImpl> Function(
+            ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
+late final _sel_setObservedValueDidChange_ =
+    objc.registerName("setObservedValueDidChange:");
+final _objc_msgSend_1579 = objc.msgSendPointer
+    .cast<
+        ffi.NativeFunction<
+            ffi.Void Function(
+                ffi.Pointer<objc.ObjCObject>,
+                ffi.Pointer<objc.ObjCSelector>,
+                ffi.Pointer<objc.ObjCBlockImpl>)>>()
+    .asFunction<
+        void Function(ffi.Pointer<objc.ObjCObject>,
+            ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCBlockImpl>)>();
+late final _sel_initWithCallback_ = objc.registerName("initWithCallback:");
+final _objc_msgSend_1580 = objc.msgSendPointer
+    .cast<
+        ffi.NativeFunction<
+            instancetype Function(
+                ffi.Pointer<objc.ObjCObject>,
+                ffi.Pointer<objc.ObjCSelector>,
+                ffi.Pointer<objc.ObjCBlockImpl>)>>()
+    .asFunction<
+        instancetype Function(ffi.Pointer<objc.ObjCObject>,
+            ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCBlockImpl>)>();
+late final _sel_observerWithCallback_ =
+    objc.registerName("observerWithCallback:");
+
 /// An implementation of FVPAVFactory that forwards directly to AVPlayer*.
 class FVPDefaultAVFactory extends objc.NSObject {
   FVPDefaultAVFactory._(ffi.Pointer<objc.ObjCObject> pointer,
@@ -105247,39 +105577,43 @@ class FVPVideoPlayer extends objc.NSObject {
   }
 
   /// displayLink
-  FVPDisplayLink get displayLink {
-    final _ret = _objc_msgSend_1579(this.pointer, _sel_displayLink);
-    return FVPDisplayLink.castFromPointer(_ret, retain: true, release: true);
+  FVPDisplayLink? get displayLink {
+    final _ret = _objc_msgSend_1582(this.pointer, _sel_displayLink);
+    return _ret.address == 0
+        ? null
+        : FVPDisplayLink.castFromPointer(_ret, retain: true, release: true);
   }
 
   /// setDisplayLink:
-  set displayLink(FVPDisplayLink value) {
-    return _objc_msgSend_1580(
-        this.pointer, _sel_setDisplayLink_, value.pointer);
+  set displayLink(FVPDisplayLink? value) {
+    return _objc_msgSend_1583(
+        this.pointer, _sel_setDisplayLink_, value?.pointer ?? ffi.nullptr);
   }
 
   /// videoOutput
-  AVPlayerItemVideoOutput get videoOutput {
-    final _ret = _objc_msgSend_1583(this.pointer, _sel_videoOutput);
-    return AVPlayerItemVideoOutput.castFromPointer(_ret,
-        retain: true, release: true);
+  AVPlayerItemVideoOutput? get videoOutput {
+    final _ret = _objc_msgSend_1586(this.pointer, _sel_videoOutput);
+    return _ret.address == 0
+        ? null
+        : AVPlayerItemVideoOutput.castFromPointer(_ret,
+            retain: true, release: true);
   }
 
   /// setVideoOutput:
-  set videoOutput(AVPlayerItemVideoOutput value) {
-    return _objc_msgSend_1584(
-        this.pointer, _sel_setVideoOutput_, value.pointer);
+  set videoOutput(AVPlayerItemVideoOutput? value) {
+    return _objc_msgSend_1587(
+        this.pointer, _sel_setVideoOutput_, value?.pointer ?? ffi.nullptr);
   }
 
   /// player
   AVPlayer get player {
-    final _ret = _objc_msgSend_1585(this.pointer, _sel_player);
+    final _ret = _objc_msgSend_1588(this.pointer, _sel_player);
     return AVPlayer.castFromPointer(_ret, retain: true, release: true);
   }
 
   /// setPlayer:
   set player(AVPlayer value) {
-    return _objc_msgSend_1586(this.pointer, _sel_setPlayer_, value.pointer);
+    return _objc_msgSend_1589(this.pointer, _sel_setPlayer_, value.pointer);
   }
 
   /// disposed
@@ -105345,23 +105679,18 @@ class FVPVideoPlayer extends objc.NSObject {
 
   /// initWithPlayerItem:viewProvider:AVFactory:displayLinkFactory:
   FVPVideoPlayer initWithPlayerItem_viewProvider_AVFactory_displayLinkFactory_(
-      AVPlayerItem item,
-      objc.ObjCObjectBase viewProvider,
-      objc.ObjCObjectBase avFactory,
-      objc.ObjCObjectBase displayLinkFactory) {
-    final _ret = _objc_msgSend_1587(
+      AVPlayerItem? item,
+      objc.ObjCObjectBase? viewProvider,
+      objc.ObjCObjectBase? avFactory,
+      objc.ObjCObjectBase? displayLinkFactory) {
+    final _ret = _objc_msgSend_1590(
         this.pointer,
         _sel_initWithPlayerItem_viewProvider_AVFactory_displayLinkFactory_,
-        item.pointer,
-        viewProvider.pointer,
-        avFactory.pointer,
-        displayLinkFactory.pointer);
+        item?.pointer ?? ffi.nullptr,
+        viewProvider?.pointer ?? ffi.nullptr,
+        avFactory?.pointer ?? ffi.nullptr,
+        displayLinkFactory?.pointer ?? ffi.nullptr);
     return FVPVideoPlayer.castFromPointer(_ret, retain: true, release: true);
-  }
-
-  /// expectFrame
-  void expectFrame() {
-    _objc_msgSend_7(this.pointer, _sel_expectFrame);
   }
 
   /// Informs the player that it won't be used from Dart any more and that it should clean up
@@ -105508,7 +105837,7 @@ class FVPDisplayLink extends objc.NSObject {
   FVPDisplayLink initWithViewProvider_callback_(
       objc.ObjCObjectBase viewProvider,
       objc.ObjCBlock<ffi.Void Function()> callback) {
-    final _ret = _objc_msgSend_1578(
+    final _ret = _objc_msgSend_1581(
         this.pointer,
         _sel_initWithViewProvider_callback_,
         viewProvider.pointer,
@@ -105615,7 +105944,7 @@ late final _sel_running = objc.registerName("running");
 late final _sel_setRunning_ = objc.registerName("setRunning:");
 late final _sel_initWithViewProvider_callback_ =
     objc.registerName("initWithViewProvider:callback:");
-final _objc_msgSend_1578 = objc.msgSendPointer
+final _objc_msgSend_1581 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             instancetype Function(
@@ -105630,7 +105959,7 @@ final _objc_msgSend_1578 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCBlockImpl>)>();
 late final _sel_displayLink = objc.registerName("displayLink");
-final _objc_msgSend_1579 = objc.msgSendPointer
+final _objc_msgSend_1582 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -105639,7 +105968,7 @@ final _objc_msgSend_1579 = objc.msgSendPointer
         ffi.Pointer<objc.ObjCObject> Function(
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_setDisplayLink_ = objc.registerName("setDisplayLink:");
-final _objc_msgSend_1580 = objc.msgSendPointer
+final _objc_msgSend_1583 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -105693,14 +106022,14 @@ class AVPlayerItemVideoOutput extends AVPlayerItemOutput {
 
   /// hasNewPixelBufferForItemTime:
   bool hasNewPixelBufferForItemTime_(CMTime itemTime) {
-    return _objc_msgSend_1581(
+    return _objc_msgSend_1584(
         this.pointer, _sel_hasNewPixelBufferForItemTime_, itemTime);
   }
 
   /// copyPixelBufferForItemTime:itemTimeForDisplay:
   ffi.Pointer<__CVBuffer> copyPixelBufferForItemTime_itemTimeForDisplay_(
       CMTime itemTime, ffi.Pointer<CMTime> outItemTimeForDisplay) {
-    return _objc_msgSend_1582(
+    return _objc_msgSend_1585(
         this.pointer,
         _sel_copyPixelBufferForItemTime_itemTimeForDisplay_,
         itemTime,
@@ -105849,7 +106178,7 @@ late final _sel_initWithOutputSettings_ =
     objc.registerName("initWithOutputSettings:");
 late final _sel_hasNewPixelBufferForItemTime_ =
     objc.registerName("hasNewPixelBufferForItemTime:");
-final _objc_msgSend_1581 = objc.msgSendPointer
+final _objc_msgSend_1584 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Bool Function(ffi.Pointer<objc.ObjCObject>,
@@ -105859,7 +106188,7 @@ final _objc_msgSend_1581 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCSelector>, CMTime)>();
 late final _sel_copyPixelBufferForItemTime_itemTimeForDisplay_ =
     objc.registerName("copyPixelBufferForItemTime:itemTimeForDisplay:");
-final _objc_msgSend_1582 = objc.msgSendPointer
+final _objc_msgSend_1585 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<__CVBuffer> Function(ffi.Pointer<objc.ObjCObject>,
@@ -105869,7 +106198,7 @@ final _objc_msgSend_1582 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCSelector>, CMTime, ffi.Pointer<CMTime>)>();
 late final _sel_requestNotificationOfMediaDataChangeWithAdvanceInterval_ = objc
     .registerName("requestNotificationOfMediaDataChangeWithAdvanceInterval:");
-final _objc_msgSend_1583 = objc.msgSendPointer
+final _objc_msgSend_1586 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -105877,7 +106206,7 @@ final _objc_msgSend_1583 = objc.msgSendPointer
     .asFunction<
         ffi.Pointer<objc.ObjCObject> Function(
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
-final _objc_msgSend_1584 = objc.msgSendPointer
+final _objc_msgSend_1587 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -105887,7 +106216,7 @@ final _objc_msgSend_1584 = objc.msgSendPointer
     .asFunction<
         void Function(ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCObject>)>();
-final _objc_msgSend_1585 = objc.msgSendPointer
+final _objc_msgSend_1588 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -105896,7 +106225,7 @@ final _objc_msgSend_1585 = objc.msgSendPointer
         ffi.Pointer<objc.ObjCObject> Function(
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_setPlayer_ = objc.registerName("setPlayer:");
-final _objc_msgSend_1586 = objc.msgSendPointer
+final _objc_msgSend_1589 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -105918,7 +106247,7 @@ late final _sel_setWaitingForFrame_ = objc.registerName("setWaitingForFrame:");
 late final _sel_initWithPlayerItem_viewProvider_AVFactory_displayLinkFactory_ =
     objc.registerName(
         "initWithPlayerItem:viewProvider:AVFactory:displayLinkFactory:");
-final _objc_msgSend_1587 = objc.msgSendPointer
+final _objc_msgSend_1590 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             instancetype Function(
@@ -105936,7 +106265,6 @@ final _objc_msgSend_1587 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCObject>)>();
-late final _sel_expectFrame = objc.registerName("expectFrame");
 late final _sel_dispose = objc.registerName("dispose");
 
 /// An implementation of FVPVideoPlayerDelegate that forwards messages blocks.
@@ -105964,26 +106292,10 @@ class FVPBlockAdapterVideoPlayerDelegate extends objc.NSObject {
         _class_FVPBlockAdapterVideoPlayerDelegate);
   }
 
-  /// videoPlayerItemDidChangePropertyHandler
-  objc.ObjCBlock<ffi.Void Function(AVPlayerItem, ffi.UnsignedLong)>
-      get videoPlayerItemDidChangePropertyHandler {
-    final _ret = _objc_msgSend_1588(
-        this.pointer, _sel_videoPlayerItemDidChangePropertyHandler);
-    return ObjCBlock_ffiVoid_AVPlayerItem_FVPItemProperty.castFromPointer(_ret,
-        retain: true, release: true);
-  }
-
-  /// setVideoPlayerItemDidChangePropertyHandler:
-  set videoPlayerItemDidChangePropertyHandler(
-      objc.ObjCBlock<ffi.Void Function(AVPlayerItem, ffi.UnsignedLong)> value) {
-    return _objc_msgSend_1589(this.pointer,
-        _sel_setVideoPlayerItemDidChangePropertyHandler_, value.pointer);
-  }
-
   /// videoPlayerDidChangePlaybackRateHandler
   objc.ObjCBlock<ffi.Void Function()>
       get videoPlayerDidChangePlaybackRateHandler {
-    final _ret = _objc_msgSend_1590(
+    final _ret = _objc_msgSend_1591(
         this.pointer, _sel_videoPlayerDidChangePlaybackRateHandler);
     return ObjCBlock_ffiVoid.castFromPointer(_ret, retain: true, release: true);
   }
@@ -105991,7 +106303,7 @@ class FVPBlockAdapterVideoPlayerDelegate extends objc.NSObject {
   /// setVideoPlayerDidChangePlaybackRateHandler:
   set videoPlayerDidChangePlaybackRateHandler(
       objc.ObjCBlock<ffi.Void Function()> value) {
-    return _objc_msgSend_1591(this.pointer,
+    return _objc_msgSend_1592(this.pointer,
         _sel_setVideoPlayerDidChangePlaybackRateHandler_, value.pointer);
   }
 
@@ -106099,173 +106411,9 @@ class FVPBlockAdapterVideoPlayerDelegate extends objc.NSObject {
 
 late final _class_FVPBlockAdapterVideoPlayerDelegate =
     objc.getClass("FVPBlockAdapterVideoPlayerDelegate");
-void _ObjCBlock_ffiVoid_AVPlayerItem_FVPItemProperty_fnPtrTrampoline(
-        ffi.Pointer<objc.ObjCBlockImpl> block,
-        ffi.Pointer<objc.ObjCObject> arg0,
-        int arg1) =>
-    block.ref.target
-            .cast<
-                ffi.NativeFunction<
-                    ffi.Void Function(ffi.Pointer<objc.ObjCObject> arg0,
-                        ffi.UnsignedLong arg1)>>()
-            .asFunction<void Function(ffi.Pointer<objc.ObjCObject>, int)>()(
-        arg0, arg1);
-void _ObjCBlock_ffiVoid_AVPlayerItem_FVPItemProperty_closureTrampoline(
-        ffi.Pointer<objc.ObjCBlockImpl> block,
-        ffi.Pointer<objc.ObjCObject> arg0,
-        int arg1) =>
-    (objc.getBlockClosure(block) as void Function(
-        ffi.Pointer<objc.ObjCObject>, int))(arg0, arg1);
-
-/// Construction methods for `objc.ObjCBlock<ffi.Void Function(AVPlayerItem, ffi.UnsignedLong)>`.
-abstract final class ObjCBlock_ffiVoid_AVPlayerItem_FVPItemProperty {
-  /// Returns a block that wraps the given raw block pointer.
-  static objc.ObjCBlock<ffi.Void Function(AVPlayerItem, ffi.UnsignedLong)>
-      castFromPointer(ffi.Pointer<objc.ObjCBlockImpl> pointer,
-              {bool retain = false, bool release = false}) =>
-          objc.ObjCBlock<ffi.Void Function(AVPlayerItem, ffi.UnsignedLong)>(
-              pointer,
-              retain: retain,
-              release: release);
-
-  /// Creates a block from a C function pointer.
-  ///
-  /// This block must be invoked by native code running on the same thread as
-  /// the isolate that registered it. Invoking the block on the wrong thread
-  /// will result in a crash.
-  static objc.ObjCBlock<ffi.Void Function(AVPlayerItem, ffi.UnsignedLong)>
-      fromFunctionPointer(ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Pointer<objc.ObjCObject> arg0, ffi.UnsignedLong arg1)>> ptr) =>
-          objc.ObjCBlock<ffi.Void Function(AVPlayerItem, ffi.UnsignedLong)>(
-              objc.newPointerBlock(
-                  _cFuncTrampoline ??=
-                      ffi.Pointer.fromFunction<ffi.Void Function(ffi.Pointer<objc.ObjCBlockImpl>, ffi.Pointer<objc.ObjCObject>, ffi.UnsignedLong)>(
-                              _ObjCBlock_ffiVoid_AVPlayerItem_FVPItemProperty_fnPtrTrampoline)
-                          .cast(),
-                  ptr.cast()),
-              retain: false,
-              release: true);
-  static ffi.Pointer<ffi.Void>? _cFuncTrampoline;
-
-  /// Creates a block from a Dart function.
-  ///
-  /// This block must be invoked by native code running on the same thread as
-  /// the isolate that registered it. Invoking the block on the wrong thread
-  /// will result in a crash.
-  static objc.ObjCBlock<ffi.Void Function(AVPlayerItem, ffi.UnsignedLong)> fromFunction(
-          void Function(AVPlayerItem, FVPItemProperty) fn) =>
-      objc.ObjCBlock<ffi.Void Function(AVPlayerItem, ffi.UnsignedLong)>(
-          objc.newClosureBlock(
-              _dartFuncTrampoline ??=
-                  ffi.Pointer.fromFunction<ffi.Void Function(ffi.Pointer<objc.ObjCBlockImpl>, ffi.Pointer<objc.ObjCObject>, ffi.UnsignedLong)>(
-                          _ObjCBlock_ffiVoid_AVPlayerItem_FVPItemProperty_closureTrampoline)
-                      .cast(),
-              (ffi.Pointer<objc.ObjCObject> arg0, int arg1) =>
-                  fn(AVPlayerItem.castFromPointer(arg0, retain: true, release: true), FVPItemProperty.fromValue(arg1))),
-          retain: false,
-          release: true);
-  static ffi.Pointer<ffi.Void>? _dartFuncTrampoline;
-
-  /// Creates a listener block from a Dart function.
-  ///
-  /// This is based on FFI's NativeCallable.listener, and has the same
-  /// capabilities and limitations. This block can be invoked from any thread,
-  /// but only supports void functions, and is not run synchronously. See
-  /// NativeCallable.listener for more details.
-  ///
-  /// Note that unlike the default behavior of NativeCallable.listener, listener
-  /// blocks do not keep the isolate alive.
-  static objc.ObjCBlock<ffi.Void Function(AVPlayerItem, ffi.UnsignedLong)>
-      listener(void Function(AVPlayerItem, FVPItemProperty) fn) {
-    final raw = objc.newClosureBlock(
-        (_dartFuncListenerTrampoline ??= ffi.NativeCallable<
-                    ffi.Void Function(
-                        ffi.Pointer<objc.ObjCBlockImpl>,
-                        ffi.Pointer<objc.ObjCObject>,
-                        ffi.UnsignedLong)>.listener(
-                _ObjCBlock_ffiVoid_AVPlayerItem_FVPItemProperty_closureTrampoline)
-              ..keepIsolateAlive = false)
-            .nativeFunction
-            .cast(),
-        (ffi.Pointer<objc.ObjCObject> arg0, int arg1) => fn(
-            AVPlayerItem.castFromPointer(arg0, retain: false, release: true),
-            FVPItemProperty.fromValue(arg1)));
-    final wrapper =
-        wrapListenerBlock_ObjCBlock_ffiVoid_AVPlayerItem_FVPItemProperty(raw);
-    objc.objectRelease(raw.cast());
-    return objc.ObjCBlock<ffi.Void Function(AVPlayerItem, ffi.UnsignedLong)>(
-        wrapper,
-        retain: false,
-        release: true);
-  }
-
-  static ffi.NativeCallable<
-      ffi.Void Function(
-          ffi.Pointer<objc.ObjCBlockImpl>,
-          ffi.Pointer<objc.ObjCObject>,
-          ffi.UnsignedLong)>? _dartFuncListenerTrampoline;
-}
-
-/// Call operator for `objc.ObjCBlock<ffi.Void Function(AVPlayerItem, ffi.UnsignedLong)>`.
-extension ObjCBlock_ffiVoid_AVPlayerItem_FVPItemProperty_CallExtension
-    on objc.ObjCBlock<ffi.Void Function(AVPlayerItem, ffi.UnsignedLong)> {
-  void call(AVPlayerItem arg0, FVPItemProperty arg1) => pointer.ref.invoke
-      .cast<
-          ffi.NativeFunction<
-              ffi.Void Function(ffi.Pointer<objc.ObjCBlockImpl> block,
-                  ffi.Pointer<objc.ObjCObject> arg0, ffi.UnsignedLong arg1)>>()
-      .asFunction<
-          void Function(
-              ffi.Pointer<objc.ObjCBlockImpl>,
-              ffi.Pointer<objc.ObjCObject>,
-              int)>()(pointer, arg0.pointer, arg1.value);
-}
-
-enum FVPItemProperty {
-  FVPItemPropertyLoadedTimeRanges(0),
-  FVPItemPropertyStatus(1),
-  FVPItemPropertyPresentationSize(2),
-  FVPItemPropertyDuration(3),
-  FVPItemPropertyPlaybackLikelyToKeepUp(4);
-
-  final int value;
-  const FVPItemProperty(this.value);
-
-  static FVPItemProperty fromValue(int value) => switch (value) {
-        0 => FVPItemPropertyLoadedTimeRanges,
-        1 => FVPItemPropertyStatus,
-        2 => FVPItemPropertyPresentationSize,
-        3 => FVPItemPropertyDuration,
-        4 => FVPItemPropertyPlaybackLikelyToKeepUp,
-        _ => throw ArgumentError("Unknown value for FVPItemProperty: $value"),
-      };
-}
-
-late final _sel_videoPlayerItemDidChangePropertyHandler =
-    objc.registerName("videoPlayerItemDidChangePropertyHandler");
-final _objc_msgSend_1588 = objc.msgSendPointer
-    .cast<
-        ffi.NativeFunction<
-            ffi.Pointer<objc.ObjCBlockImpl> Function(
-                ffi.Pointer<objc.ObjCObject>,
-                ffi.Pointer<objc.ObjCSelector>)>>()
-    .asFunction<
-        ffi.Pointer<objc.ObjCBlockImpl> Function(
-            ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
-late final _sel_setVideoPlayerItemDidChangePropertyHandler_ =
-    objc.registerName("setVideoPlayerItemDidChangePropertyHandler:");
-final _objc_msgSend_1589 = objc.msgSendPointer
-    .cast<
-        ffi.NativeFunction<
-            ffi.Void Function(
-                ffi.Pointer<objc.ObjCObject>,
-                ffi.Pointer<objc.ObjCSelector>,
-                ffi.Pointer<objc.ObjCBlockImpl>)>>()
-    .asFunction<
-        void Function(ffi.Pointer<objc.ObjCObject>,
-            ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCBlockImpl>)>();
 late final _sel_videoPlayerDidChangePlaybackRateHandler =
     objc.registerName("videoPlayerDidChangePlaybackRateHandler");
-final _objc_msgSend_1590 = objc.msgSendPointer
+final _objc_msgSend_1591 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCBlockImpl> Function(
@@ -106276,7 +106424,7 @@ final _objc_msgSend_1590 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_setVideoPlayerDidChangePlaybackRateHandler_ =
     objc.registerName("setVideoPlayerDidChangePlaybackRateHandler:");
-final _objc_msgSend_1591 = objc.msgSendPointer
+final _objc_msgSend_1592 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(

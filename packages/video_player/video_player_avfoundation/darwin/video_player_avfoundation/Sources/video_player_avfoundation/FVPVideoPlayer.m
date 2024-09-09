@@ -13,13 +13,6 @@
 #import "./include/video_player_avfoundation/FVPDisplayLink.h"
 #import "FVPFrameUpdater.h"
 
-static void *timeRangeContext = &timeRangeContext;
-static void *statusContext = &statusContext;
-static void *presentationSizeContext = &presentationSizeContext;
-static void *durationContext = &durationContext;
-static void *playbackLikelyToKeepUpContext = &playbackLikelyToKeepUpContext;
-static void *rateContext = &rateContext;
-
 NS_INLINE CGFloat FVPRadiansToDegrees(CGFloat radians) {
   // Input range [-pi, pi] or [-180, 180]
   CGFloat degrees = GLKMathRadiansToDegrees((float)radians);
@@ -32,33 +25,10 @@ NS_INLINE CGFloat FVPRadiansToDegrees(CGFloat radians) {
 };
 
 static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject *observer) {
-  [item addObserver:observer
-         forKeyPath:@"loadedTimeRanges"
-            options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
-            context:timeRangeContext];
-  [item addObserver:observer
-         forKeyPath:@"status"
-            options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
-            context:statusContext];
-  [item addObserver:observer
-         forKeyPath:@"presentationSize"
-            options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
-            context:presentationSizeContext];
-  [item addObserver:observer
-         forKeyPath:@"duration"
-            options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
-            context:durationContext];
-  [item addObserver:observer
-         forKeyPath:@"playbackLikelyToKeepUp"
-            options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
-            context:playbackLikelyToKeepUpContext];
-
-  // Add observer to AVPlayer instead of AVPlayerItem since the AVPlayerItem does not have a "rate"
-  // property
   [player addObserver:observer
            forKeyPath:@"rate"
               options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
-              context:rateContext];
+              context:NULL];
 }
 
 @implementation FVPVideoPlayer
@@ -143,14 +113,13 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
 - (void)configureDisplayWithAvailableFrameCallback:(void (^)())frameAvailable {
   // Wire up the display link.
   self.frameUpdater.onTextureAvailable = frameAvailable;
-
-  // Ensure that the first frame is drawn once available, even if the video isn't played.
-  [self expectFrame];
 }
 
 - (void)dealloc {
-  NSAssert([NSThread isMainThread], @"Must be called on main thread");
   NSLog(@"Dealloc'd");
+  if (![NSThread isMainThread]) {
+    NSLog(@"  Uh-oh, on wrong thread!");
+  }
   if (!_disposed) {
     [self removeKeyValueObservers];
   }
@@ -193,26 +162,7 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
                       ofObject:(id)object
                         change:(NSDictionary *)change
                        context:(void *)context {
-  if (context == timeRangeContext) {
-    [self.delegate videoPlayerItem:((AVPlayerItem *)object)
-                 didChangeProperty:FVPItemPropertyLoadedTimeRanges];
-  } else if (context == statusContext) {
-    [self.delegate videoPlayerItem:((AVPlayerItem *)object)
-                 didChangeProperty:FVPItemPropertyStatus];
-  } else if (context == presentationSizeContext || context == durationContext) {
-    [self.delegate videoPlayerItem:((AVPlayerItem *)object)
-                 didChangeProperty:FVPItemPropertyPresentationSize];
-  } else if (context == playbackLikelyToKeepUpContext) {
-    [self.delegate videoPlayerItem:((AVPlayerItem *)object)
-                 didChangeProperty:FVPItemPropertyPlaybackLikelyToKeepUp];
-  } else if (context == rateContext) {
-    [self.delegate videoPlayerDidChangePlaybackRate];
-  }
-}
-
-- (void)expectFrame {
-  self.waitingForFrame = YES;
-  self.displayLink.running = YES;
+  [self.delegate videoPlayerDidChangePlaybackRate];
 }
 
 - (CVPixelBufferRef)copyPixelBuffer {
@@ -264,12 +214,6 @@ static void FVPRegisterObservers(AVPlayerItem *item, AVPlayer *player, NSObject 
 ///
 /// This is called from dealloc, so must not use any methods on self.
 - (void)removeKeyValueObservers {
-  AVPlayerItem *currentItem = _player.currentItem;
-  [currentItem removeObserver:self forKeyPath:@"status"];
-  [currentItem removeObserver:self forKeyPath:@"loadedTimeRanges"];
-  [currentItem removeObserver:self forKeyPath:@"presentationSize"];
-  [currentItem removeObserver:self forKeyPath:@"duration"];
-  [currentItem removeObserver:self forKeyPath:@"playbackLikelyToKeepUp"];
   [_player removeObserver:self forKeyPath:@"rate"];
 }
 
