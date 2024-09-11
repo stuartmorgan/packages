@@ -25,16 +25,19 @@ NS_INLINE CGFloat FVPRadiansToDegrees(CGFloat radians) {
 
 @implementation FVPVideoPlayer
 
-- (instancetype)initWithPlayerItem:(AVPlayerItem *)item
-                      viewProvider:(id<FVPViewProvider>)viewProvider
-                      frameUpdater:(nonnull FVPFrameUpdater *)frameUpdater
-                         AVFactory:(id<FVPAVFactory>)avFactory
-                     frameCallback:(void (^__nonnull)(void))frameCallback {
+- (instancetype)initWithPlayer:(nonnull AVPlayer *)player
+                          item:(AVPlayerItem *)item
+                        output:(AVPlayerItemVideoOutput *)videoOutput
+                  viewProvider:(id<FVPViewProvider>)viewProvider
+                  frameUpdater:(FVPFrameUpdater *)frameUpdater
+                 frameCallback:(void (^__nonnull)(void))frameCallback {
   NSAssert([NSThread isMainThread], @"Must be called on main thread");
   self = [super init];
   NSAssert(self, @"super init cannot be nil");
 
+  _player = player;
   _viewProvider = viewProvider;
+  _videoOutput = videoOutput;
   _frameUpdater = frameUpdater;
   _onFrameProvided = frameCallback;
 
@@ -67,14 +70,12 @@ NS_INLINE CGFloat FVPRadiansToDegrees(CGFloat radians) {
     }
   };
 
-  _player = [avFactory playerWithPlayerItem:item];
-  _player.actionAtItemEnd = AVPlayerActionAtItemEndNone;
-
   // This is to fix 2 bugs: 1. blank video for encrypted video streams on iOS 16
   // (https://github.com/flutter/flutter/issues/111457) and 2. swapped width and height for some
   // video streams (not just iOS 16).  (https://github.com/flutter/flutter/issues/109116). An
   // invisible AVPlayerLayer is used to overwrite the protection of pixel buffers in those streams
   // for issue #1, and restore the correct width and height for issue #2.
+  // TODO(stuartmorgan): Move this to native once NSView/UIView don't pull in the world.
   _playerLayer = [AVPlayerLayer playerLayerWithPlayer:_player];
 #if TARGET_OS_OSX
   NSView *view = viewProvider.view;
@@ -82,14 +83,6 @@ NS_INLINE CGFloat FVPRadiansToDegrees(CGFloat radians) {
   UIView *view = viewProvider.view;
 #endif
   [view.layer addSublayer:_playerLayer];
-
-  // Configure output.
-  NSDictionary *pixBuffAttributes = @{
-    (id)kCVPixelBufferPixelFormatTypeKey : @(kCVPixelFormatType_32BGRA),
-    (id)kCVPixelBufferIOSurfacePropertiesKey : @{}
-  };
-  _videoOutput = [avFactory videoOutputWithPixelBufferAttributes:pixBuffAttributes];
-  _frameUpdater.videoOutput = _videoOutput;
 
   [asset loadValuesAsynchronouslyForKeys:@[ @"tracks" ] completionHandler:assetCompletionHandler];
 
@@ -169,8 +162,6 @@ NS_INLINE CGFloat FVPRadiansToDegrees(CGFloat radians) {
   NSAssert([NSThread isMainThread], @"Must be called on main thread");
   _disposed = YES;
   [_playerLayer removeFromSuperlayer];
-
-  [self.player replaceCurrentItemWithPlayerItem:nil];
 
   if (self.onDisposed) {
     self.onDisposed();

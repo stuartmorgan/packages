@@ -12,7 +12,6 @@
 #import "./include/video_player_avfoundation/FVPFrameUpdater.h"
 #import "./include/video_player_avfoundation/FVPVideoPlayer.h"
 #import "./include/video_player_avfoundation/FVPViewProvider.h"
-#import "./include/video_player_avfoundation/InjectionProtocols.h"
 #import "./include/video_player_avfoundation/messages.g.h"
 #import "FVPVideoPlayer_Private.h"
 

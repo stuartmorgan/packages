@@ -205,23 +205,39 @@ typedef _RegistrationState = ({
 class _VideoPlayer {
   _VideoPlayer(AVAsset asset, NSObject nativeViewProvider) {
     final AVPlayerItem avItem = AVPlayerItem.playerItemWithAsset_(asset);
-    final FVPDefaultAVFactory avFactory = FVPDefaultAVFactory.alloc().init();
+    _avPlayer = AVPlayer.playerWithPlayerItem_(avItem);
+    _avPlayer.actionAtItemEnd =
+        AVPlayerActionAtItemEnd.AVPlayerActionAtItemEndNone;
+
+    final NSDictionary attributes = _convertMap(<NSObject, NSObject>{
+      _nsStringFromCFString(_lib.kCVPixelBufferPixelFormatTypeKey):
+          NSNumber.numberWithInt_(kCVPixelFormatType_32BGRA),
+      _nsStringFromCFString(_lib.kCVPixelBufferIOSurfacePropertiesKey):
+          NSDictionary.dictionary(),
+    });
+    final AVPlayerItemVideoOutput videoOutput = AVPlayerItemVideoOutput.alloc()
+        .initWithPixelBufferAttributes_(attributes);
+
     // TODO(stuartmorgan): Eliminate this completely? Or at least convert it to
     // Dart.
     final FVPFrameUpdater frameUpdater = FVPFrameUpdater.alloc().init();
+    frameUpdater.videoOutput = videoOutput;
+
     _displayLink = FVPDisplayLink.alloc().initWithViewProvider_callback_(
         nativeViewProvider,
         ObjCBlock_ffiVoid.listener(() => frameUpdater.displayLinkFired()));
     final WeakReference<_VideoPlayer> weakSelf =
         WeakReference<_VideoPlayer>(this);
     nativePlayer = FVPVideoPlayer.alloc()
-        .initWithPlayerItem_viewProvider_frameUpdater_AVFactory_frameCallback_(
+        .initWithPlayer_item_output_viewProvider_frameUpdater_frameCallback_(
+            _avPlayer,
             avItem,
+            videoOutput,
             nativeViewProvider,
             frameUpdater,
-            avFactory,
             ObjCBlock_ffiVoid.listener(
                 () => weakSelf.target?._onFrameProvided()));
+
     _eventAdapter = _DelegateEventAdapter();
 
     // TODO(stuartmorgan): Remove this once the final version has been verified
@@ -242,6 +258,8 @@ class _VideoPlayer {
   });
 
   late final FVPVideoPlayer nativePlayer;
+  late final AVPlayer _avPlayer;
+
   bool _initialized = false;
   // Wether the player play if possible. This can temporarily be out of sync
   // with the actual AVPlayer play state in some cases, such as while waiting
@@ -279,11 +297,12 @@ class _VideoPlayer {
     debugPrint('disposed!');
     _unregisterObservers();
     _displayLink = null;
+    _avPlayer.replaceCurrentItemWithPlayerItem_(null);
     nativePlayer.dispose();
   }
 
   void registerObservers() {
-    final AVPlayerItem avItem = nativePlayer.player.currentItem!;
+    final AVPlayerItem avItem = _avPlayer.currentItem!;
     final WeakReference<_VideoPlayer> weakSelf =
         WeakReference<_VideoPlayer>(this);
 
@@ -297,9 +316,9 @@ class _VideoPlayer {
         return;
       }
       // No need to check keyPath because only one key path is observed.
-      adapter.onPlayStateChanged(self.nativePlayer.player.rate > 0);
+      adapter.onPlayStateChanged(self._avPlayer.rate > 0);
     }));
-    _registerPlayerObserver(nativePlayer.player, playerKvoBridge);
+    _registerPlayerObserver(_avPlayer, playerKvoBridge);
     _playerKvoBridge = playerKvoBridge;
 
     final FVPBlockKeyValueObserver itemKvoBridge =
@@ -320,7 +339,7 @@ class _VideoPlayer {
               _reportError(
                   'Failed to load video: ${avItem.error?.localizedDescription}');
             case AVPlayerItemStatus.AVPlayerItemStatusReadyToPlay:
-              avItem.addOutput_(self.nativePlayer.videoOutput!);
+              avItem.addOutput_(self.nativePlayer.videoOutput);
               self._checkInitializationStatus();
             case AVPlayerItemStatus.AVPlayerItemStatusUnknown:
               // No-op; wait for a known status.
@@ -360,7 +379,7 @@ class _VideoPlayer {
         this,
         (
           notificationCenterToken: registrationToken,
-          observedPlayer: nativePlayer.player,
+          observedPlayer: _avPlayer,
           observedPlayerItem: avItem,
           playerObserver: playerKvoBridge,
           itemObserver: itemKvoBridge,
@@ -371,12 +390,11 @@ class _VideoPlayer {
 
   void _unregisterObservers() {
     if (_playerKvoBridge != null) {
-      final AVPlayer player = nativePlayer.player;
-      _unregisterPlayerObserver(player, _playerKvoBridge!);
+      _unregisterPlayerObserver(_avPlayer, _playerKvoBridge!);
       _playerKvoBridge = null;
     }
     if (_itemKvoBridge != null) {
-      final AVPlayerItem? item = nativePlayer.player.currentItem;
+      final AVPlayerItem? item = _avPlayer.currentItem;
       if (item != null) {
         _unregisterItemObserver(item, _itemKvoBridge!);
       }
@@ -439,18 +457,18 @@ class _VideoPlayer {
       return;
     }
     if (_shouldBePlaying) {
-      nativePlayer.player.play();
+      _avPlayer.play();
     } else {
-      nativePlayer.player.pause();
+      _avPlayer.pause();
     }
     displayLink.running = _shouldBePlaying || _waitingForFrame;
   }
 
   set volume(double volume) {
-    nativePlayer.player.volume = volume;
+    _avPlayer.volume = volume;
   }
 
-  double get volume => nativePlayer.player.volume;
+  double get volume => _avPlayer.volume;
 
   void setPlaybackSpeed(double speed) {
     // See https://developer.apple.com/library/archive/qa/qa1772/_index.html for an explanation of
@@ -459,15 +477,14 @@ class _VideoPlayer {
     const double minAlwaysSupportedSpeed = 1.0;
     double clamped = speed;
     if (speed > maxAlwaysSupportedSpeed &&
-        !(nativePlayer.player.currentItem?.canPlayFastForward ?? false)) {
+        !(_avPlayer.currentItem?.canPlayFastForward ?? false)) {
       clamped = maxAlwaysSupportedSpeed;
     }
-    if (speed < 1.0 &&
-        !(nativePlayer.player.currentItem?.canPlaySlowForward ?? false)) {
+    if (speed < 1.0 && !(_avPlayer.currentItem?.canPlaySlowForward ?? false)) {
       clamped = minAlwaysSupportedSpeed;
     }
 
-    nativePlayer.player.rate = clamped;
+    _avPlayer.rate = clamped;
   }
 
   Future<void> seekTo(Duration targetPosition) {
@@ -483,10 +500,9 @@ class _VideoPlayer {
         ? _lib.CMTimeMake(1, 1000)
         : _lib.kCMTimeZero;
     final Completer<void> seekFinished = Completer<void>();
-    nativePlayer.player
-        .seekToTime_toleranceBefore_toleranceAfter_completionHandler_(
-            targetCMTime, tolerance, tolerance,
-            ObjCBlock_ffiVoid_bool.listener((bool completed) {
+    _avPlayer.seekToTime_toleranceBefore_toleranceAfter_completionHandler_(
+        targetCMTime, tolerance, tolerance,
+        ObjCBlock_ffiVoid_bool.listener((bool completed) {
       if (position != previousPosition) {
         // Ensure that a frame is drawn once available, even if currently
         // paused. In theory a race is possible here where the new frame has
@@ -505,7 +521,7 @@ class _VideoPlayer {
   Duration get position {
     // Work around https://github.com/dart-lang/native/issues/1480
     final ffi.Pointer<CMTime> currentTimePtr = calloc<CMTime>();
-    nativePlayer.player.currentTime(currentTimePtr);
+    _avPlayer.currentTime(currentTimePtr);
     final int milliseconds = _millisecondsFromCMTime(currentTimePtr.ref);
     calloc.free(currentTimePtr);
     return Duration(milliseconds: milliseconds);
@@ -515,7 +531,7 @@ class _VideoPlayer {
     // Note: https://openradar.appspot.com/radar?id=4968600712511488
     // `[AVPlayerItem duration]` can be `kCMTimeIndefinite`,
     // use `[[AVPlayerItem asset] duration]` instead.
-    final AVPlayerItem? currentItem = nativePlayer.player.currentItem;
+    final AVPlayerItem? currentItem = _avPlayer.currentItem;
     if (currentItem == null) {
       return Duration.zero;
     }
@@ -542,7 +558,7 @@ class _VideoPlayer {
     if (_initialized) {
       return;
     }
-    final AVPlayerItem? currentItem = nativePlayer.player.currentItem;
+    final AVPlayerItem? currentItem = _avPlayer.currentItem;
     if (currentItem == null) {
       return;
     }
@@ -714,12 +730,18 @@ NSObject? _convertKnownType(Object? o) {
     final Map<Object?, Object?> m => _convertMap(m),
     final int i => NSNumber.numberWithInt_(i),
     final double d => NSNumber.numberWithDouble_(d),
+    final NSObject o => o,
     _ => throw UnimplementedError('No conversion for $o'),
   };
 }
 
 NSObject _covertKnownTypeWithNSNull(Object? o) {
   return _convertKnownType(o) ?? NSNull.null1();
+}
+
+NSString _nsStringFromCFString(ffi.Pointer<CFStringRef> cf) {
+  return NSString.castFromPointer(
+      ffi.Pointer<ObjCObject>.fromAddress(cf.address));
 }
 
 // From CMTIME_IS_VALID definition in CMTime.h.

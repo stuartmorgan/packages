@@ -40,6 +40,20 @@ class FVPVideo {
   late final _CMTimeMake =
       _CMTimeMakePtr.asFunction<CMTime Function(int, int)>();
 
+  late final ffi.Pointer<ffi.Pointer<CFStringRef>>
+      _kCVPixelBufferPixelFormatTypeKey =
+      _lookup<ffi.Pointer<CFStringRef>>('kCVPixelBufferPixelFormatTypeKey');
+
+  ffi.Pointer<CFStringRef> get kCVPixelBufferPixelFormatTypeKey =>
+      _kCVPixelBufferPixelFormatTypeKey.value;
+
+  late final ffi.Pointer<ffi.Pointer<CFStringRef>>
+      _kCVPixelBufferIOSurfacePropertiesKey =
+      _lookup<ffi.Pointer<CFStringRef>>('kCVPixelBufferIOSurfacePropertiesKey');
+
+  ffi.Pointer<CFStringRef> get kCVPixelBufferIOSurfacePropertiesKey =>
+      _kCVPixelBufferIOSurfacePropertiesKey.value;
+
   late final ffi.Pointer<ffi.Pointer<objc.ObjCObject>> _AVMediaTypeVideo =
       _lookup<ffi.Pointer<objc.ObjCObject>>('AVMediaTypeVideo');
 
@@ -39327,6 +39341,8 @@ enum CMTimeFlags {
       };
 }
 
+final class CFStringRef extends ffi.Opaque {}
+
 /// AVContentKeySession
 class AVContentKeySession extends objc.NSObject {
   AVContentKeySession._(ffi.Pointer<objc.ObjCObject> pointer,
@@ -54922,7 +54938,7 @@ class AVSemanticSegmentationMatte extends objc.NSObject {
   /// semanticSegmentationMatteFromImageSourceAuxiliaryDataType:dictionaryRepresentation:error:
   static AVSemanticSegmentationMatte?
       semanticSegmentationMatteFromImageSourceAuxiliaryDataType_dictionaryRepresentation_error_(
-          ffi.Pointer<__CFString> imageSourceAuxiliaryDataType,
+          ffi.Pointer<CFStringRef> imageSourceAuxiliaryDataType,
           objc.NSDictionary imageSourceAuxiliaryDataInfoDictionary,
           ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
     final _ret = _objc_msgSend_934(
@@ -55079,9 +55095,6 @@ class AVSemanticSegmentationMatte extends objc.NSObject {
 
 late final _class_AVSemanticSegmentationMatte =
     objc.getClass("AVSemanticSegmentationMatte");
-
-final class __CFString extends ffi.Opaque {}
-
 late final _sel_semanticSegmentationMatteFromImageSourceAuxiliaryDataType_dictionaryRepresentation_error_ =
     objc.registerName(
         "semanticSegmentationMatteFromImageSourceAuxiliaryDataType:dictionaryRepresentation:error:");
@@ -55091,14 +55104,14 @@ final _objc_msgSend_934 = objc.msgSendPointer
             instancetype Function(
                 ffi.Pointer<objc.ObjCObject>,
                 ffi.Pointer<objc.ObjCSelector>,
-                ffi.Pointer<__CFString>,
+                ffi.Pointer<CFStringRef>,
                 ffi.Pointer<objc.ObjCObject>,
                 ffi.Pointer<ffi.Pointer<objc.ObjCObject>>)>>()
     .asFunction<
         instancetype Function(
             ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCSelector>,
-            ffi.Pointer<__CFString>,
+            ffi.Pointer<CFStringRef>,
             ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<ffi.Pointer<objc.ObjCObject>>)>();
 late final _sel_matteType = objc.registerName("matteType");
@@ -84608,6 +84621,286 @@ late final _sel_textStylingResolution =
 late final _sel_setTextStylingResolution_ =
     objc.registerName("setTextStylingResolution:");
 
+/// AVPlayerLayer
+class AVPlayerLayer extends CALayer {
+  AVPlayerLayer._(ffi.Pointer<objc.ObjCObject> pointer,
+      {bool retain = false, bool release = false})
+      : super.castFromPointer(pointer, retain: retain, release: release);
+
+  /// Constructs a [AVPlayerLayer] that points to the same underlying object as [other].
+  AVPlayerLayer.castFrom(objc.ObjCObjectBase other)
+      : this._(other.pointer, retain: true, release: true);
+
+  /// Constructs a [AVPlayerLayer] that wraps the given raw object pointer.
+  AVPlayerLayer.castFromPointer(ffi.Pointer<objc.ObjCObject> other,
+      {bool retain = false, bool release = false})
+      : this._(other, retain: retain, release: release);
+
+  /// Returns whether [obj] is an instance of [AVPlayerLayer].
+  static bool isInstance(objc.ObjCObjectBase obj) {
+    return _objc_msgSend_0(
+        obj.pointer, _sel_isKindOfClass_, _class_AVPlayerLayer);
+  }
+
+  /// playerLayerWithPlayer:
+  static AVPlayerLayer playerLayerWithPlayer_(AVPlayer? player) {
+    final _ret = _objc_msgSend_1305(_class_AVPlayerLayer,
+        _sel_playerLayerWithPlayer_, player?.pointer ?? ffi.nullptr);
+    return AVPlayerLayer.castFromPointer(_ret, retain: true, release: true);
+  }
+
+  /// player
+  AVPlayer? get player {
+    final _ret = _objc_msgSend_1294(this.pointer, _sel_player);
+    return _ret.address == 0
+        ? null
+        : AVPlayer.castFromPointer(_ret, retain: true, release: true);
+  }
+
+  /// setPlayer:
+  set player(AVPlayer? value) {
+    return _objc_msgSend_1306(
+        this.pointer, _sel_setPlayer_, value?.pointer ?? ffi.nullptr);
+  }
+
+  /// videoGravity
+  objc.NSString get videoGravity {
+    final _ret = _objc_msgSend_11(this.pointer, _sel_videoGravity);
+    return objc.NSString.castFromPointer(_ret, retain: true, release: true);
+  }
+
+  /// setVideoGravity:
+  set videoGravity(objc.NSString value) {
+    return _objc_msgSend_12(this.pointer, _sel_setVideoGravity_, value.pointer);
+  }
+
+  /// isReadyForDisplay
+  bool get readyForDisplay {
+    return _objc_msgSend_13(this.pointer, _sel_isReadyForDisplay);
+  }
+
+  /// videoRect
+  void getVideoRect(ffi.Pointer<CGRect> stret) {
+    objc.useMsgSendVariants
+        ? _objc_msgSend_800Stret(stret, this.pointer, _sel_videoRect)
+        : stret.ref = _objc_msgSend_800(this.pointer, _sel_videoRect);
+  }
+
+  /// pixelBufferAttributes
+  objc.NSDictionary? get pixelBufferAttributes {
+    final _ret = _objc_msgSend_106(this.pointer, _sel_pixelBufferAttributes);
+    return _ret.address == 0
+        ? null
+        : objc.NSDictionary.castFromPointer(_ret, retain: true, release: true);
+  }
+
+  /// setPixelBufferAttributes:
+  set pixelBufferAttributes(objc.NSDictionary? value) {
+    return _objc_msgSend_209(this.pointer, _sel_setPixelBufferAttributes_,
+        value?.pointer ?? ffi.nullptr);
+  }
+
+  /// copyDisplayedPixelBuffer
+  ffi.Pointer<__CVBuffer> copyDisplayedPixelBuffer() {
+    return _objc_msgSend_916(this.pointer, _sel_copyDisplayedPixelBuffer);
+  }
+
+  /// layer
+  static AVPlayerLayer layer() {
+    final _ret = _objc_msgSend_19(_class_AVPlayerLayer, _sel_layer);
+    return AVPlayerLayer.castFromPointer(_ret, retain: true, release: true);
+  }
+
+  /// init
+  AVPlayerLayer init() {
+    final _ret = _objc_msgSend_19(this.pointer, _sel_init);
+    return AVPlayerLayer.castFromPointer(_ret, retain: true, release: true);
+  }
+
+  /// initWithLayer:
+  AVPlayerLayer initWithLayer_(objc.ObjCObjectBase layer) {
+    final _ret =
+        _objc_msgSend_623(this.pointer, _sel_initWithLayer_, layer.pointer);
+    return AVPlayerLayer.castFromPointer(_ret, retain: true, release: true);
+  }
+
+  /// presentationLayer
+  AVPlayerLayer? presentationLayer() {
+    final _ret = _objc_msgSend_107(this.pointer, _sel_presentationLayer);
+    return _ret.address == 0
+        ? null
+        : AVPlayerLayer.castFromPointer(_ret, retain: true, release: true);
+  }
+
+  /// modelLayer
+  AVPlayerLayer modelLayer() {
+    final _ret = _objc_msgSend_19(this.pointer, _sel_modelLayer);
+    return AVPlayerLayer.castFromPointer(_ret, retain: true, release: true);
+  }
+
+  /// defaultValueForKey:
+  static objc.ObjCObjectBase? defaultValueForKey_(objc.NSString key) {
+    final _ret = _objc_msgSend_58(
+        _class_AVPlayerLayer, _sel_defaultValueForKey_, key.pointer);
+    return _ret.address == 0
+        ? null
+        : objc.ObjCObjectBase(_ret, retain: true, release: true);
+  }
+
+  /// needsDisplayForKey:
+  static bool needsDisplayForKey_(objc.NSString key) {
+    return _objc_msgSend_31(
+        _class_AVPlayerLayer, _sel_needsDisplayForKey_, key.pointer);
+  }
+
+  /// cornerCurveExpansionFactor:
+  static double cornerCurveExpansionFactor_(objc.NSString curve) {
+    return objc.useMsgSendVariants
+        ? _objc_msgSend_112Fpret(_class_AVPlayerLayer,
+            _sel_cornerCurveExpansionFactor_, curve.pointer)
+        : _objc_msgSend_112(_class_AVPlayerLayer,
+            _sel_cornerCurveExpansionFactor_, curve.pointer);
+  }
+
+  /// defaultActionForKey:
+  static objc.ObjCObjectBase? defaultActionForKey_(objc.NSString event) {
+    final _ret = _objc_msgSend_58(
+        _class_AVPlayerLayer, _sel_defaultActionForKey_, event.pointer);
+    return _ret.address == 0
+        ? null
+        : objc.ObjCObjectBase(_ret, retain: true, release: true);
+  }
+
+  /// layerWithRemoteClientId:
+  static CALayer layerWithRemoteClientId_(int client_id) {
+    final _ret = _objc_msgSend_845(
+        _class_AVPlayerLayer, _sel_layerWithRemoteClientId_, client_id);
+    return CALayer.castFromPointer(_ret, retain: true, release: true);
+  }
+
+  /// new
+  static AVPlayerLayer new1() {
+    final _ret = _objc_msgSend_19(_class_AVPlayerLayer, _sel_new);
+    return AVPlayerLayer.castFromPointer(_ret, retain: false, release: true);
+  }
+
+  /// allocWithZone:
+  static AVPlayerLayer allocWithZone_(ffi.Pointer<_NSZone> zone) {
+    final _ret =
+        _objc_msgSend_28(_class_AVPlayerLayer, _sel_allocWithZone_, zone);
+    return AVPlayerLayer.castFromPointer(_ret, retain: false, release: true);
+  }
+
+  /// alloc
+  static AVPlayerLayer alloc() {
+    final _ret = _objc_msgSend_19(_class_AVPlayerLayer, _sel_alloc);
+    return AVPlayerLayer.castFromPointer(_ret, retain: false, release: true);
+  }
+
+  /// cancelPreviousPerformRequestsWithTarget:selector:object:
+  static void cancelPreviousPerformRequestsWithTarget_selector_object_(
+      objc.ObjCObjectBase aTarget,
+      ffi.Pointer<objc.ObjCSelector> aSelector,
+      objc.ObjCObjectBase? anArgument) {
+    _objc_msgSend_29(
+        _class_AVPlayerLayer,
+        _sel_cancelPreviousPerformRequestsWithTarget_selector_object_,
+        aTarget.pointer,
+        aSelector,
+        anArgument?.pointer ?? ffi.nullptr);
+  }
+
+  /// cancelPreviousPerformRequestsWithTarget:
+  static void cancelPreviousPerformRequestsWithTarget_(
+      objc.ObjCObjectBase aTarget) {
+    _objc_msgSend_27(_class_AVPlayerLayer,
+        _sel_cancelPreviousPerformRequestsWithTarget_, aTarget.pointer);
+  }
+
+  /// accessInstanceVariablesDirectly
+  static bool getAccessInstanceVariablesDirectly() {
+    return _objc_msgSend_13(
+        _class_AVPlayerLayer, _sel_accessInstanceVariablesDirectly);
+  }
+
+  /// useStoredAccessor
+  static bool useStoredAccessor() {
+    return _objc_msgSend_13(_class_AVPlayerLayer, _sel_useStoredAccessor);
+  }
+
+  /// keyPathsForValuesAffectingValueForKey:
+  static objc.NSSet keyPathsForValuesAffectingValueForKey_(objc.NSString key) {
+    final _ret = _objc_msgSend_30(_class_AVPlayerLayer,
+        _sel_keyPathsForValuesAffectingValueForKey_, key.pointer);
+    return objc.NSSet.castFromPointer(_ret, retain: true, release: true);
+  }
+
+  /// automaticallyNotifiesObserversForKey:
+  static bool automaticallyNotifiesObserversForKey_(objc.NSString key) {
+    return _objc_msgSend_31(_class_AVPlayerLayer,
+        _sel_automaticallyNotifiesObserversForKey_, key.pointer);
+  }
+
+  /// setKeys:triggerChangeNotificationsForDependentKey:
+  static void setKeys_triggerChangeNotificationsForDependentKey_(
+      objc.NSArray keys, objc.NSString dependentKey) {
+    _objc_msgSend_32(
+        _class_AVPlayerLayer,
+        _sel_setKeys_triggerChangeNotificationsForDependentKey_,
+        keys.pointer,
+        dependentKey.pointer);
+  }
+
+  /// classFallbacksForKeyedArchiver
+  static objc.NSArray classFallbacksForKeyedArchiver() {
+    final _ret = _objc_msgSend_33(
+        _class_AVPlayerLayer, _sel_classFallbacksForKeyedArchiver);
+    return objc.NSArray.castFromPointer(_ret, retain: true, release: true);
+  }
+
+  /// classForKeyedUnarchiver
+  static objc.ObjCObjectBase classForKeyedUnarchiver() {
+    final _ret =
+        _objc_msgSend_19(_class_AVPlayerLayer, _sel_classForKeyedUnarchiver);
+    return objc.ObjCObjectBase(_ret, retain: true, release: true);
+  }
+}
+
+late final _class_AVPlayerLayer = objc.getClass("AVPlayerLayer");
+late final _sel_playerLayerWithPlayer_ =
+    objc.registerName("playerLayerWithPlayer:");
+final _objc_msgSend_1305 = objc.msgSendPointer
+    .cast<
+        ffi.NativeFunction<
+            ffi.Pointer<objc.ObjCObject> Function(
+                ffi.Pointer<objc.ObjCObject>,
+                ffi.Pointer<objc.ObjCSelector>,
+                ffi.Pointer<objc.ObjCObject>)>>()
+    .asFunction<
+        ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
+            ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCObject>)>();
+late final _sel_setPlayer_ = objc.registerName("setPlayer:");
+final _objc_msgSend_1306 = objc.msgSendPointer
+    .cast<
+        ffi.NativeFunction<
+            ffi.Void Function(
+                ffi.Pointer<objc.ObjCObject>,
+                ffi.Pointer<objc.ObjCSelector>,
+                ffi.Pointer<objc.ObjCObject>)>>()
+    .asFunction<
+        void Function(ffi.Pointer<objc.ObjCObject>,
+            ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCObject>)>();
+late final _sel_videoGravity = objc.registerName("videoGravity");
+late final _sel_setVideoGravity_ = objc.registerName("setVideoGravity:");
+late final _sel_isReadyForDisplay = objc.registerName("isReadyForDisplay");
+late final _sel_videoRect = objc.registerName("videoRect");
+late final _sel_pixelBufferAttributes =
+    objc.registerName("pixelBufferAttributes");
+late final _sel_setPixelBufferAttributes_ =
+    objc.registerName("setPixelBufferAttributes:");
+late final _sel_copyDisplayedPixelBuffer =
+    objc.registerName("copyDisplayedPixelBuffer");
+
 /// AVPlayerInterstitialEvent
 class AVPlayerInterstitialEvent extends objc.NSObject {
   AVPlayerInterstitialEvent._(ffi.Pointer<objc.ObjCObject> pointer,
@@ -84654,7 +84947,7 @@ class AVPlayerInterstitialEvent extends objc.NSObject {
           CMTime resumptionOffset,
           CMTime playoutLimit,
           objc.NSDictionary? userDefinedAttributes) {
-    final _ret = _objc_msgSend_1305(
+    final _ret = _objc_msgSend_1307(
         _class_AVPlayerInterstitialEvent,
         _sel_interstitialEventWithPrimaryItem_identifier_time_templateItems_restrictions_resumptionOffset_playoutLimit_userDefinedAttributes_,
         primaryItem.pointer,
@@ -84680,7 +84973,7 @@ class AVPlayerInterstitialEvent extends objc.NSObject {
           CMTime resumptionOffset,
           CMTime playoutLimit,
           objc.NSDictionary? userDefinedAttributes) {
-    final _ret = _objc_msgSend_1306(
+    final _ret = _objc_msgSend_1308(
         _class_AVPlayerInterstitialEvent,
         _sel_interstitialEventWithPrimaryItem_identifier_date_templateItems_restrictions_resumptionOffset_playoutLimit_userDefinedAttributes_,
         primaryItem.pointer,
@@ -84698,7 +84991,7 @@ class AVPlayerInterstitialEvent extends objc.NSObject {
   /// interstitialEventWithPrimaryItem:time:
   static AVPlayerInterstitialEvent interstitialEventWithPrimaryItem_time_(
       AVPlayerItem primaryItem, CMTime time) {
-    final _ret = _objc_msgSend_1307(_class_AVPlayerInterstitialEvent,
+    final _ret = _objc_msgSend_1309(_class_AVPlayerInterstitialEvent,
         _sel_interstitialEventWithPrimaryItem_time_, primaryItem.pointer, time);
     return AVPlayerInterstitialEvent.castFromPointer(_ret,
         retain: true, release: true);
@@ -84707,7 +85000,7 @@ class AVPlayerInterstitialEvent extends objc.NSObject {
   /// interstitialEventWithPrimaryItem:date:
   static AVPlayerInterstitialEvent interstitialEventWithPrimaryItem_date_(
       AVPlayerItem primaryItem, objc.NSDate date) {
-    final _ret = _objc_msgSend_1308(
+    final _ret = _objc_msgSend_1310(
         _class_AVPlayerInterstitialEvent,
         _sel_interstitialEventWithPrimaryItem_date_,
         primaryItem.pointer,
@@ -84753,7 +85046,7 @@ class AVPlayerInterstitialEvent extends objc.NSObject {
 
   /// restrictions
   AVPlayerInterstitialEventRestrictions get restrictions {
-    final _ret = _objc_msgSend_1309(this.pointer, _sel_restrictions);
+    final _ret = _objc_msgSend_1311(this.pointer, _sel_restrictions);
     return AVPlayerInterstitialEventRestrictions.fromValue(_ret);
   }
 
@@ -84810,7 +85103,7 @@ class AVPlayerInterstitialEvent extends objc.NSObject {
 
   /// setPrimaryItem:
   set primaryItem(AVPlayerItem? value) {
-    return _objc_msgSend_1310(
+    return _objc_msgSend_1312(
         this.pointer, _sel_setPrimaryItem_, value?.pointer ?? ffi.nullptr);
   }
 
@@ -84838,7 +85131,7 @@ class AVPlayerInterstitialEvent extends objc.NSObject {
 
   /// setRestrictions:
   set restrictions(AVPlayerInterstitialEventRestrictions value) {
-    return _objc_msgSend_1311(this.pointer, _sel_setRestrictions_, value.value);
+    return _objc_msgSend_1313(this.pointer, _sel_setRestrictions_, value.value);
   }
 
   /// setResumptionOffset:
@@ -85002,7 +85295,7 @@ enum AVPlayerInterstitialEventRestrictions {
 late final _sel_interstitialEventWithPrimaryItem_identifier_time_templateItems_restrictions_resumptionOffset_playoutLimit_userDefinedAttributes_ =
     objc.registerName(
         "interstitialEventWithPrimaryItem:identifier:time:templateItems:restrictions:resumptionOffset:playoutLimit:userDefinedAttributes:");
-final _objc_msgSend_1305 = objc.msgSendPointer
+final _objc_msgSend_1307 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             instancetype Function(
@@ -85031,7 +85324,7 @@ final _objc_msgSend_1305 = objc.msgSendPointer
 late final _sel_interstitialEventWithPrimaryItem_identifier_date_templateItems_restrictions_resumptionOffset_playoutLimit_userDefinedAttributes_ =
     objc.registerName(
         "interstitialEventWithPrimaryItem:identifier:date:templateItems:restrictions:resumptionOffset:playoutLimit:userDefinedAttributes:");
-final _objc_msgSend_1306 = objc.msgSendPointer
+final _objc_msgSend_1308 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             instancetype Function(
@@ -85059,7 +85352,7 @@ final _objc_msgSend_1306 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>)>();
 late final _sel_interstitialEventWithPrimaryItem_time_ =
     objc.registerName("interstitialEventWithPrimaryItem:time:");
-final _objc_msgSend_1307 = objc.msgSendPointer
+final _objc_msgSend_1309 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             instancetype Function(
@@ -85075,7 +85368,7 @@ final _objc_msgSend_1307 = objc.msgSendPointer
             CMTime)>();
 late final _sel_interstitialEventWithPrimaryItem_date_ =
     objc.registerName("interstitialEventWithPrimaryItem:date:");
-final _objc_msgSend_1308 = objc.msgSendPointer
+final _objc_msgSend_1310 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             instancetype Function(
@@ -85092,7 +85385,7 @@ final _objc_msgSend_1308 = objc.msgSendPointer
 late final _sel_primaryItem = objc.registerName("primaryItem");
 late final _sel_templateItems = objc.registerName("templateItems");
 late final _sel_restrictions = objc.registerName("restrictions");
-final _objc_msgSend_1309 = objc.msgSendPointer
+final _objc_msgSend_1311 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.UnsignedLong Function(ffi.Pointer<objc.ObjCObject>,
@@ -85112,7 +85405,7 @@ late final _sel_userDefinedAttributes =
     objc.registerName("userDefinedAttributes");
 late final _sel_assetListResponse = objc.registerName("assetListResponse");
 late final _sel_setPrimaryItem_ = objc.registerName("setPrimaryItem:");
-final _objc_msgSend_1310 = objc.msgSendPointer
+final _objc_msgSend_1312 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -85125,7 +85418,7 @@ final _objc_msgSend_1310 = objc.msgSendPointer
 late final _sel_setDate_ = objc.registerName("setDate:");
 late final _sel_setTemplateItems_ = objc.registerName("setTemplateItems:");
 late final _sel_setRestrictions_ = objc.registerName("setRestrictions:");
-final _objc_msgSend_1311 = objc.msgSendPointer
+final _objc_msgSend_1313 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(ffi.Pointer<objc.ObjCObject>,
@@ -85170,7 +85463,7 @@ class AVSampleBufferAudioRenderer extends objc.NSObject {
 
   /// status
   AVQueuedSampleBufferRenderingStatus get status {
-    final _ret = _objc_msgSend_1312(this.pointer, _sel_status);
+    final _ret = _objc_msgSend_1314(this.pointer, _sel_status);
     return AVQueuedSampleBufferRenderingStatus.fromValue(_ret);
   }
 
@@ -85374,7 +85667,7 @@ enum AVQueuedSampleBufferRenderingStatus {
       };
 }
 
-final _objc_msgSend_1312 = objc.msgSendPointer
+final _objc_msgSend_1314 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.UnsignedLong Function(ffi.Pointer<objc.ObjCObject>,
@@ -85413,7 +85706,7 @@ class AVSampleBufferDisplayLayer extends CALayer {
 
   /// setControlTimebase:
   set controlTimebase(ffi.Pointer<OpaqueCMTimebase> value) {
-    return _objc_msgSend_1313(this.pointer, _sel_setControlTimebase_, value);
+    return _objc_msgSend_1315(this.pointer, _sel_setControlTimebase_, value);
   }
 
   /// videoGravity
@@ -85434,7 +85727,7 @@ class AVSampleBufferDisplayLayer extends CALayer {
 
   /// status
   AVQueuedSampleBufferRenderingStatus get status {
-    final _ret = _objc_msgSend_1312(this.pointer, _sel_status);
+    final _ret = _objc_msgSend_1314(this.pointer, _sel_status);
     return AVQueuedSampleBufferRenderingStatus.fromValue(_ret);
   }
 
@@ -85448,7 +85741,7 @@ class AVSampleBufferDisplayLayer extends CALayer {
 
   /// enqueueSampleBuffer:
   void enqueueSampleBuffer_(ffi.Pointer<opaqueCMSampleBuffer> sampleBuffer) {
-    _objc_msgSend_1314(this.pointer, _sel_enqueueSampleBuffer_, sampleBuffer);
+    _objc_msgSend_1316(this.pointer, _sel_enqueueSampleBuffer_, sampleBuffer);
   }
 
   /// flush
@@ -85534,7 +85827,7 @@ class AVSampleBufferDisplayLayer extends CALayer {
 
   /// sampleBufferRenderer
   AVSampleBufferVideoRenderer get sampleBufferRenderer {
-    final _ret = _objc_msgSend_1316(this.pointer, _sel_sampleBufferRenderer);
+    final _ret = _objc_msgSend_1318(this.pointer, _sel_sampleBufferRenderer);
     return AVSampleBufferVideoRenderer.castFromPointer(_ret,
         retain: true, release: true);
   }
@@ -85715,7 +86008,7 @@ late final _class_AVSampleBufferDisplayLayer =
     objc.getClass("AVSampleBufferDisplayLayer");
 late final _sel_controlTimebase = objc.registerName("controlTimebase");
 late final _sel_setControlTimebase_ = objc.registerName("setControlTimebase:");
-final _objc_msgSend_1313 = objc.msgSendPointer
+final _objc_msgSend_1315 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -85725,11 +86018,9 @@ final _objc_msgSend_1313 = objc.msgSendPointer
     .asFunction<
         void Function(ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<OpaqueCMTimebase>)>();
-late final _sel_videoGravity = objc.registerName("videoGravity");
-late final _sel_setVideoGravity_ = objc.registerName("setVideoGravity:");
 late final _sel_enqueueSampleBuffer_ =
     objc.registerName("enqueueSampleBuffer:");
-final _objc_msgSend_1314 = objc.msgSendPointer
+final _objc_msgSend_1316 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -85777,7 +86068,7 @@ class AVSampleBufferVideoRenderer extends objc.NSObject {
 
   /// status
   AVQueuedSampleBufferRenderingStatus get status {
-    final _ret = _objc_msgSend_1312(this.pointer, _sel_status);
+    final _ret = _objc_msgSend_1314(this.pointer, _sel_status);
     return AVQueuedSampleBufferRenderingStatus.fromValue(_ret);
   }
 
@@ -85797,7 +86088,7 @@ class AVSampleBufferVideoRenderer extends objc.NSObject {
   /// flushWithRemovalOfDisplayedImage:completionHandler:
   void flushWithRemovalOfDisplayedImage_completionHandler_(
       bool removeDisplayedImage, objc.ObjCBlock<ffi.Void Function()>? handler) {
-    _objc_msgSend_1315(
+    _objc_msgSend_1317(
         this.pointer,
         _sel_flushWithRemovalOfDisplayedImage_completionHandler_,
         removeDisplayedImage,
@@ -85908,7 +86199,7 @@ late final _class_AVSampleBufferVideoRenderer =
     objc.getClass("AVSampleBufferVideoRenderer");
 late final _sel_flushWithRemovalOfDisplayedImage_completionHandler_ =
     objc.registerName("flushWithRemovalOfDisplayedImage:completionHandler:");
-final _objc_msgSend_1315 = objc.msgSendPointer
+final _objc_msgSend_1317 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -85924,7 +86215,7 @@ final _objc_msgSend_1315 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCBlockImpl>)>();
 late final _sel_sampleBufferRenderer =
     objc.registerName("sampleBufferRenderer");
-final _objc_msgSend_1316 = objc.msgSendPointer
+final _objc_msgSend_1318 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -85982,7 +86273,7 @@ class AVSampleBufferRenderSynchronizer extends objc.NSObject {
 
   /// setRate:time:
   void setRate_time_(double rate, CMTime time) {
-    _objc_msgSend_1317(this.pointer, _sel_setRate_time_, rate, time);
+    _objc_msgSend_1319(this.pointer, _sel_setRate_time_, rate, time);
   }
 
   /// setRate:time:atHostTime:
@@ -86019,7 +86310,7 @@ class AVSampleBufferRenderSynchronizer extends objc.NSObject {
       objc.ObjCObjectBase renderer,
       CMTime time,
       objc.ObjCBlock<ffi.Void Function(ffi.Bool)>? completionHandler) {
-    _objc_msgSend_1318(
+    _objc_msgSend_1320(
         this.pointer,
         _sel_removeRenderer_atTime_completionHandler_,
         renderer.pointer,
@@ -86165,7 +86456,7 @@ class AVSampleBufferRenderSynchronizer extends objc.NSObject {
 late final _class_AVSampleBufferRenderSynchronizer =
     objc.getClass("AVSampleBufferRenderSynchronizer");
 late final _sel_setRate_time_ = objc.registerName("setRate:time:");
-final _objc_msgSend_1317 = objc.msgSendPointer
+final _objc_msgSend_1319 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(ffi.Pointer<objc.ObjCObject>,
@@ -86181,7 +86472,7 @@ late final _sel_renderers = objc.registerName("renderers");
 late final _sel_addRenderer_ = objc.registerName("addRenderer:");
 late final _sel_removeRenderer_atTime_completionHandler_ =
     objc.registerName("removeRenderer:atTime:completionHandler:");
-final _objc_msgSend_1318 = objc.msgSendPointer
+final _objc_msgSend_1320 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -86222,7 +86513,7 @@ class AVAudioConverter extends objc.NSObject {
   /// initFromFormat:toFormat:
   AVAudioConverter? initFromFormat_toFormat_(
       AVAudioFormat fromFormat, AVAudioFormat toFormat) {
-    final _ret = _objc_msgSend_1319(this.pointer, _sel_initFromFormat_toFormat_,
+    final _ret = _objc_msgSend_1321(this.pointer, _sel_initFromFormat_toFormat_,
         fromFormat.pointer, toFormat.pointer);
     return _ret.address == 0
         ? null
@@ -86319,25 +86610,25 @@ class AVAudioConverter extends objc.NSObject {
 
   /// primeMethod
   AVAudioConverterPrimeMethod get primeMethod {
-    final _ret = _objc_msgSend_1320(this.pointer, _sel_primeMethod);
+    final _ret = _objc_msgSend_1322(this.pointer, _sel_primeMethod);
     return AVAudioConverterPrimeMethod.fromValue(_ret);
   }
 
   /// setPrimeMethod:
   set primeMethod(AVAudioConverterPrimeMethod value) {
-    return _objc_msgSend_1321(this.pointer, _sel_setPrimeMethod_, value.value);
+    return _objc_msgSend_1323(this.pointer, _sel_setPrimeMethod_, value.value);
   }
 
   /// primeInfo
   void getPrimeInfo(ffi.Pointer<AVAudioConverterPrimeInfo> stret) {
     objc.useMsgSendVariants
-        ? _objc_msgSend_1322Stret(stret, this.pointer, _sel_primeInfo)
-        : stret.ref = _objc_msgSend_1322(this.pointer, _sel_primeInfo);
+        ? _objc_msgSend_1324Stret(stret, this.pointer, _sel_primeInfo)
+        : stret.ref = _objc_msgSend_1324(this.pointer, _sel_primeInfo);
   }
 
   /// setPrimeInfo:
   set primeInfo(AVAudioConverterPrimeInfo value) {
-    return _objc_msgSend_1323(this.pointer, _sel_setPrimeInfo_, value);
+    return _objc_msgSend_1325(this.pointer, _sel_setPrimeInfo_, value);
   }
 
   /// convertToBuffer:fromBuffer:error:
@@ -86345,7 +86636,7 @@ class AVAudioConverter extends objc.NSObject {
       AVAudioPCMBuffer outputBuffer,
       AVAudioPCMBuffer inputBuffer,
       ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
-    return _objc_msgSend_1330(
+    return _objc_msgSend_1332(
         this.pointer,
         _sel_convertToBuffer_fromBuffer_error_,
         outputBuffer.pointer,
@@ -86361,7 +86652,7 @@ class AVAudioConverter extends objc.NSObject {
               ffi.Pointer<objc.ObjCObject> Function(
                   ffi.Uint32, ffi.Pointer<ffi.UnsignedLong>)>
           inputBlock) {
-    final _ret = _objc_msgSend_1331(
+    final _ret = _objc_msgSend_1333(
         this.pointer,
         _sel_convertToBuffer_error_withInputFromBlock_,
         outputBuffer.pointer,
@@ -86539,7 +86830,7 @@ class AVAudioConverter extends objc.NSObject {
 late final _class_AVAudioConverter = objc.getClass("AVAudioConverter");
 late final _sel_initFromFormat_toFormat_ =
     objc.registerName("initFromFormat:toFormat:");
-final _objc_msgSend_1319 = objc.msgSendPointer
+final _objc_msgSend_1321 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             instancetype Function(
@@ -86586,7 +86877,7 @@ enum AVAudioConverterPrimeMethod {
 }
 
 late final _sel_primeMethod = objc.registerName("primeMethod");
-final _objc_msgSend_1320 = objc.msgSendPointer
+final _objc_msgSend_1322 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.UnsignedLong Function(ffi.Pointer<objc.ObjCObject>,
@@ -86595,7 +86886,7 @@ final _objc_msgSend_1320 = objc.msgSendPointer
         int Function(
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_setPrimeMethod_ = objc.registerName("setPrimeMethod:");
-final _objc_msgSend_1321 = objc.msgSendPointer
+final _objc_msgSend_1323 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(ffi.Pointer<objc.ObjCObject>,
@@ -86613,7 +86904,7 @@ final class AVAudioConverterPrimeInfo extends ffi.Struct {
 }
 
 late final _sel_primeInfo = objc.registerName("primeInfo");
-final _objc_msgSend_1322 = objc.msgSendPointer
+final _objc_msgSend_1324 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             AVAudioConverterPrimeInfo Function(ffi.Pointer<objc.ObjCObject>,
@@ -86621,7 +86912,7 @@ final _objc_msgSend_1322 = objc.msgSendPointer
     .asFunction<
         AVAudioConverterPrimeInfo Function(
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
-final _objc_msgSend_1322Stret = objc.msgSendStretPointer
+final _objc_msgSend_1324Stret = objc.msgSendStretPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -86632,7 +86923,7 @@ final _objc_msgSend_1322Stret = objc.msgSendStretPointer
         void Function(ffi.Pointer<AVAudioConverterPrimeInfo>,
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_setPrimeInfo_ = objc.registerName("setPrimeInfo:");
-final _objc_msgSend_1323 = objc.msgSendPointer
+final _objc_msgSend_1325 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(ffi.Pointer<objc.ObjCObject>,
@@ -86665,7 +86956,7 @@ class AVAudioPCMBuffer extends AVAudioBuffer {
   /// initWithPCMFormat:frameCapacity:
   AVAudioPCMBuffer? initWithPCMFormat_frameCapacity_(
       AVAudioFormat format, int frameCapacity) {
-    final _ret = _objc_msgSend_1324(this.pointer,
+    final _ret = _objc_msgSend_1326(this.pointer,
         _sel_initWithPCMFormat_frameCapacity_, format.pointer, frameCapacity);
     return _ret.address == 0
         ? null
@@ -86678,7 +86969,7 @@ class AVAudioPCMBuffer extends AVAudioBuffer {
       ffi.Pointer<AudioBufferList> bufferList,
       objc.ObjCBlock<ffi.Void Function(ffi.Pointer<AudioBufferList>)>?
           deallocator) {
-    final _ret = _objc_msgSend_1325(
+    final _ret = _objc_msgSend_1327(
         this.pointer,
         _sel_initWithPCMFormat_bufferListNoCopy_deallocator_,
         format.pointer,
@@ -86711,17 +87002,17 @@ class AVAudioPCMBuffer extends AVAudioBuffer {
 
   /// floatChannelData
   ffi.Pointer<ffi.Pointer<ffi.Float>> get floatChannelData {
-    return _objc_msgSend_1326(this.pointer, _sel_floatChannelData);
+    return _objc_msgSend_1328(this.pointer, _sel_floatChannelData);
   }
 
   /// int16ChannelData
   ffi.Pointer<ffi.Pointer<ffi.Int16>> get int16ChannelData {
-    return _objc_msgSend_1327(this.pointer, _sel_int16ChannelData);
+    return _objc_msgSend_1329(this.pointer, _sel_int16ChannelData);
   }
 
   /// int32ChannelData
   ffi.Pointer<ffi.Pointer<ffi.Int32>> get int32ChannelData {
-    return _objc_msgSend_1328(this.pointer, _sel_int32ChannelData);
+    return _objc_msgSend_1330(this.pointer, _sel_int32ChannelData);
   }
 
   /// init
@@ -86821,7 +87112,7 @@ class AVAudioPCMBuffer extends AVAudioBuffer {
 late final _class_AVAudioPCMBuffer = objc.getClass("AVAudioPCMBuffer");
 late final _sel_initWithPCMFormat_frameCapacity_ =
     objc.registerName("initWithPCMFormat:frameCapacity:");
-final _objc_msgSend_1324 = objc.msgSendPointer
+final _objc_msgSend_1326 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             instancetype Function(
@@ -86941,7 +87232,7 @@ extension ObjCBlock_ffiVoid_AudioBufferList_CallExtension
 
 late final _sel_initWithPCMFormat_bufferListNoCopy_deallocator_ =
     objc.registerName("initWithPCMFormat:bufferListNoCopy:deallocator:");
-final _objc_msgSend_1325 = objc.msgSendPointer
+final _objc_msgSend_1327 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             instancetype Function(
@@ -86962,7 +87253,7 @@ late final _sel_frameLength = objc.registerName("frameLength");
 late final _sel_setFrameLength_ = objc.registerName("setFrameLength:");
 late final _sel_stride = objc.registerName("stride");
 late final _sel_floatChannelData = objc.registerName("floatChannelData");
-final _objc_msgSend_1326 = objc.msgSendPointer
+final _objc_msgSend_1328 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<ffi.Pointer<ffi.Float>> Function(
@@ -86972,7 +87263,7 @@ final _objc_msgSend_1326 = objc.msgSendPointer
         ffi.Pointer<ffi.Pointer<ffi.Float>> Function(
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_int16ChannelData = objc.registerName("int16ChannelData");
-final _objc_msgSend_1327 = objc.msgSendPointer
+final _objc_msgSend_1329 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<ffi.Pointer<ffi.Int16>> Function(
@@ -86982,7 +87273,7 @@ final _objc_msgSend_1327 = objc.msgSendPointer
         ffi.Pointer<ffi.Pointer<ffi.Int16>> Function(
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_int32ChannelData = objc.registerName("int32ChannelData");
-final _objc_msgSend_1328 = objc.msgSendPointer
+final _objc_msgSend_1330 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<ffi.Pointer<ffi.Int32>> Function(
@@ -87021,12 +87312,12 @@ class AVAudioBuffer extends objc.NSObject {
 
   /// audioBufferList
   ffi.Pointer<AudioBufferList> get audioBufferList {
-    return _objc_msgSend_1329(this.pointer, _sel_audioBufferList);
+    return _objc_msgSend_1331(this.pointer, _sel_audioBufferList);
   }
 
   /// mutableAudioBufferList
   ffi.Pointer<AudioBufferList> get mutableAudioBufferList {
-    return _objc_msgSend_1329(this.pointer, _sel_mutableAudioBufferList);
+    return _objc_msgSend_1331(this.pointer, _sel_mutableAudioBufferList);
   }
 
   /// init
@@ -87125,7 +87416,7 @@ class AVAudioBuffer extends objc.NSObject {
 
 late final _class_AVAudioBuffer = objc.getClass("AVAudioBuffer");
 late final _sel_audioBufferList = objc.registerName("audioBufferList");
-final _objc_msgSend_1329 = objc.msgSendPointer
+final _objc_msgSend_1331 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<AudioBufferList> Function(ffi.Pointer<objc.ObjCObject>,
@@ -87137,7 +87428,7 @@ late final _sel_mutableAudioBufferList =
     objc.registerName("mutableAudioBufferList");
 late final _sel_convertToBuffer_fromBuffer_error_ =
     objc.registerName("convertToBuffer:fromBuffer:error:");
-final _objc_msgSend_1330 = objc.msgSendPointer
+final _objc_msgSend_1332 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Bool Function(
@@ -87290,7 +87581,7 @@ enum AVAudioConverterInputStatus {
 
 late final _sel_convertToBuffer_error_withInputFromBlock_ =
     objc.registerName("convertToBuffer:error:withInputFromBlock:");
-final _objc_msgSend_1331 = objc.msgSendPointer
+final _objc_msgSend_1333 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.UnsignedLong Function(
@@ -87373,7 +87664,7 @@ class AVAudioSession extends objc.NSObject {
 
   /// sharedInstance
   static AVAudioSession sharedInstance() {
-    final _ret = _objc_msgSend_1332(_class_AVAudioSession, _sel_sharedInstance);
+    final _ret = _objc_msgSend_1334(_class_AVAudioSession, _sel_sharedInstance);
     return AVAudioSession.castFromPointer(_ret, retain: true, release: true);
   }
 
@@ -87395,7 +87686,7 @@ class AVAudioSession extends objc.NSObject {
       objc.NSString category,
       AVAudioSessionCategoryOptions options,
       ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
-    return _objc_msgSend_1333(this.pointer, _sel_setCategory_withOptions_error_,
+    return _objc_msgSend_1335(this.pointer, _sel_setCategory_withOptions_error_,
         category.pointer, options.value, outError);
   }
 
@@ -87405,7 +87696,7 @@ class AVAudioSession extends objc.NSObject {
       objc.NSString mode,
       AVAudioSessionCategoryOptions options,
       ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
-    return _objc_msgSend_1334(
+    return _objc_msgSend_1336(
         this.pointer,
         _sel_setCategory_mode_options_error_,
         category.pointer,
@@ -87421,7 +87712,7 @@ class AVAudioSession extends objc.NSObject {
       AVAudioSessionRouteSharingPolicy policy,
       AVAudioSessionCategoryOptions options,
       ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
-    return _objc_msgSend_1335(
+    return _objc_msgSend_1337(
         this.pointer,
         _sel_setCategory_mode_routeSharingPolicy_options_error_,
         category.pointer,
@@ -87439,13 +87730,13 @@ class AVAudioSession extends objc.NSObject {
 
   /// categoryOptions
   AVAudioSessionCategoryOptions get categoryOptions {
-    final _ret = _objc_msgSend_1336(this.pointer, _sel_categoryOptions);
+    final _ret = _objc_msgSend_1338(this.pointer, _sel_categoryOptions);
     return AVAudioSessionCategoryOptions.fromValue(_ret);
   }
 
   /// routeSharingPolicy
   AVAudioSessionRouteSharingPolicy get routeSharingPolicy {
-    final _ret = _objc_msgSend_1337(this.pointer, _sel_routeSharingPolicy);
+    final _ret = _objc_msgSend_1339(this.pointer, _sel_routeSharingPolicy);
     return AVAudioSessionRouteSharingPolicy.fromValue(_ret);
   }
 
@@ -87471,7 +87762,7 @@ class AVAudioSession extends objc.NSObject {
   /// setAllowHapticsAndSystemSoundsDuringRecording:error:
   bool setAllowHapticsAndSystemSoundsDuringRecording_error_(
       bool inValue, ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
-    return _objc_msgSend_1338(
+    return _objc_msgSend_1340(
         this.pointer,
         _sel_setAllowHapticsAndSystemSoundsDuringRecording_error_,
         inValue,
@@ -87486,34 +87777,34 @@ class AVAudioSession extends objc.NSObject {
 
   /// recordPermission
   AVAudioSessionRecordPermission get recordPermission {
-    final _ret = _objc_msgSend_1339(this.pointer, _sel_recordPermission);
+    final _ret = _objc_msgSend_1341(this.pointer, _sel_recordPermission);
     return AVAudioSessionRecordPermission.fromValue(_ret);
   }
 
   /// requestRecordPermission:
   void requestRecordPermission_(
       objc.ObjCBlock<ffi.Void Function(ffi.Bool)> response) {
-    _objc_msgSend_1340(
+    _objc_msgSend_1342(
         this.pointer, _sel_requestRecordPermission_, response.pointer);
   }
 
   /// overrideOutputAudioPort:error:
   bool overrideOutputAudioPort_error_(AVAudioSessionPortOverride portOverride,
       ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
-    return _objc_msgSend_1341(this.pointer, _sel_overrideOutputAudioPort_error_,
+    return _objc_msgSend_1343(this.pointer, _sel_overrideOutputAudioPort_error_,
         portOverride.value, outError);
   }
 
   /// setPreferredInput:error:
   bool setPreferredInput_error_(AVAudioSessionPortDescription? inPort,
       ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
-    return _objc_msgSend_1345(this.pointer, _sel_setPreferredInput_error_,
+    return _objc_msgSend_1347(this.pointer, _sel_setPreferredInput_error_,
         inPort?.pointer ?? ffi.nullptr, outError);
   }
 
   /// preferredInput
   AVAudioSessionPortDescription? get preferredInput {
-    final _ret = _objc_msgSend_1346(this.pointer, _sel_preferredInput);
+    final _ret = _objc_msgSend_1348(this.pointer, _sel_preferredInput);
     return _ret.address == 0
         ? null
         : AVAudioSessionPortDescription.castFromPointer(_ret,
@@ -87523,7 +87814,7 @@ class AVAudioSession extends objc.NSObject {
   /// setPrefersNoInterruptionsFromSystemAlerts:error:
   bool setPrefersNoInterruptionsFromSystemAlerts_error_(
       bool inValue, ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
-    return _objc_msgSend_1338(
+    return _objc_msgSend_1340(
         this.pointer,
         _sel_setPrefersNoInterruptionsFromSystemAlerts_error_,
         inValue,
@@ -87538,14 +87829,14 @@ class AVAudioSession extends objc.NSObject {
 
   /// renderingMode
   AVAudioSessionRenderingMode get renderingMode {
-    final _ret = _objc_msgSend_1347(this.pointer, _sel_renderingMode);
+    final _ret = _objc_msgSend_1349(this.pointer, _sel_renderingMode);
     return AVAudioSessionRenderingMode.fromValue(_ret);
   }
 
   /// setActive:error:
   bool setActive_error_(
       bool active, ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
-    return _objc_msgSend_1338(
+    return _objc_msgSend_1340(
         this.pointer, _sel_setActive_error_, active, outError);
   }
 
@@ -87554,7 +87845,7 @@ class AVAudioSession extends objc.NSObject {
       bool active,
       AVAudioSessionSetActiveOptions options,
       ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
-    return _objc_msgSend_1348(this.pointer, _sel_setActive_withOptions_error_,
+    return _objc_msgSend_1350(this.pointer, _sel_setActive_withOptions_error_,
         active, options.value, outError);
   }
 
@@ -87563,7 +87854,7 @@ class AVAudioSession extends objc.NSObject {
       AVAudioSessionActivationOptions options,
       objc.ObjCBlock<ffi.Void Function(ffi.Bool, ffi.Pointer<objc.ObjCObject>)>
           handler) {
-    _objc_msgSend_1349(
+    _objc_msgSend_1351(
         this.pointer,
         _sel_activateWithOptions_completionHandler_,
         options.value,
@@ -87573,7 +87864,7 @@ class AVAudioSession extends objc.NSObject {
   /// setPreferredSampleRate:error:
   bool setPreferredSampleRate_error_(
       double sampleRate, ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
-    return _objc_msgSend_1350(
+    return _objc_msgSend_1352(
         this.pointer, _sel_setPreferredSampleRate_error_, sampleRate, outError);
   }
 
@@ -87587,7 +87878,7 @@ class AVAudioSession extends objc.NSObject {
   /// setPreferredIOBufferDuration:error:
   bool setPreferredIOBufferDuration_error_(
       double duration, ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
-    return _objc_msgSend_1350(this.pointer,
+    return _objc_msgSend_1352(this.pointer,
         _sel_setPreferredIOBufferDuration_error_, duration, outError);
   }
 
@@ -87601,7 +87892,7 @@ class AVAudioSession extends objc.NSObject {
   /// setPreferredInputNumberOfChannels:error:
   bool setPreferredInputNumberOfChannels_error_(
       int count, ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
-    return _objc_msgSend_1351(this.pointer,
+    return _objc_msgSend_1353(this.pointer,
         _sel_setPreferredInputNumberOfChannels_error_, count, outError);
   }
 
@@ -87613,7 +87904,7 @@ class AVAudioSession extends objc.NSObject {
   /// setPreferredOutputNumberOfChannels:error:
   bool setPreferredOutputNumberOfChannels_error_(
       int count, ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
-    return _objc_msgSend_1351(this.pointer,
+    return _objc_msgSend_1353(this.pointer,
         _sel_setPreferredOutputNumberOfChannels_error_, count, outError);
   }
 
@@ -87625,20 +87916,20 @@ class AVAudioSession extends objc.NSObject {
   /// setPreferredInputOrientation:error:
   bool setPreferredInputOrientation_error_(AVAudioStereoOrientation orientation,
       ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
-    return _objc_msgSend_1352(this.pointer,
+    return _objc_msgSend_1354(this.pointer,
         _sel_setPreferredInputOrientation_error_, orientation.value, outError);
   }
 
   /// preferredInputOrientation
   AVAudioStereoOrientation get preferredInputOrientation {
     final _ret =
-        _objc_msgSend_1353(this.pointer, _sel_preferredInputOrientation);
+        _objc_msgSend_1355(this.pointer, _sel_preferredInputOrientation);
     return AVAudioStereoOrientation.fromValue(_ret);
   }
 
   /// inputOrientation
   AVAudioStereoOrientation get inputOrientation {
-    final _ret = _objc_msgSend_1353(this.pointer, _sel_inputOrientation);
+    final _ret = _objc_msgSend_1355(this.pointer, _sel_inputOrientation);
     return AVAudioStereoOrientation.fromValue(_ret);
   }
 
@@ -87655,7 +87946,7 @@ class AVAudioSession extends objc.NSObject {
   /// setInputGain:error:
   bool setInputGain_error_(
       double gain, ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
-    return _objc_msgSend_1354(
+    return _objc_msgSend_1356(
         this.pointer, _sel_setInputGain_error_, gain, outError);
   }
 
@@ -87686,7 +87977,7 @@ class AVAudioSession extends objc.NSObject {
 
   /// inputDataSource
   AVAudioSessionDataSourceDescription? get inputDataSource {
-    final _ret = _objc_msgSend_1343(this.pointer, _sel_inputDataSource);
+    final _ret = _objc_msgSend_1345(this.pointer, _sel_inputDataSource);
     return _ret.address == 0
         ? null
         : AVAudioSessionDataSourceDescription.castFromPointer(_ret,
@@ -87697,7 +87988,7 @@ class AVAudioSession extends objc.NSObject {
   bool setInputDataSource_error_(
       AVAudioSessionDataSourceDescription? dataSource,
       ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
-    return _objc_msgSend_1344(this.pointer, _sel_setInputDataSource_error_,
+    return _objc_msgSend_1346(this.pointer, _sel_setInputDataSource_error_,
         dataSource?.pointer ?? ffi.nullptr, outError);
   }
 
@@ -87711,7 +88002,7 @@ class AVAudioSession extends objc.NSObject {
 
   /// outputDataSource
   AVAudioSessionDataSourceDescription? get outputDataSource {
-    final _ret = _objc_msgSend_1343(this.pointer, _sel_outputDataSource);
+    final _ret = _objc_msgSend_1345(this.pointer, _sel_outputDataSource);
     return _ret.address == 0
         ? null
         : AVAudioSessionDataSourceDescription.castFromPointer(_ret,
@@ -87722,7 +88013,7 @@ class AVAudioSession extends objc.NSObject {
   bool setOutputDataSource_error_(
       AVAudioSessionDataSourceDescription? dataSource,
       ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
-    return _objc_msgSend_1344(this.pointer, _sel_setOutputDataSource_error_,
+    return _objc_msgSend_1346(this.pointer, _sel_setOutputDataSource_error_,
         dataSource?.pointer ?? ffi.nullptr, outError);
   }
 
@@ -87791,7 +88082,7 @@ class AVAudioSession extends objc.NSObject {
 
   /// promptStyle
   AVAudioSessionPromptStyle get promptStyle {
-    final _ret = _objc_msgSend_1355(this.pointer, _sel_promptStyle);
+    final _ret = _objc_msgSend_1357(this.pointer, _sel_promptStyle);
     return AVAudioSessionPromptStyle.fromValue(_ret);
   }
 
@@ -87805,7 +88096,7 @@ class AVAudioSession extends objc.NSObject {
 
   /// currentRoute
   AVAudioSessionRouteDescription get currentRoute {
-    final _ret = _objc_msgSend_1356(this.pointer, _sel_currentRoute);
+    final _ret = _objc_msgSend_1358(this.pointer, _sel_currentRoute);
     return AVAudioSessionRouteDescription.castFromPointer(_ret,
         retain: true, release: true);
   }
@@ -87813,14 +88104,14 @@ class AVAudioSession extends objc.NSObject {
   /// setAggregatedIOPreference:error:
   bool setAggregatedIOPreference_error_(AVAudioSessionIOType inIOType,
       ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
-    return _objc_msgSend_1357(this.pointer,
+    return _objc_msgSend_1359(this.pointer,
         _sel_setAggregatedIOPreference_error_, inIOType.value, outError);
   }
 
   /// setSupportsMultichannelContent:error:
   bool setSupportsMultichannelContent_error_(
       bool inValue, ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
-    return _objc_msgSend_1338(this.pointer,
+    return _objc_msgSend_1340(this.pointer,
         _sel_setSupportsMultichannelContent_error_, inValue, outError);
   }
 
@@ -87832,7 +88123,7 @@ class AVAudioSession extends objc.NSObject {
   /// setPrefersInterruptionOnRouteDisconnect:error:
   bool setPrefersInterruptionOnRouteDisconnect_error_(
       bool inValue, ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
-    return _objc_msgSend_1338(this.pointer,
+    return _objc_msgSend_1340(this.pointer,
         _sel_setPrefersInterruptionOnRouteDisconnect_error_, inValue, outError);
   }
 
@@ -87865,7 +88156,7 @@ class AVAudioSession extends objc.NSObject {
   /// setActive:withFlags:error:
   bool setActive_withFlags_error_(bool active, int flags,
       ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
-    return _objc_msgSend_1358(
+    return _objc_msgSend_1360(
         this.pointer, _sel_setActive_withFlags_error_, active, flags, outError);
   }
 
@@ -87896,7 +88187,7 @@ class AVAudioSession extends objc.NSObject {
   /// setPreferredHardwareSampleRate:error:
   bool setPreferredHardwareSampleRate_error_(
       double sampleRate, ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
-    return _objc_msgSend_1350(this.pointer,
+    return _objc_msgSend_1352(this.pointer,
         _sel_setPreferredHardwareSampleRate_error_, sampleRate, outError);
   }
 
@@ -87997,7 +88288,7 @@ class AVAudioSession extends objc.NSObject {
 
 late final _class_AVAudioSession = objc.getClass("AVAudioSession");
 late final _sel_sharedInstance = objc.registerName("sharedInstance");
-final _objc_msgSend_1332 = objc.msgSendPointer
+final _objc_msgSend_1334 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -88009,7 +88300,7 @@ late final _sel_availableCategories = objc.registerName("availableCategories");
 late final _sel_setCategory_error_ = objc.registerName("setCategory:error:");
 late final _sel_setCategory_withOptions_error_ =
     objc.registerName("setCategory:withOptions:error:");
-final _objc_msgSend_1333 = objc.msgSendPointer
+final _objc_msgSend_1335 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Bool Function(
@@ -88027,7 +88318,7 @@ final _objc_msgSend_1333 = objc.msgSendPointer
             ffi.Pointer<ffi.Pointer<objc.ObjCObject>>)>();
 late final _sel_setCategory_mode_options_error_ =
     objc.registerName("setCategory:mode:options:error:");
-final _objc_msgSend_1334 = objc.msgSendPointer
+final _objc_msgSend_1336 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Bool Function(
@@ -88078,7 +88369,7 @@ enum AVAudioSessionRouteSharingPolicy {
 
 late final _sel_setCategory_mode_routeSharingPolicy_options_error_ =
     objc.registerName("setCategory:mode:routeSharingPolicy:options:error:");
-final _objc_msgSend_1335 = objc.msgSendPointer
+final _objc_msgSend_1337 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Bool Function(
@@ -88100,7 +88391,7 @@ final _objc_msgSend_1335 = objc.msgSendPointer
             ffi.Pointer<ffi.Pointer<objc.ObjCObject>>)>();
 late final _sel_category = objc.registerName("category");
 late final _sel_categoryOptions = objc.registerName("categoryOptions");
-final _objc_msgSend_1336 = objc.msgSendPointer
+final _objc_msgSend_1338 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.UnsignedLong Function(ffi.Pointer<objc.ObjCObject>,
@@ -88109,7 +88400,7 @@ final _objc_msgSend_1336 = objc.msgSendPointer
         int Function(
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_routeSharingPolicy = objc.registerName("routeSharingPolicy");
-final _objc_msgSend_1337 = objc.msgSendPointer
+final _objc_msgSend_1339 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.UnsignedLong Function(ffi.Pointer<objc.ObjCObject>,
@@ -88122,7 +88413,7 @@ late final _sel_setMode_error_ = objc.registerName("setMode:error:");
 late final _sel_mode = objc.registerName("mode");
 late final _sel_setAllowHapticsAndSystemSoundsDuringRecording_error_ =
     objc.registerName("setAllowHapticsAndSystemSoundsDuringRecording:error:");
-final _objc_msgSend_1338 = objc.msgSendPointer
+final _objc_msgSend_1340 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Bool Function(
@@ -88157,7 +88448,7 @@ enum AVAudioSessionRecordPermission {
 }
 
 late final _sel_recordPermission = objc.registerName("recordPermission");
-final _objc_msgSend_1339 = objc.msgSendPointer
+final _objc_msgSend_1341 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.UnsignedLong Function(ffi.Pointer<objc.ObjCObject>,
@@ -88167,7 +88458,7 @@ final _objc_msgSend_1339 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_requestRecordPermission_ =
     objc.registerName("requestRecordPermission:");
-final _objc_msgSend_1340 = objc.msgSendPointer
+final _objc_msgSend_1342 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -88195,7 +88486,7 @@ enum AVAudioSessionPortOverride {
 
 late final _sel_overrideOutputAudioPort_error_ =
     objc.registerName("overrideOutputAudioPort:error:");
-final _objc_msgSend_1341 = objc.msgSendPointer
+final _objc_msgSend_1343 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Bool Function(
@@ -88279,7 +88570,7 @@ class AVAudioSessionPortDescription extends objc.NSObject {
 
   /// selectedDataSource
   AVAudioSessionDataSourceDescription? get selectedDataSource {
-    final _ret = _objc_msgSend_1343(this.pointer, _sel_selectedDataSource);
+    final _ret = _objc_msgSend_1345(this.pointer, _sel_selectedDataSource);
     return _ret.address == 0
         ? null
         : AVAudioSessionDataSourceDescription.castFromPointer(_ret,
@@ -88288,7 +88579,7 @@ class AVAudioSessionPortDescription extends objc.NSObject {
 
   /// preferredDataSource
   AVAudioSessionDataSourceDescription? get preferredDataSource {
-    final _ret = _objc_msgSend_1343(this.pointer, _sel_preferredDataSource);
+    final _ret = _objc_msgSend_1345(this.pointer, _sel_preferredDataSource);
     return _ret.address == 0
         ? null
         : AVAudioSessionDataSourceDescription.castFromPointer(_ret,
@@ -88299,7 +88590,7 @@ class AVAudioSessionPortDescription extends objc.NSObject {
   bool setPreferredDataSource_error_(
       AVAudioSessionDataSourceDescription? dataSource,
       ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
-    return _objc_msgSend_1344(this.pointer, _sel_setPreferredDataSource_error_,
+    return _objc_msgSend_1346(this.pointer, _sel_setPreferredDataSource_error_,
         dataSource?.pointer ?? ffi.nullptr, outError);
   }
 
@@ -88495,7 +88786,7 @@ class AVAudioSessionDataSourceDescription extends objc.NSObject {
   /// setPreferredPolarPattern:error:
   bool setPreferredPolarPattern_error_(objc.NSString? pattern,
       ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
-    return _objc_msgSend_1342(
+    return _objc_msgSend_1344(
         this.pointer,
         _sel_setPreferredPolarPattern_error_,
         pattern?.pointer ?? ffi.nullptr,
@@ -88618,7 +88909,7 @@ late final _sel_preferredPolarPattern =
     objc.registerName("preferredPolarPattern");
 late final _sel_setPreferredPolarPattern_error_ =
     objc.registerName("setPreferredPolarPattern:error:");
-final _objc_msgSend_1342 = objc.msgSendPointer
+final _objc_msgSend_1344 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Bool Function(
@@ -88633,7 +88924,7 @@ final _objc_msgSend_1342 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<ffi.Pointer<objc.ObjCObject>>)>();
 late final _sel_selectedDataSource = objc.registerName("selectedDataSource");
-final _objc_msgSend_1343 = objc.msgSendPointer
+final _objc_msgSend_1345 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -88644,7 +88935,7 @@ final _objc_msgSend_1343 = objc.msgSendPointer
 late final _sel_preferredDataSource = objc.registerName("preferredDataSource");
 late final _sel_setPreferredDataSource_error_ =
     objc.registerName("setPreferredDataSource:error:");
-final _objc_msgSend_1344 = objc.msgSendPointer
+final _objc_msgSend_1346 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Bool Function(
@@ -88660,7 +88951,7 @@ final _objc_msgSend_1344 = objc.msgSendPointer
             ffi.Pointer<ffi.Pointer<objc.ObjCObject>>)>();
 late final _sel_setPreferredInput_error_ =
     objc.registerName("setPreferredInput:error:");
-final _objc_msgSend_1345 = objc.msgSendPointer
+final _objc_msgSend_1347 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Bool Function(
@@ -88675,7 +88966,7 @@ final _objc_msgSend_1345 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<ffi.Pointer<objc.ObjCObject>>)>();
 late final _sel_preferredInput = objc.registerName("preferredInput");
-final _objc_msgSend_1346 = objc.msgSendPointer
+final _objc_msgSend_1348 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -88712,7 +89003,7 @@ enum AVAudioSessionRenderingMode {
 }
 
 late final _sel_renderingMode = objc.registerName("renderingMode");
-final _objc_msgSend_1347 = objc.msgSendPointer
+final _objc_msgSend_1349 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.UnsignedLong Function(ffi.Pointer<objc.ObjCObject>,
@@ -88737,7 +89028,7 @@ enum AVAudioSessionSetActiveOptions {
 
 late final _sel_setActive_withOptions_error_ =
     objc.registerName("setActive:withOptions:error:");
-final _objc_msgSend_1348 = objc.msgSendPointer
+final _objc_msgSend_1350 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Bool Function(
@@ -88770,7 +89061,7 @@ enum AVAudioSessionActivationOptions {
 
 late final _sel_activateWithOptions_completionHandler_ =
     objc.registerName("activateWithOptions:completionHandler:");
-final _objc_msgSend_1349 = objc.msgSendPointer
+final _objc_msgSend_1351 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -88786,7 +89077,7 @@ final _objc_msgSend_1349 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCBlockImpl>)>();
 late final _sel_setPreferredSampleRate_error_ =
     objc.registerName("setPreferredSampleRate:error:");
-final _objc_msgSend_1350 = objc.msgSendPointer
+final _objc_msgSend_1352 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Bool Function(
@@ -88807,7 +89098,7 @@ late final _sel_preferredIOBufferDuration =
     objc.registerName("preferredIOBufferDuration");
 late final _sel_setPreferredInputNumberOfChannels_error_ =
     objc.registerName("setPreferredInputNumberOfChannels:error:");
-final _objc_msgSend_1351 = objc.msgSendPointer
+final _objc_msgSend_1353 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Bool Function(
@@ -88851,7 +89142,7 @@ enum AVAudioStereoOrientation {
 
 late final _sel_setPreferredInputOrientation_error_ =
     objc.registerName("setPreferredInputOrientation:error:");
-final _objc_msgSend_1352 = objc.msgSendPointer
+final _objc_msgSend_1354 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Bool Function(
@@ -88867,7 +89158,7 @@ final _objc_msgSend_1352 = objc.msgSendPointer
             ffi.Pointer<ffi.Pointer<objc.ObjCObject>>)>();
 late final _sel_preferredInputOrientation =
     objc.registerName("preferredInputOrientation");
-final _objc_msgSend_1353 = objc.msgSendPointer
+final _objc_msgSend_1355 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.UnsignedLong Function(ffi.Pointer<objc.ObjCObject>,
@@ -88881,7 +89172,7 @@ late final _sel_maximumInputNumberOfChannels =
 late final _sel_maximumOutputNumberOfChannels =
     objc.registerName("maximumOutputNumberOfChannels");
 late final _sel_setInputGain_error_ = objc.registerName("setInputGain:error:");
-final _objc_msgSend_1354 = objc.msgSendPointer
+final _objc_msgSend_1356 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Bool Function(
@@ -88938,7 +89229,7 @@ enum AVAudioSessionPromptStyle {
 }
 
 late final _sel_promptStyle = objc.registerName("promptStyle");
-final _objc_msgSend_1355 = objc.msgSendPointer
+final _objc_msgSend_1357 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.UnsignedLong Function(ffi.Pointer<objc.ObjCObject>,
@@ -89088,7 +89379,7 @@ class AVAudioSessionRouteDescription extends objc.NSObject {
 late final _class_AVAudioSessionRouteDescription =
     objc.getClass("AVAudioSessionRouteDescription");
 late final _sel_currentRoute = objc.registerName("currentRoute");
-final _objc_msgSend_1356 = objc.msgSendPointer
+final _objc_msgSend_1358 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -89114,7 +89405,7 @@ enum AVAudioSessionIOType {
 
 late final _sel_setAggregatedIOPreference_error_ =
     objc.registerName("setAggregatedIOPreference:error:");
-final _objc_msgSend_1357 = objc.msgSendPointer
+final _objc_msgSend_1359 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Bool Function(
@@ -89138,7 +89429,7 @@ late final _sel_prefersInterruptionOnRouteDisconnect =
     objc.registerName("prefersInterruptionOnRouteDisconnect");
 late final _sel_setActive_withFlags_error_ =
     objc.registerName("setActive:withFlags:error:");
-final _objc_msgSend_1358 = objc.msgSendPointer
+final _objc_msgSend_1360 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Bool Function(
@@ -89195,7 +89486,7 @@ class AVAudioSequencer extends objc.NSObject {
 
   /// initWithAudioEngine:
   AVAudioSequencer initWithAudioEngine_(AVAudioEngine engine) {
-    final _ret = _objc_msgSend_1401(
+    final _ret = _objc_msgSend_1403(
         this.pointer, _sel_initWithAudioEngine_, engine.pointer);
     return AVAudioSequencer.castFromPointer(_ret, retain: true, release: true);
   }
@@ -89205,7 +89496,7 @@ class AVAudioSequencer extends objc.NSObject {
       objc.NSURL fileURL,
       AVMusicSequenceLoadOptions options,
       ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
-    return _objc_msgSend_1402(this.pointer, _sel_loadFromURL_options_error_,
+    return _objc_msgSend_1404(this.pointer, _sel_loadFromURL_options_error_,
         fileURL.pointer, options.value, outError);
   }
 
@@ -89214,7 +89505,7 @@ class AVAudioSequencer extends objc.NSObject {
       objc.NSData data,
       AVMusicSequenceLoadOptions options,
       ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
-    return _objc_msgSend_1403(this.pointer, _sel_loadFromData_options_error_,
+    return _objc_msgSend_1405(this.pointer, _sel_loadFromData_options_error_,
         data.pointer, options.value, outError);
   }
 
@@ -89224,7 +89515,7 @@ class AVAudioSequencer extends objc.NSObject {
       int resolution,
       bool replace,
       ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
-    return _objc_msgSend_1404(
+    return _objc_msgSend_1406(
         this.pointer,
         _sel_writeToURL_SMPTEResolution_replaceExisting_error_,
         fileURL.pointer,
@@ -89236,7 +89527,7 @@ class AVAudioSequencer extends objc.NSObject {
   /// dataWithSMPTEResolution:error:
   objc.NSData dataWithSMPTEResolution_error_(
       int SMPTEResolution, ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
-    final _ret = _objc_msgSend_1405(this.pointer,
+    final _ret = _objc_msgSend_1407(this.pointer,
         _sel_dataWithSMPTEResolution_error_, SMPTEResolution, outError);
     return objc.NSData.castFromPointer(_ret, retain: true, release: true);
   }
@@ -89244,15 +89535,15 @@ class AVAudioSequencer extends objc.NSObject {
   /// secondsForBeats:
   double secondsForBeats_(double beats) {
     return objc.useMsgSendVariants
-        ? _objc_msgSend_1406Fpret(this.pointer, _sel_secondsForBeats_, beats)
-        : _objc_msgSend_1406(this.pointer, _sel_secondsForBeats_, beats);
+        ? _objc_msgSend_1408Fpret(this.pointer, _sel_secondsForBeats_, beats)
+        : _objc_msgSend_1408(this.pointer, _sel_secondsForBeats_, beats);
   }
 
   /// beatsForSeconds:
   double beatsForSeconds_(double seconds) {
     return objc.useMsgSendVariants
-        ? _objc_msgSend_1406Fpret(this.pointer, _sel_beatsForSeconds_, seconds)
-        : _objc_msgSend_1406(this.pointer, _sel_beatsForSeconds_, seconds);
+        ? _objc_msgSend_1408Fpret(this.pointer, _sel_beatsForSeconds_, seconds)
+        : _objc_msgSend_1408(this.pointer, _sel_beatsForSeconds_, seconds);
   }
 
   /// reverseEvents
@@ -89262,20 +89553,20 @@ class AVAudioSequencer extends objc.NSObject {
 
   /// createAndAppendTrack
   AVMusicTrack createAndAppendTrack() {
-    final _ret = _objc_msgSend_1418(this.pointer, _sel_createAndAppendTrack);
+    final _ret = _objc_msgSend_1420(this.pointer, _sel_createAndAppendTrack);
     return AVMusicTrack.castFromPointer(_ret, retain: true, release: true);
   }
 
   /// removeTrack:
   bool removeTrack_(AVMusicTrack track) {
-    return _objc_msgSend_1419(this.pointer, _sel_removeTrack_, track.pointer);
+    return _objc_msgSend_1421(this.pointer, _sel_removeTrack_, track.pointer);
   }
 
   /// setUserCallback:
   void setUserCallback_(
       objc.ObjCBlock<ffi.Void Function(AVMusicTrack, objc.NSData, ffi.Double)>?
           userCallback) {
-    _objc_msgSend_1420(this.pointer, _sel_setUserCallback_,
+    _objc_msgSend_1422(this.pointer, _sel_setUserCallback_,
         userCallback?.pointer ?? ffi.nullptr);
   }
 
@@ -89287,7 +89578,7 @@ class AVAudioSequencer extends objc.NSObject {
 
   /// tempoTrack
   AVMusicTrack get tempoTrack {
-    final _ret = _objc_msgSend_1418(this.pointer, _sel_tempoTrack);
+    final _ret = _objc_msgSend_1420(this.pointer, _sel_tempoTrack);
     return AVMusicTrack.castFromPointer(_ret, retain: true, release: true);
   }
 
@@ -89343,7 +89634,7 @@ class AVAudioSequencer extends objc.NSObject {
   /// hostTimeForBeats:error:
   int hostTimeForBeats_error_(
       double inBeats, ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
-    return _objc_msgSend_1421(
+    return _objc_msgSend_1423(
         this.pointer, _sel_hostTimeForBeats_error_, inBeats, outError);
   }
 
@@ -89351,9 +89642,9 @@ class AVAudioSequencer extends objc.NSObject {
   double beatsForHostTime_error_(
       int inHostTime, ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
     return objc.useMsgSendVariants
-        ? _objc_msgSend_1422Fpret(
+        ? _objc_msgSend_1424Fpret(
             this.pointer, _sel_beatsForHostTime_error_, inHostTime, outError)
-        : _objc_msgSend_1422(
+        : _objc_msgSend_1424(
             this.pointer, _sel_beatsForHostTime_error_, inHostTime, outError);
   }
 
@@ -89492,18 +89783,18 @@ class AVAudioEngine extends objc.NSObject {
 
   /// attachNode:
   void attachNode_(AVAudioNode node) {
-    _objc_msgSend_1372(this.pointer, _sel_attachNode_, node.pointer);
+    _objc_msgSend_1374(this.pointer, _sel_attachNode_, node.pointer);
   }
 
   /// detachNode:
   void detachNode_(AVAudioNode node) {
-    _objc_msgSend_1372(this.pointer, _sel_detachNode_, node.pointer);
+    _objc_msgSend_1374(this.pointer, _sel_detachNode_, node.pointer);
   }
 
   /// connect:to:fromBus:toBus:format:
   void connect_to_fromBus_toBus_format_(AVAudioNode node1, AVAudioNode node2,
       int bus1, int bus2, AVAudioFormat? format) {
-    _objc_msgSend_1373(
+    _objc_msgSend_1375(
         this.pointer,
         _sel_connect_to_fromBus_toBus_format_,
         node1.pointer,
@@ -89516,14 +89807,14 @@ class AVAudioEngine extends objc.NSObject {
   /// connect:to:format:
   void connect_to_format_(
       AVAudioNode node1, AVAudioNode node2, AVAudioFormat? format) {
-    _objc_msgSend_1374(this.pointer, _sel_connect_to_format_, node1.pointer,
+    _objc_msgSend_1376(this.pointer, _sel_connect_to_format_, node1.pointer,
         node2.pointer, format?.pointer ?? ffi.nullptr);
   }
 
   /// connect:toConnectionPoints:fromBus:format:
   void connect_toConnectionPoints_fromBus_format_(AVAudioNode sourceNode,
       objc.NSArray destNodes, int sourceBus, AVAudioFormat? format) {
-    _objc_msgSend_1375(
+    _objc_msgSend_1377(
         this.pointer,
         _sel_connect_toConnectionPoints_fromBus_format_,
         sourceNode.pointer,
@@ -89534,24 +89825,24 @@ class AVAudioEngine extends objc.NSObject {
 
   /// disconnectNodeInput:bus:
   void disconnectNodeInput_bus_(AVAudioNode node, int bus) {
-    _objc_msgSend_1376(
+    _objc_msgSend_1378(
         this.pointer, _sel_disconnectNodeInput_bus_, node.pointer, bus);
   }
 
   /// disconnectNodeInput:
   void disconnectNodeInput_(AVAudioNode node) {
-    _objc_msgSend_1372(this.pointer, _sel_disconnectNodeInput_, node.pointer);
+    _objc_msgSend_1374(this.pointer, _sel_disconnectNodeInput_, node.pointer);
   }
 
   /// disconnectNodeOutput:bus:
   void disconnectNodeOutput_bus_(AVAudioNode node, int bus) {
-    _objc_msgSend_1376(
+    _objc_msgSend_1378(
         this.pointer, _sel_disconnectNodeOutput_bus_, node.pointer, bus);
   }
 
   /// disconnectNodeOutput:
   void disconnectNodeOutput_(AVAudioNode node) {
-    _objc_msgSend_1372(this.pointer, _sel_disconnectNodeOutput_, node.pointer);
+    _objc_msgSend_1374(this.pointer, _sel_disconnectNodeOutput_, node.pointer);
   }
 
   /// prepare
@@ -89583,7 +89874,7 @@ class AVAudioEngine extends objc.NSObject {
   /// inputConnectionPointForNode:inputBus:
   AVAudioConnectionPoint? inputConnectionPointForNode_inputBus_(
       AVAudioNode node, int bus) {
-    final _ret = _objc_msgSend_1379(this.pointer,
+    final _ret = _objc_msgSend_1381(this.pointer,
         _sel_inputConnectionPointForNode_inputBus_, node.pointer, bus);
     return _ret.address == 0
         ? null
@@ -89594,36 +89885,36 @@ class AVAudioEngine extends objc.NSObject {
   /// outputConnectionPointsForNode:outputBus:
   objc.NSArray outputConnectionPointsForNode_outputBus_(
       AVAudioNode node, int bus) {
-    final _ret = _objc_msgSend_1380(this.pointer,
+    final _ret = _objc_msgSend_1382(this.pointer,
         _sel_outputConnectionPointsForNode_outputBus_, node.pointer, bus);
     return objc.NSArray.castFromPointer(_ret, retain: true, release: true);
   }
 
   /// musicSequence
   ffi.Pointer<OpaqueMusicSequence> get musicSequence {
-    return _objc_msgSend_1381(this.pointer, _sel_musicSequence);
+    return _objc_msgSend_1383(this.pointer, _sel_musicSequence);
   }
 
   /// setMusicSequence:
   set musicSequence(ffi.Pointer<OpaqueMusicSequence> value) {
-    return _objc_msgSend_1382(this.pointer, _sel_setMusicSequence_, value);
+    return _objc_msgSend_1384(this.pointer, _sel_setMusicSequence_, value);
   }
 
   /// outputNode
   AVAudioOutputNode get outputNode {
-    final _ret = _objc_msgSend_1384(this.pointer, _sel_outputNode);
+    final _ret = _objc_msgSend_1386(this.pointer, _sel_outputNode);
     return AVAudioOutputNode.castFromPointer(_ret, retain: true, release: true);
   }
 
   /// inputNode
   AVAudioInputNode get inputNode {
-    final _ret = _objc_msgSend_1389(this.pointer, _sel_inputNode);
+    final _ret = _objc_msgSend_1391(this.pointer, _sel_inputNode);
     return AVAudioInputNode.castFromPointer(_ret, retain: true, release: true);
   }
 
   /// mainMixerNode
   AVAudioMixerNode get mainMixerNode {
-    final _ret = _objc_msgSend_1390(this.pointer, _sel_mainMixerNode);
+    final _ret = _objc_msgSend_1392(this.pointer, _sel_mainMixerNode);
     return AVAudioMixerNode.castFromPointer(_ret, retain: true, release: true);
   }
 
@@ -89654,7 +89945,7 @@ class AVAudioEngine extends objc.NSObject {
       AVAudioFormat pcmFormat,
       int maximumFrameCount,
       ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
-    return _objc_msgSend_1391(
+    return _objc_msgSend_1393(
         this.pointer,
         _sel_enableManualRenderingMode_format_maximumFrameCount_error_,
         mode.value,
@@ -89673,7 +89964,7 @@ class AVAudioEngine extends objc.NSObject {
       int numberOfFrames,
       AVAudioPCMBuffer buffer,
       ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
-    final _ret = _objc_msgSend_1392(
+    final _ret = _objc_msgSend_1394(
         this.pointer,
         _sel_renderOffline_toBuffer_error_,
         numberOfFrames,
@@ -89687,7 +89978,7 @@ class AVAudioEngine extends objc.NSObject {
           ffi.Long Function(
               ffi.Uint32, ffi.Pointer<AudioBufferList>, ffi.Pointer<ffi.Int>)>
       get manualRenderingBlock {
-    final _ret = _objc_msgSend_1393(this.pointer, _sel_manualRenderingBlock);
+    final _ret = _objc_msgSend_1395(this.pointer, _sel_manualRenderingBlock);
     return ObjCBlock_AVAudioEngineManualRenderingStatus_Uint32_AudioBufferList_ffiInt
         .castFromPointer(_ret, retain: true, release: true);
   }
@@ -89699,7 +89990,7 @@ class AVAudioEngine extends objc.NSObject {
 
   /// manualRenderingMode
   AVAudioEngineManualRenderingMode get manualRenderingMode {
-    final _ret = _objc_msgSend_1394(this.pointer, _sel_manualRenderingMode);
+    final _ret = _objc_msgSend_1396(this.pointer, _sel_manualRenderingMode);
     return AVAudioEngineManualRenderingMode.fromValue(_ret);
   }
 
@@ -89729,7 +90020,7 @@ class AVAudioEngine extends objc.NSObject {
               ffi.Int Function(
                   ffi.Int64, ffi.Uint8, ffi.Long, ffi.Pointer<ffi.Uint8>)>?
           tapBlock) {
-    _objc_msgSend_1395(
+    _objc_msgSend_1397(
         this.pointer,
         _sel_connectMIDI_to_format_block_,
         sourceNode.pointer,
@@ -89747,7 +90038,7 @@ class AVAudioEngine extends objc.NSObject {
               ffi.Int Function(
                   ffi.Int64, ffi.Uint8, ffi.Pointer<MIDIEventList>)>?
           tapBlock) {
-    _objc_msgSend_1396(
+    _objc_msgSend_1398(
         this.pointer,
         _sel_connectMIDI_to_format_eventListBlock_,
         sourceNode.pointer,
@@ -89765,7 +90056,7 @@ class AVAudioEngine extends objc.NSObject {
               ffi.Int Function(
                   ffi.Int64, ffi.Uint8, ffi.Long, ffi.Pointer<ffi.Uint8>)>?
           tapBlock) {
-    _objc_msgSend_1397(
+    _objc_msgSend_1399(
         this.pointer,
         _sel_connectMIDI_toNodes_format_block_,
         sourceNode.pointer,
@@ -89783,7 +90074,7 @@ class AVAudioEngine extends objc.NSObject {
               ffi.Int Function(
                   ffi.Int64, ffi.Uint8, ffi.Pointer<MIDIEventList>)>?
           tapBlock) {
-    _objc_msgSend_1398(
+    _objc_msgSend_1400(
         this.pointer,
         _sel_connectMIDI_toNodes_format_eventListBlock_,
         sourceNode.pointer,
@@ -89795,25 +90086,25 @@ class AVAudioEngine extends objc.NSObject {
   /// disconnectMIDI:from:
   void disconnectMIDI_from_(
       AVAudioNode sourceNode, AVAudioNode destinationNode) {
-    _objc_msgSend_1399(this.pointer, _sel_disconnectMIDI_from_,
+    _objc_msgSend_1401(this.pointer, _sel_disconnectMIDI_from_,
         sourceNode.pointer, destinationNode.pointer);
   }
 
   /// disconnectMIDI:fromNodes:
   void disconnectMIDI_fromNodes_(
       AVAudioNode sourceNode, objc.NSArray destinationNodes) {
-    _objc_msgSend_1400(this.pointer, _sel_disconnectMIDI_fromNodes_,
+    _objc_msgSend_1402(this.pointer, _sel_disconnectMIDI_fromNodes_,
         sourceNode.pointer, destinationNodes.pointer);
   }
 
   /// disconnectMIDIInput:
   void disconnectMIDIInput_(AVAudioNode node) {
-    _objc_msgSend_1372(this.pointer, _sel_disconnectMIDIInput_, node.pointer);
+    _objc_msgSend_1374(this.pointer, _sel_disconnectMIDIInput_, node.pointer);
   }
 
   /// disconnectMIDIOutput:
   void disconnectMIDIOutput_(AVAudioNode node) {
-    _objc_msgSend_1372(this.pointer, _sel_disconnectMIDIOutput_, node.pointer);
+    _objc_msgSend_1374(this.pointer, _sel_disconnectMIDIOutput_, node.pointer);
   }
 
   /// new
@@ -89934,20 +90225,20 @@ class AVAudioNode extends objc.NSObject {
 
   /// inputFormatForBus:
   AVAudioFormat inputFormatForBus_(int bus) {
-    final _ret = _objc_msgSend_1359(this.pointer, _sel_inputFormatForBus_, bus);
+    final _ret = _objc_msgSend_1361(this.pointer, _sel_inputFormatForBus_, bus);
     return AVAudioFormat.castFromPointer(_ret, retain: true, release: true);
   }
 
   /// outputFormatForBus:
   AVAudioFormat outputFormatForBus_(int bus) {
     final _ret =
-        _objc_msgSend_1359(this.pointer, _sel_outputFormatForBus_, bus);
+        _objc_msgSend_1361(this.pointer, _sel_outputFormatForBus_, bus);
     return AVAudioFormat.castFromPointer(_ret, retain: true, release: true);
   }
 
   /// nameForInputBus:
   objc.NSString? nameForInputBus_(int bus) {
-    final _ret = _objc_msgSend_1360(this.pointer, _sel_nameForInputBus_, bus);
+    final _ret = _objc_msgSend_1362(this.pointer, _sel_nameForInputBus_, bus);
     return _ret.address == 0
         ? null
         : objc.NSString.castFromPointer(_ret, retain: true, release: true);
@@ -89955,7 +90246,7 @@ class AVAudioNode extends objc.NSObject {
 
   /// nameForOutputBus:
   objc.NSString? nameForOutputBus_(int bus) {
-    final _ret = _objc_msgSend_1360(this.pointer, _sel_nameForOutputBus_, bus);
+    final _ret = _objc_msgSend_1362(this.pointer, _sel_nameForOutputBus_, bus);
     return _ret.address == 0
         ? null
         : objc.NSString.castFromPointer(_ret, retain: true, release: true);
@@ -89968,7 +90259,7 @@ class AVAudioNode extends objc.NSObject {
       AVAudioFormat? format,
       objc.ObjCBlock<ffi.Void Function(AVAudioPCMBuffer, AVAudioTime)>
           tapBlock) {
-    _objc_msgSend_1369(
+    _objc_msgSend_1371(
         this.pointer,
         _sel_installTapOnBus_bufferSize_format_block_,
         bus,
@@ -89984,7 +90275,7 @@ class AVAudioNode extends objc.NSObject {
 
   /// engine
   AVAudioEngine? get engine {
-    final _ret = _objc_msgSend_1370(this.pointer, _sel_engine);
+    final _ret = _objc_msgSend_1372(this.pointer, _sel_engine);
     return _ret.address == 0
         ? null
         : AVAudioEngine.castFromPointer(_ret, retain: true, release: true);
@@ -90002,7 +90293,7 @@ class AVAudioNode extends objc.NSObject {
 
   /// lastRenderTime
   AVAudioTime? get lastRenderTime {
-    final _ret = _objc_msgSend_1371(this.pointer, _sel_lastRenderTime);
+    final _ret = _objc_msgSend_1373(this.pointer, _sel_lastRenderTime);
     return _ret.address == 0
         ? null
         : AVAudioTime.castFromPointer(_ret, retain: true, release: true);
@@ -90124,7 +90415,7 @@ class AVAudioNode extends objc.NSObject {
 
 late final _class_AVAudioNode = objc.getClass("AVAudioNode");
 late final _sel_inputFormatForBus_ = objc.registerName("inputFormatForBus:");
-final _objc_msgSend_1359 = objc.msgSendPointer
+final _objc_msgSend_1361 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -90134,7 +90425,7 @@ final _objc_msgSend_1359 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCSelector>, int)>();
 late final _sel_outputFormatForBus_ = objc.registerName("outputFormatForBus:");
 late final _sel_nameForInputBus_ = objc.registerName("nameForInputBus:");
-final _objc_msgSend_1360 = objc.msgSendPointer
+final _objc_msgSend_1362 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -90298,7 +90589,7 @@ class AVAudioTime extends objc.NSObject {
   /// initWithAudioTimeStamp:sampleRate:
   AVAudioTime initWithAudioTimeStamp_sampleRate_(
       ffi.Pointer<AudioTimeStamp> ts, double sampleRate) {
-    final _ret = _objc_msgSend_1361(
+    final _ret = _objc_msgSend_1363(
         this.pointer, _sel_initWithAudioTimeStamp_sampleRate_, ts, sampleRate);
     return AVAudioTime.castFromPointer(_ret, retain: true, release: true);
   }
@@ -90306,13 +90597,13 @@ class AVAudioTime extends objc.NSObject {
   /// initWithHostTime:
   AVAudioTime initWithHostTime_(int hostTime) {
     final _ret =
-        _objc_msgSend_1362(this.pointer, _sel_initWithHostTime_, hostTime);
+        _objc_msgSend_1364(this.pointer, _sel_initWithHostTime_, hostTime);
     return AVAudioTime.castFromPointer(_ret, retain: true, release: true);
   }
 
   /// initWithSampleTime:atRate:
   AVAudioTime initWithSampleTime_atRate_(int sampleTime, double sampleRate) {
-    final _ret = _objc_msgSend_1363(
+    final _ret = _objc_msgSend_1365(
         this.pointer, _sel_initWithSampleTime_atRate_, sampleTime, sampleRate);
     return AVAudioTime.castFromPointer(_ret, retain: true, release: true);
   }
@@ -90320,7 +90611,7 @@ class AVAudioTime extends objc.NSObject {
   /// initWithHostTime:sampleTime:atRate:
   AVAudioTime initWithHostTime_sampleTime_atRate_(
       int hostTime, int sampleTime, double sampleRate) {
-    final _ret = _objc_msgSend_1364(
+    final _ret = _objc_msgSend_1366(
         this.pointer,
         _sel_initWithHostTime_sampleTime_atRate_,
         hostTime,
@@ -90332,14 +90623,14 @@ class AVAudioTime extends objc.NSObject {
   /// timeWithAudioTimeStamp:sampleRate:
   static AVAudioTime timeWithAudioTimeStamp_sampleRate_(
       ffi.Pointer<AudioTimeStamp> ts, double sampleRate) {
-    final _ret = _objc_msgSend_1361(_class_AVAudioTime,
+    final _ret = _objc_msgSend_1363(_class_AVAudioTime,
         _sel_timeWithAudioTimeStamp_sampleRate_, ts, sampleRate);
     return AVAudioTime.castFromPointer(_ret, retain: true, release: true);
   }
 
   /// timeWithHostTime:
   static AVAudioTime timeWithHostTime_(int hostTime) {
-    final _ret = _objc_msgSend_1362(
+    final _ret = _objc_msgSend_1364(
         _class_AVAudioTime, _sel_timeWithHostTime_, hostTime);
     return AVAudioTime.castFromPointer(_ret, retain: true, release: true);
   }
@@ -90347,7 +90638,7 @@ class AVAudioTime extends objc.NSObject {
   /// timeWithSampleTime:atRate:
   static AVAudioTime timeWithSampleTime_atRate_(
       int sampleTime, double sampleRate) {
-    final _ret = _objc_msgSend_1363(_class_AVAudioTime,
+    final _ret = _objc_msgSend_1365(_class_AVAudioTime,
         _sel_timeWithSampleTime_atRate_, sampleTime, sampleRate);
     return AVAudioTime.castFromPointer(_ret, retain: true, release: true);
   }
@@ -90355,7 +90646,7 @@ class AVAudioTime extends objc.NSObject {
   /// timeWithHostTime:sampleTime:atRate:
   static AVAudioTime timeWithHostTime_sampleTime_atRate_(
       int hostTime, int sampleTime, double sampleRate) {
-    final _ret = _objc_msgSend_1364(
+    final _ret = _objc_msgSend_1366(
         _class_AVAudioTime,
         _sel_timeWithHostTime_sampleTime_atRate_,
         hostTime,
@@ -90366,22 +90657,22 @@ class AVAudioTime extends objc.NSObject {
 
   /// hostTimeForSeconds:
   static int hostTimeForSeconds_(double seconds) {
-    return _objc_msgSend_1365(
+    return _objc_msgSend_1367(
         _class_AVAudioTime, _sel_hostTimeForSeconds_, seconds);
   }
 
   /// secondsForHostTime:
   static double secondsForHostTime_(int hostTime) {
     return objc.useMsgSendVariants
-        ? _objc_msgSend_1366Fpret(
+        ? _objc_msgSend_1368Fpret(
             _class_AVAudioTime, _sel_secondsForHostTime_, hostTime)
-        : _objc_msgSend_1366(
+        : _objc_msgSend_1368(
             _class_AVAudioTime, _sel_secondsForHostTime_, hostTime);
   }
 
   /// extrapolateTimeFromAnchor:
   AVAudioTime? extrapolateTimeFromAnchor_(AVAudioTime anchorTime) {
-    final _ret = _objc_msgSend_1367(
+    final _ret = _objc_msgSend_1369(
         this.pointer, _sel_extrapolateTimeFromAnchor_, anchorTime.pointer);
     return _ret.address == 0
         ? null
@@ -90418,8 +90709,8 @@ class AVAudioTime extends objc.NSObject {
   /// audioTimeStamp
   void getAudioTimeStamp(ffi.Pointer<AudioTimeStamp> stret) {
     objc.useMsgSendVariants
-        ? _objc_msgSend_1368Stret(stret, this.pointer, _sel_audioTimeStamp)
-        : stret.ref = _objc_msgSend_1368(this.pointer, _sel_audioTimeStamp);
+        ? _objc_msgSend_1370Stret(stret, this.pointer, _sel_audioTimeStamp)
+        : stret.ref = _objc_msgSend_1370(this.pointer, _sel_audioTimeStamp);
   }
 
   /// init
@@ -90519,7 +90810,7 @@ class AVAudioTime extends objc.NSObject {
 late final _class_AVAudioTime = objc.getClass("AVAudioTime");
 late final _sel_initWithAudioTimeStamp_sampleRate_ =
     objc.registerName("initWithAudioTimeStamp:sampleRate:");
-final _objc_msgSend_1361 = objc.msgSendPointer
+final _objc_msgSend_1363 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             instancetype Function(
@@ -90534,7 +90825,7 @@ final _objc_msgSend_1361 = objc.msgSendPointer
             ffi.Pointer<AudioTimeStamp>,
             double)>();
 late final _sel_initWithHostTime_ = objc.registerName("initWithHostTime:");
-final _objc_msgSend_1362 = objc.msgSendPointer
+final _objc_msgSend_1364 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             instancetype Function(ffi.Pointer<objc.ObjCObject>,
@@ -90544,7 +90835,7 @@ final _objc_msgSend_1362 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCSelector>, int)>();
 late final _sel_initWithSampleTime_atRate_ =
     objc.registerName("initWithSampleTime:atRate:");
-final _objc_msgSend_1363 = objc.msgSendPointer
+final _objc_msgSend_1365 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             instancetype Function(ffi.Pointer<objc.ObjCObject>,
@@ -90554,7 +90845,7 @@ final _objc_msgSend_1363 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCSelector>, int, double)>();
 late final _sel_initWithHostTime_sampleTime_atRate_ =
     objc.registerName("initWithHostTime:sampleTime:atRate:");
-final _objc_msgSend_1364 = objc.msgSendPointer
+final _objc_msgSend_1366 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             instancetype Function(
@@ -90574,7 +90865,7 @@ late final _sel_timeWithSampleTime_atRate_ =
 late final _sel_timeWithHostTime_sampleTime_atRate_ =
     objc.registerName("timeWithHostTime:sampleTime:atRate:");
 late final _sel_hostTimeForSeconds_ = objc.registerName("hostTimeForSeconds:");
-final _objc_msgSend_1365 = objc.msgSendPointer
+final _objc_msgSend_1367 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Uint64 Function(ffi.Pointer<objc.ObjCObject>,
@@ -90583,7 +90874,7 @@ final _objc_msgSend_1365 = objc.msgSendPointer
         int Function(ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCSelector>, double)>();
 late final _sel_secondsForHostTime_ = objc.registerName("secondsForHostTime:");
-final _objc_msgSend_1366 = objc.msgSendPointer
+final _objc_msgSend_1368 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Double Function(ffi.Pointer<objc.ObjCObject>,
@@ -90591,7 +90882,7 @@ final _objc_msgSend_1366 = objc.msgSendPointer
     .asFunction<
         double Function(ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCSelector>, int)>();
-final _objc_msgSend_1366Fpret = objc.msgSendFpretPointer
+final _objc_msgSend_1368Fpret = objc.msgSendFpretPointer
     .cast<
         ffi.NativeFunction<
             ffi.Double Function(ffi.Pointer<objc.ObjCObject>,
@@ -90601,7 +90892,7 @@ final _objc_msgSend_1366Fpret = objc.msgSendFpretPointer
             ffi.Pointer<objc.ObjCSelector>, int)>();
 late final _sel_extrapolateTimeFromAnchor_ =
     objc.registerName("extrapolateTimeFromAnchor:");
-final _objc_msgSend_1367 = objc.msgSendPointer
+final _objc_msgSend_1369 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(
@@ -90616,7 +90907,7 @@ late final _sel_hostTime = objc.registerName("hostTime");
 late final _sel_isSampleTimeValid = objc.registerName("isSampleTimeValid");
 late final _sel_sampleTime = objc.registerName("sampleTime");
 late final _sel_audioTimeStamp = objc.registerName("audioTimeStamp");
-final _objc_msgSend_1368 = objc.msgSendPointer
+final _objc_msgSend_1370 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             AudioTimeStamp Function(ffi.Pointer<objc.ObjCObject>,
@@ -90624,7 +90915,7 @@ final _objc_msgSend_1368 = objc.msgSendPointer
     .asFunction<
         AudioTimeStamp Function(
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
-final _objc_msgSend_1368Stret = objc.msgSendStretPointer
+final _objc_msgSend_1370Stret = objc.msgSendStretPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -90636,7 +90927,7 @@ final _objc_msgSend_1368Stret = objc.msgSendStretPointer
             ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_installTapOnBus_bufferSize_format_block_ =
     objc.registerName("installTapOnBus:bufferSize:format:block:");
-final _objc_msgSend_1369 = objc.msgSendPointer
+final _objc_msgSend_1371 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -90656,7 +90947,7 @@ final _objc_msgSend_1369 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCBlockImpl>)>();
 late final _sel_removeTapOnBus_ = objc.registerName("removeTapOnBus:");
 late final _sel_engine = objc.registerName("engine");
-final _objc_msgSend_1370 = objc.msgSendPointer
+final _objc_msgSend_1372 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -90667,7 +90958,7 @@ final _objc_msgSend_1370 = objc.msgSendPointer
 late final _sel_numberOfInputs = objc.registerName("numberOfInputs");
 late final _sel_numberOfOutputs = objc.registerName("numberOfOutputs");
 late final _sel_lastRenderTime = objc.registerName("lastRenderTime");
-final _objc_msgSend_1371 = objc.msgSendPointer
+final _objc_msgSend_1373 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -90679,7 +90970,7 @@ late final _sel_AUAudioUnit = objc.registerName("AUAudioUnit");
 late final _sel_outputPresentationLatency =
     objc.registerName("outputPresentationLatency");
 late final _sel_attachNode_ = objc.registerName("attachNode:");
-final _objc_msgSend_1372 = objc.msgSendPointer
+final _objc_msgSend_1374 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -90692,7 +90983,7 @@ final _objc_msgSend_1372 = objc.msgSendPointer
 late final _sel_detachNode_ = objc.registerName("detachNode:");
 late final _sel_connect_to_fromBus_toBus_format_ =
     objc.registerName("connect:to:fromBus:toBus:format:");
-final _objc_msgSend_1373 = objc.msgSendPointer
+final _objc_msgSend_1375 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -90713,7 +91004,7 @@ final _objc_msgSend_1373 = objc.msgSendPointer
             int,
             ffi.Pointer<objc.ObjCObject>)>();
 late final _sel_connect_to_format_ = objc.registerName("connect:to:format:");
-final _objc_msgSend_1374 = objc.msgSendPointer
+final _objc_msgSend_1376 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -90731,7 +91022,7 @@ final _objc_msgSend_1374 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>)>();
 late final _sel_connect_toConnectionPoints_fromBus_format_ =
     objc.registerName("connect:toConnectionPoints:fromBus:format:");
-final _objc_msgSend_1375 = objc.msgSendPointer
+final _objc_msgSend_1377 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -90751,7 +91042,7 @@ final _objc_msgSend_1375 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>)>();
 late final _sel_disconnectNodeInput_bus_ =
     objc.registerName("disconnectNodeInput:bus:");
-final _objc_msgSend_1376 = objc.msgSendPointer
+final _objc_msgSend_1378 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -90798,7 +91089,7 @@ class AVAudioConnectionPoint extends objc.NSObject {
 
   /// initWithNode:bus:
   AVAudioConnectionPoint initWithNode_bus_(AVAudioNode node, int bus) {
-    final _ret = _objc_msgSend_1377(
+    final _ret = _objc_msgSend_1379(
         this.pointer, _sel_initWithNode_bus_, node.pointer, bus);
     return AVAudioConnectionPoint.castFromPointer(_ret,
         retain: true, release: true);
@@ -90813,7 +91104,7 @@ class AVAudioConnectionPoint extends objc.NSObject {
 
   /// node
   AVAudioNode? get node {
-    final _ret = _objc_msgSend_1378(this.pointer, _sel_node);
+    final _ret = _objc_msgSend_1380(this.pointer, _sel_node);
     return _ret.address == 0
         ? null
         : AVAudioNode.castFromPointer(_ret, retain: true, release: true);
@@ -90919,7 +91210,7 @@ class AVAudioConnectionPoint extends objc.NSObject {
 late final _class_AVAudioConnectionPoint =
     objc.getClass("AVAudioConnectionPoint");
 late final _sel_initWithNode_bus_ = objc.registerName("initWithNode:bus:");
-final _objc_msgSend_1377 = objc.msgSendPointer
+final _objc_msgSend_1379 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             instancetype Function(
@@ -90934,7 +91225,7 @@ final _objc_msgSend_1377 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>,
             int)>();
 late final _sel_node = objc.registerName("node");
-final _objc_msgSend_1378 = objc.msgSendPointer
+final _objc_msgSend_1380 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -90945,7 +91236,7 @@ final _objc_msgSend_1378 = objc.msgSendPointer
 late final _sel_bus = objc.registerName("bus");
 late final _sel_inputConnectionPointForNode_inputBus_ =
     objc.registerName("inputConnectionPointForNode:inputBus:");
-final _objc_msgSend_1379 = objc.msgSendPointer
+final _objc_msgSend_1381 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(
@@ -90961,7 +91252,7 @@ final _objc_msgSend_1379 = objc.msgSendPointer
             int)>();
 late final _sel_outputConnectionPointsForNode_outputBus_ =
     objc.registerName("outputConnectionPointsForNode:outputBus:");
-final _objc_msgSend_1380 = objc.msgSendPointer
+final _objc_msgSend_1382 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(
@@ -90979,7 +91270,7 @@ final _objc_msgSend_1380 = objc.msgSendPointer
 final class OpaqueMusicSequence extends ffi.Opaque {}
 
 late final _sel_musicSequence = objc.registerName("musicSequence");
-final _objc_msgSend_1381 = objc.msgSendPointer
+final _objc_msgSend_1383 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<OpaqueMusicSequence> Function(
@@ -90989,7 +91280,7 @@ final _objc_msgSend_1381 = objc.msgSendPointer
         ffi.Pointer<OpaqueMusicSequence> Function(
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_setMusicSequence_ = objc.registerName("setMusicSequence:");
-final _objc_msgSend_1382 = objc.msgSendPointer
+final _objc_msgSend_1384 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -91152,7 +91443,7 @@ class AVAudioIONode extends AVAudioNode {
 
   /// audioUnit
   ffi.Pointer<ComponentInstanceRecord> get audioUnit {
-    return _objc_msgSend_1383(this.pointer, _sel_audioUnit);
+    return _objc_msgSend_1385(this.pointer, _sel_audioUnit);
   }
 
   /// isVoiceProcessingEnabled
@@ -91163,7 +91454,7 @@ class AVAudioIONode extends AVAudioNode {
   /// setVoiceProcessingEnabled:error:
   bool setVoiceProcessingEnabled_error_(
       bool enabled, ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
-    return _objc_msgSend_1338(
+    return _objc_msgSend_1340(
         this.pointer, _sel_setVoiceProcessingEnabled_error_, enabled, outError);
   }
 
@@ -91271,7 +91562,7 @@ final class ComponentInstanceRecord extends ffi.Struct {
 }
 
 late final _sel_audioUnit = objc.registerName("audioUnit");
-final _objc_msgSend_1383 = objc.msgSendPointer
+final _objc_msgSend_1385 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<ComponentInstanceRecord> Function(
@@ -91285,7 +91576,7 @@ late final _sel_isVoiceProcessingEnabled =
 late final _sel_setVoiceProcessingEnabled_error_ =
     objc.registerName("setVoiceProcessingEnabled:error:");
 late final _sel_outputNode = objc.registerName("outputNode");
-final _objc_msgSend_1384 = objc.msgSendPointer
+final _objc_msgSend_1386 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -91324,7 +91615,7 @@ class AVAudioInputNode extends AVAudioIONode {
   /// setManualRenderingInputPCMFormat:inputBlock:
   bool setManualRenderingInputPCMFormat_inputBlock_(AVAudioFormat format,
       objc.ObjCBlock<ffi.Pointer<AudioBufferList> Function(ffi.Uint32)> block) {
-    return _objc_msgSend_1385(
+    return _objc_msgSend_1387(
         this.pointer,
         _sel_setManualRenderingInputPCMFormat_inputBlock_,
         format.pointer,
@@ -91367,7 +91658,7 @@ class AVAudioInputNode extends AVAudioIONode {
   /// setMutedSpeechActivityEventListener:
   bool setMutedSpeechActivityEventListener_(
       objc.ObjCBlock<ffi.Void Function(ffi.UnsignedLong)>? listenerBlock) {
-    return _objc_msgSend_1386(
+    return _objc_msgSend_1388(
         this.pointer,
         _sel_setMutedSpeechActivityEventListener_,
         listenerBlock?.pointer ?? ffi.nullptr);
@@ -91377,16 +91668,16 @@ class AVAudioInputNode extends AVAudioIONode {
   void getVoiceProcessingOtherAudioDuckingConfiguration(
       ffi.Pointer<AVAudioVoiceProcessingOtherAudioDuckingConfiguration> stret) {
     objc.useMsgSendVariants
-        ? _objc_msgSend_1387Stret(stret, this.pointer,
+        ? _objc_msgSend_1389Stret(stret, this.pointer,
             _sel_voiceProcessingOtherAudioDuckingConfiguration)
-        : stret.ref = _objc_msgSend_1387(
+        : stret.ref = _objc_msgSend_1389(
             this.pointer, _sel_voiceProcessingOtherAudioDuckingConfiguration);
   }
 
   /// setVoiceProcessingOtherAudioDuckingConfiguration:
   set voiceProcessingOtherAudioDuckingConfiguration(
       AVAudioVoiceProcessingOtherAudioDuckingConfiguration value) {
-    return _objc_msgSend_1388(this.pointer,
+    return _objc_msgSend_1390(this.pointer,
         _sel_setVoiceProcessingOtherAudioDuckingConfiguration_, value);
   }
 
@@ -91557,7 +91848,7 @@ extension ObjCBlock_AudioBufferList_Uint32_CallExtension
 
 late final _sel_setManualRenderingInputPCMFormat_inputBlock_ =
     objc.registerName("setManualRenderingInputPCMFormat:inputBlock:");
-final _objc_msgSend_1385 = objc.msgSendPointer
+final _objc_msgSend_1387 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Bool Function(
@@ -91705,7 +91996,7 @@ enum AVAudioVoiceProcessingSpeechActivityEvent {
 
 late final _sel_setMutedSpeechActivityEventListener_ =
     objc.registerName("setMutedSpeechActivityEventListener:");
-final _objc_msgSend_1386 = objc.msgSendPointer
+final _objc_msgSend_1388 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Bool Function(
@@ -91747,7 +92038,7 @@ enum AVAudioVoiceProcessingOtherAudioDuckingLevel {
 
 late final _sel_voiceProcessingOtherAudioDuckingConfiguration =
     objc.registerName("voiceProcessingOtherAudioDuckingConfiguration");
-final _objc_msgSend_1387 = objc.msgSendPointer
+final _objc_msgSend_1389 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             AVAudioVoiceProcessingOtherAudioDuckingConfiguration Function(
@@ -91756,7 +92047,7 @@ final _objc_msgSend_1387 = objc.msgSendPointer
     .asFunction<
         AVAudioVoiceProcessingOtherAudioDuckingConfiguration Function(
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
-final _objc_msgSend_1387Stret = objc.msgSendStretPointer
+final _objc_msgSend_1389Stret = objc.msgSendStretPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -91771,7 +92062,7 @@ final _objc_msgSend_1387Stret = objc.msgSendStretPointer
             ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_setVoiceProcessingOtherAudioDuckingConfiguration_ =
     objc.registerName("setVoiceProcessingOtherAudioDuckingConfiguration:");
-final _objc_msgSend_1388 = objc.msgSendPointer
+final _objc_msgSend_1390 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -91784,7 +92075,7 @@ final _objc_msgSend_1388 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCSelector>,
             AVAudioVoiceProcessingOtherAudioDuckingConfiguration)>();
 late final _sel_inputNode = objc.registerName("inputNode");
-final _objc_msgSend_1389 = objc.msgSendPointer
+final _objc_msgSend_1391 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -91930,7 +92221,7 @@ late final _sel_setOutputVolume_ = objc.registerName("setOutputVolume:");
 late final _sel_nextAvailableInputBus =
     objc.registerName("nextAvailableInputBus");
 late final _sel_mainMixerNode = objc.registerName("mainMixerNode");
-final _objc_msgSend_1390 = objc.msgSendPointer
+final _objc_msgSend_1392 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -91962,7 +92253,7 @@ enum AVAudioEngineManualRenderingMode {
 
 late final _sel_enableManualRenderingMode_format_maximumFrameCount_error_ = objc
     .registerName("enableManualRenderingMode:format:maximumFrameCount:error:");
-final _objc_msgSend_1391 = objc.msgSendPointer
+final _objc_msgSend_1393 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Bool Function(
@@ -92005,7 +92296,7 @@ enum AVAudioEngineManualRenderingStatus {
 
 late final _sel_renderOffline_toBuffer_error_ =
     objc.registerName("renderOffline:toBuffer:error:");
-final _objc_msgSend_1392 = objc.msgSendPointer
+final _objc_msgSend_1394 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Long Function(
@@ -92120,7 +92411,7 @@ extension ObjCBlock_AVAudioEngineManualRenderingStatus_Uint32_AudioBufferList_ff
 
 late final _sel_manualRenderingBlock =
     objc.registerName("manualRenderingBlock");
-final _objc_msgSend_1393 = objc.msgSendPointer
+final _objc_msgSend_1395 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCBlockImpl> Function(
@@ -92132,7 +92423,7 @@ final _objc_msgSend_1393 = objc.msgSendPointer
 late final _sel_isInManualRenderingMode =
     objc.registerName("isInManualRenderingMode");
 late final _sel_manualRenderingMode = objc.registerName("manualRenderingMode");
-final _objc_msgSend_1394 = objc.msgSendPointer
+final _objc_msgSend_1396 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.UnsignedLong Function(ffi.Pointer<objc.ObjCObject>,
@@ -92148,7 +92439,7 @@ late final _sel_manualRenderingSampleTime =
     objc.registerName("manualRenderingSampleTime");
 late final _sel_connectMIDI_to_format_block_ =
     objc.registerName("connectMIDI:to:format:block:");
-final _objc_msgSend_1395 = objc.msgSendPointer
+final _objc_msgSend_1397 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -92168,7 +92459,7 @@ final _objc_msgSend_1395 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCBlockImpl>)>();
 late final _sel_connectMIDI_to_format_eventListBlock_ =
     objc.registerName("connectMIDI:to:format:eventListBlock:");
-final _objc_msgSend_1396 = objc.msgSendPointer
+final _objc_msgSend_1398 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -92188,7 +92479,7 @@ final _objc_msgSend_1396 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCBlockImpl>)>();
 late final _sel_connectMIDI_toNodes_format_block_ =
     objc.registerName("connectMIDI:toNodes:format:block:");
-final _objc_msgSend_1397 = objc.msgSendPointer
+final _objc_msgSend_1399 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -92208,7 +92499,7 @@ final _objc_msgSend_1397 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCBlockImpl>)>();
 late final _sel_connectMIDI_toNodes_format_eventListBlock_ =
     objc.registerName("connectMIDI:toNodes:format:eventListBlock:");
-final _objc_msgSend_1398 = objc.msgSendPointer
+final _objc_msgSend_1400 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -92228,7 +92519,7 @@ final _objc_msgSend_1398 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCBlockImpl>)>();
 late final _sel_disconnectMIDI_from_ =
     objc.registerName("disconnectMIDI:from:");
-final _objc_msgSend_1399 = objc.msgSendPointer
+final _objc_msgSend_1401 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -92244,7 +92535,7 @@ final _objc_msgSend_1399 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>)>();
 late final _sel_disconnectMIDI_fromNodes_ =
     objc.registerName("disconnectMIDI:fromNodes:");
-final _objc_msgSend_1400 = objc.msgSendPointer
+final _objc_msgSend_1402 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -92264,7 +92555,7 @@ late final _sel_disconnectMIDIOutput_ =
     objc.registerName("disconnectMIDIOutput:");
 late final _sel_initWithAudioEngine_ =
     objc.registerName("initWithAudioEngine:");
-final _objc_msgSend_1401 = objc.msgSendPointer
+final _objc_msgSend_1403 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             instancetype Function(
@@ -92292,7 +92583,7 @@ enum AVMusicSequenceLoadOptions {
 
 late final _sel_loadFromURL_options_error_ =
     objc.registerName("loadFromURL:options:error:");
-final _objc_msgSend_1402 = objc.msgSendPointer
+final _objc_msgSend_1404 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Bool Function(
@@ -92310,7 +92601,7 @@ final _objc_msgSend_1402 = objc.msgSendPointer
             ffi.Pointer<ffi.Pointer<objc.ObjCObject>>)>();
 late final _sel_loadFromData_options_error_ =
     objc.registerName("loadFromData:options:error:");
-final _objc_msgSend_1403 = objc.msgSendPointer
+final _objc_msgSend_1405 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Bool Function(
@@ -92328,7 +92619,7 @@ final _objc_msgSend_1403 = objc.msgSendPointer
             ffi.Pointer<ffi.Pointer<objc.ObjCObject>>)>();
 late final _sel_writeToURL_SMPTEResolution_replaceExisting_error_ =
     objc.registerName("writeToURL:SMPTEResolution:replaceExisting:error:");
-final _objc_msgSend_1404 = objc.msgSendPointer
+final _objc_msgSend_1406 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Bool Function(
@@ -92348,7 +92639,7 @@ final _objc_msgSend_1404 = objc.msgSendPointer
             ffi.Pointer<ffi.Pointer<objc.ObjCObject>>)>();
 late final _sel_dataWithSMPTEResolution_error_ =
     objc.registerName("dataWithSMPTEResolution:error:");
-final _objc_msgSend_1405 = objc.msgSendPointer
+final _objc_msgSend_1407 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(
@@ -92363,7 +92654,7 @@ final _objc_msgSend_1405 = objc.msgSendPointer
             int,
             ffi.Pointer<ffi.Pointer<objc.ObjCObject>>)>();
 late final _sel_secondsForBeats_ = objc.registerName("secondsForBeats:");
-final _objc_msgSend_1406 = objc.msgSendPointer
+final _objc_msgSend_1408 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Double Function(ffi.Pointer<objc.ObjCObject>,
@@ -92371,7 +92662,7 @@ final _objc_msgSend_1406 = objc.msgSendPointer
     .asFunction<
         double Function(ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCSelector>, double)>();
-final _objc_msgSend_1406Fpret = objc.msgSendFpretPointer
+final _objc_msgSend_1408Fpret = objc.msgSendFpretPointer
     .cast<
         ffi.NativeFunction<
             ffi.Double Function(ffi.Pointer<objc.ObjCObject>,
@@ -92405,7 +92696,7 @@ class AVMusicTrack extends objc.NSObject {
 
   /// destinationAudioUnit
   AVAudioUnit? get destinationAudioUnit {
-    final _ret = _objc_msgSend_1408(this.pointer, _sel_destinationAudioUnit);
+    final _ret = _objc_msgSend_1410(this.pointer, _sel_destinationAudioUnit);
     return _ret.address == 0
         ? null
         : AVAudioUnit.castFromPointer(_ret, retain: true, release: true);
@@ -92413,7 +92704,7 @@ class AVMusicTrack extends objc.NSObject {
 
   /// setDestinationAudioUnit:
   set destinationAudioUnit(AVAudioUnit? value) {
-    return _objc_msgSend_1409(this.pointer, _sel_setDestinationAudioUnit_,
+    return _objc_msgSend_1411(this.pointer, _sel_setDestinationAudioUnit_,
         value?.pointer ?? ffi.nullptr);
   }
 
@@ -92424,20 +92715,20 @@ class AVMusicTrack extends objc.NSObject {
 
   /// setDestinationMIDIEndpoint:
   set destinationMIDIEndpoint(int value) {
-    return _objc_msgSend_1410(
+    return _objc_msgSend_1412(
         this.pointer, _sel_setDestinationMIDIEndpoint_, value);
   }
 
   /// loopRange
   void getLoopRange(ffi.Pointer<_AVBeatRange> stret) {
     objc.useMsgSendVariants
-        ? _objc_msgSend_1411Stret(stret, this.pointer, _sel_loopRange)
-        : stret.ref = _objc_msgSend_1411(this.pointer, _sel_loopRange);
+        ? _objc_msgSend_1413Stret(stret, this.pointer, _sel_loopRange)
+        : stret.ref = _objc_msgSend_1413(this.pointer, _sel_loopRange);
   }
 
   /// setLoopRange:
   set loopRange(_AVBeatRange value) {
-    return _objc_msgSend_1412(this.pointer, _sel_setLoopRange_, value);
+    return _objc_msgSend_1414(this.pointer, _sel_setLoopRange_, value);
   }
 
   /// isLoopingEnabled
@@ -92534,30 +92825,30 @@ class AVMusicTrack extends objc.NSObject {
 
   /// addEvent:atBeat:
   void addEvent_atBeat_(AVMusicEvent event, double beat) {
-    _objc_msgSend_1413(
+    _objc_msgSend_1415(
         this.pointer, _sel_addEvent_atBeat_, event.pointer, beat);
   }
 
   /// moveEventsInRange:byAmount:
   void moveEventsInRange_byAmount_(_AVBeatRange range, double beatAmount) {
-    _objc_msgSend_1414(
+    _objc_msgSend_1416(
         this.pointer, _sel_moveEventsInRange_byAmount_, range, beatAmount);
   }
 
   /// clearEventsInRange:
   void clearEventsInRange_(_AVBeatRange range) {
-    _objc_msgSend_1415(this.pointer, _sel_clearEventsInRange_, range);
+    _objc_msgSend_1417(this.pointer, _sel_clearEventsInRange_, range);
   }
 
   /// cutEventsInRange:
   void cutEventsInRange_(_AVBeatRange range) {
-    _objc_msgSend_1415(this.pointer, _sel_cutEventsInRange_, range);
+    _objc_msgSend_1417(this.pointer, _sel_cutEventsInRange_, range);
   }
 
   /// copyEventsInRange:fromTrack:insertAtBeat:
   void copyEventsInRange_fromTrack_insertAtBeat_(
       _AVBeatRange range, AVMusicTrack sourceTrack, double insertStartBeat) {
-    _objc_msgSend_1416(
+    _objc_msgSend_1418(
         this.pointer,
         _sel_copyEventsInRange_fromTrack_insertAtBeat_,
         range,
@@ -92568,7 +92859,7 @@ class AVMusicTrack extends objc.NSObject {
   /// copyAndMergeEventsInRange:fromTrack:mergeAtBeat:
   void copyAndMergeEventsInRange_fromTrack_mergeAtBeat_(
       _AVBeatRange range, AVMusicTrack sourceTrack, double mergeStartBeat) {
-    _objc_msgSend_1416(
+    _objc_msgSend_1418(
         this.pointer,
         _sel_copyAndMergeEventsInRange_fromTrack_mergeAtBeat_,
         range,
@@ -92583,7 +92874,7 @@ class AVMusicTrack extends objc.NSObject {
               ffi.Void Function(
                   AVMusicEvent, ffi.Pointer<ffi.Double>, ffi.Pointer<ffi.Bool>)>
           block) {
-    _objc_msgSend_1417(this.pointer, _sel_enumerateEventsInRange_usingBlock_,
+    _objc_msgSend_1419(this.pointer, _sel_enumerateEventsInRange_usingBlock_,
         range, block.pointer);
   }
 
@@ -92712,7 +93003,7 @@ class AVAudioUnit extends AVAudioNode {
               ffi.Void Function(
                   ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCObject>)>
           completionHandler) {
-    _objc_msgSend_1407(
+    _objc_msgSend_1409(
         _class_AVAudioUnit,
         _sel_instantiateWithComponentDescription_options_completionHandler_,
         audioComponentDescription,
@@ -92739,7 +93030,7 @@ class AVAudioUnit extends AVAudioNode {
 
   /// audioUnit
   ffi.Pointer<ComponentInstanceRecord> get audioUnit {
-    return _objc_msgSend_1383(this.pointer, _sel_audioUnit);
+    return _objc_msgSend_1385(this.pointer, _sel_audioUnit);
   }
 
   /// AUAudioUnit
@@ -92995,7 +93286,7 @@ extension ObjCBlock_ffiVoid_AVAudioUnit_NSError_CallExtension on objc.ObjCBlock<
       pointer, arg0?.pointer ?? ffi.nullptr, arg1?.pointer ?? ffi.nullptr);
 }
 
-final _objc_msgSend_1407 = objc.msgSendPointer
+final _objc_msgSend_1409 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -93017,7 +93308,7 @@ late final _sel_audioComponentDescription =
     objc.registerName("audioComponentDescription");
 late final _sel_destinationAudioUnit =
     objc.registerName("destinationAudioUnit");
-final _objc_msgSend_1408 = objc.msgSendPointer
+final _objc_msgSend_1410 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -93027,7 +93318,7 @@ final _objc_msgSend_1408 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_setDestinationAudioUnit_ =
     objc.registerName("setDestinationAudioUnit:");
-final _objc_msgSend_1409 = objc.msgSendPointer
+final _objc_msgSend_1411 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -93041,7 +93332,7 @@ late final _sel_destinationMIDIEndpoint =
     objc.registerName("destinationMIDIEndpoint");
 late final _sel_setDestinationMIDIEndpoint_ =
     objc.registerName("setDestinationMIDIEndpoint:");
-final _objc_msgSend_1410 = objc.msgSendPointer
+final _objc_msgSend_1412 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(ffi.Pointer<objc.ObjCObject>,
@@ -93059,7 +93350,7 @@ final class _AVBeatRange extends ffi.Struct {
 }
 
 late final _sel_loopRange = objc.registerName("loopRange");
-final _objc_msgSend_1411 = objc.msgSendPointer
+final _objc_msgSend_1413 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             _AVBeatRange Function(ffi.Pointer<objc.ObjCObject>,
@@ -93067,7 +93358,7 @@ final _objc_msgSend_1411 = objc.msgSendPointer
     .asFunction<
         _AVBeatRange Function(
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
-final _objc_msgSend_1411Stret = objc.msgSendStretPointer
+final _objc_msgSend_1413Stret = objc.msgSendStretPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -93078,7 +93369,7 @@ final _objc_msgSend_1411Stret = objc.msgSendStretPointer
         void Function(ffi.Pointer<_AVBeatRange>, ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_setLoopRange_ = objc.registerName("setLoopRange:");
-final _objc_msgSend_1412 = objc.msgSendPointer
+final _objc_msgSend_1414 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(ffi.Pointer<objc.ObjCObject>,
@@ -93221,7 +93512,7 @@ class AVMusicEvent extends objc.NSObject {
 
 late final _class_AVMusicEvent = objc.getClass("AVMusicEvent");
 late final _sel_addEvent_atBeat_ = objc.registerName("addEvent:atBeat:");
-final _objc_msgSend_1413 = objc.msgSendPointer
+final _objc_msgSend_1415 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -93237,7 +93528,7 @@ final _objc_msgSend_1413 = objc.msgSendPointer
             double)>();
 late final _sel_moveEventsInRange_byAmount_ =
     objc.registerName("moveEventsInRange:byAmount:");
-final _objc_msgSend_1414 = objc.msgSendPointer
+final _objc_msgSend_1416 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(ffi.Pointer<objc.ObjCObject>,
@@ -93246,7 +93537,7 @@ final _objc_msgSend_1414 = objc.msgSendPointer
         void Function(ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCSelector>, _AVBeatRange, double)>();
 late final _sel_clearEventsInRange_ = objc.registerName("clearEventsInRange:");
-final _objc_msgSend_1415 = objc.msgSendPointer
+final _objc_msgSend_1417 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(ffi.Pointer<objc.ObjCObject>,
@@ -93257,7 +93548,7 @@ final _objc_msgSend_1415 = objc.msgSendPointer
 late final _sel_cutEventsInRange_ = objc.registerName("cutEventsInRange:");
 late final _sel_copyEventsInRange_fromTrack_insertAtBeat_ =
     objc.registerName("copyEventsInRange:fromTrack:insertAtBeat:");
-final _objc_msgSend_1416 = objc.msgSendPointer
+final _objc_msgSend_1418 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -93421,7 +93712,7 @@ extension ObjCBlock_ffiVoid_AVMusicEvent_ffiDouble_bool_CallExtension
 
 late final _sel_enumerateEventsInRange_usingBlock_ =
     objc.registerName("enumerateEventsInRange:usingBlock:");
-final _objc_msgSend_1417 = objc.msgSendPointer
+final _objc_msgSend_1419 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -93437,7 +93728,7 @@ final _objc_msgSend_1417 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCBlockImpl>)>();
 late final _sel_createAndAppendTrack =
     objc.registerName("createAndAppendTrack");
-final _objc_msgSend_1418 = objc.msgSendPointer
+final _objc_msgSend_1420 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -93445,7 +93736,7 @@ final _objc_msgSend_1418 = objc.msgSendPointer
     .asFunction<
         ffi.Pointer<objc.ObjCObject> Function(
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
-final _objc_msgSend_1419 = objc.msgSendPointer
+final _objc_msgSend_1421 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Bool Function(
@@ -93596,7 +93887,7 @@ extension ObjCBlock_ffiVoid_AVMusicTrack_NSData_ffiDouble_CallExtension on objc
 }
 
 late final _sel_setUserCallback_ = objc.registerName("setUserCallback:");
-final _objc_msgSend_1420 = objc.msgSendPointer
+final _objc_msgSend_1422 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -93618,7 +93909,7 @@ late final _sel_setCurrentPositionInBeats_ =
 late final _sel_isPlaying = objc.registerName("isPlaying");
 late final _sel_hostTimeForBeats_error_ =
     objc.registerName("hostTimeForBeats:error:");
-final _objc_msgSend_1421 = objc.msgSendPointer
+final _objc_msgSend_1423 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.UnsignedLongLong Function(
@@ -93634,7 +93925,7 @@ final _objc_msgSend_1421 = objc.msgSendPointer
             ffi.Pointer<ffi.Pointer<objc.ObjCObject>>)>();
 late final _sel_beatsForHostTime_error_ =
     objc.registerName("beatsForHostTime:error:");
-final _objc_msgSend_1422 = objc.msgSendPointer
+final _objc_msgSend_1424 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Double Function(
@@ -93648,7 +93939,7 @@ final _objc_msgSend_1422 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCSelector>,
             int,
             ffi.Pointer<ffi.Pointer<objc.ObjCObject>>)>();
-final _objc_msgSend_1422Fpret = objc.msgSendFpretPointer
+final _objc_msgSend_1424Fpret = objc.msgSendFpretPointer
     .cast<
         ffi.NativeFunction<
             ffi.Double Function(
@@ -93712,7 +94003,7 @@ class AVCaptureDevice extends objc.NSObject {
 
   /// defaultDeviceWithMediaType:
   static AVCaptureDevice? defaultDeviceWithMediaType_(objc.NSString mediaType) {
-    final _ret = _objc_msgSend_1423(_class_AVCaptureDevice,
+    final _ret = _objc_msgSend_1425(_class_AVCaptureDevice,
         _sel_defaultDeviceWithMediaType_, mediaType.pointer);
     return _ret.address == 0
         ? null
@@ -93721,7 +94012,7 @@ class AVCaptureDevice extends objc.NSObject {
 
   /// deviceWithUniqueID:
   static AVCaptureDevice? deviceWithUniqueID_(objc.NSString deviceUniqueID) {
-    final _ret = _objc_msgSend_1423(_class_AVCaptureDevice,
+    final _ret = _objc_msgSend_1425(_class_AVCaptureDevice,
         _sel_deviceWithUniqueID_, deviceUniqueID.pointer);
     return _ret.address == 0
         ? null
@@ -93809,14 +94100,14 @@ class AVCaptureDevice extends objc.NSObject {
 
   /// activeFormat
   AVCaptureDeviceFormat get activeFormat {
-    final _ret = _objc_msgSend_1428(this.pointer, _sel_activeFormat);
+    final _ret = _objc_msgSend_1430(this.pointer, _sel_activeFormat);
     return AVCaptureDeviceFormat.castFromPointer(_ret,
         retain: true, release: true);
   }
 
   /// setActiveFormat:
   set activeFormat(AVCaptureDeviceFormat value) {
-    return _objc_msgSend_1429(
+    return _objc_msgSend_1431(
         this.pointer, _sel_setActiveFormat_, value.pointer);
   }
 
@@ -93858,7 +94149,7 @@ class AVCaptureDevice extends objc.NSObject {
 
   /// activeInputSource
   AVCaptureDeviceInputSource? get activeInputSource {
-    final _ret = _objc_msgSend_1430(this.pointer, _sel_activeInputSource);
+    final _ret = _objc_msgSend_1432(this.pointer, _sel_activeInputSource);
     return _ret.address == 0
         ? null
         : AVCaptureDeviceInputSource.castFromPointer(_ret,
@@ -93867,13 +94158,13 @@ class AVCaptureDevice extends objc.NSObject {
 
   /// setActiveInputSource:
   set activeInputSource(AVCaptureDeviceInputSource? value) {
-    return _objc_msgSend_1431(this.pointer, _sel_setActiveInputSource_,
+    return _objc_msgSend_1433(this.pointer, _sel_setActiveInputSource_,
         value?.pointer ?? ffi.nullptr);
   }
 
   /// position
   AVCaptureDevicePosition get position {
-    final _ret = _objc_msgSend_1432(this.pointer, _sel_position);
+    final _ret = _objc_msgSend_1434(this.pointer, _sel_position);
     return AVCaptureDevicePosition.fromValue(_ret);
   }
 
@@ -93888,7 +94179,7 @@ class AVCaptureDevice extends objc.NSObject {
       objc.NSString deviceType,
       objc.NSString? mediaType,
       AVCaptureDevicePosition position) {
-    final _ret = _objc_msgSend_1433(
+    final _ret = _objc_msgSend_1435(
         _class_AVCaptureDevice,
         _sel_defaultDeviceWithDeviceType_mediaType_position_,
         deviceType.pointer,
@@ -93902,7 +94193,7 @@ class AVCaptureDevice extends objc.NSObject {
   /// userPreferredCamera
   static AVCaptureDevice? getUserPreferredCamera() {
     final _ret =
-        _objc_msgSend_1434(_class_AVCaptureDevice, _sel_userPreferredCamera);
+        _objc_msgSend_1436(_class_AVCaptureDevice, _sel_userPreferredCamera);
     return _ret.address == 0
         ? null
         : AVCaptureDevice.castFromPointer(_ret, retain: true, release: true);
@@ -93910,14 +94201,14 @@ class AVCaptureDevice extends objc.NSObject {
 
   /// setUserPreferredCamera:
   static void setUserPreferredCamera(AVCaptureDevice? value) {
-    return _objc_msgSend_1435(_class_AVCaptureDevice,
+    return _objc_msgSend_1437(_class_AVCaptureDevice,
         _sel_setUserPreferredCamera_, value?.pointer ?? ffi.nullptr);
   }
 
   /// systemPreferredCamera
   static AVCaptureDevice? getSystemPreferredCamera() {
     final _ret =
-        _objc_msgSend_1434(_class_AVCaptureDevice, _sel_systemPreferredCamera);
+        _objc_msgSend_1436(_class_AVCaptureDevice, _sel_systemPreferredCamera);
     return _ret.address == 0
         ? null
         : AVCaptureDevice.castFromPointer(_ret, retain: true, release: true);
@@ -93925,7 +94216,7 @@ class AVCaptureDevice extends objc.NSObject {
 
   /// systemPressureState
   AVCaptureSystemPressureState get systemPressureState {
-    final _ret = _objc_msgSend_1437(this.pointer, _sel_systemPressureState);
+    final _ret = _objc_msgSend_1439(this.pointer, _sel_systemPressureState);
     return AVCaptureSystemPressureState.castFromPointer(_ret,
         retain: true, release: true);
   }
@@ -93954,7 +94245,7 @@ class AVCaptureDevice extends objc.NSObject {
           AVCapturePrimaryConstituentDeviceSwitchingBehavior switchingBehavior,
           AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions
               restrictedSwitchingBehaviorConditions) {
-    _objc_msgSend_1438(
+    _objc_msgSend_1440(
         this.pointer,
         _sel_setPrimaryConstituentDeviceSwitchingBehavior_restrictedSwitchingBehaviorConditions_,
         switchingBehavior.value,
@@ -93964,7 +94255,7 @@ class AVCaptureDevice extends objc.NSObject {
   /// primaryConstituentDeviceSwitchingBehavior
   AVCapturePrimaryConstituentDeviceSwitchingBehavior
       get primaryConstituentDeviceSwitchingBehavior {
-    final _ret = _objc_msgSend_1439(
+    final _ret = _objc_msgSend_1441(
         this.pointer, _sel_primaryConstituentDeviceSwitchingBehavior);
     return AVCapturePrimaryConstituentDeviceSwitchingBehavior.fromValue(_ret);
   }
@@ -93972,7 +94263,7 @@ class AVCaptureDevice extends objc.NSObject {
   /// primaryConstituentDeviceRestrictedSwitchingBehaviorConditions
   AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions
       get primaryConstituentDeviceRestrictedSwitchingBehaviorConditions {
-    final _ret = _objc_msgSend_1440(this.pointer,
+    final _ret = _objc_msgSend_1442(this.pointer,
         _sel_primaryConstituentDeviceRestrictedSwitchingBehaviorConditions);
     return AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions
         .fromValue(_ret);
@@ -93981,7 +94272,7 @@ class AVCaptureDevice extends objc.NSObject {
   /// activePrimaryConstituentDeviceSwitchingBehavior
   AVCapturePrimaryConstituentDeviceSwitchingBehavior
       get activePrimaryConstituentDeviceSwitchingBehavior {
-    final _ret = _objc_msgSend_1439(
+    final _ret = _objc_msgSend_1441(
         this.pointer, _sel_activePrimaryConstituentDeviceSwitchingBehavior);
     return AVCapturePrimaryConstituentDeviceSwitchingBehavior.fromValue(_ret);
   }
@@ -93989,7 +94280,7 @@ class AVCaptureDevice extends objc.NSObject {
   /// activePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions
   AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions
       get activePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions {
-    final _ret = _objc_msgSend_1440(this.pointer,
+    final _ret = _objc_msgSend_1442(this.pointer,
         _sel_activePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions);
     return AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions
         .fromValue(_ret);
@@ -93998,7 +94289,7 @@ class AVCaptureDevice extends objc.NSObject {
   /// activePrimaryConstituentDevice
   AVCaptureDevice? get activePrimaryConstituentDevice {
     final _ret =
-        _objc_msgSend_1434(this.pointer, _sel_activePrimaryConstituentDevice);
+        _objc_msgSend_1436(this.pointer, _sel_activePrimaryConstituentDevice);
     return _ret.address == 0
         ? null
         : AVCaptureDevice.castFromPointer(_ret, retain: true, release: true);
@@ -94041,19 +94332,19 @@ class AVCaptureDevice extends objc.NSObject {
 
   /// isFlashModeSupported:
   bool isFlashModeSupported_(AVCaptureFlashMode flashMode) {
-    return _objc_msgSend_1441(
+    return _objc_msgSend_1443(
         this.pointer, _sel_isFlashModeSupported_, flashMode.value);
   }
 
   /// flashMode
   AVCaptureFlashMode get flashMode {
-    final _ret = _objc_msgSend_1442(this.pointer, _sel_flashMode);
+    final _ret = _objc_msgSend_1444(this.pointer, _sel_flashMode);
     return AVCaptureFlashMode.fromValue(_ret);
   }
 
   /// setFlashMode:
   set flashMode(AVCaptureFlashMode value) {
-    return _objc_msgSend_1443(this.pointer, _sel_setFlashMode_, value.value);
+    return _objc_msgSend_1445(this.pointer, _sel_setFlashMode_, value.value);
   }
 
   /// hasTorch
@@ -94080,31 +94371,31 @@ class AVCaptureDevice extends objc.NSObject {
 
   /// isTorchModeSupported:
   bool isTorchModeSupported_(AVCaptureTorchMode torchMode) {
-    return _objc_msgSend_1444(
+    return _objc_msgSend_1446(
         this.pointer, _sel_isTorchModeSupported_, torchMode.value);
   }
 
   /// torchMode
   AVCaptureTorchMode get torchMode {
-    final _ret = _objc_msgSend_1445(this.pointer, _sel_torchMode);
+    final _ret = _objc_msgSend_1447(this.pointer, _sel_torchMode);
     return AVCaptureTorchMode.fromValue(_ret);
   }
 
   /// setTorchMode:
   set torchMode(AVCaptureTorchMode value) {
-    return _objc_msgSend_1446(this.pointer, _sel_setTorchMode_, value.value);
+    return _objc_msgSend_1448(this.pointer, _sel_setTorchMode_, value.value);
   }
 
   /// setTorchModeOnWithLevel:error:
   bool setTorchModeOnWithLevel_error_(
       double torchLevel, ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
-    return _objc_msgSend_1354(this.pointer, _sel_setTorchModeOnWithLevel_error_,
+    return _objc_msgSend_1356(this.pointer, _sel_setTorchModeOnWithLevel_error_,
         torchLevel, outError);
   }
 
   /// isFocusModeSupported:
   bool isFocusModeSupported_(AVCaptureFocusMode focusMode) {
-    return _objc_msgSend_1447(
+    return _objc_msgSend_1449(
         this.pointer, _sel_isFocusModeSupported_, focusMode.value);
   }
 
@@ -94116,13 +94407,13 @@ class AVCaptureDevice extends objc.NSObject {
 
   /// focusMode
   AVCaptureFocusMode get focusMode {
-    final _ret = _objc_msgSend_1448(this.pointer, _sel_focusMode);
+    final _ret = _objc_msgSend_1450(this.pointer, _sel_focusMode);
     return AVCaptureFocusMode.fromValue(_ret);
   }
 
   /// setFocusMode:
   set focusMode(AVCaptureFocusMode value) {
-    return _objc_msgSend_1449(this.pointer, _sel_setFocusMode_, value.value);
+    return _objc_msgSend_1451(this.pointer, _sel_setFocusMode_, value.value);
   }
 
   /// isFocusPointOfInterestSupported
@@ -94158,13 +94449,13 @@ class AVCaptureDevice extends objc.NSObject {
   /// autoFocusRangeRestriction
   AVCaptureAutoFocusRangeRestriction get autoFocusRangeRestriction {
     final _ret =
-        _objc_msgSend_1450(this.pointer, _sel_autoFocusRangeRestriction);
+        _objc_msgSend_1452(this.pointer, _sel_autoFocusRangeRestriction);
     return AVCaptureAutoFocusRangeRestriction.fromValue(_ret);
   }
 
   /// setAutoFocusRangeRestriction:
   set autoFocusRangeRestriction(AVCaptureAutoFocusRangeRestriction value) {
-    return _objc_msgSend_1451(
+    return _objc_msgSend_1453(
         this.pointer, _sel_setAutoFocusRangeRestriction_, value.value);
   }
 
@@ -94217,7 +94508,7 @@ class AVCaptureDevice extends objc.NSObject {
   /// setFocusModeLockedWithLensPosition:completionHandler:
   void setFocusModeLockedWithLensPosition_completionHandler_(
       double lensPosition, objc.ObjCBlock<ffi.Void Function(CMTime)>? handler) {
-    _objc_msgSend_1452(
+    _objc_msgSend_1454(
         this.pointer,
         _sel_setFocusModeLockedWithLensPosition_completionHandler_,
         lensPosition,
@@ -94231,19 +94522,19 @@ class AVCaptureDevice extends objc.NSObject {
 
   /// isExposureModeSupported:
   bool isExposureModeSupported_(AVCaptureExposureMode exposureMode) {
-    return _objc_msgSend_1453(
+    return _objc_msgSend_1455(
         this.pointer, _sel_isExposureModeSupported_, exposureMode.value);
   }
 
   /// exposureMode
   AVCaptureExposureMode get exposureMode {
-    final _ret = _objc_msgSend_1454(this.pointer, _sel_exposureMode);
+    final _ret = _objc_msgSend_1456(this.pointer, _sel_exposureMode);
     return AVCaptureExposureMode.fromValue(_ret);
   }
 
   /// setExposureMode:
   set exposureMode(AVCaptureExposureMode value) {
-    return _objc_msgSend_1455(this.pointer, _sel_setExposureMode_, value.value);
+    return _objc_msgSend_1457(this.pointer, _sel_setExposureMode_, value.value);
   }
 
   /// isExposurePointOfInterestSupported
@@ -94334,7 +94625,7 @@ class AVCaptureDevice extends objc.NSObject {
   /// setExposureModeCustomWithDuration:ISO:completionHandler:
   void setExposureModeCustomWithDuration_ISO_completionHandler_(CMTime duration,
       double ISO, objc.ObjCBlock<ffi.Void Function(CMTime)>? handler) {
-    _objc_msgSend_1456(
+    _objc_msgSend_1458(
         this.pointer,
         _sel_setExposureModeCustomWithDuration_ISO_completionHandler_,
         duration,
@@ -94373,7 +94664,7 @@ class AVCaptureDevice extends objc.NSObject {
   /// setExposureTargetBias:completionHandler:
   void setExposureTargetBias_completionHandler_(
       double bias, objc.ObjCBlock<ffi.Void Function(CMTime)>? handler) {
-    _objc_msgSend_1452(
+    _objc_msgSend_1454(
         this.pointer,
         _sel_setExposureTargetBias_completionHandler_,
         bias,
@@ -94394,7 +94685,7 @@ class AVCaptureDevice extends objc.NSObject {
   /// isWhiteBalanceModeSupported:
   bool isWhiteBalanceModeSupported_(
       AVCaptureWhiteBalanceMode whiteBalanceMode) {
-    return _objc_msgSend_1457(this.pointer, _sel_isWhiteBalanceModeSupported_,
+    return _objc_msgSend_1459(this.pointer, _sel_isWhiteBalanceModeSupported_,
         whiteBalanceMode.value);
   }
 
@@ -94406,13 +94697,13 @@ class AVCaptureDevice extends objc.NSObject {
 
   /// whiteBalanceMode
   AVCaptureWhiteBalanceMode get whiteBalanceMode {
-    final _ret = _objc_msgSend_1458(this.pointer, _sel_whiteBalanceMode);
+    final _ret = _objc_msgSend_1460(this.pointer, _sel_whiteBalanceMode);
     return AVCaptureWhiteBalanceMode.fromValue(_ret);
   }
 
   /// setWhiteBalanceMode:
   set whiteBalanceMode(AVCaptureWhiteBalanceMode value) {
-    return _objc_msgSend_1459(
+    return _objc_msgSend_1461(
         this.pointer, _sel_setWhiteBalanceMode_, value.value);
   }
 
@@ -94425,19 +94716,19 @@ class AVCaptureDevice extends objc.NSObject {
   void getDeviceWhiteBalanceGains(
       ffi.Pointer<AVCaptureWhiteBalanceGains> stret) {
     objc.useMsgSendVariants
-        ? _objc_msgSend_1460Stret(
+        ? _objc_msgSend_1462Stret(
             stret, this.pointer, _sel_deviceWhiteBalanceGains)
         : stret.ref =
-            _objc_msgSend_1460(this.pointer, _sel_deviceWhiteBalanceGains);
+            _objc_msgSend_1462(this.pointer, _sel_deviceWhiteBalanceGains);
   }
 
   /// grayWorldDeviceWhiteBalanceGains
   void getGrayWorldDeviceWhiteBalanceGains(
       ffi.Pointer<AVCaptureWhiteBalanceGains> stret) {
     objc.useMsgSendVariants
-        ? _objc_msgSend_1460Stret(
+        ? _objc_msgSend_1462Stret(
             stret, this.pointer, _sel_grayWorldDeviceWhiteBalanceGains)
-        : stret.ref = _objc_msgSend_1460(
+        : stret.ref = _objc_msgSend_1462(
             this.pointer, _sel_grayWorldDeviceWhiteBalanceGains);
   }
 
@@ -94452,7 +94743,7 @@ class AVCaptureDevice extends objc.NSObject {
   void setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains_completionHandler_(
       AVCaptureWhiteBalanceGains whiteBalanceGains,
       objc.ObjCBlock<ffi.Void Function(CMTime)>? handler) {
-    _objc_msgSend_1461(
+    _objc_msgSend_1463(
         this.pointer,
         _sel_setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains_completionHandler_,
         whiteBalanceGains,
@@ -94464,12 +94755,12 @@ class AVCaptureDevice extends objc.NSObject {
       ffi.Pointer<AVCaptureWhiteBalanceChromaticityValues> stret,
       AVCaptureWhiteBalanceGains whiteBalanceGains) {
     objc.useMsgSendVariants
-        ? _objc_msgSend_1462Stret(
+        ? _objc_msgSend_1464Stret(
             stret,
             this.pointer,
             _sel_chromaticityValuesForDeviceWhiteBalanceGains_,
             whiteBalanceGains)
-        : stret.ref = _objc_msgSend_1462(
+        : stret.ref = _objc_msgSend_1464(
             this.pointer,
             _sel_chromaticityValuesForDeviceWhiteBalanceGains_,
             whiteBalanceGains);
@@ -94480,12 +94771,12 @@ class AVCaptureDevice extends objc.NSObject {
       ffi.Pointer<AVCaptureWhiteBalanceGains> stret,
       AVCaptureWhiteBalanceChromaticityValues chromaticityValues) {
     objc.useMsgSendVariants
-        ? _objc_msgSend_1463Stret(
+        ? _objc_msgSend_1465Stret(
             stret,
             this.pointer,
             _sel_deviceWhiteBalanceGainsForChromaticityValues_,
             chromaticityValues)
-        : stret.ref = _objc_msgSend_1463(
+        : stret.ref = _objc_msgSend_1465(
             this.pointer,
             _sel_deviceWhiteBalanceGainsForChromaticityValues_,
             chromaticityValues);
@@ -94496,12 +94787,12 @@ class AVCaptureDevice extends objc.NSObject {
       ffi.Pointer<AVCaptureWhiteBalanceTemperatureAndTintValues> stret,
       AVCaptureWhiteBalanceGains whiteBalanceGains) {
     objc.useMsgSendVariants
-        ? _objc_msgSend_1464Stret(
+        ? _objc_msgSend_1466Stret(
             stret,
             this.pointer,
             _sel_temperatureAndTintValuesForDeviceWhiteBalanceGains_,
             whiteBalanceGains)
-        : stret.ref = _objc_msgSend_1464(
+        : stret.ref = _objc_msgSend_1466(
             this.pointer,
             _sel_temperatureAndTintValuesForDeviceWhiteBalanceGains_,
             whiteBalanceGains);
@@ -94512,12 +94803,12 @@ class AVCaptureDevice extends objc.NSObject {
       ffi.Pointer<AVCaptureWhiteBalanceGains> stret,
       AVCaptureWhiteBalanceTemperatureAndTintValues tempAndTintValues) {
     objc.useMsgSendVariants
-        ? _objc_msgSend_1465Stret(
+        ? _objc_msgSend_1467Stret(
             stret,
             this.pointer,
             _sel_deviceWhiteBalanceGainsForTemperatureAndTintValues_,
             tempAndTintValues)
-        : stret.ref = _objc_msgSend_1465(
+        : stret.ref = _objc_msgSend_1467(
             this.pointer,
             _sel_deviceWhiteBalanceGainsForTemperatureAndTintValues_,
             tempAndTintValues);
@@ -94571,7 +94862,7 @@ class AVCaptureDevice extends objc.NSObject {
 
   /// rampToVideoZoomFactor:withRate:
   void rampToVideoZoomFactor_withRate_(double factor, double rate) {
-    _objc_msgSend_1466(
+    _objc_msgSend_1468(
         this.pointer, _sel_rampToVideoZoomFactor_withRate_, factor, rate);
   }
 
@@ -94605,7 +94896,7 @@ class AVCaptureDevice extends objc.NSObject {
   /// authorizationStatusForMediaType:
   static AVAuthorizationStatus authorizationStatusForMediaType_(
       objc.NSString mediaType) {
-    final _ret = _objc_msgSend_1467(_class_AVCaptureDevice,
+    final _ret = _objc_msgSend_1469(_class_AVCaptureDevice,
         _sel_authorizationStatusForMediaType_, mediaType.pointer);
     return AVAuthorizationStatus.fromValue(_ret);
   }
@@ -94630,7 +94921,7 @@ class AVCaptureDevice extends objc.NSObject {
   AVCaptureDeviceTransportControlsPlaybackMode
       get transportControlsPlaybackMode {
     final _ret =
-        _objc_msgSend_1468(this.pointer, _sel_transportControlsPlaybackMode);
+        _objc_msgSend_1470(this.pointer, _sel_transportControlsPlaybackMode);
     return AVCaptureDeviceTransportControlsPlaybackMode.fromValue(_ret);
   }
 
@@ -94644,7 +94935,7 @@ class AVCaptureDevice extends objc.NSObject {
   /// setTransportControlsPlaybackMode:speed:
   void setTransportControlsPlaybackMode_speed_(
       AVCaptureDeviceTransportControlsPlaybackMode mode, double speed) {
-    _objc_msgSend_1469(this.pointer,
+    _objc_msgSend_1471(this.pointer,
         _sel_setTransportControlsPlaybackMode_speed_, mode.value, speed);
   }
 
@@ -94672,19 +94963,19 @@ class AVCaptureDevice extends objc.NSObject {
 
   /// activeColorSpace
   AVCaptureColorSpace get activeColorSpace {
-    final _ret = _objc_msgSend_1470(this.pointer, _sel_activeColorSpace);
+    final _ret = _objc_msgSend_1472(this.pointer, _sel_activeColorSpace);
     return AVCaptureColorSpace.fromValue(_ret);
   }
 
   /// setActiveColorSpace:
   set activeColorSpace(AVCaptureColorSpace value) {
-    return _objc_msgSend_1471(
+    return _objc_msgSend_1473(
         this.pointer, _sel_setActiveColorSpace_, value.value);
   }
 
   /// activeDepthDataFormat
   AVCaptureDeviceFormat? get activeDepthDataFormat {
-    final _ret = _objc_msgSend_1472(this.pointer, _sel_activeDepthDataFormat);
+    final _ret = _objc_msgSend_1474(this.pointer, _sel_activeDepthDataFormat);
     return _ret.address == 0
         ? null
         : AVCaptureDeviceFormat.castFromPointer(_ret,
@@ -94693,7 +94984,7 @@ class AVCaptureDevice extends objc.NSObject {
 
   /// setActiveDepthDataFormat:
   set activeDepthDataFormat(AVCaptureDeviceFormat? value) {
-    return _objc_msgSend_1473(this.pointer, _sel_setActiveDepthDataFormat_,
+    return _objc_msgSend_1475(this.pointer, _sel_setActiveDepthDataFormat_,
         value?.pointer ?? ffi.nullptr);
   }
 
@@ -94747,7 +95038,7 @@ class AVCaptureDevice extends objc.NSObject {
   /// extrinsicMatrixFromDevice:toDevice:
   static objc.NSData? extrinsicMatrixFromDevice_toDevice_(
       AVCaptureDevice fromDevice, AVCaptureDevice toDevice) {
-    final _ret = _objc_msgSend_1474(
+    final _ret = _objc_msgSend_1476(
         _class_AVCaptureDevice,
         _sel_extrinsicMatrixFromDevice_toDevice_,
         fromDevice.pointer,
@@ -94760,13 +95051,13 @@ class AVCaptureDevice extends objc.NSObject {
   /// centerStageControlMode
   static AVCaptureCenterStageControlMode getCenterStageControlMode() {
     final _ret =
-        _objc_msgSend_1475(_class_AVCaptureDevice, _sel_centerStageControlMode);
+        _objc_msgSend_1477(_class_AVCaptureDevice, _sel_centerStageControlMode);
     return AVCaptureCenterStageControlMode.fromValue(_ret);
   }
 
   /// setCenterStageControlMode:
   static void setCenterStageControlMode(AVCaptureCenterStageControlMode value) {
-    return _objc_msgSend_1476(
+    return _objc_msgSend_1478(
         _class_AVCaptureDevice, _sel_setCenterStageControlMode_, value.value);
   }
 
@@ -94860,7 +95151,7 @@ class AVCaptureDevice extends objc.NSObject {
 
   /// companionDeskViewCamera
   AVCaptureDevice? get companionDeskViewCamera {
-    final _ret = _objc_msgSend_1434(this.pointer, _sel_companionDeskViewCamera);
+    final _ret = _objc_msgSend_1436(this.pointer, _sel_companionDeskViewCamera);
     return _ret.address == 0
         ? null
         : AVCaptureDevice.castFromPointer(_ret, retain: true, release: true);
@@ -94868,7 +95159,7 @@ class AVCaptureDevice extends objc.NSObject {
 
   /// preferredMicrophoneMode
   static AVCaptureMicrophoneMode getPreferredMicrophoneMode() {
-    final _ret = _objc_msgSend_1477(
+    final _ret = _objc_msgSend_1479(
         _class_AVCaptureDevice, _sel_preferredMicrophoneMode);
     return AVCaptureMicrophoneMode.fromValue(_ret);
   }
@@ -94876,14 +95167,14 @@ class AVCaptureDevice extends objc.NSObject {
   /// activeMicrophoneMode
   static AVCaptureMicrophoneMode getActiveMicrophoneMode() {
     final _ret =
-        _objc_msgSend_1477(_class_AVCaptureDevice, _sel_activeMicrophoneMode);
+        _objc_msgSend_1479(_class_AVCaptureDevice, _sel_activeMicrophoneMode);
     return AVCaptureMicrophoneMode.fromValue(_ret);
   }
 
   /// showSystemUserInterface:
   static void showSystemUserInterface_(
       AVCaptureSystemUserInterface systemUserInterface) {
-    _objc_msgSend_1478(_class_AVCaptureDevice, _sel_showSystemUserInterface_,
+    _objc_msgSend_1480(_class_AVCaptureDevice, _sel_showSystemUserInterface_,
         systemUserInterface.value);
   }
 
@@ -94985,7 +95276,7 @@ late final _sel_devicesWithMediaType_ =
     objc.registerName("devicesWithMediaType:");
 late final _sel_defaultDeviceWithMediaType_ =
     objc.registerName("defaultDeviceWithMediaType:");
-final _objc_msgSend_1423 = objc.msgSendPointer
+final _objc_msgSend_1425 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(
@@ -95080,7 +95371,7 @@ class AVCaptureDeviceFormat extends objc.NSObject {
   /// isVideoStabilizationModeSupported:
   bool isVideoStabilizationModeSupported_(
       AVCaptureVideoStabilizationMode videoStabilizationMode) {
-    return _objc_msgSend_1424(this.pointer,
+    return _objc_msgSend_1426(this.pointer,
         _sel_isVideoStabilizationModeSupported_, videoStabilizationMode.value);
   }
 
@@ -95146,9 +95437,9 @@ class AVCaptureDeviceFormat extends objc.NSObject {
   void getHighResolutionStillImageDimensions(
       ffi.Pointer<CMVideoDimensions> stret) {
     objc.useMsgSendVariants
-        ? _objc_msgSend_1425Stret(
+        ? _objc_msgSend_1427Stret(
             stret, this.pointer, _sel_highResolutionStillImageDimensions)
-        : stret.ref = _objc_msgSend_1425(
+        : stret.ref = _objc_msgSend_1427(
             this.pointer, _sel_highResolutionStillImageDimensions);
   }
 
@@ -95164,7 +95455,7 @@ class AVCaptureDeviceFormat extends objc.NSObject {
 
   /// autoFocusSystem
   AVCaptureAutoFocusSystem get autoFocusSystem {
-    final _ret = _objc_msgSend_1426(this.pointer, _sel_autoFocusSystem);
+    final _ret = _objc_msgSend_1428(this.pointer, _sel_autoFocusSystem);
     return AVCaptureAutoFocusSystem.fromValue(_ret);
   }
 
@@ -95282,7 +95573,7 @@ class AVCaptureDeviceFormat extends objc.NSObject {
 
   /// videoFrameRateRangeForCenterStage
   AVFrameRateRange? get videoFrameRateRangeForCenterStage {
-    final _ret = _objc_msgSend_1427(
+    final _ret = _objc_msgSend_1429(
         this.pointer, _sel_videoFrameRateRangeForCenterStage);
     return _ret.address == 0
         ? null
@@ -95296,7 +95587,7 @@ class AVCaptureDeviceFormat extends objc.NSObject {
 
   /// videoFrameRateRangeForPortraitEffect
   AVFrameRateRange? get videoFrameRateRangeForPortraitEffect {
-    final _ret = _objc_msgSend_1427(
+    final _ret = _objc_msgSend_1429(
         this.pointer, _sel_videoFrameRateRangeForPortraitEffect);
     return _ret.address == 0
         ? null
@@ -95310,7 +95601,7 @@ class AVCaptureDeviceFormat extends objc.NSObject {
 
   /// videoFrameRateRangeForStudioLight
   AVFrameRateRange? get videoFrameRateRangeForStudioLight {
-    final _ret = _objc_msgSend_1427(
+    final _ret = _objc_msgSend_1429(
         this.pointer, _sel_videoFrameRateRangeForStudioLight);
     return _ret.address == 0
         ? null
@@ -95324,7 +95615,7 @@ class AVCaptureDeviceFormat extends objc.NSObject {
 
   /// videoFrameRateRangeForReactionEffectsInProgress
   AVFrameRateRange? get videoFrameRateRangeForReactionEffectsInProgress {
-    final _ret = _objc_msgSend_1427(
+    final _ret = _objc_msgSend_1429(
         this.pointer, _sel_videoFrameRateRangeForReactionEffectsInProgress);
     return _ret.address == 0
         ? null
@@ -95449,7 +95740,7 @@ enum AVCaptureVideoStabilizationMode {
 
 late final _sel_isVideoStabilizationModeSupported_ =
     objc.registerName("isVideoStabilizationModeSupported:");
-final _objc_msgSend_1424 = objc.msgSendPointer
+final _objc_msgSend_1426 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Bool Function(ffi.Pointer<objc.ObjCObject>,
@@ -95480,7 +95771,7 @@ final class CMVideoDimensions extends ffi.Struct {
 
 late final _sel_highResolutionStillImageDimensions =
     objc.registerName("highResolutionStillImageDimensions");
-final _objc_msgSend_1425 = objc.msgSendPointer
+final _objc_msgSend_1427 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             CMVideoDimensions Function(ffi.Pointer<objc.ObjCObject>,
@@ -95488,7 +95779,7 @@ final _objc_msgSend_1425 = objc.msgSendPointer
     .asFunction<
         CMVideoDimensions Function(
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
-final _objc_msgSend_1425Stret = objc.msgSendStretPointer
+final _objc_msgSend_1427Stret = objc.msgSendStretPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -95521,7 +95812,7 @@ enum AVCaptureAutoFocusSystem {
 }
 
 late final _sel_autoFocusSystem = objc.registerName("autoFocusSystem");
-final _objc_msgSend_1426 = objc.msgSendPointer
+final _objc_msgSend_1428 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.UnsignedLong Function(ffi.Pointer<objc.ObjCObject>,
@@ -95711,7 +96002,7 @@ late final _sel_maxFrameRate = objc.registerName("maxFrameRate");
 late final _sel_maxFrameDuration = objc.registerName("maxFrameDuration");
 late final _sel_videoFrameRateRangeForCenterStage =
     objc.registerName("videoFrameRateRangeForCenterStage");
-final _objc_msgSend_1427 = objc.msgSendPointer
+final _objc_msgSend_1429 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -95732,7 +96023,7 @@ late final _sel_reactionEffectsSupported =
 late final _sel_videoFrameRateRangeForReactionEffectsInProgress =
     objc.registerName("videoFrameRateRangeForReactionEffectsInProgress");
 late final _sel_activeFormat = objc.registerName("activeFormat");
-final _objc_msgSend_1428 = objc.msgSendPointer
+final _objc_msgSend_1430 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -95741,7 +96032,7 @@ final _objc_msgSend_1428 = objc.msgSendPointer
         ffi.Pointer<objc.ObjCObject> Function(
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_setActiveFormat_ = objc.registerName("setActiveFormat:");
-final _objc_msgSend_1429 = objc.msgSendPointer
+final _objc_msgSend_1431 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -95898,7 +96189,7 @@ late final _class_AVCaptureDeviceInputSource =
     objc.getClass("AVCaptureDeviceInputSource");
 late final _sel_inputSourceID = objc.registerName("inputSourceID");
 late final _sel_activeInputSource = objc.registerName("activeInputSource");
-final _objc_msgSend_1430 = objc.msgSendPointer
+final _objc_msgSend_1432 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -95908,7 +96199,7 @@ final _objc_msgSend_1430 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_setActiveInputSource_ =
     objc.registerName("setActiveInputSource:");
-final _objc_msgSend_1431 = objc.msgSendPointer
+final _objc_msgSend_1433 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -95936,7 +96227,7 @@ enum AVCaptureDevicePosition {
       };
 }
 
-final _objc_msgSend_1432 = objc.msgSendPointer
+final _objc_msgSend_1434 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.UnsignedLong Function(ffi.Pointer<objc.ObjCObject>,
@@ -95947,7 +96238,7 @@ final _objc_msgSend_1432 = objc.msgSendPointer
 late final _sel_deviceType = objc.registerName("deviceType");
 late final _sel_defaultDeviceWithDeviceType_mediaType_position_ =
     objc.registerName("defaultDeviceWithDeviceType:mediaType:position:");
-final _objc_msgSend_1433 = objc.msgSendPointer
+final _objc_msgSend_1435 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(
@@ -95964,7 +96255,7 @@ final _objc_msgSend_1433 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>,
             int)>();
 late final _sel_userPreferredCamera = objc.registerName("userPreferredCamera");
-final _objc_msgSend_1434 = objc.msgSendPointer
+final _objc_msgSend_1436 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -95974,7 +96265,7 @@ final _objc_msgSend_1434 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_setUserPreferredCamera_ =
     objc.registerName("setUserPreferredCamera:");
-final _objc_msgSend_1435 = objc.msgSendPointer
+final _objc_msgSend_1437 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -96033,7 +96324,7 @@ class AVCaptureSystemPressureState extends objc.NSObject {
 
   /// factors
   AVCaptureSystemPressureFactors get factors {
-    final _ret = _objc_msgSend_1436(this.pointer, _sel_factors);
+    final _ret = _objc_msgSend_1438(this.pointer, _sel_factors);
     return AVCaptureSystemPressureFactors.fromValue(_ret);
   }
 
@@ -96149,7 +96440,7 @@ enum AVCaptureSystemPressureFactors {
 }
 
 late final _sel_factors = objc.registerName("factors");
-final _objc_msgSend_1436 = objc.msgSendPointer
+final _objc_msgSend_1438 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.UnsignedLong Function(ffi.Pointer<objc.ObjCObject>,
@@ -96158,7 +96449,7 @@ final _objc_msgSend_1436 = objc.msgSendPointer
         int Function(
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_systemPressureState = objc.registerName("systemPressureState");
-final _objc_msgSend_1437 = objc.msgSendPointer
+final _objc_msgSend_1439 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -96223,7 +96514,7 @@ enum AVCapturePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions {
 late final _sel_setPrimaryConstituentDeviceSwitchingBehavior_restrictedSwitchingBehaviorConditions_ =
     objc.registerName(
         "setPrimaryConstituentDeviceSwitchingBehavior:restrictedSwitchingBehaviorConditions:");
-final _objc_msgSend_1438 = objc.msgSendPointer
+final _objc_msgSend_1440 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -96236,7 +96527,7 @@ final _objc_msgSend_1438 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCSelector>, int, int)>();
 late final _sel_primaryConstituentDeviceSwitchingBehavior =
     objc.registerName("primaryConstituentDeviceSwitchingBehavior");
-final _objc_msgSend_1439 = objc.msgSendPointer
+final _objc_msgSend_1441 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.UnsignedLong Function(ffi.Pointer<objc.ObjCObject>,
@@ -96247,7 +96538,7 @@ final _objc_msgSend_1439 = objc.msgSendPointer
 late final _sel_primaryConstituentDeviceRestrictedSwitchingBehaviorConditions =
     objc.registerName(
         "primaryConstituentDeviceRestrictedSwitchingBehaviorConditions");
-final _objc_msgSend_1440 = objc.msgSendPointer
+final _objc_msgSend_1442 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.UnsignedLong Function(ffi.Pointer<objc.ObjCObject>,
@@ -96291,7 +96582,7 @@ enum AVCaptureFlashMode {
 
 late final _sel_isFlashModeSupported_ =
     objc.registerName("isFlashModeSupported:");
-final _objc_msgSend_1441 = objc.msgSendPointer
+final _objc_msgSend_1443 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Bool Function(ffi.Pointer<objc.ObjCObject>,
@@ -96300,7 +96591,7 @@ final _objc_msgSend_1441 = objc.msgSendPointer
         bool Function(ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCSelector>, int)>();
 late final _sel_flashMode = objc.registerName("flashMode");
-final _objc_msgSend_1442 = objc.msgSendPointer
+final _objc_msgSend_1444 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.UnsignedLong Function(ffi.Pointer<objc.ObjCObject>,
@@ -96309,7 +96600,7 @@ final _objc_msgSend_1442 = objc.msgSendPointer
         int Function(
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_setFlashMode_ = objc.registerName("setFlashMode:");
-final _objc_msgSend_1443 = objc.msgSendPointer
+final _objc_msgSend_1445 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(ffi.Pointer<objc.ObjCObject>,
@@ -96341,7 +96632,7 @@ enum AVCaptureTorchMode {
 
 late final _sel_isTorchModeSupported_ =
     objc.registerName("isTorchModeSupported:");
-final _objc_msgSend_1444 = objc.msgSendPointer
+final _objc_msgSend_1446 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Bool Function(ffi.Pointer<objc.ObjCObject>,
@@ -96350,7 +96641,7 @@ final _objc_msgSend_1444 = objc.msgSendPointer
         bool Function(ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCSelector>, int)>();
 late final _sel_torchMode = objc.registerName("torchMode");
-final _objc_msgSend_1445 = objc.msgSendPointer
+final _objc_msgSend_1447 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.UnsignedLong Function(ffi.Pointer<objc.ObjCObject>,
@@ -96359,7 +96650,7 @@ final _objc_msgSend_1445 = objc.msgSendPointer
         int Function(
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_setTorchMode_ = objc.registerName("setTorchMode:");
-final _objc_msgSend_1446 = objc.msgSendPointer
+final _objc_msgSend_1448 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(ffi.Pointer<objc.ObjCObject>,
@@ -96389,7 +96680,7 @@ enum AVCaptureFocusMode {
 
 late final _sel_isFocusModeSupported_ =
     objc.registerName("isFocusModeSupported:");
-final _objc_msgSend_1447 = objc.msgSendPointer
+final _objc_msgSend_1449 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Bool Function(ffi.Pointer<objc.ObjCObject>,
@@ -96400,7 +96691,7 @@ final _objc_msgSend_1447 = objc.msgSendPointer
 late final _sel_isLockingFocusWithCustomLensPositionSupported =
     objc.registerName("isLockingFocusWithCustomLensPositionSupported");
 late final _sel_focusMode = objc.registerName("focusMode");
-final _objc_msgSend_1448 = objc.msgSendPointer
+final _objc_msgSend_1450 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.UnsignedLong Function(ffi.Pointer<objc.ObjCObject>,
@@ -96409,7 +96700,7 @@ final _objc_msgSend_1448 = objc.msgSendPointer
         int Function(
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_setFocusMode_ = objc.registerName("setFocusMode:");
-final _objc_msgSend_1449 = objc.msgSendPointer
+final _objc_msgSend_1451 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(ffi.Pointer<objc.ObjCObject>,
@@ -96447,7 +96738,7 @@ enum AVCaptureAutoFocusRangeRestriction {
 
 late final _sel_autoFocusRangeRestriction =
     objc.registerName("autoFocusRangeRestriction");
-final _objc_msgSend_1450 = objc.msgSendPointer
+final _objc_msgSend_1452 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.UnsignedLong Function(ffi.Pointer<objc.ObjCObject>,
@@ -96457,7 +96748,7 @@ final _objc_msgSend_1450 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_setAutoFocusRangeRestriction_ =
     objc.registerName("setAutoFocusRangeRestriction:");
-final _objc_msgSend_1451 = objc.msgSendPointer
+final _objc_msgSend_1453 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(ffi.Pointer<objc.ObjCObject>,
@@ -96482,7 +96773,7 @@ late final _sel_setFaceDrivenAutoFocusEnabled_ =
 late final _sel_lensPosition = objc.registerName("lensPosition");
 late final _sel_setFocusModeLockedWithLensPosition_completionHandler_ =
     objc.registerName("setFocusModeLockedWithLensPosition:completionHandler:");
-final _objc_msgSend_1452 = objc.msgSendPointer
+final _objc_msgSend_1454 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -96520,7 +96811,7 @@ enum AVCaptureExposureMode {
 
 late final _sel_isExposureModeSupported_ =
     objc.registerName("isExposureModeSupported:");
-final _objc_msgSend_1453 = objc.msgSendPointer
+final _objc_msgSend_1455 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Bool Function(ffi.Pointer<objc.ObjCObject>,
@@ -96529,7 +96820,7 @@ final _objc_msgSend_1453 = objc.msgSendPointer
         bool Function(ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCSelector>, int)>();
 late final _sel_exposureMode = objc.registerName("exposureMode");
-final _objc_msgSend_1454 = objc.msgSendPointer
+final _objc_msgSend_1456 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.UnsignedLong Function(ffi.Pointer<objc.ObjCObject>,
@@ -96538,7 +96829,7 @@ final _objc_msgSend_1454 = objc.msgSendPointer
         int Function(
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_setExposureMode_ = objc.registerName("setExposureMode:");
-final _objc_msgSend_1455 = objc.msgSendPointer
+final _objc_msgSend_1457 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(ffi.Pointer<objc.ObjCObject>,
@@ -96570,7 +96861,7 @@ late final _sel_exposureDuration = objc.registerName("exposureDuration");
 late final _sel_ISO = objc.registerName("ISO");
 late final _sel_setExposureModeCustomWithDuration_ISO_completionHandler_ = objc
     .registerName("setExposureModeCustomWithDuration:ISO:completionHandler:");
-final _objc_msgSend_1456 = objc.msgSendPointer
+final _objc_msgSend_1458 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -96619,7 +96910,7 @@ enum AVCaptureWhiteBalanceMode {
 
 late final _sel_isWhiteBalanceModeSupported_ =
     objc.registerName("isWhiteBalanceModeSupported:");
-final _objc_msgSend_1457 = objc.msgSendPointer
+final _objc_msgSend_1459 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Bool Function(ffi.Pointer<objc.ObjCObject>,
@@ -96630,7 +96921,7 @@ final _objc_msgSend_1457 = objc.msgSendPointer
 late final _sel_isLockingWhiteBalanceWithCustomDeviceGainsSupported =
     objc.registerName("isLockingWhiteBalanceWithCustomDeviceGainsSupported");
 late final _sel_whiteBalanceMode = objc.registerName("whiteBalanceMode");
-final _objc_msgSend_1458 = objc.msgSendPointer
+final _objc_msgSend_1460 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.UnsignedLong Function(ffi.Pointer<objc.ObjCObject>,
@@ -96640,7 +96931,7 @@ final _objc_msgSend_1458 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_setWhiteBalanceMode_ =
     objc.registerName("setWhiteBalanceMode:");
-final _objc_msgSend_1459 = objc.msgSendPointer
+final _objc_msgSend_1461 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(ffi.Pointer<objc.ObjCObject>,
@@ -96664,7 +96955,7 @@ final class AVCaptureWhiteBalanceGains extends ffi.Struct {
 
 late final _sel_deviceWhiteBalanceGains =
     objc.registerName("deviceWhiteBalanceGains");
-final _objc_msgSend_1460 = objc.msgSendPointer
+final _objc_msgSend_1462 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             AVCaptureWhiteBalanceGains Function(ffi.Pointer<objc.ObjCObject>,
@@ -96672,7 +96963,7 @@ final _objc_msgSend_1460 = objc.msgSendPointer
     .asFunction<
         AVCaptureWhiteBalanceGains Function(
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
-final _objc_msgSend_1460Stret = objc.msgSendStretPointer
+final _objc_msgSend_1462Stret = objc.msgSendStretPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -96688,7 +96979,7 @@ late final _sel_maxWhiteBalanceGain = objc.registerName("maxWhiteBalanceGain");
 late final _sel_setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains_completionHandler_ =
     objc.registerName(
         "setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains:completionHandler:");
-final _objc_msgSend_1461 = objc.msgSendPointer
+final _objc_msgSend_1463 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -96713,7 +97004,7 @@ final class AVCaptureWhiteBalanceChromaticityValues extends ffi.Struct {
 
 late final _sel_chromaticityValuesForDeviceWhiteBalanceGains_ =
     objc.registerName("chromaticityValuesForDeviceWhiteBalanceGains:");
-final _objc_msgSend_1462 = objc.msgSendPointer
+final _objc_msgSend_1464 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             AVCaptureWhiteBalanceChromaticityValues Function(
@@ -96725,7 +97016,7 @@ final _objc_msgSend_1462 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCSelector>,
             AVCaptureWhiteBalanceGains)>();
-final _objc_msgSend_1462Stret = objc.msgSendStretPointer
+final _objc_msgSend_1464Stret = objc.msgSendStretPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -96741,7 +97032,7 @@ final _objc_msgSend_1462Stret = objc.msgSendStretPointer
             AVCaptureWhiteBalanceGains)>();
 late final _sel_deviceWhiteBalanceGainsForChromaticityValues_ =
     objc.registerName("deviceWhiteBalanceGainsForChromaticityValues:");
-final _objc_msgSend_1463 = objc.msgSendPointer
+final _objc_msgSend_1465 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             AVCaptureWhiteBalanceGains Function(
@@ -96753,7 +97044,7 @@ final _objc_msgSend_1463 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCSelector>,
             AVCaptureWhiteBalanceChromaticityValues)>();
-final _objc_msgSend_1463Stret = objc.msgSendStretPointer
+final _objc_msgSend_1465Stret = objc.msgSendStretPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -96778,7 +97069,7 @@ final class AVCaptureWhiteBalanceTemperatureAndTintValues extends ffi.Struct {
 
 late final _sel_temperatureAndTintValuesForDeviceWhiteBalanceGains_ =
     objc.registerName("temperatureAndTintValuesForDeviceWhiteBalanceGains:");
-final _objc_msgSend_1464 = objc.msgSendPointer
+final _objc_msgSend_1466 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             AVCaptureWhiteBalanceTemperatureAndTintValues Function(
@@ -96790,7 +97081,7 @@ final _objc_msgSend_1464 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCSelector>,
             AVCaptureWhiteBalanceGains)>();
-final _objc_msgSend_1464Stret = objc.msgSendStretPointer
+final _objc_msgSend_1466Stret = objc.msgSendStretPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -96806,7 +97097,7 @@ final _objc_msgSend_1464Stret = objc.msgSendStretPointer
             AVCaptureWhiteBalanceGains)>();
 late final _sel_deviceWhiteBalanceGainsForTemperatureAndTintValues_ =
     objc.registerName("deviceWhiteBalanceGainsForTemperatureAndTintValues:");
-final _objc_msgSend_1465 = objc.msgSendPointer
+final _objc_msgSend_1467 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             AVCaptureWhiteBalanceGains Function(
@@ -96818,7 +97109,7 @@ final _objc_msgSend_1465 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCSelector>,
             AVCaptureWhiteBalanceTemperatureAndTintValues)>();
-final _objc_msgSend_1465Stret = objc.msgSendStretPointer
+final _objc_msgSend_1467Stret = objc.msgSendStretPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -96848,7 +97139,7 @@ late final _sel_videoZoomFactor = objc.registerName("videoZoomFactor");
 late final _sel_setVideoZoomFactor_ = objc.registerName("setVideoZoomFactor:");
 late final _sel_rampToVideoZoomFactor_withRate_ =
     objc.registerName("rampToVideoZoomFactor:withRate:");
-final _objc_msgSend_1466 = objc.msgSendPointer
+final _objc_msgSend_1468 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(ffi.Pointer<objc.ObjCObject>,
@@ -96884,7 +97175,7 @@ enum AVAuthorizationStatus {
 
 late final _sel_authorizationStatusForMediaType_ =
     objc.registerName("authorizationStatusForMediaType:");
-final _objc_msgSend_1467 = objc.msgSendPointer
+final _objc_msgSend_1469 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.UnsignedLong Function(
@@ -96917,7 +97208,7 @@ enum AVCaptureDeviceTransportControlsPlaybackMode {
 
 late final _sel_transportControlsPlaybackMode =
     objc.registerName("transportControlsPlaybackMode");
-final _objc_msgSend_1468 = objc.msgSendPointer
+final _objc_msgSend_1470 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.UnsignedLong Function(ffi.Pointer<objc.ObjCObject>,
@@ -96929,7 +97220,7 @@ late final _sel_transportControlsSpeed =
     objc.registerName("transportControlsSpeed");
 late final _sel_setTransportControlsPlaybackMode_speed_ =
     objc.registerName("setTransportControlsPlaybackMode:speed:");
-final _objc_msgSend_1469 = objc.msgSendPointer
+final _objc_msgSend_1471 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(ffi.Pointer<objc.ObjCObject>,
@@ -96964,7 +97255,7 @@ enum AVCaptureColorSpace {
 }
 
 late final _sel_activeColorSpace = objc.registerName("activeColorSpace");
-final _objc_msgSend_1470 = objc.msgSendPointer
+final _objc_msgSend_1472 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.UnsignedLong Function(ffi.Pointer<objc.ObjCObject>,
@@ -96974,7 +97265,7 @@ final _objc_msgSend_1470 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_setActiveColorSpace_ =
     objc.registerName("setActiveColorSpace:");
-final _objc_msgSend_1471 = objc.msgSendPointer
+final _objc_msgSend_1473 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(ffi.Pointer<objc.ObjCObject>,
@@ -96984,7 +97275,7 @@ final _objc_msgSend_1471 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCSelector>, int)>();
 late final _sel_activeDepthDataFormat =
     objc.registerName("activeDepthDataFormat");
-final _objc_msgSend_1472 = objc.msgSendPointer
+final _objc_msgSend_1474 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -96994,7 +97285,7 @@ final _objc_msgSend_1472 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_setActiveDepthDataFormat_ =
     objc.registerName("setActiveDepthDataFormat:");
-final _objc_msgSend_1473 = objc.msgSendPointer
+final _objc_msgSend_1475 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -97020,7 +97311,7 @@ late final _sel_setGeometricDistortionCorrectionEnabled_ =
     objc.registerName("setGeometricDistortionCorrectionEnabled:");
 late final _sel_extrinsicMatrixFromDevice_toDevice_ =
     objc.registerName("extrinsicMatrixFromDevice:toDevice:");
-final _objc_msgSend_1474 = objc.msgSendPointer
+final _objc_msgSend_1476 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(
@@ -97055,7 +97346,7 @@ enum AVCaptureCenterStageControlMode {
 
 late final _sel_centerStageControlMode =
     objc.registerName("centerStageControlMode");
-final _objc_msgSend_1475 = objc.msgSendPointer
+final _objc_msgSend_1477 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.UnsignedLong Function(ffi.Pointer<objc.ObjCObject>,
@@ -97065,7 +97356,7 @@ final _objc_msgSend_1475 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_setCenterStageControlMode_ =
     objc.registerName("setCenterStageControlMode:");
-final _objc_msgSend_1476 = objc.msgSendPointer
+final _objc_msgSend_1478 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(ffi.Pointer<objc.ObjCObject>,
@@ -97123,7 +97414,7 @@ enum AVCaptureMicrophoneMode {
 
 late final _sel_preferredMicrophoneMode =
     objc.registerName("preferredMicrophoneMode");
-final _objc_msgSend_1477 = objc.msgSendPointer
+final _objc_msgSend_1479 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.UnsignedLong Function(ffi.Pointer<objc.ObjCObject>,
@@ -97151,7 +97442,7 @@ enum AVCaptureSystemUserInterface {
 
 late final _sel_showSystemUserInterface_ =
     objc.registerName("showSystemUserInterface:");
-final _objc_msgSend_1478 = objc.msgSendPointer
+final _objc_msgSend_1480 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(ffi.Pointer<objc.ObjCObject>,
@@ -97497,7 +97788,7 @@ class AVCapturePhotoOutput extends AVCaptureOutput {
   /// capturePhotoWithSettings:delegate:
   void capturePhotoWithSettings_delegate_(
       AVCapturePhotoSettings settings, objc.ObjCObjectBase delegate) {
-    _objc_msgSend_1485(this.pointer, _sel_capturePhotoWithSettings_delegate_,
+    _objc_msgSend_1487(this.pointer, _sel_capturePhotoWithSettings_delegate_,
         settings.pointer, delegate.pointer);
   }
 
@@ -97513,7 +97804,7 @@ class AVCapturePhotoOutput extends AVCaptureOutput {
       objc.NSArray preparedPhotoSettingsArray,
       objc.ObjCBlock<ffi.Void Function(ffi.Bool, ffi.Pointer<objc.ObjCObject>)>?
           completionHandler) {
-    _objc_msgSend_1486(
+    _objc_msgSend_1488(
         this.pointer,
         _sel_setPreparedPhotoSettingsArray_completionHandler_,
         preparedPhotoSettingsArray.pointer,
@@ -97606,13 +97897,13 @@ class AVCapturePhotoOutput extends AVCaptureOutput {
   /// maxPhotoQualityPrioritization
   AVCapturePhotoQualityPrioritization get maxPhotoQualityPrioritization {
     final _ret =
-        _objc_msgSend_1482(this.pointer, _sel_maxPhotoQualityPrioritization);
+        _objc_msgSend_1484(this.pointer, _sel_maxPhotoQualityPrioritization);
     return AVCapturePhotoQualityPrioritization.fromValue(_ret);
   }
 
   /// setMaxPhotoQualityPrioritization:
   set maxPhotoQualityPrioritization(AVCapturePhotoQualityPrioritization value) {
-    return _objc_msgSend_1483(
+    return _objc_msgSend_1485(
         this.pointer, _sel_setMaxPhotoQualityPrioritization_, value.value);
   }
 
@@ -97740,7 +98031,7 @@ class AVCapturePhotoOutput extends AVCaptureOutput {
   /// photoSettingsForSceneMonitoring
   AVCapturePhotoSettings? get photoSettingsForSceneMonitoring {
     final _ret =
-        _objc_msgSend_1487(this.pointer, _sel_photoSettingsForSceneMonitoring);
+        _objc_msgSend_1489(this.pointer, _sel_photoSettingsForSceneMonitoring);
     return _ret.address == 0
         ? null
         : AVCapturePhotoSettings.castFromPointer(_ret,
@@ -97749,7 +98040,7 @@ class AVCapturePhotoOutput extends AVCaptureOutput {
 
   /// setPhotoSettingsForSceneMonitoring:
   set photoSettingsForSceneMonitoring(AVCapturePhotoSettings? value) {
-    return _objc_msgSend_1488(
+    return _objc_msgSend_1490(
         this.pointer,
         _sel_setPhotoSettingsForSceneMonitoring_,
         value?.pointer ?? ffi.nullptr);
@@ -97769,13 +98060,13 @@ class AVCapturePhotoOutput extends AVCaptureOutput {
   /// maxPhotoDimensions
   void getMaxPhotoDimensions(ffi.Pointer<CMVideoDimensions> stret) {
     objc.useMsgSendVariants
-        ? _objc_msgSend_1425Stret(stret, this.pointer, _sel_maxPhotoDimensions)
-        : stret.ref = _objc_msgSend_1425(this.pointer, _sel_maxPhotoDimensions);
+        ? _objc_msgSend_1427Stret(stret, this.pointer, _sel_maxPhotoDimensions)
+        : stret.ref = _objc_msgSend_1427(this.pointer, _sel_maxPhotoDimensions);
   }
 
   /// setMaxPhotoDimensions:
   set maxPhotoDimensions(CMVideoDimensions value) {
-    return _objc_msgSend_1484(this.pointer, _sel_setMaxPhotoDimensions_, value);
+    return _objc_msgSend_1486(this.pointer, _sel_setMaxPhotoDimensions_, value);
   }
 
   /// maxBracketedCapturePhotoCount
@@ -97851,7 +98142,7 @@ class AVCapturePhotoOutput extends AVCaptureOutput {
       JPEGPhotoDataRepresentationForJPEGSampleBuffer_previewPhotoSampleBuffer_(
           ffi.Pointer<opaqueCMSampleBuffer> JPEGSampleBuffer,
           ffi.Pointer<opaqueCMSampleBuffer> previewPhotoSampleBuffer) {
-    final _ret = _objc_msgSend_1489(
+    final _ret = _objc_msgSend_1491(
         _class_AVCapturePhotoOutput,
         _sel_JPEGPhotoDataRepresentationForJPEGSampleBuffer_previewPhotoSampleBuffer_,
         JPEGSampleBuffer,
@@ -97866,7 +98157,7 @@ class AVCapturePhotoOutput extends AVCaptureOutput {
       DNGPhotoDataRepresentationForRawSampleBuffer_previewPhotoSampleBuffer_(
           ffi.Pointer<opaqueCMSampleBuffer> rawSampleBuffer,
           ffi.Pointer<opaqueCMSampleBuffer> previewPhotoSampleBuffer) {
-    final _ret = _objc_msgSend_1489(
+    final _ret = _objc_msgSend_1491(
         _class_AVCapturePhotoOutput,
         _sel_DNGPhotoDataRepresentationForRawSampleBuffer_previewPhotoSampleBuffer_,
         rawSampleBuffer,
@@ -97928,7 +98219,7 @@ class AVCapturePhotoOutput extends AVCaptureOutput {
 
   /// captureReadiness
   AVCapturePhotoOutputCaptureReadiness get captureReadiness {
-    final _ret = _objc_msgSend_1490(this.pointer, _sel_captureReadiness);
+    final _ret = _objc_msgSend_1492(this.pointer, _sel_captureReadiness);
     return AVCapturePhotoOutputCaptureReadiness.fromValue(_ret);
   }
 
@@ -98124,7 +98415,7 @@ class AVCapturePhotoSettings extends objc.NSObject {
   static AVCapturePhotoSettings
       photoSettingsWithRawPixelFormatType_processedFormat_(
           int rawPixelFormatType, objc.NSDictionary? processedFormat) {
-    final _ret = _objc_msgSend_1479(
+    final _ret = _objc_msgSend_1481(
         _class_AVCapturePhotoSettings,
         _sel_photoSettingsWithRawPixelFormatType_processedFormat_,
         rawPixelFormatType,
@@ -98140,7 +98431,7 @@ class AVCapturePhotoSettings extends objc.NSObject {
           objc.NSString? rawFileType,
           objc.NSDictionary? processedFormat,
           objc.NSString? processedFileType) {
-    final _ret = _objc_msgSend_1480(
+    final _ret = _objc_msgSend_1482(
         _class_AVCapturePhotoSettings,
         _sel_photoSettingsWithRawPixelFormatType_rawFileType_processedFormat_processedFileType_,
         rawPixelFormatType,
@@ -98154,7 +98445,7 @@ class AVCapturePhotoSettings extends objc.NSObject {
   /// photoSettingsFromPhotoSettings:
   static AVCapturePhotoSettings photoSettingsFromPhotoSettings_(
       AVCapturePhotoSettings photoSettings) {
-    final _ret = _objc_msgSend_1481(_class_AVCapturePhotoSettings,
+    final _ret = _objc_msgSend_1483(_class_AVCapturePhotoSettings,
         _sel_photoSettingsFromPhotoSettings_, photoSettings.pointer);
     return AVCapturePhotoSettings.castFromPointer(_ret,
         retain: true, release: true);
@@ -98196,13 +98487,13 @@ class AVCapturePhotoSettings extends objc.NSObject {
 
   /// flashMode
   AVCaptureFlashMode get flashMode {
-    final _ret = _objc_msgSend_1442(this.pointer, _sel_flashMode);
+    final _ret = _objc_msgSend_1444(this.pointer, _sel_flashMode);
     return AVCaptureFlashMode.fromValue(_ret);
   }
 
   /// setFlashMode:
   set flashMode(AVCaptureFlashMode value) {
-    return _objc_msgSend_1443(this.pointer, _sel_setFlashMode_, value.value);
+    return _objc_msgSend_1445(this.pointer, _sel_setFlashMode_, value.value);
   }
 
   /// isAutoRedEyeReductionEnabled
@@ -98219,13 +98510,13 @@ class AVCapturePhotoSettings extends objc.NSObject {
   /// photoQualityPrioritization
   AVCapturePhotoQualityPrioritization get photoQualityPrioritization {
     final _ret =
-        _objc_msgSend_1482(this.pointer, _sel_photoQualityPrioritization);
+        _objc_msgSend_1484(this.pointer, _sel_photoQualityPrioritization);
     return AVCapturePhotoQualityPrioritization.fromValue(_ret);
   }
 
   /// setPhotoQualityPrioritization:
   set photoQualityPrioritization(AVCapturePhotoQualityPrioritization value) {
-    return _objc_msgSend_1483(
+    return _objc_msgSend_1485(
         this.pointer, _sel_setPhotoQualityPrioritization_, value.value);
   }
 
@@ -98305,13 +98596,13 @@ class AVCapturePhotoSettings extends objc.NSObject {
   /// maxPhotoDimensions
   void getMaxPhotoDimensions(ffi.Pointer<CMVideoDimensions> stret) {
     objc.useMsgSendVariants
-        ? _objc_msgSend_1425Stret(stret, this.pointer, _sel_maxPhotoDimensions)
-        : stret.ref = _objc_msgSend_1425(this.pointer, _sel_maxPhotoDimensions);
+        ? _objc_msgSend_1427Stret(stret, this.pointer, _sel_maxPhotoDimensions)
+        : stret.ref = _objc_msgSend_1427(this.pointer, _sel_maxPhotoDimensions);
   }
 
   /// setMaxPhotoDimensions:
   set maxPhotoDimensions(CMVideoDimensions value) {
-    return _objc_msgSend_1484(this.pointer, _sel_setMaxPhotoDimensions_, value);
+    return _objc_msgSend_1486(this.pointer, _sel_setMaxPhotoDimensions_, value);
   }
 
   /// isDepthDataDeliveryEnabled
@@ -98643,7 +98934,7 @@ late final _sel_photoSettingsWithRawPixelFormatType_ =
     objc.registerName("photoSettingsWithRawPixelFormatType:");
 late final _sel_photoSettingsWithRawPixelFormatType_processedFormat_ =
     objc.registerName("photoSettingsWithRawPixelFormatType:processedFormat:");
-final _objc_msgSend_1479 = objc.msgSendPointer
+final _objc_msgSend_1481 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             instancetype Function(
@@ -98660,7 +98951,7 @@ final _objc_msgSend_1479 = objc.msgSendPointer
 late final _sel_photoSettingsWithRawPixelFormatType_rawFileType_processedFormat_processedFileType_ =
     objc.registerName(
         "photoSettingsWithRawPixelFormatType:rawFileType:processedFormat:processedFileType:");
-final _objc_msgSend_1480 = objc.msgSendPointer
+final _objc_msgSend_1482 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             instancetype Function(
@@ -98680,7 +98971,7 @@ final _objc_msgSend_1480 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>)>();
 late final _sel_photoSettingsFromPhotoSettings_ =
     objc.registerName("photoSettingsFromPhotoSettings:");
-final _objc_msgSend_1481 = objc.msgSendPointer
+final _objc_msgSend_1483 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             instancetype Function(
@@ -98719,7 +99010,7 @@ enum AVCapturePhotoQualityPrioritization {
 
 late final _sel_photoQualityPrioritization =
     objc.registerName("photoQualityPrioritization");
-final _objc_msgSend_1482 = objc.msgSendPointer
+final _objc_msgSend_1484 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.UnsignedLong Function(ffi.Pointer<objc.ObjCObject>,
@@ -98729,7 +99020,7 @@ final _objc_msgSend_1482 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_setPhotoQualityPrioritization_ =
     objc.registerName("setPhotoQualityPrioritization:");
-final _objc_msgSend_1483 = objc.msgSendPointer
+final _objc_msgSend_1485 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(ffi.Pointer<objc.ObjCObject>,
@@ -98764,7 +99055,7 @@ late final _sel_setHighResolutionPhotoEnabled_ =
 late final _sel_maxPhotoDimensions = objc.registerName("maxPhotoDimensions");
 late final _sel_setMaxPhotoDimensions_ =
     objc.registerName("setMaxPhotoDimensions:");
-final _objc_msgSend_1484 = objc.msgSendPointer
+final _objc_msgSend_1486 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(ffi.Pointer<objc.ObjCObject>,
@@ -98837,7 +99128,7 @@ late final _sel_setAutoContentAwareDistortionCorrectionEnabled_ =
     objc.registerName("setAutoContentAwareDistortionCorrectionEnabled:");
 late final _sel_capturePhotoWithSettings_delegate_ =
     objc.registerName("capturePhotoWithSettings:delegate:");
-final _objc_msgSend_1485 = objc.msgSendPointer
+final _objc_msgSend_1487 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -98855,7 +99146,7 @@ late final _sel_preparedPhotoSettingsArray =
     objc.registerName("preparedPhotoSettingsArray");
 late final _sel_setPreparedPhotoSettingsArray_completionHandler_ =
     objc.registerName("setPreparedPhotoSettingsArray:completionHandler:");
-final _objc_msgSend_1486 = objc.msgSendPointer
+final _objc_msgSend_1488 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -98937,7 +99228,7 @@ late final _sel_isAutoRedEyeReductionSupported =
 late final _sel_isFlashScene = objc.registerName("isFlashScene");
 late final _sel_photoSettingsForSceneMonitoring =
     objc.registerName("photoSettingsForSceneMonitoring");
-final _objc_msgSend_1487 = objc.msgSendPointer
+final _objc_msgSend_1489 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -98947,7 +99238,7 @@ final _objc_msgSend_1487 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_setPhotoSettingsForSceneMonitoring_ =
     objc.registerName("setPhotoSettingsForSceneMonitoring:");
-final _objc_msgSend_1488 = objc.msgSendPointer
+final _objc_msgSend_1490 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -98988,7 +99279,7 @@ late final _sel_availableLivePhotoVideoCodecTypes =
 late final _sel_JPEGPhotoDataRepresentationForJPEGSampleBuffer_previewPhotoSampleBuffer_ =
     objc.registerName(
         "JPEGPhotoDataRepresentationForJPEGSampleBuffer:previewPhotoSampleBuffer:");
-final _objc_msgSend_1489 = objc.msgSendPointer
+final _objc_msgSend_1491 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(
@@ -99047,7 +99338,7 @@ enum AVCapturePhotoOutputCaptureReadiness {
 }
 
 late final _sel_captureReadiness = objc.registerName("captureReadiness");
-final _objc_msgSend_1490 = objc.msgSendPointer
+final _objc_msgSend_1492 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.UnsignedLong Function(ffi.Pointer<objc.ObjCObject>,
@@ -99103,7 +99394,7 @@ class AVCaptureOutput extends objc.NSObject {
 
   /// connectionWithMediaType:
   AVCaptureConnection? connectionWithMediaType_(objc.NSString mediaType) {
-    final _ret = _objc_msgSend_1517(
+    final _ret = _objc_msgSend_1519(
         this.pointer, _sel_connectionWithMediaType_, mediaType.pointer);
     return _ret.address == 0
         ? null
@@ -99114,7 +99405,7 @@ class AVCaptureOutput extends objc.NSObject {
   /// transformedMetadataObjectForMetadataObject:connection:
   AVMetadataObject? transformedMetadataObjectForMetadataObject_connection_(
       AVMetadataObject metadataObject, AVCaptureConnection connection) {
-    final _ret = _objc_msgSend_1518(
+    final _ret = _objc_msgSend_1520(
         this.pointer,
         _sel_transformedMetadataObjectForMetadataObject_connection_,
         metadataObject.pointer,
@@ -99128,9 +99419,9 @@ class AVCaptureOutput extends objc.NSObject {
   void metadataOutputRectOfInterestForRect_(
       ffi.Pointer<CGRect> stret, CGRect rectInOutputCoordinates) {
     objc.useMsgSendVariants
-        ? _objc_msgSend_1505Stret(stret, this.pointer,
+        ? _objc_msgSend_1507Stret(stret, this.pointer,
             _sel_metadataOutputRectOfInterestForRect_, rectInOutputCoordinates)
-        : stret.ref = _objc_msgSend_1505(this.pointer,
+        : stret.ref = _objc_msgSend_1507(this.pointer,
             _sel_metadataOutputRectOfInterestForRect_, rectInOutputCoordinates);
   }
 
@@ -99138,12 +99429,12 @@ class AVCaptureOutput extends objc.NSObject {
   void rectForMetadataOutputRectOfInterest_(
       ffi.Pointer<CGRect> stret, CGRect rectInMetadataOutputCoordinates) {
     objc.useMsgSendVariants
-        ? _objc_msgSend_1505Stret(
+        ? _objc_msgSend_1507Stret(
             stret,
             this.pointer,
             _sel_rectForMetadataOutputRectOfInterest_,
             rectInMetadataOutputCoordinates)
-        : stret.ref = _objc_msgSend_1505(
+        : stret.ref = _objc_msgSend_1507(
             this.pointer,
             _sel_rectForMetadataOutputRectOfInterest_,
             rectInMetadataOutputCoordinates);
@@ -99272,7 +99563,7 @@ class AVCaptureConnection extends objc.NSObject {
   /// connectionWithInputPorts:output:
   static AVCaptureConnection connectionWithInputPorts_output_(
       objc.NSArray ports, AVCaptureOutput output) {
-    final _ret = _objc_msgSend_1491(_class_AVCaptureConnection,
+    final _ret = _objc_msgSend_1493(_class_AVCaptureConnection,
         _sel_connectionWithInputPorts_output_, ports.pointer, output.pointer);
     return AVCaptureConnection.castFromPointer(_ret,
         retain: true, release: true);
@@ -99281,7 +99572,7 @@ class AVCaptureConnection extends objc.NSObject {
   /// connectionWithInputPort:videoPreviewLayer:
   static AVCaptureConnection connectionWithInputPort_videoPreviewLayer_(
       AVCaptureInputPort port, AVCaptureVideoPreviewLayer layer) {
-    final _ret = _objc_msgSend_1509(
+    final _ret = _objc_msgSend_1511(
         _class_AVCaptureConnection,
         _sel_connectionWithInputPort_videoPreviewLayer_,
         port.pointer,
@@ -99293,7 +99584,7 @@ class AVCaptureConnection extends objc.NSObject {
   /// initWithInputPorts:output:
   AVCaptureConnection initWithInputPorts_output_(
       objc.NSArray ports, AVCaptureOutput output) {
-    final _ret = _objc_msgSend_1491(this.pointer,
+    final _ret = _objc_msgSend_1493(this.pointer,
         _sel_initWithInputPorts_output_, ports.pointer, output.pointer);
     return AVCaptureConnection.castFromPointer(_ret,
         retain: true, release: true);
@@ -99302,7 +99593,7 @@ class AVCaptureConnection extends objc.NSObject {
   /// initWithInputPort:videoPreviewLayer:
   AVCaptureConnection initWithInputPort_videoPreviewLayer_(
       AVCaptureInputPort port, AVCaptureVideoPreviewLayer layer) {
-    final _ret = _objc_msgSend_1509(this.pointer,
+    final _ret = _objc_msgSend_1511(this.pointer,
         _sel_initWithInputPort_videoPreviewLayer_, port.pointer, layer.pointer);
     return AVCaptureConnection.castFromPointer(_ret,
         retain: true, release: true);
@@ -99316,7 +99607,7 @@ class AVCaptureConnection extends objc.NSObject {
 
   /// output
   AVCaptureOutput? get output {
-    final _ret = _objc_msgSend_1510(this.pointer, _sel_output);
+    final _ret = _objc_msgSend_1512(this.pointer, _sel_output);
     return _ret.address == 0
         ? null
         : AVCaptureOutput.castFromPointer(_ret, retain: true, release: true);
@@ -99324,7 +99615,7 @@ class AVCaptureConnection extends objc.NSObject {
 
   /// videoPreviewLayer
   AVCaptureVideoPreviewLayer? get videoPreviewLayer {
-    final _ret = _objc_msgSend_1511(this.pointer, _sel_videoPreviewLayer);
+    final _ret = _objc_msgSend_1513(this.pointer, _sel_videoPreviewLayer);
     return _ret.address == 0
         ? null
         : AVCaptureVideoPreviewLayer.castFromPointer(_ret,
@@ -99381,7 +99672,7 @@ class AVCaptureConnection extends objc.NSObject {
 
   /// isVideoRotationAngleSupported:
   bool isVideoRotationAngleSupported_(double videoRotationAngle) {
-    return _objc_msgSend_1512(
+    return _objc_msgSend_1514(
         this.pointer, _sel_isVideoRotationAngleSupported_, videoRotationAngle);
   }
 
@@ -99404,13 +99695,13 @@ class AVCaptureConnection extends objc.NSObject {
 
   /// videoOrientation
   AVCaptureVideoOrientation get videoOrientation {
-    final _ret = _objc_msgSend_1507(this.pointer, _sel_videoOrientation);
+    final _ret = _objc_msgSend_1509(this.pointer, _sel_videoOrientation);
     return AVCaptureVideoOrientation.fromValue(_ret);
   }
 
   /// setVideoOrientation:
   set videoOrientation(AVCaptureVideoOrientation value) {
-    return _objc_msgSend_1508(
+    return _objc_msgSend_1510(
         this.pointer, _sel_setVideoOrientation_, value.value);
   }
 
@@ -99421,13 +99712,13 @@ class AVCaptureConnection extends objc.NSObject {
 
   /// videoFieldMode
   AVVideoFieldMode get videoFieldMode {
-    final _ret = _objc_msgSend_1513(this.pointer, _sel_videoFieldMode);
+    final _ret = _objc_msgSend_1515(this.pointer, _sel_videoFieldMode);
     return AVVideoFieldMode.fromValue(_ret);
   }
 
   /// setVideoFieldMode:
   set videoFieldMode(AVVideoFieldMode value) {
-    return _objc_msgSend_1514(
+    return _objc_msgSend_1516(
         this.pointer, _sel_setVideoFieldMode_, value.value);
   }
 
@@ -99496,20 +99787,20 @@ class AVCaptureConnection extends objc.NSObject {
   /// preferredVideoStabilizationMode
   AVCaptureVideoStabilizationMode get preferredVideoStabilizationMode {
     final _ret =
-        _objc_msgSend_1515(this.pointer, _sel_preferredVideoStabilizationMode);
+        _objc_msgSend_1517(this.pointer, _sel_preferredVideoStabilizationMode);
     return AVCaptureVideoStabilizationMode.fromValue(_ret);
   }
 
   /// setPreferredVideoStabilizationMode:
   set preferredVideoStabilizationMode(AVCaptureVideoStabilizationMode value) {
-    return _objc_msgSend_1516(
+    return _objc_msgSend_1518(
         this.pointer, _sel_setPreferredVideoStabilizationMode_, value.value);
   }
 
   /// activeVideoStabilizationMode
   AVCaptureVideoStabilizationMode get activeVideoStabilizationMode {
     final _ret =
-        _objc_msgSend_1515(this.pointer, _sel_activeVideoStabilizationMode);
+        _objc_msgSend_1517(this.pointer, _sel_activeVideoStabilizationMode);
     return AVCaptureVideoStabilizationMode.fromValue(_ret);
   }
 
@@ -99640,7 +99931,7 @@ class AVCaptureConnection extends objc.NSObject {
 late final _class_AVCaptureConnection = objc.getClass("AVCaptureConnection");
 late final _sel_connectionWithInputPorts_output_ =
     objc.registerName("connectionWithInputPorts:output:");
-final _objc_msgSend_1491 = objc.msgSendPointer
+final _objc_msgSend_1493 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             instancetype Function(
@@ -99692,7 +99983,7 @@ class AVCaptureInputPort extends objc.NSObject {
 
   /// input
   AVCaptureInput get input {
-    final _ret = _objc_msgSend_1492(this.pointer, _sel_input);
+    final _ret = _objc_msgSend_1494(this.pointer, _sel_input);
     return AVCaptureInput.castFromPointer(_ret, retain: true, release: true);
   }
 
@@ -99732,7 +100023,7 @@ class AVCaptureInputPort extends objc.NSObject {
 
   /// sourceDevicePosition
   AVCaptureDevicePosition get sourceDevicePosition {
-    final _ret = _objc_msgSend_1432(this.pointer, _sel_sourceDevicePosition);
+    final _ret = _objc_msgSend_1434(this.pointer, _sel_sourceDevicePosition);
     return AVCaptureDevicePosition.fromValue(_ret);
   }
 
@@ -99946,7 +100237,7 @@ class AVCaptureInput extends objc.NSObject {
 late final _class_AVCaptureInput = objc.getClass("AVCaptureInput");
 late final _sel_ports = objc.registerName("ports");
 late final _sel_input = objc.registerName("input");
-final _objc_msgSend_1492 = objc.msgSendPointer
+final _objc_msgSend_1494 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -99983,7 +100274,7 @@ class AVCaptureVideoPreviewLayer extends CALayer {
   /// layerWithSession:
   static AVCaptureVideoPreviewLayer layerWithSession_(
       AVCaptureSession session) {
-    final _ret = _objc_msgSend_1499(_class_AVCaptureVideoPreviewLayer,
+    final _ret = _objc_msgSend_1501(_class_AVCaptureVideoPreviewLayer,
         _sel_layerWithSession_, session.pointer);
     return AVCaptureVideoPreviewLayer.castFromPointer(_ret,
         retain: true, release: true);
@@ -99991,7 +100282,7 @@ class AVCaptureVideoPreviewLayer extends CALayer {
 
   /// initWithSession:
   AVCaptureVideoPreviewLayer initWithSession_(AVCaptureSession session) {
-    final _ret = _objc_msgSend_1499(
+    final _ret = _objc_msgSend_1501(
         this.pointer, _sel_initWithSession_, session.pointer);
     return AVCaptureVideoPreviewLayer.castFromPointer(_ret,
         retain: true, release: true);
@@ -100000,7 +100291,7 @@ class AVCaptureVideoPreviewLayer extends CALayer {
   /// layerWithSessionWithNoConnection:
   static AVCaptureVideoPreviewLayer layerWithSessionWithNoConnection_(
       AVCaptureSession session) {
-    final _ret = _objc_msgSend_1499(_class_AVCaptureVideoPreviewLayer,
+    final _ret = _objc_msgSend_1501(_class_AVCaptureVideoPreviewLayer,
         _sel_layerWithSessionWithNoConnection_, session.pointer);
     return AVCaptureVideoPreviewLayer.castFromPointer(_ret,
         retain: true, release: true);
@@ -100009,7 +100300,7 @@ class AVCaptureVideoPreviewLayer extends CALayer {
   /// initWithSessionWithNoConnection:
   AVCaptureVideoPreviewLayer initWithSessionWithNoConnection_(
       AVCaptureSession session) {
-    final _ret = _objc_msgSend_1499(
+    final _ret = _objc_msgSend_1501(
         this.pointer, _sel_initWithSessionWithNoConnection_, session.pointer);
     return AVCaptureVideoPreviewLayer.castFromPointer(_ret,
         retain: true, release: true);
@@ -100017,7 +100308,7 @@ class AVCaptureVideoPreviewLayer extends CALayer {
 
   /// session
   AVCaptureSession? get session {
-    final _ret = _objc_msgSend_1500(this.pointer, _sel_session);
+    final _ret = _objc_msgSend_1502(this.pointer, _sel_session);
     return _ret.address == 0
         ? null
         : AVCaptureSession.castFromPointer(_ret, retain: true, release: true);
@@ -100025,19 +100316,19 @@ class AVCaptureVideoPreviewLayer extends CALayer {
 
   /// setSession:
   set session(AVCaptureSession? value) {
-    return _objc_msgSend_1501(
+    return _objc_msgSend_1503(
         this.pointer, _sel_setSession_, value?.pointer ?? ffi.nullptr);
   }
 
   /// setSessionWithNoConnection:
   void setSessionWithNoConnection_(AVCaptureSession session) {
-    _objc_msgSend_1502(
+    _objc_msgSend_1504(
         this.pointer, _sel_setSessionWithNoConnection_, session.pointer);
   }
 
   /// connection
   AVCaptureConnection? get connection {
-    final _ret = _objc_msgSend_1503(this.pointer, _sel_connection);
+    final _ret = _objc_msgSend_1505(this.pointer, _sel_connection);
     return _ret.address == 0
         ? null
         : AVCaptureConnection.castFromPointer(_ret,
@@ -100064,9 +100355,9 @@ class AVCaptureVideoPreviewLayer extends CALayer {
   void captureDevicePointOfInterestForPoint_(
       ffi.Pointer<CGPoint> stret, CGPoint pointInLayer) {
     objc.useMsgSendVariants
-        ? _objc_msgSend_1504Stret(stret, this.pointer,
+        ? _objc_msgSend_1506Stret(stret, this.pointer,
             _sel_captureDevicePointOfInterestForPoint_, pointInLayer)
-        : stret.ref = _objc_msgSend_1504(this.pointer,
+        : stret.ref = _objc_msgSend_1506(this.pointer,
             _sel_captureDevicePointOfInterestForPoint_, pointInLayer);
   }
 
@@ -100074,12 +100365,12 @@ class AVCaptureVideoPreviewLayer extends CALayer {
   void pointForCaptureDevicePointOfInterest_(
       ffi.Pointer<CGPoint> stret, CGPoint captureDevicePointOfInterest) {
     objc.useMsgSendVariants
-        ? _objc_msgSend_1504Stret(
+        ? _objc_msgSend_1506Stret(
             stret,
             this.pointer,
             _sel_pointForCaptureDevicePointOfInterest_,
             captureDevicePointOfInterest)
-        : stret.ref = _objc_msgSend_1504(
+        : stret.ref = _objc_msgSend_1506(
             this.pointer,
             _sel_pointForCaptureDevicePointOfInterest_,
             captureDevicePointOfInterest);
@@ -100089,9 +100380,9 @@ class AVCaptureVideoPreviewLayer extends CALayer {
   void metadataOutputRectOfInterestForRect_(
       ffi.Pointer<CGRect> stret, CGRect rectInLayerCoordinates) {
     objc.useMsgSendVariants
-        ? _objc_msgSend_1505Stret(stret, this.pointer,
+        ? _objc_msgSend_1507Stret(stret, this.pointer,
             _sel_metadataOutputRectOfInterestForRect_, rectInLayerCoordinates)
-        : stret.ref = _objc_msgSend_1505(this.pointer,
+        : stret.ref = _objc_msgSend_1507(this.pointer,
             _sel_metadataOutputRectOfInterestForRect_, rectInLayerCoordinates);
   }
 
@@ -100099,12 +100390,12 @@ class AVCaptureVideoPreviewLayer extends CALayer {
   void rectForMetadataOutputRectOfInterest_(
       ffi.Pointer<CGRect> stret, CGRect rectInMetadataOutputCoordinates) {
     objc.useMsgSendVariants
-        ? _objc_msgSend_1505Stret(
+        ? _objc_msgSend_1507Stret(
             stret,
             this.pointer,
             _sel_rectForMetadataOutputRectOfInterest_,
             rectInMetadataOutputCoordinates)
-        : stret.ref = _objc_msgSend_1505(
+        : stret.ref = _objc_msgSend_1507(
             this.pointer,
             _sel_rectForMetadataOutputRectOfInterest_,
             rectInMetadataOutputCoordinates);
@@ -100113,7 +100404,7 @@ class AVCaptureVideoPreviewLayer extends CALayer {
   /// transformedMetadataObjectForMetadataObject:
   AVMetadataObject? transformedMetadataObjectForMetadataObject_(
       AVMetadataObject metadataObject) {
-    final _ret = _objc_msgSend_1506(
+    final _ret = _objc_msgSend_1508(
         this.pointer,
         _sel_transformedMetadataObjectForMetadataObject_,
         metadataObject.pointer);
@@ -100129,13 +100420,13 @@ class AVCaptureVideoPreviewLayer extends CALayer {
 
   /// orientation
   AVCaptureVideoOrientation get orientation {
-    final _ret = _objc_msgSend_1507(this.pointer, _sel_orientation);
+    final _ret = _objc_msgSend_1509(this.pointer, _sel_orientation);
     return AVCaptureVideoOrientation.fromValue(_ret);
   }
 
   /// setOrientation:
   set orientation(AVCaptureVideoOrientation value) {
-    return _objc_msgSend_1508(this.pointer, _sel_setOrientation_, value.value);
+    return _objc_msgSend_1510(this.pointer, _sel_setOrientation_, value.value);
   }
 
   /// isMirroringSupported
@@ -100386,17 +100677,17 @@ class AVCaptureSession extends objc.NSObject {
 
   /// canAddInput:
   bool canAddInput_(AVCaptureInput input) {
-    return _objc_msgSend_1493(this.pointer, _sel_canAddInput_, input.pointer);
+    return _objc_msgSend_1495(this.pointer, _sel_canAddInput_, input.pointer);
   }
 
   /// addInput:
   void addInput_(AVCaptureInput input) {
-    _objc_msgSend_1494(this.pointer, _sel_addInput_, input.pointer);
+    _objc_msgSend_1496(this.pointer, _sel_addInput_, input.pointer);
   }
 
   /// removeInput:
   void removeInput_(AVCaptureInput input) {
-    _objc_msgSend_1494(this.pointer, _sel_removeInput_, input.pointer);
+    _objc_msgSend_1496(this.pointer, _sel_removeInput_, input.pointer);
   }
 
   /// outputs
@@ -100407,28 +100698,28 @@ class AVCaptureSession extends objc.NSObject {
 
   /// canAddOutput:
   bool canAddOutput_(AVCaptureOutput output) {
-    return _objc_msgSend_1495(this.pointer, _sel_canAddOutput_, output.pointer);
+    return _objc_msgSend_1497(this.pointer, _sel_canAddOutput_, output.pointer);
   }
 
   /// addOutput:
   void addOutput_(AVCaptureOutput output) {
-    _objc_msgSend_1496(this.pointer, _sel_addOutput_, output.pointer);
+    _objc_msgSend_1498(this.pointer, _sel_addOutput_, output.pointer);
   }
 
   /// removeOutput:
   void removeOutput_(AVCaptureOutput output) {
-    _objc_msgSend_1496(this.pointer, _sel_removeOutput_, output.pointer);
+    _objc_msgSend_1498(this.pointer, _sel_removeOutput_, output.pointer);
   }
 
   /// addInputWithNoConnections:
   void addInputWithNoConnections_(AVCaptureInput input) {
-    _objc_msgSend_1494(
+    _objc_msgSend_1496(
         this.pointer, _sel_addInputWithNoConnections_, input.pointer);
   }
 
   /// addOutputWithNoConnections:
   void addOutputWithNoConnections_(AVCaptureOutput output) {
-    _objc_msgSend_1496(
+    _objc_msgSend_1498(
         this.pointer, _sel_addOutputWithNoConnections_, output.pointer);
   }
 
@@ -100440,18 +100731,18 @@ class AVCaptureSession extends objc.NSObject {
 
   /// canAddConnection:
   bool canAddConnection_(AVCaptureConnection connection) {
-    return _objc_msgSend_1497(
+    return _objc_msgSend_1499(
         this.pointer, _sel_canAddConnection_, connection.pointer);
   }
 
   /// addConnection:
   void addConnection_(AVCaptureConnection connection) {
-    _objc_msgSend_1498(this.pointer, _sel_addConnection_, connection.pointer);
+    _objc_msgSend_1500(this.pointer, _sel_addConnection_, connection.pointer);
   }
 
   /// removeConnection:
   void removeConnection_(AVCaptureConnection connection) {
-    _objc_msgSend_1498(
+    _objc_msgSend_1500(
         this.pointer, _sel_removeConnection_, connection.pointer);
   }
 
@@ -100654,28 +100945,6 @@ late final _sel_canSetSessionPreset_ =
     objc.registerName("canSetSessionPreset:");
 late final _sel_sessionPreset = objc.registerName("sessionPreset");
 late final _sel_setSessionPreset_ = objc.registerName("setSessionPreset:");
-final _objc_msgSend_1493 = objc.msgSendPointer
-    .cast<
-        ffi.NativeFunction<
-            ffi.Bool Function(
-                ffi.Pointer<objc.ObjCObject>,
-                ffi.Pointer<objc.ObjCSelector>,
-                ffi.Pointer<objc.ObjCObject>)>>()
-    .asFunction<
-        bool Function(ffi.Pointer<objc.ObjCObject>,
-            ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCObject>)>();
-final _objc_msgSend_1494 = objc.msgSendPointer
-    .cast<
-        ffi.NativeFunction<
-            ffi.Void Function(
-                ffi.Pointer<objc.ObjCObject>,
-                ffi.Pointer<objc.ObjCSelector>,
-                ffi.Pointer<objc.ObjCObject>)>>()
-    .asFunction<
-        void Function(ffi.Pointer<objc.ObjCObject>,
-            ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCObject>)>();
-late final _sel_removeInput_ = objc.registerName("removeInput:");
-late final _sel_canAddOutput_ = objc.registerName("canAddOutput:");
 final _objc_msgSend_1495 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
@@ -100696,11 +100965,8 @@ final _objc_msgSend_1496 = objc.msgSendPointer
     .asFunction<
         void Function(ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCObject>)>();
-late final _sel_addInputWithNoConnections_ =
-    objc.registerName("addInputWithNoConnections:");
-late final _sel_addOutputWithNoConnections_ =
-    objc.registerName("addOutputWithNoConnections:");
-late final _sel_canAddConnection_ = objc.registerName("canAddConnection:");
+late final _sel_removeInput_ = objc.registerName("removeInput:");
+late final _sel_canAddOutput_ = objc.registerName("canAddOutput:");
 final _objc_msgSend_1497 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
@@ -100711,8 +100977,33 @@ final _objc_msgSend_1497 = objc.msgSendPointer
     .asFunction<
         bool Function(ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCObject>)>();
-late final _sel_addConnection_ = objc.registerName("addConnection:");
 final _objc_msgSend_1498 = objc.msgSendPointer
+    .cast<
+        ffi.NativeFunction<
+            ffi.Void Function(
+                ffi.Pointer<objc.ObjCObject>,
+                ffi.Pointer<objc.ObjCSelector>,
+                ffi.Pointer<objc.ObjCObject>)>>()
+    .asFunction<
+        void Function(ffi.Pointer<objc.ObjCObject>,
+            ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCObject>)>();
+late final _sel_addInputWithNoConnections_ =
+    objc.registerName("addInputWithNoConnections:");
+late final _sel_addOutputWithNoConnections_ =
+    objc.registerName("addOutputWithNoConnections:");
+late final _sel_canAddConnection_ = objc.registerName("canAddConnection:");
+final _objc_msgSend_1499 = objc.msgSendPointer
+    .cast<
+        ffi.NativeFunction<
+            ffi.Bool Function(
+                ffi.Pointer<objc.ObjCObject>,
+                ffi.Pointer<objc.ObjCSelector>,
+                ffi.Pointer<objc.ObjCObject>)>>()
+    .asFunction<
+        bool Function(ffi.Pointer<objc.ObjCObject>,
+            ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCObject>)>();
+late final _sel_addConnection_ = objc.registerName("addConnection:");
+final _objc_msgSend_1500 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -100750,7 +101041,7 @@ late final _sel_synchronizationClock =
     objc.registerName("synchronizationClock");
 late final _sel_hardwareCost = objc.registerName("hardwareCost");
 late final _sel_layerWithSession_ = objc.registerName("layerWithSession:");
-final _objc_msgSend_1499 = objc.msgSendPointer
+final _objc_msgSend_1501 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             instancetype Function(
@@ -100766,7 +101057,7 @@ late final _sel_layerWithSessionWithNoConnection_ =
 late final _sel_initWithSessionWithNoConnection_ =
     objc.registerName("initWithSessionWithNoConnection:");
 late final _sel_session = objc.registerName("session");
-final _objc_msgSend_1500 = objc.msgSendPointer
+final _objc_msgSend_1502 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -100775,7 +101066,7 @@ final _objc_msgSend_1500 = objc.msgSendPointer
         ffi.Pointer<objc.ObjCObject> Function(
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_setSession_ = objc.registerName("setSession:");
-final _objc_msgSend_1501 = objc.msgSendPointer
+final _objc_msgSend_1503 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -100787,7 +101078,7 @@ final _objc_msgSend_1501 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCObject>)>();
 late final _sel_setSessionWithNoConnection_ =
     objc.registerName("setSessionWithNoConnection:");
-final _objc_msgSend_1502 = objc.msgSendPointer
+final _objc_msgSend_1504 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -100798,7 +101089,7 @@ final _objc_msgSend_1502 = objc.msgSendPointer
         void Function(ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCObject>)>();
 late final _sel_connection = objc.registerName("connection");
-final _objc_msgSend_1503 = objc.msgSendPointer
+final _objc_msgSend_1505 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -100809,7 +101100,7 @@ final _objc_msgSend_1503 = objc.msgSendPointer
 late final _sel_isPreviewing = objc.registerName("isPreviewing");
 late final _sel_captureDevicePointOfInterestForPoint_ =
     objc.registerName("captureDevicePointOfInterestForPoint:");
-final _objc_msgSend_1504 = objc.msgSendPointer
+final _objc_msgSend_1506 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             CGPoint Function(ffi.Pointer<objc.ObjCObject>,
@@ -100817,7 +101108,7 @@ final _objc_msgSend_1504 = objc.msgSendPointer
     .asFunction<
         CGPoint Function(ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCSelector>, CGPoint)>();
-final _objc_msgSend_1504Stret = objc.msgSendStretPointer
+final _objc_msgSend_1506Stret = objc.msgSendStretPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -100832,7 +101123,7 @@ late final _sel_pointForCaptureDevicePointOfInterest_ =
     objc.registerName("pointForCaptureDevicePointOfInterest:");
 late final _sel_metadataOutputRectOfInterestForRect_ =
     objc.registerName("metadataOutputRectOfInterestForRect:");
-final _objc_msgSend_1505 = objc.msgSendPointer
+final _objc_msgSend_1507 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             CGRect Function(ffi.Pointer<objc.ObjCObject>,
@@ -100840,7 +101131,7 @@ final _objc_msgSend_1505 = objc.msgSendPointer
     .asFunction<
         CGRect Function(ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCSelector>, CGRect)>();
-final _objc_msgSend_1505Stret = objc.msgSendStretPointer
+final _objc_msgSend_1507Stret = objc.msgSendStretPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(ffi.Pointer<CGRect>, ffi.Pointer<objc.ObjCObject>,
@@ -100852,7 +101143,7 @@ late final _sel_rectForMetadataOutputRectOfInterest_ =
     objc.registerName("rectForMetadataOutputRectOfInterest:");
 late final _sel_transformedMetadataObjectForMetadataObject_ =
     objc.registerName("transformedMetadataObjectForMetadataObject:");
-final _objc_msgSend_1506 = objc.msgSendPointer
+final _objc_msgSend_1508 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(
@@ -100884,7 +101175,7 @@ enum AVCaptureVideoOrientation {
       };
 }
 
-final _objc_msgSend_1507 = objc.msgSendPointer
+final _objc_msgSend_1509 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.UnsignedLong Function(ffi.Pointer<objc.ObjCObject>,
@@ -100893,7 +101184,7 @@ final _objc_msgSend_1507 = objc.msgSendPointer
         int Function(
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_setOrientation_ = objc.registerName("setOrientation:");
-final _objc_msgSend_1508 = objc.msgSendPointer
+final _objc_msgSend_1510 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(ffi.Pointer<objc.ObjCObject>,
@@ -100911,7 +101202,7 @@ late final _sel_isMirrored = objc.registerName("isMirrored");
 late final _sel_setMirrored_ = objc.registerName("setMirrored:");
 late final _sel_connectionWithInputPort_videoPreviewLayer_ =
     objc.registerName("connectionWithInputPort:videoPreviewLayer:");
-final _objc_msgSend_1509 = objc.msgSendPointer
+final _objc_msgSend_1511 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             instancetype Function(
@@ -100931,7 +101222,7 @@ late final _sel_initWithInputPort_videoPreviewLayer_ =
     objc.registerName("initWithInputPort:videoPreviewLayer:");
 late final _sel_inputPorts = objc.registerName("inputPorts");
 late final _sel_output = objc.registerName("output");
-final _objc_msgSend_1510 = objc.msgSendPointer
+final _objc_msgSend_1512 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -100940,7 +101231,7 @@ final _objc_msgSend_1510 = objc.msgSendPointer
         ffi.Pointer<objc.ObjCObject> Function(
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_videoPreviewLayer = objc.registerName("videoPreviewLayer");
-final _objc_msgSend_1511 = objc.msgSendPointer
+final _objc_msgSend_1513 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -100960,7 +101251,7 @@ late final _sel_setAutomaticallyAdjustsVideoMirroring_ =
     objc.registerName("setAutomaticallyAdjustsVideoMirroring:");
 late final _sel_isVideoRotationAngleSupported_ =
     objc.registerName("isVideoRotationAngleSupported:");
-final _objc_msgSend_1512 = objc.msgSendPointer
+final _objc_msgSend_1514 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Bool Function(ffi.Pointer<objc.ObjCObject>,
@@ -100998,7 +101289,7 @@ enum AVVideoFieldMode {
 }
 
 late final _sel_videoFieldMode = objc.registerName("videoFieldMode");
-final _objc_msgSend_1513 = objc.msgSendPointer
+final _objc_msgSend_1515 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.UnsignedLong Function(ffi.Pointer<objc.ObjCObject>,
@@ -101007,7 +101298,7 @@ final _objc_msgSend_1513 = objc.msgSendPointer
         int Function(
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_setVideoFieldMode_ = objc.registerName("setVideoFieldMode:");
-final _objc_msgSend_1514 = objc.msgSendPointer
+final _objc_msgSend_1516 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(ffi.Pointer<objc.ObjCObject>,
@@ -101035,7 +101326,7 @@ late final _sel_setVideoScaleAndCropFactor_ =
     objc.registerName("setVideoScaleAndCropFactor:");
 late final _sel_preferredVideoStabilizationMode =
     objc.registerName("preferredVideoStabilizationMode");
-final _objc_msgSend_1515 = objc.msgSendPointer
+final _objc_msgSend_1517 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Long Function(ffi.Pointer<objc.ObjCObject>,
@@ -101045,7 +101336,7 @@ final _objc_msgSend_1515 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_setPreferredVideoStabilizationMode_ =
     objc.registerName("setPreferredVideoStabilizationMode:");
-final _objc_msgSend_1516 = objc.msgSendPointer
+final _objc_msgSend_1518 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(ffi.Pointer<objc.ObjCObject>,
@@ -101069,7 +101360,7 @@ late final _sel_setCameraIntrinsicMatrixDeliveryEnabled_ =
     objc.registerName("setCameraIntrinsicMatrixDeliveryEnabled:");
 late final _sel_connectionWithMediaType_ =
     objc.registerName("connectionWithMediaType:");
-final _objc_msgSend_1517 = objc.msgSendPointer
+final _objc_msgSend_1519 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(
@@ -101081,7 +101372,7 @@ final _objc_msgSend_1517 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCObject>)>();
 late final _sel_transformedMetadataObjectForMetadataObject_connection_ =
     objc.registerName("transformedMetadataObjectForMetadataObject:connection:");
-final _objc_msgSend_1518 = objc.msgSendPointer
+final _objc_msgSend_1520 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(
@@ -101180,7 +101471,7 @@ class AVCapturePhoto extends objc.NSObject {
   /// semanticSegmentationMatteForType:
   AVSemanticSegmentationMatte? semanticSegmentationMatteForType_(
       objc.NSString semanticSegmentationMatteType) {
-    final _ret = _objc_msgSend_1519(
+    final _ret = _objc_msgSend_1521(
         this.pointer,
         _sel_semanticSegmentationMatteForType_,
         semanticSegmentationMatteType.pointer);
@@ -101207,7 +101498,7 @@ class AVCapturePhoto extends objc.NSObject {
 
   /// resolvedSettings
   AVCaptureResolvedPhotoSettings get resolvedSettings {
-    final _ret = _objc_msgSend_1521(this.pointer, _sel_resolvedSettings);
+    final _ret = _objc_msgSend_1523(this.pointer, _sel_resolvedSettings);
     return AVCaptureResolvedPhotoSettings.castFromPointer(_ret,
         retain: true, release: true);
   }
@@ -101236,7 +101527,7 @@ class AVCapturePhoto extends objc.NSObject {
   /// fileDataRepresentationWithCustomizer:
   objc.NSData? fileDataRepresentationWithCustomizer_(
       objc.ObjCObjectBase customizer) {
-    final _ret = _objc_msgSend_1522(this.pointer,
+    final _ret = _objc_msgSend_1524(this.pointer,
         _sel_fileDataRepresentationWithCustomizer_, customizer.pointer);
     return _ret.address == 0
         ? null
@@ -101250,7 +101541,7 @@ class AVCapturePhoto extends objc.NSObject {
           objc.NSDictionary? replacementEmbeddedThumbnailPhotoFormat,
           ffi.Pointer<__CVBuffer> replacementEmbeddedThumbnailPixelBuffer,
           AVDepthData? replacementDepthData) {
-    final _ret = _objc_msgSend_1523(
+    final _ret = _objc_msgSend_1525(
         this.pointer,
         _sel_fileDataRepresentationWithReplacementMetadata_replacementEmbeddedThumbnailPhotoFormat_replacementEmbeddedThumbnailPixelBuffer_replacementDepthData_,
         replacementMetadata?.pointer ?? ffi.nullptr,
@@ -101274,7 +101565,7 @@ class AVCapturePhoto extends objc.NSObject {
 
   /// bracketSettings
   AVCaptureBracketedStillImageSettings? get bracketSettings {
-    final _ret = _objc_msgSend_1524(this.pointer, _sel_bracketSettings);
+    final _ret = _objc_msgSend_1526(this.pointer, _sel_bracketSettings);
     return _ret.address == 0
         ? null
         : AVCaptureBracketedStillImageSettings.castFromPointer(_ret,
@@ -101288,7 +101579,7 @@ class AVCapturePhoto extends objc.NSObject {
 
   /// lensStabilizationStatus
   AVCaptureLensStabilizationStatus get lensStabilizationStatus {
-    final _ret = _objc_msgSend_1525(this.pointer, _sel_lensStabilizationStatus);
+    final _ret = _objc_msgSend_1527(this.pointer, _sel_lensStabilizationStatus);
     return AVCaptureLensStabilizationStatus.fromValue(_ret);
   }
 
@@ -101380,7 +101671,7 @@ late final _sel_isRawPhoto = objc.registerName("isRawPhoto");
 late final _sel_previewPixelBuffer = objc.registerName("previewPixelBuffer");
 late final _sel_semanticSegmentationMatteForType_ =
     objc.registerName("semanticSegmentationMatteForType:");
-final _objc_msgSend_1519 = objc.msgSendPointer
+final _objc_msgSend_1521 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(
@@ -101437,48 +101728,48 @@ class AVCaptureResolvedPhotoSettings extends objc.NSObject {
   /// photoDimensions
   void getPhotoDimensions(ffi.Pointer<CMVideoDimensions> stret) {
     objc.useMsgSendVariants
-        ? _objc_msgSend_1425Stret(stret, this.pointer, _sel_photoDimensions)
-        : stret.ref = _objc_msgSend_1425(this.pointer, _sel_photoDimensions);
+        ? _objc_msgSend_1427Stret(stret, this.pointer, _sel_photoDimensions)
+        : stret.ref = _objc_msgSend_1427(this.pointer, _sel_photoDimensions);
   }
 
   /// rawPhotoDimensions
   void getRawPhotoDimensions(ffi.Pointer<CMVideoDimensions> stret) {
     objc.useMsgSendVariants
-        ? _objc_msgSend_1425Stret(stret, this.pointer, _sel_rawPhotoDimensions)
-        : stret.ref = _objc_msgSend_1425(this.pointer, _sel_rawPhotoDimensions);
+        ? _objc_msgSend_1427Stret(stret, this.pointer, _sel_rawPhotoDimensions)
+        : stret.ref = _objc_msgSend_1427(this.pointer, _sel_rawPhotoDimensions);
   }
 
   /// previewDimensions
   void getPreviewDimensions(ffi.Pointer<CMVideoDimensions> stret) {
     objc.useMsgSendVariants
-        ? _objc_msgSend_1425Stret(stret, this.pointer, _sel_previewDimensions)
-        : stret.ref = _objc_msgSend_1425(this.pointer, _sel_previewDimensions);
+        ? _objc_msgSend_1427Stret(stret, this.pointer, _sel_previewDimensions)
+        : stret.ref = _objc_msgSend_1427(this.pointer, _sel_previewDimensions);
   }
 
   /// embeddedThumbnailDimensions
   void getEmbeddedThumbnailDimensions(ffi.Pointer<CMVideoDimensions> stret) {
     objc.useMsgSendVariants
-        ? _objc_msgSend_1425Stret(
+        ? _objc_msgSend_1427Stret(
             stret, this.pointer, _sel_embeddedThumbnailDimensions)
         : stret.ref =
-            _objc_msgSend_1425(this.pointer, _sel_embeddedThumbnailDimensions);
+            _objc_msgSend_1427(this.pointer, _sel_embeddedThumbnailDimensions);
   }
 
   /// rawEmbeddedThumbnailDimensions
   void getRawEmbeddedThumbnailDimensions(ffi.Pointer<CMVideoDimensions> stret) {
     objc.useMsgSendVariants
-        ? _objc_msgSend_1425Stret(
+        ? _objc_msgSend_1427Stret(
             stret, this.pointer, _sel_rawEmbeddedThumbnailDimensions)
-        : stret.ref = _objc_msgSend_1425(
+        : stret.ref = _objc_msgSend_1427(
             this.pointer, _sel_rawEmbeddedThumbnailDimensions);
   }
 
   /// portraitEffectsMatteDimensions
   void getPortraitEffectsMatteDimensions(ffi.Pointer<CMVideoDimensions> stret) {
     objc.useMsgSendVariants
-        ? _objc_msgSend_1425Stret(
+        ? _objc_msgSend_1427Stret(
             stret, this.pointer, _sel_portraitEffectsMatteDimensions)
-        : stret.ref = _objc_msgSend_1425(
+        : stret.ref = _objc_msgSend_1427(
             this.pointer, _sel_portraitEffectsMatteDimensions);
   }
 
@@ -101487,12 +101778,12 @@ class AVCaptureResolvedPhotoSettings extends objc.NSObject {
       ffi.Pointer<CMVideoDimensions> stret,
       objc.NSString semanticSegmentationMatteType) {
     objc.useMsgSendVariants
-        ? _objc_msgSend_1520Stret(
+        ? _objc_msgSend_1522Stret(
             stret,
             this.pointer,
             _sel_dimensionsForSemanticSegmentationMatteOfType_,
             semanticSegmentationMatteType.pointer)
-        : stret.ref = _objc_msgSend_1520(
+        : stret.ref = _objc_msgSend_1522(
             this.pointer,
             _sel_dimensionsForSemanticSegmentationMatteOfType_,
             semanticSegmentationMatteType.pointer);
@@ -101501,10 +101792,10 @@ class AVCaptureResolvedPhotoSettings extends objc.NSObject {
   /// livePhotoMovieDimensions
   void getLivePhotoMovieDimensions(ffi.Pointer<CMVideoDimensions> stret) {
     objc.useMsgSendVariants
-        ? _objc_msgSend_1425Stret(
+        ? _objc_msgSend_1427Stret(
             stret, this.pointer, _sel_livePhotoMovieDimensions)
         : stret.ref =
-            _objc_msgSend_1425(this.pointer, _sel_livePhotoMovieDimensions);
+            _objc_msgSend_1427(this.pointer, _sel_livePhotoMovieDimensions);
   }
 
   /// isFlashEnabled
@@ -101520,10 +101811,10 @@ class AVCaptureResolvedPhotoSettings extends objc.NSObject {
   /// deferredPhotoProxyDimensions
   void getDeferredPhotoProxyDimensions(ffi.Pointer<CMVideoDimensions> stret) {
     objc.useMsgSendVariants
-        ? _objc_msgSend_1425Stret(
+        ? _objc_msgSend_1427Stret(
             stret, this.pointer, _sel_deferredPhotoProxyDimensions)
         : stret.ref =
-            _objc_msgSend_1425(this.pointer, _sel_deferredPhotoProxyDimensions);
+            _objc_msgSend_1427(this.pointer, _sel_deferredPhotoProxyDimensions);
   }
 
   /// isStillImageStabilizationEnabled
@@ -101668,7 +101959,7 @@ late final _sel_portraitEffectsMatteDimensions =
     objc.registerName("portraitEffectsMatteDimensions");
 late final _sel_dimensionsForSemanticSegmentationMatteOfType_ =
     objc.registerName("dimensionsForSemanticSegmentationMatteOfType:");
-final _objc_msgSend_1520 = objc.msgSendPointer
+final _objc_msgSend_1522 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             CMVideoDimensions Function(
@@ -101678,7 +101969,7 @@ final _objc_msgSend_1520 = objc.msgSendPointer
     .asFunction<
         CMVideoDimensions Function(ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCObject>)>();
-final _objc_msgSend_1520Stret = objc.msgSendStretPointer
+final _objc_msgSend_1522Stret = objc.msgSendStretPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -101709,7 +102000,7 @@ late final _sel_expectedPhotoCount = objc.registerName("expectedPhotoCount");
 late final _sel_photoProcessingTimeRange =
     objc.registerName("photoProcessingTimeRange");
 late final _sel_resolvedSettings = objc.registerName("resolvedSettings");
-final _objc_msgSend_1521 = objc.msgSendPointer
+final _objc_msgSend_1523 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -101722,7 +102013,7 @@ late final _sel_fileDataRepresentation =
     objc.registerName("fileDataRepresentation");
 late final _sel_fileDataRepresentationWithCustomizer_ =
     objc.registerName("fileDataRepresentationWithCustomizer:");
-final _objc_msgSend_1522 = objc.msgSendPointer
+final _objc_msgSend_1524 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(
@@ -101735,7 +102026,7 @@ final _objc_msgSend_1522 = objc.msgSendPointer
 late final _sel_fileDataRepresentationWithReplacementMetadata_replacementEmbeddedThumbnailPhotoFormat_replacementEmbeddedThumbnailPixelBuffer_replacementDepthData_ =
     objc.registerName(
         "fileDataRepresentationWithReplacementMetadata:replacementEmbeddedThumbnailPhotoFormat:replacementEmbeddedThumbnailPixelBuffer:replacementDepthData:");
-final _objc_msgSend_1523 = objc.msgSendPointer
+final _objc_msgSend_1525 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(
@@ -101886,7 +102177,7 @@ class AVCaptureBracketedStillImageSettings extends objc.NSObject {
 late final _class_AVCaptureBracketedStillImageSettings =
     objc.getClass("AVCaptureBracketedStillImageSettings");
 late final _sel_bracketSettings = objc.registerName("bracketSettings");
-final _objc_msgSend_1524 = objc.msgSendPointer
+final _objc_msgSend_1526 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -101920,7 +102211,7 @@ enum AVCaptureLensStabilizationStatus {
 
 late final _sel_lensStabilizationStatus =
     objc.registerName("lensStabilizationStatus");
-final _objc_msgSend_1525 = objc.msgSendPointer
+final _objc_msgSend_1527 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.UnsignedLong Function(ffi.Pointer<objc.ObjCObject>,
@@ -102039,7 +102330,7 @@ class AVCaptureStillImageOutput extends AVCaptureOutput {
               ffi.Void Function(ffi.Pointer<opaqueCMSampleBuffer>,
                   ffi.Pointer<objc.ObjCObject>)>
           handler) {
-    _objc_msgSend_1526(
+    _objc_msgSend_1528(
         this.pointer,
         _sel_captureStillImageAsynchronouslyFromConnection_completionHandler_,
         connection.pointer,
@@ -102049,7 +102340,7 @@ class AVCaptureStillImageOutput extends AVCaptureOutput {
   /// jpegStillImageNSDataRepresentation:
   static objc.NSData? jpegStillImageNSDataRepresentation_(
       ffi.Pointer<opaqueCMSampleBuffer> jpegSampleBuffer) {
-    final _ret = _objc_msgSend_1527(_class_AVCaptureStillImageOutput,
+    final _ret = _objc_msgSend_1529(_class_AVCaptureStillImageOutput,
         _sel_jpegStillImageNSDataRepresentation_, jpegSampleBuffer);
     return _ret.address == 0
         ? null
@@ -102088,7 +102379,7 @@ class AVCaptureStillImageOutput extends AVCaptureOutput {
           objc.ObjCBlock<
                   ffi.Void Function(ffi.Bool, ffi.Pointer<objc.ObjCObject>)>
               handler) {
-    _objc_msgSend_1528(
+    _objc_msgSend_1530(
         this.pointer,
         _sel_prepareToCaptureStillImageBracketFromConnection_withSettingsArray_completionHandler_,
         connection.pointer,
@@ -102107,7 +102398,7 @@ class AVCaptureStillImageOutput extends AVCaptureOutput {
                       ffi.Pointer<objc.ObjCObject>,
                       ffi.Pointer<objc.ObjCObject>)>
               handler) {
-    _objc_msgSend_1529(
+    _objc_msgSend_1531(
         this.pointer,
         _sel_captureStillImageBracketAsynchronouslyFromConnection_withSettingsArray_completionHandler_,
         connection.pointer,
@@ -102361,7 +102652,7 @@ extension ObjCBlock_ffiVoid_opaqueCMSampleBuffer_NSError_CallExtension
 late final _sel_captureStillImageAsynchronouslyFromConnection_completionHandler_ =
     objc.registerName(
         "captureStillImageAsynchronouslyFromConnection:completionHandler:");
-final _objc_msgSend_1526 = objc.msgSendPointer
+final _objc_msgSend_1528 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -102377,7 +102668,7 @@ final _objc_msgSend_1526 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCBlockImpl>)>();
 late final _sel_jpegStillImageNSDataRepresentation_ =
     objc.registerName("jpegStillImageNSDataRepresentation:");
-final _objc_msgSend_1527 = objc.msgSendPointer
+final _objc_msgSend_1529 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(
@@ -102398,7 +102689,7 @@ late final _sel_setLensStabilizationDuringBracketedCaptureEnabled_ =
 late final _sel_prepareToCaptureStillImageBracketFromConnection_withSettingsArray_completionHandler_ =
     objc.registerName(
         "prepareToCaptureStillImageBracketFromConnection:withSettingsArray:completionHandler:");
-final _objc_msgSend_1528 = objc.msgSendPointer
+final _objc_msgSend_1530 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -102579,7 +102870,7 @@ extension ObjCBlock_ffiVoid_opaqueCMSampleBuffer_AVCaptureBracketedStillImageSet
 late final _sel_captureStillImageBracketAsynchronouslyFromConnection_withSettingsArray_completionHandler_ =
     objc.registerName(
         "captureStillImageBracketAsynchronouslyFromConnection:withSettingsArray:completionHandler:");
-final _objc_msgSend_1529 = objc.msgSendPointer
+final _objc_msgSend_1531 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -102660,7 +102951,7 @@ class AVExternalStorageDevice extends objc.NSObject {
 
   /// uuid
   NSUUID? get uuid {
-    final _ret = _objc_msgSend_1530(this.pointer, _sel_uuid);
+    final _ret = _objc_msgSend_1532(this.pointer, _sel_uuid);
     return _ret.address == 0
         ? null
         : NSUUID.castFromPointer(_ret, retain: true, release: true);
@@ -102675,7 +102966,7 @@ class AVExternalStorageDevice extends objc.NSObject {
   objc.NSArray? nextAvailableURLsWithPathExtensions_error_(
       objc.NSArray extensionArray,
       ffi.Pointer<ffi.Pointer<objc.ObjCObject>> outError) {
-    final _ret = _objc_msgSend_1531(
+    final _ret = _objc_msgSend_1533(
         this.pointer,
         _sel_nextAvailableURLsWithPathExtensions_error_,
         extensionArray.pointer,
@@ -102687,7 +102978,7 @@ class AVExternalStorageDevice extends objc.NSObject {
 
   /// authorizationStatus
   static AVAuthorizationStatus getAuthorizationStatus() {
-    final _ret = _objc_msgSend_1532(
+    final _ret = _objc_msgSend_1534(
         _class_AVExternalStorageDevice, _sel_authorizationStatus);
     return AVAuthorizationStatus.fromValue(_ret);
   }
@@ -102695,7 +102986,7 @@ class AVExternalStorageDevice extends objc.NSObject {
   /// requestAccessWithCompletionHandler:
   static void requestAccessWithCompletionHandler_(
       objc.ObjCBlock<ffi.Void Function(ffi.Bool)> handler) {
-    _objc_msgSend_1340(_class_AVExternalStorageDevice,
+    _objc_msgSend_1342(_class_AVExternalStorageDevice,
         _sel_requestAccessWithCompletionHandler_, handler.pointer);
   }
 
@@ -102789,7 +103080,7 @@ late final _class_AVExternalStorageDevice =
 late final _sel_freeSize = objc.registerName("freeSize");
 late final _sel_totalSize = objc.registerName("totalSize");
 late final _sel_uuid = objc.registerName("uuid");
-final _objc_msgSend_1530 = objc.msgSendPointer
+final _objc_msgSend_1532 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -102801,7 +103092,7 @@ late final _sel_isNotRecommendedForCaptureUse =
     objc.registerName("isNotRecommendedForCaptureUse");
 late final _sel_nextAvailableURLsWithPathExtensions_error_ =
     objc.registerName("nextAvailableURLsWithPathExtensions:error:");
-final _objc_msgSend_1531 = objc.msgSendPointer
+final _objc_msgSend_1533 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(
@@ -102816,7 +103107,7 @@ final _objc_msgSend_1531 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<ffi.Pointer<objc.ObjCObject>>)>();
 late final _sel_authorizationStatus = objc.registerName("authorizationStatus");
-final _objc_msgSend_1532 = objc.msgSendPointer
+final _objc_msgSend_1534 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.UnsignedLong Function(ffi.Pointer<objc.ObjCObject>,
@@ -102896,7 +103187,7 @@ class NSKeyedArchiver extends objc.NSCoder {
 
   /// initRequiringSecureCoding:
   NSKeyedArchiver initRequiringSecureCoding_(bool requiresSecureCoding) {
-    final _ret = _objc_msgSend_1533(
+    final _ret = _objc_msgSend_1535(
         this.pointer, _sel_initRequiringSecureCoding_, requiresSecureCoding);
     return NSKeyedArchiver.castFromPointer(_ret, retain: true, release: true);
   }
@@ -102906,7 +103197,7 @@ class NSKeyedArchiver extends objc.NSCoder {
       objc.ObjCObjectBase object,
       bool requiresSecureCoding,
       ffi.Pointer<ffi.Pointer<objc.ObjCObject>> error) {
-    final _ret = _objc_msgSend_1534(
+    final _ret = _objc_msgSend_1536(
         _class_NSKeyedArchiver,
         _sel_archivedDataWithRootObject_requiringSecureCoding_error_,
         object.pointer,
@@ -102925,7 +103216,7 @@ class NSKeyedArchiver extends objc.NSCoder {
 
   /// initForWritingWithMutableData:
   NSKeyedArchiver initForWritingWithMutableData_(objc.NSMutableData data) {
-    final _ret = _objc_msgSend_1535(
+    final _ret = _objc_msgSend_1537(
         this.pointer, _sel_initForWritingWithMutableData_, data.pointer);
     return NSKeyedArchiver.castFromPointer(_ret, retain: true, release: true);
   }
@@ -102933,7 +103224,7 @@ class NSKeyedArchiver extends objc.NSCoder {
   /// archivedDataWithRootObject:
   static objc.NSData archivedDataWithRootObject_(
       objc.ObjCObjectBase rootObject) {
-    final _ret = _objc_msgSend_1536(_class_NSKeyedArchiver,
+    final _ret = _objc_msgSend_1538(_class_NSKeyedArchiver,
         _sel_archivedDataWithRootObject_, rootObject.pointer);
     return objc.NSData.castFromPointer(_ret, retain: true, release: true);
   }
@@ -102941,7 +103232,7 @@ class NSKeyedArchiver extends objc.NSCoder {
   /// archiveRootObject:toFile:
   static bool archiveRootObject_toFile_(
       objc.ObjCObjectBase rootObject, objc.NSString path) {
-    return _objc_msgSend_1537(_class_NSKeyedArchiver,
+    return _objc_msgSend_1539(_class_NSKeyedArchiver,
         _sel_archiveRootObject_toFile_, rootObject.pointer, path.pointer);
   }
 
@@ -102961,13 +103252,13 @@ class NSKeyedArchiver extends objc.NSCoder {
 
   /// outputFormat
   NSPropertyListFormat get outputFormat {
-    final _ret = _objc_msgSend_1538(this.pointer, _sel_outputFormat);
+    final _ret = _objc_msgSend_1540(this.pointer, _sel_outputFormat);
     return NSPropertyListFormat.fromValue(_ret);
   }
 
   /// setOutputFormat:
   set outputFormat(NSPropertyListFormat value) {
-    return _objc_msgSend_1539(this.pointer, _sel_setOutputFormat_, value.value);
+    return _objc_msgSend_1541(this.pointer, _sel_setOutputFormat_, value.value);
   }
 
   /// encodedData
@@ -102984,7 +103275,7 @@ class NSKeyedArchiver extends objc.NSCoder {
   /// setClassName:forClass:
   void setClassName_forClass_(
       objc.NSString? codedName, objc.ObjCObjectBase cls) {
-    _objc_msgSend_1540(this.pointer, _sel_setClassName_forClass_,
+    _objc_msgSend_1542(this.pointer, _sel_setClassName_forClass_,
         codedName?.pointer ?? ffi.nullptr, cls.pointer);
   }
 
@@ -103012,44 +103303,44 @@ class NSKeyedArchiver extends objc.NSCoder {
 
   /// encodeBool:forKey:
   void encodeBool_forKey_(bool value, objc.NSString key) {
-    _objc_msgSend_1541(
+    _objc_msgSend_1543(
         this.pointer, _sel_encodeBool_forKey_, value, key.pointer);
   }
 
   /// encodeInt:forKey:
   void encodeInt_forKey_(int value, objc.NSString key) {
-    _objc_msgSend_1542(
+    _objc_msgSend_1544(
         this.pointer, _sel_encodeInt_forKey_, value, key.pointer);
   }
 
   /// encodeInt32:forKey:
   void encodeInt32_forKey_(int value, objc.NSString key) {
-    _objc_msgSend_1543(
+    _objc_msgSend_1545(
         this.pointer, _sel_encodeInt32_forKey_, value, key.pointer);
   }
 
   /// encodeInt64:forKey:
   void encodeInt64_forKey_(int value, objc.NSString key) {
-    _objc_msgSend_1544(
+    _objc_msgSend_1546(
         this.pointer, _sel_encodeInt64_forKey_, value, key.pointer);
   }
 
   /// encodeFloat:forKey:
   void encodeFloat_forKey_(double value, objc.NSString key) {
-    _objc_msgSend_1545(
+    _objc_msgSend_1547(
         this.pointer, _sel_encodeFloat_forKey_, value, key.pointer);
   }
 
   /// encodeDouble:forKey:
   void encodeDouble_forKey_(double value, objc.NSString key) {
-    _objc_msgSend_1546(
+    _objc_msgSend_1548(
         this.pointer, _sel_encodeDouble_forKey_, value, key.pointer);
   }
 
   /// encodeBytes:length:forKey:
   void encodeBytes_length_forKey_(
       ffi.Pointer<ffi.Uint8> bytes, int length, objc.NSString key) {
-    _objc_msgSend_1547(this.pointer, _sel_encodeBytes_length_forKey_, bytes,
+    _objc_msgSend_1549(this.pointer, _sel_encodeBytes_length_forKey_, bytes,
         length, key.pointer);
   }
 
@@ -103067,7 +103358,7 @@ class NSKeyedArchiver extends objc.NSCoder {
 late final _class_NSKeyedArchiver = objc.getClass("NSKeyedArchiver");
 late final _sel_initRequiringSecureCoding_ =
     objc.registerName("initRequiringSecureCoding:");
-final _objc_msgSend_1533 = objc.msgSendPointer
+final _objc_msgSend_1535 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             instancetype Function(ffi.Pointer<objc.ObjCObject>,
@@ -103077,7 +103368,7 @@ final _objc_msgSend_1533 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCSelector>, bool)>();
 late final _sel_archivedDataWithRootObject_requiringSecureCoding_error_ = objc
     .registerName("archivedDataWithRootObject:requiringSecureCoding:error:");
-final _objc_msgSend_1534 = objc.msgSendPointer
+final _objc_msgSend_1536 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(
@@ -103095,7 +103386,7 @@ final _objc_msgSend_1534 = objc.msgSendPointer
             ffi.Pointer<ffi.Pointer<objc.ObjCObject>>)>();
 late final _sel_initForWritingWithMutableData_ =
     objc.registerName("initForWritingWithMutableData:");
-final _objc_msgSend_1535 = objc.msgSendPointer
+final _objc_msgSend_1537 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             instancetype Function(
@@ -103107,7 +103398,7 @@ final _objc_msgSend_1535 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCObject>)>();
 late final _sel_archivedDataWithRootObject_ =
     objc.registerName("archivedDataWithRootObject:");
-final _objc_msgSend_1536 = objc.msgSendPointer
+final _objc_msgSend_1538 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(
@@ -103119,7 +103410,7 @@ final _objc_msgSend_1536 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCObject>)>();
 late final _sel_archiveRootObject_toFile_ =
     objc.registerName("archiveRootObject:toFile:");
-final _objc_msgSend_1537 = objc.msgSendPointer
+final _objc_msgSend_1539 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Bool Function(
@@ -103133,7 +103424,7 @@ final _objc_msgSend_1537 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCSelector>,
             ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCObject>)>();
-final _objc_msgSend_1538 = objc.msgSendPointer
+final _objc_msgSend_1540 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.UnsignedLong Function(ffi.Pointer<objc.ObjCObject>,
@@ -103142,7 +103433,7 @@ final _objc_msgSend_1538 = objc.msgSendPointer
         int Function(
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_setOutputFormat_ = objc.registerName("setOutputFormat:");
-final _objc_msgSend_1539 = objc.msgSendPointer
+final _objc_msgSend_1541 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(ffi.Pointer<objc.ObjCObject>,
@@ -103154,7 +103445,7 @@ late final _sel_encodedData = objc.registerName("encodedData");
 late final _sel_finishEncoding = objc.registerName("finishEncoding");
 late final _sel_setClassName_forClass_ =
     objc.registerName("setClassName:forClass:");
-final _objc_msgSend_1540 = objc.msgSendPointer
+final _objc_msgSend_1542 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -103174,7 +103465,7 @@ late final _sel_encodeObject_forKey_ =
 late final _sel_encodeConditionalObject_forKey_ =
     objc.registerName("encodeConditionalObject:forKey:");
 late final _sel_encodeBool_forKey_ = objc.registerName("encodeBool:forKey:");
-final _objc_msgSend_1541 = objc.msgSendPointer
+final _objc_msgSend_1543 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -103189,7 +103480,7 @@ final _objc_msgSend_1541 = objc.msgSendPointer
             bool,
             ffi.Pointer<objc.ObjCObject>)>();
 late final _sel_encodeInt_forKey_ = objc.registerName("encodeInt:forKey:");
-final _objc_msgSend_1542 = objc.msgSendPointer
+final _objc_msgSend_1544 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -103204,7 +103495,7 @@ final _objc_msgSend_1542 = objc.msgSendPointer
             int,
             ffi.Pointer<objc.ObjCObject>)>();
 late final _sel_encodeInt32_forKey_ = objc.registerName("encodeInt32:forKey:");
-final _objc_msgSend_1543 = objc.msgSendPointer
+final _objc_msgSend_1545 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -103219,7 +103510,7 @@ final _objc_msgSend_1543 = objc.msgSendPointer
             int,
             ffi.Pointer<objc.ObjCObject>)>();
 late final _sel_encodeInt64_forKey_ = objc.registerName("encodeInt64:forKey:");
-final _objc_msgSend_1544 = objc.msgSendPointer
+final _objc_msgSend_1546 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -103234,7 +103525,7 @@ final _objc_msgSend_1544 = objc.msgSendPointer
             int,
             ffi.Pointer<objc.ObjCObject>)>();
 late final _sel_encodeFloat_forKey_ = objc.registerName("encodeFloat:forKey:");
-final _objc_msgSend_1545 = objc.msgSendPointer
+final _objc_msgSend_1547 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -103250,7 +103541,7 @@ final _objc_msgSend_1545 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>)>();
 late final _sel_encodeDouble_forKey_ =
     objc.registerName("encodeDouble:forKey:");
-final _objc_msgSend_1546 = objc.msgSendPointer
+final _objc_msgSend_1548 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -103266,7 +103557,7 @@ final _objc_msgSend_1546 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>)>();
 late final _sel_encodeBytes_length_forKey_ =
     objc.registerName("encodeBytes:length:forKey:");
-final _objc_msgSend_1547 = objc.msgSendPointer
+final _objc_msgSend_1549 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -103309,7 +103600,7 @@ class NSThread extends objc.NSObject {
 
   /// currentThread
   static NSThread getCurrentThread() {
-    final _ret = _objc_msgSend_1548(_class_NSThread, _sel_currentThread);
+    final _ret = _objc_msgSend_1550(_class_NSThread, _sel_currentThread);
     return NSThread.castFromPointer(_ret, retain: true, release: true);
   }
 
@@ -103340,7 +103631,7 @@ class NSThread extends objc.NSObject {
 
   /// threadDictionary
   objc.NSMutableDictionary get threadDictionary {
-    final _ret = _objc_msgSend_1549(this.pointer, _sel_threadDictionary);
+    final _ret = _objc_msgSend_1551(this.pointer, _sel_threadDictionary);
     return objc.NSMutableDictionary.castFromPointer(_ret,
         retain: true, release: true);
   }
@@ -103428,7 +103719,7 @@ class NSThread extends objc.NSObject {
 
   /// mainThread
   static NSThread getMainThread() {
-    final _ret = _objc_msgSend_1548(_class_NSThread, _sel_mainThread);
+    final _ret = _objc_msgSend_1550(_class_NSThread, _sel_mainThread);
     return NSThread.castFromPointer(_ret, retain: true, release: true);
   }
 
@@ -103441,7 +103732,7 @@ class NSThread extends objc.NSObject {
   /// initWithTarget:selector:object:
   NSThread initWithTarget_selector_object_(objc.ObjCObjectBase target,
       ffi.Pointer<objc.ObjCSelector> selector, objc.ObjCObjectBase? argument) {
-    final _ret = _objc_msgSend_1550(
+    final _ret = _objc_msgSend_1552(
         this.pointer,
         _sel_initWithTarget_selector_object_,
         target.pointer,
@@ -103453,7 +103744,7 @@ class NSThread extends objc.NSObject {
   /// initWithBlock:
   NSThread initWithBlock_(objc.ObjCBlock<ffi.Void Function()> block) {
     final _ret =
-        _objc_msgSend_1551(this.pointer, _sel_initWithBlock_, block.pointer);
+        _objc_msgSend_1553(this.pointer, _sel_initWithBlock_, block.pointer);
     return NSThread.castFromPointer(_ret, retain: true, release: true);
   }
 
@@ -103576,7 +103867,7 @@ class NSThread extends objc.NSObject {
 
 late final _class_NSThread = objc.getClass("NSThread");
 late final _sel_currentThread = objc.registerName("currentThread");
-final _objc_msgSend_1548 = objc.msgSendPointer
+final _objc_msgSend_1550 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -103590,7 +103881,7 @@ late final _sel_detachNewThreadSelector_toTarget_withObject_ =
     objc.registerName("detachNewThreadSelector:toTarget:withObject:");
 late final _sel_isMultiThreaded = objc.registerName("isMultiThreaded");
 late final _sel_threadDictionary = objc.registerName("threadDictionary");
-final _objc_msgSend_1549 = objc.msgSendPointer
+final _objc_msgSend_1551 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -103608,7 +103899,7 @@ late final _sel_isMainThread = objc.registerName("isMainThread");
 late final _sel_mainThread = objc.registerName("mainThread");
 late final _sel_initWithTarget_selector_object_ =
     objc.registerName("initWithTarget:selector:object:");
-final _objc_msgSend_1550 = objc.msgSendPointer
+final _objc_msgSend_1552 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             instancetype Function(
@@ -103625,7 +103916,7 @@ final _objc_msgSend_1550 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCSelector>,
             ffi.Pointer<objc.ObjCObject>)>();
 late final _sel_initWithBlock_ = objc.registerName("initWithBlock:");
-final _objc_msgSend_1551 = objc.msgSendPointer
+final _objc_msgSend_1553 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             instancetype Function(
@@ -103660,7 +103951,7 @@ class NSPredicate extends objc.NSObject {
   /// predicateWithFormat:argumentArray:
   static NSPredicate predicateWithFormat_argumentArray_(
       objc.NSString predicateFormat, objc.NSArray? arguments) {
-    final _ret = _objc_msgSend_1552(
+    final _ret = _objc_msgSend_1554(
         _class_NSPredicate,
         _sel_predicateWithFormat_argumentArray_,
         predicateFormat.pointer,
@@ -103670,7 +103961,7 @@ class NSPredicate extends objc.NSObject {
 
   /// predicateWithFormat:
   static NSPredicate predicateWithFormat_(objc.NSString predicateFormat) {
-    final _ret = _objc_msgSend_1553(
+    final _ret = _objc_msgSend_1555(
         _class_NSPredicate, _sel_predicateWithFormat_, predicateFormat.pointer);
     return NSPredicate.castFromPointer(_ret, retain: true, release: true);
   }
@@ -103678,7 +103969,7 @@ class NSPredicate extends objc.NSObject {
   /// predicateWithFormat:arguments:
   static NSPredicate predicateWithFormat_arguments_(
       objc.NSString predicateFormat, ffi.Pointer<ffi.Char> argList) {
-    final _ret = _objc_msgSend_1554(_class_NSPredicate,
+    final _ret = _objc_msgSend_1556(_class_NSPredicate,
         _sel_predicateWithFormat_arguments_, predicateFormat.pointer, argList);
     return NSPredicate.castFromPointer(_ret, retain: true, release: true);
   }
@@ -103686,7 +103977,7 @@ class NSPredicate extends objc.NSObject {
   /// predicateFromMetadataQueryString:
   static NSPredicate? predicateFromMetadataQueryString_(
       objc.NSString queryString) {
-    final _ret = _objc_msgSend_1555(_class_NSPredicate,
+    final _ret = _objc_msgSend_1557(_class_NSPredicate,
         _sel_predicateFromMetadataQueryString_, queryString.pointer);
     return _ret.address == 0
         ? null
@@ -103696,7 +103987,7 @@ class NSPredicate extends objc.NSObject {
   /// predicateWithValue:
   static NSPredicate predicateWithValue_(bool value) {
     final _ret =
-        _objc_msgSend_1556(_class_NSPredicate, _sel_predicateWithValue_, value);
+        _objc_msgSend_1558(_class_NSPredicate, _sel_predicateWithValue_, value);
     return NSPredicate.castFromPointer(_ret, retain: true, release: true);
   }
 
@@ -103706,7 +103997,7 @@ class NSPredicate extends objc.NSObject {
               ffi.Bool Function(
                   ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCObject>)>
           block) {
-    final _ret = _objc_msgSend_1557(
+    final _ret = _objc_msgSend_1559(
         _class_NSPredicate, _sel_predicateWithBlock_, block.pointer);
     return NSPredicate.castFromPointer(_ret, retain: true, release: true);
   }
@@ -103726,14 +104017,14 @@ class NSPredicate extends objc.NSObject {
 
   /// evaluateWithObject:
   bool evaluateWithObject_(objc.ObjCObjectBase? object) {
-    return _objc_msgSend_1558(
+    return _objc_msgSend_1560(
         this.pointer, _sel_evaluateWithObject_, object?.pointer ?? ffi.nullptr);
   }
 
   /// evaluateWithObject:substitutionVariables:
   bool evaluateWithObject_substitutionVariables_(
       objc.ObjCObjectBase? object, objc.NSDictionary? bindings) {
-    return _objc_msgSend_1559(
+    return _objc_msgSend_1561(
         this.pointer,
         _sel_evaluateWithObject_substitutionVariables_,
         object?.pointer ?? ffi.nullptr,
@@ -103842,7 +104133,7 @@ class NSPredicate extends objc.NSObject {
 late final _class_NSPredicate = objc.getClass("NSPredicate");
 late final _sel_predicateWithFormat_argumentArray_ =
     objc.registerName("predicateWithFormat:argumentArray:");
-final _objc_msgSend_1552 = objc.msgSendPointer
+final _objc_msgSend_1554 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(
@@ -103858,7 +104149,7 @@ final _objc_msgSend_1552 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>)>();
 late final _sel_predicateWithFormat_ =
     objc.registerName("predicateWithFormat:");
-final _objc_msgSend_1553 = objc.msgSendPointer
+final _objc_msgSend_1555 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(
@@ -103870,7 +104161,7 @@ final _objc_msgSend_1553 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCObject>)>();
 late final _sel_predicateWithFormat_arguments_ =
     objc.registerName("predicateWithFormat:arguments:");
-final _objc_msgSend_1554 = objc.msgSendPointer
+final _objc_msgSend_1556 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(
@@ -103886,7 +104177,7 @@ final _objc_msgSend_1554 = objc.msgSendPointer
             ffi.Pointer<ffi.Char>)>();
 late final _sel_predicateFromMetadataQueryString_ =
     objc.registerName("predicateFromMetadataQueryString:");
-final _objc_msgSend_1555 = objc.msgSendPointer
+final _objc_msgSend_1557 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(
@@ -103897,7 +104188,7 @@ final _objc_msgSend_1555 = objc.msgSendPointer
         ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCObject>)>();
 late final _sel_predicateWithValue_ = objc.registerName("predicateWithValue:");
-final _objc_msgSend_1556 = objc.msgSendPointer
+final _objc_msgSend_1558 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -103998,7 +104289,7 @@ extension ObjCBlock_bool_objcObjCObject_NSDictionary_CallExtension
 }
 
 late final _sel_predicateWithBlock_ = objc.registerName("predicateWithBlock:");
-final _objc_msgSend_1557 = objc.msgSendPointer
+final _objc_msgSend_1559 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(
@@ -104012,7 +104303,7 @@ late final _sel_predicateFormat = objc.registerName("predicateFormat");
 late final _sel_predicateWithSubstitutionVariables_ =
     objc.registerName("predicateWithSubstitutionVariables:");
 late final _sel_evaluateWithObject_ = objc.registerName("evaluateWithObject:");
-final _objc_msgSend_1558 = objc.msgSendPointer
+final _objc_msgSend_1560 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Bool Function(
@@ -104024,7 +104315,7 @@ final _objc_msgSend_1558 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCObject>)>();
 late final _sel_evaluateWithObject_substitutionVariables_ =
     objc.registerName("evaluateWithObject:substitutionVariables:");
-final _objc_msgSend_1559 = objc.msgSendPointer
+final _objc_msgSend_1561 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Bool Function(
@@ -104083,14 +104374,14 @@ class NSArchiver extends objc.NSCoder {
 
   /// initForWritingWithMutableData:
   NSArchiver initForWritingWithMutableData_(objc.NSMutableData mdata) {
-    final _ret = _objc_msgSend_1535(
+    final _ret = _objc_msgSend_1537(
         this.pointer, _sel_initForWritingWithMutableData_, mdata.pointer);
     return NSArchiver.castFromPointer(_ret, retain: true, release: true);
   }
 
   /// archiverData
   objc.NSMutableData get archiverData {
-    final _ret = _objc_msgSend_1560(this.pointer, _sel_archiverData);
+    final _ret = _objc_msgSend_1562(this.pointer, _sel_archiverData);
     return objc.NSMutableData.castFromPointer(_ret,
         retain: true, release: true);
   }
@@ -104109,7 +104400,7 @@ class NSArchiver extends objc.NSCoder {
   /// archivedDataWithRootObject:
   static objc.NSData archivedDataWithRootObject_(
       objc.ObjCObjectBase rootObject) {
-    final _ret = _objc_msgSend_1536(_class_NSArchiver,
+    final _ret = _objc_msgSend_1538(_class_NSArchiver,
         _sel_archivedDataWithRootObject_, rootObject.pointer);
     return objc.NSData.castFromPointer(_ret, retain: true, release: true);
   }
@@ -104117,7 +104408,7 @@ class NSArchiver extends objc.NSCoder {
   /// archiveRootObject:toFile:
   static bool archiveRootObject_toFile_(
       objc.ObjCObjectBase rootObject, objc.NSString path) {
-    return _objc_msgSend_1537(_class_NSArchiver, _sel_archiveRootObject_toFile_,
+    return _objc_msgSend_1539(_class_NSArchiver, _sel_archiveRootObject_toFile_,
         rootObject.pointer, path.pointer);
   }
 
@@ -104140,14 +104431,14 @@ class NSArchiver extends objc.NSCoder {
   /// replaceObject:withObject:
   void replaceObject_withObject_(
       objc.ObjCObjectBase object, objc.ObjCObjectBase newObject) {
-    _objc_msgSend_1561(this.pointer, _sel_replaceObject_withObject_,
+    _objc_msgSend_1563(this.pointer, _sel_replaceObject_withObject_,
         object.pointer, newObject.pointer);
   }
 }
 
 late final _class_NSArchiver = objc.getClass("NSArchiver");
 late final _sel_archiverData = objc.registerName("archiverData");
-final _objc_msgSend_1560 = objc.msgSendPointer
+final _objc_msgSend_1562 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -104164,7 +104455,7 @@ late final _sel_classNameEncodedForTrueClassName_ =
     objc.registerName("classNameEncodedForTrueClassName:");
 late final _sel_replaceObject_withObject_ =
     objc.registerName("replaceObject:withObject:");
-final _objc_msgSend_1561 = objc.msgSendPointer
+final _objc_msgSend_1563 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -104211,7 +104502,7 @@ class NSCalendarDate extends objc.NSDate {
       objc.NSString description,
       objc.NSString format,
       objc.ObjCObjectBase? locale) {
-    final _ret = _objc_msgSend_1562(
+    final _ret = _objc_msgSend_1564(
         _class_NSCalendarDate,
         _sel_dateWithString_calendarFormat_locale_,
         description.pointer,
@@ -104225,7 +104516,7 @@ class NSCalendarDate extends objc.NSDate {
   /// dateWithString:calendarFormat:
   static objc.ObjCObjectBase? dateWithString_calendarFormat_(
       objc.NSString description, objc.NSString format) {
-    final _ret = _objc_msgSend_1563(
+    final _ret = _objc_msgSend_1565(
         _class_NSCalendarDate,
         _sel_dateWithString_calendarFormat_,
         description.pointer,
@@ -104239,7 +104530,7 @@ class NSCalendarDate extends objc.NSDate {
   static objc.ObjCObjectBase
       dateWithYear_month_day_hour_minute_second_timeZone_(int year, int month,
           int day, int hour, int minute, int second, NSTimeZone? aTimeZone) {
-    final _ret = _objc_msgSend_1564(
+    final _ret = _objc_msgSend_1566(
         _class_NSCalendarDate,
         _sel_dateWithYear_month_day_hour_minute_second_timeZone_,
         year,
@@ -104255,7 +104546,7 @@ class NSCalendarDate extends objc.NSDate {
   /// dateByAddingYears:months:days:hours:minutes:seconds:
   NSCalendarDate dateByAddingYears_months_days_hours_minutes_seconds_(
       int year, int month, int day, int hour, int minute, int second) {
-    final _ret = _objc_msgSend_1565(
+    final _ret = _objc_msgSend_1567(
         this.pointer,
         _sel_dateByAddingYears_months_days_hours_minutes_seconds_,
         year,
@@ -104321,7 +104612,7 @@ class NSCalendarDate extends objc.NSDate {
   /// descriptionWithCalendarFormat:locale:
   objc.NSString descriptionWithCalendarFormat_locale_(
       objc.NSString format, objc.ObjCObjectBase? locale) {
-    final _ret = _objc_msgSend_1566(
+    final _ret = _objc_msgSend_1568(
         this.pointer,
         _sel_descriptionWithCalendarFormat_locale_,
         format.pointer,
@@ -104338,7 +104629,7 @@ class NSCalendarDate extends objc.NSDate {
 
   /// descriptionWithLocale:
   objc.NSString descriptionWithLocale_(objc.ObjCObjectBase? locale) {
-    final _ret = _objc_msgSend_1567(this.pointer, _sel_descriptionWithLocale_,
+    final _ret = _objc_msgSend_1569(this.pointer, _sel_descriptionWithLocale_,
         locale?.pointer ?? ffi.nullptr);
     return objc.NSString.castFromPointer(_ret, retain: true, release: true);
   }
@@ -104354,7 +104645,7 @@ class NSCalendarDate extends objc.NSDate {
       objc.NSString description,
       objc.NSString format,
       objc.ObjCObjectBase? locale) {
-    final _ret = _objc_msgSend_1562(
+    final _ret = _objc_msgSend_1564(
         this.pointer,
         _sel_initWithString_calendarFormat_locale_,
         description.pointer,
@@ -104368,7 +104659,7 @@ class NSCalendarDate extends objc.NSDate {
   /// initWithString:calendarFormat:
   objc.ObjCObjectBase? initWithString_calendarFormat_(
       objc.NSString description, objc.NSString format) {
-    final _ret = _objc_msgSend_1563(
+    final _ret = _objc_msgSend_1565(
         this.pointer,
         _sel_initWithString_calendarFormat_,
         description.pointer,
@@ -104396,7 +104687,7 @@ class NSCalendarDate extends objc.NSDate {
       int minute,
       int second,
       NSTimeZone? aTimeZone) {
-    final _ret = _objc_msgSend_1564(
+    final _ret = _objc_msgSend_1566(
         this.pointer,
         _sel_initWithYear_month_day_hour_minute_second_timeZone_,
         year,
@@ -104411,13 +104702,13 @@ class NSCalendarDate extends objc.NSDate {
 
   /// setCalendarFormat:
   void setCalendarFormat_(objc.NSString? format) {
-    _objc_msgSend_1568(
+    _objc_msgSend_1570(
         this.pointer, _sel_setCalendarFormat_, format?.pointer ?? ffi.nullptr);
   }
 
   /// setTimeZone:
   void setTimeZone_(NSTimeZone? aTimeZone) {
-    _objc_msgSend_1569(
+    _objc_msgSend_1571(
         this.pointer, _sel_setTimeZone_, aTimeZone?.pointer ?? ffi.nullptr);
   }
 
@@ -104430,7 +104721,7 @@ class NSCalendarDate extends objc.NSDate {
       ffi.Pointer<ffi.Long> mip,
       ffi.Pointer<ffi.Long> sp,
       NSCalendarDate date) {
-    _objc_msgSend_1570(
+    _objc_msgSend_1572(
         this.pointer,
         _sel_years_months_days_hours_minutes_seconds_sinceDate_,
         yp,
@@ -104471,7 +104762,7 @@ class NSCalendarDate extends objc.NSDate {
 
   /// initWithTimeIntervalSinceReferenceDate:
   NSCalendarDate initWithTimeIntervalSinceReferenceDate_(double ti) {
-    final _ret = _objc_msgSend_1571(
+    final _ret = _objc_msgSend_1573(
         this.pointer, _sel_initWithTimeIntervalSinceReferenceDate_, ti);
     return NSCalendarDate.castFromPointer(_ret, retain: true, release: true);
   }
@@ -104488,7 +104779,7 @@ class NSCalendarDate extends objc.NSDate {
   /// dateByAddingTimeInterval:
   NSCalendarDate dateByAddingTimeInterval_(double ti) {
     final _ret =
-        _objc_msgSend_1571(this.pointer, _sel_dateByAddingTimeInterval_, ti);
+        _objc_msgSend_1573(this.pointer, _sel_dateByAddingTimeInterval_, ti);
     return NSCalendarDate.castFromPointer(_ret, retain: true, release: true);
   }
 
@@ -104500,21 +104791,21 @@ class NSCalendarDate extends objc.NSDate {
 
   /// dateWithTimeIntervalSinceNow:
   static NSCalendarDate dateWithTimeIntervalSinceNow_(double secs) {
-    final _ret = _objc_msgSend_1571(
+    final _ret = _objc_msgSend_1573(
         _class_NSCalendarDate, _sel_dateWithTimeIntervalSinceNow_, secs);
     return NSCalendarDate.castFromPointer(_ret, retain: true, release: true);
   }
 
   /// dateWithTimeIntervalSinceReferenceDate:
   static NSCalendarDate dateWithTimeIntervalSinceReferenceDate_(double ti) {
-    final _ret = _objc_msgSend_1571(_class_NSCalendarDate,
+    final _ret = _objc_msgSend_1573(_class_NSCalendarDate,
         _sel_dateWithTimeIntervalSinceReferenceDate_, ti);
     return NSCalendarDate.castFromPointer(_ret, retain: true, release: true);
   }
 
   /// dateWithTimeIntervalSince1970:
   static NSCalendarDate dateWithTimeIntervalSince1970_(double secs) {
-    final _ret = _objc_msgSend_1571(
+    final _ret = _objc_msgSend_1573(
         _class_NSCalendarDate, _sel_dateWithTimeIntervalSince1970_, secs);
     return NSCalendarDate.castFromPointer(_ret, retain: true, release: true);
   }
@@ -104522,7 +104813,7 @@ class NSCalendarDate extends objc.NSDate {
   /// dateWithTimeInterval:sinceDate:
   static NSCalendarDate dateWithTimeInterval_sinceDate_(
       double secsToBeAdded, objc.NSDate date) {
-    final _ret = _objc_msgSend_1572(_class_NSCalendarDate,
+    final _ret = _objc_msgSend_1574(_class_NSCalendarDate,
         _sel_dateWithTimeInterval_sinceDate_, secsToBeAdded, date.pointer);
     return NSCalendarDate.castFromPointer(_ret, retain: true, release: true);
   }
@@ -104535,14 +104826,14 @@ class NSCalendarDate extends objc.NSDate {
 
   /// initWithTimeIntervalSinceNow:
   NSCalendarDate initWithTimeIntervalSinceNow_(double secs) {
-    final _ret = _objc_msgSend_1571(
+    final _ret = _objc_msgSend_1573(
         this.pointer, _sel_initWithTimeIntervalSinceNow_, secs);
     return NSCalendarDate.castFromPointer(_ret, retain: true, release: true);
   }
 
   /// initWithTimeIntervalSince1970:
   NSCalendarDate initWithTimeIntervalSince1970_(double secs) {
-    final _ret = _objc_msgSend_1571(
+    final _ret = _objc_msgSend_1573(
         this.pointer, _sel_initWithTimeIntervalSince1970_, secs);
     return NSCalendarDate.castFromPointer(_ret, retain: true, release: true);
   }
@@ -104550,7 +104841,7 @@ class NSCalendarDate extends objc.NSDate {
   /// initWithTimeInterval:sinceDate:
   NSCalendarDate initWithTimeInterval_sinceDate_(
       double secsToBeAdded, objc.NSDate date) {
-    final _ret = _objc_msgSend_1572(this.pointer,
+    final _ret = _objc_msgSend_1574(this.pointer,
         _sel_initWithTimeInterval_sinceDate_, secsToBeAdded, date.pointer);
     return NSCalendarDate.castFromPointer(_ret, retain: true, release: true);
   }
@@ -104558,7 +104849,7 @@ class NSCalendarDate extends objc.NSDate {
   /// dateWithNaturalLanguageString:locale:
   static objc.ObjCObjectBase? dateWithNaturalLanguageString_locale_(
       objc.NSString string, objc.ObjCObjectBase? locale) {
-    final _ret = _objc_msgSend_1573(
+    final _ret = _objc_msgSend_1575(
         _class_NSCalendarDate,
         _sel_dateWithNaturalLanguageString_locale_,
         string.pointer,
@@ -104590,7 +104881,7 @@ late final _class_NSCalendarDate = objc.getClass("NSCalendarDate");
 late final _sel_calendarDate = objc.registerName("calendarDate");
 late final _sel_dateWithString_calendarFormat_locale_ =
     objc.registerName("dateWithString:calendarFormat:locale:");
-final _objc_msgSend_1562 = objc.msgSendPointer
+final _objc_msgSend_1564 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(
@@ -104608,7 +104899,7 @@ final _objc_msgSend_1562 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>)>();
 late final _sel_dateWithString_calendarFormat_ =
     objc.registerName("dateWithString:calendarFormat:");
-final _objc_msgSend_1563 = objc.msgSendPointer
+final _objc_msgSend_1565 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(
@@ -104624,7 +104915,7 @@ final _objc_msgSend_1563 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>)>();
 late final _sel_dateWithYear_month_day_hour_minute_second_timeZone_ =
     objc.registerName("dateWithYear:month:day:hour:minute:second:timeZone:");
-final _objc_msgSend_1564 = objc.msgSendPointer
+final _objc_msgSend_1566 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(
@@ -104650,7 +104941,7 @@ final _objc_msgSend_1564 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>)>();
 late final _sel_dateByAddingYears_months_days_hours_minutes_seconds_ =
     objc.registerName("dateByAddingYears:months:days:hours:minutes:seconds:");
-final _objc_msgSend_1565 = objc.msgSendPointer
+final _objc_msgSend_1567 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(
@@ -104677,7 +104968,7 @@ late final _sel_yearOfCommonEra = objc.registerName("yearOfCommonEra");
 late final _sel_calendarFormat = objc.registerName("calendarFormat");
 late final _sel_descriptionWithCalendarFormat_locale_ =
     objc.registerName("descriptionWithCalendarFormat:locale:");
-final _objc_msgSend_1566 = objc.msgSendPointer
+final _objc_msgSend_1568 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(
@@ -104695,7 +104986,7 @@ late final _sel_descriptionWithCalendarFormat_ =
     objc.registerName("descriptionWithCalendarFormat:");
 late final _sel_descriptionWithLocale_ =
     objc.registerName("descriptionWithLocale:");
-final _objc_msgSend_1567 = objc.msgSendPointer
+final _objc_msgSend_1569 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(
@@ -104712,7 +105003,7 @@ late final _sel_initWithString_calendarFormat_ =
 late final _sel_initWithYear_month_day_hour_minute_second_timeZone_ =
     objc.registerName("initWithYear:month:day:hour:minute:second:timeZone:");
 late final _sel_setCalendarFormat_ = objc.registerName("setCalendarFormat:");
-final _objc_msgSend_1568 = objc.msgSendPointer
+final _objc_msgSend_1570 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -104722,7 +105013,7 @@ final _objc_msgSend_1568 = objc.msgSendPointer
     .asFunction<
         void Function(ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCObject>)>();
-final _objc_msgSend_1569 = objc.msgSendPointer
+final _objc_msgSend_1571 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -104734,7 +105025,7 @@ final _objc_msgSend_1569 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCObject>)>();
 late final _sel_years_months_days_hours_minutes_seconds_sinceDate_ =
     objc.registerName("years:months:days:hours:minutes:seconds:sinceDate:");
-final _objc_msgSend_1570 = objc.msgSendPointer
+final _objc_msgSend_1572 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -104764,7 +105055,7 @@ late final _sel_timeIntervalSinceReferenceDate =
     objc.registerName("timeIntervalSinceReferenceDate");
 late final _sel_initWithTimeIntervalSinceReferenceDate_ =
     objc.registerName("initWithTimeIntervalSinceReferenceDate:");
-final _objc_msgSend_1571 = objc.msgSendPointer
+final _objc_msgSend_1573 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             instancetype Function(ffi.Pointer<objc.ObjCObject>,
@@ -104782,7 +105073,7 @@ late final _sel_dateWithTimeIntervalSince1970_ =
     objc.registerName("dateWithTimeIntervalSince1970:");
 late final _sel_dateWithTimeInterval_sinceDate_ =
     objc.registerName("dateWithTimeInterval:sinceDate:");
-final _objc_msgSend_1572 = objc.msgSendPointer
+final _objc_msgSend_1574 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             instancetype Function(
@@ -104805,7 +105096,7 @@ late final _sel_initWithTimeInterval_sinceDate_ =
     objc.registerName("initWithTimeInterval:sinceDate:");
 late final _sel_dateWithNaturalLanguageString_locale_ =
     objc.registerName("dateWithNaturalLanguageString:locale:");
-final _objc_msgSend_1573 = objc.msgSendPointer
+final _objc_msgSend_1575 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(
@@ -104856,12 +105147,12 @@ class NSPortCoder extends objc.NSCoder {
 
   /// encodePortObject:
   void encodePortObject_(NSPort aport) {
-    _objc_msgSend_1574(this.pointer, _sel_encodePortObject_, aport.pointer);
+    _objc_msgSend_1576(this.pointer, _sel_encodePortObject_, aport.pointer);
   }
 
   /// decodePortObject
   NSPort? decodePortObject() {
-    final _ret = _objc_msgSend_1575(this.pointer, _sel_decodePortObject);
+    final _ret = _objc_msgSend_1577(this.pointer, _sel_decodePortObject);
     return _ret.address == 0
         ? null
         : NSPort.castFromPointer(_ret, retain: true, release: true);
@@ -104869,7 +105160,7 @@ class NSPortCoder extends objc.NSCoder {
 
   /// connection
   NSConnection? connection() {
-    final _ret = _objc_msgSend_1576(this.pointer, _sel_connection);
+    final _ret = _objc_msgSend_1578(this.pointer, _sel_connection);
     return _ret.address == 0
         ? null
         : NSConnection.castFromPointer(_ret, retain: true, release: true);
@@ -104878,7 +105169,7 @@ class NSPortCoder extends objc.NSCoder {
   /// portCoderWithReceivePort:sendPort:components:
   static objc.ObjCObjectBase portCoderWithReceivePort_sendPort_components_(
       NSPort? rcvPort, NSPort? sndPort, objc.NSArray? comps) {
-    final _ret = _objc_msgSend_1577(
+    final _ret = _objc_msgSend_1579(
         _class_NSPortCoder,
         _sel_portCoderWithReceivePort_sendPort_components_,
         rcvPort?.pointer ?? ffi.nullptr,
@@ -104890,7 +105181,7 @@ class NSPortCoder extends objc.NSCoder {
   /// initWithReceivePort:sendPort:components:
   objc.ObjCObjectBase initWithReceivePort_sendPort_components_(
       NSPort? rcvPort, NSPort? sndPort, objc.NSArray? comps) {
-    final _ret = _objc_msgSend_1577(
+    final _ret = _objc_msgSend_1579(
         this.pointer,
         _sel_initWithReceivePort_sendPort_components_,
         rcvPort?.pointer ?? ffi.nullptr,
@@ -104909,7 +105200,7 @@ late final _class_NSPortCoder = objc.getClass("NSPortCoder");
 late final _sel_isBycopy = objc.registerName("isBycopy");
 late final _sel_isByref = objc.registerName("isByref");
 late final _sel_encodePortObject_ = objc.registerName("encodePortObject:");
-final _objc_msgSend_1574 = objc.msgSendPointer
+final _objc_msgSend_1576 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -104920,7 +105211,7 @@ final _objc_msgSend_1574 = objc.msgSendPointer
         void Function(ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCObject>)>();
 late final _sel_decodePortObject = objc.registerName("decodePortObject");
-final _objc_msgSend_1575 = objc.msgSendPointer
+final _objc_msgSend_1577 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -104928,7 +105219,7 @@ final _objc_msgSend_1575 = objc.msgSendPointer
     .asFunction<
         ffi.Pointer<objc.ObjCObject> Function(
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
-final _objc_msgSend_1576 = objc.msgSendPointer
+final _objc_msgSend_1578 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -104938,7 +105229,7 @@ final _objc_msgSend_1576 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_portCoderWithReceivePort_sendPort_components_ =
     objc.registerName("portCoderWithReceivePort:sendPort:components:");
-final _objc_msgSend_1577 = objc.msgSendPointer
+final _objc_msgSend_1579 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(
@@ -104985,7 +105276,7 @@ class FVPBlockKeyValueObserver extends objc.NSObject {
   /// observedValueDidChange
   objc.ObjCBlock<ffi.Void Function(ffi.Pointer<objc.ObjCObject>, objc.NSString)>
       get observedValueDidChange {
-    final _ret = _objc_msgSend_1578(this.pointer, _sel_observedValueDidChange);
+    final _ret = _objc_msgSend_1580(this.pointer, _sel_observedValueDidChange);
     return ObjCBlock_ffiVoid_objcObjCObject_NSString.castFromPointer(_ret,
         retain: true, release: true);
   }
@@ -104995,7 +105286,7 @@ class FVPBlockKeyValueObserver extends objc.NSObject {
       objc.ObjCBlock<
               ffi.Void Function(ffi.Pointer<objc.ObjCObject>, objc.NSString)>
           value) {
-    return _objc_msgSend_1579(
+    return _objc_msgSend_1581(
         this.pointer, _sel_setObservedValueDidChange_, value.pointer);
   }
 
@@ -105004,7 +105295,7 @@ class FVPBlockKeyValueObserver extends objc.NSObject {
       objc.ObjCBlock<
               ffi.Void Function(ffi.Pointer<objc.ObjCObject>, objc.NSString)>
           callback) {
-    final _ret = _objc_msgSend_1580(
+    final _ret = _objc_msgSend_1582(
         this.pointer, _sel_initWithCallback_, callback.pointer);
     return FVPBlockKeyValueObserver.castFromPointer(_ret,
         retain: true, release: true);
@@ -105015,7 +105306,7 @@ class FVPBlockKeyValueObserver extends objc.NSObject {
       objc.ObjCBlock<
               ffi.Void Function(ffi.Pointer<objc.ObjCObject>, objc.NSString)>
           callback) {
-    final _ret = _objc_msgSend_1580(_class_FVPBlockKeyValueObserver,
+    final _ret = _objc_msgSend_1582(_class_FVPBlockKeyValueObserver,
         _sel_observerWithCallback_, callback.pointer);
     return FVPBlockKeyValueObserver.castFromPointer(_ret,
         retain: true, release: true);
@@ -105253,7 +105544,7 @@ extension ObjCBlock_ffiVoid_objcObjCObject_NSString_CallExtension on objc
 
 late final _sel_observedValueDidChange =
     objc.registerName("observedValueDidChange");
-final _objc_msgSend_1578 = objc.msgSendPointer
+final _objc_msgSend_1580 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCBlockImpl> Function(
@@ -105264,7 +105555,7 @@ final _objc_msgSend_1578 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_setObservedValueDidChange_ =
     objc.registerName("setObservedValueDidChange:");
-final _objc_msgSend_1579 = objc.msgSendPointer
+final _objc_msgSend_1581 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -105275,7 +105566,7 @@ final _objc_msgSend_1579 = objc.msgSendPointer
         void Function(ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCBlockImpl>)>();
 late final _sel_initWithCallback_ = objc.registerName("initWithCallback:");
-final _objc_msgSend_1580 = objc.msgSendPointer
+final _objc_msgSend_1582 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             instancetype Function(
@@ -105330,7 +105621,7 @@ class FVPDisplayLink extends objc.NSObject {
   FVPDisplayLink initWithViewProvider_callback_(
       objc.ObjCObjectBase viewProvider,
       objc.ObjCBlock<ffi.Void Function()> callback) {
-    final _ret = _objc_msgSend_1581(
+    final _ret = _objc_msgSend_1583(
         this.pointer,
         _sel_initWithViewProvider_callback_,
         viewProvider.pointer,
@@ -105437,7 +105728,7 @@ late final _sel_running = objc.registerName("running");
 late final _sel_setRunning_ = objc.registerName("setRunning:");
 late final _sel_initWithViewProvider_callback_ =
     objc.registerName("initWithViewProvider:callback:");
-final _objc_msgSend_1581 = objc.msgSendPointer
+final _objc_msgSend_1583 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             instancetype Function(
@@ -105451,127 +105742,6 @@ final _objc_msgSend_1581 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCSelector>,
             ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCBlockImpl>)>();
-
-/// An implementation of FVPAVFactory that forwards directly to AVPlayer*.
-class FVPDefaultAVFactory extends objc.NSObject {
-  FVPDefaultAVFactory._(ffi.Pointer<objc.ObjCObject> pointer,
-      {bool retain = false, bool release = false})
-      : super.castFromPointer(pointer, retain: retain, release: release);
-
-  /// Constructs a [FVPDefaultAVFactory] that points to the same underlying object as [other].
-  FVPDefaultAVFactory.castFrom(objc.ObjCObjectBase other)
-      : this._(other.pointer, retain: true, release: true);
-
-  /// Constructs a [FVPDefaultAVFactory] that wraps the given raw object pointer.
-  FVPDefaultAVFactory.castFromPointer(ffi.Pointer<objc.ObjCObject> other,
-      {bool retain = false, bool release = false})
-      : this._(other, retain: retain, release: release);
-
-  /// Returns whether [obj] is an instance of [FVPDefaultAVFactory].
-  static bool isInstance(objc.ObjCObjectBase obj) {
-    return _objc_msgSend_0(
-        obj.pointer, _sel_isKindOfClass_, _class_FVPDefaultAVFactory);
-  }
-
-  /// init
-  FVPDefaultAVFactory init() {
-    final _ret = _objc_msgSend_19(this.pointer, _sel_init);
-    return FVPDefaultAVFactory.castFromPointer(_ret,
-        retain: true, release: true);
-  }
-
-  /// new
-  static FVPDefaultAVFactory new1() {
-    final _ret = _objc_msgSend_19(_class_FVPDefaultAVFactory, _sel_new);
-    return FVPDefaultAVFactory.castFromPointer(_ret,
-        retain: false, release: true);
-  }
-
-  /// allocWithZone:
-  static FVPDefaultAVFactory allocWithZone_(ffi.Pointer<_NSZone> zone) {
-    final _ret =
-        _objc_msgSend_28(_class_FVPDefaultAVFactory, _sel_allocWithZone_, zone);
-    return FVPDefaultAVFactory.castFromPointer(_ret,
-        retain: false, release: true);
-  }
-
-  /// alloc
-  static FVPDefaultAVFactory alloc() {
-    final _ret = _objc_msgSend_19(_class_FVPDefaultAVFactory, _sel_alloc);
-    return FVPDefaultAVFactory.castFromPointer(_ret,
-        retain: false, release: true);
-  }
-
-  /// cancelPreviousPerformRequestsWithTarget:selector:object:
-  static void cancelPreviousPerformRequestsWithTarget_selector_object_(
-      objc.ObjCObjectBase aTarget,
-      ffi.Pointer<objc.ObjCSelector> aSelector,
-      objc.ObjCObjectBase? anArgument) {
-    _objc_msgSend_29(
-        _class_FVPDefaultAVFactory,
-        _sel_cancelPreviousPerformRequestsWithTarget_selector_object_,
-        aTarget.pointer,
-        aSelector,
-        anArgument?.pointer ?? ffi.nullptr);
-  }
-
-  /// cancelPreviousPerformRequestsWithTarget:
-  static void cancelPreviousPerformRequestsWithTarget_(
-      objc.ObjCObjectBase aTarget) {
-    _objc_msgSend_27(_class_FVPDefaultAVFactory,
-        _sel_cancelPreviousPerformRequestsWithTarget_, aTarget.pointer);
-  }
-
-  /// accessInstanceVariablesDirectly
-  static bool getAccessInstanceVariablesDirectly() {
-    return _objc_msgSend_13(
-        _class_FVPDefaultAVFactory, _sel_accessInstanceVariablesDirectly);
-  }
-
-  /// useStoredAccessor
-  static bool useStoredAccessor() {
-    return _objc_msgSend_13(_class_FVPDefaultAVFactory, _sel_useStoredAccessor);
-  }
-
-  /// keyPathsForValuesAffectingValueForKey:
-  static objc.NSSet keyPathsForValuesAffectingValueForKey_(objc.NSString key) {
-    final _ret = _objc_msgSend_30(_class_FVPDefaultAVFactory,
-        _sel_keyPathsForValuesAffectingValueForKey_, key.pointer);
-    return objc.NSSet.castFromPointer(_ret, retain: true, release: true);
-  }
-
-  /// automaticallyNotifiesObserversForKey:
-  static bool automaticallyNotifiesObserversForKey_(objc.NSString key) {
-    return _objc_msgSend_31(_class_FVPDefaultAVFactory,
-        _sel_automaticallyNotifiesObserversForKey_, key.pointer);
-  }
-
-  /// setKeys:triggerChangeNotificationsForDependentKey:
-  static void setKeys_triggerChangeNotificationsForDependentKey_(
-      objc.NSArray keys, objc.NSString dependentKey) {
-    _objc_msgSend_32(
-        _class_FVPDefaultAVFactory,
-        _sel_setKeys_triggerChangeNotificationsForDependentKey_,
-        keys.pointer,
-        dependentKey.pointer);
-  }
-
-  /// classFallbacksForKeyedArchiver
-  static objc.NSArray classFallbacksForKeyedArchiver() {
-    final _ret = _objc_msgSend_33(
-        _class_FVPDefaultAVFactory, _sel_classFallbacksForKeyedArchiver);
-    return objc.NSArray.castFromPointer(_ret, retain: true, release: true);
-  }
-
-  /// classForKeyedUnarchiver
-  static objc.ObjCObjectBase classForKeyedUnarchiver() {
-    final _ret = _objc_msgSend_19(
-        _class_FVPDefaultAVFactory, _sel_classForKeyedUnarchiver);
-    return objc.ObjCObjectBase(_ret, retain: true, release: true);
-  }
-}
-
-late final _class_FVPDefaultAVFactory = objc.getClass("FVPDefaultAVFactory");
 
 /// Manages the state to mediate between a display link callback and a texture update callback, to
 /// decide when and how to update frames in the texture.
@@ -105611,14 +105781,14 @@ class FVPFrameUpdater extends objc.NSObject {
 
   /// videoOutput
   AVPlayerItemVideoOutput get videoOutput {
-    final _ret = _objc_msgSend_1584(this.pointer, _sel_videoOutput);
+    final _ret = _objc_msgSend_1586(this.pointer, _sel_videoOutput);
     return AVPlayerItemVideoOutput.castFromPointer(_ret,
         retain: true, release: true);
   }
 
   /// setVideoOutput:
   set videoOutput(AVPlayerItemVideoOutput value) {
-    return _objc_msgSend_1585(
+    return _objc_msgSend_1587(
         this.pointer, _sel_setVideoOutput_, value.pointer);
   }
 
@@ -105785,14 +105955,14 @@ class AVPlayerItemVideoOutput extends AVPlayerItemOutput {
 
   /// hasNewPixelBufferForItemTime:
   bool hasNewPixelBufferForItemTime_(CMTime itemTime) {
-    return _objc_msgSend_1582(
+    return _objc_msgSend_1584(
         this.pointer, _sel_hasNewPixelBufferForItemTime_, itemTime);
   }
 
   /// copyPixelBufferForItemTime:itemTimeForDisplay:
   ffi.Pointer<__CVBuffer> copyPixelBufferForItemTime_itemTimeForDisplay_(
       CMTime itemTime, ffi.Pointer<CMTime> outItemTimeForDisplay) {
-    return _objc_msgSend_1583(
+    return _objc_msgSend_1585(
         this.pointer,
         _sel_copyPixelBufferForItemTime_itemTimeForDisplay_,
         itemTime,
@@ -105941,7 +106111,7 @@ late final _sel_initWithOutputSettings_ =
     objc.registerName("initWithOutputSettings:");
 late final _sel_hasNewPixelBufferForItemTime_ =
     objc.registerName("hasNewPixelBufferForItemTime:");
-final _objc_msgSend_1582 = objc.msgSendPointer
+final _objc_msgSend_1584 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Bool Function(ffi.Pointer<objc.ObjCObject>,
@@ -105951,7 +106121,7 @@ final _objc_msgSend_1582 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCSelector>, CMTime)>();
 late final _sel_copyPixelBufferForItemTime_itemTimeForDisplay_ =
     objc.registerName("copyPixelBufferForItemTime:itemTimeForDisplay:");
-final _objc_msgSend_1583 = objc.msgSendPointer
+final _objc_msgSend_1585 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<__CVBuffer> Function(ffi.Pointer<objc.ObjCObject>,
@@ -105961,7 +106131,7 @@ final _objc_msgSend_1583 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCSelector>, CMTime, ffi.Pointer<CMTime>)>();
 late final _sel_requestNotificationOfMediaDataChangeWithAdvanceInterval_ = objc
     .registerName("requestNotificationOfMediaDataChangeWithAdvanceInterval:");
-final _objc_msgSend_1584 = objc.msgSendPointer
+final _objc_msgSend_1586 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
@@ -105969,7 +106139,7 @@ final _objc_msgSend_1584 = objc.msgSendPointer
     .asFunction<
         ffi.Pointer<objc.ObjCObject> Function(
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
-final _objc_msgSend_1585 = objc.msgSendPointer
+final _objc_msgSend_1587 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -106007,29 +106177,16 @@ class FVPVideoPlayer extends objc.NSObject {
   }
 
   /// videoOutput
-  AVPlayerItemVideoOutput? get videoOutput {
+  AVPlayerItemVideoOutput get videoOutput {
     final _ret = _objc_msgSend_1586(this.pointer, _sel_videoOutput);
-    return _ret.address == 0
-        ? null
-        : AVPlayerItemVideoOutput.castFromPointer(_ret,
-            retain: true, release: true);
+    return AVPlayerItemVideoOutput.castFromPointer(_ret,
+        retain: true, release: true);
   }
 
   /// setVideoOutput:
-  set videoOutput(AVPlayerItemVideoOutput? value) {
+  set videoOutput(AVPlayerItemVideoOutput value) {
     return _objc_msgSend_1587(
-        this.pointer, _sel_setVideoOutput_, value?.pointer ?? ffi.nullptr);
-  }
-
-  /// player
-  AVPlayer get player {
-    final _ret = _objc_msgSend_1588(this.pointer, _sel_player);
-    return AVPlayer.castFromPointer(_ret, retain: true, release: true);
-  }
-
-  /// setPlayer:
-  set player(AVPlayer value) {
-    return _objc_msgSend_1589(this.pointer, _sel_setPlayer_, value.pointer);
+        this.pointer, _sel_setVideoOutput_, value.pointer);
   }
 
   /// disposed
@@ -106039,13 +106196,13 @@ class FVPVideoPlayer extends objc.NSObject {
 
   /// onFrameProvided
   objc.ObjCBlock<ffi.Void Function()> get onFrameProvided {
-    final _ret = _objc_msgSend_1590(this.pointer, _sel_onFrameProvided);
+    final _ret = _objc_msgSend_1588(this.pointer, _sel_onFrameProvided);
     return ObjCBlock_ffiVoid.castFromPointer(_ret, retain: true, release: true);
   }
 
   /// setOnFrameProvided:
   set onFrameProvided(objc.ObjCBlock<ffi.Void Function()> value) {
-    return _objc_msgSend_1591(
+    return _objc_msgSend_1589(
         this.pointer, _sel_setOnFrameProvided_, value.pointer);
   }
 
@@ -106063,21 +106220,23 @@ class FVPVideoPlayer extends objc.NSObject {
         this.pointer, _sel_setOnDisposed_, value?.pointer ?? ffi.nullptr);
   }
 
-  /// initWithPlayerItem:viewProvider:frameUpdater:AVFactory:frameCallback:
+  /// initWithPlayer:item:output:viewProvider:frameUpdater:frameCallback:
   FVPVideoPlayer
-      initWithPlayerItem_viewProvider_frameUpdater_AVFactory_frameCallback_(
-          AVPlayerItem? item,
-          objc.ObjCObjectBase? viewProvider,
+      initWithPlayer_item_output_viewProvider_frameUpdater_frameCallback_(
+          AVPlayer player,
+          AVPlayerItem item,
+          AVPlayerItemVideoOutput videoOutput,
+          objc.ObjCObjectBase viewProvider,
           FVPFrameUpdater frameUpdater,
-          objc.ObjCObjectBase? avFactory,
           objc.ObjCBlock<ffi.Void Function()> frameCallback) {
-    final _ret = _objc_msgSend_1592(
+    final _ret = _objc_msgSend_1590(
         this.pointer,
-        _sel_initWithPlayerItem_viewProvider_frameUpdater_AVFactory_frameCallback_,
-        item?.pointer ?? ffi.nullptr,
-        viewProvider?.pointer ?? ffi.nullptr,
+        _sel_initWithPlayer_item_output_viewProvider_frameUpdater_frameCallback_,
+        player.pointer,
+        item.pointer,
+        videoOutput.pointer,
+        viewProvider.pointer,
         frameUpdater.pointer,
-        avFactory?.pointer ?? ffi.nullptr,
         frameCallback.pointer);
     return FVPVideoPlayer.castFromPointer(_ret, retain: true, release: true);
   }
@@ -106183,46 +106342,9 @@ class FVPVideoPlayer extends objc.NSObject {
 }
 
 late final _class_FVPVideoPlayer = objc.getClass("FVPVideoPlayer");
-final _objc_msgSend_1586 = objc.msgSendPointer
-    .cast<
-        ffi.NativeFunction<
-            ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
-                ffi.Pointer<objc.ObjCSelector>)>>()
-    .asFunction<
-        ffi.Pointer<objc.ObjCObject> Function(
-            ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
-final _objc_msgSend_1587 = objc.msgSendPointer
-    .cast<
-        ffi.NativeFunction<
-            ffi.Void Function(
-                ffi.Pointer<objc.ObjCObject>,
-                ffi.Pointer<objc.ObjCSelector>,
-                ffi.Pointer<objc.ObjCObject>)>>()
-    .asFunction<
-        void Function(ffi.Pointer<objc.ObjCObject>,
-            ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCObject>)>();
-final _objc_msgSend_1588 = objc.msgSendPointer
-    .cast<
-        ffi.NativeFunction<
-            ffi.Pointer<objc.ObjCObject> Function(ffi.Pointer<objc.ObjCObject>,
-                ffi.Pointer<objc.ObjCSelector>)>>()
-    .asFunction<
-        ffi.Pointer<objc.ObjCObject> Function(
-            ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
-late final _sel_setPlayer_ = objc.registerName("setPlayer:");
-final _objc_msgSend_1589 = objc.msgSendPointer
-    .cast<
-        ffi.NativeFunction<
-            ffi.Void Function(
-                ffi.Pointer<objc.ObjCObject>,
-                ffi.Pointer<objc.ObjCSelector>,
-                ffi.Pointer<objc.ObjCObject>)>>()
-    .asFunction<
-        void Function(ffi.Pointer<objc.ObjCObject>,
-            ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCObject>)>();
 late final _sel_disposed = objc.registerName("disposed");
 late final _sel_onFrameProvided = objc.registerName("onFrameProvided");
-final _objc_msgSend_1590 = objc.msgSendPointer
+final _objc_msgSend_1588 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Pointer<objc.ObjCBlockImpl> Function(
@@ -106232,7 +106354,7 @@ final _objc_msgSend_1590 = objc.msgSendPointer
         ffi.Pointer<objc.ObjCBlockImpl> Function(
             ffi.Pointer<objc.ObjCObject>, ffi.Pointer<objc.ObjCSelector>)>();
 late final _sel_setOnFrameProvided_ = objc.registerName("setOnFrameProvided:");
-final _objc_msgSend_1591 = objc.msgSendPointer
+final _objc_msgSend_1589 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             ffi.Void Function(
@@ -106244,15 +106366,16 @@ final _objc_msgSend_1591 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCSelector>, ffi.Pointer<objc.ObjCBlockImpl>)>();
 late final _sel_onDisposed = objc.registerName("onDisposed");
 late final _sel_setOnDisposed_ = objc.registerName("setOnDisposed:");
-late final _sel_initWithPlayerItem_viewProvider_frameUpdater_AVFactory_frameCallback_ =
+late final _sel_initWithPlayer_item_output_viewProvider_frameUpdater_frameCallback_ =
     objc.registerName(
-        "initWithPlayerItem:viewProvider:frameUpdater:AVFactory:frameCallback:");
-final _objc_msgSend_1592 = objc.msgSendPointer
+        "initWithPlayer:item:output:viewProvider:frameUpdater:frameCallback:");
+final _objc_msgSend_1590 = objc.msgSendPointer
     .cast<
         ffi.NativeFunction<
             instancetype Function(
                 ffi.Pointer<objc.ObjCObject>,
                 ffi.Pointer<objc.ObjCSelector>,
+                ffi.Pointer<objc.ObjCObject>,
                 ffi.Pointer<objc.ObjCObject>,
                 ffi.Pointer<objc.ObjCObject>,
                 ffi.Pointer<objc.ObjCObject>,
@@ -106266,5 +106389,194 @@ final _objc_msgSend_1592 = objc.msgSendPointer
             ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCObject>,
+            ffi.Pointer<objc.ObjCObject>,
             ffi.Pointer<objc.ObjCBlockImpl>)>();
 late final _sel_dispose = objc.registerName("dispose");
+
+const int kCVPixelFormatType_1Monochrome = 1;
+
+const int kCVPixelFormatType_2Indexed = 2;
+
+const int kCVPixelFormatType_4Indexed = 4;
+
+const int kCVPixelFormatType_8Indexed = 8;
+
+const int kCVPixelFormatType_1IndexedGray_WhiteIsZero = 33;
+
+const int kCVPixelFormatType_2IndexedGray_WhiteIsZero = 34;
+
+const int kCVPixelFormatType_4IndexedGray_WhiteIsZero = 36;
+
+const int kCVPixelFormatType_8IndexedGray_WhiteIsZero = 40;
+
+const int kCVPixelFormatType_16BE555 = 16;
+
+const int kCVPixelFormatType_16LE555 = 1278555445;
+
+const int kCVPixelFormatType_16LE5551 = 892679473;
+
+const int kCVPixelFormatType_16BE565 = 1110783541;
+
+const int kCVPixelFormatType_16LE565 = 1278555701;
+
+const int kCVPixelFormatType_24RGB = 24;
+
+const int kCVPixelFormatType_24BGR = 842285639;
+
+const int kCVPixelFormatType_32ARGB = 32;
+
+const int kCVPixelFormatType_32BGRA = 1111970369;
+
+const int kCVPixelFormatType_32ABGR = 1094862674;
+
+const int kCVPixelFormatType_32RGBA = 1380401729;
+
+const int kCVPixelFormatType_64ARGB = 1647719521;
+
+const int kCVPixelFormatType_64RGBALE = 1815491698;
+
+const int kCVPixelFormatType_48RGB = 1647589490;
+
+const int kCVPixelFormatType_32AlphaGray = 1647522401;
+
+const int kCVPixelFormatType_16Gray = 1647392359;
+
+const int kCVPixelFormatType_30RGB = 1378955371;
+
+const int kCVPixelFormatType_422YpCbCr8 = 846624121;
+
+const int kCVPixelFormatType_4444YpCbCrA8 = 1983131704;
+
+const int kCVPixelFormatType_4444YpCbCrA8R = 1916022840;
+
+const int kCVPixelFormatType_4444AYpCbCr8 = 2033463352;
+
+const int kCVPixelFormatType_4444AYpCbCr16 = 2033463606;
+
+const int kCVPixelFormatType_4444AYpCbCrFloat = 1916036716;
+
+const int kCVPixelFormatType_444YpCbCr8 = 1983066168;
+
+const int kCVPixelFormatType_422YpCbCr16 = 1983000886;
+
+const int kCVPixelFormatType_422YpCbCr10 = 1983000880;
+
+const int kCVPixelFormatType_444YpCbCr10 = 1983131952;
+
+const int kCVPixelFormatType_420YpCbCr8Planar = 2033463856;
+
+const int kCVPixelFormatType_420YpCbCr8PlanarFullRange = 1714696752;
+
+const int kCVPixelFormatType_422YpCbCr_4A_8BiPlanar = 1630697081;
+
+const int kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange = 875704438;
+
+const int kCVPixelFormatType_420YpCbCr8BiPlanarFullRange = 875704422;
+
+const int kCVPixelFormatType_422YpCbCr8BiPlanarVideoRange = 875704950;
+
+const int kCVPixelFormatType_422YpCbCr8BiPlanarFullRange = 875704934;
+
+const int kCVPixelFormatType_444YpCbCr8BiPlanarVideoRange = 875836534;
+
+const int kCVPixelFormatType_444YpCbCr8BiPlanarFullRange = 875836518;
+
+const int kCVPixelFormatType_422YpCbCr8_yuvs = 2037741171;
+
+const int kCVPixelFormatType_422YpCbCr8FullRange = 2037741158;
+
+const int kCVPixelFormatType_OneComponent8 = 1278226488;
+
+const int kCVPixelFormatType_TwoComponent8 = 843264056;
+
+const int kCVPixelFormatType_30RGBLEPackedWideGamut = 1999843442;
+
+const int kCVPixelFormatType_ARGB2101010LEPacked = 1815162994;
+
+const int kCVPixelFormatType_40ARGBLEWideGamut = 1999908961;
+
+const int kCVPixelFormatType_40ARGBLEWideGamutPremultiplied = 1999908973;
+
+const int kCVPixelFormatType_OneComponent10 = 1278226736;
+
+const int kCVPixelFormatType_OneComponent12 = 1278226738;
+
+const int kCVPixelFormatType_OneComponent16 = 1278226742;
+
+const int kCVPixelFormatType_TwoComponent16 = 843264310;
+
+const int kCVPixelFormatType_OneComponent16Half = 1278226536;
+
+const int kCVPixelFormatType_OneComponent32Float = 1278226534;
+
+const int kCVPixelFormatType_TwoComponent16Half = 843264104;
+
+const int kCVPixelFormatType_TwoComponent32Float = 843264102;
+
+const int kCVPixelFormatType_64RGBAHalf = 1380411457;
+
+const int kCVPixelFormatType_128RGBAFloat = 1380410945;
+
+const int kCVPixelFormatType_14Bayer_GRBG = 1735549492;
+
+const int kCVPixelFormatType_14Bayer_RGGB = 1919379252;
+
+const int kCVPixelFormatType_14Bayer_BGGR = 1650943796;
+
+const int kCVPixelFormatType_14Bayer_GBRG = 1734505012;
+
+const int kCVPixelFormatType_DisparityFloat16 = 1751411059;
+
+const int kCVPixelFormatType_DisparityFloat32 = 1717856627;
+
+const int kCVPixelFormatType_DepthFloat16 = 1751410032;
+
+const int kCVPixelFormatType_DepthFloat32 = 1717855600;
+
+const int kCVPixelFormatType_420YpCbCr10BiPlanarVideoRange = 2016686640;
+
+const int kCVPixelFormatType_422YpCbCr10BiPlanarVideoRange = 2016686642;
+
+const int kCVPixelFormatType_444YpCbCr10BiPlanarVideoRange = 2016687156;
+
+const int kCVPixelFormatType_420YpCbCr10BiPlanarFullRange = 2019963440;
+
+const int kCVPixelFormatType_422YpCbCr10BiPlanarFullRange = 2019963442;
+
+const int kCVPixelFormatType_444YpCbCr10BiPlanarFullRange = 2019963956;
+
+const int kCVPixelFormatType_420YpCbCr8VideoRange_8A_TriPlanar = 1982882104;
+
+const int kCVPixelFormatType_16VersatileBayer = 1651519798;
+
+const int kCVPixelFormatType_64RGBA_DownscaledProResRAW = 1651521076;
+
+const int kCVPixelFormatType_422YpCbCr16BiPlanarVideoRange = 1937125938;
+
+const int kCVPixelFormatType_444YpCbCr16BiPlanarVideoRange = 1937126452;
+
+const int kCVPixelFormatType_444YpCbCr16VideoRange_16A_TriPlanar = 1932812659;
+
+const int kCVPixelFormatType_Lossless_32BGRA = 641877825;
+
+const int kCVPixelFormatType_Lossless_420YpCbCr8BiPlanarVideoRange = 641234480;
+
+const int kCVPixelFormatType_Lossless_420YpCbCr8BiPlanarFullRange = 641230384;
+
+const int kCVPixelFormatType_Lossless_420YpCbCr10PackedBiPlanarVideoRange =
+    645428784;
+
+const int kCVPixelFormatType_Lossless_422YpCbCr10PackedBiPlanarVideoRange =
+    645428786;
+
+const int kCVPixelFormatType_Lossy_32BGRA = 759318337;
+
+const int kCVPixelFormatType_Lossy_420YpCbCr8BiPlanarVideoRange = 758674992;
+
+const int kCVPixelFormatType_Lossy_420YpCbCr8BiPlanarFullRange = 758670896;
+
+const int kCVPixelFormatType_Lossy_420YpCbCr10PackedBiPlanarVideoRange =
+    762869296;
+
+const int kCVPixelFormatType_Lossy_422YpCbCr10PackedBiPlanarVideoRange =
+    762869298;

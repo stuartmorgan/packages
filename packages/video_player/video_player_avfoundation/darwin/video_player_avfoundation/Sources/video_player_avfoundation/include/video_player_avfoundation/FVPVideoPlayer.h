@@ -7,15 +7,12 @@
 
 #import "FVPDisplayLink.h"
 #import "FVPFrameUpdater.h"
-#import "InjectionProtocols.h"
 
 /// The native component of a single video player instance.
 @interface FVPVideoPlayer : NSObject
 
 // The output to use for items being played.
-@property(nonatomic, strong, nullable) AVPlayerItemVideoOutput *videoOutput;
-
-@property(nonatomic, strong, nonnull) AVPlayer *player;
+@property(nonatomic, strong, nonnull) AVPlayerItemVideoOutput *videoOutput;
 
 @property(nonatomic, readonly) BOOL disposed;
 
@@ -25,11 +22,12 @@
 // A callback to call during 'dispose'.
 @property(nonatomic, copy, nullable) void (^onDisposed)(void);
 
-- (instancetype)initWithPlayerItem:(nullable AVPlayerItem *)item
-                      viewProvider:(nullable id<FVPViewProvider>)viewProvider
-                      frameUpdater:(nonnull FVPFrameUpdater *)frameUpdater
-                         AVFactory:(nullable id<FVPAVFactory>)avFactory
-                     frameCallback:(void (^__nonnull)(void))frameCallback;
+- (instancetype)initWithPlayer:(nonnull AVPlayer *)player
+                          item:(nonnull AVPlayerItem *)item
+                        output:(AVPlayerItemVideoOutput *)videoOutput
+                  viewProvider:(nonnull id<FVPViewProvider>)viewProvider
+                  frameUpdater:(nonnull FVPFrameUpdater *)frameUpdater
+                 frameCallback:(void (^__nonnull)(void))frameCallback;
 
 /// Informs the player that it won't be used from Dart any more and that it should clean up
 /// related resources.

@@ -6,11 +6,8 @@ output:
   objc-bindings: 'darwin/video_player_avfoundation/Sources/video_player_avfoundation/ffi_bindings.dart.m'
 headers:
   entry-points:
-    # See https://github.com/dart-lang/native/issues/471
-    - '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/AVFoundation.framework/Versions/A/Headers/AVFoundation.h'
-    - '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/Foundation.framework/Versions/A/Headers/Foundation.h'
+    - 'darwin/video_player_avfoundation/Sources/video_player_avfoundation/include/video_player_avfoundation/FFIHeaders.h'
     - 'darwin/video_player_avfoundation/Sources/video_player_avfoundation/include/video_player_avfoundation/FVPBlockKeyValueObserver.h'
-    - 'darwin/video_player_avfoundation/Sources/video_player_avfoundation/include/video_player_avfoundation/FVPDefaultAVFactory.h'
     - 'darwin/video_player_avfoundation/Sources/video_player_avfoundation/include/video_player_avfoundation/FVPDisplayLink.h'
     - 'darwin/video_player_avfoundation/Sources/video_player_avfoundation/include/video_player_avfoundation/FVPFrameUpdater.h'
     - 'darwin/video_player_avfoundation/Sources/video_player_avfoundation/include/video_player_avfoundation/FVPVideoPlayer.h'
@@ -19,8 +16,8 @@ objc-interfaces:
   include:
     - 'AVAudioSession'
     - 'AVPlayer'
+    - 'AVPlayerLayer'
     - 'FVPBlockKeyValueObserver'
-    - 'FVPDefaultAVFactory'
     - 'FVPDisplayLink'
     - 'FVPFrameUpdater'
     - 'FVPVideoPlayer'
@@ -37,3 +34,11 @@ globals:
     - 'AVPlayerItemDidPlayToEndTimeNotification'
     - 'AVMediaTypeVideo'
     - 'kCMTimeZero'
+    - 'kCVPixelBufferPixelFormatTypeKey'
+    - 'kCVPixelBufferIOSurfacePropertiesKey'
+structs:
+  rename:
+    '__CFString': 'CFStringRef'
+unnamed-enums:
+  include:
+    - 'kCVPixelFormatType.*'

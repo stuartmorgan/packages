@@ -1,7 +1,6 @@
-#import <AVFoundation/AVFoundation.h>
 #include <stdint.h>
+#import "include/video_player_avfoundation/FFIHeaders.h"
 #import "include/video_player_avfoundation/FVPBlockKeyValueObserver.h"
-#import "include/video_player_avfoundation/FVPDefaultAVFactory.h"
 #import "include/video_player_avfoundation/FVPDisplayLink.h"
 #import "include/video_player_avfoundation/FVPFrameUpdater.h"
 #import "include/video_player_avfoundation/FVPVideoPlayer.h"
