@@ -5,8 +5,8 @@ issue_tracker: https://github.com/flutter/flutter/issues?q=is%3Aissue+is%3Aopen+
 version: 2.6.1
 
 environment:
-  sdk: ^3.3.0
-  flutter: ">=3.19.0"
+  sdk: ^3.4.0
+  flutter: ">=3.22.0"
 
 flutter:
   plugin:
@@ -30,7 +30,7 @@ dependencies:
     git:
       url: https://github.com/dart-lang/native
       path: pkgs/objective_c
-      ref: 3d80f0283373a2a3c7f09ec907b65b7e8905558b
+      ref: c216889fc24e43c59108de05a9f9a2ba05c3cd1d
   video_player_platform_interface: ">=6.1.0 <7.0.0"
 
 dev_dependencies:
@@ -38,7 +38,7 @@ dev_dependencies:
     git:
       url: https://github.com/dart-lang/native
       path: pkgs/ffigen
-      ref: 3d80f0283373a2a3c7f09ec907b65b7e8905558b
+      ref: c216889fc24e43c59108de05a9f9a2ba05c3cd1d
   flutter_test:
     sdk: flutter
   pigeon: ^18.0.0

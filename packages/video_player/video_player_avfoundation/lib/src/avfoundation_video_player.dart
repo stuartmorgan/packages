@@ -62,8 +62,8 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
         ffi.Pointer<ObjCObject>.fromAddress(nativeViewProviderPointer));
     final _VideoPlayer player = _VideoPlayer(asset, nativeViewProvider);
 
-    final int textureId =
-        await _api.configurePlayerPointer(player.nativePlayer.pointer.address);
+    final int textureId = await _api
+        .configurePlayerPointer(player.nativePlayer.ref.pointer.address);
     _playersByTextureId[textureId] = player;
 
     // Ensure that the first frame is drawn once available, even if the video
@@ -239,6 +239,39 @@ class _VideoPlayer {
                 () => weakSelf.target?._onFrameProvided()));
 
     _eventAdapter = _DelegateEventAdapter();
+
+    asset.loadValuesAsynchronouslyForKeys_completionHandler_(
+        _convertList(<String>['tracks']), ObjCBlock_ffiVoid.listener(() {
+      if (asset.statusOfValueForKey_error_(NSString('tracks'), ffi.nullptr) ==
+          AVKeyValueStatus.AVKeyValueStatusLoaded) {
+        final NSArray tracks =
+            asset.tracksWithMediaType_(_lib.AVMediaTypeVideo);
+        if (tracks.count > 0) {
+          final AVAssetTrack videoTrack =
+              AVAssetTrack.castFrom(tracks.objectAtIndex_(0));
+          videoTrack.loadValuesAsynchronouslyForKeys_completionHandler_(
+              _convertList(<String>['preferredTransform']),
+              ObjCBlock_ffiVoid.listener(() {
+            if (weakSelf.target?.nativePlayer.disposed ?? true) {
+              return;
+            }
+            if (videoTrack.statusOfValueForKey_error_(
+                    NSString('preferredTransform'), ffi.nullptr) ==
+                AVKeyValueStatus.AVKeyValueStatusLoaded) {
+              // Rotate the video by using a videoComposition and the preferredTransform
+              final CGAffineTransform preferredTransform =
+                  _getStandardizedTransformForTrack(videoTrack);
+              // Video composition can only be used with file-based media and is not supported for
+              // use with media served using HTTP Live Streaming.
+              // https://developer.apple.com/documentation/avfoundation/avplayeritem/1388818-videocomposition
+              final AVMutableVideoComposition videoComposition =
+                  _getVideoComposition(preferredTransform, asset, videoTrack);
+              avItem.videoComposition = videoComposition;
+            }
+          }));
+        }
+      }
+    }));
 
     // TODO(stuartmorgan): Remove this once the final version has been verified
     // to be retain-loop-free.
@@ -535,12 +568,8 @@ class _VideoPlayer {
     if (currentItem == null) {
       return Duration.zero;
     }
-    // Work around https://github.com/dart-lang/native/issues/1480
-    final ffi.Pointer<CMTime> currentTimePtr = calloc<CMTime>();
-    currentItem.asset.getDuration(currentTimePtr);
-    final int milliseconds = _millisecondsFromCMTime(currentTimePtr.ref);
-    calloc.free(currentTimePtr);
-    return Duration(milliseconds: milliseconds);
+    final CMTime duration = currentItem.asset.duration;
+    return Duration(milliseconds: _millisecondsFromCMTime(duration));
   }
 
   void _onFrameProvided() {
@@ -682,6 +711,124 @@ void _reportError(String message) {
   debugPrint(message);
 }
 
+AVMutableVideoComposition _getVideoComposition(
+    CGAffineTransform transform, AVAsset asset, AVAssetTrack videoTrack) {
+  final AVMutableVideoCompositionInstruction instruction =
+      AVMutableVideoCompositionInstruction.videoCompositionInstruction();
+  instruction.timeRange =
+      _lib.CMTimeRangeMake(_lib.kCMTimeZero, asset.duration);
+  final AVMutableVideoCompositionLayerInstruction layerInstruction =
+      AVMutableVideoCompositionLayerInstruction
+          .videoCompositionLayerInstructionWithAssetTrack_(videoTrack);
+  layerInstruction.setTransform_atTime_(transform, _lib.kCMTimeZero);
+
+  final AVMutableVideoComposition videoComposition =
+      AVMutableVideoComposition.videoComposition();
+  instruction.layerInstructions = _convertList(
+      <AVMutableVideoCompositionLayerInstruction>[layerInstruction]);
+  videoComposition.instructions =
+      _convertList(<AVMutableVideoCompositionInstruction>[instruction]);
+
+  // If in portrait mode, switch the width and height of the video.
+  final CGSize trackSize = videoTrack.naturalSize;
+  double width = trackSize.width;
+  double height = trackSize.height;
+  final int rotationDegrees =
+      _radiansToPositiveDegrees(math.atan2(transform.b, transform.a)).round();
+  if (rotationDegrees == 90 || rotationDegrees == 270) {
+    width = trackSize.height;
+    height = trackSize.width;
+  }
+  videoComposition.renderSize = _cgSizeMake(width, height);
+
+  // TODO(recastrodiaz): should we use videoTrack.nominalFrameRate?
+  // Currently set at a constant 30 FPS.
+  videoComposition.frameDuration = _lib.CMTimeMake(1, 30);
+
+  return videoComposition;
+}
+
+CGAffineTransform _getStandardizedTransformForTrack(AVAssetTrack track) {
+  // Work around https://github.com/dart-lang/native/issues/1480
+  final ffi.Pointer<CGAffineTransform> transformPtr =
+      calloc<CGAffineTransform>();
+  track.getPreferredTransform(transformPtr);
+  final Uint8List typedData = transformPtr.cast<ffi.Uint8>().asTypedList(
+      ffi.sizeOf<CGAffineTransform>(),
+      finalizer: calloc.nativeFree);
+  final CGAffineTransform t = ffi.Struct.create<CGAffineTransform>(typedData);
+  /*
+    // This is the manual way that I know should work; the pattern above may
+    // not be safe per later discussion in the linked issue.
+    final ffi.Pointer<CGAffineTransform> transformPtr = calloc<CGAffineTransform>();
+    track.getPreferredTransform(transformPtr);
+    final CGAffineTransform t = ffi.Struct.create();
+    // Manually copy to allow returning, since .address is not working.
+    t.a = transformPtr.ref.a;
+    t.b = transformPtr.ref.b;
+    t.c = transformPtr.ref.c;
+    t.d = transformPtr.ref.d;
+    t.tx = transformPtr.ref.tx;
+    t.ty = transformPtr.ref.ty;*/
+  // Work around https://github.com/dart-lang/native/issues/1480
+  final ffi.Pointer<CGSize> sizePtr = calloc<CGSize>();
+  final CGSize size = sizePtr.ref;
+  // Each case of control flows corresponds to a specific
+  // `UIImageOrientation`, with 8 cases in total.
+  if (t.a == 1 && t.b == 0 && t.c == 0 && t.d == 1) {
+    // UIImageOrientationUp
+    t.tx = 0;
+    t.ty = 0;
+  } else if (t.a == -1 && t.b == 0 && t.c == 0 && t.d == -1) {
+    // UIImageOrientationDown
+    t.tx = size.width;
+    t.ty = size.height;
+  } else if (t.a == 0 && t.b == -1 && t.c == 1 && t.d == 0) {
+    // UIImageOrientationLeft
+    t.tx = 0;
+    t.ty = size.width;
+  } else if (t.a == 0 && t.b == 1 && t.c == -1 && t.d == 0) {
+    // UIImageOrientationRight
+    t.tx = size.height;
+    t.ty = 0;
+  } else if (t.a == -1 && t.b == 0 && t.c == 0 && t.d == 1) {
+    // UIImageOrientationUpMirrored
+    t.tx = size.width;
+    t.ty = 0;
+  } else if (t.a == 1 && t.b == 0 && t.c == 0 && t.d == -1) {
+    // UIImageOrientationDownMirrored
+    t.tx = 0;
+    t.ty = size.height;
+  } else if (t.a == 0 && t.b == -1 && t.c == -1 && t.d == 0) {
+    // UIImageOrientationLeftMirrored
+    t.tx = size.height;
+    t.ty = size.width;
+  } else if (t.a == 0 && t.b == 1 && t.c == 1 && t.d == 0) {
+    // UIImageOrientationRightMirrored
+    t.tx = 0;
+    t.ty = 0;
+  }
+  return t;
+}
+
+double _radiansToPositiveDegrees(double radians) {
+  // Input range [-pi, pi] or [-180, 180]
+  final double degrees = radians * (180 / math.pi);
+  if (degrees < 0) {
+    // Convert -90 to 270 and -180 to 180
+    return degrees + 360;
+  }
+  // Output degrees in between [0, 360]
+  return degrees;
+}
+
+CGSize _cgSizeMake(double width, double height) {
+  final CGSize size = ffi.Struct.create<CGSize>();
+  size.width = width;
+  size.height = height;
+  return size;
+}
+
 //const String _libName = 'video_player_avfoundation';
 
 /// The dynamic library in which the symbols for [FVPVideo] can be found.
@@ -739,20 +886,20 @@ NSObject _covertKnownTypeWithNSNull(Object? o) {
   return _convertKnownType(o) ?? NSNull.null1();
 }
 
-NSString _nsStringFromCFString(ffi.Pointer<CFStringRef> cf) {
+NSString _nsStringFromCFString(CFStringRef cf) {
   return NSString.castFromPointer(
       ffi.Pointer<ObjCObject>.fromAddress(cf.address));
 }
 
 // From CMTIME_IS_VALID definition in CMTime.h.
 bool _cmTimeIsValid(CMTime time) {
-  return time.flags & CMTimeFlags.kCMTimeFlags_Valid.value != 0;
+  return time.flags.value & CMTimeFlags.kCMTimeFlags_Valid.value != 0;
 }
 
 // From CMTIME_IS_INDEFINITE definition in CMTime.h.
 bool _cmTimeIsIndefinite(CMTime time) {
   return _cmTimeIsValid(time) &&
-      (time.flags & CMTimeFlags.kCMTimeFlags_Indefinite.value != 0);
+      (time.flags.value & CMTimeFlags.kCMTimeFlags_Indefinite.value != 0);
 }
 
 int _millisecondsFromCMTime(CMTime time) {
@@ -785,7 +932,7 @@ final _objcMsgSendCMTimeRangeValue = msgSendPointer
 extension _NSValueAVFoundationExtensions on NSValue {
   // ignore: non_constant_identifier_names
   CMTimeRange get CMTimeRangeValue {
-    return _objcMsgSendCMTimeRangeValue(pointer, _selCMTimeRangeValue);
+    return _objcMsgSendCMTimeRangeValue(ref.pointer, _selCMTimeRangeValue);
   }
 }
 
@@ -821,13 +968,14 @@ final _objcMsgSendLoadValuesAsynchronouslyForKeysCompletionHandler =
             void Function(ffi.Pointer<ObjCObject>, ffi.Pointer<ObjCSelector>,
                 ffi.Pointer<ObjCObject>, ffi.Pointer<ObjCBlockImpl>)>();
 
-extension _AVAsynchronousKeyValueLoading on AVAsset {
+// ignore: camel_case_extensions
+extension _AVAsynchronousKeyValueLoading_AVAsset on AVAsset {
   // ignore: non_constant_identifier_names
   AVKeyValueStatus statusOfValueForKey_error_(
       NSString key, ffi.Pointer<ffi.Pointer<ObjCObject>> outError) {
     // ignore: always_specify_types
     final ret = _objcMsgSendStatusOfValueForKeyError(
-        pointer, _selStatusOfValueForKeyError, key.pointer, outError);
+        ref.pointer, _selStatusOfValueForKeyError, key.ref.pointer, outError);
     return AVKeyValueStatus.fromValue(ret);
   }
 
@@ -835,9 +983,58 @@ extension _AVAsynchronousKeyValueLoading on AVAsset {
   void loadValuesAsynchronouslyForKeys_completionHandler_(
       NSArray keys, ObjCBlock<ffi.Void Function()>? handler) {
     _objcMsgSendLoadValuesAsynchronouslyForKeysCompletionHandler(
-        pointer,
+        ref.pointer,
         _selLoadValuesAsynchronouslyForKeysCompletionHandler,
-        keys.pointer,
-        handler?.pointer ?? ffi.nullptr);
+        keys.ref.pointer,
+        handler?.ref.pointer ?? ffi.nullptr);
+  }
+}
+
+// ignore: camel_case_extensions
+extension _BetterStructGetters_AVAsset on AVAsset {
+  CMTime get duration {
+    // Work around https://github.com/dart-lang/native/issues/1480
+    //
+    // This pattern may not be safe per later discussion in the linked issue.
+    final ffi.Pointer<CMTime> ptr = calloc<CMTime>();
+    getDuration(ptr);
+    final Uint8List typedData = ptr
+        .cast<ffi.Uint8>()
+        .asTypedList(ffi.sizeOf<CMTime>(), finalizer: calloc.nativeFree);
+    return ffi.Struct.create<CMTime>(typedData);
+  }
+}
+
+// ignore: camel_case_extensions
+extension _BetterStructGetters_AVAssetTrack on AVAssetTrack {
+  CGSize get naturalSize {
+    // Work around https://github.com/dart-lang/native/issues/1480
+    final ffi.Pointer<CGSize> ptr = calloc<CGSize>();
+    getNaturalSize(ptr);
+    final CGSize size = _cgSizeMake(ptr.ref.width, ptr.ref.height);
+    calloc.free(ptr);
+    return size;
+  }
+}
+
+// ignore: camel_case_extensions
+extension _AVAsynchronousKeyValueLoading_AVAssetTrack on AVAssetTrack {
+  // ignore: non_constant_identifier_names
+  AVKeyValueStatus statusOfValueForKey_error_(
+      NSString key, ffi.Pointer<ffi.Pointer<ObjCObject>> outError) {
+    // ignore: always_specify_types
+    final ret = _objcMsgSendStatusOfValueForKeyError(
+        ref.pointer, _selStatusOfValueForKeyError, key.ref.pointer, outError);
+    return AVKeyValueStatus.fromValue(ret);
+  }
+
+  // ignore: non_constant_identifier_names
+  void loadValuesAsynchronouslyForKeys_completionHandler_(
+      NSArray keys, ObjCBlock<ffi.Void Function()>? handler) {
+    _objcMsgSendLoadValuesAsynchronouslyForKeysCompletionHandler(
+        ref.pointer,
+        _selLoadValuesAsynchronouslyForKeysCompletionHandler,
+        keys.ref.pointer,
+        handler?.ref.pointer ?? ffi.nullptr);
   }
 }
