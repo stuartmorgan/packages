@@ -59,7 +59,9 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
     final AVURLAsset asset = await _assetForDataSource(dataSource);
     final int nativeViewProviderPointer = await _api.getViewProviderPointer();
     final NSObject nativeViewProvider = NSObject.castFromPointer(
-        ffi.Pointer<ObjCObject>.fromAddress(nativeViewProviderPointer));
+        ffi.Pointer<ObjCObject>.fromAddress(nativeViewProviderPointer),
+        retain: true,
+        release: true);
     final _VideoPlayer player = _VideoPlayer(asset, nativeViewProvider);
 
     final int textureId = await _api
@@ -229,11 +231,9 @@ class _VideoPlayer {
     final WeakReference<_VideoPlayer> weakSelf =
         WeakReference<_VideoPlayer>(this);
     nativePlayer = FVPVideoPlayer.alloc()
-        .initWithPlayer_item_output_viewProvider_frameUpdater_frameCallback_(
+        .initWithPlayer_output_frameUpdater_frameCallback_(
             _avPlayer,
-            avItem,
             videoOutput,
-            nativeViewProvider,
             frameUpdater,
             ObjCBlock_ffiVoid.listener(
                 () => weakSelf.target?._onFrameProvided()));
@@ -252,7 +252,7 @@ class _VideoPlayer {
           videoTrack.loadValuesAsynchronouslyForKeys_completionHandler_(
               _convertList(<String>['preferredTransform']),
               ObjCBlock_ffiVoid.listener(() {
-            if (weakSelf.target?.nativePlayer.disposed ?? true) {
+            if (weakSelf.target?._disposed ?? true) {
               return;
             }
             if (videoTrack.statusOfValueForKey_error_(
@@ -273,6 +273,21 @@ class _VideoPlayer {
       }
     }));
 
+    // This is to fix 2 bugs:
+    //   1. blank video for encrypted video streams on iOS 16+
+    //      (https://github.com/flutter/flutter/issues/111457), and
+    //  2. swapped width and height for some video streams (not just iOS 16+).
+    //     (https://github.com/flutter/flutter/issues/109116).
+    // An invisible AVPlayerLayer is used to overwrite the protection of pixel
+    // buffers in those streams for issue #1, and restore the correct width and
+    // height for issue #2.
+    final AVPlayerLayer playerLayer =
+        AVPlayerLayer.playerLayerWithPlayer_(_avPlayer);
+    _playerLayer = playerLayer;
+    _HackFVPViewProvider.castFrom(nativeViewProvider)
+        .layer
+        .addSublayer_(playerLayer);
+
     // TODO(stuartmorgan): Remove this once the final version has been verified
     // to be retain-loop-free.
     _xxxFinalizer.attach(this, null);
@@ -292,6 +307,7 @@ class _VideoPlayer {
 
   late final FVPVideoPlayer nativePlayer;
   late final AVPlayer _avPlayer;
+  AVPlayerLayer? _playerLayer;
 
   bool _initialized = false;
   // Wether the player play if possible. This can temporarily be out of sync
@@ -302,6 +318,9 @@ class _VideoPlayer {
   // when seeking while paused). When true, the display link should continue to
   // run until the next frame is successfully provided.
   bool _waitingForFrame = false;
+  // Whether `dispose` has already been called, to allow early returns from
+  // native async callbacks that can't be cancelled during dispose.
+  bool _disposed = false;
   FVPDisplayLink? _displayLink;
   _DelegateEventAdapter? _eventAdapter;
   ObjCObjectBase? _observerRegistrationToken;
@@ -328,8 +347,10 @@ class _VideoPlayer {
 
   void dispose() {
     debugPrint('disposed!');
+    _disposed = true;
     _unregisterObservers();
     _displayLink = null;
+    _playerLayer?.removeFromSuperlayer();
     _avPlayer.replaceCurrentItemWithPlayerItem_(null);
     nativePlayer.dispose();
   }
@@ -888,7 +909,9 @@ NSObject _covertKnownTypeWithNSNull(Object? o) {
 
 NSString _nsStringFromCFString(CFStringRef cf) {
   return NSString.castFromPointer(
-      ffi.Pointer<ObjCObject>.fromAddress(cf.address));
+      ffi.Pointer<ObjCObject>.fromAddress(cf.address),
+      retain: true,
+      release: true);
 }
 
 // From CMTIME_IS_VALID definition in CMTime.h.
@@ -1036,5 +1059,33 @@ extension _AVAsynchronousKeyValueLoading_AVAssetTrack on AVAssetTrack {
         _selLoadValuesAsynchronouslyForKeysCompletionHandler,
         keys.ref.pointer,
         handler?.ref.pointer ?? ffi.nullptr);
+  }
+}
+
+// Ugly hack around https://github.com/dart-lang/native/issues/1462 and
+// https://github.com/dart-lang/native/issues/1487
+final ffi.Pointer<ObjCSelector> _selLayer = registerName('layer');
+// ignore: always_specify_types
+final _objcMsgSendLayer = msgSendPointer
+    .cast<
+        ffi.NativeFunction<
+            ffi.Pointer<ObjCObject> Function(
+                ffi.Pointer<ObjCObject>, ffi.Pointer<ObjCSelector>)>>()
+    .asFunction<
+        ffi.Pointer<ObjCObject> Function(
+            ffi.Pointer<ObjCObject>, ffi.Pointer<ObjCSelector>)>();
+
+class _HackFVPViewProvider extends NSObject {
+  _HackFVPViewProvider._(ffi.Pointer<ObjCObject> pointer,
+      {bool retain = false, bool release = false})
+      : super.castFromPointer(pointer, retain: retain, release: release);
+
+  _HackFVPViewProvider.castFrom(ObjCObjectBase other)
+      : this._(other.ref.pointer, retain: true, release: true);
+
+  CALayer get layer {
+    // ignore: always_specify_types
+    final ret = _objcMsgSendLayer(ref.pointer, _selLayer);
+    return CALayer.castFromPointer(ret, retain: true, release: true);
   }
 }

@@ -35,6 +35,14 @@
   return self;
 }
 
+#pragma mark FVPViewProvider
+
+- (CALayer *)layer {
+  return self.view.layer;
+}
+
+#pragma mark Private methods
+
 #if TARGET_OS_OSX
 - (NSView *)view {
   return registrar.view.layer;

@@ -14,18 +14,11 @@
 // The output to use for items being played.
 @property(nonatomic, strong, nonnull) AVPlayerItemVideoOutput *videoOutput;
 
-@property(nonatomic, readonly) BOOL disposed;
-
 // Called when a new frame is provided to the engine.
 @property(nonatomic, copy, nonnull) void (^onFrameProvided)(void);
 
-// A callback to call during 'dispose'.
-@property(nonatomic, copy, nullable) void (^onDisposed)(void);
-
 - (instancetype)initWithPlayer:(nonnull AVPlayer *)player
-                          item:(nonnull AVPlayerItem *)item
                         output:(AVPlayerItemVideoOutput *)videoOutput
-                  viewProvider:(nonnull id<FVPViewProvider>)viewProvider
                   frameUpdater:(nonnull FVPFrameUpdater *)frameUpdater
                  frameCallback:(void (^__nonnull)(void))frameCallback;
 

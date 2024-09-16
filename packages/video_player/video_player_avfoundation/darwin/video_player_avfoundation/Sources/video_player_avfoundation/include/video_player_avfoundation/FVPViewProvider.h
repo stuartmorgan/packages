@@ -3,12 +3,14 @@
 // found in the LICENSE file.
 
 #import <Foundation/Foundation.h>
+#import <QuartzCore/QuartzCore.h>
 
-/// Protocol for accessing the view that is displaying the Flutter content
-/// associated with a plugin instance.
+/// Protocol for accessing information about the view that is displaying the
+/// Flutter content associated with a plugin instance.
+///
+/// The view itself is abstracted since the class is different on iOS and macOS,
+/// and that's more trouble than it's worth when using ffigen.
 @protocol FVPViewProvider <NSObject>
 @required
-// TODO(stuartmorgan): Make this UIView/NSView once pruning is implemented for ffigen; for now use
-// id to avoid bringing in a ton of unwanted transitive dependencies via extensions.
-@property(readonly, nonatomic) id view;
+@property(readonly, nonatomic) CALayer *layer;
 @end

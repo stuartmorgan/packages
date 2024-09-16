@@ -12,27 +12,18 @@
 #import <Flutter/Flutter.h>
 #endif
 
-#import "./include/video_player_avfoundation/FVPDisplayLink.h"
 #import "./include/video_player_avfoundation/FVPFrameUpdater.h"
-#import "./include/video_player_avfoundation/FVPViewProvider.h"
 
 /// The native component of a single video player instance.
 @interface FVPVideoPlayer () <FlutterTexture>
 
 @property(nonatomic, strong, nonnull) AVPlayer *player;
 
-// This is to fix 2 bugs: 1. blank video for encrypted video streams on iOS 16
-// (https://github.com/flutter/flutter/issues/111457) and 2. swapped width and height for some video
-// streams (not just iOS 16).  (https://github.com/flutter/flutter/issues/109116).
-// An invisible AVPlayerLayer is used to overwrite the protection of pixel buffers in those streams
-// for issue #1, and restore the correct width and height for issue #2.
-@property(nonatomic, nonnull) AVPlayerLayer *playerLayer;
-
-/// Provides access to the enclosing Flutter view.
-@property(nonatomic, nonnull) id<FVPViewProvider> viewProvider;
-
 // The updater that drives callbacks to the engine to indicate that a new frame is ready.
 @property(nonatomic, nonnull) FVPFrameUpdater *frameUpdater;
+
+// A callback to call during 'dispose'.
+@property(nonatomic, copy, nullable) void (^onDisposed)(void);
 
 /// Configures the player to display with the given frame callback.
 ///
