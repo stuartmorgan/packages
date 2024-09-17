@@ -7,14 +7,9 @@
 
 #import <AVFoundation/AVFoundation.h>
 
-#import "./include/video_player_avfoundation/AVAssetTrackUtils.h"
-#import "./include/video_player_avfoundation/FVPDisplayLink.h"
-#import "./include/video_player_avfoundation/FVPFrameUpdater.h"
 #import "./include/video_player_avfoundation/FVPPluginAPIProxy.h"
 #import "./include/video_player_avfoundation/FVPPluginAPIProxy_Internal.h"
-#import "./include/video_player_avfoundation/FVPVideoPlayer.h"
 #import "./include/video_player_avfoundation/messages.g.h"
-#import "FVPVideoPlayer_Private.h"
 
 #if !__has_feature(objc_arc)
 #error Code Requires ARC.

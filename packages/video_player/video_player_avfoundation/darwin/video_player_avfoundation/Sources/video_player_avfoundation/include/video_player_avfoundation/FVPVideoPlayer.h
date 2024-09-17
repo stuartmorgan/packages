@@ -17,9 +17,8 @@
 // Called when a new frame is provided to the engine.
 @property(nonatomic, copy, nonnull) void (^onFrameProvided)(void);
 
-- (instancetype)initWithPlayer:(nonnull AVPlayer *)player
-                        output:(AVPlayerItemVideoOutput *)videoOutput
-                  frameUpdater:(nonnull FVPFrameUpdater *)frameUpdater
-                 frameCallback:(void (^__nonnull)(void))frameCallback;
+- (instancetype)initWithVideoOutput:(AVPlayerItemVideoOutput *)videoOutput
+                       frameUpdater:(nonnull FVPFrameUpdater *)frameUpdater
+                      frameCallback:(void (^__nonnull)(void))frameCallback;
 
 @end

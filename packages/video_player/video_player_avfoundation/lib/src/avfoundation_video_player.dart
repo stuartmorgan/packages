@@ -253,8 +253,7 @@ class _VideoPlayer {
     final WeakReference<_VideoPlayer> weakSelf =
         WeakReference<_VideoPlayer>(this);
     nativePlayer = FVPVideoPlayer.alloc()
-        .initWithPlayer_output_frameUpdater_frameCallback_(
-            _avPlayer,
+        .initWithVideoOutput_frameUpdater_frameCallback_(
             videoOutput,
             frameUpdater,
             ObjCBlock_ffiVoid.listener(

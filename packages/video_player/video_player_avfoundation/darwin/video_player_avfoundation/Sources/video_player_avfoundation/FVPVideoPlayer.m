@@ -4,24 +4,34 @@
 
 #import "./include/video_player_avfoundation/FVPVideoPlayer.h"
 #import "./include/video_player_avfoundation/FVPVideoPlayer_Test.h"
-#import "FVPVideoPlayer_Private.h"
 
 #import <AVFoundation/AVFoundation.h>
 
-#import "./include/video_player_avfoundation/AVAssetTrackUtils.h"
+#if TARGET_OS_OSX
+#import <FlutterMacOS/FlutterMacOS.h>
+#else
+#import <Flutter/Flutter.h>
+#endif
+
 #import "./include/video_player_avfoundation/FVPFrameUpdater.h"
+
+/// The native component of a single video player instance.
+@interface FVPVideoPlayer () <FlutterTexture>
+
+// The updater that drives callbacks to the engine to indicate that a new frame is ready.
+@property(nonatomic, nonnull) FVPFrameUpdater *frameUpdater;
+
+@end
 
 @implementation FVPVideoPlayer
 
-- (instancetype)initWithPlayer:(nonnull AVPlayer *)player
-                        output:(AVPlayerItemVideoOutput *)videoOutput
-                  frameUpdater:(FVPFrameUpdater *)frameUpdater
-                 frameCallback:(void (^__nonnull)(void))frameCallback {
+- (instancetype)initWithVideoOutput:(AVPlayerItemVideoOutput *)videoOutput
+                       frameUpdater:(FVPFrameUpdater *)frameUpdater
+                      frameCallback:(void (^__nonnull)(void))frameCallback {
   NSAssert([NSThread isMainThread], @"Must be called on main thread");
   self = [super init];
   NSAssert(self, @"super init cannot be nil");
 
-  _player = player;
   _videoOutput = videoOutput;
   _frameUpdater = frameUpdater;
   _onFrameProvided = frameCallback;
