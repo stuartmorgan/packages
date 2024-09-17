@@ -25,8 +25,4 @@ abstract class AVFoundationVideoPlayerApi {
   /// valid for the lifetime of the plugin.
   @ObjCSelector('pluginAPIProxyPointer')
   int getPluginApiProxyPointer();
-
-  /// Configures the given player for display, and returns its texture ID.
-  @ObjCSelector('configurePlayerPointer:')
-  int configurePlayerPointer(int playerPointer);
 }

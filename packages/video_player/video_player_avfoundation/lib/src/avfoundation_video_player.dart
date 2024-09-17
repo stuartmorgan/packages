@@ -67,10 +67,7 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
         _assetForDataSource(nativePluginAPIProxy, dataSource);
     final _VideoPlayer player = _VideoPlayer(asset, nativePluginAPIProxy);
 
-    final int textureId = await _api
-        .configurePlayerPointer(player.nativePlayer.ref.pointer.address);
-    player.textureId = textureId;
-    _playersByTextureId[textureId] = player;
+    _playersByTextureId[player.textureId] = player;
 
     // Ensure that the first frame is drawn once available, even if the video
     // isn't played.
@@ -80,7 +77,7 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
     // drawing.
     player.registerObservers();
 
-    return textureId;
+    return player.textureId;
   }
 
   @override
@@ -265,6 +262,27 @@ class _VideoPlayer {
 
     _eventAdapter = _DelegateEventAdapter();
 
+    // Store this as a local so that the listener below doesn't have a reference
+    // to this object, creating a cycle with the native code.
+    final int textureId = pluginApiProxy.registerTexture_(nativePlayer);
+    this.textureId = textureId;
+    frameUpdater.onTextureAvailable = ObjCBlock_ffiVoid.listener(() {
+      pluginApiProxy.textureFrameAvailable_(textureId);
+    });
+
+    // This is to fix 2 bugs:
+    //   1. blank video for encrypted video streams on iOS 16+
+    //      (https://github.com/flutter/flutter/issues/111457), and
+    //  2. swapped width and height for some video streams (not just iOS 16+).
+    //     (https://github.com/flutter/flutter/issues/109116).
+    // An invisible AVPlayerLayer is used to overwrite the protection of pixel
+    // buffers in those streams for issue #1, and restore the correct width and
+    // height for issue #2.
+    final AVPlayerLayer playerLayer =
+        AVPlayerLayer.playerLayerWithPlayer_(_avPlayer);
+    _playerLayer = playerLayer;
+    pluginApiProxy.layer?.addSublayer_(playerLayer);
+
     asset.loadValuesAsynchronouslyForKeys_completionHandler_(
         _convertList(<String>['tracks']), ObjCBlock_ffiVoid.listener(() {
       if (asset.statusOfValueForKey_error_(NSString('tracks'), ffi.nullptr) ==
@@ -297,19 +315,6 @@ class _VideoPlayer {
         }
       }
     }));
-
-    // This is to fix 2 bugs:
-    //   1. blank video for encrypted video streams on iOS 16+
-    //      (https://github.com/flutter/flutter/issues/111457), and
-    //  2. swapped width and height for some video streams (not just iOS 16+).
-    //     (https://github.com/flutter/flutter/issues/109116).
-    // An invisible AVPlayerLayer is used to overwrite the protection of pixel
-    // buffers in those streams for issue #1, and restore the correct width and
-    // height for issue #2.
-    final AVPlayerLayer playerLayer =
-        AVPlayerLayer.playerLayerWithPlayer_(_avPlayer);
-    _playerLayer = playerLayer;
-    pluginApiProxy.layer?.addSublayer_(playerLayer);
 
     // TODO(stuartmorgan): Remove this once the final version has been verified
     // to be retain-loop-free.

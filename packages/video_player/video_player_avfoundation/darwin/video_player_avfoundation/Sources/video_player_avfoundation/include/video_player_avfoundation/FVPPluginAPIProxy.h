@@ -18,6 +18,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// The layer displaying the Flutter content.
 @property(readonly, nonatomic, nullable) CALayer *layer;
 
+// TODO(stuartmorgan): This should be NSObject<FlutterTexture>*, but can't be until the problem of
+// importing Flutter headers is fixed. In practice it doesn't matter right now since ffigen drops
+// protocols anyway.
+- (int64_t)registerTexture:(NSObject *)texture;
+
 - (void)textureFrameAvailable:(int64_t)textureIdentifier;
 
 - (void)unregisterTexture:(int64_t)textureIdentifier;

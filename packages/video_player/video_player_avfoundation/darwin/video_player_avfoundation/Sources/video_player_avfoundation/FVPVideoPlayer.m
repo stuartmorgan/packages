@@ -29,11 +29,6 @@
   return self;
 }
 
-- (void)configureDisplayWithAvailableFrameCallback:(void (^)())frameAvailable {
-  // Wire up the display link.
-  self.frameUpdater.onTextureAvailable = frameAvailable;
-}
-
 - (void)dealloc {
   NSLog(@"Dealloc'd");
   if (![NSThread isMainThread]) {

@@ -48,16 +48,4 @@
   return @((NSInteger)(__bridge void *)self.pluginProxy);
 }
 
-- (nullable NSNumber *)configurePlayerPointer:(NSInteger)playerPointer
-                                        error:(FlutterError *_Nullable *_Nonnull)error {
-  FVPVideoPlayer *player = (__bridge FVPVideoPlayer *)((void *)playerPointer);
-  __weak NSObject<FlutterPluginRegistrar> *weakRegistrar = self.registrar;
-  int64_t textureIdentifier = [[self.registrar textures] registerTexture:player];
-  [player configureDisplayWithAvailableFrameCallback:^{
-    [[weakRegistrar textures] textureFrameAvailable:textureIdentifier];
-  }];
-
-  return @(textureIdentifier);
-}
-
 @end

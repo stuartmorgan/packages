@@ -24,11 +24,6 @@ NSObject<FlutterMessageCodec> *FVPAVFoundationVideoPlayerApiGetCodec(void);
 ///
 /// @return `nil` only when `error != nil`.
 - (nullable NSNumber *)pluginAPIProxyPointer:(FlutterError *_Nullable *_Nonnull)error;
-/// Configures the given player for display, and returns its texture ID.
-///
-/// @return `nil` only when `error != nil`.
-- (nullable NSNumber *)configurePlayerPointer:(NSInteger)playerPointer
-                                        error:(FlutterError *_Nullable *_Nonnull)error;
 @end
 
 extern void SetUpFVPAVFoundationVideoPlayerApi(

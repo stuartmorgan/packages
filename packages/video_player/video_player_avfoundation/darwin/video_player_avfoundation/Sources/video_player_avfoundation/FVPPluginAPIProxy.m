@@ -25,6 +25,12 @@
   return self.view.layer;
 }
 
+- (int64_t)registerTexture:(NSObject *)texture {
+  NSAssert([texture conformsToProtocol:@protocol(FlutterTexture)],
+           @"texture must implement FlutterTexture");
+  return [[self.registrar textures] registerTexture:(id<FlutterTexture>)texture];
+}
+
 - (void)textureFrameAvailable:(int64_t)textureIdentifier {
   [[self.registrar textures] textureFrameAvailable:textureIdentifier];
 }

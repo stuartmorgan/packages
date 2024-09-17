@@ -25,9 +25,6 @@ abstract class TestHostVideoPlayerApi {
   /// valid for the lifetime of the plugin.
   int getPluginApiProxyPointer();
 
-  /// Configures the given player for display, and returns its texture ID.
-  int configurePlayerPointer(int playerPointer);
-
   static void setUp(
     TestHostVideoPlayerApi? api, {
     BinaryMessenger? binaryMessenger,
@@ -50,37 +47,6 @@ abstract class TestHostVideoPlayerApi {
                 (Object? message) async {
           try {
             final int output = api.getPluginApiProxyPointer();
-            return <Object?>[output];
-          } on PlatformException catch (e) {
-            return wrapResponse(error: e);
-          } catch (e) {
-            return wrapResponse(
-                error: PlatformException(code: 'error', message: e.toString()));
-          }
-        });
-      }
-    }
-    {
-      final BasicMessageChannel<Object?> __pigeon_channel = BasicMessageChannel<
-              Object?>(
-          'dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.configurePlayerPointer$messageChannelSuffix',
-          pigeonChannelCodec,
-          binaryMessenger: binaryMessenger);
-      if (api == null) {
-        _testBinaryMessengerBinding!.defaultBinaryMessenger
-            .setMockDecodedMessageHandler<Object?>(__pigeon_channel, null);
-      } else {
-        _testBinaryMessengerBinding!.defaultBinaryMessenger
-            .setMockDecodedMessageHandler<Object?>(__pigeon_channel,
-                (Object? message) async {
-          assert(message != null,
-              'Argument for dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.configurePlayerPointer was null.');
-          final List<Object?> args = (message as List<Object?>?)!;
-          final int? arg_playerPointer = (args[0] as int?);
-          assert(arg_playerPointer != null,
-              'Argument for dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.configurePlayerPointer was null, expected non-null int.');
-          try {
-            final int output = api.configurePlayerPointer(arg_playerPointer!);
             return <Object?>[output];
           } on PlatformException catch (e) {
             return wrapResponse(error: e);

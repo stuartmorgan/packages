@@ -22,9 +22,4 @@
 // The updater that drives callbacks to the engine to indicate that a new frame is ready.
 @property(nonatomic, nonnull) FVPFrameUpdater *frameUpdater;
 
-/// Configures the player to display with the given frame callback.
-///
-/// Until this is called, the player will not display any content, even if playing.
-- (void)configureDisplayWithAvailableFrameCallback:(void (^__nullable)())frameAvailable;
-
 @end
