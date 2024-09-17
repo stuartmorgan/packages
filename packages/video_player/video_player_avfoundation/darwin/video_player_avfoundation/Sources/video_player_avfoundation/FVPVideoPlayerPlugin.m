@@ -10,8 +10,9 @@
 #import "./include/video_player_avfoundation/AVAssetTrackUtils.h"
 #import "./include/video_player_avfoundation/FVPDisplayLink.h"
 #import "./include/video_player_avfoundation/FVPFrameUpdater.h"
+#import "./include/video_player_avfoundation/FVPPluginAPIProxy.h"
+#import "./include/video_player_avfoundation/FVPPluginAPIProxy_Internal.h"
 #import "./include/video_player_avfoundation/FVPVideoPlayer.h"
-#import "./include/video_player_avfoundation/FVPViewProvider.h"
 #import "./include/video_player_avfoundation/messages.g.h"
 #import "FVPVideoPlayer_Private.h"
 
@@ -19,52 +20,9 @@
 #error Code Requires ARC.
 #endif
 
-/// Non-test implementation of the view provider.
-@interface FVPDefaultViewProvider : NSObject <FVPViewProvider>
-// The registrar to query view information from.
-@property(readonly, nonatomic) NSObject<FlutterPluginRegistrar> *registrar;
-- (instancetype)initWithRegistrar:(NSObject<FlutterPluginRegistrar> *)registrar;
-@end
-
-@implementation FVPDefaultViewProvider
-- (instancetype)initWithRegistrar:(NSObject<FlutterPluginRegistrar> *)registrar {
-  self = [super init];
-  if (self) {
-    _registrar = registrar;
-  }
-  return self;
-}
-
-#pragma mark FVPViewProvider
-
-- (CALayer *)layer {
-  return self.view.layer;
-}
-
-#pragma mark Private methods
-
-#if TARGET_OS_OSX
-- (NSView *)view {
-  return registrar.view.layer;
-}
-#else
-- (UIView *)view {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-  // TODO(hellohuanlin): Provide a non-deprecated codepath. See
-  // https://github.com/flutter/flutter/issues/104117
-  UIViewController *root = UIApplication.sharedApplication.keyWindow.rootViewController;
-#pragma clang diagnostic pop
-  return root.view;
-}
-#endif
-@end
-
-#pragma mark -
-
 @interface FVPVideoPlayerPlugin ()
 @property(readonly, strong, nonatomic) NSObject<FlutterPluginRegistrar> *registrar;
-@property(nonatomic) NSObject<FVPViewProvider> *viewProvider;
+@property(nonatomic) FVPPluginAPIProxy *pluginProxy;
 @end
 
 @implementation FVPVideoPlayerPlugin
@@ -78,7 +36,7 @@
   self = [super init];
   NSAssert(self, @"super init cannot be nil");
   _registrar = registrar;
-  _viewProvider = [[FVPDefaultViewProvider alloc] initWithRegistrar:_registrar];
+  _pluginProxy = [[FVPPluginAPIProxy alloc] initWithRegistrar:_registrar];
   return self;
 }
 
@@ -86,8 +44,8 @@
   SetUpFVPAVFoundationVideoPlayerApi(registrar.messenger, nil);
 }
 
-- (nullable NSNumber *)viewProviderPointer:(FlutterError *_Nullable *_Nonnull)error {
-  return @((NSInteger)(__bridge void *)self.viewProvider);
+- (nullable NSNumber *)pluginAPIProxyPointer:(FlutterError *_Nullable *_Nonnull)error {
+  return @((NSInteger)(__bridge void *)self.pluginProxy);
 }
 
 - (nullable NSNumber *)configurePlayerPointer:(NSInteger)playerPointer

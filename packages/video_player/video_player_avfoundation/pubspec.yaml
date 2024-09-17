@@ -30,7 +30,7 @@ dependencies:
     git:
       url: https://github.com/dart-lang/native
       path: pkgs/objective_c
-      ref: c216889fc24e43c59108de05a9f9a2ba05c3cd1d
+      ref: e45b10e2c99cd0ca3c11582526cbad4e0c60e2b5
   video_player_platform_interface: ">=6.1.0 <7.0.0"
 
 dev_dependencies:
@@ -38,7 +38,7 @@ dev_dependencies:
     git:
       url: https://github.com/dart-lang/native
       path: pkgs/ffigen
-      ref: c216889fc24e43c59108de05a9f9a2ba05c3cd1d
+      ref: e45b10e2c99cd0ca3c11582526cbad4e0c60e2b5
   flutter_test:
     sdk: flutter
   pigeon: ^18.0.0

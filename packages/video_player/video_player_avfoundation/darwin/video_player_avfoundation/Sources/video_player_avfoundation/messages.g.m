@@ -47,7 +47,7 @@ void SetUpFVPAVFoundationVideoPlayerApiWithSuffix(id<FlutterBinaryMessenger> bin
   messageChannelSuffix = messageChannelSuffix.length > 0
                              ? [NSString stringWithFormat:@".%@", messageChannelSuffix]
                              : @"";
-  /// Returns the raw pointer to the view provider.
+  /// Returns the raw pointer to the plugin API proxy.
   ///
   /// The implementation is responsible for ensuring that this pointer remains
   /// valid for the lifetime of the plugin.
@@ -56,18 +56,18 @@ void SetUpFVPAVFoundationVideoPlayerApiWithSuffix(id<FlutterBinaryMessenger> bin
            initWithName:[NSString
                             stringWithFormat:@"%@%@",
                                              @"dev.flutter.pigeon.video_player_avfoundation."
-                                             @"AVFoundationVideoPlayerApi.getViewProviderPointer",
+                                             @"AVFoundationVideoPlayerApi.getPluginApiProxyPointer",
                                              messageChannelSuffix]
         binaryMessenger:binaryMessenger
                   codec:FVPAVFoundationVideoPlayerApiGetCodec()];
     if (api) {
-      NSCAssert([api respondsToSelector:@selector(viewProviderPointer:)],
+      NSCAssert([api respondsToSelector:@selector(pluginAPIProxyPointer:)],
                 @"FVPAVFoundationVideoPlayerApi api (%@) doesn't respond to "
-                @"@selector(viewProviderPointer:)",
+                @"@selector(pluginAPIProxyPointer:)",
                 api);
       [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
         FlutterError *error;
-        NSNumber *output = [api viewProviderPointer:&error];
+        NSNumber *output = [api pluginAPIProxyPointer:&error];
         callback(wrapResult(output, error));
       }];
     } else {

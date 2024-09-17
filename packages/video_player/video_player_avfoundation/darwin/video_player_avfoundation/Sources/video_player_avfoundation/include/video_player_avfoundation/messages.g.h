@@ -17,13 +17,13 @@ NS_ASSUME_NONNULL_BEGIN
 NSObject<FlutterMessageCodec> *FVPAVFoundationVideoPlayerApiGetCodec(void);
 
 @protocol FVPAVFoundationVideoPlayerApi
-/// Returns the raw pointer to the view provider.
+/// Returns the raw pointer to the plugin API proxy.
 ///
 /// The implementation is responsible for ensuring that this pointer remains
 /// valid for the lifetime of the plugin.
 ///
 /// @return `nil` only when `error != nil`.
-- (nullable NSNumber *)viewProviderPointer:(FlutterError *_Nullable *_Nonnull)error;
+- (nullable NSNumber *)pluginAPIProxyPointer:(FlutterError *_Nullable *_Nonnull)error;
 /// Configures the given player for display, and returns its texture ID.
 ///
 /// @return `nil` only when `error != nil`.

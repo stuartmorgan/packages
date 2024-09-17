@@ -45,13 +45,13 @@ class AVFoundationVideoPlayerApi {
 
   final String __pigeon_messageChannelSuffix;
 
-  /// Returns the raw pointer to the view provider.
+  /// Returns the raw pointer to the plugin API proxy.
   ///
   /// The implementation is responsible for ensuring that this pointer remains
   /// valid for the lifetime of the plugin.
-  Future<int> getViewProviderPointer() async {
+  Future<int> getPluginApiProxyPointer() async {
     final String __pigeon_channelName =
-        'dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.getViewProviderPointer$__pigeon_messageChannelSuffix';
+        'dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.getPluginApiProxyPointer$__pigeon_messageChannelSuffix';
     final BasicMessageChannel<Object?> __pigeon_channel =
         BasicMessageChannel<Object?>(
       __pigeon_channelName,

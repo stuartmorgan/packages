@@ -57,12 +57,14 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
   @override
   Future<int?> create(DataSource dataSource) async {
     final AVURLAsset asset = await _assetForDataSource(dataSource);
-    final int nativeViewProviderPointer = await _api.getViewProviderPointer();
-    final NSObject nativeViewProvider = NSObject.castFromPointer(
-        ffi.Pointer<ObjCObject>.fromAddress(nativeViewProviderPointer),
-        retain: true,
-        release: true);
-    final _VideoPlayer player = _VideoPlayer(asset, nativeViewProvider);
+    final int nativePluginAPIProxyPointer =
+        await _api.getPluginApiProxyPointer();
+    final FVPPluginAPIProxy nativePluginAPIProxy =
+        FVPPluginAPIProxy.castFromPointer(
+            ffi.Pointer<ObjCObject>.fromAddress(nativePluginAPIProxyPointer),
+            retain: true,
+            release: true);
+    final _VideoPlayer player = _VideoPlayer(asset, nativePluginAPIProxy);
 
     final int textureId = await _api
         .configurePlayerPointer(player.nativePlayer.ref.pointer.address);
@@ -205,7 +207,7 @@ typedef _RegistrationState = ({
 
 /// An instance of a video player.
 class _VideoPlayer {
-  _VideoPlayer(AVAsset asset, NSObject nativeViewProvider) {
+  _VideoPlayer(AVAsset asset, FVPPluginAPIProxy pluginApiProxy) {
     final AVPlayerItem avItem = AVPlayerItem.playerItemWithAsset_(asset);
     _avPlayer = AVPlayer.playerWithPlayerItem_(avItem);
     _avPlayer.actionAtItemEnd =
@@ -226,7 +228,7 @@ class _VideoPlayer {
     frameUpdater.videoOutput = videoOutput;
 
     _displayLink = FVPDisplayLink.alloc().initWithViewProvider_callback_(
-        nativeViewProvider,
+        pluginApiProxy,
         ObjCBlock_ffiVoid.listener(() => frameUpdater.displayLinkFired()));
     final WeakReference<_VideoPlayer> weakSelf =
         WeakReference<_VideoPlayer>(this);
@@ -284,9 +286,7 @@ class _VideoPlayer {
     final AVPlayerLayer playerLayer =
         AVPlayerLayer.playerLayerWithPlayer_(_avPlayer);
     _playerLayer = playerLayer;
-    _HackFVPViewProvider.castFrom(nativeViewProvider)
-        .layer
-        .addSublayer_(playerLayer);
+    pluginApiProxy.layer?.addSublayer_(playerLayer);
 
     // TODO(stuartmorgan): Remove this once the final version has been verified
     // to be retain-loop-free.
@@ -1059,33 +1059,5 @@ extension _AVAsynchronousKeyValueLoading_AVAssetTrack on AVAssetTrack {
         _selLoadValuesAsynchronouslyForKeysCompletionHandler,
         keys.ref.pointer,
         handler?.ref.pointer ?? ffi.nullptr);
-  }
-}
-
-// Ugly hack around https://github.com/dart-lang/native/issues/1462 and
-// https://github.com/dart-lang/native/issues/1487
-final ffi.Pointer<ObjCSelector> _selLayer = registerName('layer');
-// ignore: always_specify_types
-final _objcMsgSendLayer = msgSendPointer
-    .cast<
-        ffi.NativeFunction<
-            ffi.Pointer<ObjCObject> Function(
-                ffi.Pointer<ObjCObject>, ffi.Pointer<ObjCSelector>)>>()
-    .asFunction<
-        ffi.Pointer<ObjCObject> Function(
-            ffi.Pointer<ObjCObject>, ffi.Pointer<ObjCSelector>)>();
-
-class _HackFVPViewProvider extends NSObject {
-  _HackFVPViewProvider._(ffi.Pointer<ObjCObject> pointer,
-      {bool retain = false, bool release = false})
-      : super.castFromPointer(pointer, retain: retain, release: release);
-
-  _HackFVPViewProvider.castFrom(ObjCObjectBase other)
-      : this._(other.ref.pointer, retain: true, release: true);
-
-  CALayer get layer {
-    // ignore: always_specify_types
-    final ret = _objcMsgSendLayer(ref.pointer, _selLayer);
-    return CALayer.castFromPointer(ret, retain: true, release: true);
   }
 }

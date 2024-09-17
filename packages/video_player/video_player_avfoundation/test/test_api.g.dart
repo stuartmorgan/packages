@@ -19,11 +19,11 @@ abstract class TestHostVideoPlayerApi {
   static const MessageCodec<Object?> pigeonChannelCodec =
       StandardMessageCodec();
 
-  /// Returns the raw pointer to the view provider.
+  /// Returns the raw pointer to the plugin API proxy.
   ///
   /// The implementation is responsible for ensuring that this pointer remains
   /// valid for the lifetime of the plugin.
-  int getViewProviderPointer();
+  int getPluginApiProxyPointer();
 
   /// Configures the given player for display, and returns its texture ID.
   int configurePlayerPointer(int playerPointer);
@@ -42,7 +42,7 @@ abstract class TestHostVideoPlayerApi {
     {
       final BasicMessageChannel<Object?> __pigeon_channel = BasicMessageChannel<
               Object?>(
-          'dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.getViewProviderPointer$messageChannelSuffix',
+          'dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.getPluginApiProxyPointer$messageChannelSuffix',
           pigeonChannelCodec,
           binaryMessenger: binaryMessenger);
       if (api == null) {
@@ -53,7 +53,7 @@ abstract class TestHostVideoPlayerApi {
             .setMockDecodedMessageHandler<Object?>(__pigeon_channel,
                 (Object? message) async {
           try {
-            final int output = api.getViewProviderPointer();
+            final int output = api.getPluginApiProxyPointer();
             return <Object?>[output];
           } on PlatformException catch (e) {
             return wrapResponse(error: e);

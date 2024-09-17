@@ -19,12 +19,12 @@ import 'package:pigeon/pigeon.dart';
 ))
 @HostApi(dartHostTestHandler: 'TestHostVideoPlayerApi')
 abstract class AVFoundationVideoPlayerApi {
-  /// Returns the raw pointer to the view provider.
+  /// Returns the raw pointer to the plugin API proxy.
   ///
   /// The implementation is responsible for ensuring that this pointer remains
   /// valid for the lifetime of the plugin.
-  @ObjCSelector('viewProviderPointer')
-  int getViewProviderPointer();
+  @ObjCSelector('pluginAPIProxyPointer')
+  int getPluginApiProxyPointer();
 
   /// Configures the given player for display, and returns its texture ID.
   @ObjCSelector('configurePlayerPointer:')
