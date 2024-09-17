@@ -100,33 +100,4 @@ void SetUpFVPAVFoundationVideoPlayerApiWithSuffix(id<FlutterBinaryMessenger> bin
       [channel setMessageHandler:nil];
     }
   }
-  /// Wraps registrar-based asset lookup, as that's not currently accessible via
-  /// FFI.
-  {
-    FlutterBasicMessageChannel *channel = [[FlutterBasicMessageChannel alloc]
-           initWithName:[NSString stringWithFormat:@"%@%@",
-                                                   @"dev.flutter.pigeon.video_player_avfoundation."
-                                                   @"AVFoundationVideoPlayerApi.pathForAsset",
-                                                   messageChannelSuffix]
-        binaryMessenger:binaryMessenger
-                  codec:FVPAVFoundationVideoPlayerApiGetCodec()];
-    if (api) {
-      NSCAssert([api respondsToSelector:@selector(pathForAssetWithName:package:error:)],
-                @"FVPAVFoundationVideoPlayerApi api (%@) doesn't respond to "
-                @"@selector(pathForAssetWithName:package:error:)",
-                api);
-      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
-        NSArray *args = message;
-        NSString *arg_assetName = GetNullableObjectAtIndex(args, 0);
-        NSString *arg_packageName = GetNullableObjectAtIndex(args, 1);
-        FlutterError *error;
-        NSString *output = [api pathForAssetWithName:arg_assetName
-                                             package:arg_packageName
-                                               error:&error];
-        callback(wrapResult(output, error));
-      }];
-    } else {
-      [channel setMessageHandler:nil];
-    }
-  }
 }

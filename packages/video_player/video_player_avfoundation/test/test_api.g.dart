@@ -28,10 +28,6 @@ abstract class TestHostVideoPlayerApi {
   /// Configures the given player for display, and returns its texture ID.
   int configurePlayerPointer(int playerPointer);
 
-  /// Wraps registrar-based asset lookup, as that's not currently accessible via
-  /// FFI.
-  String? pathForAsset(String assetName, String? packageName);
-
   static void setUp(
     TestHostVideoPlayerApi? api, {
     BinaryMessenger? binaryMessenger,
@@ -85,39 +81,6 @@ abstract class TestHostVideoPlayerApi {
               'Argument for dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.configurePlayerPointer was null, expected non-null int.');
           try {
             final int output = api.configurePlayerPointer(arg_playerPointer!);
-            return <Object?>[output];
-          } on PlatformException catch (e) {
-            return wrapResponse(error: e);
-          } catch (e) {
-            return wrapResponse(
-                error: PlatformException(code: 'error', message: e.toString()));
-          }
-        });
-      }
-    }
-    {
-      final BasicMessageChannel<Object?> __pigeon_channel = BasicMessageChannel<
-              Object?>(
-          'dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.pathForAsset$messageChannelSuffix',
-          pigeonChannelCodec,
-          binaryMessenger: binaryMessenger);
-      if (api == null) {
-        _testBinaryMessengerBinding!.defaultBinaryMessenger
-            .setMockDecodedMessageHandler<Object?>(__pigeon_channel, null);
-      } else {
-        _testBinaryMessengerBinding!.defaultBinaryMessenger
-            .setMockDecodedMessageHandler<Object?>(__pigeon_channel,
-                (Object? message) async {
-          assert(message != null,
-              'Argument for dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.pathForAsset was null.');
-          final List<Object?> args = (message as List<Object?>?)!;
-          final String? arg_assetName = (args[0] as String?);
-          assert(arg_assetName != null,
-              'Argument for dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.pathForAsset was null, expected non-null String.');
-          final String? arg_packageName = (args[1] as String?);
-          try {
-            final String? output =
-                api.pathForAsset(arg_assetName!, arg_packageName);
             return <Object?>[output];
           } on PlatformException catch (e) {
             return wrapResponse(error: e);

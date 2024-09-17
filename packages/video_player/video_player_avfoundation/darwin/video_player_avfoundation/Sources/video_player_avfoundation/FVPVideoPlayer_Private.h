@@ -22,9 +22,6 @@
 // The updater that drives callbacks to the engine to indicate that a new frame is ready.
 @property(nonatomic, nonnull) FVPFrameUpdater *frameUpdater;
 
-// A callback to call during 'dispose'.
-@property(nonatomic, copy, nullable) void (^onDisposed)(void);
-
 /// Configures the player to display with the given frame callback.
 ///
 /// Until this is called, the player will not display any content, even if playing.

@@ -53,31 +53,11 @@
   FVPVideoPlayer *player = (__bridge FVPVideoPlayer *)((void *)playerPointer);
   __weak NSObject<FlutterPluginRegistrar> *weakRegistrar = self.registrar;
   int64_t textureIdentifier = [[self.registrar textures] registerTexture:player];
-  player.onDisposed = ^{
-    [[weakRegistrar textures] unregisterTexture:textureIdentifier];
-  };
   [player configureDisplayWithAvailableFrameCallback:^{
     [[weakRegistrar textures] textureFrameAvailable:textureIdentifier];
   }];
 
   return @(textureIdentifier);
-}
-
-- (nullable NSString *)pathForAssetWithName:(NSString *)assetName
-                                    package:(nullable NSString *)packageName
-                                      error:(FlutterError *_Nullable *_Nonnull)error {
-  NSString *lookupKey = packageName
-                            ? [_registrar lookupKeyForAsset:assetName fromPackage:packageName]
-                            : [_registrar lookupKeyForAsset:assetName];
-  NSString *path = [[NSBundle mainBundle] pathForResource:lookupKey ofType:nil];
-#if TARGET_OS_OSX
-  // See https://github.com/flutter/flutter/issues/135302
-  // TODO(stuartmorgan): Remove this if the asset APIs are adjusted to work better for macOS.
-  if (!path) {
-    path = [NSURL URLWithString:lookupKey relativeToURL:NSBundle.mainBundle.bundleURL].path;
-  }
-#endif
-  return path;
 }
 
 @end

@@ -29,11 +29,6 @@ NSObject<FlutterMessageCodec> *FVPAVFoundationVideoPlayerApiGetCodec(void);
 /// @return `nil` only when `error != nil`.
 - (nullable NSNumber *)configurePlayerPointer:(NSInteger)playerPointer
                                         error:(FlutterError *_Nullable *_Nonnull)error;
-/// Wraps registrar-based asset lookup, as that's not currently accessible via
-/// FFI.
-- (nullable NSString *)pathForAssetWithName:(NSString *)assetName
-                                    package:(nullable NSString *)packageName
-                                      error:(FlutterError *_Nullable *_Nonnull)error;
 @end
 
 extern void SetUpFVPAVFoundationVideoPlayerApi(

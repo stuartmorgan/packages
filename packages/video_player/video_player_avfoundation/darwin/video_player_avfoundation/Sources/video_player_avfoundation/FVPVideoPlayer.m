@@ -65,12 +65,4 @@
   return buffer;
 }
 
-- (void)dispose {
-  NSAssert([NSThread isMainThread], @"Must be called on main thread");
-
-  if (self.onDisposed) {
-    self.onDisposed();
-  }
-}
-
 @end

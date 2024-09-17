@@ -29,9 +29,4 @@ abstract class AVFoundationVideoPlayerApi {
   /// Configures the given player for display, and returns its texture ID.
   @ObjCSelector('configurePlayerPointer:')
   int configurePlayerPointer(int playerPointer);
-
-  /// Wraps registrar-based asset lookup, as that's not currently accessible via
-  /// FFI.
-  @ObjCSelector('pathForAssetWithName:package:')
-  String? pathForAsset(String assetName, String? packageName);
 }

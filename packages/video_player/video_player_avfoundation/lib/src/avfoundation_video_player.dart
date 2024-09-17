@@ -56,7 +56,6 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
 
   @override
   Future<int?> create(DataSource dataSource) async {
-    final AVURLAsset asset = await _assetForDataSource(dataSource);
     final int nativePluginAPIProxyPointer =
         await _api.getPluginApiProxyPointer();
     final FVPPluginAPIProxy nativePluginAPIProxy =
@@ -64,10 +63,13 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
             ffi.Pointer<ObjCObject>.fromAddress(nativePluginAPIProxyPointer),
             retain: true,
             release: true);
+    final AVURLAsset asset =
+        _assetForDataSource(nativePluginAPIProxy, dataSource);
     final _VideoPlayer player = _VideoPlayer(asset, nativePluginAPIProxy);
 
     final int textureId = await _api
         .configurePlayerPointer(player.nativePlayer.ref.pointer.address);
+    player.textureId = textureId;
     _playersByTextureId[textureId] = player;
 
     // Ensure that the first frame is drawn once available, even if the video
@@ -146,7 +148,8 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
     }
   }
 
-  Future<AVURLAsset> _assetForDataSource(DataSource source) async {
+  AVURLAsset _assetForDataSource(
+      FVPPluginAPIProxy nativePluginAPIProxy, DataSource source) {
     String? uri;
     Map<String, String> httpHeaders = <String, String>{};
     switch (source.sourceType) {
@@ -155,8 +158,8 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
         if (asset == null) {
           throw ArgumentError('"asset" must be set for DataSourceType.asset');
         }
-        final String? assetPath =
-            await _api.pathForAsset(asset, source.package);
+        final String? assetPath = _pathForAsset(nativePluginAPIProxy, asset,
+            packageName: source.package);
         if (assetPath == null) {
           throw ArgumentError(
               'Unable to load "$asset" from package "${source.package}"');
@@ -188,6 +191,25 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
     return AVURLAsset.URLAssetWithURL_options_(nsurl, options);
   }
 
+  String? _pathForAsset(
+      FVPPluginAPIProxy nativePluginAPIProxy, String assetName,
+      {String? packageName}) {
+    final NSString lookupKey = packageName == null
+        ? nativePluginAPIProxy.lookupKeyForAsset_(NSString(assetName))
+        : nativePluginAPIProxy.lookupKeyForAsset_fromPackage_(
+            NSString(assetName), NSString(packageName));
+    final NSBundle mainBundle = NSBundle.getMainBundle();
+    NSString? path = mainBundle.pathForResource_ofType_(lookupKey, null);
+    if (Platform.isMacOS) {
+      // See https://github.com/flutter/flutter/issues/135302
+      // TODO(stuartmorgan): Remove this if the asset APIs are adjusted to work better for macOS.
+      path ??=
+          NSURL.URLWithString_relativeToURL_(lookupKey, mainBundle.bundleURL)
+              ?.path;
+    }
+    return path?.toString();
+  }
+
   _VideoPlayer _playerForTexture(int textureId) {
     final _VideoPlayer? player = _playersByTextureId[textureId];
     if (player == null) {
@@ -207,7 +229,8 @@ typedef _RegistrationState = ({
 
 /// An instance of a video player.
 class _VideoPlayer {
-  _VideoPlayer(AVAsset asset, FVPPluginAPIProxy pluginApiProxy) {
+  _VideoPlayer(AVAsset asset, FVPPluginAPIProxy pluginApiProxy)
+      : _pluginApiProxy = pluginApiProxy {
     final AVPlayerItem avItem = AVPlayerItem.playerItemWithAsset_(asset);
     _avPlayer = AVPlayer.playerWithPlayerItem_(avItem);
     _avPlayer.actionAtItemEnd =
@@ -305,6 +328,8 @@ class _VideoPlayer {
     debugPrint('Finalized!');
   });
 
+  final FVPPluginAPIProxy _pluginApiProxy;
+  late final int textureId;
   late final FVPVideoPlayer nativePlayer;
   late final AVPlayer _avPlayer;
   AVPlayerLayer? _playerLayer;
@@ -350,9 +375,9 @@ class _VideoPlayer {
     _disposed = true;
     _unregisterObservers();
     _displayLink = null;
+    _pluginApiProxy.unregisterTexture_(textureId);
     _playerLayer?.removeFromSuperlayer();
     _avPlayer.replaceCurrentItemWithPlayerItem_(null);
-    nativePlayer.dispose();
   }
 
   void registerObservers() {

@@ -22,8 +22,4 @@
                   frameUpdater:(nonnull FVPFrameUpdater *)frameUpdater
                  frameCallback:(void (^__nonnull)(void))frameCallback;
 
-/// Informs the player that it won't be used from Dart any more and that it should clean up
-/// related resources.
-- (void)dispose;
-
 @end
