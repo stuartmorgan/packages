@@ -12,8 +12,9 @@
 @property(nonatomic, copy, nullable) void (^onTextureAvailable)();
 // The output that this updater is managing.
 @property(nonatomic, weak) AVPlayerItemVideoOutput *videoOutput;
-// The last time that has been validated as avaliable according to hasNewPixelBufferForItemTime:.
-@property(nonatomic, assign) CMTime lastKnownAvailableTime;
+// The last available pixel buffer.
+@property(nonatomic, assign) CVPixelBufferRef latestPixelBuffer;
+@property(nonatomic, strong) dispatch_queue_t pixelBufferSynchronizationQueue;
 
 /// Informs this object that the display link timer fired, so the frame should be updated if
 /// possible.

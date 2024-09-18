@@ -46,20 +46,14 @@
   }
 }
 
+// This method is called on the rester thread, per engine API docs.
 - (CVPixelBufferRef)copyPixelBuffer {
-  // TODO(stuartmorgan): Fix the threading here; this is method is not called on the main thread.
-  CVPixelBufferRef buffer = NULL;
-  CMTime outputItemTime = [_videoOutput itemTimeForHostTime:CACurrentMediaTime()];
-  if ([_videoOutput hasNewPixelBufferForItemTime:outputItemTime]) {
-    buffer = [_videoOutput copyPixelBufferForItemTime:outputItemTime itemTimeForDisplay:NULL];
-  } else {
-    // If the current time isn't available yet, use the time that was checked when informing the
-    // engine that a frame was available (if any).
-    CMTime lastAvailableTime = self.frameUpdater.lastKnownAvailableTime;
-    if (CMTIME_IS_VALID(lastAvailableTime)) {
-      buffer = [_videoOutput copyPixelBufferForItemTime:lastAvailableTime itemTimeForDisplay:NULL];
-    }
-  }
+  __block CVPixelBufferRef buffer = NULL;
+  dispatch_sync(self.frameUpdater.pixelBufferSynchronizationQueue, ^{
+    buffer = self.frameUpdater.latestPixelBuffer;
+    // Take the buffer from the updater; ownership passes to the engine when it is returned below.
+    self.frameUpdater.latestPixelBuffer = NULL;
+  });
 
   if (buffer != NULL) {
     dispatch_async(dispatch_get_main_queue(), ^{

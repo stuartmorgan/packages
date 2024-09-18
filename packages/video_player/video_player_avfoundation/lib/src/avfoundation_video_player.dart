@@ -422,6 +422,11 @@ class _VideoPlayer {
               _reportError(
                   'Failed to load video: ${avItem.error?.localizedDescription}');
             case AVPlayerItemStatus.AVPlayerItemStatusReadyToPlay:
+              // From here on, videoOutput should only be used from the native
+              // queue.
+              // TODO(stuartmorga): Figure out if the detruction logic is safely
+              // ordered. This is a pre-existing problem from before the FFI
+              // conversion though.
               avItem.addOutput_(self.nativePlayer.videoOutput);
               self._checkInitializationStatus();
             case AVPlayerItemStatus.AVPlayerItemStatusUnknown:
