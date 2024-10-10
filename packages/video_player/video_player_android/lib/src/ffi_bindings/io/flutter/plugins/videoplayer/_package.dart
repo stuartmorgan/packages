@@ -1,1 +1,1 @@
-export 'VideoPlayerPlugin.dart';
+export 'VideoPlayer.dart';

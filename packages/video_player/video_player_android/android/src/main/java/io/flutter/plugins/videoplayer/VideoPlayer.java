@@ -19,7 +19,7 @@ import androidx.media3.common.PlaybackParameters;
 import androidx.media3.exoplayer.ExoPlayer;
 import io.flutter.view.TextureRegistry;
 
-final class VideoPlayer implements TextureRegistry.SurfaceProducer.Callback {
+public final class VideoPlayer implements TextureRegistry.SurfaceProducer.Callback {
   @NonNull private final ExoPlayerProvider exoPlayerProvider;
   @NonNull private final MediaItem mediaItem;
   @NonNull private final TextureRegistry.SurfaceProducer surfaceProducer;

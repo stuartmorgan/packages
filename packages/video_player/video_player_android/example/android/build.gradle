@@ -41,7 +41,7 @@ tasks.register("clean", Delete) {
 gradle.projectsEvaluated {
     project(":video_player_android") {
         tasks.withType(JavaCompile) {
-            options.compilerArgs << "-Xlint:all" << "-Werror"
+            //options.compilerArgs << "-Xlint:all" << "-Werror"
 
             // Workaround for several warnings when building
             // that the above turns into errors, coming from

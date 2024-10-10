@@ -4,7 +4,5 @@ android_sdk_config:
 output:
   dart:
     path: lib/src/ffi_bindings/
-#source_path:
-#  - 'android/src/main/java'
 classes:
-  - 'io.flutter.plugins.videoplayer.VideoPlayerPlugin'
+  - 'io.flutter.plugins.videoplayer.VideoPlayer'
