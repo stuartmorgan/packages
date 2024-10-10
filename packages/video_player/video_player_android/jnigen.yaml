@@ -1,0 +1,10 @@
+android_sdk_config:
+  add_gradle_deps: true
+  android_example: 'example/'
+output:
+  dart:
+    path: lib/src/ffi_bindings/
+#source_path:
+#  - 'android/src/main/java'
+classes:
+  - 'io.flutter.plugins.videoplayer.VideoPlayerPlugin'

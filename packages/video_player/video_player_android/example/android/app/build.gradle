@@ -64,4 +64,12 @@ dependencies {
     testImplementation 'org.mockito:mockito-core:5.0.0'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    // Duplicated from the plugin's build.gradle as a temporary workaround for
+    // https://github.com/dart-lang/native/issues/793#issuecomment-2118525810
+    def exoplayer_version = "1.4.1"
+    implementation "androidx.media3:media3-exoplayer:${exoplayer_version}"
+    implementation "androidx.media3:media3-exoplayer-hls:${exoplayer_version}"
+    implementation "androidx.media3:media3-exoplayer-dash:${exoplayer_version}"
+    implementation "androidx.media3:media3-exoplayer-rtsp:${exoplayer_version}"
+    implementation "androidx.media3:media3-exoplayer-smoothstreaming:${exoplayer_version}"
 }

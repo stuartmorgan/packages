@@ -20,6 +20,8 @@ flutter:
 dependencies:
   flutter:
     sdk: flutter
+  jni: ^0.12.0
+  jnigen: ^0.12.1
   video_player_platform_interface: ">=6.1.0 <7.0.0"
 
 dev_dependencies:
