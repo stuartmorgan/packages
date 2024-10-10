@@ -140,6 +140,12 @@ public class VideoPlayerPlugin implements FlutterPlugin, AndroidVideoPlayerApi {
     return new TextureMessage.Builder().setTextureId(handle.id()).build();
   }
 
+  @Override
+  public void cacheInstance(@NonNull String key, @NonNull Long textureId) {
+    VideoPlayerGlobalTransfer transfer = VideoPlayerGlobalTransfer.getInstance();
+    transfer.players.put(key, videoPlayers.get(textureId));
+  }
+
   public void dispose(@NonNull TextureMessage arg) {
     VideoPlayer player = videoPlayers.get(arg.getTextureId());
     player.dispose();

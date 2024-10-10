@@ -78,6 +78,8 @@ abstract class TestHostVideoPlayerApi {
 
   TextureMessage create(CreateMessage msg);
 
+  void cacheInstance(String key, int textureId);
+
   void dispose(TextureMessage msg);
 
   void setLooping(LoopingMessage msg);
@@ -152,6 +154,41 @@ abstract class TestHostVideoPlayerApi {
           try {
             final TextureMessage output = api.create(arg_msg!);
             return <Object?>[output];
+          } on PlatformException catch (e) {
+            return wrapResponse(error: e);
+          } catch (e) {
+            return wrapResponse(
+                error: PlatformException(code: 'error', message: e.toString()));
+          }
+        });
+      }
+    }
+    {
+      final BasicMessageChannel<
+          Object?> pigeonVar_channel = BasicMessageChannel<
+              Object?>(
+          'dev.flutter.pigeon.video_player_android.AndroidVideoPlayerApi.cacheInstance$messageChannelSuffix',
+          pigeonChannelCodec,
+          binaryMessenger: binaryMessenger);
+      if (api == null) {
+        _testBinaryMessengerBinding!.defaultBinaryMessenger
+            .setMockDecodedMessageHandler<Object?>(pigeonVar_channel, null);
+      } else {
+        _testBinaryMessengerBinding!.defaultBinaryMessenger
+            .setMockDecodedMessageHandler<Object?>(pigeonVar_channel,
+                (Object? message) async {
+          assert(message != null,
+              'Argument for dev.flutter.pigeon.video_player_android.AndroidVideoPlayerApi.cacheInstance was null.');
+          final List<Object?> args = (message as List<Object?>?)!;
+          final String? arg_key = (args[0] as String?);
+          assert(arg_key != null,
+              'Argument for dev.flutter.pigeon.video_player_android.AndroidVideoPlayerApi.cacheInstance was null, expected non-null String.');
+          final int? arg_textureId = (args[1] as int?);
+          assert(arg_textureId != null,
+              'Argument for dev.flutter.pigeon.video_player_android.AndroidVideoPlayerApi.cacheInstance was null, expected non-null int.');
+          try {
+            api.cacheInstance(arg_key!, arg_textureId!);
+            return wrapResponse(empty: true);
           } on PlatformException catch (e) {
             return wrapResponse(error: e);
           } catch (e) {

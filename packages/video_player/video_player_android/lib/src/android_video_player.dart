@@ -6,14 +6,18 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:jni/jni.dart';
 import 'package:video_player_platform_interface/video_player_platform_interface.dart';
 
+import 'ffi_bindings.dart';
 import 'messages.g.dart';
 
 /// An Android implementation of [VideoPlayerPlatform] that uses the
 /// Pigeon-generated [VideoPlayerApi].
 class AndroidVideoPlayer extends VideoPlayerPlatform {
   final AndroidVideoPlayerApi _api = AndroidVideoPlayerApi();
+
+  Map<int, VideoPlayer> _playersByTextureId = <int, VideoPlayer>{};
 
   /// Registers this class as the default instance of [PathProviderPlatform].
   static void registerWith() {
@@ -60,7 +64,20 @@ class AndroidVideoPlayer extends VideoPlayerPlatform {
     );
 
     final TextureMessage response = await _api.create(message);
+    await _transferPlayer(response.textureId);
     return response.textureId;
+  }
+
+  // Workaround to get a native-side-created object over to Dart.
+  Future<void> _transferPlayer(int textureId) async {
+    // This is in theory racy, but fine for a temporary workaround in the
+    // prototype.
+    final String transferId =
+        '$textureId-${DateTime.now().microsecondsSinceEpoch}';
+    await _api.cacheInstance(transferId, textureId);
+    _playersByTextureId[textureId] = VideoPlayerGlobalTransfer.getInstance()
+        .players
+        .remove(JString.fromString(transferId))!;
   }
 
   @override

@@ -3,6 +3,8 @@ android_sdk_config:
   android_example: 'example/'
 output:
   dart:
-    path: lib/src/ffi_bindings/
+    path: lib/src/ffi_bindings.dart
+    structure: single_file
 classes:
   - 'io.flutter.plugins.videoplayer.VideoPlayer'
+  - 'io.flutter.plugins.videoplayer.VideoPlayerGlobalTransfer'

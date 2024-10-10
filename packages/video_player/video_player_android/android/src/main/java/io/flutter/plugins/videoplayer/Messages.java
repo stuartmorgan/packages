@@ -790,6 +790,8 @@ public class Messages {
     @NonNull
     TextureMessage create(@NonNull CreateMessage msg);
 
+    void cacheInstance(@NonNull String key, @NonNull Long textureId);
+
     void dispose(@NonNull TextureMessage msg);
 
     void setLooping(@NonNull LoopingMessage msg);
@@ -866,6 +868,32 @@ public class Messages {
                 try {
                   TextureMessage output = api.create(msgArg);
                   wrapped.add(0, output);
+                } catch (Throwable exception) {
+                  wrapped = wrapError(exception);
+                }
+                reply.reply(wrapped);
+              });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(
+                binaryMessenger,
+                "dev.flutter.pigeon.video_player_android.AndroidVideoPlayerApi.cacheInstance"
+                    + messageChannelSuffix,
+                getCodec());
+        if (api != null) {
+          channel.setMessageHandler(
+              (message, reply) -> {
+                ArrayList<Object> wrapped = new ArrayList<>();
+                ArrayList<Object> args = (ArrayList<Object>) message;
+                String keyArg = (String) args.get(0);
+                Long textureIdArg = (Long) args.get(1);
+                try {
+                  api.cacheInstance(keyArg, textureIdArg);
+                  wrapped.add(0, null);
                 } catch (Throwable exception) {
                   wrapped = wrapError(exception);
                 }

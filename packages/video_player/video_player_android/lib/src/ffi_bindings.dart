@@ -130,3 +130,120 @@ final class $VideoPlayer$Type extends _$jni.JObjType<VideoPlayer> {
         other is $VideoPlayer$Type;
   }
 }
+
+/// from: `io.flutter.plugins.videoplayer.VideoPlayerGlobalTransfer`
+class VideoPlayerGlobalTransfer extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<VideoPlayerGlobalTransfer> $type;
+
+  @_$jni.internal
+  VideoPlayerGlobalTransfer.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'io/flutter/plugins/videoplayer/VideoPlayerGlobalTransfer');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $VideoPlayerGlobalTransfer$Type();
+  static final _id_players = _class.instanceFieldId(
+    r'players',
+    r'Ljava/util/Map;',
+  );
+
+  /// from: `public java.util.Map players`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JMap<_$jni.JString, VideoPlayer> get players => _id_players.get(
+      this, const _$jni.JMapType(_$jni.JStringType(), $VideoPlayer$Type()));
+
+  /// from: `public java.util.Map players`
+  /// The returned object must be released after use, by calling the [release] method.
+  set players(_$jni.JMap<_$jni.JString, VideoPlayer> value) => _id_players.set(
+      this,
+      const _$jni.JMapType(_$jni.JStringType(), $VideoPlayer$Type()),
+      value);
+
+  static final _id_new$ = _class.constructorId(
+    r'()V',
+  );
+
+  static final _new$ = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_NewObject')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public void <init>()`
+  /// The returned object must be released after use, by calling the [release] method.
+  factory VideoPlayerGlobalTransfer() {
+    return VideoPlayerGlobalTransfer.fromReference(
+        _new$(_class.reference.pointer, _id_new$ as _$jni.JMethodIDPtr)
+            .reference);
+  }
+
+  static final _id_getInstance = _class.staticMethodId(
+    r'getInstance',
+    r'()Lio/flutter/plugins/videoplayer/VideoPlayerGlobalTransfer;',
+  );
+
+  static final _getInstance = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallStaticObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `static public io.flutter.plugins.videoplayer.VideoPlayerGlobalTransfer getInstance()`
+  /// The returned object must be released after use, by calling the [release] method.
+  static VideoPlayerGlobalTransfer getInstance() {
+    return _getInstance(
+            _class.reference.pointer, _id_getInstance as _$jni.JMethodIDPtr)
+        .object(const $VideoPlayerGlobalTransfer$Type());
+  }
+}
+
+final class $VideoPlayerGlobalTransfer$Type
+    extends _$jni.JObjType<VideoPlayerGlobalTransfer> {
+  @_$jni.internal
+  const $VideoPlayerGlobalTransfer$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Lio/flutter/plugins/videoplayer/VideoPlayerGlobalTransfer;';
+
+  @_$jni.internal
+  @_$core.override
+  VideoPlayerGlobalTransfer fromReference(_$jni.JReference reference) =>
+      VideoPlayerGlobalTransfer.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($VideoPlayerGlobalTransfer$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($VideoPlayerGlobalTransfer$Type) &&
+        other is $VideoPlayerGlobalTransfer$Type;
+  }
+}

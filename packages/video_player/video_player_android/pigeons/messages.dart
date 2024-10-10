@@ -60,6 +60,7 @@ class MixWithOthersMessage {
 abstract class AndroidVideoPlayerApi {
   void initialize();
   TextureMessage create(CreateMessage msg);
+  void cacheInstance(String key, int textureId);
   void dispose(TextureMessage msg);
   void setLooping(LoopingMessage msg);
   void setVolume(VolumeMessage msg);
