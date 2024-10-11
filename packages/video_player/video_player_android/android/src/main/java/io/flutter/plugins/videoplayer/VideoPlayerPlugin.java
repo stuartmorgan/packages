@@ -15,12 +15,8 @@ import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.plugin.common.EventChannel;
 import io.flutter.plugins.videoplayer.Messages.AndroidVideoPlayerApi;
 import io.flutter.plugins.videoplayer.Messages.CreateMessage;
-import io.flutter.plugins.videoplayer.Messages.LoopingMessage;
 import io.flutter.plugins.videoplayer.Messages.MixWithOthersMessage;
-import io.flutter.plugins.videoplayer.Messages.PlaybackSpeedMessage;
-import io.flutter.plugins.videoplayer.Messages.PositionMessage;
 import io.flutter.plugins.videoplayer.Messages.TextureMessage;
-import io.flutter.plugins.videoplayer.Messages.VolumeMessage;
 import io.flutter.view.TextureRegistry;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
@@ -150,47 +146,6 @@ public class VideoPlayerPlugin implements FlutterPlugin, AndroidVideoPlayerApi {
     VideoPlayer player = videoPlayers.get(arg.getTextureId());
     player.dispose();
     videoPlayers.remove(arg.getTextureId());
-  }
-
-  public void setLooping(@NonNull LoopingMessage arg) {
-    VideoPlayer player = videoPlayers.get(arg.getTextureId());
-    player.setLooping(arg.getIsLooping());
-  }
-
-  public void setVolume(@NonNull VolumeMessage arg) {
-    VideoPlayer player = videoPlayers.get(arg.getTextureId());
-    player.setVolume(arg.getVolume());
-  }
-
-  public void setPlaybackSpeed(@NonNull PlaybackSpeedMessage arg) {
-    VideoPlayer player = videoPlayers.get(arg.getTextureId());
-    player.setPlaybackSpeed(arg.getSpeed());
-  }
-
-  public void play(@NonNull TextureMessage arg) {
-    VideoPlayer player = videoPlayers.get(arg.getTextureId());
-    player.play();
-  }
-
-  public @NonNull PositionMessage position(@NonNull TextureMessage arg) {
-    VideoPlayer player = videoPlayers.get(arg.getTextureId());
-    PositionMessage result =
-        new PositionMessage.Builder()
-            .setPosition(player.getPosition())
-            .setTextureId(arg.getTextureId())
-            .build();
-    player.sendBufferingUpdate();
-    return result;
-  }
-
-  public void seekTo(@NonNull PositionMessage arg) {
-    VideoPlayer player = videoPlayers.get(arg.getTextureId());
-    player.seekTo(arg.getPosition().intValue());
-  }
-
-  public void pause(@NonNull TextureMessage arg) {
-    VideoPlayer player = videoPlayers.get(arg.getTextureId());
-    player.pause();
   }
 
   @Override

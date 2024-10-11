@@ -98,6 +98,213 @@ class VideoPlayer extends _$jni.JObject {
             reference.pointer, _id_onSurfaceDestroyed as _$jni.JMethodIDPtr)
         .check();
   }
+
+  static final _id_sendBufferingUpdate = _class.instanceMethodId(
+    r'sendBufferingUpdate',
+    r'()V',
+  );
+
+  static final _sendBufferingUpdate = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public void sendBufferingUpdate()`
+  void sendBufferingUpdate() {
+    _sendBufferingUpdate(
+            reference.pointer, _id_sendBufferingUpdate as _$jni.JMethodIDPtr)
+        .check();
+  }
+
+  static final _id_play = _class.instanceMethodId(
+    r'play',
+    r'()V',
+  );
+
+  static final _play = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public void play()`
+  void play() {
+    _play(reference.pointer, _id_play as _$jni.JMethodIDPtr).check();
+  }
+
+  static final _id_pause = _class.instanceMethodId(
+    r'pause',
+    r'()V',
+  );
+
+  static final _pause = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public void pause()`
+  void pause() {
+    _pause(reference.pointer, _id_pause as _$jni.JMethodIDPtr).check();
+  }
+
+  static final _id_setLooping = _class.instanceMethodId(
+    r'setLooping',
+    r'(Z)V',
+  );
+
+  static final _setLooping = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public void setLooping(boolean z)`
+  void setLooping(
+    bool z,
+  ) {
+    _setLooping(
+            reference.pointer, _id_setLooping as _$jni.JMethodIDPtr, z ? 1 : 0)
+        .check();
+  }
+
+  static final _id_setVolume = _class.instanceMethodId(
+    r'setVolume',
+    r'(D)V',
+  );
+
+  static final _setVolume = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Double,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, double)>();
+
+  /// from: `public void setVolume(double d)`
+  void setVolume(
+    double d,
+  ) {
+    _setVolume(reference.pointer, _id_setVolume as _$jni.JMethodIDPtr, d)
+        .check();
+  }
+
+  static final _id_setPlaybackSpeed = _class.instanceMethodId(
+    r'setPlaybackSpeed',
+    r'(D)V',
+  );
+
+  static final _setPlaybackSpeed = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Double,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, double)>();
+
+  /// from: `public void setPlaybackSpeed(double d)`
+  void setPlaybackSpeed(
+    double d,
+  ) {
+    _setPlaybackSpeed(
+            reference.pointer, _id_setPlaybackSpeed as _$jni.JMethodIDPtr, d)
+        .check();
+  }
+
+  static final _id_seekTo = _class.instanceMethodId(
+    r'seekTo',
+    r'(I)V',
+  );
+
+  static final _seekTo = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public void seekTo(int i)`
+  void seekTo(
+    int i,
+  ) {
+    _seekTo(reference.pointer, _id_seekTo as _$jni.JMethodIDPtr, i).check();
+  }
+
+  static final _id_getPosition = _class.instanceMethodId(
+    r'getPosition',
+    r'()J',
+  );
+
+  static final _getPosition = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallLongMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public long getPosition()`
+  int getPosition() {
+    return _getPosition(
+            reference.pointer, _id_getPosition as _$jni.JMethodIDPtr)
+        .long;
+  }
+
+  static final _id_dispose = _class.instanceMethodId(
+    r'dispose',
+    r'()V',
+  );
+
+  static final _dispose = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public void dispose()`
+  void dispose() {
+    _dispose(reference.pointer, _id_dispose as _$jni.JMethodIDPtr).check();
+  }
 }
 
 final class $VideoPlayer$Type extends _$jni.JObjType<VideoPlayer> {

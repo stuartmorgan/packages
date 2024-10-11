@@ -116,7 +116,7 @@ public final class VideoPlayer implements TextureRegistry.SurfaceProducer.Callba
     return exoPlayer;
   }
 
-  void sendBufferingUpdate() {
+  public void sendBufferingUpdate() {
     videoPlayerEvents.onBufferingUpdate(exoPlayer.getBufferedPosition());
   }
 
@@ -126,24 +126,24 @@ public final class VideoPlayer implements TextureRegistry.SurfaceProducer.Callba
         !isMixMode);
   }
 
-  void play() {
+  public void play() {
     exoPlayer.play();
   }
 
-  void pause() {
+  public void pause() {
     exoPlayer.pause();
   }
 
-  void setLooping(boolean value) {
+  public void setLooping(boolean value) {
     exoPlayer.setRepeatMode(value ? REPEAT_MODE_ALL : REPEAT_MODE_OFF);
   }
 
-  void setVolume(double value) {
+  public void setVolume(double value) {
     float bracketedValue = (float) Math.max(0.0, Math.min(1.0, value));
     exoPlayer.setVolume(bracketedValue);
   }
 
-  void setPlaybackSpeed(double value) {
+  public void setPlaybackSpeed(double value) {
     // We do not need to consider pitch and skipSilence for now as we do not handle them and
     // therefore never diverge from the default values.
     final PlaybackParameters playbackParameters = new PlaybackParameters(((float) value));
@@ -151,15 +151,15 @@ public final class VideoPlayer implements TextureRegistry.SurfaceProducer.Callba
     exoPlayer.setPlaybackParameters(playbackParameters);
   }
 
-  void seekTo(int location) {
+  public void seekTo(int location) {
     exoPlayer.seekTo(location);
   }
 
-  long getPosition() {
+  public long getPosition() {
     return exoPlayer.getCurrentPosition();
   }
 
-  void dispose() {
+  public void dispose() {
     exoPlayer.release();
     surfaceProducer.release();
 

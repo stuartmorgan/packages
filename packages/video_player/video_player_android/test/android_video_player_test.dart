@@ -19,6 +19,7 @@ class _ApiLogger implements TestHostVideoPlayerApi {
   VolumeMessage? volumeMessage;
   PlaybackSpeedMessage? playbackSpeedMessage;
   MixWithOthersMessage? mixWithOthersMessage;
+  final Map<String, int> cacheRequests = <String, int>{};
 
   @override
   TextureMessage create(CreateMessage arg) {
@@ -39,52 +40,14 @@ class _ApiLogger implements TestHostVideoPlayerApi {
   }
 
   @override
-  void pause(TextureMessage arg) {
-    log.add('pause');
-    textureMessage = arg;
-  }
-
-  @override
-  void play(TextureMessage arg) {
-    log.add('play');
-    textureMessage = arg;
-  }
-
-  @override
   void setMixWithOthers(MixWithOthersMessage arg) {
     log.add('setMixWithOthers');
     mixWithOthersMessage = arg;
   }
 
   @override
-  PositionMessage position(TextureMessage arg) {
-    log.add('position');
-    textureMessage = arg;
-    return PositionMessage(textureId: arg.textureId, position: 234);
-  }
-
-  @override
-  void seekTo(PositionMessage arg) {
-    log.add('seekTo');
-    positionMessage = arg;
-  }
-
-  @override
-  void setLooping(LoopingMessage arg) {
-    log.add('setLooping');
-    loopingMessage = arg;
-  }
-
-  @override
-  void setVolume(VolumeMessage arg) {
-    log.add('setVolume');
-    volumeMessage = arg;
-  }
-
-  @override
-  void setPlaybackSpeed(PlaybackSpeedMessage arg) {
-    log.add('setPlaybackSpeed');
-    playbackSpeedMessage = arg;
+  void cacheInstance(String key, int textureId) {
+    cacheRequests[key] = textureId;
   }
 }
 

@@ -81,54 +81,47 @@ class AndroidVideoPlayer extends VideoPlayerPlatform {
   }
 
   @override
-  Future<void> setLooping(int textureId, bool looping) {
-    return _api.setLooping(LoopingMessage(
-      textureId: textureId,
-      isLooping: looping,
-    ));
+  Future<void> setLooping(int textureId, bool looping) async {
+    _playerFor(textureId).setLooping(looping);
   }
 
   @override
-  Future<void> play(int textureId) {
-    return _api.play(TextureMessage(textureId: textureId));
+  Future<void> play(int textureId) async {
+    _playerFor(textureId).play();
   }
 
   @override
-  Future<void> pause(int textureId) {
-    return _api.pause(TextureMessage(textureId: textureId));
+  Future<void> pause(int textureId) async {
+    _playerFor(textureId).pause();
   }
 
   @override
-  Future<void> setVolume(int textureId, double volume) {
-    return _api.setVolume(VolumeMessage(
-      textureId: textureId,
-      volume: volume,
-    ));
+  Future<void> setVolume(int textureId, double volume) async {
+    _playerFor(textureId).setVolume(volume);
   }
 
   @override
-  Future<void> setPlaybackSpeed(int textureId, double speed) {
+  Future<void> setPlaybackSpeed(int textureId, double speed) async {
     assert(speed > 0);
-
-    return _api.setPlaybackSpeed(PlaybackSpeedMessage(
-      textureId: textureId,
-      speed: speed,
-    ));
+    _playerFor(textureId).setPlaybackSpeed(speed);
   }
 
   @override
-  Future<void> seekTo(int textureId, Duration position) {
-    return _api.seekTo(PositionMessage(
-      textureId: textureId,
-      position: position.inMilliseconds,
-    ));
+  Future<void> seekTo(int textureId, Duration position) async {
+    _playerFor(textureId).seekTo(position.inMilliseconds);
   }
 
   @override
   Future<Duration> getPosition(int textureId) async {
-    final PositionMessage response =
-        await _api.position(TextureMessage(textureId: textureId));
-    return Duration(milliseconds: response.position);
+    final VideoPlayer player = _playerFor(textureId);
+    final int position = player.getPosition();
+    // TODO(stuartmorgan): Find a better place to trigger this; this is a hack
+    // that relies on the fact that `getPosition` is polled to drive buffering
+    // updates as a side-effect. If nothing else, this could be its own timer.
+    unawaited(() async {
+      player.sendBufferingUpdate();
+    }());
+    return Duration(milliseconds: position);
   }
 
   @override
@@ -181,6 +174,10 @@ class AndroidVideoPlayer extends VideoPlayerPlatform {
   Future<void> setMixWithOthers(bool mixWithOthers) {
     return _api
         .setMixWithOthers(MixWithOthersMessage(mixWithOthers: mixWithOthers));
+  }
+
+  VideoPlayer _playerFor(int textureId) {
+    return _playersByTextureId[textureId]!;
   }
 
   EventChannel _eventChannelFor(int textureId) {

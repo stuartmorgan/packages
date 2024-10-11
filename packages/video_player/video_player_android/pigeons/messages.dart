@@ -62,12 +62,5 @@ abstract class AndroidVideoPlayerApi {
   TextureMessage create(CreateMessage msg);
   void cacheInstance(String key, int textureId);
   void dispose(TextureMessage msg);
-  void setLooping(LoopingMessage msg);
-  void setVolume(VolumeMessage msg);
-  void setPlaybackSpeed(PlaybackSpeedMessage msg);
-  void play(TextureMessage msg);
-  PositionMessage position(TextureMessage msg);
-  void seekTo(PositionMessage msg);
-  void pause(TextureMessage msg);
   void setMixWithOthers(MixWithOthersMessage msg);
 }
