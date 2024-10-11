@@ -6,5 +6,10 @@ output:
     path: lib/src/ffi_bindings.dart
     structure: single_file
 classes:
+  - 'androidx.media3.common.AudioAttributes'
+  - 'androidx.media3.common.MediaItem'
+  - 'androidx.media3.common.Player'
+  - 'androidx.media3.exoplayer.ExoPlayer'
+  - 'androidx.media3.common.PlaybackParameters'
   - 'io.flutter.plugins.videoplayer.VideoPlayer'
   - 'io.flutter.plugins.videoplayer.VideoPlayerGlobalTransfer'

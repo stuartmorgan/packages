@@ -4,8 +4,6 @@
 
 package io.flutter.plugins.videoplayer;
 
-import static androidx.media3.common.Player.REPEAT_MODE_ALL;
-import static androidx.media3.common.Player.REPEAT_MODE_OFF;
 
 import android.content.Context;
 import androidx.annotation.NonNull;
@@ -15,7 +13,6 @@ import androidx.annotation.VisibleForTesting;
 import androidx.media3.common.AudioAttributes;
 import androidx.media3.common.C;
 import androidx.media3.common.MediaItem;
-import androidx.media3.common.PlaybackParameters;
 import androidx.media3.exoplayer.ExoPlayer;
 import io.flutter.view.TextureRegistry;
 
@@ -25,7 +22,7 @@ public final class VideoPlayer implements TextureRegistry.SurfaceProducer.Callba
   @NonNull private final TextureRegistry.SurfaceProducer surfaceProducer;
   @NonNull private final VideoPlayerCallbacks videoPlayerEvents;
   @NonNull private final VideoPlayerOptions options;
-  @NonNull private ExoPlayer exoPlayer;
+  @NonNull public ExoPlayer exoPlayer;
   @Nullable private ExoPlayerState savedStateDuring;
 
   /**
@@ -116,47 +113,10 @@ public final class VideoPlayer implements TextureRegistry.SurfaceProducer.Callba
     return exoPlayer;
   }
 
-  public void sendBufferingUpdate() {
-    videoPlayerEvents.onBufferingUpdate(exoPlayer.getBufferedPosition());
-  }
-
   private static void setAudioAttributes(ExoPlayer exoPlayer, boolean isMixMode) {
     exoPlayer.setAudioAttributes(
         new AudioAttributes.Builder().setContentType(C.AUDIO_CONTENT_TYPE_MOVIE).build(),
         !isMixMode);
-  }
-
-  public void play() {
-    exoPlayer.play();
-  }
-
-  public void pause() {
-    exoPlayer.pause();
-  }
-
-  public void setLooping(boolean value) {
-    exoPlayer.setRepeatMode(value ? REPEAT_MODE_ALL : REPEAT_MODE_OFF);
-  }
-
-  public void setVolume(double value) {
-    float bracketedValue = (float) Math.max(0.0, Math.min(1.0, value));
-    exoPlayer.setVolume(bracketedValue);
-  }
-
-  public void setPlaybackSpeed(double value) {
-    // We do not need to consider pitch and skipSilence for now as we do not handle them and
-    // therefore never diverge from the default values.
-    final PlaybackParameters playbackParameters = new PlaybackParameters(((float) value));
-
-    exoPlayer.setPlaybackParameters(playbackParameters);
-  }
-
-  public void seekTo(int location) {
-    exoPlayer.seekTo(location);
-  }
-
-  public long getPosition() {
-    return exoPlayer.getCurrentPosition();
   }
 
   public void dispose() {

@@ -34,6 +34,22985 @@ import 'dart:core' as _$core;
 import 'package:jni/_internal.dart' as _$jni;
 import 'package:jni/jni.dart' as _$jni;
 
+/// from: `androidx.media3.common.AudioAttributes$AudioAttributesV21`
+class AudioAttributes_AudioAttributesV21 extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<AudioAttributes_AudioAttributesV21> $type;
+
+  @_$jni.internal
+  AudioAttributes_AudioAttributesV21.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'androidx/media3/common/AudioAttributes$AudioAttributesV21');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $AudioAttributes_AudioAttributesV21$Type();
+  static final _id_audioAttributes = _class.instanceFieldId(
+    r'audioAttributes',
+    r'Landroid/media/AudioAttributes;',
+  );
+
+  /// from: `public final android.media.AudioAttributes audioAttributes`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject get audioAttributes =>
+      _id_audioAttributes.get(this, const _$jni.JObjectType());
+}
+
+final class $AudioAttributes_AudioAttributesV21$Type
+    extends _$jni.JObjType<AudioAttributes_AudioAttributesV21> {
+  @_$jni.internal
+  const $AudioAttributes_AudioAttributesV21$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Landroidx/media3/common/AudioAttributes$AudioAttributesV21;';
+
+  @_$jni.internal
+  @_$core.override
+  AudioAttributes_AudioAttributesV21 fromReference(
+          _$jni.JReference reference) =>
+      AudioAttributes_AudioAttributesV21.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($AudioAttributes_AudioAttributesV21$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($AudioAttributes_AudioAttributesV21$Type) &&
+        other is $AudioAttributes_AudioAttributesV21$Type;
+  }
+}
+
+/// from: `androidx.media3.common.AudioAttributes$Builder`
+class AudioAttributes_Builder extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<AudioAttributes_Builder> $type;
+
+  @_$jni.internal
+  AudioAttributes_Builder.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class =
+      _$jni.JClass.forName(r'androidx/media3/common/AudioAttributes$Builder');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $AudioAttributes_Builder$Type();
+  static final _id_new$ = _class.constructorId(
+    r'()V',
+  );
+
+  static final _new$ = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_NewObject')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public void <init>()`
+  /// The returned object must be released after use, by calling the [release] method.
+  factory AudioAttributes_Builder() {
+    return AudioAttributes_Builder.fromReference(
+        _new$(_class.reference.pointer, _id_new$ as _$jni.JMethodIDPtr)
+            .reference);
+  }
+
+  static final _id_setContentType = _class.instanceMethodId(
+    r'setContentType',
+    r'(I)Landroidx/media3/common/AudioAttributes$Builder;',
+  );
+
+  static final _setContentType = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.AudioAttributes$Builder setContentType(int i)`
+  /// The returned object must be released after use, by calling the [release] method.
+  AudioAttributes_Builder setContentType(
+    int i,
+  ) {
+    return _setContentType(
+            reference.pointer, _id_setContentType as _$jni.JMethodIDPtr, i)
+        .object(const $AudioAttributes_Builder$Type());
+  }
+
+  static final _id_setFlags = _class.instanceMethodId(
+    r'setFlags',
+    r'(I)Landroidx/media3/common/AudioAttributes$Builder;',
+  );
+
+  static final _setFlags = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.AudioAttributes$Builder setFlags(int i)`
+  /// The returned object must be released after use, by calling the [release] method.
+  AudioAttributes_Builder setFlags(
+    int i,
+  ) {
+    return _setFlags(reference.pointer, _id_setFlags as _$jni.JMethodIDPtr, i)
+        .object(const $AudioAttributes_Builder$Type());
+  }
+
+  static final _id_setUsage = _class.instanceMethodId(
+    r'setUsage',
+    r'(I)Landroidx/media3/common/AudioAttributes$Builder;',
+  );
+
+  static final _setUsage = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.AudioAttributes$Builder setUsage(int i)`
+  /// The returned object must be released after use, by calling the [release] method.
+  AudioAttributes_Builder setUsage(
+    int i,
+  ) {
+    return _setUsage(reference.pointer, _id_setUsage as _$jni.JMethodIDPtr, i)
+        .object(const $AudioAttributes_Builder$Type());
+  }
+
+  static final _id_setAllowedCapturePolicy = _class.instanceMethodId(
+    r'setAllowedCapturePolicy',
+    r'(I)Landroidx/media3/common/AudioAttributes$Builder;',
+  );
+
+  static final _setAllowedCapturePolicy = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.AudioAttributes$Builder setAllowedCapturePolicy(int i)`
+  /// The returned object must be released after use, by calling the [release] method.
+  AudioAttributes_Builder setAllowedCapturePolicy(
+    int i,
+  ) {
+    return _setAllowedCapturePolicy(reference.pointer,
+            _id_setAllowedCapturePolicy as _$jni.JMethodIDPtr, i)
+        .object(const $AudioAttributes_Builder$Type());
+  }
+
+  static final _id_setSpatializationBehavior = _class.instanceMethodId(
+    r'setSpatializationBehavior',
+    r'(I)Landroidx/media3/common/AudioAttributes$Builder;',
+  );
+
+  static final _setSpatializationBehavior = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.AudioAttributes$Builder setSpatializationBehavior(int i)`
+  /// The returned object must be released after use, by calling the [release] method.
+  AudioAttributes_Builder setSpatializationBehavior(
+    int i,
+  ) {
+    return _setSpatializationBehavior(reference.pointer,
+            _id_setSpatializationBehavior as _$jni.JMethodIDPtr, i)
+        .object(const $AudioAttributes_Builder$Type());
+  }
+
+  static final _id_build = _class.instanceMethodId(
+    r'build',
+    r'()Landroidx/media3/common/AudioAttributes;',
+  );
+
+  static final _build = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public androidx.media3.common.AudioAttributes build()`
+  /// The returned object must be released after use, by calling the [release] method.
+  AudioAttributes build() {
+    return _build(reference.pointer, _id_build as _$jni.JMethodIDPtr)
+        .object(const $AudioAttributes$Type());
+  }
+}
+
+final class $AudioAttributes_Builder$Type
+    extends _$jni.JObjType<AudioAttributes_Builder> {
+  @_$jni.internal
+  const $AudioAttributes_Builder$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature => r'Landroidx/media3/common/AudioAttributes$Builder;';
+
+  @_$jni.internal
+  @_$core.override
+  AudioAttributes_Builder fromReference(_$jni.JReference reference) =>
+      AudioAttributes_Builder.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($AudioAttributes_Builder$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($AudioAttributes_Builder$Type) &&
+        other is $AudioAttributes_Builder$Type;
+  }
+}
+
+/// from: `androidx.media3.common.AudioAttributes`
+class AudioAttributes extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<AudioAttributes> $type;
+
+  @_$jni.internal
+  AudioAttributes.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class =
+      _$jni.JClass.forName(r'androidx/media3/common/AudioAttributes');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $AudioAttributes$Type();
+  static final _id_DEFAULT = _class.staticFieldId(
+    r'DEFAULT',
+    r'Landroidx/media3/common/AudioAttributes;',
+  );
+
+  /// from: `static public final androidx.media3.common.AudioAttributes DEFAULT`
+  /// The returned object must be released after use, by calling the [release] method.
+  static AudioAttributes get DEFAULT =>
+      _id_DEFAULT.get(_class, const $AudioAttributes$Type());
+
+  static final _id_contentType = _class.instanceFieldId(
+    r'contentType',
+    r'I',
+  );
+
+  /// from: `public final int contentType`
+  int get contentType => _id_contentType.get(this, const _$jni.jintType());
+
+  static final _id_flags = _class.instanceFieldId(
+    r'flags',
+    r'I',
+  );
+
+  /// from: `public final int flags`
+  int get flags => _id_flags.get(this, const _$jni.jintType());
+
+  static final _id_usage = _class.instanceFieldId(
+    r'usage',
+    r'I',
+  );
+
+  /// from: `public final int usage`
+  int get usage => _id_usage.get(this, const _$jni.jintType());
+
+  static final _id_allowedCapturePolicy = _class.instanceFieldId(
+    r'allowedCapturePolicy',
+    r'I',
+  );
+
+  /// from: `public final int allowedCapturePolicy`
+  int get allowedCapturePolicy =>
+      _id_allowedCapturePolicy.get(this, const _$jni.jintType());
+
+  static final _id_spatializationBehavior = _class.instanceFieldId(
+    r'spatializationBehavior',
+    r'I',
+  );
+
+  /// from: `public final int spatializationBehavior`
+  int get spatializationBehavior =>
+      _id_spatializationBehavior.get(this, const _$jni.jintType());
+
+  static final _id_getAudioAttributesV21 = _class.instanceMethodId(
+    r'getAudioAttributesV21',
+    r'()Landroidx/media3/common/AudioAttributes$AudioAttributesV21;',
+  );
+
+  static final _getAudioAttributesV21 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public androidx.media3.common.AudioAttributes$AudioAttributesV21 getAudioAttributesV21()`
+  /// The returned object must be released after use, by calling the [release] method.
+  AudioAttributes_AudioAttributesV21 getAudioAttributesV21() {
+    return _getAudioAttributesV21(
+            reference.pointer, _id_getAudioAttributesV21 as _$jni.JMethodIDPtr)
+        .object(const $AudioAttributes_AudioAttributesV21$Type());
+  }
+
+  static final _id_equals = _class.instanceMethodId(
+    r'equals',
+    r'(Ljava/lang/Object;)Z',
+  );
+
+  static final _equals = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public boolean equals(java.lang.Object object)`
+  bool equals(
+    _$jni.JObject object,
+  ) {
+    return _equals(reference.pointer, _id_equals as _$jni.JMethodIDPtr,
+            object.reference.pointer)
+        .boolean;
+  }
+
+  static final _id_hashCode$1 = _class.instanceMethodId(
+    r'hashCode',
+    r'()I',
+  );
+
+  static final _hashCode$1 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public int hashCode()`
+  int hashCode$1() {
+    return _hashCode$1(reference.pointer, _id_hashCode$1 as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_toBundle = _class.instanceMethodId(
+    r'toBundle',
+    r'()Landroid/os/Bundle;',
+  );
+
+  static final _toBundle = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public android.os.Bundle toBundle()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject toBundle() {
+    return _toBundle(reference.pointer, _id_toBundle as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_fromBundle = _class.staticMethodId(
+    r'fromBundle',
+    r'(Landroid/os/Bundle;)Landroidx/media3/common/AudioAttributes;',
+  );
+
+  static final _fromBundle = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallStaticObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `static public androidx.media3.common.AudioAttributes fromBundle(android.os.Bundle bundle)`
+  /// The returned object must be released after use, by calling the [release] method.
+  static AudioAttributes fromBundle(
+    _$jni.JObject bundle,
+  ) {
+    return _fromBundle(_class.reference.pointer,
+            _id_fromBundle as _$jni.JMethodIDPtr, bundle.reference.pointer)
+        .object(const $AudioAttributes$Type());
+  }
+}
+
+final class $AudioAttributes$Type extends _$jni.JObjType<AudioAttributes> {
+  @_$jni.internal
+  const $AudioAttributes$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature => r'Landroidx/media3/common/AudioAttributes;';
+
+  @_$jni.internal
+  @_$core.override
+  AudioAttributes fromReference(_$jni.JReference reference) =>
+      AudioAttributes.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($AudioAttributes$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($AudioAttributes$Type) &&
+        other is $AudioAttributes$Type;
+  }
+}
+
+/// from: `androidx.media3.common.MediaItem$AdsConfiguration$Builder`
+class MediaItem_AdsConfiguration_Builder extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<MediaItem_AdsConfiguration_Builder> $type;
+
+  @_$jni.internal
+  MediaItem_AdsConfiguration_Builder.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'androidx/media3/common/MediaItem$AdsConfiguration$Builder');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $MediaItem_AdsConfiguration_Builder$Type();
+  static final _id_new$ = _class.constructorId(
+    r'(Landroid/net/Uri;)V',
+  );
+
+  static final _new$ = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_NewObject')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public void <init>(android.net.Uri uri)`
+  /// The returned object must be released after use, by calling the [release] method.
+  factory MediaItem_AdsConfiguration_Builder(
+    _$jni.JObject uri,
+  ) {
+    return MediaItem_AdsConfiguration_Builder.fromReference(_new$(
+            _class.reference.pointer,
+            _id_new$ as _$jni.JMethodIDPtr,
+            uri.reference.pointer)
+        .reference);
+  }
+
+  static final _id_setAdTagUri = _class.instanceMethodId(
+    r'setAdTagUri',
+    r'(Landroid/net/Uri;)Landroidx/media3/common/MediaItem$AdsConfiguration$Builder;',
+  );
+
+  static final _setAdTagUri = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$AdsConfiguration$Builder setAdTagUri(android.net.Uri uri)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_AdsConfiguration_Builder setAdTagUri(
+    _$jni.JObject uri,
+  ) {
+    return _setAdTagUri(reference.pointer,
+            _id_setAdTagUri as _$jni.JMethodIDPtr, uri.reference.pointer)
+        .object(const $MediaItem_AdsConfiguration_Builder$Type());
+  }
+
+  static final _id_setAdsId = _class.instanceMethodId(
+    r'setAdsId',
+    r'(Ljava/lang/Object;)Landroidx/media3/common/MediaItem$AdsConfiguration$Builder;',
+  );
+
+  static final _setAdsId = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$AdsConfiguration$Builder setAdsId(java.lang.Object object)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_AdsConfiguration_Builder setAdsId(
+    _$jni.JObject object,
+  ) {
+    return _setAdsId(reference.pointer, _id_setAdsId as _$jni.JMethodIDPtr,
+            object.reference.pointer)
+        .object(const $MediaItem_AdsConfiguration_Builder$Type());
+  }
+
+  static final _id_build = _class.instanceMethodId(
+    r'build',
+    r'()Landroidx/media3/common/MediaItem$AdsConfiguration;',
+  );
+
+  static final _build = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public androidx.media3.common.MediaItem$AdsConfiguration build()`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_AdsConfiguration build() {
+    return _build(reference.pointer, _id_build as _$jni.JMethodIDPtr)
+        .object(const $MediaItem_AdsConfiguration$Type());
+  }
+}
+
+final class $MediaItem_AdsConfiguration_Builder$Type
+    extends _$jni.JObjType<MediaItem_AdsConfiguration_Builder> {
+  @_$jni.internal
+  const $MediaItem_AdsConfiguration_Builder$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Landroidx/media3/common/MediaItem$AdsConfiguration$Builder;';
+
+  @_$jni.internal
+  @_$core.override
+  MediaItem_AdsConfiguration_Builder fromReference(
+          _$jni.JReference reference) =>
+      MediaItem_AdsConfiguration_Builder.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($MediaItem_AdsConfiguration_Builder$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($MediaItem_AdsConfiguration_Builder$Type) &&
+        other is $MediaItem_AdsConfiguration_Builder$Type;
+  }
+}
+
+/// from: `androidx.media3.common.MediaItem$AdsConfiguration`
+class MediaItem_AdsConfiguration extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<MediaItem_AdsConfiguration> $type;
+
+  @_$jni.internal
+  MediaItem_AdsConfiguration.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'androidx/media3/common/MediaItem$AdsConfiguration');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $MediaItem_AdsConfiguration$Type();
+  static final _id_adTagUri = _class.instanceFieldId(
+    r'adTagUri',
+    r'Landroid/net/Uri;',
+  );
+
+  /// from: `public final android.net.Uri adTagUri`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject get adTagUri =>
+      _id_adTagUri.get(this, const _$jni.JObjectType());
+
+  static final _id_adsId = _class.instanceFieldId(
+    r'adsId',
+    r'Ljava/lang/Object;',
+  );
+
+  /// from: `public final java.lang.Object adsId`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject get adsId => _id_adsId.get(this, const _$jni.JObjectType());
+
+  static final _id_buildUpon = _class.instanceMethodId(
+    r'buildUpon',
+    r'()Landroidx/media3/common/MediaItem$AdsConfiguration$Builder;',
+  );
+
+  static final _buildUpon = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public androidx.media3.common.MediaItem$AdsConfiguration$Builder buildUpon()`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_AdsConfiguration_Builder buildUpon() {
+    return _buildUpon(reference.pointer, _id_buildUpon as _$jni.JMethodIDPtr)
+        .object(const $MediaItem_AdsConfiguration_Builder$Type());
+  }
+
+  static final _id_equals = _class.instanceMethodId(
+    r'equals',
+    r'(Ljava/lang/Object;)Z',
+  );
+
+  static final _equals = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public boolean equals(java.lang.Object object)`
+  bool equals(
+    _$jni.JObject object,
+  ) {
+    return _equals(reference.pointer, _id_equals as _$jni.JMethodIDPtr,
+            object.reference.pointer)
+        .boolean;
+  }
+
+  static final _id_hashCode$1 = _class.instanceMethodId(
+    r'hashCode',
+    r'()I',
+  );
+
+  static final _hashCode$1 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public int hashCode()`
+  int hashCode$1() {
+    return _hashCode$1(reference.pointer, _id_hashCode$1 as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_fromBundle = _class.staticMethodId(
+    r'fromBundle',
+    r'(Landroid/os/Bundle;)Landroidx/media3/common/MediaItem$AdsConfiguration;',
+  );
+
+  static final _fromBundle = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallStaticObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `static public androidx.media3.common.MediaItem$AdsConfiguration fromBundle(android.os.Bundle bundle)`
+  /// The returned object must be released after use, by calling the [release] method.
+  static MediaItem_AdsConfiguration fromBundle(
+    _$jni.JObject bundle,
+  ) {
+    return _fromBundle(_class.reference.pointer,
+            _id_fromBundle as _$jni.JMethodIDPtr, bundle.reference.pointer)
+        .object(const $MediaItem_AdsConfiguration$Type());
+  }
+
+  static final _id_toBundle = _class.instanceMethodId(
+    r'toBundle',
+    r'()Landroid/os/Bundle;',
+  );
+
+  static final _toBundle = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public android.os.Bundle toBundle()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject toBundle() {
+    return _toBundle(reference.pointer, _id_toBundle as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+}
+
+final class $MediaItem_AdsConfiguration$Type
+    extends _$jni.JObjType<MediaItem_AdsConfiguration> {
+  @_$jni.internal
+  const $MediaItem_AdsConfiguration$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Landroidx/media3/common/MediaItem$AdsConfiguration;';
+
+  @_$jni.internal
+  @_$core.override
+  MediaItem_AdsConfiguration fromReference(_$jni.JReference reference) =>
+      MediaItem_AdsConfiguration.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($MediaItem_AdsConfiguration$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($MediaItem_AdsConfiguration$Type) &&
+        other is $MediaItem_AdsConfiguration$Type;
+  }
+}
+
+/// from: `androidx.media3.common.MediaItem$Builder`
+class MediaItem_Builder extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<MediaItem_Builder> $type;
+
+  @_$jni.internal
+  MediaItem_Builder.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class =
+      _$jni.JClass.forName(r'androidx/media3/common/MediaItem$Builder');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $MediaItem_Builder$Type();
+  static final _id_new$ = _class.constructorId(
+    r'()V',
+  );
+
+  static final _new$ = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_NewObject')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public void <init>()`
+  /// The returned object must be released after use, by calling the [release] method.
+  factory MediaItem_Builder() {
+    return MediaItem_Builder.fromReference(
+        _new$(_class.reference.pointer, _id_new$ as _$jni.JMethodIDPtr)
+            .reference);
+  }
+
+  static final _id_setMediaId = _class.instanceMethodId(
+    r'setMediaId',
+    r'(Ljava/lang/String;)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setMediaId = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setMediaId(java.lang.String string)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setMediaId(
+    _$jni.JString string,
+  ) {
+    return _setMediaId(reference.pointer, _id_setMediaId as _$jni.JMethodIDPtr,
+            string.reference.pointer)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setUri = _class.instanceMethodId(
+    r'setUri',
+    r'(Ljava/lang/String;)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setUri = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setUri(java.lang.String string)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setUri(
+    _$jni.JString string,
+  ) {
+    return _setUri(reference.pointer, _id_setUri as _$jni.JMethodIDPtr,
+            string.reference.pointer)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setUri$1 = _class.instanceMethodId(
+    r'setUri',
+    r'(Landroid/net/Uri;)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setUri$1 = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setUri(android.net.Uri uri)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setUri$1(
+    _$jni.JObject uri,
+  ) {
+    return _setUri$1(reference.pointer, _id_setUri$1 as _$jni.JMethodIDPtr,
+            uri.reference.pointer)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setMimeType = _class.instanceMethodId(
+    r'setMimeType',
+    r'(Ljava/lang/String;)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setMimeType = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setMimeType(java.lang.String string)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setMimeType(
+    _$jni.JString string,
+  ) {
+    return _setMimeType(reference.pointer,
+            _id_setMimeType as _$jni.JMethodIDPtr, string.reference.pointer)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setClippingConfiguration = _class.instanceMethodId(
+    r'setClippingConfiguration',
+    r'(Landroidx/media3/common/MediaItem$ClippingConfiguration;)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setClippingConfiguration = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setClippingConfiguration(androidx.media3.common.MediaItem$ClippingConfiguration clippingConfiguration)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setClippingConfiguration(
+    MediaItem_ClippingConfiguration clippingConfiguration,
+  ) {
+    return _setClippingConfiguration(
+            reference.pointer,
+            _id_setClippingConfiguration as _$jni.JMethodIDPtr,
+            clippingConfiguration.reference.pointer)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setClipStartPositionMs = _class.instanceMethodId(
+    r'setClipStartPositionMs',
+    r'(J)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setClipStartPositionMs = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int64,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setClipStartPositionMs(long j)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setClipStartPositionMs(
+    int j,
+  ) {
+    return _setClipStartPositionMs(reference.pointer,
+            _id_setClipStartPositionMs as _$jni.JMethodIDPtr, j)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setClipEndPositionMs = _class.instanceMethodId(
+    r'setClipEndPositionMs',
+    r'(J)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setClipEndPositionMs = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int64,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setClipEndPositionMs(long j)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setClipEndPositionMs(
+    int j,
+  ) {
+    return _setClipEndPositionMs(reference.pointer,
+            _id_setClipEndPositionMs as _$jni.JMethodIDPtr, j)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setClipRelativeToLiveWindow = _class.instanceMethodId(
+    r'setClipRelativeToLiveWindow',
+    r'(Z)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setClipRelativeToLiveWindow =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr, _$jni.VarArgs<(_$jni.Int32,)>)>>(
+              'globalEnv_CallObjectMethod')
+          .asFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setClipRelativeToLiveWindow(boolean z)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setClipRelativeToLiveWindow(
+    bool z,
+  ) {
+    return _setClipRelativeToLiveWindow(reference.pointer,
+            _id_setClipRelativeToLiveWindow as _$jni.JMethodIDPtr, z ? 1 : 0)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setClipRelativeToDefaultPosition = _class.instanceMethodId(
+    r'setClipRelativeToDefaultPosition',
+    r'(Z)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setClipRelativeToDefaultPosition =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr, _$jni.VarArgs<(_$jni.Int32,)>)>>(
+              'globalEnv_CallObjectMethod')
+          .asFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setClipRelativeToDefaultPosition(boolean z)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setClipRelativeToDefaultPosition(
+    bool z,
+  ) {
+    return _setClipRelativeToDefaultPosition(
+            reference.pointer,
+            _id_setClipRelativeToDefaultPosition as _$jni.JMethodIDPtr,
+            z ? 1 : 0)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setClipStartsAtKeyFrame = _class.instanceMethodId(
+    r'setClipStartsAtKeyFrame',
+    r'(Z)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setClipStartsAtKeyFrame = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setClipStartsAtKeyFrame(boolean z)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setClipStartsAtKeyFrame(
+    bool z,
+  ) {
+    return _setClipStartsAtKeyFrame(reference.pointer,
+            _id_setClipStartsAtKeyFrame as _$jni.JMethodIDPtr, z ? 1 : 0)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setDrmConfiguration = _class.instanceMethodId(
+    r'setDrmConfiguration',
+    r'(Landroidx/media3/common/MediaItem$DrmConfiguration;)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setDrmConfiguration = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setDrmConfiguration(androidx.media3.common.MediaItem$DrmConfiguration drmConfiguration)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setDrmConfiguration(
+    MediaItem_DrmConfiguration drmConfiguration,
+  ) {
+    return _setDrmConfiguration(
+            reference.pointer,
+            _id_setDrmConfiguration as _$jni.JMethodIDPtr,
+            drmConfiguration.reference.pointer)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setDrmLicenseUri = _class.instanceMethodId(
+    r'setDrmLicenseUri',
+    r'(Landroid/net/Uri;)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setDrmLicenseUri = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setDrmLicenseUri(android.net.Uri uri)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setDrmLicenseUri(
+    _$jni.JObject uri,
+  ) {
+    return _setDrmLicenseUri(reference.pointer,
+            _id_setDrmLicenseUri as _$jni.JMethodIDPtr, uri.reference.pointer)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setDrmLicenseUri$1 = _class.instanceMethodId(
+    r'setDrmLicenseUri',
+    r'(Ljava/lang/String;)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setDrmLicenseUri$1 = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setDrmLicenseUri(java.lang.String string)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setDrmLicenseUri$1(
+    _$jni.JString string,
+  ) {
+    return _setDrmLicenseUri$1(
+            reference.pointer,
+            _id_setDrmLicenseUri$1 as _$jni.JMethodIDPtr,
+            string.reference.pointer)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setDrmLicenseRequestHeaders = _class.instanceMethodId(
+    r'setDrmLicenseRequestHeaders',
+    r'(Ljava/util/Map;)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setDrmLicenseRequestHeaders =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JniResult Function(
+                          _$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr,
+                          _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+              'globalEnv_CallObjectMethod')
+          .asFunction<
+              _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setDrmLicenseRequestHeaders(java.util.Map map)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setDrmLicenseRequestHeaders(
+    _$jni.JMap<_$jni.JString, _$jni.JString> map,
+  ) {
+    return _setDrmLicenseRequestHeaders(
+            reference.pointer,
+            _id_setDrmLicenseRequestHeaders as _$jni.JMethodIDPtr,
+            map.reference.pointer)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setDrmUuid = _class.instanceMethodId(
+    r'setDrmUuid',
+    r'(Ljava/util/UUID;)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setDrmUuid = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setDrmUuid(java.util.UUID uUID)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setDrmUuid(
+    _$jni.JObject uUID,
+  ) {
+    return _setDrmUuid(reference.pointer, _id_setDrmUuid as _$jni.JMethodIDPtr,
+            uUID.reference.pointer)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setDrmMultiSession = _class.instanceMethodId(
+    r'setDrmMultiSession',
+    r'(Z)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setDrmMultiSession = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setDrmMultiSession(boolean z)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setDrmMultiSession(
+    bool z,
+  ) {
+    return _setDrmMultiSession(reference.pointer,
+            _id_setDrmMultiSession as _$jni.JMethodIDPtr, z ? 1 : 0)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setDrmForceDefaultLicenseUri = _class.instanceMethodId(
+    r'setDrmForceDefaultLicenseUri',
+    r'(Z)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setDrmForceDefaultLicenseUri =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr, _$jni.VarArgs<(_$jni.Int32,)>)>>(
+              'globalEnv_CallObjectMethod')
+          .asFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setDrmForceDefaultLicenseUri(boolean z)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setDrmForceDefaultLicenseUri(
+    bool z,
+  ) {
+    return _setDrmForceDefaultLicenseUri(reference.pointer,
+            _id_setDrmForceDefaultLicenseUri as _$jni.JMethodIDPtr, z ? 1 : 0)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setDrmPlayClearContentWithoutKey = _class.instanceMethodId(
+    r'setDrmPlayClearContentWithoutKey',
+    r'(Z)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setDrmPlayClearContentWithoutKey =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr, _$jni.VarArgs<(_$jni.Int32,)>)>>(
+              'globalEnv_CallObjectMethod')
+          .asFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setDrmPlayClearContentWithoutKey(boolean z)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setDrmPlayClearContentWithoutKey(
+    bool z,
+  ) {
+    return _setDrmPlayClearContentWithoutKey(
+            reference.pointer,
+            _id_setDrmPlayClearContentWithoutKey as _$jni.JMethodIDPtr,
+            z ? 1 : 0)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setDrmSessionForClearPeriods = _class.instanceMethodId(
+    r'setDrmSessionForClearPeriods',
+    r'(Z)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setDrmSessionForClearPeriods =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr, _$jni.VarArgs<(_$jni.Int32,)>)>>(
+              'globalEnv_CallObjectMethod')
+          .asFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setDrmSessionForClearPeriods(boolean z)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setDrmSessionForClearPeriods(
+    bool z,
+  ) {
+    return _setDrmSessionForClearPeriods(reference.pointer,
+            _id_setDrmSessionForClearPeriods as _$jni.JMethodIDPtr, z ? 1 : 0)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setDrmSessionForClearTypes = _class.instanceMethodId(
+    r'setDrmSessionForClearTypes',
+    r'(Ljava/util/List;)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setDrmSessionForClearTypes =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JniResult Function(
+                          _$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr,
+                          _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+              'globalEnv_CallObjectMethod')
+          .asFunction<
+              _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setDrmSessionForClearTypes(java.util.List list)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setDrmSessionForClearTypes(
+    _$jni.JList<_$jni.JInteger> list,
+  ) {
+    return _setDrmSessionForClearTypes(
+            reference.pointer,
+            _id_setDrmSessionForClearTypes as _$jni.JMethodIDPtr,
+            list.reference.pointer)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setDrmKeySetId = _class.instanceMethodId(
+    r'setDrmKeySetId',
+    r'([B)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setDrmKeySetId = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setDrmKeySetId(byte[] bs)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setDrmKeySetId(
+    _$jni.JArray<_$jni.jbyte> bs,
+  ) {
+    return _setDrmKeySetId(reference.pointer,
+            _id_setDrmKeySetId as _$jni.JMethodIDPtr, bs.reference.pointer)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setStreamKeys = _class.instanceMethodId(
+    r'setStreamKeys',
+    r'(Ljava/util/List;)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setStreamKeys = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setStreamKeys(java.util.List list)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setStreamKeys(
+    _$jni.JList<_$jni.JObject> list,
+  ) {
+    return _setStreamKeys(reference.pointer,
+            _id_setStreamKeys as _$jni.JMethodIDPtr, list.reference.pointer)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setCustomCacheKey = _class.instanceMethodId(
+    r'setCustomCacheKey',
+    r'(Ljava/lang/String;)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setCustomCacheKey = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setCustomCacheKey(java.lang.String string)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setCustomCacheKey(
+    _$jni.JString string,
+  ) {
+    return _setCustomCacheKey(
+            reference.pointer,
+            _id_setCustomCacheKey as _$jni.JMethodIDPtr,
+            string.reference.pointer)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setSubtitles = _class.instanceMethodId(
+    r'setSubtitles',
+    r'(Ljava/util/List;)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setSubtitles = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setSubtitles(java.util.List list)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setSubtitles(
+    _$jni.JList<MediaItem_Subtitle> list,
+  ) {
+    return _setSubtitles(reference.pointer,
+            _id_setSubtitles as _$jni.JMethodIDPtr, list.reference.pointer)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setSubtitleConfigurations = _class.instanceMethodId(
+    r'setSubtitleConfigurations',
+    r'(Ljava/util/List;)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setSubtitleConfigurations = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setSubtitleConfigurations(java.util.List list)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setSubtitleConfigurations(
+    _$jni.JList<MediaItem_SubtitleConfiguration> list,
+  ) {
+    return _setSubtitleConfigurations(
+            reference.pointer,
+            _id_setSubtitleConfigurations as _$jni.JMethodIDPtr,
+            list.reference.pointer)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setAdsConfiguration = _class.instanceMethodId(
+    r'setAdsConfiguration',
+    r'(Landroidx/media3/common/MediaItem$AdsConfiguration;)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setAdsConfiguration = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setAdsConfiguration(androidx.media3.common.MediaItem$AdsConfiguration adsConfiguration)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setAdsConfiguration(
+    MediaItem_AdsConfiguration adsConfiguration,
+  ) {
+    return _setAdsConfiguration(
+            reference.pointer,
+            _id_setAdsConfiguration as _$jni.JMethodIDPtr,
+            adsConfiguration.reference.pointer)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setAdTagUri = _class.instanceMethodId(
+    r'setAdTagUri',
+    r'(Ljava/lang/String;)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setAdTagUri = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setAdTagUri(java.lang.String string)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setAdTagUri(
+    _$jni.JString string,
+  ) {
+    return _setAdTagUri(reference.pointer,
+            _id_setAdTagUri as _$jni.JMethodIDPtr, string.reference.pointer)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setAdTagUri$1 = _class.instanceMethodId(
+    r'setAdTagUri',
+    r'(Landroid/net/Uri;)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setAdTagUri$1 = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setAdTagUri(android.net.Uri uri)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setAdTagUri$1(
+    _$jni.JObject uri,
+  ) {
+    return _setAdTagUri$1(reference.pointer,
+            _id_setAdTagUri$1 as _$jni.JMethodIDPtr, uri.reference.pointer)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setAdTagUri$2 = _class.instanceMethodId(
+    r'setAdTagUri',
+    r'(Landroid/net/Uri;Ljava/lang/Object;)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setAdTagUri$2 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<
+                      (
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>
+                      )>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setAdTagUri(android.net.Uri uri, java.lang.Object object)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setAdTagUri$2(
+    _$jni.JObject uri,
+    _$jni.JObject object,
+  ) {
+    return _setAdTagUri$2(
+            reference.pointer,
+            _id_setAdTagUri$2 as _$jni.JMethodIDPtr,
+            uri.reference.pointer,
+            object.reference.pointer)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setLiveConfiguration = _class.instanceMethodId(
+    r'setLiveConfiguration',
+    r'(Landroidx/media3/common/MediaItem$LiveConfiguration;)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setLiveConfiguration = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setLiveConfiguration(androidx.media3.common.MediaItem$LiveConfiguration liveConfiguration)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setLiveConfiguration(
+    MediaItem_LiveConfiguration liveConfiguration,
+  ) {
+    return _setLiveConfiguration(
+            reference.pointer,
+            _id_setLiveConfiguration as _$jni.JMethodIDPtr,
+            liveConfiguration.reference.pointer)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setLiveTargetOffsetMs = _class.instanceMethodId(
+    r'setLiveTargetOffsetMs',
+    r'(J)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setLiveTargetOffsetMs = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int64,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setLiveTargetOffsetMs(long j)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setLiveTargetOffsetMs(
+    int j,
+  ) {
+    return _setLiveTargetOffsetMs(reference.pointer,
+            _id_setLiveTargetOffsetMs as _$jni.JMethodIDPtr, j)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setLiveMinOffsetMs = _class.instanceMethodId(
+    r'setLiveMinOffsetMs',
+    r'(J)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setLiveMinOffsetMs = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int64,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setLiveMinOffsetMs(long j)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setLiveMinOffsetMs(
+    int j,
+  ) {
+    return _setLiveMinOffsetMs(
+            reference.pointer, _id_setLiveMinOffsetMs as _$jni.JMethodIDPtr, j)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setLiveMaxOffsetMs = _class.instanceMethodId(
+    r'setLiveMaxOffsetMs',
+    r'(J)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setLiveMaxOffsetMs = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int64,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setLiveMaxOffsetMs(long j)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setLiveMaxOffsetMs(
+    int j,
+  ) {
+    return _setLiveMaxOffsetMs(
+            reference.pointer, _id_setLiveMaxOffsetMs as _$jni.JMethodIDPtr, j)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setLiveMinPlaybackSpeed = _class.instanceMethodId(
+    r'setLiveMinPlaybackSpeed',
+    r'(F)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setLiveMinPlaybackSpeed = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni
+                      .VarArgs<(_$jni.Double,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, double)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setLiveMinPlaybackSpeed(float f)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setLiveMinPlaybackSpeed(
+    double f,
+  ) {
+    return _setLiveMinPlaybackSpeed(reference.pointer,
+            _id_setLiveMinPlaybackSpeed as _$jni.JMethodIDPtr, f)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setLiveMaxPlaybackSpeed = _class.instanceMethodId(
+    r'setLiveMaxPlaybackSpeed',
+    r'(F)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setLiveMaxPlaybackSpeed = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni
+                      .VarArgs<(_$jni.Double,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, double)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setLiveMaxPlaybackSpeed(float f)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setLiveMaxPlaybackSpeed(
+    double f,
+  ) {
+    return _setLiveMaxPlaybackSpeed(reference.pointer,
+            _id_setLiveMaxPlaybackSpeed as _$jni.JMethodIDPtr, f)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setTag = _class.instanceMethodId(
+    r'setTag',
+    r'(Ljava/lang/Object;)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setTag = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setTag(java.lang.Object object)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setTag(
+    _$jni.JObject object,
+  ) {
+    return _setTag(reference.pointer, _id_setTag as _$jni.JMethodIDPtr,
+            object.reference.pointer)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setImageDurationMs = _class.instanceMethodId(
+    r'setImageDurationMs',
+    r'(J)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setImageDurationMs = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int64,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setImageDurationMs(long j)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setImageDurationMs(
+    int j,
+  ) {
+    return _setImageDurationMs(
+            reference.pointer, _id_setImageDurationMs as _$jni.JMethodIDPtr, j)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setMediaMetadata = _class.instanceMethodId(
+    r'setMediaMetadata',
+    r'(Landroidx/media3/common/MediaMetadata;)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setMediaMetadata = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setMediaMetadata(androidx.media3.common.MediaMetadata mediaMetadata)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setMediaMetadata(
+    _$jni.JObject mediaMetadata,
+  ) {
+    return _setMediaMetadata(
+            reference.pointer,
+            _id_setMediaMetadata as _$jni.JMethodIDPtr,
+            mediaMetadata.reference.pointer)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_setRequestMetadata = _class.instanceMethodId(
+    r'setRequestMetadata',
+    r'(Landroidx/media3/common/MediaItem$RequestMetadata;)Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _setRequestMetadata = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder setRequestMetadata(androidx.media3.common.MediaItem$RequestMetadata requestMetadata)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder setRequestMetadata(
+    MediaItem_RequestMetadata requestMetadata,
+  ) {
+    return _setRequestMetadata(
+            reference.pointer,
+            _id_setRequestMetadata as _$jni.JMethodIDPtr,
+            requestMetadata.reference.pointer)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_build = _class.instanceMethodId(
+    r'build',
+    r'()Landroidx/media3/common/MediaItem;',
+  );
+
+  static final _build = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public androidx.media3.common.MediaItem build()`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem build() {
+    return _build(reference.pointer, _id_build as _$jni.JMethodIDPtr)
+        .object(const $MediaItem$Type());
+  }
+}
+
+final class $MediaItem_Builder$Type extends _$jni.JObjType<MediaItem_Builder> {
+  @_$jni.internal
+  const $MediaItem_Builder$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature => r'Landroidx/media3/common/MediaItem$Builder;';
+
+  @_$jni.internal
+  @_$core.override
+  MediaItem_Builder fromReference(_$jni.JReference reference) =>
+      MediaItem_Builder.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($MediaItem_Builder$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($MediaItem_Builder$Type) &&
+        other is $MediaItem_Builder$Type;
+  }
+}
+
+/// from: `androidx.media3.common.MediaItem$ClippingConfiguration$Builder`
+class MediaItem_ClippingConfiguration_Builder extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<MediaItem_ClippingConfiguration_Builder> $type;
+
+  @_$jni.internal
+  MediaItem_ClippingConfiguration_Builder.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'androidx/media3/common/MediaItem$ClippingConfiguration$Builder');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $MediaItem_ClippingConfiguration_Builder$Type();
+  static final _id_new$ = _class.constructorId(
+    r'()V',
+  );
+
+  static final _new$ = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_NewObject')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public void <init>()`
+  /// The returned object must be released after use, by calling the [release] method.
+  factory MediaItem_ClippingConfiguration_Builder() {
+    return MediaItem_ClippingConfiguration_Builder.fromReference(
+        _new$(_class.reference.pointer, _id_new$ as _$jni.JMethodIDPtr)
+            .reference);
+  }
+
+  static final _id_setStartPositionMs = _class.instanceMethodId(
+    r'setStartPositionMs',
+    r'(J)Landroidx/media3/common/MediaItem$ClippingConfiguration$Builder;',
+  );
+
+  static final _setStartPositionMs = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int64,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.MediaItem$ClippingConfiguration$Builder setStartPositionMs(long j)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_ClippingConfiguration_Builder setStartPositionMs(
+    int j,
+  ) {
+    return _setStartPositionMs(
+            reference.pointer, _id_setStartPositionMs as _$jni.JMethodIDPtr, j)
+        .object(const $MediaItem_ClippingConfiguration_Builder$Type());
+  }
+
+  static final _id_setStartPositionUs = _class.instanceMethodId(
+    r'setStartPositionUs',
+    r'(J)Landroidx/media3/common/MediaItem$ClippingConfiguration$Builder;',
+  );
+
+  static final _setStartPositionUs = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int64,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.MediaItem$ClippingConfiguration$Builder setStartPositionUs(long j)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_ClippingConfiguration_Builder setStartPositionUs(
+    int j,
+  ) {
+    return _setStartPositionUs(
+            reference.pointer, _id_setStartPositionUs as _$jni.JMethodIDPtr, j)
+        .object(const $MediaItem_ClippingConfiguration_Builder$Type());
+  }
+
+  static final _id_setEndPositionMs = _class.instanceMethodId(
+    r'setEndPositionMs',
+    r'(J)Landroidx/media3/common/MediaItem$ClippingConfiguration$Builder;',
+  );
+
+  static final _setEndPositionMs = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int64,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.MediaItem$ClippingConfiguration$Builder setEndPositionMs(long j)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_ClippingConfiguration_Builder setEndPositionMs(
+    int j,
+  ) {
+    return _setEndPositionMs(
+            reference.pointer, _id_setEndPositionMs as _$jni.JMethodIDPtr, j)
+        .object(const $MediaItem_ClippingConfiguration_Builder$Type());
+  }
+
+  static final _id_setEndPositionUs = _class.instanceMethodId(
+    r'setEndPositionUs',
+    r'(J)Landroidx/media3/common/MediaItem$ClippingConfiguration$Builder;',
+  );
+
+  static final _setEndPositionUs = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int64,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.MediaItem$ClippingConfiguration$Builder setEndPositionUs(long j)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_ClippingConfiguration_Builder setEndPositionUs(
+    int j,
+  ) {
+    return _setEndPositionUs(
+            reference.pointer, _id_setEndPositionUs as _$jni.JMethodIDPtr, j)
+        .object(const $MediaItem_ClippingConfiguration_Builder$Type());
+  }
+
+  static final _id_setRelativeToLiveWindow = _class.instanceMethodId(
+    r'setRelativeToLiveWindow',
+    r'(Z)Landroidx/media3/common/MediaItem$ClippingConfiguration$Builder;',
+  );
+
+  static final _setRelativeToLiveWindow = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.MediaItem$ClippingConfiguration$Builder setRelativeToLiveWindow(boolean z)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_ClippingConfiguration_Builder setRelativeToLiveWindow(
+    bool z,
+  ) {
+    return _setRelativeToLiveWindow(reference.pointer,
+            _id_setRelativeToLiveWindow as _$jni.JMethodIDPtr, z ? 1 : 0)
+        .object(const $MediaItem_ClippingConfiguration_Builder$Type());
+  }
+
+  static final _id_setRelativeToDefaultPosition = _class.instanceMethodId(
+    r'setRelativeToDefaultPosition',
+    r'(Z)Landroidx/media3/common/MediaItem$ClippingConfiguration$Builder;',
+  );
+
+  static final _setRelativeToDefaultPosition =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr, _$jni.VarArgs<(_$jni.Int32,)>)>>(
+              'globalEnv_CallObjectMethod')
+          .asFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.MediaItem$ClippingConfiguration$Builder setRelativeToDefaultPosition(boolean z)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_ClippingConfiguration_Builder setRelativeToDefaultPosition(
+    bool z,
+  ) {
+    return _setRelativeToDefaultPosition(reference.pointer,
+            _id_setRelativeToDefaultPosition as _$jni.JMethodIDPtr, z ? 1 : 0)
+        .object(const $MediaItem_ClippingConfiguration_Builder$Type());
+  }
+
+  static final _id_setStartsAtKeyFrame = _class.instanceMethodId(
+    r'setStartsAtKeyFrame',
+    r'(Z)Landroidx/media3/common/MediaItem$ClippingConfiguration$Builder;',
+  );
+
+  static final _setStartsAtKeyFrame = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.MediaItem$ClippingConfiguration$Builder setStartsAtKeyFrame(boolean z)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_ClippingConfiguration_Builder setStartsAtKeyFrame(
+    bool z,
+  ) {
+    return _setStartsAtKeyFrame(reference.pointer,
+            _id_setStartsAtKeyFrame as _$jni.JMethodIDPtr, z ? 1 : 0)
+        .object(const $MediaItem_ClippingConfiguration_Builder$Type());
+  }
+
+  static final _id_build = _class.instanceMethodId(
+    r'build',
+    r'()Landroidx/media3/common/MediaItem$ClippingConfiguration;',
+  );
+
+  static final _build = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public androidx.media3.common.MediaItem$ClippingConfiguration build()`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_ClippingConfiguration build() {
+    return _build(reference.pointer, _id_build as _$jni.JMethodIDPtr)
+        .object(const $MediaItem_ClippingConfiguration$Type());
+  }
+
+  static final _id_buildClippingProperties = _class.instanceMethodId(
+    r'buildClippingProperties',
+    r'()Landroidx/media3/common/MediaItem$ClippingProperties;',
+  );
+
+  static final _buildClippingProperties = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public androidx.media3.common.MediaItem$ClippingProperties buildClippingProperties()`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_ClippingProperties buildClippingProperties() {
+    return _buildClippingProperties(reference.pointer,
+            _id_buildClippingProperties as _$jni.JMethodIDPtr)
+        .object(const $MediaItem_ClippingProperties$Type());
+  }
+}
+
+final class $MediaItem_ClippingConfiguration_Builder$Type
+    extends _$jni.JObjType<MediaItem_ClippingConfiguration_Builder> {
+  @_$jni.internal
+  const $MediaItem_ClippingConfiguration_Builder$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Landroidx/media3/common/MediaItem$ClippingConfiguration$Builder;';
+
+  @_$jni.internal
+  @_$core.override
+  MediaItem_ClippingConfiguration_Builder fromReference(
+          _$jni.JReference reference) =>
+      MediaItem_ClippingConfiguration_Builder.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($MediaItem_ClippingConfiguration_Builder$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType ==
+            ($MediaItem_ClippingConfiguration_Builder$Type) &&
+        other is $MediaItem_ClippingConfiguration_Builder$Type;
+  }
+}
+
+/// from: `androidx.media3.common.MediaItem$ClippingConfiguration`
+class MediaItem_ClippingConfiguration extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<MediaItem_ClippingConfiguration> $type;
+
+  @_$jni.internal
+  MediaItem_ClippingConfiguration.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'androidx/media3/common/MediaItem$ClippingConfiguration');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $MediaItem_ClippingConfiguration$Type();
+  static final _id_UNSET = _class.staticFieldId(
+    r'UNSET',
+    r'Landroidx/media3/common/MediaItem$ClippingConfiguration;',
+  );
+
+  /// from: `static public final androidx.media3.common.MediaItem$ClippingConfiguration UNSET`
+  /// The returned object must be released after use, by calling the [release] method.
+  static MediaItem_ClippingConfiguration get UNSET =>
+      _id_UNSET.get(_class, const $MediaItem_ClippingConfiguration$Type());
+
+  static final _id_startPositionMs = _class.instanceFieldId(
+    r'startPositionMs',
+    r'J',
+  );
+
+  /// from: `public final long startPositionMs`
+  int get startPositionMs =>
+      _id_startPositionMs.get(this, const _$jni.jlongType());
+
+  static final _id_startPositionUs = _class.instanceFieldId(
+    r'startPositionUs',
+    r'J',
+  );
+
+  /// from: `public final long startPositionUs`
+  int get startPositionUs =>
+      _id_startPositionUs.get(this, const _$jni.jlongType());
+
+  static final _id_endPositionMs = _class.instanceFieldId(
+    r'endPositionMs',
+    r'J',
+  );
+
+  /// from: `public final long endPositionMs`
+  int get endPositionMs => _id_endPositionMs.get(this, const _$jni.jlongType());
+
+  static final _id_endPositionUs = _class.instanceFieldId(
+    r'endPositionUs',
+    r'J',
+  );
+
+  /// from: `public final long endPositionUs`
+  int get endPositionUs => _id_endPositionUs.get(this, const _$jni.jlongType());
+
+  static final _id_relativeToLiveWindow = _class.instanceFieldId(
+    r'relativeToLiveWindow',
+    r'Z',
+  );
+
+  /// from: `public final boolean relativeToLiveWindow`
+  bool get relativeToLiveWindow =>
+      _id_relativeToLiveWindow.get(this, const _$jni.jbooleanType());
+
+  static final _id_relativeToDefaultPosition = _class.instanceFieldId(
+    r'relativeToDefaultPosition',
+    r'Z',
+  );
+
+  /// from: `public final boolean relativeToDefaultPosition`
+  bool get relativeToDefaultPosition =>
+      _id_relativeToDefaultPosition.get(this, const _$jni.jbooleanType());
+
+  static final _id_startsAtKeyFrame = _class.instanceFieldId(
+    r'startsAtKeyFrame',
+    r'Z',
+  );
+
+  /// from: `public final boolean startsAtKeyFrame`
+  bool get startsAtKeyFrame =>
+      _id_startsAtKeyFrame.get(this, const _$jni.jbooleanType());
+
+  static final _id_buildUpon = _class.instanceMethodId(
+    r'buildUpon',
+    r'()Landroidx/media3/common/MediaItem$ClippingConfiguration$Builder;',
+  );
+
+  static final _buildUpon = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public androidx.media3.common.MediaItem$ClippingConfiguration$Builder buildUpon()`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_ClippingConfiguration_Builder buildUpon() {
+    return _buildUpon(reference.pointer, _id_buildUpon as _$jni.JMethodIDPtr)
+        .object(const $MediaItem_ClippingConfiguration_Builder$Type());
+  }
+
+  static final _id_equals = _class.instanceMethodId(
+    r'equals',
+    r'(Ljava/lang/Object;)Z',
+  );
+
+  static final _equals = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public boolean equals(java.lang.Object object)`
+  bool equals(
+    _$jni.JObject object,
+  ) {
+    return _equals(reference.pointer, _id_equals as _$jni.JMethodIDPtr,
+            object.reference.pointer)
+        .boolean;
+  }
+
+  static final _id_hashCode$1 = _class.instanceMethodId(
+    r'hashCode',
+    r'()I',
+  );
+
+  static final _hashCode$1 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public int hashCode()`
+  int hashCode$1() {
+    return _hashCode$1(reference.pointer, _id_hashCode$1 as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_toBundle = _class.instanceMethodId(
+    r'toBundle',
+    r'()Landroid/os/Bundle;',
+  );
+
+  static final _toBundle = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public android.os.Bundle toBundle()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject toBundle() {
+    return _toBundle(reference.pointer, _id_toBundle as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_fromBundle = _class.staticMethodId(
+    r'fromBundle',
+    r'(Landroid/os/Bundle;)Landroidx/media3/common/MediaItem$ClippingProperties;',
+  );
+
+  static final _fromBundle = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallStaticObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `static public androidx.media3.common.MediaItem$ClippingProperties fromBundle(android.os.Bundle bundle)`
+  /// The returned object must be released after use, by calling the [release] method.
+  static MediaItem_ClippingProperties fromBundle(
+    _$jni.JObject bundle,
+  ) {
+    return _fromBundle(_class.reference.pointer,
+            _id_fromBundle as _$jni.JMethodIDPtr, bundle.reference.pointer)
+        .object(const $MediaItem_ClippingProperties$Type());
+  }
+}
+
+final class $MediaItem_ClippingConfiguration$Type
+    extends _$jni.JObjType<MediaItem_ClippingConfiguration> {
+  @_$jni.internal
+  const $MediaItem_ClippingConfiguration$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Landroidx/media3/common/MediaItem$ClippingConfiguration;';
+
+  @_$jni.internal
+  @_$core.override
+  MediaItem_ClippingConfiguration fromReference(_$jni.JReference reference) =>
+      MediaItem_ClippingConfiguration.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($MediaItem_ClippingConfiguration$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($MediaItem_ClippingConfiguration$Type) &&
+        other is $MediaItem_ClippingConfiguration$Type;
+  }
+}
+
+/// from: `androidx.media3.common.MediaItem$ClippingProperties`
+class MediaItem_ClippingProperties extends MediaItem_ClippingConfiguration {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<MediaItem_ClippingProperties> $type;
+
+  @_$jni.internal
+  MediaItem_ClippingProperties.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'androidx/media3/common/MediaItem$ClippingProperties');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $MediaItem_ClippingProperties$Type();
+  static final _id_UNSET$1 = _class.staticFieldId(
+    r'UNSET',
+    r'Landroidx/media3/common/MediaItem$ClippingProperties;',
+  );
+
+  /// from: `static public final androidx.media3.common.MediaItem$ClippingProperties UNSET`
+  /// The returned object must be released after use, by calling the [release] method.
+  static MediaItem_ClippingProperties get UNSET$1 =>
+      _id_UNSET$1.get(_class, const $MediaItem_ClippingProperties$Type());
+}
+
+final class $MediaItem_ClippingProperties$Type
+    extends _$jni.JObjType<MediaItem_ClippingProperties> {
+  @_$jni.internal
+  const $MediaItem_ClippingProperties$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Landroidx/media3/common/MediaItem$ClippingProperties;';
+
+  @_$jni.internal
+  @_$core.override
+  MediaItem_ClippingProperties fromReference(_$jni.JReference reference) =>
+      MediaItem_ClippingProperties.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const $MediaItem_ClippingConfiguration$Type();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 2;
+
+  @_$core.override
+  int get hashCode => ($MediaItem_ClippingProperties$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($MediaItem_ClippingProperties$Type) &&
+        other is $MediaItem_ClippingProperties$Type;
+  }
+}
+
+/// from: `androidx.media3.common.MediaItem$DrmConfiguration$Builder`
+class MediaItem_DrmConfiguration_Builder extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<MediaItem_DrmConfiguration_Builder> $type;
+
+  @_$jni.internal
+  MediaItem_DrmConfiguration_Builder.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'androidx/media3/common/MediaItem$DrmConfiguration$Builder');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $MediaItem_DrmConfiguration_Builder$Type();
+  static final _id_new$ = _class.constructorId(
+    r'(Ljava/util/UUID;)V',
+  );
+
+  static final _new$ = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_NewObject')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public void <init>(java.util.UUID uUID)`
+  /// The returned object must be released after use, by calling the [release] method.
+  factory MediaItem_DrmConfiguration_Builder(
+    _$jni.JObject uUID,
+  ) {
+    return MediaItem_DrmConfiguration_Builder.fromReference(_new$(
+            _class.reference.pointer,
+            _id_new$ as _$jni.JMethodIDPtr,
+            uUID.reference.pointer)
+        .reference);
+  }
+
+  static final _id_setScheme = _class.instanceMethodId(
+    r'setScheme',
+    r'(Ljava/util/UUID;)Landroidx/media3/common/MediaItem$DrmConfiguration$Builder;',
+  );
+
+  static final _setScheme = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$DrmConfiguration$Builder setScheme(java.util.UUID uUID)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_DrmConfiguration_Builder setScheme(
+    _$jni.JObject uUID,
+  ) {
+    return _setScheme(reference.pointer, _id_setScheme as _$jni.JMethodIDPtr,
+            uUID.reference.pointer)
+        .object(const $MediaItem_DrmConfiguration_Builder$Type());
+  }
+
+  static final _id_setLicenseUri = _class.instanceMethodId(
+    r'setLicenseUri',
+    r'(Landroid/net/Uri;)Landroidx/media3/common/MediaItem$DrmConfiguration$Builder;',
+  );
+
+  static final _setLicenseUri = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$DrmConfiguration$Builder setLicenseUri(android.net.Uri uri)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_DrmConfiguration_Builder setLicenseUri(
+    _$jni.JObject uri,
+  ) {
+    return _setLicenseUri(reference.pointer,
+            _id_setLicenseUri as _$jni.JMethodIDPtr, uri.reference.pointer)
+        .object(const $MediaItem_DrmConfiguration_Builder$Type());
+  }
+
+  static final _id_setLicenseUri$1 = _class.instanceMethodId(
+    r'setLicenseUri',
+    r'(Ljava/lang/String;)Landroidx/media3/common/MediaItem$DrmConfiguration$Builder;',
+  );
+
+  static final _setLicenseUri$1 = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$DrmConfiguration$Builder setLicenseUri(java.lang.String string)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_DrmConfiguration_Builder setLicenseUri$1(
+    _$jni.JString string,
+  ) {
+    return _setLicenseUri$1(reference.pointer,
+            _id_setLicenseUri$1 as _$jni.JMethodIDPtr, string.reference.pointer)
+        .object(const $MediaItem_DrmConfiguration_Builder$Type());
+  }
+
+  static final _id_setLicenseRequestHeaders = _class.instanceMethodId(
+    r'setLicenseRequestHeaders',
+    r'(Ljava/util/Map;)Landroidx/media3/common/MediaItem$DrmConfiguration$Builder;',
+  );
+
+  static final _setLicenseRequestHeaders = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$DrmConfiguration$Builder setLicenseRequestHeaders(java.util.Map map)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_DrmConfiguration_Builder setLicenseRequestHeaders(
+    _$jni.JMap<_$jni.JString, _$jni.JString> map,
+  ) {
+    return _setLicenseRequestHeaders(
+            reference.pointer,
+            _id_setLicenseRequestHeaders as _$jni.JMethodIDPtr,
+            map.reference.pointer)
+        .object(const $MediaItem_DrmConfiguration_Builder$Type());
+  }
+
+  static final _id_setMultiSession = _class.instanceMethodId(
+    r'setMultiSession',
+    r'(Z)Landroidx/media3/common/MediaItem$DrmConfiguration$Builder;',
+  );
+
+  static final _setMultiSession = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.MediaItem$DrmConfiguration$Builder setMultiSession(boolean z)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_DrmConfiguration_Builder setMultiSession(
+    bool z,
+  ) {
+    return _setMultiSession(reference.pointer,
+            _id_setMultiSession as _$jni.JMethodIDPtr, z ? 1 : 0)
+        .object(const $MediaItem_DrmConfiguration_Builder$Type());
+  }
+
+  static final _id_setForceDefaultLicenseUri = _class.instanceMethodId(
+    r'setForceDefaultLicenseUri',
+    r'(Z)Landroidx/media3/common/MediaItem$DrmConfiguration$Builder;',
+  );
+
+  static final _setForceDefaultLicenseUri = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.MediaItem$DrmConfiguration$Builder setForceDefaultLicenseUri(boolean z)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_DrmConfiguration_Builder setForceDefaultLicenseUri(
+    bool z,
+  ) {
+    return _setForceDefaultLicenseUri(reference.pointer,
+            _id_setForceDefaultLicenseUri as _$jni.JMethodIDPtr, z ? 1 : 0)
+        .object(const $MediaItem_DrmConfiguration_Builder$Type());
+  }
+
+  static final _id_setPlayClearContentWithoutKey = _class.instanceMethodId(
+    r'setPlayClearContentWithoutKey',
+    r'(Z)Landroidx/media3/common/MediaItem$DrmConfiguration$Builder;',
+  );
+
+  static final _setPlayClearContentWithoutKey =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr, _$jni.VarArgs<(_$jni.Int32,)>)>>(
+              'globalEnv_CallObjectMethod')
+          .asFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.MediaItem$DrmConfiguration$Builder setPlayClearContentWithoutKey(boolean z)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_DrmConfiguration_Builder setPlayClearContentWithoutKey(
+    bool z,
+  ) {
+    return _setPlayClearContentWithoutKey(reference.pointer,
+            _id_setPlayClearContentWithoutKey as _$jni.JMethodIDPtr, z ? 1 : 0)
+        .object(const $MediaItem_DrmConfiguration_Builder$Type());
+  }
+
+  static final _id_forceSessionsForAudioAndVideoTracks =
+      _class.instanceMethodId(
+    r'forceSessionsForAudioAndVideoTracks',
+    r'(Z)Landroidx/media3/common/MediaItem$DrmConfiguration$Builder;',
+  );
+
+  static final _forceSessionsForAudioAndVideoTracks =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr, _$jni.VarArgs<(_$jni.Int32,)>)>>(
+              'globalEnv_CallObjectMethod')
+          .asFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.MediaItem$DrmConfiguration$Builder forceSessionsForAudioAndVideoTracks(boolean z)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_DrmConfiguration_Builder forceSessionsForAudioAndVideoTracks(
+    bool z,
+  ) {
+    return _forceSessionsForAudioAndVideoTracks(
+            reference.pointer,
+            _id_forceSessionsForAudioAndVideoTracks as _$jni.JMethodIDPtr,
+            z ? 1 : 0)
+        .object(const $MediaItem_DrmConfiguration_Builder$Type());
+  }
+
+  static final _id_setForceSessionsForAudioAndVideoTracks =
+      _class.instanceMethodId(
+    r'setForceSessionsForAudioAndVideoTracks',
+    r'(Z)Landroidx/media3/common/MediaItem$DrmConfiguration$Builder;',
+  );
+
+  static final _setForceSessionsForAudioAndVideoTracks =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr, _$jni.VarArgs<(_$jni.Int32,)>)>>(
+              'globalEnv_CallObjectMethod')
+          .asFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.MediaItem$DrmConfiguration$Builder setForceSessionsForAudioAndVideoTracks(boolean z)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_DrmConfiguration_Builder setForceSessionsForAudioAndVideoTracks(
+    bool z,
+  ) {
+    return _setForceSessionsForAudioAndVideoTracks(
+            reference.pointer,
+            _id_setForceSessionsForAudioAndVideoTracks as _$jni.JMethodIDPtr,
+            z ? 1 : 0)
+        .object(const $MediaItem_DrmConfiguration_Builder$Type());
+  }
+
+  static final _id_setForcedSessionTrackTypes = _class.instanceMethodId(
+    r'setForcedSessionTrackTypes',
+    r'(Ljava/util/List;)Landroidx/media3/common/MediaItem$DrmConfiguration$Builder;',
+  );
+
+  static final _setForcedSessionTrackTypes =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JniResult Function(
+                          _$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr,
+                          _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+              'globalEnv_CallObjectMethod')
+          .asFunction<
+              _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$DrmConfiguration$Builder setForcedSessionTrackTypes(java.util.List list)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_DrmConfiguration_Builder setForcedSessionTrackTypes(
+    _$jni.JList<_$jni.JInteger> list,
+  ) {
+    return _setForcedSessionTrackTypes(
+            reference.pointer,
+            _id_setForcedSessionTrackTypes as _$jni.JMethodIDPtr,
+            list.reference.pointer)
+        .object(const $MediaItem_DrmConfiguration_Builder$Type());
+  }
+
+  static final _id_setKeySetId = _class.instanceMethodId(
+    r'setKeySetId',
+    r'([B)Landroidx/media3/common/MediaItem$DrmConfiguration$Builder;',
+  );
+
+  static final _setKeySetId = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$DrmConfiguration$Builder setKeySetId(byte[] bs)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_DrmConfiguration_Builder setKeySetId(
+    _$jni.JArray<_$jni.jbyte> bs,
+  ) {
+    return _setKeySetId(reference.pointer,
+            _id_setKeySetId as _$jni.JMethodIDPtr, bs.reference.pointer)
+        .object(const $MediaItem_DrmConfiguration_Builder$Type());
+  }
+
+  static final _id_build = _class.instanceMethodId(
+    r'build',
+    r'()Landroidx/media3/common/MediaItem$DrmConfiguration;',
+  );
+
+  static final _build = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public androidx.media3.common.MediaItem$DrmConfiguration build()`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_DrmConfiguration build() {
+    return _build(reference.pointer, _id_build as _$jni.JMethodIDPtr)
+        .object(const $MediaItem_DrmConfiguration$Type());
+  }
+}
+
+final class $MediaItem_DrmConfiguration_Builder$Type
+    extends _$jni.JObjType<MediaItem_DrmConfiguration_Builder> {
+  @_$jni.internal
+  const $MediaItem_DrmConfiguration_Builder$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Landroidx/media3/common/MediaItem$DrmConfiguration$Builder;';
+
+  @_$jni.internal
+  @_$core.override
+  MediaItem_DrmConfiguration_Builder fromReference(
+          _$jni.JReference reference) =>
+      MediaItem_DrmConfiguration_Builder.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($MediaItem_DrmConfiguration_Builder$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($MediaItem_DrmConfiguration_Builder$Type) &&
+        other is $MediaItem_DrmConfiguration_Builder$Type;
+  }
+}
+
+/// from: `androidx.media3.common.MediaItem$DrmConfiguration`
+class MediaItem_DrmConfiguration extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<MediaItem_DrmConfiguration> $type;
+
+  @_$jni.internal
+  MediaItem_DrmConfiguration.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'androidx/media3/common/MediaItem$DrmConfiguration');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $MediaItem_DrmConfiguration$Type();
+  static final _id_scheme = _class.instanceFieldId(
+    r'scheme',
+    r'Ljava/util/UUID;',
+  );
+
+  /// from: `public final java.util.UUID scheme`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject get scheme => _id_scheme.get(this, const _$jni.JObjectType());
+
+  static final _id_uuid = _class.instanceFieldId(
+    r'uuid',
+    r'Ljava/util/UUID;',
+  );
+
+  /// from: `public final java.util.UUID uuid`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject get uuid => _id_uuid.get(this, const _$jni.JObjectType());
+
+  static final _id_licenseUri = _class.instanceFieldId(
+    r'licenseUri',
+    r'Landroid/net/Uri;',
+  );
+
+  /// from: `public final android.net.Uri licenseUri`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject get licenseUri =>
+      _id_licenseUri.get(this, const _$jni.JObjectType());
+
+  static final _id_requestHeaders = _class.instanceFieldId(
+    r'requestHeaders',
+    r'Lcom/google/common/collect/ImmutableMap;',
+  );
+
+  /// from: `public final com.google.common.collect.ImmutableMap requestHeaders`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject get requestHeaders =>
+      _id_requestHeaders.get(this, const _$jni.JObjectType());
+
+  static final _id_licenseRequestHeaders = _class.instanceFieldId(
+    r'licenseRequestHeaders',
+    r'Lcom/google/common/collect/ImmutableMap;',
+  );
+
+  /// from: `public final com.google.common.collect.ImmutableMap licenseRequestHeaders`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject get licenseRequestHeaders =>
+      _id_licenseRequestHeaders.get(this, const _$jni.JObjectType());
+
+  static final _id_multiSession = _class.instanceFieldId(
+    r'multiSession',
+    r'Z',
+  );
+
+  /// from: `public final boolean multiSession`
+  bool get multiSession =>
+      _id_multiSession.get(this, const _$jni.jbooleanType());
+
+  static final _id_playClearContentWithoutKey = _class.instanceFieldId(
+    r'playClearContentWithoutKey',
+    r'Z',
+  );
+
+  /// from: `public final boolean playClearContentWithoutKey`
+  bool get playClearContentWithoutKey =>
+      _id_playClearContentWithoutKey.get(this, const _$jni.jbooleanType());
+
+  static final _id_forceDefaultLicenseUri = _class.instanceFieldId(
+    r'forceDefaultLicenseUri',
+    r'Z',
+  );
+
+  /// from: `public final boolean forceDefaultLicenseUri`
+  bool get forceDefaultLicenseUri =>
+      _id_forceDefaultLicenseUri.get(this, const _$jni.jbooleanType());
+
+  static final _id_sessionForClearTypes = _class.instanceFieldId(
+    r'sessionForClearTypes',
+    r'Lcom/google/common/collect/ImmutableList;',
+  );
+
+  /// from: `public final com.google.common.collect.ImmutableList sessionForClearTypes`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject get sessionForClearTypes =>
+      _id_sessionForClearTypes.get(this, const _$jni.JObjectType());
+
+  static final _id_forcedSessionTrackTypes = _class.instanceFieldId(
+    r'forcedSessionTrackTypes',
+    r'Lcom/google/common/collect/ImmutableList;',
+  );
+
+  /// from: `public final com.google.common.collect.ImmutableList forcedSessionTrackTypes`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject get forcedSessionTrackTypes =>
+      _id_forcedSessionTrackTypes.get(this, const _$jni.JObjectType());
+
+  static final _id_getKeySetId = _class.instanceMethodId(
+    r'getKeySetId',
+    r'()[B',
+  );
+
+  static final _getKeySetId = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public byte[] getKeySetId()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JArray<_$jni.jbyte> getKeySetId() {
+    return _getKeySetId(
+            reference.pointer, _id_getKeySetId as _$jni.JMethodIDPtr)
+        .object(const _$jni.JArrayType(_$jni.jbyteType()));
+  }
+
+  static final _id_buildUpon = _class.instanceMethodId(
+    r'buildUpon',
+    r'()Landroidx/media3/common/MediaItem$DrmConfiguration$Builder;',
+  );
+
+  static final _buildUpon = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public androidx.media3.common.MediaItem$DrmConfiguration$Builder buildUpon()`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_DrmConfiguration_Builder buildUpon() {
+    return _buildUpon(reference.pointer, _id_buildUpon as _$jni.JMethodIDPtr)
+        .object(const $MediaItem_DrmConfiguration_Builder$Type());
+  }
+
+  static final _id_equals = _class.instanceMethodId(
+    r'equals',
+    r'(Ljava/lang/Object;)Z',
+  );
+
+  static final _equals = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public boolean equals(java.lang.Object object)`
+  bool equals(
+    _$jni.JObject object,
+  ) {
+    return _equals(reference.pointer, _id_equals as _$jni.JMethodIDPtr,
+            object.reference.pointer)
+        .boolean;
+  }
+
+  static final _id_hashCode$1 = _class.instanceMethodId(
+    r'hashCode',
+    r'()I',
+  );
+
+  static final _hashCode$1 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public int hashCode()`
+  int hashCode$1() {
+    return _hashCode$1(reference.pointer, _id_hashCode$1 as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_fromBundle = _class.staticMethodId(
+    r'fromBundle',
+    r'(Landroid/os/Bundle;)Landroidx/media3/common/MediaItem$DrmConfiguration;',
+  );
+
+  static final _fromBundle = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallStaticObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `static public androidx.media3.common.MediaItem$DrmConfiguration fromBundle(android.os.Bundle bundle)`
+  /// The returned object must be released after use, by calling the [release] method.
+  static MediaItem_DrmConfiguration fromBundle(
+    _$jni.JObject bundle,
+  ) {
+    return _fromBundle(_class.reference.pointer,
+            _id_fromBundle as _$jni.JMethodIDPtr, bundle.reference.pointer)
+        .object(const $MediaItem_DrmConfiguration$Type());
+  }
+
+  static final _id_toBundle = _class.instanceMethodId(
+    r'toBundle',
+    r'()Landroid/os/Bundle;',
+  );
+
+  static final _toBundle = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public android.os.Bundle toBundle()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject toBundle() {
+    return _toBundle(reference.pointer, _id_toBundle as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+}
+
+final class $MediaItem_DrmConfiguration$Type
+    extends _$jni.JObjType<MediaItem_DrmConfiguration> {
+  @_$jni.internal
+  const $MediaItem_DrmConfiguration$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Landroidx/media3/common/MediaItem$DrmConfiguration;';
+
+  @_$jni.internal
+  @_$core.override
+  MediaItem_DrmConfiguration fromReference(_$jni.JReference reference) =>
+      MediaItem_DrmConfiguration.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($MediaItem_DrmConfiguration$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($MediaItem_DrmConfiguration$Type) &&
+        other is $MediaItem_DrmConfiguration$Type;
+  }
+}
+
+/// from: `androidx.media3.common.MediaItem$LiveConfiguration$Builder`
+class MediaItem_LiveConfiguration_Builder extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<MediaItem_LiveConfiguration_Builder> $type;
+
+  @_$jni.internal
+  MediaItem_LiveConfiguration_Builder.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'androidx/media3/common/MediaItem$LiveConfiguration$Builder');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $MediaItem_LiveConfiguration_Builder$Type();
+  static final _id_new$ = _class.constructorId(
+    r'()V',
+  );
+
+  static final _new$ = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_NewObject')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public void <init>()`
+  /// The returned object must be released after use, by calling the [release] method.
+  factory MediaItem_LiveConfiguration_Builder() {
+    return MediaItem_LiveConfiguration_Builder.fromReference(
+        _new$(_class.reference.pointer, _id_new$ as _$jni.JMethodIDPtr)
+            .reference);
+  }
+
+  static final _id_setTargetOffsetMs = _class.instanceMethodId(
+    r'setTargetOffsetMs',
+    r'(J)Landroidx/media3/common/MediaItem$LiveConfiguration$Builder;',
+  );
+
+  static final _setTargetOffsetMs = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int64,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.MediaItem$LiveConfiguration$Builder setTargetOffsetMs(long j)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_LiveConfiguration_Builder setTargetOffsetMs(
+    int j,
+  ) {
+    return _setTargetOffsetMs(
+            reference.pointer, _id_setTargetOffsetMs as _$jni.JMethodIDPtr, j)
+        .object(const $MediaItem_LiveConfiguration_Builder$Type());
+  }
+
+  static final _id_setMinOffsetMs = _class.instanceMethodId(
+    r'setMinOffsetMs',
+    r'(J)Landroidx/media3/common/MediaItem$LiveConfiguration$Builder;',
+  );
+
+  static final _setMinOffsetMs = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int64,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.MediaItem$LiveConfiguration$Builder setMinOffsetMs(long j)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_LiveConfiguration_Builder setMinOffsetMs(
+    int j,
+  ) {
+    return _setMinOffsetMs(
+            reference.pointer, _id_setMinOffsetMs as _$jni.JMethodIDPtr, j)
+        .object(const $MediaItem_LiveConfiguration_Builder$Type());
+  }
+
+  static final _id_setMaxOffsetMs = _class.instanceMethodId(
+    r'setMaxOffsetMs',
+    r'(J)Landroidx/media3/common/MediaItem$LiveConfiguration$Builder;',
+  );
+
+  static final _setMaxOffsetMs = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int64,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.MediaItem$LiveConfiguration$Builder setMaxOffsetMs(long j)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_LiveConfiguration_Builder setMaxOffsetMs(
+    int j,
+  ) {
+    return _setMaxOffsetMs(
+            reference.pointer, _id_setMaxOffsetMs as _$jni.JMethodIDPtr, j)
+        .object(const $MediaItem_LiveConfiguration_Builder$Type());
+  }
+
+  static final _id_setMinPlaybackSpeed = _class.instanceMethodId(
+    r'setMinPlaybackSpeed',
+    r'(F)Landroidx/media3/common/MediaItem$LiveConfiguration$Builder;',
+  );
+
+  static final _setMinPlaybackSpeed = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni
+                      .VarArgs<(_$jni.Double,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, double)>();
+
+  /// from: `public androidx.media3.common.MediaItem$LiveConfiguration$Builder setMinPlaybackSpeed(float f)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_LiveConfiguration_Builder setMinPlaybackSpeed(
+    double f,
+  ) {
+    return _setMinPlaybackSpeed(
+            reference.pointer, _id_setMinPlaybackSpeed as _$jni.JMethodIDPtr, f)
+        .object(const $MediaItem_LiveConfiguration_Builder$Type());
+  }
+
+  static final _id_setMaxPlaybackSpeed = _class.instanceMethodId(
+    r'setMaxPlaybackSpeed',
+    r'(F)Landroidx/media3/common/MediaItem$LiveConfiguration$Builder;',
+  );
+
+  static final _setMaxPlaybackSpeed = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni
+                      .VarArgs<(_$jni.Double,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, double)>();
+
+  /// from: `public androidx.media3.common.MediaItem$LiveConfiguration$Builder setMaxPlaybackSpeed(float f)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_LiveConfiguration_Builder setMaxPlaybackSpeed(
+    double f,
+  ) {
+    return _setMaxPlaybackSpeed(
+            reference.pointer, _id_setMaxPlaybackSpeed as _$jni.JMethodIDPtr, f)
+        .object(const $MediaItem_LiveConfiguration_Builder$Type());
+  }
+
+  static final _id_build = _class.instanceMethodId(
+    r'build',
+    r'()Landroidx/media3/common/MediaItem$LiveConfiguration;',
+  );
+
+  static final _build = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public androidx.media3.common.MediaItem$LiveConfiguration build()`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_LiveConfiguration build() {
+    return _build(reference.pointer, _id_build as _$jni.JMethodIDPtr)
+        .object(const $MediaItem_LiveConfiguration$Type());
+  }
+}
+
+final class $MediaItem_LiveConfiguration_Builder$Type
+    extends _$jni.JObjType<MediaItem_LiveConfiguration_Builder> {
+  @_$jni.internal
+  const $MediaItem_LiveConfiguration_Builder$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Landroidx/media3/common/MediaItem$LiveConfiguration$Builder;';
+
+  @_$jni.internal
+  @_$core.override
+  MediaItem_LiveConfiguration_Builder fromReference(
+          _$jni.JReference reference) =>
+      MediaItem_LiveConfiguration_Builder.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($MediaItem_LiveConfiguration_Builder$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($MediaItem_LiveConfiguration_Builder$Type) &&
+        other is $MediaItem_LiveConfiguration_Builder$Type;
+  }
+}
+
+/// from: `androidx.media3.common.MediaItem$LiveConfiguration`
+class MediaItem_LiveConfiguration extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<MediaItem_LiveConfiguration> $type;
+
+  @_$jni.internal
+  MediaItem_LiveConfiguration.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'androidx/media3/common/MediaItem$LiveConfiguration');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $MediaItem_LiveConfiguration$Type();
+  static final _id_UNSET = _class.staticFieldId(
+    r'UNSET',
+    r'Landroidx/media3/common/MediaItem$LiveConfiguration;',
+  );
+
+  /// from: `static public final androidx.media3.common.MediaItem$LiveConfiguration UNSET`
+  /// The returned object must be released after use, by calling the [release] method.
+  static MediaItem_LiveConfiguration get UNSET =>
+      _id_UNSET.get(_class, const $MediaItem_LiveConfiguration$Type());
+
+  static final _id_targetOffsetMs = _class.instanceFieldId(
+    r'targetOffsetMs',
+    r'J',
+  );
+
+  /// from: `public final long targetOffsetMs`
+  int get targetOffsetMs =>
+      _id_targetOffsetMs.get(this, const _$jni.jlongType());
+
+  static final _id_minOffsetMs = _class.instanceFieldId(
+    r'minOffsetMs',
+    r'J',
+  );
+
+  /// from: `public final long minOffsetMs`
+  int get minOffsetMs => _id_minOffsetMs.get(this, const _$jni.jlongType());
+
+  static final _id_maxOffsetMs = _class.instanceFieldId(
+    r'maxOffsetMs',
+    r'J',
+  );
+
+  /// from: `public final long maxOffsetMs`
+  int get maxOffsetMs => _id_maxOffsetMs.get(this, const _$jni.jlongType());
+
+  static final _id_minPlaybackSpeed = _class.instanceFieldId(
+    r'minPlaybackSpeed',
+    r'F',
+  );
+
+  /// from: `public final float minPlaybackSpeed`
+  double get minPlaybackSpeed =>
+      _id_minPlaybackSpeed.get(this, const _$jni.jfloatType());
+
+  static final _id_maxPlaybackSpeed = _class.instanceFieldId(
+    r'maxPlaybackSpeed',
+    r'F',
+  );
+
+  /// from: `public final float maxPlaybackSpeed`
+  double get maxPlaybackSpeed =>
+      _id_maxPlaybackSpeed.get(this, const _$jni.jfloatType());
+
+  static final _id_new$ = _class.constructorId(
+    r'(JJJFF)V',
+  );
+
+  static final _new$ = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<
+                      (
+                        _$jni.Int64,
+                        _$jni.Int64,
+                        _$jni.Int64,
+                        _$jni.Double,
+                        _$jni.Double
+                      )>)>>('globalEnv_NewObject')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, int, int, int, double, double)>();
+
+  /// from: `public void <init>(long j, long j1, long j2, float f, float f1)`
+  /// The returned object must be released after use, by calling the [release] method.
+  factory MediaItem_LiveConfiguration(
+    int j,
+    int j1,
+    int j2,
+    double f,
+    double f1,
+  ) {
+    return MediaItem_LiveConfiguration.fromReference(_new$(
+            _class.reference.pointer,
+            _id_new$ as _$jni.JMethodIDPtr,
+            j,
+            j1,
+            j2,
+            f,
+            f1)
+        .reference);
+  }
+
+  static final _id_buildUpon = _class.instanceMethodId(
+    r'buildUpon',
+    r'()Landroidx/media3/common/MediaItem$LiveConfiguration$Builder;',
+  );
+
+  static final _buildUpon = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public androidx.media3.common.MediaItem$LiveConfiguration$Builder buildUpon()`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_LiveConfiguration_Builder buildUpon() {
+    return _buildUpon(reference.pointer, _id_buildUpon as _$jni.JMethodIDPtr)
+        .object(const $MediaItem_LiveConfiguration_Builder$Type());
+  }
+
+  static final _id_equals = _class.instanceMethodId(
+    r'equals',
+    r'(Ljava/lang/Object;)Z',
+  );
+
+  static final _equals = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public boolean equals(java.lang.Object object)`
+  bool equals(
+    _$jni.JObject object,
+  ) {
+    return _equals(reference.pointer, _id_equals as _$jni.JMethodIDPtr,
+            object.reference.pointer)
+        .boolean;
+  }
+
+  static final _id_hashCode$1 = _class.instanceMethodId(
+    r'hashCode',
+    r'()I',
+  );
+
+  static final _hashCode$1 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public int hashCode()`
+  int hashCode$1() {
+    return _hashCode$1(reference.pointer, _id_hashCode$1 as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_toBundle = _class.instanceMethodId(
+    r'toBundle',
+    r'()Landroid/os/Bundle;',
+  );
+
+  static final _toBundle = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public android.os.Bundle toBundle()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject toBundle() {
+    return _toBundle(reference.pointer, _id_toBundle as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_fromBundle = _class.staticMethodId(
+    r'fromBundle',
+    r'(Landroid/os/Bundle;)Landroidx/media3/common/MediaItem$LiveConfiguration;',
+  );
+
+  static final _fromBundle = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallStaticObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `static public androidx.media3.common.MediaItem$LiveConfiguration fromBundle(android.os.Bundle bundle)`
+  /// The returned object must be released after use, by calling the [release] method.
+  static MediaItem_LiveConfiguration fromBundle(
+    _$jni.JObject bundle,
+  ) {
+    return _fromBundle(_class.reference.pointer,
+            _id_fromBundle as _$jni.JMethodIDPtr, bundle.reference.pointer)
+        .object(const $MediaItem_LiveConfiguration$Type());
+  }
+}
+
+final class $MediaItem_LiveConfiguration$Type
+    extends _$jni.JObjType<MediaItem_LiveConfiguration> {
+  @_$jni.internal
+  const $MediaItem_LiveConfiguration$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Landroidx/media3/common/MediaItem$LiveConfiguration;';
+
+  @_$jni.internal
+  @_$core.override
+  MediaItem_LiveConfiguration fromReference(_$jni.JReference reference) =>
+      MediaItem_LiveConfiguration.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($MediaItem_LiveConfiguration$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($MediaItem_LiveConfiguration$Type) &&
+        other is $MediaItem_LiveConfiguration$Type;
+  }
+}
+
+/// from: `androidx.media3.common.MediaItem$LocalConfiguration`
+class MediaItem_LocalConfiguration extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<MediaItem_LocalConfiguration> $type;
+
+  @_$jni.internal
+  MediaItem_LocalConfiguration.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'androidx/media3/common/MediaItem$LocalConfiguration');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $MediaItem_LocalConfiguration$Type();
+  static final _id_uri = _class.instanceFieldId(
+    r'uri',
+    r'Landroid/net/Uri;',
+  );
+
+  /// from: `public final android.net.Uri uri`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject get uri => _id_uri.get(this, const _$jni.JObjectType());
+
+  static final _id_mimeType = _class.instanceFieldId(
+    r'mimeType',
+    r'Ljava/lang/String;',
+  );
+
+  /// from: `public final java.lang.String mimeType`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JString get mimeType =>
+      _id_mimeType.get(this, const _$jni.JStringType());
+
+  static final _id_drmConfiguration = _class.instanceFieldId(
+    r'drmConfiguration',
+    r'Landroidx/media3/common/MediaItem$DrmConfiguration;',
+  );
+
+  /// from: `public final androidx.media3.common.MediaItem$DrmConfiguration drmConfiguration`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_DrmConfiguration get drmConfiguration =>
+      _id_drmConfiguration.get(this, const $MediaItem_DrmConfiguration$Type());
+
+  static final _id_adsConfiguration = _class.instanceFieldId(
+    r'adsConfiguration',
+    r'Landroidx/media3/common/MediaItem$AdsConfiguration;',
+  );
+
+  /// from: `public final androidx.media3.common.MediaItem$AdsConfiguration adsConfiguration`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_AdsConfiguration get adsConfiguration =>
+      _id_adsConfiguration.get(this, const $MediaItem_AdsConfiguration$Type());
+
+  static final _id_streamKeys = _class.instanceFieldId(
+    r'streamKeys',
+    r'Ljava/util/List;',
+  );
+
+  /// from: `public final java.util.List streamKeys`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JList<_$jni.JObject> get streamKeys =>
+      _id_streamKeys.get(this, const _$jni.JListType(_$jni.JObjectType()));
+
+  static final _id_customCacheKey = _class.instanceFieldId(
+    r'customCacheKey',
+    r'Ljava/lang/String;',
+  );
+
+  /// from: `public final java.lang.String customCacheKey`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JString get customCacheKey =>
+      _id_customCacheKey.get(this, const _$jni.JStringType());
+
+  static final _id_subtitleConfigurations = _class.instanceFieldId(
+    r'subtitleConfigurations',
+    r'Lcom/google/common/collect/ImmutableList;',
+  );
+
+  /// from: `public final com.google.common.collect.ImmutableList subtitleConfigurations`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject get subtitleConfigurations =>
+      _id_subtitleConfigurations.get(this, const _$jni.JObjectType());
+
+  static final _id_subtitles = _class.instanceFieldId(
+    r'subtitles',
+    r'Ljava/util/List;',
+  );
+
+  /// from: `public final java.util.List subtitles`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JList<MediaItem_Subtitle> get subtitles => _id_subtitles.get(
+      this, const _$jni.JListType($MediaItem_Subtitle$Type()));
+
+  static final _id_tag = _class.instanceFieldId(
+    r'tag',
+    r'Ljava/lang/Object;',
+  );
+
+  /// from: `public final java.lang.Object tag`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject get tag => _id_tag.get(this, const _$jni.JObjectType());
+
+  static final _id_imageDurationMs = _class.instanceFieldId(
+    r'imageDurationMs',
+    r'J',
+  );
+
+  /// from: `public final long imageDurationMs`
+  int get imageDurationMs =>
+      _id_imageDurationMs.get(this, const _$jni.jlongType());
+
+  static final _id_equals = _class.instanceMethodId(
+    r'equals',
+    r'(Ljava/lang/Object;)Z',
+  );
+
+  static final _equals = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public boolean equals(java.lang.Object object)`
+  bool equals(
+    _$jni.JObject object,
+  ) {
+    return _equals(reference.pointer, _id_equals as _$jni.JMethodIDPtr,
+            object.reference.pointer)
+        .boolean;
+  }
+
+  static final _id_hashCode$1 = _class.instanceMethodId(
+    r'hashCode',
+    r'()I',
+  );
+
+  static final _hashCode$1 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public int hashCode()`
+  int hashCode$1() {
+    return _hashCode$1(reference.pointer, _id_hashCode$1 as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_toBundle = _class.instanceMethodId(
+    r'toBundle',
+    r'()Landroid/os/Bundle;',
+  );
+
+  static final _toBundle = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public android.os.Bundle toBundle()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject toBundle() {
+    return _toBundle(reference.pointer, _id_toBundle as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_fromBundle = _class.staticMethodId(
+    r'fromBundle',
+    r'(Landroid/os/Bundle;)Landroidx/media3/common/MediaItem$LocalConfiguration;',
+  );
+
+  static final _fromBundle = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallStaticObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `static public androidx.media3.common.MediaItem$LocalConfiguration fromBundle(android.os.Bundle bundle)`
+  /// The returned object must be released after use, by calling the [release] method.
+  static MediaItem_LocalConfiguration fromBundle(
+    _$jni.JObject bundle,
+  ) {
+    return _fromBundle(_class.reference.pointer,
+            _id_fromBundle as _$jni.JMethodIDPtr, bundle.reference.pointer)
+        .object(const $MediaItem_LocalConfiguration$Type());
+  }
+}
+
+final class $MediaItem_LocalConfiguration$Type
+    extends _$jni.JObjType<MediaItem_LocalConfiguration> {
+  @_$jni.internal
+  const $MediaItem_LocalConfiguration$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Landroidx/media3/common/MediaItem$LocalConfiguration;';
+
+  @_$jni.internal
+  @_$core.override
+  MediaItem_LocalConfiguration fromReference(_$jni.JReference reference) =>
+      MediaItem_LocalConfiguration.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($MediaItem_LocalConfiguration$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($MediaItem_LocalConfiguration$Type) &&
+        other is $MediaItem_LocalConfiguration$Type;
+  }
+}
+
+/// from: `androidx.media3.common.MediaItem$RequestMetadata$Builder`
+class MediaItem_RequestMetadata_Builder extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<MediaItem_RequestMetadata_Builder> $type;
+
+  @_$jni.internal
+  MediaItem_RequestMetadata_Builder.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'androidx/media3/common/MediaItem$RequestMetadata$Builder');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $MediaItem_RequestMetadata_Builder$Type();
+  static final _id_new$ = _class.constructorId(
+    r'()V',
+  );
+
+  static final _new$ = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_NewObject')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public void <init>()`
+  /// The returned object must be released after use, by calling the [release] method.
+  factory MediaItem_RequestMetadata_Builder() {
+    return MediaItem_RequestMetadata_Builder.fromReference(
+        _new$(_class.reference.pointer, _id_new$ as _$jni.JMethodIDPtr)
+            .reference);
+  }
+
+  static final _id_setMediaUri = _class.instanceMethodId(
+    r'setMediaUri',
+    r'(Landroid/net/Uri;)Landroidx/media3/common/MediaItem$RequestMetadata$Builder;',
+  );
+
+  static final _setMediaUri = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$RequestMetadata$Builder setMediaUri(android.net.Uri uri)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_RequestMetadata_Builder setMediaUri(
+    _$jni.JObject uri,
+  ) {
+    return _setMediaUri(reference.pointer,
+            _id_setMediaUri as _$jni.JMethodIDPtr, uri.reference.pointer)
+        .object(const $MediaItem_RequestMetadata_Builder$Type());
+  }
+
+  static final _id_setSearchQuery = _class.instanceMethodId(
+    r'setSearchQuery',
+    r'(Ljava/lang/String;)Landroidx/media3/common/MediaItem$RequestMetadata$Builder;',
+  );
+
+  static final _setSearchQuery = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$RequestMetadata$Builder setSearchQuery(java.lang.String string)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_RequestMetadata_Builder setSearchQuery(
+    _$jni.JString string,
+  ) {
+    return _setSearchQuery(reference.pointer,
+            _id_setSearchQuery as _$jni.JMethodIDPtr, string.reference.pointer)
+        .object(const $MediaItem_RequestMetadata_Builder$Type());
+  }
+
+  static final _id_setExtras = _class.instanceMethodId(
+    r'setExtras',
+    r'(Landroid/os/Bundle;)Landroidx/media3/common/MediaItem$RequestMetadata$Builder;',
+  );
+
+  static final _setExtras = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$RequestMetadata$Builder setExtras(android.os.Bundle bundle)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_RequestMetadata_Builder setExtras(
+    _$jni.JObject bundle,
+  ) {
+    return _setExtras(reference.pointer, _id_setExtras as _$jni.JMethodIDPtr,
+            bundle.reference.pointer)
+        .object(const $MediaItem_RequestMetadata_Builder$Type());
+  }
+
+  static final _id_build = _class.instanceMethodId(
+    r'build',
+    r'()Landroidx/media3/common/MediaItem$RequestMetadata;',
+  );
+
+  static final _build = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public androidx.media3.common.MediaItem$RequestMetadata build()`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_RequestMetadata build() {
+    return _build(reference.pointer, _id_build as _$jni.JMethodIDPtr)
+        .object(const $MediaItem_RequestMetadata$Type());
+  }
+}
+
+final class $MediaItem_RequestMetadata_Builder$Type
+    extends _$jni.JObjType<MediaItem_RequestMetadata_Builder> {
+  @_$jni.internal
+  const $MediaItem_RequestMetadata_Builder$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Landroidx/media3/common/MediaItem$RequestMetadata$Builder;';
+
+  @_$jni.internal
+  @_$core.override
+  MediaItem_RequestMetadata_Builder fromReference(_$jni.JReference reference) =>
+      MediaItem_RequestMetadata_Builder.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($MediaItem_RequestMetadata_Builder$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($MediaItem_RequestMetadata_Builder$Type) &&
+        other is $MediaItem_RequestMetadata_Builder$Type;
+  }
+}
+
+/// from: `androidx.media3.common.MediaItem$RequestMetadata`
+class MediaItem_RequestMetadata extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<MediaItem_RequestMetadata> $type;
+
+  @_$jni.internal
+  MediaItem_RequestMetadata.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class =
+      _$jni.JClass.forName(r'androidx/media3/common/MediaItem$RequestMetadata');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $MediaItem_RequestMetadata$Type();
+  static final _id_EMPTY = _class.staticFieldId(
+    r'EMPTY',
+    r'Landroidx/media3/common/MediaItem$RequestMetadata;',
+  );
+
+  /// from: `static public final androidx.media3.common.MediaItem$RequestMetadata EMPTY`
+  /// The returned object must be released after use, by calling the [release] method.
+  static MediaItem_RequestMetadata get EMPTY =>
+      _id_EMPTY.get(_class, const $MediaItem_RequestMetadata$Type());
+
+  static final _id_mediaUri = _class.instanceFieldId(
+    r'mediaUri',
+    r'Landroid/net/Uri;',
+  );
+
+  /// from: `public final android.net.Uri mediaUri`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject get mediaUri =>
+      _id_mediaUri.get(this, const _$jni.JObjectType());
+
+  static final _id_searchQuery = _class.instanceFieldId(
+    r'searchQuery',
+    r'Ljava/lang/String;',
+  );
+
+  /// from: `public final java.lang.String searchQuery`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JString get searchQuery =>
+      _id_searchQuery.get(this, const _$jni.JStringType());
+
+  static final _id_extras = _class.instanceFieldId(
+    r'extras',
+    r'Landroid/os/Bundle;',
+  );
+
+  /// from: `public final android.os.Bundle extras`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject get extras => _id_extras.get(this, const _$jni.JObjectType());
+
+  static final _id_buildUpon = _class.instanceMethodId(
+    r'buildUpon',
+    r'()Landroidx/media3/common/MediaItem$RequestMetadata$Builder;',
+  );
+
+  static final _buildUpon = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public androidx.media3.common.MediaItem$RequestMetadata$Builder buildUpon()`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_RequestMetadata_Builder buildUpon() {
+    return _buildUpon(reference.pointer, _id_buildUpon as _$jni.JMethodIDPtr)
+        .object(const $MediaItem_RequestMetadata_Builder$Type());
+  }
+
+  static final _id_equals = _class.instanceMethodId(
+    r'equals',
+    r'(Ljava/lang/Object;)Z',
+  );
+
+  static final _equals = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public boolean equals(java.lang.Object object)`
+  bool equals(
+    _$jni.JObject object,
+  ) {
+    return _equals(reference.pointer, _id_equals as _$jni.JMethodIDPtr,
+            object.reference.pointer)
+        .boolean;
+  }
+
+  static final _id_hashCode$1 = _class.instanceMethodId(
+    r'hashCode',
+    r'()I',
+  );
+
+  static final _hashCode$1 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public int hashCode()`
+  int hashCode$1() {
+    return _hashCode$1(reference.pointer, _id_hashCode$1 as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_toBundle = _class.instanceMethodId(
+    r'toBundle',
+    r'()Landroid/os/Bundle;',
+  );
+
+  static final _toBundle = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public android.os.Bundle toBundle()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject toBundle() {
+    return _toBundle(reference.pointer, _id_toBundle as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_fromBundle = _class.staticMethodId(
+    r'fromBundle',
+    r'(Landroid/os/Bundle;)Landroidx/media3/common/MediaItem$RequestMetadata;',
+  );
+
+  static final _fromBundle = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallStaticObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `static public androidx.media3.common.MediaItem$RequestMetadata fromBundle(android.os.Bundle bundle)`
+  /// The returned object must be released after use, by calling the [release] method.
+  static MediaItem_RequestMetadata fromBundle(
+    _$jni.JObject bundle,
+  ) {
+    return _fromBundle(_class.reference.pointer,
+            _id_fromBundle as _$jni.JMethodIDPtr, bundle.reference.pointer)
+        .object(const $MediaItem_RequestMetadata$Type());
+  }
+}
+
+final class $MediaItem_RequestMetadata$Type
+    extends _$jni.JObjType<MediaItem_RequestMetadata> {
+  @_$jni.internal
+  const $MediaItem_RequestMetadata$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature => r'Landroidx/media3/common/MediaItem$RequestMetadata;';
+
+  @_$jni.internal
+  @_$core.override
+  MediaItem_RequestMetadata fromReference(_$jni.JReference reference) =>
+      MediaItem_RequestMetadata.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($MediaItem_RequestMetadata$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($MediaItem_RequestMetadata$Type) &&
+        other is $MediaItem_RequestMetadata$Type;
+  }
+}
+
+/// from: `androidx.media3.common.MediaItem$Subtitle`
+class MediaItem_Subtitle extends MediaItem_SubtitleConfiguration {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<MediaItem_Subtitle> $type;
+
+  @_$jni.internal
+  MediaItem_Subtitle.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class =
+      _$jni.JClass.forName(r'androidx/media3/common/MediaItem$Subtitle');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $MediaItem_Subtitle$Type();
+  static final _id_new$ = _class.constructorId(
+    r'(Landroid/net/Uri;Ljava/lang/String;Ljava/lang/String;)V',
+  );
+
+  static final _new$ = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<
+                      (
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>
+                      )>)>>('globalEnv_NewObject')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public void <init>(android.net.Uri uri, java.lang.String string, java.lang.String string1)`
+  /// The returned object must be released after use, by calling the [release] method.
+  factory MediaItem_Subtitle(
+    _$jni.JObject uri,
+    _$jni.JString string,
+    _$jni.JString string1,
+  ) {
+    return MediaItem_Subtitle.fromReference(_new$(
+            _class.reference.pointer,
+            _id_new$ as _$jni.JMethodIDPtr,
+            uri.reference.pointer,
+            string.reference.pointer,
+            string1.reference.pointer)
+        .reference);
+  }
+
+  static final _id_new$1 = _class.constructorId(
+    r'(Landroid/net/Uri;Ljava/lang/String;Ljava/lang/String;I)V',
+  );
+
+  static final _new$1 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<
+                      (
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Int32
+                      )>)>>('globalEnv_NewObject')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>,
+              int)>();
+
+  /// from: `public void <init>(android.net.Uri uri, java.lang.String string, java.lang.String string1, int i)`
+  /// The returned object must be released after use, by calling the [release] method.
+  factory MediaItem_Subtitle.new$1(
+    _$jni.JObject uri,
+    _$jni.JString string,
+    _$jni.JString string1,
+    int i,
+  ) {
+    return MediaItem_Subtitle.fromReference(_new$1(
+            _class.reference.pointer,
+            _id_new$1 as _$jni.JMethodIDPtr,
+            uri.reference.pointer,
+            string.reference.pointer,
+            string1.reference.pointer,
+            i)
+        .reference);
+  }
+
+  static final _id_new$2 = _class.constructorId(
+    r'(Landroid/net/Uri;Ljava/lang/String;Ljava/lang/String;IILjava/lang/String;)V',
+  );
+
+  static final _new$2 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<
+                      (
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Int32,
+                        _$jni.Int32,
+                        _$jni.Pointer<_$jni.Void>
+                      )>)>>('globalEnv_NewObject')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>,
+              int,
+              int,
+              _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public void <init>(android.net.Uri uri, java.lang.String string, java.lang.String string1, int i, int i1, java.lang.String string2)`
+  /// The returned object must be released after use, by calling the [release] method.
+  factory MediaItem_Subtitle.new$2(
+    _$jni.JObject uri,
+    _$jni.JString string,
+    _$jni.JString string1,
+    int i,
+    int i1,
+    _$jni.JString string2,
+  ) {
+    return MediaItem_Subtitle.fromReference(_new$2(
+            _class.reference.pointer,
+            _id_new$2 as _$jni.JMethodIDPtr,
+            uri.reference.pointer,
+            string.reference.pointer,
+            string1.reference.pointer,
+            i,
+            i1,
+            string2.reference.pointer)
+        .reference);
+  }
+}
+
+final class $MediaItem_Subtitle$Type
+    extends _$jni.JObjType<MediaItem_Subtitle> {
+  @_$jni.internal
+  const $MediaItem_Subtitle$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature => r'Landroidx/media3/common/MediaItem$Subtitle;';
+
+  @_$jni.internal
+  @_$core.override
+  MediaItem_Subtitle fromReference(_$jni.JReference reference) =>
+      MediaItem_Subtitle.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const $MediaItem_SubtitleConfiguration$Type();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 2;
+
+  @_$core.override
+  int get hashCode => ($MediaItem_Subtitle$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($MediaItem_Subtitle$Type) &&
+        other is $MediaItem_Subtitle$Type;
+  }
+}
+
+/// from: `androidx.media3.common.MediaItem$SubtitleConfiguration$Builder`
+class MediaItem_SubtitleConfiguration_Builder extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<MediaItem_SubtitleConfiguration_Builder> $type;
+
+  @_$jni.internal
+  MediaItem_SubtitleConfiguration_Builder.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'androidx/media3/common/MediaItem$SubtitleConfiguration$Builder');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $MediaItem_SubtitleConfiguration_Builder$Type();
+  static final _id_new$ = _class.constructorId(
+    r'(Landroid/net/Uri;)V',
+  );
+
+  static final _new$ = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_NewObject')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public void <init>(android.net.Uri uri)`
+  /// The returned object must be released after use, by calling the [release] method.
+  factory MediaItem_SubtitleConfiguration_Builder(
+    _$jni.JObject uri,
+  ) {
+    return MediaItem_SubtitleConfiguration_Builder.fromReference(_new$(
+            _class.reference.pointer,
+            _id_new$ as _$jni.JMethodIDPtr,
+            uri.reference.pointer)
+        .reference);
+  }
+
+  static final _id_setUri = _class.instanceMethodId(
+    r'setUri',
+    r'(Landroid/net/Uri;)Landroidx/media3/common/MediaItem$SubtitleConfiguration$Builder;',
+  );
+
+  static final _setUri = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$SubtitleConfiguration$Builder setUri(android.net.Uri uri)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_SubtitleConfiguration_Builder setUri(
+    _$jni.JObject uri,
+  ) {
+    return _setUri(reference.pointer, _id_setUri as _$jni.JMethodIDPtr,
+            uri.reference.pointer)
+        .object(const $MediaItem_SubtitleConfiguration_Builder$Type());
+  }
+
+  static final _id_setMimeType = _class.instanceMethodId(
+    r'setMimeType',
+    r'(Ljava/lang/String;)Landroidx/media3/common/MediaItem$SubtitleConfiguration$Builder;',
+  );
+
+  static final _setMimeType = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$SubtitleConfiguration$Builder setMimeType(java.lang.String string)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_SubtitleConfiguration_Builder setMimeType(
+    _$jni.JString string,
+  ) {
+    return _setMimeType(reference.pointer,
+            _id_setMimeType as _$jni.JMethodIDPtr, string.reference.pointer)
+        .object(const $MediaItem_SubtitleConfiguration_Builder$Type());
+  }
+
+  static final _id_setLanguage = _class.instanceMethodId(
+    r'setLanguage',
+    r'(Ljava/lang/String;)Landroidx/media3/common/MediaItem$SubtitleConfiguration$Builder;',
+  );
+
+  static final _setLanguage = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$SubtitleConfiguration$Builder setLanguage(java.lang.String string)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_SubtitleConfiguration_Builder setLanguage(
+    _$jni.JString string,
+  ) {
+    return _setLanguage(reference.pointer,
+            _id_setLanguage as _$jni.JMethodIDPtr, string.reference.pointer)
+        .object(const $MediaItem_SubtitleConfiguration_Builder$Type());
+  }
+
+  static final _id_setSelectionFlags = _class.instanceMethodId(
+    r'setSelectionFlags',
+    r'(I)Landroidx/media3/common/MediaItem$SubtitleConfiguration$Builder;',
+  );
+
+  static final _setSelectionFlags = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.MediaItem$SubtitleConfiguration$Builder setSelectionFlags(int i)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_SubtitleConfiguration_Builder setSelectionFlags(
+    int i,
+  ) {
+    return _setSelectionFlags(
+            reference.pointer, _id_setSelectionFlags as _$jni.JMethodIDPtr, i)
+        .object(const $MediaItem_SubtitleConfiguration_Builder$Type());
+  }
+
+  static final _id_setRoleFlags = _class.instanceMethodId(
+    r'setRoleFlags',
+    r'(I)Landroidx/media3/common/MediaItem$SubtitleConfiguration$Builder;',
+  );
+
+  static final _setRoleFlags = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.MediaItem$SubtitleConfiguration$Builder setRoleFlags(int i)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_SubtitleConfiguration_Builder setRoleFlags(
+    int i,
+  ) {
+    return _setRoleFlags(
+            reference.pointer, _id_setRoleFlags as _$jni.JMethodIDPtr, i)
+        .object(const $MediaItem_SubtitleConfiguration_Builder$Type());
+  }
+
+  static final _id_setLabel = _class.instanceMethodId(
+    r'setLabel',
+    r'(Ljava/lang/String;)Landroidx/media3/common/MediaItem$SubtitleConfiguration$Builder;',
+  );
+
+  static final _setLabel = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$SubtitleConfiguration$Builder setLabel(java.lang.String string)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_SubtitleConfiguration_Builder setLabel(
+    _$jni.JString string,
+  ) {
+    return _setLabel(reference.pointer, _id_setLabel as _$jni.JMethodIDPtr,
+            string.reference.pointer)
+        .object(const $MediaItem_SubtitleConfiguration_Builder$Type());
+  }
+
+  static final _id_setId = _class.instanceMethodId(
+    r'setId',
+    r'(Ljava/lang/String;)Landroidx/media3/common/MediaItem$SubtitleConfiguration$Builder;',
+  );
+
+  static final _setId = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.MediaItem$SubtitleConfiguration$Builder setId(java.lang.String string)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_SubtitleConfiguration_Builder setId(
+    _$jni.JString string,
+  ) {
+    return _setId(reference.pointer, _id_setId as _$jni.JMethodIDPtr,
+            string.reference.pointer)
+        .object(const $MediaItem_SubtitleConfiguration_Builder$Type());
+  }
+
+  static final _id_build = _class.instanceMethodId(
+    r'build',
+    r'()Landroidx/media3/common/MediaItem$SubtitleConfiguration;',
+  );
+
+  static final _build = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public androidx.media3.common.MediaItem$SubtitleConfiguration build()`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_SubtitleConfiguration build() {
+    return _build(reference.pointer, _id_build as _$jni.JMethodIDPtr)
+        .object(const $MediaItem_SubtitleConfiguration$Type());
+  }
+}
+
+final class $MediaItem_SubtitleConfiguration_Builder$Type
+    extends _$jni.JObjType<MediaItem_SubtitleConfiguration_Builder> {
+  @_$jni.internal
+  const $MediaItem_SubtitleConfiguration_Builder$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Landroidx/media3/common/MediaItem$SubtitleConfiguration$Builder;';
+
+  @_$jni.internal
+  @_$core.override
+  MediaItem_SubtitleConfiguration_Builder fromReference(
+          _$jni.JReference reference) =>
+      MediaItem_SubtitleConfiguration_Builder.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($MediaItem_SubtitleConfiguration_Builder$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType ==
+            ($MediaItem_SubtitleConfiguration_Builder$Type) &&
+        other is $MediaItem_SubtitleConfiguration_Builder$Type;
+  }
+}
+
+/// from: `androidx.media3.common.MediaItem$SubtitleConfiguration`
+class MediaItem_SubtitleConfiguration extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<MediaItem_SubtitleConfiguration> $type;
+
+  @_$jni.internal
+  MediaItem_SubtitleConfiguration.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'androidx/media3/common/MediaItem$SubtitleConfiguration');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $MediaItem_SubtitleConfiguration$Type();
+  static final _id_uri = _class.instanceFieldId(
+    r'uri',
+    r'Landroid/net/Uri;',
+  );
+
+  /// from: `public final android.net.Uri uri`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject get uri => _id_uri.get(this, const _$jni.JObjectType());
+
+  static final _id_mimeType = _class.instanceFieldId(
+    r'mimeType',
+    r'Ljava/lang/String;',
+  );
+
+  /// from: `public final java.lang.String mimeType`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JString get mimeType =>
+      _id_mimeType.get(this, const _$jni.JStringType());
+
+  static final _id_language = _class.instanceFieldId(
+    r'language',
+    r'Ljava/lang/String;',
+  );
+
+  /// from: `public final java.lang.String language`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JString get language =>
+      _id_language.get(this, const _$jni.JStringType());
+
+  static final _id_selectionFlags = _class.instanceFieldId(
+    r'selectionFlags',
+    r'I',
+  );
+
+  /// from: `public final int selectionFlags`
+  int get selectionFlags =>
+      _id_selectionFlags.get(this, const _$jni.jintType());
+
+  static final _id_roleFlags = _class.instanceFieldId(
+    r'roleFlags',
+    r'I',
+  );
+
+  /// from: `public final int roleFlags`
+  int get roleFlags => _id_roleFlags.get(this, const _$jni.jintType());
+
+  static final _id_label = _class.instanceFieldId(
+    r'label',
+    r'Ljava/lang/String;',
+  );
+
+  /// from: `public final java.lang.String label`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JString get label => _id_label.get(this, const _$jni.JStringType());
+
+  static final _id_id = _class.instanceFieldId(
+    r'id',
+    r'Ljava/lang/String;',
+  );
+
+  /// from: `public final java.lang.String id`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JString get id => _id_id.get(this, const _$jni.JStringType());
+
+  static final _id_buildUpon = _class.instanceMethodId(
+    r'buildUpon',
+    r'()Landroidx/media3/common/MediaItem$SubtitleConfiguration$Builder;',
+  );
+
+  static final _buildUpon = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public androidx.media3.common.MediaItem$SubtitleConfiguration$Builder buildUpon()`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_SubtitleConfiguration_Builder buildUpon() {
+    return _buildUpon(reference.pointer, _id_buildUpon as _$jni.JMethodIDPtr)
+        .object(const $MediaItem_SubtitleConfiguration_Builder$Type());
+  }
+
+  static final _id_equals = _class.instanceMethodId(
+    r'equals',
+    r'(Ljava/lang/Object;)Z',
+  );
+
+  static final _equals = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public boolean equals(java.lang.Object object)`
+  bool equals(
+    _$jni.JObject object,
+  ) {
+    return _equals(reference.pointer, _id_equals as _$jni.JMethodIDPtr,
+            object.reference.pointer)
+        .boolean;
+  }
+
+  static final _id_hashCode$1 = _class.instanceMethodId(
+    r'hashCode',
+    r'()I',
+  );
+
+  static final _hashCode$1 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public int hashCode()`
+  int hashCode$1() {
+    return _hashCode$1(reference.pointer, _id_hashCode$1 as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_fromBundle = _class.staticMethodId(
+    r'fromBundle',
+    r'(Landroid/os/Bundle;)Landroidx/media3/common/MediaItem$SubtitleConfiguration;',
+  );
+
+  static final _fromBundle = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallStaticObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `static public androidx.media3.common.MediaItem$SubtitleConfiguration fromBundle(android.os.Bundle bundle)`
+  /// The returned object must be released after use, by calling the [release] method.
+  static MediaItem_SubtitleConfiguration fromBundle(
+    _$jni.JObject bundle,
+  ) {
+    return _fromBundle(_class.reference.pointer,
+            _id_fromBundle as _$jni.JMethodIDPtr, bundle.reference.pointer)
+        .object(const $MediaItem_SubtitleConfiguration$Type());
+  }
+
+  static final _id_toBundle = _class.instanceMethodId(
+    r'toBundle',
+    r'()Landroid/os/Bundle;',
+  );
+
+  static final _toBundle = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public android.os.Bundle toBundle()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject toBundle() {
+    return _toBundle(reference.pointer, _id_toBundle as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+}
+
+final class $MediaItem_SubtitleConfiguration$Type
+    extends _$jni.JObjType<MediaItem_SubtitleConfiguration> {
+  @_$jni.internal
+  const $MediaItem_SubtitleConfiguration$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Landroidx/media3/common/MediaItem$SubtitleConfiguration;';
+
+  @_$jni.internal
+  @_$core.override
+  MediaItem_SubtitleConfiguration fromReference(_$jni.JReference reference) =>
+      MediaItem_SubtitleConfiguration.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($MediaItem_SubtitleConfiguration$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($MediaItem_SubtitleConfiguration$Type) &&
+        other is $MediaItem_SubtitleConfiguration$Type;
+  }
+}
+
+/// from: `androidx.media3.common.MediaItem`
+class MediaItem extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<MediaItem> $type;
+
+  @_$jni.internal
+  MediaItem.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class =
+      _$jni.JClass.forName(r'androidx/media3/common/MediaItem');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $MediaItem$Type();
+  static final _id_DEFAULT_MEDIA_ID = _class.staticFieldId(
+    r'DEFAULT_MEDIA_ID',
+    r'Ljava/lang/String;',
+  );
+
+  /// from: `static public final java.lang.String DEFAULT_MEDIA_ID`
+  /// The returned object must be released after use, by calling the [release] method.
+  static _$jni.JString get DEFAULT_MEDIA_ID =>
+      _id_DEFAULT_MEDIA_ID.get(_class, const _$jni.JStringType());
+
+  static final _id_EMPTY = _class.staticFieldId(
+    r'EMPTY',
+    r'Landroidx/media3/common/MediaItem;',
+  );
+
+  /// from: `static public final androidx.media3.common.MediaItem EMPTY`
+  /// The returned object must be released after use, by calling the [release] method.
+  static MediaItem get EMPTY => _id_EMPTY.get(_class, const $MediaItem$Type());
+
+  static final _id_mediaId = _class.instanceFieldId(
+    r'mediaId',
+    r'Ljava/lang/String;',
+  );
+
+  /// from: `public final java.lang.String mediaId`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JString get mediaId => _id_mediaId.get(this, const _$jni.JStringType());
+
+  static final _id_localConfiguration = _class.instanceFieldId(
+    r'localConfiguration',
+    r'Landroidx/media3/common/MediaItem$LocalConfiguration;',
+  );
+
+  /// from: `public final androidx.media3.common.MediaItem$LocalConfiguration localConfiguration`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_LocalConfiguration get localConfiguration => _id_localConfiguration
+      .get(this, const $MediaItem_LocalConfiguration$Type());
+
+  static final _id_playbackProperties = _class.instanceFieldId(
+    r'playbackProperties',
+    r'Landroidx/media3/common/MediaItem$LocalConfiguration;',
+  );
+
+  /// from: `public final androidx.media3.common.MediaItem$LocalConfiguration playbackProperties`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_LocalConfiguration get playbackProperties => _id_playbackProperties
+      .get(this, const $MediaItem_LocalConfiguration$Type());
+
+  static final _id_liveConfiguration = _class.instanceFieldId(
+    r'liveConfiguration',
+    r'Landroidx/media3/common/MediaItem$LiveConfiguration;',
+  );
+
+  /// from: `public final androidx.media3.common.MediaItem$LiveConfiguration liveConfiguration`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_LiveConfiguration get liveConfiguration => _id_liveConfiguration
+      .get(this, const $MediaItem_LiveConfiguration$Type());
+
+  static final _id_mediaMetadata = _class.instanceFieldId(
+    r'mediaMetadata',
+    r'Landroidx/media3/common/MediaMetadata;',
+  );
+
+  /// from: `public final androidx.media3.common.MediaMetadata mediaMetadata`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject get mediaMetadata =>
+      _id_mediaMetadata.get(this, const _$jni.JObjectType());
+
+  static final _id_clippingConfiguration = _class.instanceFieldId(
+    r'clippingConfiguration',
+    r'Landroidx/media3/common/MediaItem$ClippingConfiguration;',
+  );
+
+  /// from: `public final androidx.media3.common.MediaItem$ClippingConfiguration clippingConfiguration`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_ClippingConfiguration get clippingConfiguration =>
+      _id_clippingConfiguration.get(
+          this, const $MediaItem_ClippingConfiguration$Type());
+
+  static final _id_clippingProperties = _class.instanceFieldId(
+    r'clippingProperties',
+    r'Landroidx/media3/common/MediaItem$ClippingProperties;',
+  );
+
+  /// from: `public final androidx.media3.common.MediaItem$ClippingProperties clippingProperties`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_ClippingProperties get clippingProperties => _id_clippingProperties
+      .get(this, const $MediaItem_ClippingProperties$Type());
+
+  static final _id_requestMetadata = _class.instanceFieldId(
+    r'requestMetadata',
+    r'Landroidx/media3/common/MediaItem$RequestMetadata;',
+  );
+
+  /// from: `public final androidx.media3.common.MediaItem$RequestMetadata requestMetadata`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_RequestMetadata get requestMetadata =>
+      _id_requestMetadata.get(this, const $MediaItem_RequestMetadata$Type());
+
+  static final _id_fromUri = _class.staticMethodId(
+    r'fromUri',
+    r'(Ljava/lang/String;)Landroidx/media3/common/MediaItem;',
+  );
+
+  static final _fromUri = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallStaticObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `static public androidx.media3.common.MediaItem fromUri(java.lang.String string)`
+  /// The returned object must be released after use, by calling the [release] method.
+  static MediaItem fromUri(
+    _$jni.JString string,
+  ) {
+    return _fromUri(_class.reference.pointer, _id_fromUri as _$jni.JMethodIDPtr,
+            string.reference.pointer)
+        .object(const $MediaItem$Type());
+  }
+
+  static final _id_fromUri$1 = _class.staticMethodId(
+    r'fromUri',
+    r'(Landroid/net/Uri;)Landroidx/media3/common/MediaItem;',
+  );
+
+  static final _fromUri$1 = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallStaticObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `static public androidx.media3.common.MediaItem fromUri(android.net.Uri uri)`
+  /// The returned object must be released after use, by calling the [release] method.
+  static MediaItem fromUri$1(
+    _$jni.JObject uri,
+  ) {
+    return _fromUri$1(_class.reference.pointer,
+            _id_fromUri$1 as _$jni.JMethodIDPtr, uri.reference.pointer)
+        .object(const $MediaItem$Type());
+  }
+
+  static final _id_buildUpon = _class.instanceMethodId(
+    r'buildUpon',
+    r'()Landroidx/media3/common/MediaItem$Builder;',
+  );
+
+  static final _buildUpon = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public androidx.media3.common.MediaItem$Builder buildUpon()`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem_Builder buildUpon() {
+    return _buildUpon(reference.pointer, _id_buildUpon as _$jni.JMethodIDPtr)
+        .object(const $MediaItem_Builder$Type());
+  }
+
+  static final _id_equals = _class.instanceMethodId(
+    r'equals',
+    r'(Ljava/lang/Object;)Z',
+  );
+
+  static final _equals = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public boolean equals(java.lang.Object object)`
+  bool equals(
+    _$jni.JObject object,
+  ) {
+    return _equals(reference.pointer, _id_equals as _$jni.JMethodIDPtr,
+            object.reference.pointer)
+        .boolean;
+  }
+
+  static final _id_hashCode$1 = _class.instanceMethodId(
+    r'hashCode',
+    r'()I',
+  );
+
+  static final _hashCode$1 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public int hashCode()`
+  int hashCode$1() {
+    return _hashCode$1(reference.pointer, _id_hashCode$1 as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_toBundle = _class.instanceMethodId(
+    r'toBundle',
+    r'()Landroid/os/Bundle;',
+  );
+
+  static final _toBundle = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public android.os.Bundle toBundle()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject toBundle() {
+    return _toBundle(reference.pointer, _id_toBundle as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_toBundleIncludeLocalConfiguration = _class.instanceMethodId(
+    r'toBundleIncludeLocalConfiguration',
+    r'()Landroid/os/Bundle;',
+  );
+
+  static final _toBundleIncludeLocalConfiguration =
+      _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                    _$jni.Pointer<_$jni.Void>,
+                    _$jni.JMethodIDPtr,
+                  )>>('globalEnv_CallObjectMethod')
+          .asFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>();
+
+  /// from: `public android.os.Bundle toBundleIncludeLocalConfiguration()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject toBundleIncludeLocalConfiguration() {
+    return _toBundleIncludeLocalConfiguration(reference.pointer,
+            _id_toBundleIncludeLocalConfiguration as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_fromBundle = _class.staticMethodId(
+    r'fromBundle',
+    r'(Landroid/os/Bundle;)Landroidx/media3/common/MediaItem;',
+  );
+
+  static final _fromBundle = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallStaticObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `static public androidx.media3.common.MediaItem fromBundle(android.os.Bundle bundle)`
+  /// The returned object must be released after use, by calling the [release] method.
+  static MediaItem fromBundle(
+    _$jni.JObject bundle,
+  ) {
+    return _fromBundle(_class.reference.pointer,
+            _id_fromBundle as _$jni.JMethodIDPtr, bundle.reference.pointer)
+        .object(const $MediaItem$Type());
+  }
+}
+
+final class $MediaItem$Type extends _$jni.JObjType<MediaItem> {
+  @_$jni.internal
+  const $MediaItem$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature => r'Landroidx/media3/common/MediaItem;';
+
+  @_$jni.internal
+  @_$core.override
+  MediaItem fromReference(_$jni.JReference reference) =>
+      MediaItem.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($MediaItem$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($MediaItem$Type) && other is $MediaItem$Type;
+  }
+}
+
+/// from: `androidx.media3.common.Player$Command`
+class Player_Command extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<Player_Command> $type;
+
+  @_$jni.internal
+  Player_Command.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class =
+      _$jni.JClass.forName(r'androidx/media3/common/Player$Command');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $Player_Command$Type();
+
+  /// Maps a specific port to the implemented interface.
+  static final _$core.Map<int, $Player_Command> _$impls = {};
+  static _$jni.JObjectPtr _$invoke(
+    int port,
+    _$jni.JObjectPtr descriptor,
+    _$jni.JObjectPtr args,
+  ) {
+    return _$invokeMethod(
+      port,
+      _$jni.MethodInvocation.fromAddresses(
+        0,
+        descriptor.address,
+        args.address,
+      ),
+    );
+  }
+
+  static final _$jni.Pointer<
+          _$jni.NativeFunction<
+              _$jni.JObjectPtr Function(
+                  _$jni.Int64, _$jni.JObjectPtr, _$jni.JObjectPtr)>>
+      _$invokePointer = _$jni.Pointer.fromFunction(_$invoke);
+
+  static _$jni.Pointer<_$jni.Void> _$invokeMethod(
+    int $p,
+    _$jni.MethodInvocation $i,
+  ) {
+    try {
+      final $d = $i.methodDescriptor.toDartString(releaseOriginal: true);
+      final $a = $i.args;
+    } catch (e) {
+      return _$jni.ProtectedJniExtensions.newDartException(e);
+    }
+    return _$jni.nullptr;
+  }
+
+  static void implementIn(
+    _$jni.JImplementer implementer,
+    $Player_Command $impl,
+  ) {
+    late final _$jni.RawReceivePort $p;
+    $p = _$jni.RawReceivePort(($m) {
+      if ($m == null) {
+        _$impls.remove($p.sendPort.nativePort);
+        $p.close();
+        return;
+      }
+      final $i = _$jni.MethodInvocation.fromMessage($m);
+      final $r = _$invokeMethod($p.sendPort.nativePort, $i);
+      _$jni.ProtectedJniExtensions.returnResult($i.result, $r);
+    });
+    implementer.add(
+      r'androidx.media3.common.Player$Command',
+      $p,
+      _$invokePointer,
+      [],
+    );
+    final $a = $p.sendPort.nativePort;
+    _$impls[$a] = $impl;
+  }
+
+  factory Player_Command.implement(
+    $Player_Command $impl,
+  ) {
+    final $i = _$jni.JImplementer();
+    implementIn($i, $impl);
+    return Player_Command.fromReference(
+      $i.implementReference(),
+    );
+  }
+}
+
+abstract base mixin class $Player_Command {
+  factory $Player_Command() = _$Player_Command;
+}
+
+final class _$Player_Command with $Player_Command {
+  _$Player_Command();
+}
+
+final class $Player_Command$Type extends _$jni.JObjType<Player_Command> {
+  @_$jni.internal
+  const $Player_Command$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature => r'Landroidx/media3/common/Player$Command;';
+
+  @_$jni.internal
+  @_$core.override
+  Player_Command fromReference(_$jni.JReference reference) =>
+      Player_Command.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($Player_Command$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($Player_Command$Type) &&
+        other is $Player_Command$Type;
+  }
+}
+
+/// from: `androidx.media3.common.Player$Commands$Builder`
+class Player_Commands_Builder extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<Player_Commands_Builder> $type;
+
+  @_$jni.internal
+  Player_Commands_Builder.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class =
+      _$jni.JClass.forName(r'androidx/media3/common/Player$Commands$Builder');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $Player_Commands_Builder$Type();
+  static final _id_new$ = _class.constructorId(
+    r'()V',
+  );
+
+  static final _new$ = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_NewObject')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public void <init>()`
+  /// The returned object must be released after use, by calling the [release] method.
+  factory Player_Commands_Builder() {
+    return Player_Commands_Builder.fromReference(
+        _new$(_class.reference.pointer, _id_new$ as _$jni.JMethodIDPtr)
+            .reference);
+  }
+
+  static final _id_add = _class.instanceMethodId(
+    r'add',
+    r'(I)Landroidx/media3/common/Player$Commands$Builder;',
+  );
+
+  static final _add = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.Player$Commands$Builder add(int i)`
+  /// The returned object must be released after use, by calling the [release] method.
+  Player_Commands_Builder add(
+    int i,
+  ) {
+    return _add(reference.pointer, _id_add as _$jni.JMethodIDPtr, i)
+        .object(const $Player_Commands_Builder$Type());
+  }
+
+  static final _id_addIf = _class.instanceMethodId(
+    r'addIf',
+    r'(IZ)Landroidx/media3/common/Player$Commands$Builder;',
+  );
+
+  static final _addIf = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Int32, _$jni.Int32)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int, int)>();
+
+  /// from: `public androidx.media3.common.Player$Commands$Builder addIf(int i, boolean z)`
+  /// The returned object must be released after use, by calling the [release] method.
+  Player_Commands_Builder addIf(
+    int i,
+    bool z,
+  ) {
+    return _addIf(
+            reference.pointer, _id_addIf as _$jni.JMethodIDPtr, i, z ? 1 : 0)
+        .object(const $Player_Commands_Builder$Type());
+  }
+
+  static final _id_addAll = _class.instanceMethodId(
+    r'addAll',
+    r'([I)Landroidx/media3/common/Player$Commands$Builder;',
+  );
+
+  static final _addAll = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.Player$Commands$Builder addAll(int[] is)`
+  /// The returned object must be released after use, by calling the [release] method.
+  Player_Commands_Builder addAll(
+    _$jni.JArray<_$jni.jint> is$,
+  ) {
+    return _addAll(reference.pointer, _id_addAll as _$jni.JMethodIDPtr,
+            is$.reference.pointer)
+        .object(const $Player_Commands_Builder$Type());
+  }
+
+  static final _id_addAll$1 = _class.instanceMethodId(
+    r'addAll',
+    r'(Landroidx/media3/common/Player$Commands;)Landroidx/media3/common/Player$Commands$Builder;',
+  );
+
+  static final _addAll$1 = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.Player$Commands$Builder addAll(androidx.media3.common.Player$Commands commands)`
+  /// The returned object must be released after use, by calling the [release] method.
+  Player_Commands_Builder addAll$1(
+    Player_Commands commands,
+  ) {
+    return _addAll$1(reference.pointer, _id_addAll$1 as _$jni.JMethodIDPtr,
+            commands.reference.pointer)
+        .object(const $Player_Commands_Builder$Type());
+  }
+
+  static final _id_addAllCommands = _class.instanceMethodId(
+    r'addAllCommands',
+    r'()Landroidx/media3/common/Player$Commands$Builder;',
+  );
+
+  static final _addAllCommands = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public androidx.media3.common.Player$Commands$Builder addAllCommands()`
+  /// The returned object must be released after use, by calling the [release] method.
+  Player_Commands_Builder addAllCommands() {
+    return _addAllCommands(
+            reference.pointer, _id_addAllCommands as _$jni.JMethodIDPtr)
+        .object(const $Player_Commands_Builder$Type());
+  }
+
+  static final _id_remove = _class.instanceMethodId(
+    r'remove',
+    r'(I)Landroidx/media3/common/Player$Commands$Builder;',
+  );
+
+  static final _remove = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.common.Player$Commands$Builder remove(int i)`
+  /// The returned object must be released after use, by calling the [release] method.
+  Player_Commands_Builder remove(
+    int i,
+  ) {
+    return _remove(reference.pointer, _id_remove as _$jni.JMethodIDPtr, i)
+        .object(const $Player_Commands_Builder$Type());
+  }
+
+  static final _id_removeIf = _class.instanceMethodId(
+    r'removeIf',
+    r'(IZ)Landroidx/media3/common/Player$Commands$Builder;',
+  );
+
+  static final _removeIf = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Int32, _$jni.Int32)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int, int)>();
+
+  /// from: `public androidx.media3.common.Player$Commands$Builder removeIf(int i, boolean z)`
+  /// The returned object must be released after use, by calling the [release] method.
+  Player_Commands_Builder removeIf(
+    int i,
+    bool z,
+  ) {
+    return _removeIf(
+            reference.pointer, _id_removeIf as _$jni.JMethodIDPtr, i, z ? 1 : 0)
+        .object(const $Player_Commands_Builder$Type());
+  }
+
+  static final _id_removeAll = _class.instanceMethodId(
+    r'removeAll',
+    r'([I)Landroidx/media3/common/Player$Commands$Builder;',
+  );
+
+  static final _removeAll = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.common.Player$Commands$Builder removeAll(int[] is)`
+  /// The returned object must be released after use, by calling the [release] method.
+  Player_Commands_Builder removeAll(
+    _$jni.JArray<_$jni.jint> is$,
+  ) {
+    return _removeAll(reference.pointer, _id_removeAll as _$jni.JMethodIDPtr,
+            is$.reference.pointer)
+        .object(const $Player_Commands_Builder$Type());
+  }
+
+  static final _id_build = _class.instanceMethodId(
+    r'build',
+    r'()Landroidx/media3/common/Player$Commands;',
+  );
+
+  static final _build = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public androidx.media3.common.Player$Commands build()`
+  /// The returned object must be released after use, by calling the [release] method.
+  Player_Commands build() {
+    return _build(reference.pointer, _id_build as _$jni.JMethodIDPtr)
+        .object(const $Player_Commands$Type());
+  }
+}
+
+final class $Player_Commands_Builder$Type
+    extends _$jni.JObjType<Player_Commands_Builder> {
+  @_$jni.internal
+  const $Player_Commands_Builder$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature => r'Landroidx/media3/common/Player$Commands$Builder;';
+
+  @_$jni.internal
+  @_$core.override
+  Player_Commands_Builder fromReference(_$jni.JReference reference) =>
+      Player_Commands_Builder.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($Player_Commands_Builder$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($Player_Commands_Builder$Type) &&
+        other is $Player_Commands_Builder$Type;
+  }
+}
+
+/// from: `androidx.media3.common.Player$Commands`
+class Player_Commands extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<Player_Commands> $type;
+
+  @_$jni.internal
+  Player_Commands.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class =
+      _$jni.JClass.forName(r'androidx/media3/common/Player$Commands');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $Player_Commands$Type();
+  static final _id_EMPTY = _class.staticFieldId(
+    r'EMPTY',
+    r'Landroidx/media3/common/Player$Commands;',
+  );
+
+  /// from: `static public final androidx.media3.common.Player$Commands EMPTY`
+  /// The returned object must be released after use, by calling the [release] method.
+  static Player_Commands get EMPTY =>
+      _id_EMPTY.get(_class, const $Player_Commands$Type());
+
+  static final _id_buildUpon = _class.instanceMethodId(
+    r'buildUpon',
+    r'()Landroidx/media3/common/Player$Commands$Builder;',
+  );
+
+  static final _buildUpon = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public androidx.media3.common.Player$Commands$Builder buildUpon()`
+  /// The returned object must be released after use, by calling the [release] method.
+  Player_Commands_Builder buildUpon() {
+    return _buildUpon(reference.pointer, _id_buildUpon as _$jni.JMethodIDPtr)
+        .object(const $Player_Commands_Builder$Type());
+  }
+
+  static final _id_contains = _class.instanceMethodId(
+    r'contains',
+    r'(I)Z',
+  );
+
+  static final _contains = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni
+                      .VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public boolean contains(int i)`
+  bool contains(
+    int i,
+  ) {
+    return _contains(reference.pointer, _id_contains as _$jni.JMethodIDPtr, i)
+        .boolean;
+  }
+
+  static final _id_containsAny = _class.instanceMethodId(
+    r'containsAny',
+    r'([I)Z',
+  );
+
+  static final _containsAny = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public boolean containsAny(int[] is)`
+  bool containsAny(
+    _$jni.JArray<_$jni.jint> is$,
+  ) {
+    return _containsAny(reference.pointer,
+            _id_containsAny as _$jni.JMethodIDPtr, is$.reference.pointer)
+        .boolean;
+  }
+
+  static final _id_size = _class.instanceMethodId(
+    r'size',
+    r'()I',
+  );
+
+  static final _size = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public int size()`
+  int size() {
+    return _size(reference.pointer, _id_size as _$jni.JMethodIDPtr).integer;
+  }
+
+  static final _id_get = _class.instanceMethodId(
+    r'get',
+    r'(I)I',
+  );
+
+  static final _get = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public int get(int i)`
+  int get(
+    int i,
+  ) {
+    return _get(reference.pointer, _id_get as _$jni.JMethodIDPtr, i).integer;
+  }
+
+  static final _id_equals = _class.instanceMethodId(
+    r'equals',
+    r'(Ljava/lang/Object;)Z',
+  );
+
+  static final _equals = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public boolean equals(java.lang.Object object)`
+  bool equals(
+    _$jni.JObject object,
+  ) {
+    return _equals(reference.pointer, _id_equals as _$jni.JMethodIDPtr,
+            object.reference.pointer)
+        .boolean;
+  }
+
+  static final _id_hashCode$1 = _class.instanceMethodId(
+    r'hashCode',
+    r'()I',
+  );
+
+  static final _hashCode$1 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public int hashCode()`
+  int hashCode$1() {
+    return _hashCode$1(reference.pointer, _id_hashCode$1 as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_toBundle = _class.instanceMethodId(
+    r'toBundle',
+    r'()Landroid/os/Bundle;',
+  );
+
+  static final _toBundle = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public android.os.Bundle toBundle()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject toBundle() {
+    return _toBundle(reference.pointer, _id_toBundle as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_fromBundle = _class.staticMethodId(
+    r'fromBundle',
+    r'(Landroid/os/Bundle;)Landroidx/media3/common/Player$Commands;',
+  );
+
+  static final _fromBundle = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallStaticObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `static public androidx.media3.common.Player$Commands fromBundle(android.os.Bundle bundle)`
+  /// The returned object must be released after use, by calling the [release] method.
+  static Player_Commands fromBundle(
+    _$jni.JObject bundle,
+  ) {
+    return _fromBundle(_class.reference.pointer,
+            _id_fromBundle as _$jni.JMethodIDPtr, bundle.reference.pointer)
+        .object(const $Player_Commands$Type());
+  }
+}
+
+final class $Player_Commands$Type extends _$jni.JObjType<Player_Commands> {
+  @_$jni.internal
+  const $Player_Commands$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature => r'Landroidx/media3/common/Player$Commands;';
+
+  @_$jni.internal
+  @_$core.override
+  Player_Commands fromReference(_$jni.JReference reference) =>
+      Player_Commands.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($Player_Commands$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($Player_Commands$Type) &&
+        other is $Player_Commands$Type;
+  }
+}
+
+/// from: `androidx.media3.common.Player$DiscontinuityReason`
+class Player_DiscontinuityReason extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<Player_DiscontinuityReason> $type;
+
+  @_$jni.internal
+  Player_DiscontinuityReason.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'androidx/media3/common/Player$DiscontinuityReason');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $Player_DiscontinuityReason$Type();
+
+  /// Maps a specific port to the implemented interface.
+  static final _$core.Map<int, $Player_DiscontinuityReason> _$impls = {};
+  static _$jni.JObjectPtr _$invoke(
+    int port,
+    _$jni.JObjectPtr descriptor,
+    _$jni.JObjectPtr args,
+  ) {
+    return _$invokeMethod(
+      port,
+      _$jni.MethodInvocation.fromAddresses(
+        0,
+        descriptor.address,
+        args.address,
+      ),
+    );
+  }
+
+  static final _$jni.Pointer<
+          _$jni.NativeFunction<
+              _$jni.JObjectPtr Function(
+                  _$jni.Int64, _$jni.JObjectPtr, _$jni.JObjectPtr)>>
+      _$invokePointer = _$jni.Pointer.fromFunction(_$invoke);
+
+  static _$jni.Pointer<_$jni.Void> _$invokeMethod(
+    int $p,
+    _$jni.MethodInvocation $i,
+  ) {
+    try {
+      final $d = $i.methodDescriptor.toDartString(releaseOriginal: true);
+      final $a = $i.args;
+    } catch (e) {
+      return _$jni.ProtectedJniExtensions.newDartException(e);
+    }
+    return _$jni.nullptr;
+  }
+
+  static void implementIn(
+    _$jni.JImplementer implementer,
+    $Player_DiscontinuityReason $impl,
+  ) {
+    late final _$jni.RawReceivePort $p;
+    $p = _$jni.RawReceivePort(($m) {
+      if ($m == null) {
+        _$impls.remove($p.sendPort.nativePort);
+        $p.close();
+        return;
+      }
+      final $i = _$jni.MethodInvocation.fromMessage($m);
+      final $r = _$invokeMethod($p.sendPort.nativePort, $i);
+      _$jni.ProtectedJniExtensions.returnResult($i.result, $r);
+    });
+    implementer.add(
+      r'androidx.media3.common.Player$DiscontinuityReason',
+      $p,
+      _$invokePointer,
+      [],
+    );
+    final $a = $p.sendPort.nativePort;
+    _$impls[$a] = $impl;
+  }
+
+  factory Player_DiscontinuityReason.implement(
+    $Player_DiscontinuityReason $impl,
+  ) {
+    final $i = _$jni.JImplementer();
+    implementIn($i, $impl);
+    return Player_DiscontinuityReason.fromReference(
+      $i.implementReference(),
+    );
+  }
+}
+
+abstract base mixin class $Player_DiscontinuityReason {
+  factory $Player_DiscontinuityReason() = _$Player_DiscontinuityReason;
+}
+
+final class _$Player_DiscontinuityReason with $Player_DiscontinuityReason {
+  _$Player_DiscontinuityReason();
+}
+
+final class $Player_DiscontinuityReason$Type
+    extends _$jni.JObjType<Player_DiscontinuityReason> {
+  @_$jni.internal
+  const $Player_DiscontinuityReason$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Landroidx/media3/common/Player$DiscontinuityReason;';
+
+  @_$jni.internal
+  @_$core.override
+  Player_DiscontinuityReason fromReference(_$jni.JReference reference) =>
+      Player_DiscontinuityReason.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($Player_DiscontinuityReason$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($Player_DiscontinuityReason$Type) &&
+        other is $Player_DiscontinuityReason$Type;
+  }
+}
+
+/// from: `androidx.media3.common.Player$Event`
+class Player_Event extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<Player_Event> $type;
+
+  @_$jni.internal
+  Player_Event.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class =
+      _$jni.JClass.forName(r'androidx/media3/common/Player$Event');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $Player_Event$Type();
+
+  /// Maps a specific port to the implemented interface.
+  static final _$core.Map<int, $Player_Event> _$impls = {};
+  static _$jni.JObjectPtr _$invoke(
+    int port,
+    _$jni.JObjectPtr descriptor,
+    _$jni.JObjectPtr args,
+  ) {
+    return _$invokeMethod(
+      port,
+      _$jni.MethodInvocation.fromAddresses(
+        0,
+        descriptor.address,
+        args.address,
+      ),
+    );
+  }
+
+  static final _$jni.Pointer<
+          _$jni.NativeFunction<
+              _$jni.JObjectPtr Function(
+                  _$jni.Int64, _$jni.JObjectPtr, _$jni.JObjectPtr)>>
+      _$invokePointer = _$jni.Pointer.fromFunction(_$invoke);
+
+  static _$jni.Pointer<_$jni.Void> _$invokeMethod(
+    int $p,
+    _$jni.MethodInvocation $i,
+  ) {
+    try {
+      final $d = $i.methodDescriptor.toDartString(releaseOriginal: true);
+      final $a = $i.args;
+    } catch (e) {
+      return _$jni.ProtectedJniExtensions.newDartException(e);
+    }
+    return _$jni.nullptr;
+  }
+
+  static void implementIn(
+    _$jni.JImplementer implementer,
+    $Player_Event $impl,
+  ) {
+    late final _$jni.RawReceivePort $p;
+    $p = _$jni.RawReceivePort(($m) {
+      if ($m == null) {
+        _$impls.remove($p.sendPort.nativePort);
+        $p.close();
+        return;
+      }
+      final $i = _$jni.MethodInvocation.fromMessage($m);
+      final $r = _$invokeMethod($p.sendPort.nativePort, $i);
+      _$jni.ProtectedJniExtensions.returnResult($i.result, $r);
+    });
+    implementer.add(
+      r'androidx.media3.common.Player$Event',
+      $p,
+      _$invokePointer,
+      [],
+    );
+    final $a = $p.sendPort.nativePort;
+    _$impls[$a] = $impl;
+  }
+
+  factory Player_Event.implement(
+    $Player_Event $impl,
+  ) {
+    final $i = _$jni.JImplementer();
+    implementIn($i, $impl);
+    return Player_Event.fromReference(
+      $i.implementReference(),
+    );
+  }
+}
+
+abstract base mixin class $Player_Event {
+  factory $Player_Event() = _$Player_Event;
+}
+
+final class _$Player_Event with $Player_Event {
+  _$Player_Event();
+}
+
+final class $Player_Event$Type extends _$jni.JObjType<Player_Event> {
+  @_$jni.internal
+  const $Player_Event$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature => r'Landroidx/media3/common/Player$Event;';
+
+  @_$jni.internal
+  @_$core.override
+  Player_Event fromReference(_$jni.JReference reference) =>
+      Player_Event.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($Player_Event$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($Player_Event$Type) &&
+        other is $Player_Event$Type;
+  }
+}
+
+/// from: `androidx.media3.common.Player$Events`
+class Player_Events extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<Player_Events> $type;
+
+  @_$jni.internal
+  Player_Events.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class =
+      _$jni.JClass.forName(r'androidx/media3/common/Player$Events');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $Player_Events$Type();
+  static final _id_new$ = _class.constructorId(
+    r'(Landroidx/media3/common/FlagSet;)V',
+  );
+
+  static final _new$ = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_NewObject')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public void <init>(androidx.media3.common.FlagSet flagSet)`
+  /// The returned object must be released after use, by calling the [release] method.
+  factory Player_Events(
+    _$jni.JObject flagSet,
+  ) {
+    return Player_Events.fromReference(_new$(_class.reference.pointer,
+            _id_new$ as _$jni.JMethodIDPtr, flagSet.reference.pointer)
+        .reference);
+  }
+
+  static final _id_contains = _class.instanceMethodId(
+    r'contains',
+    r'(I)Z',
+  );
+
+  static final _contains = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni
+                      .VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public boolean contains(int i)`
+  bool contains(
+    int i,
+  ) {
+    return _contains(reference.pointer, _id_contains as _$jni.JMethodIDPtr, i)
+        .boolean;
+  }
+
+  static final _id_containsAny = _class.instanceMethodId(
+    r'containsAny',
+    r'([I)Z',
+  );
+
+  static final _containsAny = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public boolean containsAny(int[] is)`
+  bool containsAny(
+    _$jni.JArray<_$jni.jint> is$,
+  ) {
+    return _containsAny(reference.pointer,
+            _id_containsAny as _$jni.JMethodIDPtr, is$.reference.pointer)
+        .boolean;
+  }
+
+  static final _id_size = _class.instanceMethodId(
+    r'size',
+    r'()I',
+  );
+
+  static final _size = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public int size()`
+  int size() {
+    return _size(reference.pointer, _id_size as _$jni.JMethodIDPtr).integer;
+  }
+
+  static final _id_get = _class.instanceMethodId(
+    r'get',
+    r'(I)I',
+  );
+
+  static final _get = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public int get(int i)`
+  int get(
+    int i,
+  ) {
+    return _get(reference.pointer, _id_get as _$jni.JMethodIDPtr, i).integer;
+  }
+
+  static final _id_hashCode$1 = _class.instanceMethodId(
+    r'hashCode',
+    r'()I',
+  );
+
+  static final _hashCode$1 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public int hashCode()`
+  int hashCode$1() {
+    return _hashCode$1(reference.pointer, _id_hashCode$1 as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_equals = _class.instanceMethodId(
+    r'equals',
+    r'(Ljava/lang/Object;)Z',
+  );
+
+  static final _equals = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public boolean equals(java.lang.Object object)`
+  bool equals(
+    _$jni.JObject object,
+  ) {
+    return _equals(reference.pointer, _id_equals as _$jni.JMethodIDPtr,
+            object.reference.pointer)
+        .boolean;
+  }
+}
+
+final class $Player_Events$Type extends _$jni.JObjType<Player_Events> {
+  @_$jni.internal
+  const $Player_Events$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature => r'Landroidx/media3/common/Player$Events;';
+
+  @_$jni.internal
+  @_$core.override
+  Player_Events fromReference(_$jni.JReference reference) =>
+      Player_Events.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($Player_Events$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($Player_Events$Type) &&
+        other is $Player_Events$Type;
+  }
+}
+
+/// from: `androidx.media3.common.Player$Listener`
+class Player_Listener extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<Player_Listener> $type;
+
+  @_$jni.internal
+  Player_Listener.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class =
+      _$jni.JClass.forName(r'androidx/media3/common/Player$Listener');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $Player_Listener$Type();
+  static final _id_onEvents = _class.instanceMethodId(
+    r'onEvents',
+    r'(Landroidx/media3/common/Player;Landroidx/media3/common/Player$Events;)V',
+  );
+
+  static final _onEvents = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<
+                      (
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>
+                      )>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public void onEvents(androidx.media3.common.Player player, androidx.media3.common.Player$Events events)`
+  void onEvents(
+    Player player,
+    Player_Events events,
+  ) {
+    _onEvents(reference.pointer, _id_onEvents as _$jni.JMethodIDPtr,
+            player.reference.pointer, events.reference.pointer)
+        .check();
+  }
+
+  static final _id_onTimelineChanged = _class.instanceMethodId(
+    r'onTimelineChanged',
+    r'(Landroidx/media3/common/Timeline;I)V',
+  );
+
+  static final _onTimelineChanged = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni
+                          .VarArgs<(_$jni.Pointer<_$jni.Void>, _$jni.Int32)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>, int)>();
+
+  /// from: `public void onTimelineChanged(androidx.media3.common.Timeline timeline, int i)`
+  void onTimelineChanged(
+    _$jni.JObject timeline,
+    int i,
+  ) {
+    _onTimelineChanged(
+            reference.pointer,
+            _id_onTimelineChanged as _$jni.JMethodIDPtr,
+            timeline.reference.pointer,
+            i)
+        .check();
+  }
+
+  static final _id_onMediaItemTransition = _class.instanceMethodId(
+    r'onMediaItemTransition',
+    r'(Landroidx/media3/common/MediaItem;I)V',
+  );
+
+  static final _onMediaItemTransition = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni
+                          .VarArgs<(_$jni.Pointer<_$jni.Void>, _$jni.Int32)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>, int)>();
+
+  /// from: `public void onMediaItemTransition(androidx.media3.common.MediaItem mediaItem, int i)`
+  void onMediaItemTransition(
+    MediaItem mediaItem,
+    int i,
+  ) {
+    _onMediaItemTransition(
+            reference.pointer,
+            _id_onMediaItemTransition as _$jni.JMethodIDPtr,
+            mediaItem.reference.pointer,
+            i)
+        .check();
+  }
+
+  static final _id_onTracksChanged = _class.instanceMethodId(
+    r'onTracksChanged',
+    r'(Landroidx/media3/common/Tracks;)V',
+  );
+
+  static final _onTracksChanged = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public void onTracksChanged(androidx.media3.common.Tracks tracks)`
+  void onTracksChanged(
+    _$jni.JObject tracks,
+  ) {
+    _onTracksChanged(reference.pointer,
+            _id_onTracksChanged as _$jni.JMethodIDPtr, tracks.reference.pointer)
+        .check();
+  }
+
+  static final _id_onMediaMetadataChanged = _class.instanceMethodId(
+    r'onMediaMetadataChanged',
+    r'(Landroidx/media3/common/MediaMetadata;)V',
+  );
+
+  static final _onMediaMetadataChanged = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public void onMediaMetadataChanged(androidx.media3.common.MediaMetadata mediaMetadata)`
+  void onMediaMetadataChanged(
+    _$jni.JObject mediaMetadata,
+  ) {
+    _onMediaMetadataChanged(
+            reference.pointer,
+            _id_onMediaMetadataChanged as _$jni.JMethodIDPtr,
+            mediaMetadata.reference.pointer)
+        .check();
+  }
+
+  static final _id_onPlaylistMetadataChanged = _class.instanceMethodId(
+    r'onPlaylistMetadataChanged',
+    r'(Landroidx/media3/common/MediaMetadata;)V',
+  );
+
+  static final _onPlaylistMetadataChanged = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public void onPlaylistMetadataChanged(androidx.media3.common.MediaMetadata mediaMetadata)`
+  void onPlaylistMetadataChanged(
+    _$jni.JObject mediaMetadata,
+  ) {
+    _onPlaylistMetadataChanged(
+            reference.pointer,
+            _id_onPlaylistMetadataChanged as _$jni.JMethodIDPtr,
+            mediaMetadata.reference.pointer)
+        .check();
+  }
+
+  static final _id_onIsLoadingChanged = _class.instanceMethodId(
+    r'onIsLoadingChanged',
+    r'(Z)V',
+  );
+
+  static final _onIsLoadingChanged = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public void onIsLoadingChanged(boolean z)`
+  void onIsLoadingChanged(
+    bool z,
+  ) {
+    _onIsLoadingChanged(reference.pointer,
+            _id_onIsLoadingChanged as _$jni.JMethodIDPtr, z ? 1 : 0)
+        .check();
+  }
+
+  static final _id_onLoadingChanged = _class.instanceMethodId(
+    r'onLoadingChanged',
+    r'(Z)V',
+  );
+
+  static final _onLoadingChanged = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public void onLoadingChanged(boolean z)`
+  void onLoadingChanged(
+    bool z,
+  ) {
+    _onLoadingChanged(reference.pointer,
+            _id_onLoadingChanged as _$jni.JMethodIDPtr, z ? 1 : 0)
+        .check();
+  }
+
+  static final _id_onAvailableCommandsChanged = _class.instanceMethodId(
+    r'onAvailableCommandsChanged',
+    r'(Landroidx/media3/common/Player$Commands;)V',
+  );
+
+  static final _onAvailableCommandsChanged =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JThrowablePtr Function(
+                          _$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr,
+                          _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+              'globalEnv_CallVoidMethod')
+          .asFunction<
+              _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public void onAvailableCommandsChanged(androidx.media3.common.Player$Commands commands)`
+  void onAvailableCommandsChanged(
+    Player_Commands commands,
+  ) {
+    _onAvailableCommandsChanged(
+            reference.pointer,
+            _id_onAvailableCommandsChanged as _$jni.JMethodIDPtr,
+            commands.reference.pointer)
+        .check();
+  }
+
+  static final _id_onTrackSelectionParametersChanged = _class.instanceMethodId(
+    r'onTrackSelectionParametersChanged',
+    r'(Landroidx/media3/common/TrackSelectionParameters;)V',
+  );
+
+  static final _onTrackSelectionParametersChanged =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JThrowablePtr Function(
+                          _$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr,
+                          _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+              'globalEnv_CallVoidMethod')
+          .asFunction<
+              _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public void onTrackSelectionParametersChanged(androidx.media3.common.TrackSelectionParameters trackSelectionParameters)`
+  void onTrackSelectionParametersChanged(
+    _$jni.JObject trackSelectionParameters,
+  ) {
+    _onTrackSelectionParametersChanged(
+            reference.pointer,
+            _id_onTrackSelectionParametersChanged as _$jni.JMethodIDPtr,
+            trackSelectionParameters.reference.pointer)
+        .check();
+  }
+
+  static final _id_onPlayerStateChanged = _class.instanceMethodId(
+    r'onPlayerStateChanged',
+    r'(ZI)V',
+  );
+
+  static final _onPlayerStateChanged = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Int32, _$jni.Int32)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int, int)>();
+
+  /// from: `public void onPlayerStateChanged(boolean z, int i)`
+  void onPlayerStateChanged(
+    bool z,
+    int i,
+  ) {
+    _onPlayerStateChanged(reference.pointer,
+            _id_onPlayerStateChanged as _$jni.JMethodIDPtr, z ? 1 : 0, i)
+        .check();
+  }
+
+  static final _id_onPlaybackStateChanged = _class.instanceMethodId(
+    r'onPlaybackStateChanged',
+    r'(I)V',
+  );
+
+  static final _onPlaybackStateChanged = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public void onPlaybackStateChanged(int i)`
+  void onPlaybackStateChanged(
+    int i,
+  ) {
+    _onPlaybackStateChanged(reference.pointer,
+            _id_onPlaybackStateChanged as _$jni.JMethodIDPtr, i)
+        .check();
+  }
+
+  static final _id_onPlayWhenReadyChanged = _class.instanceMethodId(
+    r'onPlayWhenReadyChanged',
+    r'(ZI)V',
+  );
+
+  static final _onPlayWhenReadyChanged = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Int32, _$jni.Int32)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int, int)>();
+
+  /// from: `public void onPlayWhenReadyChanged(boolean z, int i)`
+  void onPlayWhenReadyChanged(
+    bool z,
+    int i,
+  ) {
+    _onPlayWhenReadyChanged(reference.pointer,
+            _id_onPlayWhenReadyChanged as _$jni.JMethodIDPtr, z ? 1 : 0, i)
+        .check();
+  }
+
+  static final _id_onPlaybackSuppressionReasonChanged = _class.instanceMethodId(
+    r'onPlaybackSuppressionReasonChanged',
+    r'(I)V',
+  );
+
+  static final _onPlaybackSuppressionReasonChanged =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr, _$jni.VarArgs<(_$jni.Int32,)>)>>(
+              'globalEnv_CallVoidMethod')
+          .asFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public void onPlaybackSuppressionReasonChanged(int i)`
+  void onPlaybackSuppressionReasonChanged(
+    int i,
+  ) {
+    _onPlaybackSuppressionReasonChanged(reference.pointer,
+            _id_onPlaybackSuppressionReasonChanged as _$jni.JMethodIDPtr, i)
+        .check();
+  }
+
+  static final _id_onIsPlayingChanged = _class.instanceMethodId(
+    r'onIsPlayingChanged',
+    r'(Z)V',
+  );
+
+  static final _onIsPlayingChanged = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public void onIsPlayingChanged(boolean z)`
+  void onIsPlayingChanged(
+    bool z,
+  ) {
+    _onIsPlayingChanged(reference.pointer,
+            _id_onIsPlayingChanged as _$jni.JMethodIDPtr, z ? 1 : 0)
+        .check();
+  }
+
+  static final _id_onRepeatModeChanged = _class.instanceMethodId(
+    r'onRepeatModeChanged',
+    r'(I)V',
+  );
+
+  static final _onRepeatModeChanged = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public void onRepeatModeChanged(int i)`
+  void onRepeatModeChanged(
+    int i,
+  ) {
+    _onRepeatModeChanged(
+            reference.pointer, _id_onRepeatModeChanged as _$jni.JMethodIDPtr, i)
+        .check();
+  }
+
+  static final _id_onShuffleModeEnabledChanged = _class.instanceMethodId(
+    r'onShuffleModeEnabledChanged',
+    r'(Z)V',
+  );
+
+  static final _onShuffleModeEnabledChanged =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr, _$jni.VarArgs<(_$jni.Int32,)>)>>(
+              'globalEnv_CallVoidMethod')
+          .asFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public void onShuffleModeEnabledChanged(boolean z)`
+  void onShuffleModeEnabledChanged(
+    bool z,
+  ) {
+    _onShuffleModeEnabledChanged(reference.pointer,
+            _id_onShuffleModeEnabledChanged as _$jni.JMethodIDPtr, z ? 1 : 0)
+        .check();
+  }
+
+  static final _id_onPlayerError = _class.instanceMethodId(
+    r'onPlayerError',
+    r'(Landroidx/media3/common/PlaybackException;)V',
+  );
+
+  static final _onPlayerError = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public void onPlayerError(androidx.media3.common.PlaybackException playbackException)`
+  void onPlayerError(
+    _$jni.JObject playbackException,
+  ) {
+    _onPlayerError(reference.pointer, _id_onPlayerError as _$jni.JMethodIDPtr,
+            playbackException.reference.pointer)
+        .check();
+  }
+
+  static final _id_onPlayerErrorChanged = _class.instanceMethodId(
+    r'onPlayerErrorChanged',
+    r'(Landroidx/media3/common/PlaybackException;)V',
+  );
+
+  static final _onPlayerErrorChanged = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public void onPlayerErrorChanged(androidx.media3.common.PlaybackException playbackException)`
+  void onPlayerErrorChanged(
+    _$jni.JObject playbackException,
+  ) {
+    _onPlayerErrorChanged(
+            reference.pointer,
+            _id_onPlayerErrorChanged as _$jni.JMethodIDPtr,
+            playbackException.reference.pointer)
+        .check();
+  }
+
+  static final _id_onPositionDiscontinuity = _class.instanceMethodId(
+    r'onPositionDiscontinuity',
+    r'(I)V',
+  );
+
+  static final _onPositionDiscontinuity = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public void onPositionDiscontinuity(int i)`
+  void onPositionDiscontinuity(
+    int i,
+  ) {
+    _onPositionDiscontinuity(reference.pointer,
+            _id_onPositionDiscontinuity as _$jni.JMethodIDPtr, i)
+        .check();
+  }
+
+  static final _id_onPositionDiscontinuity$1 = _class.instanceMethodId(
+    r'onPositionDiscontinuity',
+    r'(Landroidx/media3/common/Player$PositionInfo;Landroidx/media3/common/Player$PositionInfo;I)V',
+  );
+
+  static final _onPositionDiscontinuity$1 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<
+                      (
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Int32
+                      )>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>,
+              int)>();
+
+  /// from: `public void onPositionDiscontinuity(androidx.media3.common.Player$PositionInfo positionInfo, androidx.media3.common.Player$PositionInfo positionInfo1, int i)`
+  void onPositionDiscontinuity$1(
+    Player_PositionInfo positionInfo,
+    Player_PositionInfo positionInfo1,
+    int i,
+  ) {
+    _onPositionDiscontinuity$1(
+            reference.pointer,
+            _id_onPositionDiscontinuity$1 as _$jni.JMethodIDPtr,
+            positionInfo.reference.pointer,
+            positionInfo1.reference.pointer,
+            i)
+        .check();
+  }
+
+  static final _id_onPlaybackParametersChanged = _class.instanceMethodId(
+    r'onPlaybackParametersChanged',
+    r'(Landroidx/media3/common/PlaybackParameters;)V',
+  );
+
+  static final _onPlaybackParametersChanged =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JThrowablePtr Function(
+                          _$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr,
+                          _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+              'globalEnv_CallVoidMethod')
+          .asFunction<
+              _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public void onPlaybackParametersChanged(androidx.media3.common.PlaybackParameters playbackParameters)`
+  void onPlaybackParametersChanged(
+    PlaybackParameters playbackParameters,
+  ) {
+    _onPlaybackParametersChanged(
+            reference.pointer,
+            _id_onPlaybackParametersChanged as _$jni.JMethodIDPtr,
+            playbackParameters.reference.pointer)
+        .check();
+  }
+
+  static final _id_onSeekBackIncrementChanged = _class.instanceMethodId(
+    r'onSeekBackIncrementChanged',
+    r'(J)V',
+  );
+
+  static final _onSeekBackIncrementChanged =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr, _$jni.VarArgs<(_$jni.Int64,)>)>>(
+              'globalEnv_CallVoidMethod')
+          .asFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public void onSeekBackIncrementChanged(long j)`
+  void onSeekBackIncrementChanged(
+    int j,
+  ) {
+    _onSeekBackIncrementChanged(reference.pointer,
+            _id_onSeekBackIncrementChanged as _$jni.JMethodIDPtr, j)
+        .check();
+  }
+
+  static final _id_onSeekForwardIncrementChanged = _class.instanceMethodId(
+    r'onSeekForwardIncrementChanged',
+    r'(J)V',
+  );
+
+  static final _onSeekForwardIncrementChanged =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr, _$jni.VarArgs<(_$jni.Int64,)>)>>(
+              'globalEnv_CallVoidMethod')
+          .asFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public void onSeekForwardIncrementChanged(long j)`
+  void onSeekForwardIncrementChanged(
+    int j,
+  ) {
+    _onSeekForwardIncrementChanged(reference.pointer,
+            _id_onSeekForwardIncrementChanged as _$jni.JMethodIDPtr, j)
+        .check();
+  }
+
+  static final _id_onMaxSeekToPreviousPositionChanged = _class.instanceMethodId(
+    r'onMaxSeekToPreviousPositionChanged',
+    r'(J)V',
+  );
+
+  static final _onMaxSeekToPreviousPositionChanged =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr, _$jni.VarArgs<(_$jni.Int64,)>)>>(
+              'globalEnv_CallVoidMethod')
+          .asFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public void onMaxSeekToPreviousPositionChanged(long j)`
+  void onMaxSeekToPreviousPositionChanged(
+    int j,
+  ) {
+    _onMaxSeekToPreviousPositionChanged(reference.pointer,
+            _id_onMaxSeekToPreviousPositionChanged as _$jni.JMethodIDPtr, j)
+        .check();
+  }
+
+  static final _id_onAudioSessionIdChanged = _class.instanceMethodId(
+    r'onAudioSessionIdChanged',
+    r'(I)V',
+  );
+
+  static final _onAudioSessionIdChanged = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public void onAudioSessionIdChanged(int i)`
+  void onAudioSessionIdChanged(
+    int i,
+  ) {
+    _onAudioSessionIdChanged(reference.pointer,
+            _id_onAudioSessionIdChanged as _$jni.JMethodIDPtr, i)
+        .check();
+  }
+
+  static final _id_onAudioAttributesChanged = _class.instanceMethodId(
+    r'onAudioAttributesChanged',
+    r'(Landroidx/media3/common/AudioAttributes;)V',
+  );
+
+  static final _onAudioAttributesChanged = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public void onAudioAttributesChanged(androidx.media3.common.AudioAttributes audioAttributes)`
+  void onAudioAttributesChanged(
+    AudioAttributes audioAttributes,
+  ) {
+    _onAudioAttributesChanged(
+            reference.pointer,
+            _id_onAudioAttributesChanged as _$jni.JMethodIDPtr,
+            audioAttributes.reference.pointer)
+        .check();
+  }
+
+  static final _id_onVolumeChanged = _class.instanceMethodId(
+    r'onVolumeChanged',
+    r'(F)V',
+  );
+
+  static final _onVolumeChanged = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Double,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, double)>();
+
+  /// from: `public void onVolumeChanged(float f)`
+  void onVolumeChanged(
+    double f,
+  ) {
+    _onVolumeChanged(
+            reference.pointer, _id_onVolumeChanged as _$jni.JMethodIDPtr, f)
+        .check();
+  }
+
+  static final _id_onSkipSilenceEnabledChanged = _class.instanceMethodId(
+    r'onSkipSilenceEnabledChanged',
+    r'(Z)V',
+  );
+
+  static final _onSkipSilenceEnabledChanged =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr, _$jni.VarArgs<(_$jni.Int32,)>)>>(
+              'globalEnv_CallVoidMethod')
+          .asFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public void onSkipSilenceEnabledChanged(boolean z)`
+  void onSkipSilenceEnabledChanged(
+    bool z,
+  ) {
+    _onSkipSilenceEnabledChanged(reference.pointer,
+            _id_onSkipSilenceEnabledChanged as _$jni.JMethodIDPtr, z ? 1 : 0)
+        .check();
+  }
+
+  static final _id_onDeviceInfoChanged = _class.instanceMethodId(
+    r'onDeviceInfoChanged',
+    r'(Landroidx/media3/common/DeviceInfo;)V',
+  );
+
+  static final _onDeviceInfoChanged = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public void onDeviceInfoChanged(androidx.media3.common.DeviceInfo deviceInfo)`
+  void onDeviceInfoChanged(
+    _$jni.JObject deviceInfo,
+  ) {
+    _onDeviceInfoChanged(
+            reference.pointer,
+            _id_onDeviceInfoChanged as _$jni.JMethodIDPtr,
+            deviceInfo.reference.pointer)
+        .check();
+  }
+
+  static final _id_onDeviceVolumeChanged = _class.instanceMethodId(
+    r'onDeviceVolumeChanged',
+    r'(IZ)V',
+  );
+
+  static final _onDeviceVolumeChanged = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Int32, _$jni.Int32)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int, int)>();
+
+  /// from: `public void onDeviceVolumeChanged(int i, boolean z)`
+  void onDeviceVolumeChanged(
+    int i,
+    bool z,
+  ) {
+    _onDeviceVolumeChanged(reference.pointer,
+            _id_onDeviceVolumeChanged as _$jni.JMethodIDPtr, i, z ? 1 : 0)
+        .check();
+  }
+
+  static final _id_onVideoSizeChanged = _class.instanceMethodId(
+    r'onVideoSizeChanged',
+    r'(Landroidx/media3/common/VideoSize;)V',
+  );
+
+  static final _onVideoSizeChanged = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public void onVideoSizeChanged(androidx.media3.common.VideoSize videoSize)`
+  void onVideoSizeChanged(
+    _$jni.JObject videoSize,
+  ) {
+    _onVideoSizeChanged(
+            reference.pointer,
+            _id_onVideoSizeChanged as _$jni.JMethodIDPtr,
+            videoSize.reference.pointer)
+        .check();
+  }
+
+  static final _id_onSurfaceSizeChanged = _class.instanceMethodId(
+    r'onSurfaceSizeChanged',
+    r'(II)V',
+  );
+
+  static final _onSurfaceSizeChanged = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Int32, _$jni.Int32)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int, int)>();
+
+  /// from: `public void onSurfaceSizeChanged(int i, int i1)`
+  void onSurfaceSizeChanged(
+    int i,
+    int i1,
+  ) {
+    _onSurfaceSizeChanged(reference.pointer,
+            _id_onSurfaceSizeChanged as _$jni.JMethodIDPtr, i, i1)
+        .check();
+  }
+
+  static final _id_onRenderedFirstFrame = _class.instanceMethodId(
+    r'onRenderedFirstFrame',
+    r'()V',
+  );
+
+  static final _onRenderedFirstFrame = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public void onRenderedFirstFrame()`
+  void onRenderedFirstFrame() {
+    _onRenderedFirstFrame(
+            reference.pointer, _id_onRenderedFirstFrame as _$jni.JMethodIDPtr)
+        .check();
+  }
+
+  static final _id_onCues = _class.instanceMethodId(
+    r'onCues',
+    r'(Ljava/util/List;)V',
+  );
+
+  static final _onCues = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public void onCues(java.util.List list)`
+  void onCues(
+    _$jni.JList<_$jni.JObject> list,
+  ) {
+    _onCues(reference.pointer, _id_onCues as _$jni.JMethodIDPtr,
+            list.reference.pointer)
+        .check();
+  }
+
+  static final _id_onCues$1 = _class.instanceMethodId(
+    r'onCues',
+    r'(Landroidx/media3/common/text/CueGroup;)V',
+  );
+
+  static final _onCues$1 = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public void onCues(androidx.media3.common.text.CueGroup cueGroup)`
+  void onCues$1(
+    _$jni.JObject cueGroup,
+  ) {
+    _onCues$1(reference.pointer, _id_onCues$1 as _$jni.JMethodIDPtr,
+            cueGroup.reference.pointer)
+        .check();
+  }
+
+  static final _id_onMetadata = _class.instanceMethodId(
+    r'onMetadata',
+    r'(Landroidx/media3/common/Metadata;)V',
+  );
+
+  static final _onMetadata = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public void onMetadata(androidx.media3.common.Metadata metadata)`
+  void onMetadata(
+    _$jni.JObject metadata,
+  ) {
+    _onMetadata(reference.pointer, _id_onMetadata as _$jni.JMethodIDPtr,
+            metadata.reference.pointer)
+        .check();
+  }
+
+  /// Maps a specific port to the implemented interface.
+  static final _$core.Map<int, $Player_Listener> _$impls = {};
+  static _$jni.JObjectPtr _$invoke(
+    int port,
+    _$jni.JObjectPtr descriptor,
+    _$jni.JObjectPtr args,
+  ) {
+    return _$invokeMethod(
+      port,
+      _$jni.MethodInvocation.fromAddresses(
+        0,
+        descriptor.address,
+        args.address,
+      ),
+    );
+  }
+
+  static final _$jni.Pointer<
+          _$jni.NativeFunction<
+              _$jni.JObjectPtr Function(
+                  _$jni.Int64, _$jni.JObjectPtr, _$jni.JObjectPtr)>>
+      _$invokePointer = _$jni.Pointer.fromFunction(_$invoke);
+
+  static _$jni.Pointer<_$jni.Void> _$invokeMethod(
+    int $p,
+    _$jni.MethodInvocation $i,
+  ) {
+    try {
+      final $d = $i.methodDescriptor.toDartString(releaseOriginal: true);
+      final $a = $i.args;
+      if ($d ==
+          r'onEvents(Landroidx/media3/common/Player;Landroidx/media3/common/Player$Events;)V') {
+        _$impls[$p]!.onEvents(
+          $a[0].as(const $Player$Type(), releaseOriginal: true),
+          $a[1].as(const $Player_Events$Type(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'onTimelineChanged(Landroidx/media3/common/Timeline;I)V') {
+        _$impls[$p]!.onTimelineChanged(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+          $a[1]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'onMediaItemTransition(Landroidx/media3/common/MediaItem;I)V') {
+        _$impls[$p]!.onMediaItemTransition(
+          $a[0].as(const $MediaItem$Type(), releaseOriginal: true),
+          $a[1]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'onTracksChanged(Landroidx/media3/common/Tracks;)V') {
+        _$impls[$p]!.onTracksChanged(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'onMediaMetadataChanged(Landroidx/media3/common/MediaMetadata;)V') {
+        _$impls[$p]!.onMediaMetadataChanged(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'onPlaylistMetadataChanged(Landroidx/media3/common/MediaMetadata;)V') {
+        _$impls[$p]!.onPlaylistMetadataChanged(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'onIsLoadingChanged(Z)V') {
+        _$impls[$p]!.onIsLoadingChanged(
+          $a[0]
+              .as(const _$jni.JBooleanType(), releaseOriginal: true)
+              .booleanValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'onLoadingChanged(Z)V') {
+        _$impls[$p]!.onLoadingChanged(
+          $a[0]
+              .as(const _$jni.JBooleanType(), releaseOriginal: true)
+              .booleanValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'onAvailableCommandsChanged(Landroidx/media3/common/Player$Commands;)V') {
+        _$impls[$p]!.onAvailableCommandsChanged(
+          $a[0].as(const $Player_Commands$Type(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'onTrackSelectionParametersChanged(Landroidx/media3/common/TrackSelectionParameters;)V') {
+        _$impls[$p]!.onTrackSelectionParametersChanged(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'onPlayerStateChanged(ZI)V') {
+        _$impls[$p]!.onPlayerStateChanged(
+          $a[0]
+              .as(const _$jni.JBooleanType(), releaseOriginal: true)
+              .booleanValue(releaseOriginal: true),
+          $a[1]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'onPlaybackStateChanged(I)V') {
+        _$impls[$p]!.onPlaybackStateChanged(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'onPlayWhenReadyChanged(ZI)V') {
+        _$impls[$p]!.onPlayWhenReadyChanged(
+          $a[0]
+              .as(const _$jni.JBooleanType(), releaseOriginal: true)
+              .booleanValue(releaseOriginal: true),
+          $a[1]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'onPlaybackSuppressionReasonChanged(I)V') {
+        _$impls[$p]!.onPlaybackSuppressionReasonChanged(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'onIsPlayingChanged(Z)V') {
+        _$impls[$p]!.onIsPlayingChanged(
+          $a[0]
+              .as(const _$jni.JBooleanType(), releaseOriginal: true)
+              .booleanValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'onRepeatModeChanged(I)V') {
+        _$impls[$p]!.onRepeatModeChanged(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'onShuffleModeEnabledChanged(Z)V') {
+        _$impls[$p]!.onShuffleModeEnabledChanged(
+          $a[0]
+              .as(const _$jni.JBooleanType(), releaseOriginal: true)
+              .booleanValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'onPlayerError(Landroidx/media3/common/PlaybackException;)V') {
+        _$impls[$p]!.onPlayerError(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'onPlayerErrorChanged(Landroidx/media3/common/PlaybackException;)V') {
+        _$impls[$p]!.onPlayerErrorChanged(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'onPositionDiscontinuity(I)V') {
+        _$impls[$p]!.onPositionDiscontinuity(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'onPositionDiscontinuity(Landroidx/media3/common/Player$PositionInfo;Landroidx/media3/common/Player$PositionInfo;I)V') {
+        _$impls[$p]!.onPositionDiscontinuity$1(
+          $a[0].as(const $Player_PositionInfo$Type(), releaseOriginal: true),
+          $a[1].as(const $Player_PositionInfo$Type(), releaseOriginal: true),
+          $a[2]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'onPlaybackParametersChanged(Landroidx/media3/common/PlaybackParameters;)V') {
+        _$impls[$p]!.onPlaybackParametersChanged(
+          $a[0].as(const $PlaybackParameters$Type(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'onSeekBackIncrementChanged(J)V') {
+        _$impls[$p]!.onSeekBackIncrementChanged(
+          $a[0]
+              .as(const _$jni.JLongType(), releaseOriginal: true)
+              .longValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'onSeekForwardIncrementChanged(J)V') {
+        _$impls[$p]!.onSeekForwardIncrementChanged(
+          $a[0]
+              .as(const _$jni.JLongType(), releaseOriginal: true)
+              .longValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'onMaxSeekToPreviousPositionChanged(J)V') {
+        _$impls[$p]!.onMaxSeekToPreviousPositionChanged(
+          $a[0]
+              .as(const _$jni.JLongType(), releaseOriginal: true)
+              .longValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'onAudioSessionIdChanged(I)V') {
+        _$impls[$p]!.onAudioSessionIdChanged(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'onAudioAttributesChanged(Landroidx/media3/common/AudioAttributes;)V') {
+        _$impls[$p]!.onAudioAttributesChanged(
+          $a[0].as(const $AudioAttributes$Type(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'onVolumeChanged(F)V') {
+        _$impls[$p]!.onVolumeChanged(
+          $a[0]
+              .as(const _$jni.JFloatType(), releaseOriginal: true)
+              .floatValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'onSkipSilenceEnabledChanged(Z)V') {
+        _$impls[$p]!.onSkipSilenceEnabledChanged(
+          $a[0]
+              .as(const _$jni.JBooleanType(), releaseOriginal: true)
+              .booleanValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'onDeviceInfoChanged(Landroidx/media3/common/DeviceInfo;)V') {
+        _$impls[$p]!.onDeviceInfoChanged(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'onDeviceVolumeChanged(IZ)V') {
+        _$impls[$p]!.onDeviceVolumeChanged(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+          $a[1]
+              .as(const _$jni.JBooleanType(), releaseOriginal: true)
+              .booleanValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'onVideoSizeChanged(Landroidx/media3/common/VideoSize;)V') {
+        _$impls[$p]!.onVideoSizeChanged(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'onSurfaceSizeChanged(II)V') {
+        _$impls[$p]!.onSurfaceSizeChanged(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+          $a[1]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'onRenderedFirstFrame()V') {
+        _$impls[$p]!.onRenderedFirstFrame();
+        return _$jni.nullptr;
+      }
+      if ($d == r'onCues(Ljava/util/List;)V') {
+        _$impls[$p]!.onCues(
+          $a[0].as(const _$jni.JListType(_$jni.JObjectType()),
+              releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'onCues(Landroidx/media3/common/text/CueGroup;)V') {
+        _$impls[$p]!.onCues$1(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'onMetadata(Landroidx/media3/common/Metadata;)V') {
+        _$impls[$p]!.onMetadata(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+    } catch (e) {
+      return _$jni.ProtectedJniExtensions.newDartException(e);
+    }
+    return _$jni.nullptr;
+  }
+
+  static void implementIn(
+    _$jni.JImplementer implementer,
+    $Player_Listener $impl,
+  ) {
+    late final _$jni.RawReceivePort $p;
+    $p = _$jni.RawReceivePort(($m) {
+      if ($m == null) {
+        _$impls.remove($p.sendPort.nativePort);
+        $p.close();
+        return;
+      }
+      final $i = _$jni.MethodInvocation.fromMessage($m);
+      final $r = _$invokeMethod($p.sendPort.nativePort, $i);
+      _$jni.ProtectedJniExtensions.returnResult($i.result, $r);
+    });
+    implementer.add(
+      r'androidx.media3.common.Player$Listener',
+      $p,
+      _$invokePointer,
+      [
+        if ($impl.onEvents$async)
+          r'onEvents(Landroidx/media3/common/Player;Landroidx/media3/common/Player$Events;)V',
+        if ($impl.onTimelineChanged$async)
+          r'onTimelineChanged(Landroidx/media3/common/Timeline;I)V',
+        if ($impl.onMediaItemTransition$async)
+          r'onMediaItemTransition(Landroidx/media3/common/MediaItem;I)V',
+        if ($impl.onTracksChanged$async)
+          r'onTracksChanged(Landroidx/media3/common/Tracks;)V',
+        if ($impl.onMediaMetadataChanged$async)
+          r'onMediaMetadataChanged(Landroidx/media3/common/MediaMetadata;)V',
+        if ($impl.onPlaylistMetadataChanged$async)
+          r'onPlaylistMetadataChanged(Landroidx/media3/common/MediaMetadata;)V',
+        if ($impl.onIsLoadingChanged$async) r'onIsLoadingChanged(Z)V',
+        if ($impl.onLoadingChanged$async) r'onLoadingChanged(Z)V',
+        if ($impl.onAvailableCommandsChanged$async)
+          r'onAvailableCommandsChanged(Landroidx/media3/common/Player$Commands;)V',
+        if ($impl.onTrackSelectionParametersChanged$async)
+          r'onTrackSelectionParametersChanged(Landroidx/media3/common/TrackSelectionParameters;)V',
+        if ($impl.onPlayerStateChanged$async) r'onPlayerStateChanged(ZI)V',
+        if ($impl.onPlaybackStateChanged$async) r'onPlaybackStateChanged(I)V',
+        if ($impl.onPlayWhenReadyChanged$async) r'onPlayWhenReadyChanged(ZI)V',
+        if ($impl.onPlaybackSuppressionReasonChanged$async)
+          r'onPlaybackSuppressionReasonChanged(I)V',
+        if ($impl.onIsPlayingChanged$async) r'onIsPlayingChanged(Z)V',
+        if ($impl.onRepeatModeChanged$async) r'onRepeatModeChanged(I)V',
+        if ($impl.onShuffleModeEnabledChanged$async)
+          r'onShuffleModeEnabledChanged(Z)V',
+        if ($impl.onPlayerError$async)
+          r'onPlayerError(Landroidx/media3/common/PlaybackException;)V',
+        if ($impl.onPlayerErrorChanged$async)
+          r'onPlayerErrorChanged(Landroidx/media3/common/PlaybackException;)V',
+        if ($impl.onPositionDiscontinuity$async) r'onPositionDiscontinuity(I)V',
+        if ($impl.onPositionDiscontinuity$1$async)
+          r'onPositionDiscontinuity(Landroidx/media3/common/Player$PositionInfo;Landroidx/media3/common/Player$PositionInfo;I)V',
+        if ($impl.onPlaybackParametersChanged$async)
+          r'onPlaybackParametersChanged(Landroidx/media3/common/PlaybackParameters;)V',
+        if ($impl.onSeekBackIncrementChanged$async)
+          r'onSeekBackIncrementChanged(J)V',
+        if ($impl.onSeekForwardIncrementChanged$async)
+          r'onSeekForwardIncrementChanged(J)V',
+        if ($impl.onMaxSeekToPreviousPositionChanged$async)
+          r'onMaxSeekToPreviousPositionChanged(J)V',
+        if ($impl.onAudioSessionIdChanged$async) r'onAudioSessionIdChanged(I)V',
+        if ($impl.onAudioAttributesChanged$async)
+          r'onAudioAttributesChanged(Landroidx/media3/common/AudioAttributes;)V',
+        if ($impl.onVolumeChanged$async) r'onVolumeChanged(F)V',
+        if ($impl.onSkipSilenceEnabledChanged$async)
+          r'onSkipSilenceEnabledChanged(Z)V',
+        if ($impl.onDeviceInfoChanged$async)
+          r'onDeviceInfoChanged(Landroidx/media3/common/DeviceInfo;)V',
+        if ($impl.onDeviceVolumeChanged$async) r'onDeviceVolumeChanged(IZ)V',
+        if ($impl.onVideoSizeChanged$async)
+          r'onVideoSizeChanged(Landroidx/media3/common/VideoSize;)V',
+        if ($impl.onSurfaceSizeChanged$async) r'onSurfaceSizeChanged(II)V',
+        if ($impl.onRenderedFirstFrame$async) r'onRenderedFirstFrame()V',
+        if ($impl.onCues$async) r'onCues(Ljava/util/List;)V',
+        if ($impl.onCues$1$async)
+          r'onCues(Landroidx/media3/common/text/CueGroup;)V',
+        if ($impl.onMetadata$async)
+          r'onMetadata(Landroidx/media3/common/Metadata;)V',
+      ],
+    );
+    final $a = $p.sendPort.nativePort;
+    _$impls[$a] = $impl;
+  }
+
+  factory Player_Listener.implement(
+    $Player_Listener $impl,
+  ) {
+    final $i = _$jni.JImplementer();
+    implementIn($i, $impl);
+    return Player_Listener.fromReference(
+      $i.implementReference(),
+    );
+  }
+}
+
+abstract base mixin class $Player_Listener {
+  factory $Player_Listener({
+    required void Function(Player player, Player_Events events) onEvents,
+    bool onEvents$async,
+    required void Function(_$jni.JObject timeline, int i) onTimelineChanged,
+    bool onTimelineChanged$async,
+    required void Function(MediaItem mediaItem, int i) onMediaItemTransition,
+    bool onMediaItemTransition$async,
+    required void Function(_$jni.JObject tracks) onTracksChanged,
+    bool onTracksChanged$async,
+    required void Function(_$jni.JObject mediaMetadata) onMediaMetadataChanged,
+    bool onMediaMetadataChanged$async,
+    required void Function(_$jni.JObject mediaMetadata)
+        onPlaylistMetadataChanged,
+    bool onPlaylistMetadataChanged$async,
+    required void Function(bool z) onIsLoadingChanged,
+    bool onIsLoadingChanged$async,
+    required void Function(bool z) onLoadingChanged,
+    bool onLoadingChanged$async,
+    required void Function(Player_Commands commands) onAvailableCommandsChanged,
+    bool onAvailableCommandsChanged$async,
+    required void Function(_$jni.JObject trackSelectionParameters)
+        onTrackSelectionParametersChanged,
+    bool onTrackSelectionParametersChanged$async,
+    required void Function(bool z, int i) onPlayerStateChanged,
+    bool onPlayerStateChanged$async,
+    required void Function(int i) onPlaybackStateChanged,
+    bool onPlaybackStateChanged$async,
+    required void Function(bool z, int i) onPlayWhenReadyChanged,
+    bool onPlayWhenReadyChanged$async,
+    required void Function(int i) onPlaybackSuppressionReasonChanged,
+    bool onPlaybackSuppressionReasonChanged$async,
+    required void Function(bool z) onIsPlayingChanged,
+    bool onIsPlayingChanged$async,
+    required void Function(int i) onRepeatModeChanged,
+    bool onRepeatModeChanged$async,
+    required void Function(bool z) onShuffleModeEnabledChanged,
+    bool onShuffleModeEnabledChanged$async,
+    required void Function(_$jni.JObject playbackException) onPlayerError,
+    bool onPlayerError$async,
+    required void Function(_$jni.JObject playbackException)
+        onPlayerErrorChanged,
+    bool onPlayerErrorChanged$async,
+    required void Function(int i) onPositionDiscontinuity,
+    bool onPositionDiscontinuity$async,
+    required void Function(Player_PositionInfo positionInfo,
+            Player_PositionInfo positionInfo1, int i)
+        onPositionDiscontinuity$1,
+    bool onPositionDiscontinuity$1$async,
+    required void Function(PlaybackParameters playbackParameters)
+        onPlaybackParametersChanged,
+    bool onPlaybackParametersChanged$async,
+    required void Function(int j) onSeekBackIncrementChanged,
+    bool onSeekBackIncrementChanged$async,
+    required void Function(int j) onSeekForwardIncrementChanged,
+    bool onSeekForwardIncrementChanged$async,
+    required void Function(int j) onMaxSeekToPreviousPositionChanged,
+    bool onMaxSeekToPreviousPositionChanged$async,
+    required void Function(int i) onAudioSessionIdChanged,
+    bool onAudioSessionIdChanged$async,
+    required void Function(AudioAttributes audioAttributes)
+        onAudioAttributesChanged,
+    bool onAudioAttributesChanged$async,
+    required void Function(double f) onVolumeChanged,
+    bool onVolumeChanged$async,
+    required void Function(bool z) onSkipSilenceEnabledChanged,
+    bool onSkipSilenceEnabledChanged$async,
+    required void Function(_$jni.JObject deviceInfo) onDeviceInfoChanged,
+    bool onDeviceInfoChanged$async,
+    required void Function(int i, bool z) onDeviceVolumeChanged,
+    bool onDeviceVolumeChanged$async,
+    required void Function(_$jni.JObject videoSize) onVideoSizeChanged,
+    bool onVideoSizeChanged$async,
+    required void Function(int i, int i1) onSurfaceSizeChanged,
+    bool onSurfaceSizeChanged$async,
+    required void Function() onRenderedFirstFrame,
+    bool onRenderedFirstFrame$async,
+    required void Function(_$jni.JList<_$jni.JObject> list) onCues,
+    bool onCues$async,
+    required void Function(_$jni.JObject cueGroup) onCues$1,
+    bool onCues$1$async,
+    required void Function(_$jni.JObject metadata) onMetadata,
+    bool onMetadata$async,
+  }) = _$Player_Listener;
+
+  void onEvents(Player player, Player_Events events);
+  bool get onEvents$async => false;
+  void onTimelineChanged(_$jni.JObject timeline, int i);
+  bool get onTimelineChanged$async => false;
+  void onMediaItemTransition(MediaItem mediaItem, int i);
+  bool get onMediaItemTransition$async => false;
+  void onTracksChanged(_$jni.JObject tracks);
+  bool get onTracksChanged$async => false;
+  void onMediaMetadataChanged(_$jni.JObject mediaMetadata);
+  bool get onMediaMetadataChanged$async => false;
+  void onPlaylistMetadataChanged(_$jni.JObject mediaMetadata);
+  bool get onPlaylistMetadataChanged$async => false;
+  void onIsLoadingChanged(bool z);
+  bool get onIsLoadingChanged$async => false;
+  void onLoadingChanged(bool z);
+  bool get onLoadingChanged$async => false;
+  void onAvailableCommandsChanged(Player_Commands commands);
+  bool get onAvailableCommandsChanged$async => false;
+  void onTrackSelectionParametersChanged(
+      _$jni.JObject trackSelectionParameters);
+  bool get onTrackSelectionParametersChanged$async => false;
+  void onPlayerStateChanged(bool z, int i);
+  bool get onPlayerStateChanged$async => false;
+  void onPlaybackStateChanged(int i);
+  bool get onPlaybackStateChanged$async => false;
+  void onPlayWhenReadyChanged(bool z, int i);
+  bool get onPlayWhenReadyChanged$async => false;
+  void onPlaybackSuppressionReasonChanged(int i);
+  bool get onPlaybackSuppressionReasonChanged$async => false;
+  void onIsPlayingChanged(bool z);
+  bool get onIsPlayingChanged$async => false;
+  void onRepeatModeChanged(int i);
+  bool get onRepeatModeChanged$async => false;
+  void onShuffleModeEnabledChanged(bool z);
+  bool get onShuffleModeEnabledChanged$async => false;
+  void onPlayerError(_$jni.JObject playbackException);
+  bool get onPlayerError$async => false;
+  void onPlayerErrorChanged(_$jni.JObject playbackException);
+  bool get onPlayerErrorChanged$async => false;
+  void onPositionDiscontinuity(int i);
+  bool get onPositionDiscontinuity$async => false;
+  void onPositionDiscontinuity$1(Player_PositionInfo positionInfo,
+      Player_PositionInfo positionInfo1, int i);
+  bool get onPositionDiscontinuity$1$async => false;
+  void onPlaybackParametersChanged(PlaybackParameters playbackParameters);
+  bool get onPlaybackParametersChanged$async => false;
+  void onSeekBackIncrementChanged(int j);
+  bool get onSeekBackIncrementChanged$async => false;
+  void onSeekForwardIncrementChanged(int j);
+  bool get onSeekForwardIncrementChanged$async => false;
+  void onMaxSeekToPreviousPositionChanged(int j);
+  bool get onMaxSeekToPreviousPositionChanged$async => false;
+  void onAudioSessionIdChanged(int i);
+  bool get onAudioSessionIdChanged$async => false;
+  void onAudioAttributesChanged(AudioAttributes audioAttributes);
+  bool get onAudioAttributesChanged$async => false;
+  void onVolumeChanged(double f);
+  bool get onVolumeChanged$async => false;
+  void onSkipSilenceEnabledChanged(bool z);
+  bool get onSkipSilenceEnabledChanged$async => false;
+  void onDeviceInfoChanged(_$jni.JObject deviceInfo);
+  bool get onDeviceInfoChanged$async => false;
+  void onDeviceVolumeChanged(int i, bool z);
+  bool get onDeviceVolumeChanged$async => false;
+  void onVideoSizeChanged(_$jni.JObject videoSize);
+  bool get onVideoSizeChanged$async => false;
+  void onSurfaceSizeChanged(int i, int i1);
+  bool get onSurfaceSizeChanged$async => false;
+  void onRenderedFirstFrame();
+  bool get onRenderedFirstFrame$async => false;
+  void onCues(_$jni.JList<_$jni.JObject> list);
+  bool get onCues$async => false;
+  void onCues$1(_$jni.JObject cueGroup);
+  bool get onCues$1$async => false;
+  void onMetadata(_$jni.JObject metadata);
+  bool get onMetadata$async => false;
+}
+
+final class _$Player_Listener with $Player_Listener {
+  _$Player_Listener({
+    required void Function(Player player, Player_Events events) onEvents,
+    this.onEvents$async = false,
+    required void Function(_$jni.JObject timeline, int i) onTimelineChanged,
+    this.onTimelineChanged$async = false,
+    required void Function(MediaItem mediaItem, int i) onMediaItemTransition,
+    this.onMediaItemTransition$async = false,
+    required void Function(_$jni.JObject tracks) onTracksChanged,
+    this.onTracksChanged$async = false,
+    required void Function(_$jni.JObject mediaMetadata) onMediaMetadataChanged,
+    this.onMediaMetadataChanged$async = false,
+    required void Function(_$jni.JObject mediaMetadata)
+        onPlaylistMetadataChanged,
+    this.onPlaylistMetadataChanged$async = false,
+    required void Function(bool z) onIsLoadingChanged,
+    this.onIsLoadingChanged$async = false,
+    required void Function(bool z) onLoadingChanged,
+    this.onLoadingChanged$async = false,
+    required void Function(Player_Commands commands) onAvailableCommandsChanged,
+    this.onAvailableCommandsChanged$async = false,
+    required void Function(_$jni.JObject trackSelectionParameters)
+        onTrackSelectionParametersChanged,
+    this.onTrackSelectionParametersChanged$async = false,
+    required void Function(bool z, int i) onPlayerStateChanged,
+    this.onPlayerStateChanged$async = false,
+    required void Function(int i) onPlaybackStateChanged,
+    this.onPlaybackStateChanged$async = false,
+    required void Function(bool z, int i) onPlayWhenReadyChanged,
+    this.onPlayWhenReadyChanged$async = false,
+    required void Function(int i) onPlaybackSuppressionReasonChanged,
+    this.onPlaybackSuppressionReasonChanged$async = false,
+    required void Function(bool z) onIsPlayingChanged,
+    this.onIsPlayingChanged$async = false,
+    required void Function(int i) onRepeatModeChanged,
+    this.onRepeatModeChanged$async = false,
+    required void Function(bool z) onShuffleModeEnabledChanged,
+    this.onShuffleModeEnabledChanged$async = false,
+    required void Function(_$jni.JObject playbackException) onPlayerError,
+    this.onPlayerError$async = false,
+    required void Function(_$jni.JObject playbackException)
+        onPlayerErrorChanged,
+    this.onPlayerErrorChanged$async = false,
+    required void Function(int i) onPositionDiscontinuity,
+    this.onPositionDiscontinuity$async = false,
+    required void Function(Player_PositionInfo positionInfo,
+            Player_PositionInfo positionInfo1, int i)
+        onPositionDiscontinuity$1,
+    this.onPositionDiscontinuity$1$async = false,
+    required void Function(PlaybackParameters playbackParameters)
+        onPlaybackParametersChanged,
+    this.onPlaybackParametersChanged$async = false,
+    required void Function(int j) onSeekBackIncrementChanged,
+    this.onSeekBackIncrementChanged$async = false,
+    required void Function(int j) onSeekForwardIncrementChanged,
+    this.onSeekForwardIncrementChanged$async = false,
+    required void Function(int j) onMaxSeekToPreviousPositionChanged,
+    this.onMaxSeekToPreviousPositionChanged$async = false,
+    required void Function(int i) onAudioSessionIdChanged,
+    this.onAudioSessionIdChanged$async = false,
+    required void Function(AudioAttributes audioAttributes)
+        onAudioAttributesChanged,
+    this.onAudioAttributesChanged$async = false,
+    required void Function(double f) onVolumeChanged,
+    this.onVolumeChanged$async = false,
+    required void Function(bool z) onSkipSilenceEnabledChanged,
+    this.onSkipSilenceEnabledChanged$async = false,
+    required void Function(_$jni.JObject deviceInfo) onDeviceInfoChanged,
+    this.onDeviceInfoChanged$async = false,
+    required void Function(int i, bool z) onDeviceVolumeChanged,
+    this.onDeviceVolumeChanged$async = false,
+    required void Function(_$jni.JObject videoSize) onVideoSizeChanged,
+    this.onVideoSizeChanged$async = false,
+    required void Function(int i, int i1) onSurfaceSizeChanged,
+    this.onSurfaceSizeChanged$async = false,
+    required void Function() onRenderedFirstFrame,
+    this.onRenderedFirstFrame$async = false,
+    required void Function(_$jni.JList<_$jni.JObject> list) onCues,
+    this.onCues$async = false,
+    required void Function(_$jni.JObject cueGroup) onCues$1,
+    this.onCues$1$async = false,
+    required void Function(_$jni.JObject metadata) onMetadata,
+    this.onMetadata$async = false,
+  })  : _onEvents = onEvents,
+        _onTimelineChanged = onTimelineChanged,
+        _onMediaItemTransition = onMediaItemTransition,
+        _onTracksChanged = onTracksChanged,
+        _onMediaMetadataChanged = onMediaMetadataChanged,
+        _onPlaylistMetadataChanged = onPlaylistMetadataChanged,
+        _onIsLoadingChanged = onIsLoadingChanged,
+        _onLoadingChanged = onLoadingChanged,
+        _onAvailableCommandsChanged = onAvailableCommandsChanged,
+        _onTrackSelectionParametersChanged = onTrackSelectionParametersChanged,
+        _onPlayerStateChanged = onPlayerStateChanged,
+        _onPlaybackStateChanged = onPlaybackStateChanged,
+        _onPlayWhenReadyChanged = onPlayWhenReadyChanged,
+        _onPlaybackSuppressionReasonChanged =
+            onPlaybackSuppressionReasonChanged,
+        _onIsPlayingChanged = onIsPlayingChanged,
+        _onRepeatModeChanged = onRepeatModeChanged,
+        _onShuffleModeEnabledChanged = onShuffleModeEnabledChanged,
+        _onPlayerError = onPlayerError,
+        _onPlayerErrorChanged = onPlayerErrorChanged,
+        _onPositionDiscontinuity = onPositionDiscontinuity,
+        _onPositionDiscontinuity$1 = onPositionDiscontinuity$1,
+        _onPlaybackParametersChanged = onPlaybackParametersChanged,
+        _onSeekBackIncrementChanged = onSeekBackIncrementChanged,
+        _onSeekForwardIncrementChanged = onSeekForwardIncrementChanged,
+        _onMaxSeekToPreviousPositionChanged =
+            onMaxSeekToPreviousPositionChanged,
+        _onAudioSessionIdChanged = onAudioSessionIdChanged,
+        _onAudioAttributesChanged = onAudioAttributesChanged,
+        _onVolumeChanged = onVolumeChanged,
+        _onSkipSilenceEnabledChanged = onSkipSilenceEnabledChanged,
+        _onDeviceInfoChanged = onDeviceInfoChanged,
+        _onDeviceVolumeChanged = onDeviceVolumeChanged,
+        _onVideoSizeChanged = onVideoSizeChanged,
+        _onSurfaceSizeChanged = onSurfaceSizeChanged,
+        _onRenderedFirstFrame = onRenderedFirstFrame,
+        _onCues = onCues,
+        _onCues$1 = onCues$1,
+        _onMetadata = onMetadata;
+
+  final void Function(Player player, Player_Events events) _onEvents;
+  final bool onEvents$async;
+  final void Function(_$jni.JObject timeline, int i) _onTimelineChanged;
+  final bool onTimelineChanged$async;
+  final void Function(MediaItem mediaItem, int i) _onMediaItemTransition;
+  final bool onMediaItemTransition$async;
+  final void Function(_$jni.JObject tracks) _onTracksChanged;
+  final bool onTracksChanged$async;
+  final void Function(_$jni.JObject mediaMetadata) _onMediaMetadataChanged;
+  final bool onMediaMetadataChanged$async;
+  final void Function(_$jni.JObject mediaMetadata) _onPlaylistMetadataChanged;
+  final bool onPlaylistMetadataChanged$async;
+  final void Function(bool z) _onIsLoadingChanged;
+  final bool onIsLoadingChanged$async;
+  final void Function(bool z) _onLoadingChanged;
+  final bool onLoadingChanged$async;
+  final void Function(Player_Commands commands) _onAvailableCommandsChanged;
+  final bool onAvailableCommandsChanged$async;
+  final void Function(_$jni.JObject trackSelectionParameters)
+      _onTrackSelectionParametersChanged;
+  final bool onTrackSelectionParametersChanged$async;
+  final void Function(bool z, int i) _onPlayerStateChanged;
+  final bool onPlayerStateChanged$async;
+  final void Function(int i) _onPlaybackStateChanged;
+  final bool onPlaybackStateChanged$async;
+  final void Function(bool z, int i) _onPlayWhenReadyChanged;
+  final bool onPlayWhenReadyChanged$async;
+  final void Function(int i) _onPlaybackSuppressionReasonChanged;
+  final bool onPlaybackSuppressionReasonChanged$async;
+  final void Function(bool z) _onIsPlayingChanged;
+  final bool onIsPlayingChanged$async;
+  final void Function(int i) _onRepeatModeChanged;
+  final bool onRepeatModeChanged$async;
+  final void Function(bool z) _onShuffleModeEnabledChanged;
+  final bool onShuffleModeEnabledChanged$async;
+  final void Function(_$jni.JObject playbackException) _onPlayerError;
+  final bool onPlayerError$async;
+  final void Function(_$jni.JObject playbackException) _onPlayerErrorChanged;
+  final bool onPlayerErrorChanged$async;
+  final void Function(int i) _onPositionDiscontinuity;
+  final bool onPositionDiscontinuity$async;
+  final void Function(Player_PositionInfo positionInfo,
+      Player_PositionInfo positionInfo1, int i) _onPositionDiscontinuity$1;
+  final bool onPositionDiscontinuity$1$async;
+  final void Function(PlaybackParameters playbackParameters)
+      _onPlaybackParametersChanged;
+  final bool onPlaybackParametersChanged$async;
+  final void Function(int j) _onSeekBackIncrementChanged;
+  final bool onSeekBackIncrementChanged$async;
+  final void Function(int j) _onSeekForwardIncrementChanged;
+  final bool onSeekForwardIncrementChanged$async;
+  final void Function(int j) _onMaxSeekToPreviousPositionChanged;
+  final bool onMaxSeekToPreviousPositionChanged$async;
+  final void Function(int i) _onAudioSessionIdChanged;
+  final bool onAudioSessionIdChanged$async;
+  final void Function(AudioAttributes audioAttributes)
+      _onAudioAttributesChanged;
+  final bool onAudioAttributesChanged$async;
+  final void Function(double f) _onVolumeChanged;
+  final bool onVolumeChanged$async;
+  final void Function(bool z) _onSkipSilenceEnabledChanged;
+  final bool onSkipSilenceEnabledChanged$async;
+  final void Function(_$jni.JObject deviceInfo) _onDeviceInfoChanged;
+  final bool onDeviceInfoChanged$async;
+  final void Function(int i, bool z) _onDeviceVolumeChanged;
+  final bool onDeviceVolumeChanged$async;
+  final void Function(_$jni.JObject videoSize) _onVideoSizeChanged;
+  final bool onVideoSizeChanged$async;
+  final void Function(int i, int i1) _onSurfaceSizeChanged;
+  final bool onSurfaceSizeChanged$async;
+  final void Function() _onRenderedFirstFrame;
+  final bool onRenderedFirstFrame$async;
+  final void Function(_$jni.JList<_$jni.JObject> list) _onCues;
+  final bool onCues$async;
+  final void Function(_$jni.JObject cueGroup) _onCues$1;
+  final bool onCues$1$async;
+  final void Function(_$jni.JObject metadata) _onMetadata;
+  final bool onMetadata$async;
+
+  void onEvents(Player player, Player_Events events) {
+    return _onEvents(player, events);
+  }
+
+  void onTimelineChanged(_$jni.JObject timeline, int i) {
+    return _onTimelineChanged(timeline, i);
+  }
+
+  void onMediaItemTransition(MediaItem mediaItem, int i) {
+    return _onMediaItemTransition(mediaItem, i);
+  }
+
+  void onTracksChanged(_$jni.JObject tracks) {
+    return _onTracksChanged(tracks);
+  }
+
+  void onMediaMetadataChanged(_$jni.JObject mediaMetadata) {
+    return _onMediaMetadataChanged(mediaMetadata);
+  }
+
+  void onPlaylistMetadataChanged(_$jni.JObject mediaMetadata) {
+    return _onPlaylistMetadataChanged(mediaMetadata);
+  }
+
+  void onIsLoadingChanged(bool z) {
+    return _onIsLoadingChanged(z);
+  }
+
+  void onLoadingChanged(bool z) {
+    return _onLoadingChanged(z);
+  }
+
+  void onAvailableCommandsChanged(Player_Commands commands) {
+    return _onAvailableCommandsChanged(commands);
+  }
+
+  void onTrackSelectionParametersChanged(
+      _$jni.JObject trackSelectionParameters) {
+    return _onTrackSelectionParametersChanged(trackSelectionParameters);
+  }
+
+  void onPlayerStateChanged(bool z, int i) {
+    return _onPlayerStateChanged(z, i);
+  }
+
+  void onPlaybackStateChanged(int i) {
+    return _onPlaybackStateChanged(i);
+  }
+
+  void onPlayWhenReadyChanged(bool z, int i) {
+    return _onPlayWhenReadyChanged(z, i);
+  }
+
+  void onPlaybackSuppressionReasonChanged(int i) {
+    return _onPlaybackSuppressionReasonChanged(i);
+  }
+
+  void onIsPlayingChanged(bool z) {
+    return _onIsPlayingChanged(z);
+  }
+
+  void onRepeatModeChanged(int i) {
+    return _onRepeatModeChanged(i);
+  }
+
+  void onShuffleModeEnabledChanged(bool z) {
+    return _onShuffleModeEnabledChanged(z);
+  }
+
+  void onPlayerError(_$jni.JObject playbackException) {
+    return _onPlayerError(playbackException);
+  }
+
+  void onPlayerErrorChanged(_$jni.JObject playbackException) {
+    return _onPlayerErrorChanged(playbackException);
+  }
+
+  void onPositionDiscontinuity(int i) {
+    return _onPositionDiscontinuity(i);
+  }
+
+  void onPositionDiscontinuity$1(Player_PositionInfo positionInfo,
+      Player_PositionInfo positionInfo1, int i) {
+    return _onPositionDiscontinuity$1(positionInfo, positionInfo1, i);
+  }
+
+  void onPlaybackParametersChanged(PlaybackParameters playbackParameters) {
+    return _onPlaybackParametersChanged(playbackParameters);
+  }
+
+  void onSeekBackIncrementChanged(int j) {
+    return _onSeekBackIncrementChanged(j);
+  }
+
+  void onSeekForwardIncrementChanged(int j) {
+    return _onSeekForwardIncrementChanged(j);
+  }
+
+  void onMaxSeekToPreviousPositionChanged(int j) {
+    return _onMaxSeekToPreviousPositionChanged(j);
+  }
+
+  void onAudioSessionIdChanged(int i) {
+    return _onAudioSessionIdChanged(i);
+  }
+
+  void onAudioAttributesChanged(AudioAttributes audioAttributes) {
+    return _onAudioAttributesChanged(audioAttributes);
+  }
+
+  void onVolumeChanged(double f) {
+    return _onVolumeChanged(f);
+  }
+
+  void onSkipSilenceEnabledChanged(bool z) {
+    return _onSkipSilenceEnabledChanged(z);
+  }
+
+  void onDeviceInfoChanged(_$jni.JObject deviceInfo) {
+    return _onDeviceInfoChanged(deviceInfo);
+  }
+
+  void onDeviceVolumeChanged(int i, bool z) {
+    return _onDeviceVolumeChanged(i, z);
+  }
+
+  void onVideoSizeChanged(_$jni.JObject videoSize) {
+    return _onVideoSizeChanged(videoSize);
+  }
+
+  void onSurfaceSizeChanged(int i, int i1) {
+    return _onSurfaceSizeChanged(i, i1);
+  }
+
+  void onRenderedFirstFrame() {
+    return _onRenderedFirstFrame();
+  }
+
+  void onCues(_$jni.JList<_$jni.JObject> list) {
+    return _onCues(list);
+  }
+
+  void onCues$1(_$jni.JObject cueGroup) {
+    return _onCues$1(cueGroup);
+  }
+
+  void onMetadata(_$jni.JObject metadata) {
+    return _onMetadata(metadata);
+  }
+}
+
+final class $Player_Listener$Type extends _$jni.JObjType<Player_Listener> {
+  @_$jni.internal
+  const $Player_Listener$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature => r'Landroidx/media3/common/Player$Listener;';
+
+  @_$jni.internal
+  @_$core.override
+  Player_Listener fromReference(_$jni.JReference reference) =>
+      Player_Listener.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($Player_Listener$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($Player_Listener$Type) &&
+        other is $Player_Listener$Type;
+  }
+}
+
+/// from: `androidx.media3.common.Player$MediaItemTransitionReason`
+class Player_MediaItemTransitionReason extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<Player_MediaItemTransitionReason> $type;
+
+  @_$jni.internal
+  Player_MediaItemTransitionReason.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'androidx/media3/common/Player$MediaItemTransitionReason');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $Player_MediaItemTransitionReason$Type();
+
+  /// Maps a specific port to the implemented interface.
+  static final _$core.Map<int, $Player_MediaItemTransitionReason> _$impls = {};
+  static _$jni.JObjectPtr _$invoke(
+    int port,
+    _$jni.JObjectPtr descriptor,
+    _$jni.JObjectPtr args,
+  ) {
+    return _$invokeMethod(
+      port,
+      _$jni.MethodInvocation.fromAddresses(
+        0,
+        descriptor.address,
+        args.address,
+      ),
+    );
+  }
+
+  static final _$jni.Pointer<
+          _$jni.NativeFunction<
+              _$jni.JObjectPtr Function(
+                  _$jni.Int64, _$jni.JObjectPtr, _$jni.JObjectPtr)>>
+      _$invokePointer = _$jni.Pointer.fromFunction(_$invoke);
+
+  static _$jni.Pointer<_$jni.Void> _$invokeMethod(
+    int $p,
+    _$jni.MethodInvocation $i,
+  ) {
+    try {
+      final $d = $i.methodDescriptor.toDartString(releaseOriginal: true);
+      final $a = $i.args;
+    } catch (e) {
+      return _$jni.ProtectedJniExtensions.newDartException(e);
+    }
+    return _$jni.nullptr;
+  }
+
+  static void implementIn(
+    _$jni.JImplementer implementer,
+    $Player_MediaItemTransitionReason $impl,
+  ) {
+    late final _$jni.RawReceivePort $p;
+    $p = _$jni.RawReceivePort(($m) {
+      if ($m == null) {
+        _$impls.remove($p.sendPort.nativePort);
+        $p.close();
+        return;
+      }
+      final $i = _$jni.MethodInvocation.fromMessage($m);
+      final $r = _$invokeMethod($p.sendPort.nativePort, $i);
+      _$jni.ProtectedJniExtensions.returnResult($i.result, $r);
+    });
+    implementer.add(
+      r'androidx.media3.common.Player$MediaItemTransitionReason',
+      $p,
+      _$invokePointer,
+      [],
+    );
+    final $a = $p.sendPort.nativePort;
+    _$impls[$a] = $impl;
+  }
+
+  factory Player_MediaItemTransitionReason.implement(
+    $Player_MediaItemTransitionReason $impl,
+  ) {
+    final $i = _$jni.JImplementer();
+    implementIn($i, $impl);
+    return Player_MediaItemTransitionReason.fromReference(
+      $i.implementReference(),
+    );
+  }
+}
+
+abstract base mixin class $Player_MediaItemTransitionReason {
+  factory $Player_MediaItemTransitionReason() =
+      _$Player_MediaItemTransitionReason;
+}
+
+final class _$Player_MediaItemTransitionReason
+    with $Player_MediaItemTransitionReason {
+  _$Player_MediaItemTransitionReason();
+}
+
+final class $Player_MediaItemTransitionReason$Type
+    extends _$jni.JObjType<Player_MediaItemTransitionReason> {
+  @_$jni.internal
+  const $Player_MediaItemTransitionReason$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Landroidx/media3/common/Player$MediaItemTransitionReason;';
+
+  @_$jni.internal
+  @_$core.override
+  Player_MediaItemTransitionReason fromReference(_$jni.JReference reference) =>
+      Player_MediaItemTransitionReason.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($Player_MediaItemTransitionReason$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($Player_MediaItemTransitionReason$Type) &&
+        other is $Player_MediaItemTransitionReason$Type;
+  }
+}
+
+/// from: `androidx.media3.common.Player$PlayWhenReadyChangeReason`
+class Player_PlayWhenReadyChangeReason extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<Player_PlayWhenReadyChangeReason> $type;
+
+  @_$jni.internal
+  Player_PlayWhenReadyChangeReason.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'androidx/media3/common/Player$PlayWhenReadyChangeReason');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $Player_PlayWhenReadyChangeReason$Type();
+
+  /// Maps a specific port to the implemented interface.
+  static final _$core.Map<int, $Player_PlayWhenReadyChangeReason> _$impls = {};
+  static _$jni.JObjectPtr _$invoke(
+    int port,
+    _$jni.JObjectPtr descriptor,
+    _$jni.JObjectPtr args,
+  ) {
+    return _$invokeMethod(
+      port,
+      _$jni.MethodInvocation.fromAddresses(
+        0,
+        descriptor.address,
+        args.address,
+      ),
+    );
+  }
+
+  static final _$jni.Pointer<
+          _$jni.NativeFunction<
+              _$jni.JObjectPtr Function(
+                  _$jni.Int64, _$jni.JObjectPtr, _$jni.JObjectPtr)>>
+      _$invokePointer = _$jni.Pointer.fromFunction(_$invoke);
+
+  static _$jni.Pointer<_$jni.Void> _$invokeMethod(
+    int $p,
+    _$jni.MethodInvocation $i,
+  ) {
+    try {
+      final $d = $i.methodDescriptor.toDartString(releaseOriginal: true);
+      final $a = $i.args;
+    } catch (e) {
+      return _$jni.ProtectedJniExtensions.newDartException(e);
+    }
+    return _$jni.nullptr;
+  }
+
+  static void implementIn(
+    _$jni.JImplementer implementer,
+    $Player_PlayWhenReadyChangeReason $impl,
+  ) {
+    late final _$jni.RawReceivePort $p;
+    $p = _$jni.RawReceivePort(($m) {
+      if ($m == null) {
+        _$impls.remove($p.sendPort.nativePort);
+        $p.close();
+        return;
+      }
+      final $i = _$jni.MethodInvocation.fromMessage($m);
+      final $r = _$invokeMethod($p.sendPort.nativePort, $i);
+      _$jni.ProtectedJniExtensions.returnResult($i.result, $r);
+    });
+    implementer.add(
+      r'androidx.media3.common.Player$PlayWhenReadyChangeReason',
+      $p,
+      _$invokePointer,
+      [],
+    );
+    final $a = $p.sendPort.nativePort;
+    _$impls[$a] = $impl;
+  }
+
+  factory Player_PlayWhenReadyChangeReason.implement(
+    $Player_PlayWhenReadyChangeReason $impl,
+  ) {
+    final $i = _$jni.JImplementer();
+    implementIn($i, $impl);
+    return Player_PlayWhenReadyChangeReason.fromReference(
+      $i.implementReference(),
+    );
+  }
+}
+
+abstract base mixin class $Player_PlayWhenReadyChangeReason {
+  factory $Player_PlayWhenReadyChangeReason() =
+      _$Player_PlayWhenReadyChangeReason;
+}
+
+final class _$Player_PlayWhenReadyChangeReason
+    with $Player_PlayWhenReadyChangeReason {
+  _$Player_PlayWhenReadyChangeReason();
+}
+
+final class $Player_PlayWhenReadyChangeReason$Type
+    extends _$jni.JObjType<Player_PlayWhenReadyChangeReason> {
+  @_$jni.internal
+  const $Player_PlayWhenReadyChangeReason$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Landroidx/media3/common/Player$PlayWhenReadyChangeReason;';
+
+  @_$jni.internal
+  @_$core.override
+  Player_PlayWhenReadyChangeReason fromReference(_$jni.JReference reference) =>
+      Player_PlayWhenReadyChangeReason.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($Player_PlayWhenReadyChangeReason$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($Player_PlayWhenReadyChangeReason$Type) &&
+        other is $Player_PlayWhenReadyChangeReason$Type;
+  }
+}
+
+/// from: `androidx.media3.common.Player$PlaybackSuppressionReason`
+class Player_PlaybackSuppressionReason extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<Player_PlaybackSuppressionReason> $type;
+
+  @_$jni.internal
+  Player_PlaybackSuppressionReason.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'androidx/media3/common/Player$PlaybackSuppressionReason');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $Player_PlaybackSuppressionReason$Type();
+
+  /// Maps a specific port to the implemented interface.
+  static final _$core.Map<int, $Player_PlaybackSuppressionReason> _$impls = {};
+  static _$jni.JObjectPtr _$invoke(
+    int port,
+    _$jni.JObjectPtr descriptor,
+    _$jni.JObjectPtr args,
+  ) {
+    return _$invokeMethod(
+      port,
+      _$jni.MethodInvocation.fromAddresses(
+        0,
+        descriptor.address,
+        args.address,
+      ),
+    );
+  }
+
+  static final _$jni.Pointer<
+          _$jni.NativeFunction<
+              _$jni.JObjectPtr Function(
+                  _$jni.Int64, _$jni.JObjectPtr, _$jni.JObjectPtr)>>
+      _$invokePointer = _$jni.Pointer.fromFunction(_$invoke);
+
+  static _$jni.Pointer<_$jni.Void> _$invokeMethod(
+    int $p,
+    _$jni.MethodInvocation $i,
+  ) {
+    try {
+      final $d = $i.methodDescriptor.toDartString(releaseOriginal: true);
+      final $a = $i.args;
+    } catch (e) {
+      return _$jni.ProtectedJniExtensions.newDartException(e);
+    }
+    return _$jni.nullptr;
+  }
+
+  static void implementIn(
+    _$jni.JImplementer implementer,
+    $Player_PlaybackSuppressionReason $impl,
+  ) {
+    late final _$jni.RawReceivePort $p;
+    $p = _$jni.RawReceivePort(($m) {
+      if ($m == null) {
+        _$impls.remove($p.sendPort.nativePort);
+        $p.close();
+        return;
+      }
+      final $i = _$jni.MethodInvocation.fromMessage($m);
+      final $r = _$invokeMethod($p.sendPort.nativePort, $i);
+      _$jni.ProtectedJniExtensions.returnResult($i.result, $r);
+    });
+    implementer.add(
+      r'androidx.media3.common.Player$PlaybackSuppressionReason',
+      $p,
+      _$invokePointer,
+      [],
+    );
+    final $a = $p.sendPort.nativePort;
+    _$impls[$a] = $impl;
+  }
+
+  factory Player_PlaybackSuppressionReason.implement(
+    $Player_PlaybackSuppressionReason $impl,
+  ) {
+    final $i = _$jni.JImplementer();
+    implementIn($i, $impl);
+    return Player_PlaybackSuppressionReason.fromReference(
+      $i.implementReference(),
+    );
+  }
+}
+
+abstract base mixin class $Player_PlaybackSuppressionReason {
+  factory $Player_PlaybackSuppressionReason() =
+      _$Player_PlaybackSuppressionReason;
+}
+
+final class _$Player_PlaybackSuppressionReason
+    with $Player_PlaybackSuppressionReason {
+  _$Player_PlaybackSuppressionReason();
+}
+
+final class $Player_PlaybackSuppressionReason$Type
+    extends _$jni.JObjType<Player_PlaybackSuppressionReason> {
+  @_$jni.internal
+  const $Player_PlaybackSuppressionReason$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Landroidx/media3/common/Player$PlaybackSuppressionReason;';
+
+  @_$jni.internal
+  @_$core.override
+  Player_PlaybackSuppressionReason fromReference(_$jni.JReference reference) =>
+      Player_PlaybackSuppressionReason.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($Player_PlaybackSuppressionReason$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($Player_PlaybackSuppressionReason$Type) &&
+        other is $Player_PlaybackSuppressionReason$Type;
+  }
+}
+
+/// from: `androidx.media3.common.Player$PositionInfo`
+class Player_PositionInfo extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<Player_PositionInfo> $type;
+
+  @_$jni.internal
+  Player_PositionInfo.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class =
+      _$jni.JClass.forName(r'androidx/media3/common/Player$PositionInfo');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $Player_PositionInfo$Type();
+  static final _id_windowUid = _class.instanceFieldId(
+    r'windowUid',
+    r'Ljava/lang/Object;',
+  );
+
+  /// from: `public final java.lang.Object windowUid`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject get windowUid =>
+      _id_windowUid.get(this, const _$jni.JObjectType());
+
+  static final _id_windowIndex = _class.instanceFieldId(
+    r'windowIndex',
+    r'I',
+  );
+
+  /// from: `public final int windowIndex`
+  int get windowIndex => _id_windowIndex.get(this, const _$jni.jintType());
+
+  static final _id_mediaItemIndex = _class.instanceFieldId(
+    r'mediaItemIndex',
+    r'I',
+  );
+
+  /// from: `public final int mediaItemIndex`
+  int get mediaItemIndex =>
+      _id_mediaItemIndex.get(this, const _$jni.jintType());
+
+  static final _id_mediaItem = _class.instanceFieldId(
+    r'mediaItem',
+    r'Landroidx/media3/common/MediaItem;',
+  );
+
+  /// from: `public final androidx.media3.common.MediaItem mediaItem`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem get mediaItem => _id_mediaItem.get(this, const $MediaItem$Type());
+
+  static final _id_periodUid = _class.instanceFieldId(
+    r'periodUid',
+    r'Ljava/lang/Object;',
+  );
+
+  /// from: `public final java.lang.Object periodUid`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject get periodUid =>
+      _id_periodUid.get(this, const _$jni.JObjectType());
+
+  static final _id_periodIndex = _class.instanceFieldId(
+    r'periodIndex',
+    r'I',
+  );
+
+  /// from: `public final int periodIndex`
+  int get periodIndex => _id_periodIndex.get(this, const _$jni.jintType());
+
+  static final _id_positionMs = _class.instanceFieldId(
+    r'positionMs',
+    r'J',
+  );
+
+  /// from: `public final long positionMs`
+  int get positionMs => _id_positionMs.get(this, const _$jni.jlongType());
+
+  static final _id_contentPositionMs = _class.instanceFieldId(
+    r'contentPositionMs',
+    r'J',
+  );
+
+  /// from: `public final long contentPositionMs`
+  int get contentPositionMs =>
+      _id_contentPositionMs.get(this, const _$jni.jlongType());
+
+  static final _id_adGroupIndex = _class.instanceFieldId(
+    r'adGroupIndex',
+    r'I',
+  );
+
+  /// from: `public final int adGroupIndex`
+  int get adGroupIndex => _id_adGroupIndex.get(this, const _$jni.jintType());
+
+  static final _id_adIndexInAdGroup = _class.instanceFieldId(
+    r'adIndexInAdGroup',
+    r'I',
+  );
+
+  /// from: `public final int adIndexInAdGroup`
+  int get adIndexInAdGroup =>
+      _id_adIndexInAdGroup.get(this, const _$jni.jintType());
+
+  static final _id_new$ = _class.constructorId(
+    r'(Ljava/lang/Object;ILjava/lang/Object;IJJII)V',
+  );
+
+  static final _new$ = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<
+                      (
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Int32,
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Int32,
+                        _$jni.Int64,
+                        _$jni.Int64,
+                        _$jni.Int32,
+                        _$jni.Int32
+                      )>)>>('globalEnv_NewObject')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr,
+              _$jni.Pointer<_$jni.Void>,
+              int,
+              _$jni.Pointer<_$jni.Void>,
+              int,
+              int,
+              int,
+              int,
+              int)>();
+
+  /// from: `public void <init>(java.lang.Object object, int i, java.lang.Object object1, int i1, long j, long j1, int i2, int i3)`
+  /// The returned object must be released after use, by calling the [release] method.
+  factory Player_PositionInfo(
+    _$jni.JObject object,
+    int i,
+    _$jni.JObject object1,
+    int i1,
+    int j,
+    int j1,
+    int i2,
+    int i3,
+  ) {
+    return Player_PositionInfo.fromReference(_new$(
+            _class.reference.pointer,
+            _id_new$ as _$jni.JMethodIDPtr,
+            object.reference.pointer,
+            i,
+            object1.reference.pointer,
+            i1,
+            j,
+            j1,
+            i2,
+            i3)
+        .reference);
+  }
+
+  static final _id_new$1 = _class.constructorId(
+    r'(Ljava/lang/Object;ILandroidx/media3/common/MediaItem;Ljava/lang/Object;IJJII)V',
+  );
+
+  static final _new$1 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<
+                      (
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Int32,
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Int32,
+                        _$jni.Int64,
+                        _$jni.Int64,
+                        _$jni.Int32,
+                        _$jni.Int32
+                      )>)>>('globalEnv_NewObject')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr,
+              _$jni.Pointer<_$jni.Void>,
+              int,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>,
+              int,
+              int,
+              int,
+              int,
+              int)>();
+
+  /// from: `public void <init>(java.lang.Object object, int i, androidx.media3.common.MediaItem mediaItem, java.lang.Object object1, int i1, long j, long j1, int i2, int i3)`
+  /// The returned object must be released after use, by calling the [release] method.
+  factory Player_PositionInfo.new$1(
+    _$jni.JObject object,
+    int i,
+    MediaItem mediaItem,
+    _$jni.JObject object1,
+    int i1,
+    int j,
+    int j1,
+    int i2,
+    int i3,
+  ) {
+    return Player_PositionInfo.fromReference(_new$1(
+            _class.reference.pointer,
+            _id_new$1 as _$jni.JMethodIDPtr,
+            object.reference.pointer,
+            i,
+            mediaItem.reference.pointer,
+            object1.reference.pointer,
+            i1,
+            j,
+            j1,
+            i2,
+            i3)
+        .reference);
+  }
+
+  static final _id_equals = _class.instanceMethodId(
+    r'equals',
+    r'(Ljava/lang/Object;)Z',
+  );
+
+  static final _equals = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public boolean equals(java.lang.Object object)`
+  bool equals(
+    _$jni.JObject object,
+  ) {
+    return _equals(reference.pointer, _id_equals as _$jni.JMethodIDPtr,
+            object.reference.pointer)
+        .boolean;
+  }
+
+  static final _id_hashCode$1 = _class.instanceMethodId(
+    r'hashCode',
+    r'()I',
+  );
+
+  static final _hashCode$1 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public int hashCode()`
+  int hashCode$1() {
+    return _hashCode$1(reference.pointer, _id_hashCode$1 as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_equalsForBundling = _class.instanceMethodId(
+    r'equalsForBundling',
+    r'(Landroidx/media3/common/Player$PositionInfo;)Z',
+  );
+
+  static final _equalsForBundling = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public boolean equalsForBundling(androidx.media3.common.Player$PositionInfo positionInfo)`
+  bool equalsForBundling(
+    Player_PositionInfo positionInfo,
+  ) {
+    return _equalsForBundling(
+            reference.pointer,
+            _id_equalsForBundling as _$jni.JMethodIDPtr,
+            positionInfo.reference.pointer)
+        .boolean;
+  }
+
+  static final _id_filterByAvailableCommands = _class.instanceMethodId(
+    r'filterByAvailableCommands',
+    r'(ZZ)Landroidx/media3/common/Player$PositionInfo;',
+  );
+
+  static final _filterByAvailableCommands = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Int32, _$jni.Int32)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int, int)>();
+
+  /// from: `public androidx.media3.common.Player$PositionInfo filterByAvailableCommands(boolean z, boolean z1)`
+  /// The returned object must be released after use, by calling the [release] method.
+  Player_PositionInfo filterByAvailableCommands(
+    bool z,
+    bool z1,
+  ) {
+    return _filterByAvailableCommands(
+            reference.pointer,
+            _id_filterByAvailableCommands as _$jni.JMethodIDPtr,
+            z ? 1 : 0,
+            z1 ? 1 : 0)
+        .object(const $Player_PositionInfo$Type());
+  }
+
+  static final _id_toBundle = _class.instanceMethodId(
+    r'toBundle',
+    r'(I)Landroid/os/Bundle;',
+  );
+
+  static final _toBundle = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public android.os.Bundle toBundle(int i)`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject toBundle(
+    int i,
+  ) {
+    return _toBundle(reference.pointer, _id_toBundle as _$jni.JMethodIDPtr, i)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_toBundle$1 = _class.instanceMethodId(
+    r'toBundle',
+    r'()Landroid/os/Bundle;',
+  );
+
+  static final _toBundle$1 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public android.os.Bundle toBundle()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject toBundle$1() {
+    return _toBundle$1(reference.pointer, _id_toBundle$1 as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_fromBundle = _class.staticMethodId(
+    r'fromBundle',
+    r'(Landroid/os/Bundle;)Landroidx/media3/common/Player$PositionInfo;',
+  );
+
+  static final _fromBundle = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallStaticObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `static public androidx.media3.common.Player$PositionInfo fromBundle(android.os.Bundle bundle)`
+  /// The returned object must be released after use, by calling the [release] method.
+  static Player_PositionInfo fromBundle(
+    _$jni.JObject bundle,
+  ) {
+    return _fromBundle(_class.reference.pointer,
+            _id_fromBundle as _$jni.JMethodIDPtr, bundle.reference.pointer)
+        .object(const $Player_PositionInfo$Type());
+  }
+}
+
+final class $Player_PositionInfo$Type
+    extends _$jni.JObjType<Player_PositionInfo> {
+  @_$jni.internal
+  const $Player_PositionInfo$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature => r'Landroidx/media3/common/Player$PositionInfo;';
+
+  @_$jni.internal
+  @_$core.override
+  Player_PositionInfo fromReference(_$jni.JReference reference) =>
+      Player_PositionInfo.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($Player_PositionInfo$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($Player_PositionInfo$Type) &&
+        other is $Player_PositionInfo$Type;
+  }
+}
+
+/// from: `androidx.media3.common.Player$RepeatMode`
+class Player_RepeatMode extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<Player_RepeatMode> $type;
+
+  @_$jni.internal
+  Player_RepeatMode.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class =
+      _$jni.JClass.forName(r'androidx/media3/common/Player$RepeatMode');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $Player_RepeatMode$Type();
+
+  /// Maps a specific port to the implemented interface.
+  static final _$core.Map<int, $Player_RepeatMode> _$impls = {};
+  static _$jni.JObjectPtr _$invoke(
+    int port,
+    _$jni.JObjectPtr descriptor,
+    _$jni.JObjectPtr args,
+  ) {
+    return _$invokeMethod(
+      port,
+      _$jni.MethodInvocation.fromAddresses(
+        0,
+        descriptor.address,
+        args.address,
+      ),
+    );
+  }
+
+  static final _$jni.Pointer<
+          _$jni.NativeFunction<
+              _$jni.JObjectPtr Function(
+                  _$jni.Int64, _$jni.JObjectPtr, _$jni.JObjectPtr)>>
+      _$invokePointer = _$jni.Pointer.fromFunction(_$invoke);
+
+  static _$jni.Pointer<_$jni.Void> _$invokeMethod(
+    int $p,
+    _$jni.MethodInvocation $i,
+  ) {
+    try {
+      final $d = $i.methodDescriptor.toDartString(releaseOriginal: true);
+      final $a = $i.args;
+    } catch (e) {
+      return _$jni.ProtectedJniExtensions.newDartException(e);
+    }
+    return _$jni.nullptr;
+  }
+
+  static void implementIn(
+    _$jni.JImplementer implementer,
+    $Player_RepeatMode $impl,
+  ) {
+    late final _$jni.RawReceivePort $p;
+    $p = _$jni.RawReceivePort(($m) {
+      if ($m == null) {
+        _$impls.remove($p.sendPort.nativePort);
+        $p.close();
+        return;
+      }
+      final $i = _$jni.MethodInvocation.fromMessage($m);
+      final $r = _$invokeMethod($p.sendPort.nativePort, $i);
+      _$jni.ProtectedJniExtensions.returnResult($i.result, $r);
+    });
+    implementer.add(
+      r'androidx.media3.common.Player$RepeatMode',
+      $p,
+      _$invokePointer,
+      [],
+    );
+    final $a = $p.sendPort.nativePort;
+    _$impls[$a] = $impl;
+  }
+
+  factory Player_RepeatMode.implement(
+    $Player_RepeatMode $impl,
+  ) {
+    final $i = _$jni.JImplementer();
+    implementIn($i, $impl);
+    return Player_RepeatMode.fromReference(
+      $i.implementReference(),
+    );
+  }
+}
+
+abstract base mixin class $Player_RepeatMode {
+  factory $Player_RepeatMode() = _$Player_RepeatMode;
+}
+
+final class _$Player_RepeatMode with $Player_RepeatMode {
+  _$Player_RepeatMode();
+}
+
+final class $Player_RepeatMode$Type extends _$jni.JObjType<Player_RepeatMode> {
+  @_$jni.internal
+  const $Player_RepeatMode$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature => r'Landroidx/media3/common/Player$RepeatMode;';
+
+  @_$jni.internal
+  @_$core.override
+  Player_RepeatMode fromReference(_$jni.JReference reference) =>
+      Player_RepeatMode.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($Player_RepeatMode$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($Player_RepeatMode$Type) &&
+        other is $Player_RepeatMode$Type;
+  }
+}
+
+/// from: `androidx.media3.common.Player$State`
+class Player_State extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<Player_State> $type;
+
+  @_$jni.internal
+  Player_State.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class =
+      _$jni.JClass.forName(r'androidx/media3/common/Player$State');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $Player_State$Type();
+
+  /// Maps a specific port to the implemented interface.
+  static final _$core.Map<int, $Player_State> _$impls = {};
+  static _$jni.JObjectPtr _$invoke(
+    int port,
+    _$jni.JObjectPtr descriptor,
+    _$jni.JObjectPtr args,
+  ) {
+    return _$invokeMethod(
+      port,
+      _$jni.MethodInvocation.fromAddresses(
+        0,
+        descriptor.address,
+        args.address,
+      ),
+    );
+  }
+
+  static final _$jni.Pointer<
+          _$jni.NativeFunction<
+              _$jni.JObjectPtr Function(
+                  _$jni.Int64, _$jni.JObjectPtr, _$jni.JObjectPtr)>>
+      _$invokePointer = _$jni.Pointer.fromFunction(_$invoke);
+
+  static _$jni.Pointer<_$jni.Void> _$invokeMethod(
+    int $p,
+    _$jni.MethodInvocation $i,
+  ) {
+    try {
+      final $d = $i.methodDescriptor.toDartString(releaseOriginal: true);
+      final $a = $i.args;
+    } catch (e) {
+      return _$jni.ProtectedJniExtensions.newDartException(e);
+    }
+    return _$jni.nullptr;
+  }
+
+  static void implementIn(
+    _$jni.JImplementer implementer,
+    $Player_State $impl,
+  ) {
+    late final _$jni.RawReceivePort $p;
+    $p = _$jni.RawReceivePort(($m) {
+      if ($m == null) {
+        _$impls.remove($p.sendPort.nativePort);
+        $p.close();
+        return;
+      }
+      final $i = _$jni.MethodInvocation.fromMessage($m);
+      final $r = _$invokeMethod($p.sendPort.nativePort, $i);
+      _$jni.ProtectedJniExtensions.returnResult($i.result, $r);
+    });
+    implementer.add(
+      r'androidx.media3.common.Player$State',
+      $p,
+      _$invokePointer,
+      [],
+    );
+    final $a = $p.sendPort.nativePort;
+    _$impls[$a] = $impl;
+  }
+
+  factory Player_State.implement(
+    $Player_State $impl,
+  ) {
+    final $i = _$jni.JImplementer();
+    implementIn($i, $impl);
+    return Player_State.fromReference(
+      $i.implementReference(),
+    );
+  }
+}
+
+abstract base mixin class $Player_State {
+  factory $Player_State() = _$Player_State;
+}
+
+final class _$Player_State with $Player_State {
+  _$Player_State();
+}
+
+final class $Player_State$Type extends _$jni.JObjType<Player_State> {
+  @_$jni.internal
+  const $Player_State$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature => r'Landroidx/media3/common/Player$State;';
+
+  @_$jni.internal
+  @_$core.override
+  Player_State fromReference(_$jni.JReference reference) =>
+      Player_State.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($Player_State$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($Player_State$Type) &&
+        other is $Player_State$Type;
+  }
+}
+
+/// from: `androidx.media3.common.Player$TimelineChangeReason`
+class Player_TimelineChangeReason extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<Player_TimelineChangeReason> $type;
+
+  @_$jni.internal
+  Player_TimelineChangeReason.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'androidx/media3/common/Player$TimelineChangeReason');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $Player_TimelineChangeReason$Type();
+
+  /// Maps a specific port to the implemented interface.
+  static final _$core.Map<int, $Player_TimelineChangeReason> _$impls = {};
+  static _$jni.JObjectPtr _$invoke(
+    int port,
+    _$jni.JObjectPtr descriptor,
+    _$jni.JObjectPtr args,
+  ) {
+    return _$invokeMethod(
+      port,
+      _$jni.MethodInvocation.fromAddresses(
+        0,
+        descriptor.address,
+        args.address,
+      ),
+    );
+  }
+
+  static final _$jni.Pointer<
+          _$jni.NativeFunction<
+              _$jni.JObjectPtr Function(
+                  _$jni.Int64, _$jni.JObjectPtr, _$jni.JObjectPtr)>>
+      _$invokePointer = _$jni.Pointer.fromFunction(_$invoke);
+
+  static _$jni.Pointer<_$jni.Void> _$invokeMethod(
+    int $p,
+    _$jni.MethodInvocation $i,
+  ) {
+    try {
+      final $d = $i.methodDescriptor.toDartString(releaseOriginal: true);
+      final $a = $i.args;
+    } catch (e) {
+      return _$jni.ProtectedJniExtensions.newDartException(e);
+    }
+    return _$jni.nullptr;
+  }
+
+  static void implementIn(
+    _$jni.JImplementer implementer,
+    $Player_TimelineChangeReason $impl,
+  ) {
+    late final _$jni.RawReceivePort $p;
+    $p = _$jni.RawReceivePort(($m) {
+      if ($m == null) {
+        _$impls.remove($p.sendPort.nativePort);
+        $p.close();
+        return;
+      }
+      final $i = _$jni.MethodInvocation.fromMessage($m);
+      final $r = _$invokeMethod($p.sendPort.nativePort, $i);
+      _$jni.ProtectedJniExtensions.returnResult($i.result, $r);
+    });
+    implementer.add(
+      r'androidx.media3.common.Player$TimelineChangeReason',
+      $p,
+      _$invokePointer,
+      [],
+    );
+    final $a = $p.sendPort.nativePort;
+    _$impls[$a] = $impl;
+  }
+
+  factory Player_TimelineChangeReason.implement(
+    $Player_TimelineChangeReason $impl,
+  ) {
+    final $i = _$jni.JImplementer();
+    implementIn($i, $impl);
+    return Player_TimelineChangeReason.fromReference(
+      $i.implementReference(),
+    );
+  }
+}
+
+abstract base mixin class $Player_TimelineChangeReason {
+  factory $Player_TimelineChangeReason() = _$Player_TimelineChangeReason;
+}
+
+final class _$Player_TimelineChangeReason with $Player_TimelineChangeReason {
+  _$Player_TimelineChangeReason();
+}
+
+final class $Player_TimelineChangeReason$Type
+    extends _$jni.JObjType<Player_TimelineChangeReason> {
+  @_$jni.internal
+  const $Player_TimelineChangeReason$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Landroidx/media3/common/Player$TimelineChangeReason;';
+
+  @_$jni.internal
+  @_$core.override
+  Player_TimelineChangeReason fromReference(_$jni.JReference reference) =>
+      Player_TimelineChangeReason.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($Player_TimelineChangeReason$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($Player_TimelineChangeReason$Type) &&
+        other is $Player_TimelineChangeReason$Type;
+  }
+}
+
+/// from: `androidx.media3.common.Player`
+class Player extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<Player> $type;
+
+  @_$jni.internal
+  Player.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(r'androidx/media3/common/Player');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $Player$Type();
+
+  /// from: `static public final int STATE_IDLE`
+  static const STATE_IDLE = 1;
+
+  /// from: `static public final int STATE_BUFFERING`
+  static const STATE_BUFFERING = 2;
+
+  /// from: `static public final int STATE_READY`
+  static const STATE_READY = 3;
+
+  /// from: `static public final int STATE_ENDED`
+  static const STATE_ENDED = 4;
+
+  /// from: `static public final int PLAY_WHEN_READY_CHANGE_REASON_USER_REQUEST`
+  static const PLAY_WHEN_READY_CHANGE_REASON_USER_REQUEST = 1;
+
+  /// from: `static public final int PLAY_WHEN_READY_CHANGE_REASON_AUDIO_FOCUS_LOSS`
+  static const PLAY_WHEN_READY_CHANGE_REASON_AUDIO_FOCUS_LOSS = 2;
+
+  /// from: `static public final int PLAY_WHEN_READY_CHANGE_REASON_AUDIO_BECOMING_NOISY`
+  static const PLAY_WHEN_READY_CHANGE_REASON_AUDIO_BECOMING_NOISY = 3;
+
+  /// from: `static public final int PLAY_WHEN_READY_CHANGE_REASON_REMOTE`
+  static const PLAY_WHEN_READY_CHANGE_REASON_REMOTE = 4;
+
+  /// from: `static public final int PLAY_WHEN_READY_CHANGE_REASON_END_OF_MEDIA_ITEM`
+  static const PLAY_WHEN_READY_CHANGE_REASON_END_OF_MEDIA_ITEM = 5;
+
+  /// from: `static public final int PLAY_WHEN_READY_CHANGE_REASON_SUPPRESSED_TOO_LONG`
+  static const PLAY_WHEN_READY_CHANGE_REASON_SUPPRESSED_TOO_LONG = 6;
+
+  /// from: `static public final int PLAYBACK_SUPPRESSION_REASON_NONE`
+  static const PLAYBACK_SUPPRESSION_REASON_NONE = 0;
+
+  /// from: `static public final int PLAYBACK_SUPPRESSION_REASON_TRANSIENT_AUDIO_FOCUS_LOSS`
+  static const PLAYBACK_SUPPRESSION_REASON_TRANSIENT_AUDIO_FOCUS_LOSS = 1;
+
+  /// from: `static public final int PLAYBACK_SUPPRESSION_REASON_UNSUITABLE_AUDIO_ROUTE`
+  static const PLAYBACK_SUPPRESSION_REASON_UNSUITABLE_AUDIO_ROUTE = 2;
+
+  /// from: `static public final int PLAYBACK_SUPPRESSION_REASON_UNSUITABLE_AUDIO_OUTPUT`
+  static const PLAYBACK_SUPPRESSION_REASON_UNSUITABLE_AUDIO_OUTPUT = 3;
+
+  /// from: `static public final int REPEAT_MODE_OFF`
+  static const REPEAT_MODE_OFF = 0;
+
+  /// from: `static public final int REPEAT_MODE_ONE`
+  static const REPEAT_MODE_ONE = 1;
+
+  /// from: `static public final int REPEAT_MODE_ALL`
+  static const REPEAT_MODE_ALL = 2;
+
+  /// from: `static public final int DISCONTINUITY_REASON_AUTO_TRANSITION`
+  static const DISCONTINUITY_REASON_AUTO_TRANSITION = 0;
+
+  /// from: `static public final int DISCONTINUITY_REASON_SEEK`
+  static const DISCONTINUITY_REASON_SEEK = 1;
+
+  /// from: `static public final int DISCONTINUITY_REASON_SEEK_ADJUSTMENT`
+  static const DISCONTINUITY_REASON_SEEK_ADJUSTMENT = 2;
+
+  /// from: `static public final int DISCONTINUITY_REASON_SKIP`
+  static const DISCONTINUITY_REASON_SKIP = 3;
+
+  /// from: `static public final int DISCONTINUITY_REASON_REMOVE`
+  static const DISCONTINUITY_REASON_REMOVE = 4;
+
+  /// from: `static public final int DISCONTINUITY_REASON_INTERNAL`
+  static const DISCONTINUITY_REASON_INTERNAL = 5;
+
+  /// from: `static public final int DISCONTINUITY_REASON_SILENCE_SKIP`
+  static const DISCONTINUITY_REASON_SILENCE_SKIP = 6;
+
+  /// from: `static public final int TIMELINE_CHANGE_REASON_PLAYLIST_CHANGED`
+  static const TIMELINE_CHANGE_REASON_PLAYLIST_CHANGED = 0;
+
+  /// from: `static public final int TIMELINE_CHANGE_REASON_SOURCE_UPDATE`
+  static const TIMELINE_CHANGE_REASON_SOURCE_UPDATE = 1;
+
+  /// from: `static public final int MEDIA_ITEM_TRANSITION_REASON_REPEAT`
+  static const MEDIA_ITEM_TRANSITION_REASON_REPEAT = 0;
+
+  /// from: `static public final int MEDIA_ITEM_TRANSITION_REASON_AUTO`
+  static const MEDIA_ITEM_TRANSITION_REASON_AUTO = 1;
+
+  /// from: `static public final int MEDIA_ITEM_TRANSITION_REASON_SEEK`
+  static const MEDIA_ITEM_TRANSITION_REASON_SEEK = 2;
+
+  /// from: `static public final int MEDIA_ITEM_TRANSITION_REASON_PLAYLIST_CHANGED`
+  static const MEDIA_ITEM_TRANSITION_REASON_PLAYLIST_CHANGED = 3;
+
+  /// from: `static public final int EVENT_TIMELINE_CHANGED`
+  static const EVENT_TIMELINE_CHANGED = 0;
+
+  /// from: `static public final int EVENT_MEDIA_ITEM_TRANSITION`
+  static const EVENT_MEDIA_ITEM_TRANSITION = 1;
+
+  /// from: `static public final int EVENT_TRACKS_CHANGED`
+  static const EVENT_TRACKS_CHANGED = 2;
+
+  /// from: `static public final int EVENT_IS_LOADING_CHANGED`
+  static const EVENT_IS_LOADING_CHANGED = 3;
+
+  /// from: `static public final int EVENT_PLAYBACK_STATE_CHANGED`
+  static const EVENT_PLAYBACK_STATE_CHANGED = 4;
+
+  /// from: `static public final int EVENT_PLAY_WHEN_READY_CHANGED`
+  static const EVENT_PLAY_WHEN_READY_CHANGED = 5;
+
+  /// from: `static public final int EVENT_PLAYBACK_SUPPRESSION_REASON_CHANGED`
+  static const EVENT_PLAYBACK_SUPPRESSION_REASON_CHANGED = 6;
+
+  /// from: `static public final int EVENT_IS_PLAYING_CHANGED`
+  static const EVENT_IS_PLAYING_CHANGED = 7;
+
+  /// from: `static public final int EVENT_REPEAT_MODE_CHANGED`
+  static const EVENT_REPEAT_MODE_CHANGED = 8;
+
+  /// from: `static public final int EVENT_SHUFFLE_MODE_ENABLED_CHANGED`
+  static const EVENT_SHUFFLE_MODE_ENABLED_CHANGED = 9;
+
+  /// from: `static public final int EVENT_PLAYER_ERROR`
+  static const EVENT_PLAYER_ERROR = 10;
+
+  /// from: `static public final int EVENT_POSITION_DISCONTINUITY`
+  static const EVENT_POSITION_DISCONTINUITY = 11;
+
+  /// from: `static public final int EVENT_PLAYBACK_PARAMETERS_CHANGED`
+  static const EVENT_PLAYBACK_PARAMETERS_CHANGED = 12;
+
+  /// from: `static public final int EVENT_AVAILABLE_COMMANDS_CHANGED`
+  static const EVENT_AVAILABLE_COMMANDS_CHANGED = 13;
+
+  /// from: `static public final int EVENT_MEDIA_METADATA_CHANGED`
+  static const EVENT_MEDIA_METADATA_CHANGED = 14;
+
+  /// from: `static public final int EVENT_PLAYLIST_METADATA_CHANGED`
+  static const EVENT_PLAYLIST_METADATA_CHANGED = 15;
+
+  /// from: `static public final int EVENT_SEEK_BACK_INCREMENT_CHANGED`
+  static const EVENT_SEEK_BACK_INCREMENT_CHANGED = 16;
+
+  /// from: `static public final int EVENT_SEEK_FORWARD_INCREMENT_CHANGED`
+  static const EVENT_SEEK_FORWARD_INCREMENT_CHANGED = 17;
+
+  /// from: `static public final int EVENT_MAX_SEEK_TO_PREVIOUS_POSITION_CHANGED`
+  static const EVENT_MAX_SEEK_TO_PREVIOUS_POSITION_CHANGED = 18;
+
+  /// from: `static public final int EVENT_TRACK_SELECTION_PARAMETERS_CHANGED`
+  static const EVENT_TRACK_SELECTION_PARAMETERS_CHANGED = 19;
+
+  /// from: `static public final int EVENT_AUDIO_ATTRIBUTES_CHANGED`
+  static const EVENT_AUDIO_ATTRIBUTES_CHANGED = 20;
+
+  /// from: `static public final int EVENT_AUDIO_SESSION_ID`
+  static const EVENT_AUDIO_SESSION_ID = 21;
+
+  /// from: `static public final int EVENT_VOLUME_CHANGED`
+  static const EVENT_VOLUME_CHANGED = 22;
+
+  /// from: `static public final int EVENT_SKIP_SILENCE_ENABLED_CHANGED`
+  static const EVENT_SKIP_SILENCE_ENABLED_CHANGED = 23;
+
+  /// from: `static public final int EVENT_SURFACE_SIZE_CHANGED`
+  static const EVENT_SURFACE_SIZE_CHANGED = 24;
+
+  /// from: `static public final int EVENT_VIDEO_SIZE_CHANGED`
+  static const EVENT_VIDEO_SIZE_CHANGED = 25;
+
+  /// from: `static public final int EVENT_RENDERED_FIRST_FRAME`
+  static const EVENT_RENDERED_FIRST_FRAME = 26;
+
+  /// from: `static public final int EVENT_CUES`
+  static const EVENT_CUES = 27;
+
+  /// from: `static public final int EVENT_METADATA`
+  static const EVENT_METADATA = 28;
+
+  /// from: `static public final int EVENT_DEVICE_INFO_CHANGED`
+  static const EVENT_DEVICE_INFO_CHANGED = 29;
+
+  /// from: `static public final int EVENT_DEVICE_VOLUME_CHANGED`
+  static const EVENT_DEVICE_VOLUME_CHANGED = 30;
+
+  /// from: `static public final int COMMAND_PLAY_PAUSE`
+  static const COMMAND_PLAY_PAUSE = 1;
+
+  /// from: `static public final int COMMAND_PREPARE`
+  static const COMMAND_PREPARE = 2;
+
+  /// from: `static public final int COMMAND_STOP`
+  static const COMMAND_STOP = 3;
+
+  /// from: `static public final int COMMAND_SEEK_TO_DEFAULT_POSITION`
+  static const COMMAND_SEEK_TO_DEFAULT_POSITION = 4;
+
+  /// from: `static public final int COMMAND_SEEK_IN_CURRENT_MEDIA_ITEM`
+  static const COMMAND_SEEK_IN_CURRENT_MEDIA_ITEM = 5;
+
+  /// from: `static public final int COMMAND_SEEK_IN_CURRENT_WINDOW`
+  static const COMMAND_SEEK_IN_CURRENT_WINDOW = 5;
+
+  /// from: `static public final int COMMAND_SEEK_TO_PREVIOUS_MEDIA_ITEM`
+  static const COMMAND_SEEK_TO_PREVIOUS_MEDIA_ITEM = 6;
+
+  /// from: `static public final int COMMAND_SEEK_TO_PREVIOUS_WINDOW`
+  static const COMMAND_SEEK_TO_PREVIOUS_WINDOW = 6;
+
+  /// from: `static public final int COMMAND_SEEK_TO_PREVIOUS`
+  static const COMMAND_SEEK_TO_PREVIOUS = 7;
+
+  /// from: `static public final int COMMAND_SEEK_TO_NEXT_MEDIA_ITEM`
+  static const COMMAND_SEEK_TO_NEXT_MEDIA_ITEM = 8;
+
+  /// from: `static public final int COMMAND_SEEK_TO_NEXT_WINDOW`
+  static const COMMAND_SEEK_TO_NEXT_WINDOW = 8;
+
+  /// from: `static public final int COMMAND_SEEK_TO_NEXT`
+  static const COMMAND_SEEK_TO_NEXT = 9;
+
+  /// from: `static public final int COMMAND_SEEK_TO_MEDIA_ITEM`
+  static const COMMAND_SEEK_TO_MEDIA_ITEM = 10;
+
+  /// from: `static public final int COMMAND_SEEK_TO_WINDOW`
+  static const COMMAND_SEEK_TO_WINDOW = 10;
+
+  /// from: `static public final int COMMAND_SEEK_BACK`
+  static const COMMAND_SEEK_BACK = 11;
+
+  /// from: `static public final int COMMAND_SEEK_FORWARD`
+  static const COMMAND_SEEK_FORWARD = 12;
+
+  /// from: `static public final int COMMAND_SET_SPEED_AND_PITCH`
+  static const COMMAND_SET_SPEED_AND_PITCH = 13;
+
+  /// from: `static public final int COMMAND_SET_SHUFFLE_MODE`
+  static const COMMAND_SET_SHUFFLE_MODE = 14;
+
+  /// from: `static public final int COMMAND_SET_REPEAT_MODE`
+  static const COMMAND_SET_REPEAT_MODE = 15;
+
+  /// from: `static public final int COMMAND_GET_CURRENT_MEDIA_ITEM`
+  static const COMMAND_GET_CURRENT_MEDIA_ITEM = 16;
+
+  /// from: `static public final int COMMAND_GET_TIMELINE`
+  static const COMMAND_GET_TIMELINE = 17;
+
+  /// from: `static public final int COMMAND_GET_MEDIA_ITEMS_METADATA`
+  static const COMMAND_GET_MEDIA_ITEMS_METADATA = 18;
+
+  /// from: `static public final int COMMAND_GET_METADATA`
+  static const COMMAND_GET_METADATA = 18;
+
+  /// from: `static public final int COMMAND_SET_MEDIA_ITEMS_METADATA`
+  static const COMMAND_SET_MEDIA_ITEMS_METADATA = 19;
+
+  /// from: `static public final int COMMAND_SET_PLAYLIST_METADATA`
+  static const COMMAND_SET_PLAYLIST_METADATA = 19;
+
+  /// from: `static public final int COMMAND_SET_MEDIA_ITEM`
+  static const COMMAND_SET_MEDIA_ITEM = 31;
+
+  /// from: `static public final int COMMAND_CHANGE_MEDIA_ITEMS`
+  static const COMMAND_CHANGE_MEDIA_ITEMS = 20;
+
+  /// from: `static public final int COMMAND_GET_AUDIO_ATTRIBUTES`
+  static const COMMAND_GET_AUDIO_ATTRIBUTES = 21;
+
+  /// from: `static public final int COMMAND_GET_VOLUME`
+  static const COMMAND_GET_VOLUME = 22;
+
+  /// from: `static public final int COMMAND_GET_DEVICE_VOLUME`
+  static const COMMAND_GET_DEVICE_VOLUME = 23;
+
+  /// from: `static public final int COMMAND_SET_VOLUME`
+  static const COMMAND_SET_VOLUME = 24;
+
+  /// from: `static public final int COMMAND_SET_DEVICE_VOLUME`
+  static const COMMAND_SET_DEVICE_VOLUME = 25;
+
+  /// from: `static public final int COMMAND_SET_DEVICE_VOLUME_WITH_FLAGS`
+  static const COMMAND_SET_DEVICE_VOLUME_WITH_FLAGS = 33;
+
+  /// from: `static public final int COMMAND_ADJUST_DEVICE_VOLUME`
+  static const COMMAND_ADJUST_DEVICE_VOLUME = 26;
+
+  /// from: `static public final int COMMAND_ADJUST_DEVICE_VOLUME_WITH_FLAGS`
+  static const COMMAND_ADJUST_DEVICE_VOLUME_WITH_FLAGS = 34;
+
+  /// from: `static public final int COMMAND_SET_AUDIO_ATTRIBUTES`
+  static const COMMAND_SET_AUDIO_ATTRIBUTES = 35;
+
+  /// from: `static public final int COMMAND_SET_VIDEO_SURFACE`
+  static const COMMAND_SET_VIDEO_SURFACE = 27;
+
+  /// from: `static public final int COMMAND_GET_TEXT`
+  static const COMMAND_GET_TEXT = 28;
+
+  /// from: `static public final int COMMAND_SET_TRACK_SELECTION_PARAMETERS`
+  static const COMMAND_SET_TRACK_SELECTION_PARAMETERS = 29;
+
+  /// from: `static public final int COMMAND_GET_TRACKS`
+  static const COMMAND_GET_TRACKS = 30;
+
+  /// from: `static public final int COMMAND_RELEASE`
+  static const COMMAND_RELEASE = 32;
+
+  /// from: `static public final int COMMAND_INVALID`
+  static const COMMAND_INVALID = -1;
+  static final _id_getApplicationLooper = _class.instanceMethodId(
+    r'getApplicationLooper',
+    r'()Landroid/os/Looper;',
+  );
+
+  static final _getApplicationLooper = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract android.os.Looper getApplicationLooper()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getApplicationLooper() {
+    return _getApplicationLooper(
+            reference.pointer, _id_getApplicationLooper as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_addListener = _class.instanceMethodId(
+    r'addListener',
+    r'(Landroidx/media3/common/Player$Listener;)V',
+  );
+
+  static final _addListener = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void addListener(androidx.media3.common.Player$Listener listener)`
+  void addListener(
+    Player_Listener listener,
+  ) {
+    _addListener(reference.pointer, _id_addListener as _$jni.JMethodIDPtr,
+            listener.reference.pointer)
+        .check();
+  }
+
+  static final _id_removeListener = _class.instanceMethodId(
+    r'removeListener',
+    r'(Landroidx/media3/common/Player$Listener;)V',
+  );
+
+  static final _removeListener = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void removeListener(androidx.media3.common.Player$Listener listener)`
+  void removeListener(
+    Player_Listener listener,
+  ) {
+    _removeListener(reference.pointer, _id_removeListener as _$jni.JMethodIDPtr,
+            listener.reference.pointer)
+        .check();
+  }
+
+  static final _id_setMediaItems = _class.instanceMethodId(
+    r'setMediaItems',
+    r'(Ljava/util/List;)V',
+  );
+
+  static final _setMediaItems = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void setMediaItems(java.util.List list)`
+  void setMediaItems(
+    _$jni.JList<MediaItem> list,
+  ) {
+    _setMediaItems(reference.pointer, _id_setMediaItems as _$jni.JMethodIDPtr,
+            list.reference.pointer)
+        .check();
+  }
+
+  static final _id_setMediaItems$1 = _class.instanceMethodId(
+    r'setMediaItems',
+    r'(Ljava/util/List;Z)V',
+  );
+
+  static final _setMediaItems$1 = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni
+                          .VarArgs<(_$jni.Pointer<_$jni.Void>, _$jni.Int32)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>, int)>();
+
+  /// from: `public abstract void setMediaItems(java.util.List list, boolean z)`
+  void setMediaItems$1(
+    _$jni.JList<MediaItem> list,
+    bool z,
+  ) {
+    _setMediaItems$1(
+            reference.pointer,
+            _id_setMediaItems$1 as _$jni.JMethodIDPtr,
+            list.reference.pointer,
+            z ? 1 : 0)
+        .check();
+  }
+
+  static final _id_setMediaItems$2 = _class.instanceMethodId(
+    r'setMediaItems',
+    r'(Ljava/util/List;IJ)V',
+  );
+
+  static final _setMediaItems$2 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<
+                      (
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Int32,
+                        _$jni.Int64
+                      )>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>, int, int)>();
+
+  /// from: `public abstract void setMediaItems(java.util.List list, int i, long j)`
+  void setMediaItems$2(
+    _$jni.JList<MediaItem> list,
+    int i,
+    int j,
+  ) {
+    _setMediaItems$2(
+            reference.pointer,
+            _id_setMediaItems$2 as _$jni.JMethodIDPtr,
+            list.reference.pointer,
+            i,
+            j)
+        .check();
+  }
+
+  static final _id_setMediaItem = _class.instanceMethodId(
+    r'setMediaItem',
+    r'(Landroidx/media3/common/MediaItem;)V',
+  );
+
+  static final _setMediaItem = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void setMediaItem(androidx.media3.common.MediaItem mediaItem)`
+  void setMediaItem(
+    MediaItem mediaItem,
+  ) {
+    _setMediaItem(reference.pointer, _id_setMediaItem as _$jni.JMethodIDPtr,
+            mediaItem.reference.pointer)
+        .check();
+  }
+
+  static final _id_setMediaItem$1 = _class.instanceMethodId(
+    r'setMediaItem',
+    r'(Landroidx/media3/common/MediaItem;J)V',
+  );
+
+  static final _setMediaItem$1 = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni
+                          .VarArgs<(_$jni.Pointer<_$jni.Void>, _$jni.Int64)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>, int)>();
+
+  /// from: `public abstract void setMediaItem(androidx.media3.common.MediaItem mediaItem, long j)`
+  void setMediaItem$1(
+    MediaItem mediaItem,
+    int j,
+  ) {
+    _setMediaItem$1(reference.pointer, _id_setMediaItem$1 as _$jni.JMethodIDPtr,
+            mediaItem.reference.pointer, j)
+        .check();
+  }
+
+  static final _id_setMediaItem$2 = _class.instanceMethodId(
+    r'setMediaItem',
+    r'(Landroidx/media3/common/MediaItem;Z)V',
+  );
+
+  static final _setMediaItem$2 = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni
+                          .VarArgs<(_$jni.Pointer<_$jni.Void>, _$jni.Int32)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>, int)>();
+
+  /// from: `public abstract void setMediaItem(androidx.media3.common.MediaItem mediaItem, boolean z)`
+  void setMediaItem$2(
+    MediaItem mediaItem,
+    bool z,
+  ) {
+    _setMediaItem$2(reference.pointer, _id_setMediaItem$2 as _$jni.JMethodIDPtr,
+            mediaItem.reference.pointer, z ? 1 : 0)
+        .check();
+  }
+
+  static final _id_addMediaItem = _class.instanceMethodId(
+    r'addMediaItem',
+    r'(Landroidx/media3/common/MediaItem;)V',
+  );
+
+  static final _addMediaItem = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void addMediaItem(androidx.media3.common.MediaItem mediaItem)`
+  void addMediaItem(
+    MediaItem mediaItem,
+  ) {
+    _addMediaItem(reference.pointer, _id_addMediaItem as _$jni.JMethodIDPtr,
+            mediaItem.reference.pointer)
+        .check();
+  }
+
+  static final _id_addMediaItem$1 = _class.instanceMethodId(
+    r'addMediaItem',
+    r'(ILandroidx/media3/common/MediaItem;)V',
+  );
+
+  static final _addMediaItem$1 = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni
+                          .VarArgs<(_$jni.Int32, _$jni.Pointer<_$jni.Void>)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, int, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void addMediaItem(int i, androidx.media3.common.MediaItem mediaItem)`
+  void addMediaItem$1(
+    int i,
+    MediaItem mediaItem,
+  ) {
+    _addMediaItem$1(reference.pointer, _id_addMediaItem$1 as _$jni.JMethodIDPtr,
+            i, mediaItem.reference.pointer)
+        .check();
+  }
+
+  static final _id_addMediaItems = _class.instanceMethodId(
+    r'addMediaItems',
+    r'(Ljava/util/List;)V',
+  );
+
+  static final _addMediaItems = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void addMediaItems(java.util.List list)`
+  void addMediaItems(
+    _$jni.JList<MediaItem> list,
+  ) {
+    _addMediaItems(reference.pointer, _id_addMediaItems as _$jni.JMethodIDPtr,
+            list.reference.pointer)
+        .check();
+  }
+
+  static final _id_addMediaItems$1 = _class.instanceMethodId(
+    r'addMediaItems',
+    r'(ILjava/util/List;)V',
+  );
+
+  static final _addMediaItems$1 = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni
+                          .VarArgs<(_$jni.Int32, _$jni.Pointer<_$jni.Void>)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, int, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void addMediaItems(int i, java.util.List list)`
+  void addMediaItems$1(
+    int i,
+    _$jni.JList<MediaItem> list,
+  ) {
+    _addMediaItems$1(
+            reference.pointer,
+            _id_addMediaItems$1 as _$jni.JMethodIDPtr,
+            i,
+            list.reference.pointer)
+        .check();
+  }
+
+  static final _id_moveMediaItem = _class.instanceMethodId(
+    r'moveMediaItem',
+    r'(II)V',
+  );
+
+  static final _moveMediaItem = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Int32, _$jni.Int32)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int, int)>();
+
+  /// from: `public abstract void moveMediaItem(int i, int i1)`
+  void moveMediaItem(
+    int i,
+    int i1,
+  ) {
+    _moveMediaItem(
+            reference.pointer, _id_moveMediaItem as _$jni.JMethodIDPtr, i, i1)
+        .check();
+  }
+
+  static final _id_moveMediaItems = _class.instanceMethodId(
+    r'moveMediaItems',
+    r'(III)V',
+  );
+
+  static final _moveMediaItems = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Int32, _$jni.Int32, _$jni.Int32)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int, int, int)>();
+
+  /// from: `public abstract void moveMediaItems(int i, int i1, int i2)`
+  void moveMediaItems(
+    int i,
+    int i1,
+    int i2,
+  ) {
+    _moveMediaItems(reference.pointer, _id_moveMediaItems as _$jni.JMethodIDPtr,
+            i, i1, i2)
+        .check();
+  }
+
+  static final _id_replaceMediaItem = _class.instanceMethodId(
+    r'replaceMediaItem',
+    r'(ILandroidx/media3/common/MediaItem;)V',
+  );
+
+  static final _replaceMediaItem = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni
+                          .VarArgs<(_$jni.Int32, _$jni.Pointer<_$jni.Void>)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, int, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void replaceMediaItem(int i, androidx.media3.common.MediaItem mediaItem)`
+  void replaceMediaItem(
+    int i,
+    MediaItem mediaItem,
+  ) {
+    _replaceMediaItem(
+            reference.pointer,
+            _id_replaceMediaItem as _$jni.JMethodIDPtr,
+            i,
+            mediaItem.reference.pointer)
+        .check();
+  }
+
+  static final _id_replaceMediaItems = _class.instanceMethodId(
+    r'replaceMediaItems',
+    r'(IILjava/util/List;)V',
+  );
+
+  static final _replaceMediaItems = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<
+                      (
+                        _$jni.Int32,
+                        _$jni.Int32,
+                        _$jni.Pointer<_$jni.Void>
+                      )>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, int, int, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void replaceMediaItems(int i, int i1, java.util.List list)`
+  void replaceMediaItems(
+    int i,
+    int i1,
+    _$jni.JList<MediaItem> list,
+  ) {
+    _replaceMediaItems(
+            reference.pointer,
+            _id_replaceMediaItems as _$jni.JMethodIDPtr,
+            i,
+            i1,
+            list.reference.pointer)
+        .check();
+  }
+
+  static final _id_removeMediaItem = _class.instanceMethodId(
+    r'removeMediaItem',
+    r'(I)V',
+  );
+
+  static final _removeMediaItem = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public abstract void removeMediaItem(int i)`
+  void removeMediaItem(
+    int i,
+  ) {
+    _removeMediaItem(
+            reference.pointer, _id_removeMediaItem as _$jni.JMethodIDPtr, i)
+        .check();
+  }
+
+  static final _id_removeMediaItems = _class.instanceMethodId(
+    r'removeMediaItems',
+    r'(II)V',
+  );
+
+  static final _removeMediaItems = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Int32, _$jni.Int32)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int, int)>();
+
+  /// from: `public abstract void removeMediaItems(int i, int i1)`
+  void removeMediaItems(
+    int i,
+    int i1,
+  ) {
+    _removeMediaItems(reference.pointer,
+            _id_removeMediaItems as _$jni.JMethodIDPtr, i, i1)
+        .check();
+  }
+
+  static final _id_clearMediaItems = _class.instanceMethodId(
+    r'clearMediaItems',
+    r'()V',
+  );
+
+  static final _clearMediaItems = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract void clearMediaItems()`
+  void clearMediaItems() {
+    _clearMediaItems(
+            reference.pointer, _id_clearMediaItems as _$jni.JMethodIDPtr)
+        .check();
+  }
+
+  static final _id_isCommandAvailable = _class.instanceMethodId(
+    r'isCommandAvailable',
+    r'(I)Z',
+  );
+
+  static final _isCommandAvailable = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni
+                      .VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public abstract boolean isCommandAvailable(int i)`
+  bool isCommandAvailable(
+    int i,
+  ) {
+    return _isCommandAvailable(
+            reference.pointer, _id_isCommandAvailable as _$jni.JMethodIDPtr, i)
+        .boolean;
+  }
+
+  static final _id_canAdvertiseSession = _class.instanceMethodId(
+    r'canAdvertiseSession',
+    r'()Z',
+  );
+
+  static final _canAdvertiseSession = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract boolean canAdvertiseSession()`
+  bool canAdvertiseSession() {
+    return _canAdvertiseSession(
+            reference.pointer, _id_canAdvertiseSession as _$jni.JMethodIDPtr)
+        .boolean;
+  }
+
+  static final _id_getAvailableCommands = _class.instanceMethodId(
+    r'getAvailableCommands',
+    r'()Landroidx/media3/common/Player$Commands;',
+  );
+
+  static final _getAvailableCommands = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract androidx.media3.common.Player$Commands getAvailableCommands()`
+  /// The returned object must be released after use, by calling the [release] method.
+  Player_Commands getAvailableCommands() {
+    return _getAvailableCommands(
+            reference.pointer, _id_getAvailableCommands as _$jni.JMethodIDPtr)
+        .object(const $Player_Commands$Type());
+  }
+
+  static final _id_prepare = _class.instanceMethodId(
+    r'prepare',
+    r'()V',
+  );
+
+  static final _prepare = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract void prepare()`
+  void prepare() {
+    _prepare(reference.pointer, _id_prepare as _$jni.JMethodIDPtr).check();
+  }
+
+  static final _id_getPlaybackState = _class.instanceMethodId(
+    r'getPlaybackState',
+    r'()I',
+  );
+
+  static final _getPlaybackState = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract int getPlaybackState()`
+  int getPlaybackState() {
+    return _getPlaybackState(
+            reference.pointer, _id_getPlaybackState as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_getPlaybackSuppressionReason = _class.instanceMethodId(
+    r'getPlaybackSuppressionReason',
+    r'()I',
+  );
+
+  static final _getPlaybackSuppressionReason =
+      _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                    _$jni.Pointer<_$jni.Void>,
+                    _$jni.JMethodIDPtr,
+                  )>>('globalEnv_CallIntMethod')
+          .asFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>();
+
+  /// from: `public abstract int getPlaybackSuppressionReason()`
+  int getPlaybackSuppressionReason() {
+    return _getPlaybackSuppressionReason(reference.pointer,
+            _id_getPlaybackSuppressionReason as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_isPlaying = _class.instanceMethodId(
+    r'isPlaying',
+    r'()Z',
+  );
+
+  static final _isPlaying = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract boolean isPlaying()`
+  bool isPlaying() {
+    return _isPlaying(reference.pointer, _id_isPlaying as _$jni.JMethodIDPtr)
+        .boolean;
+  }
+
+  static final _id_getPlayerError = _class.instanceMethodId(
+    r'getPlayerError',
+    r'()Landroidx/media3/common/PlaybackException;',
+  );
+
+  static final _getPlayerError = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract androidx.media3.common.PlaybackException getPlayerError()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getPlayerError() {
+    return _getPlayerError(
+            reference.pointer, _id_getPlayerError as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_play = _class.instanceMethodId(
+    r'play',
+    r'()V',
+  );
+
+  static final _play = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract void play()`
+  void play() {
+    _play(reference.pointer, _id_play as _$jni.JMethodIDPtr).check();
+  }
+
+  static final _id_pause = _class.instanceMethodId(
+    r'pause',
+    r'()V',
+  );
+
+  static final _pause = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract void pause()`
+  void pause() {
+    _pause(reference.pointer, _id_pause as _$jni.JMethodIDPtr).check();
+  }
+
+  static final _id_setPlayWhenReady = _class.instanceMethodId(
+    r'setPlayWhenReady',
+    r'(Z)V',
+  );
+
+  static final _setPlayWhenReady = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public abstract void setPlayWhenReady(boolean z)`
+  void setPlayWhenReady(
+    bool z,
+  ) {
+    _setPlayWhenReady(reference.pointer,
+            _id_setPlayWhenReady as _$jni.JMethodIDPtr, z ? 1 : 0)
+        .check();
+  }
+
+  static final _id_getPlayWhenReady = _class.instanceMethodId(
+    r'getPlayWhenReady',
+    r'()Z',
+  );
+
+  static final _getPlayWhenReady = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract boolean getPlayWhenReady()`
+  bool getPlayWhenReady() {
+    return _getPlayWhenReady(
+            reference.pointer, _id_getPlayWhenReady as _$jni.JMethodIDPtr)
+        .boolean;
+  }
+
+  static final _id_setRepeatMode = _class.instanceMethodId(
+    r'setRepeatMode',
+    r'(I)V',
+  );
+
+  static final _setRepeatMode = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public abstract void setRepeatMode(int i)`
+  void setRepeatMode(
+    int i,
+  ) {
+    _setRepeatMode(
+            reference.pointer, _id_setRepeatMode as _$jni.JMethodIDPtr, i)
+        .check();
+  }
+
+  static final _id_getRepeatMode = _class.instanceMethodId(
+    r'getRepeatMode',
+    r'()I',
+  );
+
+  static final _getRepeatMode = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract int getRepeatMode()`
+  int getRepeatMode() {
+    return _getRepeatMode(
+            reference.pointer, _id_getRepeatMode as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_setShuffleModeEnabled = _class.instanceMethodId(
+    r'setShuffleModeEnabled',
+    r'(Z)V',
+  );
+
+  static final _setShuffleModeEnabled = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public abstract void setShuffleModeEnabled(boolean z)`
+  void setShuffleModeEnabled(
+    bool z,
+  ) {
+    _setShuffleModeEnabled(reference.pointer,
+            _id_setShuffleModeEnabled as _$jni.JMethodIDPtr, z ? 1 : 0)
+        .check();
+  }
+
+  static final _id_getShuffleModeEnabled = _class.instanceMethodId(
+    r'getShuffleModeEnabled',
+    r'()Z',
+  );
+
+  static final _getShuffleModeEnabled = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract boolean getShuffleModeEnabled()`
+  bool getShuffleModeEnabled() {
+    return _getShuffleModeEnabled(
+            reference.pointer, _id_getShuffleModeEnabled as _$jni.JMethodIDPtr)
+        .boolean;
+  }
+
+  static final _id_isLoading = _class.instanceMethodId(
+    r'isLoading',
+    r'()Z',
+  );
+
+  static final _isLoading = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract boolean isLoading()`
+  bool isLoading() {
+    return _isLoading(reference.pointer, _id_isLoading as _$jni.JMethodIDPtr)
+        .boolean;
+  }
+
+  static final _id_seekToDefaultPosition = _class.instanceMethodId(
+    r'seekToDefaultPosition',
+    r'()V',
+  );
+
+  static final _seekToDefaultPosition = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract void seekToDefaultPosition()`
+  void seekToDefaultPosition() {
+    _seekToDefaultPosition(
+            reference.pointer, _id_seekToDefaultPosition as _$jni.JMethodIDPtr)
+        .check();
+  }
+
+  static final _id_seekToDefaultPosition$1 = _class.instanceMethodId(
+    r'seekToDefaultPosition',
+    r'(I)V',
+  );
+
+  static final _seekToDefaultPosition$1 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public abstract void seekToDefaultPosition(int i)`
+  void seekToDefaultPosition$1(
+    int i,
+  ) {
+    _seekToDefaultPosition$1(reference.pointer,
+            _id_seekToDefaultPosition$1 as _$jni.JMethodIDPtr, i)
+        .check();
+  }
+
+  static final _id_seekTo = _class.instanceMethodId(
+    r'seekTo',
+    r'(J)V',
+  );
+
+  static final _seekTo = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int64,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public abstract void seekTo(long j)`
+  void seekTo(
+    int j,
+  ) {
+    _seekTo(reference.pointer, _id_seekTo as _$jni.JMethodIDPtr, j).check();
+  }
+
+  static final _id_seekTo$1 = _class.instanceMethodId(
+    r'seekTo',
+    r'(IJ)V',
+  );
+
+  static final _seekTo$1 = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Int32, _$jni.Int64)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int, int)>();
+
+  /// from: `public abstract void seekTo(int i, long j)`
+  void seekTo$1(
+    int i,
+    int j,
+  ) {
+    _seekTo$1(reference.pointer, _id_seekTo$1 as _$jni.JMethodIDPtr, i, j)
+        .check();
+  }
+
+  static final _id_getSeekBackIncrement = _class.instanceMethodId(
+    r'getSeekBackIncrement',
+    r'()J',
+  );
+
+  static final _getSeekBackIncrement = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallLongMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract long getSeekBackIncrement()`
+  int getSeekBackIncrement() {
+    return _getSeekBackIncrement(
+            reference.pointer, _id_getSeekBackIncrement as _$jni.JMethodIDPtr)
+        .long;
+  }
+
+  static final _id_seekBack = _class.instanceMethodId(
+    r'seekBack',
+    r'()V',
+  );
+
+  static final _seekBack = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract void seekBack()`
+  void seekBack() {
+    _seekBack(reference.pointer, _id_seekBack as _$jni.JMethodIDPtr).check();
+  }
+
+  static final _id_getSeekForwardIncrement = _class.instanceMethodId(
+    r'getSeekForwardIncrement',
+    r'()J',
+  );
+
+  static final _getSeekForwardIncrement = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallLongMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract long getSeekForwardIncrement()`
+  int getSeekForwardIncrement() {
+    return _getSeekForwardIncrement(reference.pointer,
+            _id_getSeekForwardIncrement as _$jni.JMethodIDPtr)
+        .long;
+  }
+
+  static final _id_seekForward = _class.instanceMethodId(
+    r'seekForward',
+    r'()V',
+  );
+
+  static final _seekForward = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract void seekForward()`
+  void seekForward() {
+    _seekForward(reference.pointer, _id_seekForward as _$jni.JMethodIDPtr)
+        .check();
+  }
+
+  static final _id_hasPrevious = _class.instanceMethodId(
+    r'hasPrevious',
+    r'()Z',
+  );
+
+  static final _hasPrevious = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract boolean hasPrevious()`
+  bool hasPrevious() {
+    return _hasPrevious(
+            reference.pointer, _id_hasPrevious as _$jni.JMethodIDPtr)
+        .boolean;
+  }
+
+  static final _id_hasPreviousWindow = _class.instanceMethodId(
+    r'hasPreviousWindow',
+    r'()Z',
+  );
+
+  static final _hasPreviousWindow = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract boolean hasPreviousWindow()`
+  bool hasPreviousWindow() {
+    return _hasPreviousWindow(
+            reference.pointer, _id_hasPreviousWindow as _$jni.JMethodIDPtr)
+        .boolean;
+  }
+
+  static final _id_hasPreviousMediaItem = _class.instanceMethodId(
+    r'hasPreviousMediaItem',
+    r'()Z',
+  );
+
+  static final _hasPreviousMediaItem = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract boolean hasPreviousMediaItem()`
+  bool hasPreviousMediaItem() {
+    return _hasPreviousMediaItem(
+            reference.pointer, _id_hasPreviousMediaItem as _$jni.JMethodIDPtr)
+        .boolean;
+  }
+
+  static final _id_previous = _class.instanceMethodId(
+    r'previous',
+    r'()V',
+  );
+
+  static final _previous = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract void previous()`
+  void previous() {
+    _previous(reference.pointer, _id_previous as _$jni.JMethodIDPtr).check();
+  }
+
+  static final _id_seekToPreviousWindow = _class.instanceMethodId(
+    r'seekToPreviousWindow',
+    r'()V',
+  );
+
+  static final _seekToPreviousWindow = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract void seekToPreviousWindow()`
+  void seekToPreviousWindow() {
+    _seekToPreviousWindow(
+            reference.pointer, _id_seekToPreviousWindow as _$jni.JMethodIDPtr)
+        .check();
+  }
+
+  static final _id_seekToPreviousMediaItem = _class.instanceMethodId(
+    r'seekToPreviousMediaItem',
+    r'()V',
+  );
+
+  static final _seekToPreviousMediaItem = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract void seekToPreviousMediaItem()`
+  void seekToPreviousMediaItem() {
+    _seekToPreviousMediaItem(reference.pointer,
+            _id_seekToPreviousMediaItem as _$jni.JMethodIDPtr)
+        .check();
+  }
+
+  static final _id_getMaxSeekToPreviousPosition = _class.instanceMethodId(
+    r'getMaxSeekToPreviousPosition',
+    r'()J',
+  );
+
+  static final _getMaxSeekToPreviousPosition =
+      _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                    _$jni.Pointer<_$jni.Void>,
+                    _$jni.JMethodIDPtr,
+                  )>>('globalEnv_CallLongMethod')
+          .asFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>();
+
+  /// from: `public abstract long getMaxSeekToPreviousPosition()`
+  int getMaxSeekToPreviousPosition() {
+    return _getMaxSeekToPreviousPosition(reference.pointer,
+            _id_getMaxSeekToPreviousPosition as _$jni.JMethodIDPtr)
+        .long;
+  }
+
+  static final _id_seekToPrevious = _class.instanceMethodId(
+    r'seekToPrevious',
+    r'()V',
+  );
+
+  static final _seekToPrevious = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract void seekToPrevious()`
+  void seekToPrevious() {
+    _seekToPrevious(reference.pointer, _id_seekToPrevious as _$jni.JMethodIDPtr)
+        .check();
+  }
+
+  static final _id_hasNext = _class.instanceMethodId(
+    r'hasNext',
+    r'()Z',
+  );
+
+  static final _hasNext = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract boolean hasNext()`
+  bool hasNext() {
+    return _hasNext(reference.pointer, _id_hasNext as _$jni.JMethodIDPtr)
+        .boolean;
+  }
+
+  static final _id_hasNextWindow = _class.instanceMethodId(
+    r'hasNextWindow',
+    r'()Z',
+  );
+
+  static final _hasNextWindow = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract boolean hasNextWindow()`
+  bool hasNextWindow() {
+    return _hasNextWindow(
+            reference.pointer, _id_hasNextWindow as _$jni.JMethodIDPtr)
+        .boolean;
+  }
+
+  static final _id_hasNextMediaItem = _class.instanceMethodId(
+    r'hasNextMediaItem',
+    r'()Z',
+  );
+
+  static final _hasNextMediaItem = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract boolean hasNextMediaItem()`
+  bool hasNextMediaItem() {
+    return _hasNextMediaItem(
+            reference.pointer, _id_hasNextMediaItem as _$jni.JMethodIDPtr)
+        .boolean;
+  }
+
+  static final _id_next = _class.instanceMethodId(
+    r'next',
+    r'()V',
+  );
+
+  static final _next = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract void next()`
+  void next() {
+    _next(reference.pointer, _id_next as _$jni.JMethodIDPtr).check();
+  }
+
+  static final _id_seekToNextWindow = _class.instanceMethodId(
+    r'seekToNextWindow',
+    r'()V',
+  );
+
+  static final _seekToNextWindow = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract void seekToNextWindow()`
+  void seekToNextWindow() {
+    _seekToNextWindow(
+            reference.pointer, _id_seekToNextWindow as _$jni.JMethodIDPtr)
+        .check();
+  }
+
+  static final _id_seekToNextMediaItem = _class.instanceMethodId(
+    r'seekToNextMediaItem',
+    r'()V',
+  );
+
+  static final _seekToNextMediaItem = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract void seekToNextMediaItem()`
+  void seekToNextMediaItem() {
+    _seekToNextMediaItem(
+            reference.pointer, _id_seekToNextMediaItem as _$jni.JMethodIDPtr)
+        .check();
+  }
+
+  static final _id_seekToNext = _class.instanceMethodId(
+    r'seekToNext',
+    r'()V',
+  );
+
+  static final _seekToNext = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract void seekToNext()`
+  void seekToNext() {
+    _seekToNext(reference.pointer, _id_seekToNext as _$jni.JMethodIDPtr)
+        .check();
+  }
+
+  static final _id_setPlaybackParameters = _class.instanceMethodId(
+    r'setPlaybackParameters',
+    r'(Landroidx/media3/common/PlaybackParameters;)V',
+  );
+
+  static final _setPlaybackParameters = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void setPlaybackParameters(androidx.media3.common.PlaybackParameters playbackParameters)`
+  void setPlaybackParameters(
+    PlaybackParameters playbackParameters,
+  ) {
+    _setPlaybackParameters(
+            reference.pointer,
+            _id_setPlaybackParameters as _$jni.JMethodIDPtr,
+            playbackParameters.reference.pointer)
+        .check();
+  }
+
+  static final _id_setPlaybackSpeed = _class.instanceMethodId(
+    r'setPlaybackSpeed',
+    r'(F)V',
+  );
+
+  static final _setPlaybackSpeed = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Double,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, double)>();
+
+  /// from: `public abstract void setPlaybackSpeed(float f)`
+  void setPlaybackSpeed(
+    double f,
+  ) {
+    _setPlaybackSpeed(
+            reference.pointer, _id_setPlaybackSpeed as _$jni.JMethodIDPtr, f)
+        .check();
+  }
+
+  static final _id_getPlaybackParameters = _class.instanceMethodId(
+    r'getPlaybackParameters',
+    r'()Landroidx/media3/common/PlaybackParameters;',
+  );
+
+  static final _getPlaybackParameters = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract androidx.media3.common.PlaybackParameters getPlaybackParameters()`
+  /// The returned object must be released after use, by calling the [release] method.
+  PlaybackParameters getPlaybackParameters() {
+    return _getPlaybackParameters(
+            reference.pointer, _id_getPlaybackParameters as _$jni.JMethodIDPtr)
+        .object(const $PlaybackParameters$Type());
+  }
+
+  static final _id_stop = _class.instanceMethodId(
+    r'stop',
+    r'()V',
+  );
+
+  static final _stop = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract void stop()`
+  void stop() {
+    _stop(reference.pointer, _id_stop as _$jni.JMethodIDPtr).check();
+  }
+
+  static final _id_release$1 = _class.instanceMethodId(
+    r'release',
+    r'()V',
+  );
+
+  static final _release$1 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract void release()`
+  void release$1() {
+    _release$1(reference.pointer, _id_release$1 as _$jni.JMethodIDPtr).check();
+  }
+
+  static final _id_getCurrentTracks = _class.instanceMethodId(
+    r'getCurrentTracks',
+    r'()Landroidx/media3/common/Tracks;',
+  );
+
+  static final _getCurrentTracks = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract androidx.media3.common.Tracks getCurrentTracks()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getCurrentTracks() {
+    return _getCurrentTracks(
+            reference.pointer, _id_getCurrentTracks as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_getTrackSelectionParameters = _class.instanceMethodId(
+    r'getTrackSelectionParameters',
+    r'()Landroidx/media3/common/TrackSelectionParameters;',
+  );
+
+  static final _getTrackSelectionParameters =
+      _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                    _$jni.Pointer<_$jni.Void>,
+                    _$jni.JMethodIDPtr,
+                  )>>('globalEnv_CallObjectMethod')
+          .asFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>();
+
+  /// from: `public abstract androidx.media3.common.TrackSelectionParameters getTrackSelectionParameters()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getTrackSelectionParameters() {
+    return _getTrackSelectionParameters(reference.pointer,
+            _id_getTrackSelectionParameters as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_setTrackSelectionParameters = _class.instanceMethodId(
+    r'setTrackSelectionParameters',
+    r'(Landroidx/media3/common/TrackSelectionParameters;)V',
+  );
+
+  static final _setTrackSelectionParameters =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JThrowablePtr Function(
+                          _$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr,
+                          _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+              'globalEnv_CallVoidMethod')
+          .asFunction<
+              _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void setTrackSelectionParameters(androidx.media3.common.TrackSelectionParameters trackSelectionParameters)`
+  void setTrackSelectionParameters(
+    _$jni.JObject trackSelectionParameters,
+  ) {
+    _setTrackSelectionParameters(
+            reference.pointer,
+            _id_setTrackSelectionParameters as _$jni.JMethodIDPtr,
+            trackSelectionParameters.reference.pointer)
+        .check();
+  }
+
+  static final _id_getMediaMetadata = _class.instanceMethodId(
+    r'getMediaMetadata',
+    r'()Landroidx/media3/common/MediaMetadata;',
+  );
+
+  static final _getMediaMetadata = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract androidx.media3.common.MediaMetadata getMediaMetadata()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getMediaMetadata() {
+    return _getMediaMetadata(
+            reference.pointer, _id_getMediaMetadata as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_getPlaylistMetadata = _class.instanceMethodId(
+    r'getPlaylistMetadata',
+    r'()Landroidx/media3/common/MediaMetadata;',
+  );
+
+  static final _getPlaylistMetadata = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract androidx.media3.common.MediaMetadata getPlaylistMetadata()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getPlaylistMetadata() {
+    return _getPlaylistMetadata(
+            reference.pointer, _id_getPlaylistMetadata as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_setPlaylistMetadata = _class.instanceMethodId(
+    r'setPlaylistMetadata',
+    r'(Landroidx/media3/common/MediaMetadata;)V',
+  );
+
+  static final _setPlaylistMetadata = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void setPlaylistMetadata(androidx.media3.common.MediaMetadata mediaMetadata)`
+  void setPlaylistMetadata(
+    _$jni.JObject mediaMetadata,
+  ) {
+    _setPlaylistMetadata(
+            reference.pointer,
+            _id_setPlaylistMetadata as _$jni.JMethodIDPtr,
+            mediaMetadata.reference.pointer)
+        .check();
+  }
+
+  static final _id_getCurrentManifest = _class.instanceMethodId(
+    r'getCurrentManifest',
+    r'()Ljava/lang/Object;',
+  );
+
+  static final _getCurrentManifest = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract java.lang.Object getCurrentManifest()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getCurrentManifest() {
+    return _getCurrentManifest(
+            reference.pointer, _id_getCurrentManifest as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_getCurrentTimeline = _class.instanceMethodId(
+    r'getCurrentTimeline',
+    r'()Landroidx/media3/common/Timeline;',
+  );
+
+  static final _getCurrentTimeline = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract androidx.media3.common.Timeline getCurrentTimeline()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getCurrentTimeline() {
+    return _getCurrentTimeline(
+            reference.pointer, _id_getCurrentTimeline as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_getCurrentPeriodIndex = _class.instanceMethodId(
+    r'getCurrentPeriodIndex',
+    r'()I',
+  );
+
+  static final _getCurrentPeriodIndex = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract int getCurrentPeriodIndex()`
+  int getCurrentPeriodIndex() {
+    return _getCurrentPeriodIndex(
+            reference.pointer, _id_getCurrentPeriodIndex as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_getCurrentWindowIndex = _class.instanceMethodId(
+    r'getCurrentWindowIndex',
+    r'()I',
+  );
+
+  static final _getCurrentWindowIndex = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract int getCurrentWindowIndex()`
+  int getCurrentWindowIndex() {
+    return _getCurrentWindowIndex(
+            reference.pointer, _id_getCurrentWindowIndex as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_getCurrentMediaItemIndex = _class.instanceMethodId(
+    r'getCurrentMediaItemIndex',
+    r'()I',
+  );
+
+  static final _getCurrentMediaItemIndex = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract int getCurrentMediaItemIndex()`
+  int getCurrentMediaItemIndex() {
+    return _getCurrentMediaItemIndex(reference.pointer,
+            _id_getCurrentMediaItemIndex as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_getNextWindowIndex = _class.instanceMethodId(
+    r'getNextWindowIndex',
+    r'()I',
+  );
+
+  static final _getNextWindowIndex = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract int getNextWindowIndex()`
+  int getNextWindowIndex() {
+    return _getNextWindowIndex(
+            reference.pointer, _id_getNextWindowIndex as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_getNextMediaItemIndex = _class.instanceMethodId(
+    r'getNextMediaItemIndex',
+    r'()I',
+  );
+
+  static final _getNextMediaItemIndex = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract int getNextMediaItemIndex()`
+  int getNextMediaItemIndex() {
+    return _getNextMediaItemIndex(
+            reference.pointer, _id_getNextMediaItemIndex as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_getPreviousWindowIndex = _class.instanceMethodId(
+    r'getPreviousWindowIndex',
+    r'()I',
+  );
+
+  static final _getPreviousWindowIndex = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract int getPreviousWindowIndex()`
+  int getPreviousWindowIndex() {
+    return _getPreviousWindowIndex(
+            reference.pointer, _id_getPreviousWindowIndex as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_getPreviousMediaItemIndex = _class.instanceMethodId(
+    r'getPreviousMediaItemIndex',
+    r'()I',
+  );
+
+  static final _getPreviousMediaItemIndex = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract int getPreviousMediaItemIndex()`
+  int getPreviousMediaItemIndex() {
+    return _getPreviousMediaItemIndex(reference.pointer,
+            _id_getPreviousMediaItemIndex as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_getCurrentMediaItem = _class.instanceMethodId(
+    r'getCurrentMediaItem',
+    r'()Landroidx/media3/common/MediaItem;',
+  );
+
+  static final _getCurrentMediaItem = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract androidx.media3.common.MediaItem getCurrentMediaItem()`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem getCurrentMediaItem() {
+    return _getCurrentMediaItem(
+            reference.pointer, _id_getCurrentMediaItem as _$jni.JMethodIDPtr)
+        .object(const $MediaItem$Type());
+  }
+
+  static final _id_getMediaItemCount = _class.instanceMethodId(
+    r'getMediaItemCount',
+    r'()I',
+  );
+
+  static final _getMediaItemCount = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract int getMediaItemCount()`
+  int getMediaItemCount() {
+    return _getMediaItemCount(
+            reference.pointer, _id_getMediaItemCount as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_getMediaItemAt = _class.instanceMethodId(
+    r'getMediaItemAt',
+    r'(I)Landroidx/media3/common/MediaItem;',
+  );
+
+  static final _getMediaItemAt = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public abstract androidx.media3.common.MediaItem getMediaItemAt(int i)`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem getMediaItemAt(
+    int i,
+  ) {
+    return _getMediaItemAt(
+            reference.pointer, _id_getMediaItemAt as _$jni.JMethodIDPtr, i)
+        .object(const $MediaItem$Type());
+  }
+
+  static final _id_getDuration = _class.instanceMethodId(
+    r'getDuration',
+    r'()J',
+  );
+
+  static final _getDuration = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallLongMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract long getDuration()`
+  int getDuration() {
+    return _getDuration(
+            reference.pointer, _id_getDuration as _$jni.JMethodIDPtr)
+        .long;
+  }
+
+  static final _id_getCurrentPosition = _class.instanceMethodId(
+    r'getCurrentPosition',
+    r'()J',
+  );
+
+  static final _getCurrentPosition = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallLongMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract long getCurrentPosition()`
+  int getCurrentPosition() {
+    return _getCurrentPosition(
+            reference.pointer, _id_getCurrentPosition as _$jni.JMethodIDPtr)
+        .long;
+  }
+
+  static final _id_getBufferedPosition = _class.instanceMethodId(
+    r'getBufferedPosition',
+    r'()J',
+  );
+
+  static final _getBufferedPosition = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallLongMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract long getBufferedPosition()`
+  int getBufferedPosition() {
+    return _getBufferedPosition(
+            reference.pointer, _id_getBufferedPosition as _$jni.JMethodIDPtr)
+        .long;
+  }
+
+  static final _id_getBufferedPercentage = _class.instanceMethodId(
+    r'getBufferedPercentage',
+    r'()I',
+  );
+
+  static final _getBufferedPercentage = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract int getBufferedPercentage()`
+  int getBufferedPercentage() {
+    return _getBufferedPercentage(
+            reference.pointer, _id_getBufferedPercentage as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_getTotalBufferedDuration = _class.instanceMethodId(
+    r'getTotalBufferedDuration',
+    r'()J',
+  );
+
+  static final _getTotalBufferedDuration = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallLongMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract long getTotalBufferedDuration()`
+  int getTotalBufferedDuration() {
+    return _getTotalBufferedDuration(reference.pointer,
+            _id_getTotalBufferedDuration as _$jni.JMethodIDPtr)
+        .long;
+  }
+
+  static final _id_isCurrentWindowDynamic = _class.instanceMethodId(
+    r'isCurrentWindowDynamic',
+    r'()Z',
+  );
+
+  static final _isCurrentWindowDynamic = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract boolean isCurrentWindowDynamic()`
+  bool isCurrentWindowDynamic() {
+    return _isCurrentWindowDynamic(
+            reference.pointer, _id_isCurrentWindowDynamic as _$jni.JMethodIDPtr)
+        .boolean;
+  }
+
+  static final _id_isCurrentMediaItemDynamic = _class.instanceMethodId(
+    r'isCurrentMediaItemDynamic',
+    r'()Z',
+  );
+
+  static final _isCurrentMediaItemDynamic = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract boolean isCurrentMediaItemDynamic()`
+  bool isCurrentMediaItemDynamic() {
+    return _isCurrentMediaItemDynamic(reference.pointer,
+            _id_isCurrentMediaItemDynamic as _$jni.JMethodIDPtr)
+        .boolean;
+  }
+
+  static final _id_isCurrentWindowLive = _class.instanceMethodId(
+    r'isCurrentWindowLive',
+    r'()Z',
+  );
+
+  static final _isCurrentWindowLive = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract boolean isCurrentWindowLive()`
+  bool isCurrentWindowLive() {
+    return _isCurrentWindowLive(
+            reference.pointer, _id_isCurrentWindowLive as _$jni.JMethodIDPtr)
+        .boolean;
+  }
+
+  static final _id_isCurrentMediaItemLive = _class.instanceMethodId(
+    r'isCurrentMediaItemLive',
+    r'()Z',
+  );
+
+  static final _isCurrentMediaItemLive = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract boolean isCurrentMediaItemLive()`
+  bool isCurrentMediaItemLive() {
+    return _isCurrentMediaItemLive(
+            reference.pointer, _id_isCurrentMediaItemLive as _$jni.JMethodIDPtr)
+        .boolean;
+  }
+
+  static final _id_getCurrentLiveOffset = _class.instanceMethodId(
+    r'getCurrentLiveOffset',
+    r'()J',
+  );
+
+  static final _getCurrentLiveOffset = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallLongMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract long getCurrentLiveOffset()`
+  int getCurrentLiveOffset() {
+    return _getCurrentLiveOffset(
+            reference.pointer, _id_getCurrentLiveOffset as _$jni.JMethodIDPtr)
+        .long;
+  }
+
+  static final _id_isCurrentWindowSeekable = _class.instanceMethodId(
+    r'isCurrentWindowSeekable',
+    r'()Z',
+  );
+
+  static final _isCurrentWindowSeekable = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract boolean isCurrentWindowSeekable()`
+  bool isCurrentWindowSeekable() {
+    return _isCurrentWindowSeekable(reference.pointer,
+            _id_isCurrentWindowSeekable as _$jni.JMethodIDPtr)
+        .boolean;
+  }
+
+  static final _id_isCurrentMediaItemSeekable = _class.instanceMethodId(
+    r'isCurrentMediaItemSeekable',
+    r'()Z',
+  );
+
+  static final _isCurrentMediaItemSeekable =
+      _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                    _$jni.Pointer<_$jni.Void>,
+                    _$jni.JMethodIDPtr,
+                  )>>('globalEnv_CallBooleanMethod')
+          .asFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>();
+
+  /// from: `public abstract boolean isCurrentMediaItemSeekable()`
+  bool isCurrentMediaItemSeekable() {
+    return _isCurrentMediaItemSeekable(reference.pointer,
+            _id_isCurrentMediaItemSeekable as _$jni.JMethodIDPtr)
+        .boolean;
+  }
+
+  static final _id_isPlayingAd = _class.instanceMethodId(
+    r'isPlayingAd',
+    r'()Z',
+  );
+
+  static final _isPlayingAd = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract boolean isPlayingAd()`
+  bool isPlayingAd() {
+    return _isPlayingAd(
+            reference.pointer, _id_isPlayingAd as _$jni.JMethodIDPtr)
+        .boolean;
+  }
+
+  static final _id_getCurrentAdGroupIndex = _class.instanceMethodId(
+    r'getCurrentAdGroupIndex',
+    r'()I',
+  );
+
+  static final _getCurrentAdGroupIndex = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract int getCurrentAdGroupIndex()`
+  int getCurrentAdGroupIndex() {
+    return _getCurrentAdGroupIndex(
+            reference.pointer, _id_getCurrentAdGroupIndex as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_getCurrentAdIndexInAdGroup = _class.instanceMethodId(
+    r'getCurrentAdIndexInAdGroup',
+    r'()I',
+  );
+
+  static final _getCurrentAdIndexInAdGroup =
+      _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                    _$jni.Pointer<_$jni.Void>,
+                    _$jni.JMethodIDPtr,
+                  )>>('globalEnv_CallIntMethod')
+          .asFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>();
+
+  /// from: `public abstract int getCurrentAdIndexInAdGroup()`
+  int getCurrentAdIndexInAdGroup() {
+    return _getCurrentAdIndexInAdGroup(reference.pointer,
+            _id_getCurrentAdIndexInAdGroup as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_getContentDuration = _class.instanceMethodId(
+    r'getContentDuration',
+    r'()J',
+  );
+
+  static final _getContentDuration = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallLongMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract long getContentDuration()`
+  int getContentDuration() {
+    return _getContentDuration(
+            reference.pointer, _id_getContentDuration as _$jni.JMethodIDPtr)
+        .long;
+  }
+
+  static final _id_getContentPosition = _class.instanceMethodId(
+    r'getContentPosition',
+    r'()J',
+  );
+
+  static final _getContentPosition = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallLongMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract long getContentPosition()`
+  int getContentPosition() {
+    return _getContentPosition(
+            reference.pointer, _id_getContentPosition as _$jni.JMethodIDPtr)
+        .long;
+  }
+
+  static final _id_getContentBufferedPosition = _class.instanceMethodId(
+    r'getContentBufferedPosition',
+    r'()J',
+  );
+
+  static final _getContentBufferedPosition =
+      _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                    _$jni.Pointer<_$jni.Void>,
+                    _$jni.JMethodIDPtr,
+                  )>>('globalEnv_CallLongMethod')
+          .asFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>();
+
+  /// from: `public abstract long getContentBufferedPosition()`
+  int getContentBufferedPosition() {
+    return _getContentBufferedPosition(reference.pointer,
+            _id_getContentBufferedPosition as _$jni.JMethodIDPtr)
+        .long;
+  }
+
+  static final _id_getAudioAttributes = _class.instanceMethodId(
+    r'getAudioAttributes',
+    r'()Landroidx/media3/common/AudioAttributes;',
+  );
+
+  static final _getAudioAttributes = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract androidx.media3.common.AudioAttributes getAudioAttributes()`
+  /// The returned object must be released after use, by calling the [release] method.
+  AudioAttributes getAudioAttributes() {
+    return _getAudioAttributes(
+            reference.pointer, _id_getAudioAttributes as _$jni.JMethodIDPtr)
+        .object(const $AudioAttributes$Type());
+  }
+
+  static final _id_setVolume = _class.instanceMethodId(
+    r'setVolume',
+    r'(F)V',
+  );
+
+  static final _setVolume = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Double,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, double)>();
+
+  /// from: `public abstract void setVolume(float f)`
+  void setVolume(
+    double f,
+  ) {
+    _setVolume(reference.pointer, _id_setVolume as _$jni.JMethodIDPtr, f)
+        .check();
+  }
+
+  static final _id_getVolume = _class.instanceMethodId(
+    r'getVolume',
+    r'()F',
+  );
+
+  static final _getVolume = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallFloatMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract float getVolume()`
+  double getVolume() {
+    return _getVolume(reference.pointer, _id_getVolume as _$jni.JMethodIDPtr)
+        .float;
+  }
+
+  static final _id_clearVideoSurface = _class.instanceMethodId(
+    r'clearVideoSurface',
+    r'()V',
+  );
+
+  static final _clearVideoSurface = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract void clearVideoSurface()`
+  void clearVideoSurface() {
+    _clearVideoSurface(
+            reference.pointer, _id_clearVideoSurface as _$jni.JMethodIDPtr)
+        .check();
+  }
+
+  static final _id_clearVideoSurface$1 = _class.instanceMethodId(
+    r'clearVideoSurface',
+    r'(Landroid/view/Surface;)V',
+  );
+
+  static final _clearVideoSurface$1 = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void clearVideoSurface(android.view.Surface surface)`
+  void clearVideoSurface$1(
+    _$jni.JObject surface,
+  ) {
+    _clearVideoSurface$1(
+            reference.pointer,
+            _id_clearVideoSurface$1 as _$jni.JMethodIDPtr,
+            surface.reference.pointer)
+        .check();
+  }
+
+  static final _id_setVideoSurface = _class.instanceMethodId(
+    r'setVideoSurface',
+    r'(Landroid/view/Surface;)V',
+  );
+
+  static final _setVideoSurface = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void setVideoSurface(android.view.Surface surface)`
+  void setVideoSurface(
+    _$jni.JObject surface,
+  ) {
+    _setVideoSurface(
+            reference.pointer,
+            _id_setVideoSurface as _$jni.JMethodIDPtr,
+            surface.reference.pointer)
+        .check();
+  }
+
+  static final _id_setVideoSurfaceHolder = _class.instanceMethodId(
+    r'setVideoSurfaceHolder',
+    r'(Landroid/view/SurfaceHolder;)V',
+  );
+
+  static final _setVideoSurfaceHolder = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void setVideoSurfaceHolder(android.view.SurfaceHolder surfaceHolder)`
+  void setVideoSurfaceHolder(
+    _$jni.JObject surfaceHolder,
+  ) {
+    _setVideoSurfaceHolder(
+            reference.pointer,
+            _id_setVideoSurfaceHolder as _$jni.JMethodIDPtr,
+            surfaceHolder.reference.pointer)
+        .check();
+  }
+
+  static final _id_clearVideoSurfaceHolder = _class.instanceMethodId(
+    r'clearVideoSurfaceHolder',
+    r'(Landroid/view/SurfaceHolder;)V',
+  );
+
+  static final _clearVideoSurfaceHolder = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void clearVideoSurfaceHolder(android.view.SurfaceHolder surfaceHolder)`
+  void clearVideoSurfaceHolder(
+    _$jni.JObject surfaceHolder,
+  ) {
+    _clearVideoSurfaceHolder(
+            reference.pointer,
+            _id_clearVideoSurfaceHolder as _$jni.JMethodIDPtr,
+            surfaceHolder.reference.pointer)
+        .check();
+  }
+
+  static final _id_setVideoSurfaceView = _class.instanceMethodId(
+    r'setVideoSurfaceView',
+    r'(Landroid/view/SurfaceView;)V',
+  );
+
+  static final _setVideoSurfaceView = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void setVideoSurfaceView(android.view.SurfaceView surfaceView)`
+  void setVideoSurfaceView(
+    _$jni.JObject surfaceView,
+  ) {
+    _setVideoSurfaceView(
+            reference.pointer,
+            _id_setVideoSurfaceView as _$jni.JMethodIDPtr,
+            surfaceView.reference.pointer)
+        .check();
+  }
+
+  static final _id_clearVideoSurfaceView = _class.instanceMethodId(
+    r'clearVideoSurfaceView',
+    r'(Landroid/view/SurfaceView;)V',
+  );
+
+  static final _clearVideoSurfaceView = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void clearVideoSurfaceView(android.view.SurfaceView surfaceView)`
+  void clearVideoSurfaceView(
+    _$jni.JObject surfaceView,
+  ) {
+    _clearVideoSurfaceView(
+            reference.pointer,
+            _id_clearVideoSurfaceView as _$jni.JMethodIDPtr,
+            surfaceView.reference.pointer)
+        .check();
+  }
+
+  static final _id_setVideoTextureView = _class.instanceMethodId(
+    r'setVideoTextureView',
+    r'(Landroid/view/TextureView;)V',
+  );
+
+  static final _setVideoTextureView = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void setVideoTextureView(android.view.TextureView textureView)`
+  void setVideoTextureView(
+    _$jni.JObject textureView,
+  ) {
+    _setVideoTextureView(
+            reference.pointer,
+            _id_setVideoTextureView as _$jni.JMethodIDPtr,
+            textureView.reference.pointer)
+        .check();
+  }
+
+  static final _id_clearVideoTextureView = _class.instanceMethodId(
+    r'clearVideoTextureView',
+    r'(Landroid/view/TextureView;)V',
+  );
+
+  static final _clearVideoTextureView = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void clearVideoTextureView(android.view.TextureView textureView)`
+  void clearVideoTextureView(
+    _$jni.JObject textureView,
+  ) {
+    _clearVideoTextureView(
+            reference.pointer,
+            _id_clearVideoTextureView as _$jni.JMethodIDPtr,
+            textureView.reference.pointer)
+        .check();
+  }
+
+  static final _id_getVideoSize = _class.instanceMethodId(
+    r'getVideoSize',
+    r'()Landroidx/media3/common/VideoSize;',
+  );
+
+  static final _getVideoSize = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract androidx.media3.common.VideoSize getVideoSize()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getVideoSize() {
+    return _getVideoSize(
+            reference.pointer, _id_getVideoSize as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_getSurfaceSize = _class.instanceMethodId(
+    r'getSurfaceSize',
+    r'()Landroidx/media3/common/util/Size;',
+  );
+
+  static final _getSurfaceSize = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract androidx.media3.common.util.Size getSurfaceSize()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getSurfaceSize() {
+    return _getSurfaceSize(
+            reference.pointer, _id_getSurfaceSize as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_getCurrentCues = _class.instanceMethodId(
+    r'getCurrentCues',
+    r'()Landroidx/media3/common/text/CueGroup;',
+  );
+
+  static final _getCurrentCues = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract androidx.media3.common.text.CueGroup getCurrentCues()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getCurrentCues() {
+    return _getCurrentCues(
+            reference.pointer, _id_getCurrentCues as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_getDeviceInfo = _class.instanceMethodId(
+    r'getDeviceInfo',
+    r'()Landroidx/media3/common/DeviceInfo;',
+  );
+
+  static final _getDeviceInfo = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract androidx.media3.common.DeviceInfo getDeviceInfo()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getDeviceInfo() {
+    return _getDeviceInfo(
+            reference.pointer, _id_getDeviceInfo as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_getDeviceVolume = _class.instanceMethodId(
+    r'getDeviceVolume',
+    r'()I',
+  );
+
+  static final _getDeviceVolume = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract int getDeviceVolume()`
+  int getDeviceVolume() {
+    return _getDeviceVolume(
+            reference.pointer, _id_getDeviceVolume as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_isDeviceMuted = _class.instanceMethodId(
+    r'isDeviceMuted',
+    r'()Z',
+  );
+
+  static final _isDeviceMuted = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract boolean isDeviceMuted()`
+  bool isDeviceMuted() {
+    return _isDeviceMuted(
+            reference.pointer, _id_isDeviceMuted as _$jni.JMethodIDPtr)
+        .boolean;
+  }
+
+  static final _id_setDeviceVolume = _class.instanceMethodId(
+    r'setDeviceVolume',
+    r'(I)V',
+  );
+
+  static final _setDeviceVolume = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public abstract void setDeviceVolume(int i)`
+  void setDeviceVolume(
+    int i,
+  ) {
+    _setDeviceVolume(
+            reference.pointer, _id_setDeviceVolume as _$jni.JMethodIDPtr, i)
+        .check();
+  }
+
+  static final _id_setDeviceVolume$1 = _class.instanceMethodId(
+    r'setDeviceVolume',
+    r'(II)V',
+  );
+
+  static final _setDeviceVolume$1 = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Int32, _$jni.Int32)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int, int)>();
+
+  /// from: `public abstract void setDeviceVolume(int i, int i1)`
+  void setDeviceVolume$1(
+    int i,
+    int i1,
+  ) {
+    _setDeviceVolume$1(reference.pointer,
+            _id_setDeviceVolume$1 as _$jni.JMethodIDPtr, i, i1)
+        .check();
+  }
+
+  static final _id_increaseDeviceVolume = _class.instanceMethodId(
+    r'increaseDeviceVolume',
+    r'()V',
+  );
+
+  static final _increaseDeviceVolume = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract void increaseDeviceVolume()`
+  void increaseDeviceVolume() {
+    _increaseDeviceVolume(
+            reference.pointer, _id_increaseDeviceVolume as _$jni.JMethodIDPtr)
+        .check();
+  }
+
+  static final _id_increaseDeviceVolume$1 = _class.instanceMethodId(
+    r'increaseDeviceVolume',
+    r'(I)V',
+  );
+
+  static final _increaseDeviceVolume$1 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public abstract void increaseDeviceVolume(int i)`
+  void increaseDeviceVolume$1(
+    int i,
+  ) {
+    _increaseDeviceVolume$1(reference.pointer,
+            _id_increaseDeviceVolume$1 as _$jni.JMethodIDPtr, i)
+        .check();
+  }
+
+  static final _id_decreaseDeviceVolume = _class.instanceMethodId(
+    r'decreaseDeviceVolume',
+    r'()V',
+  );
+
+  static final _decreaseDeviceVolume = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract void decreaseDeviceVolume()`
+  void decreaseDeviceVolume() {
+    _decreaseDeviceVolume(
+            reference.pointer, _id_decreaseDeviceVolume as _$jni.JMethodIDPtr)
+        .check();
+  }
+
+  static final _id_decreaseDeviceVolume$1 = _class.instanceMethodId(
+    r'decreaseDeviceVolume',
+    r'(I)V',
+  );
+
+  static final _decreaseDeviceVolume$1 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public abstract void decreaseDeviceVolume(int i)`
+  void decreaseDeviceVolume$1(
+    int i,
+  ) {
+    _decreaseDeviceVolume$1(reference.pointer,
+            _id_decreaseDeviceVolume$1 as _$jni.JMethodIDPtr, i)
+        .check();
+  }
+
+  static final _id_setDeviceMuted = _class.instanceMethodId(
+    r'setDeviceMuted',
+    r'(Z)V',
+  );
+
+  static final _setDeviceMuted = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public abstract void setDeviceMuted(boolean z)`
+  void setDeviceMuted(
+    bool z,
+  ) {
+    _setDeviceMuted(reference.pointer, _id_setDeviceMuted as _$jni.JMethodIDPtr,
+            z ? 1 : 0)
+        .check();
+  }
+
+  static final _id_setDeviceMuted$1 = _class.instanceMethodId(
+    r'setDeviceMuted',
+    r'(ZI)V',
+  );
+
+  static final _setDeviceMuted$1 = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Int32, _$jni.Int32)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int, int)>();
+
+  /// from: `public abstract void setDeviceMuted(boolean z, int i)`
+  void setDeviceMuted$1(
+    bool z,
+    int i,
+  ) {
+    _setDeviceMuted$1(reference.pointer,
+            _id_setDeviceMuted$1 as _$jni.JMethodIDPtr, z ? 1 : 0, i)
+        .check();
+  }
+
+  static final _id_setAudioAttributes = _class.instanceMethodId(
+    r'setAudioAttributes',
+    r'(Landroidx/media3/common/AudioAttributes;Z)V',
+  );
+
+  static final _setAudioAttributes = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni
+                          .VarArgs<(_$jni.Pointer<_$jni.Void>, _$jni.Int32)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>, int)>();
+
+  /// from: `public abstract void setAudioAttributes(androidx.media3.common.AudioAttributes audioAttributes, boolean z)`
+  void setAudioAttributes(
+    AudioAttributes audioAttributes,
+    bool z,
+  ) {
+    _setAudioAttributes(
+            reference.pointer,
+            _id_setAudioAttributes as _$jni.JMethodIDPtr,
+            audioAttributes.reference.pointer,
+            z ? 1 : 0)
+        .check();
+  }
+
+  /// Maps a specific port to the implemented interface.
+  static final _$core.Map<int, $Player> _$impls = {};
+  static _$jni.JObjectPtr _$invoke(
+    int port,
+    _$jni.JObjectPtr descriptor,
+    _$jni.JObjectPtr args,
+  ) {
+    return _$invokeMethod(
+      port,
+      _$jni.MethodInvocation.fromAddresses(
+        0,
+        descriptor.address,
+        args.address,
+      ),
+    );
+  }
+
+  static final _$jni.Pointer<
+          _$jni.NativeFunction<
+              _$jni.JObjectPtr Function(
+                  _$jni.Int64, _$jni.JObjectPtr, _$jni.JObjectPtr)>>
+      _$invokePointer = _$jni.Pointer.fromFunction(_$invoke);
+
+  static _$jni.Pointer<_$jni.Void> _$invokeMethod(
+    int $p,
+    _$jni.MethodInvocation $i,
+  ) {
+    try {
+      final $d = $i.methodDescriptor.toDartString(releaseOriginal: true);
+      final $a = $i.args;
+      if ($d == r'getApplicationLooper()Landroid/os/Looper;') {
+        final $r = _$impls[$p]!.getApplicationLooper();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d == r'addListener(Landroidx/media3/common/Player$Listener;)V') {
+        _$impls[$p]!.addListener(
+          $a[0].as(const $Player_Listener$Type(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'removeListener(Landroidx/media3/common/Player$Listener;)V') {
+        _$impls[$p]!.removeListener(
+          $a[0].as(const $Player_Listener$Type(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'setMediaItems(Ljava/util/List;)V') {
+        _$impls[$p]!.setMediaItems(
+          $a[0].as(const _$jni.JListType($MediaItem$Type()),
+              releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'setMediaItems(Ljava/util/List;Z)V') {
+        _$impls[$p]!.setMediaItems$1(
+          $a[0].as(const _$jni.JListType($MediaItem$Type()),
+              releaseOriginal: true),
+          $a[1]
+              .as(const _$jni.JBooleanType(), releaseOriginal: true)
+              .booleanValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'setMediaItems(Ljava/util/List;IJ)V') {
+        _$impls[$p]!.setMediaItems$2(
+          $a[0].as(const _$jni.JListType($MediaItem$Type()),
+              releaseOriginal: true),
+          $a[1]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+          $a[2]
+              .as(const _$jni.JLongType(), releaseOriginal: true)
+              .longValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'setMediaItem(Landroidx/media3/common/MediaItem;)V') {
+        _$impls[$p]!.setMediaItem(
+          $a[0].as(const $MediaItem$Type(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'setMediaItem(Landroidx/media3/common/MediaItem;J)V') {
+        _$impls[$p]!.setMediaItem$1(
+          $a[0].as(const $MediaItem$Type(), releaseOriginal: true),
+          $a[1]
+              .as(const _$jni.JLongType(), releaseOriginal: true)
+              .longValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'setMediaItem(Landroidx/media3/common/MediaItem;Z)V') {
+        _$impls[$p]!.setMediaItem$2(
+          $a[0].as(const $MediaItem$Type(), releaseOriginal: true),
+          $a[1]
+              .as(const _$jni.JBooleanType(), releaseOriginal: true)
+              .booleanValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'addMediaItem(Landroidx/media3/common/MediaItem;)V') {
+        _$impls[$p]!.addMediaItem(
+          $a[0].as(const $MediaItem$Type(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'addMediaItem(ILandroidx/media3/common/MediaItem;)V') {
+        _$impls[$p]!.addMediaItem$1(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+          $a[1].as(const $MediaItem$Type(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'addMediaItems(Ljava/util/List;)V') {
+        _$impls[$p]!.addMediaItems(
+          $a[0].as(const _$jni.JListType($MediaItem$Type()),
+              releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'addMediaItems(ILjava/util/List;)V') {
+        _$impls[$p]!.addMediaItems$1(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+          $a[1].as(const _$jni.JListType($MediaItem$Type()),
+              releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'moveMediaItem(II)V') {
+        _$impls[$p]!.moveMediaItem(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+          $a[1]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'moveMediaItems(III)V') {
+        _$impls[$p]!.moveMediaItems(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+          $a[1]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+          $a[2]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'replaceMediaItem(ILandroidx/media3/common/MediaItem;)V') {
+        _$impls[$p]!.replaceMediaItem(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+          $a[1].as(const $MediaItem$Type(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'replaceMediaItems(IILjava/util/List;)V') {
+        _$impls[$p]!.replaceMediaItems(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+          $a[1]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+          $a[2].as(const _$jni.JListType($MediaItem$Type()),
+              releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'removeMediaItem(I)V') {
+        _$impls[$p]!.removeMediaItem(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'removeMediaItems(II)V') {
+        _$impls[$p]!.removeMediaItems(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+          $a[1]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'clearMediaItems()V') {
+        _$impls[$p]!.clearMediaItems();
+        return _$jni.nullptr;
+      }
+      if ($d == r'isCommandAvailable(I)Z') {
+        final $r = _$impls[$p]!.isCommandAvailable(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return _$jni.JBoolean($r).reference.toPointer();
+      }
+      if ($d == r'canAdvertiseSession()Z') {
+        final $r = _$impls[$p]!.canAdvertiseSession();
+        return _$jni.JBoolean($r).reference.toPointer();
+      }
+      if ($d ==
+          r'getAvailableCommands()Landroidx/media3/common/Player$Commands;') {
+        final $r = _$impls[$p]!.getAvailableCommands();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d == r'prepare()V') {
+        _$impls[$p]!.prepare();
+        return _$jni.nullptr;
+      }
+      if ($d == r'getPlaybackState()I') {
+        final $r = _$impls[$p]!.getPlaybackState();
+        return _$jni.JInteger($r).reference.toPointer();
+      }
+      if ($d == r'getPlaybackSuppressionReason()I') {
+        final $r = _$impls[$p]!.getPlaybackSuppressionReason();
+        return _$jni.JInteger($r).reference.toPointer();
+      }
+      if ($d == r'isPlaying()Z') {
+        final $r = _$impls[$p]!.isPlaying();
+        return _$jni.JBoolean($r).reference.toPointer();
+      }
+      if ($d == r'getPlayerError()Landroidx/media3/common/PlaybackException;') {
+        final $r = _$impls[$p]!.getPlayerError();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d == r'play()V') {
+        _$impls[$p]!.play();
+        return _$jni.nullptr;
+      }
+      if ($d == r'pause()V') {
+        _$impls[$p]!.pause();
+        return _$jni.nullptr;
+      }
+      if ($d == r'setPlayWhenReady(Z)V') {
+        _$impls[$p]!.setPlayWhenReady(
+          $a[0]
+              .as(const _$jni.JBooleanType(), releaseOriginal: true)
+              .booleanValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'getPlayWhenReady()Z') {
+        final $r = _$impls[$p]!.getPlayWhenReady();
+        return _$jni.JBoolean($r).reference.toPointer();
+      }
+      if ($d == r'setRepeatMode(I)V') {
+        _$impls[$p]!.setRepeatMode(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'getRepeatMode()I') {
+        final $r = _$impls[$p]!.getRepeatMode();
+        return _$jni.JInteger($r).reference.toPointer();
+      }
+      if ($d == r'setShuffleModeEnabled(Z)V') {
+        _$impls[$p]!.setShuffleModeEnabled(
+          $a[0]
+              .as(const _$jni.JBooleanType(), releaseOriginal: true)
+              .booleanValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'getShuffleModeEnabled()Z') {
+        final $r = _$impls[$p]!.getShuffleModeEnabled();
+        return _$jni.JBoolean($r).reference.toPointer();
+      }
+      if ($d == r'isLoading()Z') {
+        final $r = _$impls[$p]!.isLoading();
+        return _$jni.JBoolean($r).reference.toPointer();
+      }
+      if ($d == r'seekToDefaultPosition()V') {
+        _$impls[$p]!.seekToDefaultPosition();
+        return _$jni.nullptr;
+      }
+      if ($d == r'seekToDefaultPosition(I)V') {
+        _$impls[$p]!.seekToDefaultPosition$1(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'seekTo(J)V') {
+        _$impls[$p]!.seekTo(
+          $a[0]
+              .as(const _$jni.JLongType(), releaseOriginal: true)
+              .longValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'seekTo(IJ)V') {
+        _$impls[$p]!.seekTo$1(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+          $a[1]
+              .as(const _$jni.JLongType(), releaseOriginal: true)
+              .longValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'getSeekBackIncrement()J') {
+        final $r = _$impls[$p]!.getSeekBackIncrement();
+        return _$jni.JLong($r).reference.toPointer();
+      }
+      if ($d == r'seekBack()V') {
+        _$impls[$p]!.seekBack();
+        return _$jni.nullptr;
+      }
+      if ($d == r'getSeekForwardIncrement()J') {
+        final $r = _$impls[$p]!.getSeekForwardIncrement();
+        return _$jni.JLong($r).reference.toPointer();
+      }
+      if ($d == r'seekForward()V') {
+        _$impls[$p]!.seekForward();
+        return _$jni.nullptr;
+      }
+      if ($d == r'hasPrevious()Z') {
+        final $r = _$impls[$p]!.hasPrevious();
+        return _$jni.JBoolean($r).reference.toPointer();
+      }
+      if ($d == r'hasPreviousWindow()Z') {
+        final $r = _$impls[$p]!.hasPreviousWindow();
+        return _$jni.JBoolean($r).reference.toPointer();
+      }
+      if ($d == r'hasPreviousMediaItem()Z') {
+        final $r = _$impls[$p]!.hasPreviousMediaItem();
+        return _$jni.JBoolean($r).reference.toPointer();
+      }
+      if ($d == r'previous()V') {
+        _$impls[$p]!.previous();
+        return _$jni.nullptr;
+      }
+      if ($d == r'seekToPreviousWindow()V') {
+        _$impls[$p]!.seekToPreviousWindow();
+        return _$jni.nullptr;
+      }
+      if ($d == r'seekToPreviousMediaItem()V') {
+        _$impls[$p]!.seekToPreviousMediaItem();
+        return _$jni.nullptr;
+      }
+      if ($d == r'getMaxSeekToPreviousPosition()J') {
+        final $r = _$impls[$p]!.getMaxSeekToPreviousPosition();
+        return _$jni.JLong($r).reference.toPointer();
+      }
+      if ($d == r'seekToPrevious()V') {
+        _$impls[$p]!.seekToPrevious();
+        return _$jni.nullptr;
+      }
+      if ($d == r'hasNext()Z') {
+        final $r = _$impls[$p]!.hasNext();
+        return _$jni.JBoolean($r).reference.toPointer();
+      }
+      if ($d == r'hasNextWindow()Z') {
+        final $r = _$impls[$p]!.hasNextWindow();
+        return _$jni.JBoolean($r).reference.toPointer();
+      }
+      if ($d == r'hasNextMediaItem()Z') {
+        final $r = _$impls[$p]!.hasNextMediaItem();
+        return _$jni.JBoolean($r).reference.toPointer();
+      }
+      if ($d == r'next()V') {
+        _$impls[$p]!.next();
+        return _$jni.nullptr;
+      }
+      if ($d == r'seekToNextWindow()V') {
+        _$impls[$p]!.seekToNextWindow();
+        return _$jni.nullptr;
+      }
+      if ($d == r'seekToNextMediaItem()V') {
+        _$impls[$p]!.seekToNextMediaItem();
+        return _$jni.nullptr;
+      }
+      if ($d == r'seekToNext()V') {
+        _$impls[$p]!.seekToNext();
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'setPlaybackParameters(Landroidx/media3/common/PlaybackParameters;)V') {
+        _$impls[$p]!.setPlaybackParameters(
+          $a[0].as(const $PlaybackParameters$Type(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'setPlaybackSpeed(F)V') {
+        _$impls[$p]!.setPlaybackSpeed(
+          $a[0]
+              .as(const _$jni.JFloatType(), releaseOriginal: true)
+              .floatValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'getPlaybackParameters()Landroidx/media3/common/PlaybackParameters;') {
+        final $r = _$impls[$p]!.getPlaybackParameters();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d == r'stop()V') {
+        _$impls[$p]!.stop();
+        return _$jni.nullptr;
+      }
+      if ($d == r'release()V') {
+        _$impls[$p]!.release$1();
+        return _$jni.nullptr;
+      }
+      if ($d == r'getCurrentTracks()Landroidx/media3/common/Tracks;') {
+        final $r = _$impls[$p]!.getCurrentTracks();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d ==
+          r'getTrackSelectionParameters()Landroidx/media3/common/TrackSelectionParameters;') {
+        final $r = _$impls[$p]!.getTrackSelectionParameters();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d ==
+          r'setTrackSelectionParameters(Landroidx/media3/common/TrackSelectionParameters;)V') {
+        _$impls[$p]!.setTrackSelectionParameters(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'getMediaMetadata()Landroidx/media3/common/MediaMetadata;') {
+        final $r = _$impls[$p]!.getMediaMetadata();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d ==
+          r'getPlaylistMetadata()Landroidx/media3/common/MediaMetadata;') {
+        final $r = _$impls[$p]!.getPlaylistMetadata();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d ==
+          r'setPlaylistMetadata(Landroidx/media3/common/MediaMetadata;)V') {
+        _$impls[$p]!.setPlaylistMetadata(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'getCurrentManifest()Ljava/lang/Object;') {
+        final $r = _$impls[$p]!.getCurrentManifest();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d == r'getCurrentTimeline()Landroidx/media3/common/Timeline;') {
+        final $r = _$impls[$p]!.getCurrentTimeline();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d == r'getCurrentPeriodIndex()I') {
+        final $r = _$impls[$p]!.getCurrentPeriodIndex();
+        return _$jni.JInteger($r).reference.toPointer();
+      }
+      if ($d == r'getCurrentWindowIndex()I') {
+        final $r = _$impls[$p]!.getCurrentWindowIndex();
+        return _$jni.JInteger($r).reference.toPointer();
+      }
+      if ($d == r'getCurrentMediaItemIndex()I') {
+        final $r = _$impls[$p]!.getCurrentMediaItemIndex();
+        return _$jni.JInteger($r).reference.toPointer();
+      }
+      if ($d == r'getNextWindowIndex()I') {
+        final $r = _$impls[$p]!.getNextWindowIndex();
+        return _$jni.JInteger($r).reference.toPointer();
+      }
+      if ($d == r'getNextMediaItemIndex()I') {
+        final $r = _$impls[$p]!.getNextMediaItemIndex();
+        return _$jni.JInteger($r).reference.toPointer();
+      }
+      if ($d == r'getPreviousWindowIndex()I') {
+        final $r = _$impls[$p]!.getPreviousWindowIndex();
+        return _$jni.JInteger($r).reference.toPointer();
+      }
+      if ($d == r'getPreviousMediaItemIndex()I') {
+        final $r = _$impls[$p]!.getPreviousMediaItemIndex();
+        return _$jni.JInteger($r).reference.toPointer();
+      }
+      if ($d == r'getCurrentMediaItem()Landroidx/media3/common/MediaItem;') {
+        final $r = _$impls[$p]!.getCurrentMediaItem();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d == r'getMediaItemCount()I') {
+        final $r = _$impls[$p]!.getMediaItemCount();
+        return _$jni.JInteger($r).reference.toPointer();
+      }
+      if ($d == r'getMediaItemAt(I)Landroidx/media3/common/MediaItem;') {
+        final $r = _$impls[$p]!.getMediaItemAt(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d == r'getDuration()J') {
+        final $r = _$impls[$p]!.getDuration();
+        return _$jni.JLong($r).reference.toPointer();
+      }
+      if ($d == r'getCurrentPosition()J') {
+        final $r = _$impls[$p]!.getCurrentPosition();
+        return _$jni.JLong($r).reference.toPointer();
+      }
+      if ($d == r'getBufferedPosition()J') {
+        final $r = _$impls[$p]!.getBufferedPosition();
+        return _$jni.JLong($r).reference.toPointer();
+      }
+      if ($d == r'getBufferedPercentage()I') {
+        final $r = _$impls[$p]!.getBufferedPercentage();
+        return _$jni.JInteger($r).reference.toPointer();
+      }
+      if ($d == r'getTotalBufferedDuration()J') {
+        final $r = _$impls[$p]!.getTotalBufferedDuration();
+        return _$jni.JLong($r).reference.toPointer();
+      }
+      if ($d == r'isCurrentWindowDynamic()Z') {
+        final $r = _$impls[$p]!.isCurrentWindowDynamic();
+        return _$jni.JBoolean($r).reference.toPointer();
+      }
+      if ($d == r'isCurrentMediaItemDynamic()Z') {
+        final $r = _$impls[$p]!.isCurrentMediaItemDynamic();
+        return _$jni.JBoolean($r).reference.toPointer();
+      }
+      if ($d == r'isCurrentWindowLive()Z') {
+        final $r = _$impls[$p]!.isCurrentWindowLive();
+        return _$jni.JBoolean($r).reference.toPointer();
+      }
+      if ($d == r'isCurrentMediaItemLive()Z') {
+        final $r = _$impls[$p]!.isCurrentMediaItemLive();
+        return _$jni.JBoolean($r).reference.toPointer();
+      }
+      if ($d == r'getCurrentLiveOffset()J') {
+        final $r = _$impls[$p]!.getCurrentLiveOffset();
+        return _$jni.JLong($r).reference.toPointer();
+      }
+      if ($d == r'isCurrentWindowSeekable()Z') {
+        final $r = _$impls[$p]!.isCurrentWindowSeekable();
+        return _$jni.JBoolean($r).reference.toPointer();
+      }
+      if ($d == r'isCurrentMediaItemSeekable()Z') {
+        final $r = _$impls[$p]!.isCurrentMediaItemSeekable();
+        return _$jni.JBoolean($r).reference.toPointer();
+      }
+      if ($d == r'isPlayingAd()Z') {
+        final $r = _$impls[$p]!.isPlayingAd();
+        return _$jni.JBoolean($r).reference.toPointer();
+      }
+      if ($d == r'getCurrentAdGroupIndex()I') {
+        final $r = _$impls[$p]!.getCurrentAdGroupIndex();
+        return _$jni.JInteger($r).reference.toPointer();
+      }
+      if ($d == r'getCurrentAdIndexInAdGroup()I') {
+        final $r = _$impls[$p]!.getCurrentAdIndexInAdGroup();
+        return _$jni.JInteger($r).reference.toPointer();
+      }
+      if ($d == r'getContentDuration()J') {
+        final $r = _$impls[$p]!.getContentDuration();
+        return _$jni.JLong($r).reference.toPointer();
+      }
+      if ($d == r'getContentPosition()J') {
+        final $r = _$impls[$p]!.getContentPosition();
+        return _$jni.JLong($r).reference.toPointer();
+      }
+      if ($d == r'getContentBufferedPosition()J') {
+        final $r = _$impls[$p]!.getContentBufferedPosition();
+        return _$jni.JLong($r).reference.toPointer();
+      }
+      if ($d ==
+          r'getAudioAttributes()Landroidx/media3/common/AudioAttributes;') {
+        final $r = _$impls[$p]!.getAudioAttributes();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d == r'setVolume(F)V') {
+        _$impls[$p]!.setVolume(
+          $a[0]
+              .as(const _$jni.JFloatType(), releaseOriginal: true)
+              .floatValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'getVolume()F') {
+        final $r = _$impls[$p]!.getVolume();
+        return _$jni.JFloat($r).reference.toPointer();
+      }
+      if ($d == r'clearVideoSurface()V') {
+        _$impls[$p]!.clearVideoSurface();
+        return _$jni.nullptr;
+      }
+      if ($d == r'clearVideoSurface(Landroid/view/Surface;)V') {
+        _$impls[$p]!.clearVideoSurface$1(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'setVideoSurface(Landroid/view/Surface;)V') {
+        _$impls[$p]!.setVideoSurface(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'setVideoSurfaceHolder(Landroid/view/SurfaceHolder;)V') {
+        _$impls[$p]!.setVideoSurfaceHolder(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'clearVideoSurfaceHolder(Landroid/view/SurfaceHolder;)V') {
+        _$impls[$p]!.clearVideoSurfaceHolder(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'setVideoSurfaceView(Landroid/view/SurfaceView;)V') {
+        _$impls[$p]!.setVideoSurfaceView(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'clearVideoSurfaceView(Landroid/view/SurfaceView;)V') {
+        _$impls[$p]!.clearVideoSurfaceView(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'setVideoTextureView(Landroid/view/TextureView;)V') {
+        _$impls[$p]!.setVideoTextureView(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'clearVideoTextureView(Landroid/view/TextureView;)V') {
+        _$impls[$p]!.clearVideoTextureView(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'getVideoSize()Landroidx/media3/common/VideoSize;') {
+        final $r = _$impls[$p]!.getVideoSize();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d == r'getSurfaceSize()Landroidx/media3/common/util/Size;') {
+        final $r = _$impls[$p]!.getSurfaceSize();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d == r'getCurrentCues()Landroidx/media3/common/text/CueGroup;') {
+        final $r = _$impls[$p]!.getCurrentCues();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d == r'getDeviceInfo()Landroidx/media3/common/DeviceInfo;') {
+        final $r = _$impls[$p]!.getDeviceInfo();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d == r'getDeviceVolume()I') {
+        final $r = _$impls[$p]!.getDeviceVolume();
+        return _$jni.JInteger($r).reference.toPointer();
+      }
+      if ($d == r'isDeviceMuted()Z') {
+        final $r = _$impls[$p]!.isDeviceMuted();
+        return _$jni.JBoolean($r).reference.toPointer();
+      }
+      if ($d == r'setDeviceVolume(I)V') {
+        _$impls[$p]!.setDeviceVolume(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'setDeviceVolume(II)V') {
+        _$impls[$p]!.setDeviceVolume$1(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+          $a[1]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'increaseDeviceVolume()V') {
+        _$impls[$p]!.increaseDeviceVolume();
+        return _$jni.nullptr;
+      }
+      if ($d == r'increaseDeviceVolume(I)V') {
+        _$impls[$p]!.increaseDeviceVolume$1(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'decreaseDeviceVolume()V') {
+        _$impls[$p]!.decreaseDeviceVolume();
+        return _$jni.nullptr;
+      }
+      if ($d == r'decreaseDeviceVolume(I)V') {
+        _$impls[$p]!.decreaseDeviceVolume$1(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'setDeviceMuted(Z)V') {
+        _$impls[$p]!.setDeviceMuted(
+          $a[0]
+              .as(const _$jni.JBooleanType(), releaseOriginal: true)
+              .booleanValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'setDeviceMuted(ZI)V') {
+        _$impls[$p]!.setDeviceMuted$1(
+          $a[0]
+              .as(const _$jni.JBooleanType(), releaseOriginal: true)
+              .booleanValue(releaseOriginal: true),
+          $a[1]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'setAudioAttributes(Landroidx/media3/common/AudioAttributes;Z)V') {
+        _$impls[$p]!.setAudioAttributes(
+          $a[0].as(const $AudioAttributes$Type(), releaseOriginal: true),
+          $a[1]
+              .as(const _$jni.JBooleanType(), releaseOriginal: true)
+              .booleanValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+    } catch (e) {
+      return _$jni.ProtectedJniExtensions.newDartException(e);
+    }
+    return _$jni.nullptr;
+  }
+
+  static void implementIn(
+    _$jni.JImplementer implementer,
+    $Player $impl,
+  ) {
+    late final _$jni.RawReceivePort $p;
+    $p = _$jni.RawReceivePort(($m) {
+      if ($m == null) {
+        _$impls.remove($p.sendPort.nativePort);
+        $p.close();
+        return;
+      }
+      final $i = _$jni.MethodInvocation.fromMessage($m);
+      final $r = _$invokeMethod($p.sendPort.nativePort, $i);
+      _$jni.ProtectedJniExtensions.returnResult($i.result, $r);
+    });
+    implementer.add(
+      r'androidx.media3.common.Player',
+      $p,
+      _$invokePointer,
+      [
+        if ($impl.addListener$async)
+          r'addListener(Landroidx/media3/common/Player$Listener;)V',
+        if ($impl.removeListener$async)
+          r'removeListener(Landroidx/media3/common/Player$Listener;)V',
+        if ($impl.setMediaItems$async) r'setMediaItems(Ljava/util/List;)V',
+        if ($impl.setMediaItems$1$async) r'setMediaItems(Ljava/util/List;Z)V',
+        if ($impl.setMediaItems$2$async) r'setMediaItems(Ljava/util/List;IJ)V',
+        if ($impl.setMediaItem$async)
+          r'setMediaItem(Landroidx/media3/common/MediaItem;)V',
+        if ($impl.setMediaItem$1$async)
+          r'setMediaItem(Landroidx/media3/common/MediaItem;J)V',
+        if ($impl.setMediaItem$2$async)
+          r'setMediaItem(Landroidx/media3/common/MediaItem;Z)V',
+        if ($impl.addMediaItem$async)
+          r'addMediaItem(Landroidx/media3/common/MediaItem;)V',
+        if ($impl.addMediaItem$1$async)
+          r'addMediaItem(ILandroidx/media3/common/MediaItem;)V',
+        if ($impl.addMediaItems$async) r'addMediaItems(Ljava/util/List;)V',
+        if ($impl.addMediaItems$1$async) r'addMediaItems(ILjava/util/List;)V',
+        if ($impl.moveMediaItem$async) r'moveMediaItem(II)V',
+        if ($impl.moveMediaItems$async) r'moveMediaItems(III)V',
+        if ($impl.replaceMediaItem$async)
+          r'replaceMediaItem(ILandroidx/media3/common/MediaItem;)V',
+        if ($impl.replaceMediaItems$async)
+          r'replaceMediaItems(IILjava/util/List;)V',
+        if ($impl.removeMediaItem$async) r'removeMediaItem(I)V',
+        if ($impl.removeMediaItems$async) r'removeMediaItems(II)V',
+        if ($impl.clearMediaItems$async) r'clearMediaItems()V',
+        if ($impl.prepare$async) r'prepare()V',
+        if ($impl.play$async) r'play()V',
+        if ($impl.pause$async) r'pause()V',
+        if ($impl.setPlayWhenReady$async) r'setPlayWhenReady(Z)V',
+        if ($impl.setRepeatMode$async) r'setRepeatMode(I)V',
+        if ($impl.setShuffleModeEnabled$async) r'setShuffleModeEnabled(Z)V',
+        if ($impl.seekToDefaultPosition$async) r'seekToDefaultPosition()V',
+        if ($impl.seekToDefaultPosition$1$async) r'seekToDefaultPosition(I)V',
+        if ($impl.seekTo$async) r'seekTo(J)V',
+        if ($impl.seekTo$1$async) r'seekTo(IJ)V',
+        if ($impl.seekBack$async) r'seekBack()V',
+        if ($impl.seekForward$async) r'seekForward()V',
+        if ($impl.previous$async) r'previous()V',
+        if ($impl.seekToPreviousWindow$async) r'seekToPreviousWindow()V',
+        if ($impl.seekToPreviousMediaItem$async) r'seekToPreviousMediaItem()V',
+        if ($impl.seekToPrevious$async) r'seekToPrevious()V',
+        if ($impl.next$async) r'next()V',
+        if ($impl.seekToNextWindow$async) r'seekToNextWindow()V',
+        if ($impl.seekToNextMediaItem$async) r'seekToNextMediaItem()V',
+        if ($impl.seekToNext$async) r'seekToNext()V',
+        if ($impl.setPlaybackParameters$async)
+          r'setPlaybackParameters(Landroidx/media3/common/PlaybackParameters;)V',
+        if ($impl.setPlaybackSpeed$async) r'setPlaybackSpeed(F)V',
+        if ($impl.stop$async) r'stop()V',
+        if ($impl.release$1$async) r'release()V',
+        if ($impl.setTrackSelectionParameters$async)
+          r'setTrackSelectionParameters(Landroidx/media3/common/TrackSelectionParameters;)V',
+        if ($impl.setPlaylistMetadata$async)
+          r'setPlaylistMetadata(Landroidx/media3/common/MediaMetadata;)V',
+        if ($impl.setVolume$async) r'setVolume(F)V',
+        if ($impl.clearVideoSurface$async) r'clearVideoSurface()V',
+        if ($impl.clearVideoSurface$1$async)
+          r'clearVideoSurface(Landroid/view/Surface;)V',
+        if ($impl.setVideoSurface$async)
+          r'setVideoSurface(Landroid/view/Surface;)V',
+        if ($impl.setVideoSurfaceHolder$async)
+          r'setVideoSurfaceHolder(Landroid/view/SurfaceHolder;)V',
+        if ($impl.clearVideoSurfaceHolder$async)
+          r'clearVideoSurfaceHolder(Landroid/view/SurfaceHolder;)V',
+        if ($impl.setVideoSurfaceView$async)
+          r'setVideoSurfaceView(Landroid/view/SurfaceView;)V',
+        if ($impl.clearVideoSurfaceView$async)
+          r'clearVideoSurfaceView(Landroid/view/SurfaceView;)V',
+        if ($impl.setVideoTextureView$async)
+          r'setVideoTextureView(Landroid/view/TextureView;)V',
+        if ($impl.clearVideoTextureView$async)
+          r'clearVideoTextureView(Landroid/view/TextureView;)V',
+        if ($impl.setDeviceVolume$async) r'setDeviceVolume(I)V',
+        if ($impl.setDeviceVolume$1$async) r'setDeviceVolume(II)V',
+        if ($impl.increaseDeviceVolume$async) r'increaseDeviceVolume()V',
+        if ($impl.increaseDeviceVolume$1$async) r'increaseDeviceVolume(I)V',
+        if ($impl.decreaseDeviceVolume$async) r'decreaseDeviceVolume()V',
+        if ($impl.decreaseDeviceVolume$1$async) r'decreaseDeviceVolume(I)V',
+        if ($impl.setDeviceMuted$async) r'setDeviceMuted(Z)V',
+        if ($impl.setDeviceMuted$1$async) r'setDeviceMuted(ZI)V',
+        if ($impl.setAudioAttributes$async)
+          r'setAudioAttributes(Landroidx/media3/common/AudioAttributes;Z)V',
+      ],
+    );
+    final $a = $p.sendPort.nativePort;
+    _$impls[$a] = $impl;
+  }
+
+  factory Player.implement(
+    $Player $impl,
+  ) {
+    final $i = _$jni.JImplementer();
+    implementIn($i, $impl);
+    return Player.fromReference(
+      $i.implementReference(),
+    );
+  }
+}
+
+abstract base mixin class $Player {
+  factory $Player({
+    required _$jni.JObject Function() getApplicationLooper,
+    required void Function(Player_Listener listener) addListener,
+    bool addListener$async,
+    required void Function(Player_Listener listener) removeListener,
+    bool removeListener$async,
+    required void Function(_$jni.JList<MediaItem> list) setMediaItems,
+    bool setMediaItems$async,
+    required void Function(_$jni.JList<MediaItem> list, bool z) setMediaItems$1,
+    bool setMediaItems$1$async,
+    required void Function(_$jni.JList<MediaItem> list, int i, int j)
+        setMediaItems$2,
+    bool setMediaItems$2$async,
+    required void Function(MediaItem mediaItem) setMediaItem,
+    bool setMediaItem$async,
+    required void Function(MediaItem mediaItem, int j) setMediaItem$1,
+    bool setMediaItem$1$async,
+    required void Function(MediaItem mediaItem, bool z) setMediaItem$2,
+    bool setMediaItem$2$async,
+    required void Function(MediaItem mediaItem) addMediaItem,
+    bool addMediaItem$async,
+    required void Function(int i, MediaItem mediaItem) addMediaItem$1,
+    bool addMediaItem$1$async,
+    required void Function(_$jni.JList<MediaItem> list) addMediaItems,
+    bool addMediaItems$async,
+    required void Function(int i, _$jni.JList<MediaItem> list) addMediaItems$1,
+    bool addMediaItems$1$async,
+    required void Function(int i, int i1) moveMediaItem,
+    bool moveMediaItem$async,
+    required void Function(int i, int i1, int i2) moveMediaItems,
+    bool moveMediaItems$async,
+    required void Function(int i, MediaItem mediaItem) replaceMediaItem,
+    bool replaceMediaItem$async,
+    required void Function(int i, int i1, _$jni.JList<MediaItem> list)
+        replaceMediaItems,
+    bool replaceMediaItems$async,
+    required void Function(int i) removeMediaItem,
+    bool removeMediaItem$async,
+    required void Function(int i, int i1) removeMediaItems,
+    bool removeMediaItems$async,
+    required void Function() clearMediaItems,
+    bool clearMediaItems$async,
+    required bool Function(int i) isCommandAvailable,
+    required bool Function() canAdvertiseSession,
+    required Player_Commands Function() getAvailableCommands,
+    required void Function() prepare,
+    bool prepare$async,
+    required int Function() getPlaybackState,
+    required int Function() getPlaybackSuppressionReason,
+    required bool Function() isPlaying,
+    required _$jni.JObject Function() getPlayerError,
+    required void Function() play,
+    bool play$async,
+    required void Function() pause,
+    bool pause$async,
+    required void Function(bool z) setPlayWhenReady,
+    bool setPlayWhenReady$async,
+    required bool Function() getPlayWhenReady,
+    required void Function(int i) setRepeatMode,
+    bool setRepeatMode$async,
+    required int Function() getRepeatMode,
+    required void Function(bool z) setShuffleModeEnabled,
+    bool setShuffleModeEnabled$async,
+    required bool Function() getShuffleModeEnabled,
+    required bool Function() isLoading,
+    required void Function() seekToDefaultPosition,
+    bool seekToDefaultPosition$async,
+    required void Function(int i) seekToDefaultPosition$1,
+    bool seekToDefaultPosition$1$async,
+    required void Function(int j) seekTo,
+    bool seekTo$async,
+    required void Function(int i, int j) seekTo$1,
+    bool seekTo$1$async,
+    required int Function() getSeekBackIncrement,
+    required void Function() seekBack,
+    bool seekBack$async,
+    required int Function() getSeekForwardIncrement,
+    required void Function() seekForward,
+    bool seekForward$async,
+    required bool Function() hasPrevious,
+    required bool Function() hasPreviousWindow,
+    required bool Function() hasPreviousMediaItem,
+    required void Function() previous,
+    bool previous$async,
+    required void Function() seekToPreviousWindow,
+    bool seekToPreviousWindow$async,
+    required void Function() seekToPreviousMediaItem,
+    bool seekToPreviousMediaItem$async,
+    required int Function() getMaxSeekToPreviousPosition,
+    required void Function() seekToPrevious,
+    bool seekToPrevious$async,
+    required bool Function() hasNext,
+    required bool Function() hasNextWindow,
+    required bool Function() hasNextMediaItem,
+    required void Function() next,
+    bool next$async,
+    required void Function() seekToNextWindow,
+    bool seekToNextWindow$async,
+    required void Function() seekToNextMediaItem,
+    bool seekToNextMediaItem$async,
+    required void Function() seekToNext,
+    bool seekToNext$async,
+    required void Function(PlaybackParameters playbackParameters)
+        setPlaybackParameters,
+    bool setPlaybackParameters$async,
+    required void Function(double f) setPlaybackSpeed,
+    bool setPlaybackSpeed$async,
+    required PlaybackParameters Function() getPlaybackParameters,
+    required void Function() stop,
+    bool stop$async,
+    required void Function() release$1,
+    bool release$1$async,
+    required _$jni.JObject Function() getCurrentTracks,
+    required _$jni.JObject Function() getTrackSelectionParameters,
+    required void Function(_$jni.JObject trackSelectionParameters)
+        setTrackSelectionParameters,
+    bool setTrackSelectionParameters$async,
+    required _$jni.JObject Function() getMediaMetadata,
+    required _$jni.JObject Function() getPlaylistMetadata,
+    required void Function(_$jni.JObject mediaMetadata) setPlaylistMetadata,
+    bool setPlaylistMetadata$async,
+    required _$jni.JObject Function() getCurrentManifest,
+    required _$jni.JObject Function() getCurrentTimeline,
+    required int Function() getCurrentPeriodIndex,
+    required int Function() getCurrentWindowIndex,
+    required int Function() getCurrentMediaItemIndex,
+    required int Function() getNextWindowIndex,
+    required int Function() getNextMediaItemIndex,
+    required int Function() getPreviousWindowIndex,
+    required int Function() getPreviousMediaItemIndex,
+    required MediaItem Function() getCurrentMediaItem,
+    required int Function() getMediaItemCount,
+    required MediaItem Function(int i) getMediaItemAt,
+    required int Function() getDuration,
+    required int Function() getCurrentPosition,
+    required int Function() getBufferedPosition,
+    required int Function() getBufferedPercentage,
+    required int Function() getTotalBufferedDuration,
+    required bool Function() isCurrentWindowDynamic,
+    required bool Function() isCurrentMediaItemDynamic,
+    required bool Function() isCurrentWindowLive,
+    required bool Function() isCurrentMediaItemLive,
+    required int Function() getCurrentLiveOffset,
+    required bool Function() isCurrentWindowSeekable,
+    required bool Function() isCurrentMediaItemSeekable,
+    required bool Function() isPlayingAd,
+    required int Function() getCurrentAdGroupIndex,
+    required int Function() getCurrentAdIndexInAdGroup,
+    required int Function() getContentDuration,
+    required int Function() getContentPosition,
+    required int Function() getContentBufferedPosition,
+    required AudioAttributes Function() getAudioAttributes,
+    required void Function(double f) setVolume,
+    bool setVolume$async,
+    required double Function() getVolume,
+    required void Function() clearVideoSurface,
+    bool clearVideoSurface$async,
+    required void Function(_$jni.JObject surface) clearVideoSurface$1,
+    bool clearVideoSurface$1$async,
+    required void Function(_$jni.JObject surface) setVideoSurface,
+    bool setVideoSurface$async,
+    required void Function(_$jni.JObject surfaceHolder) setVideoSurfaceHolder,
+    bool setVideoSurfaceHolder$async,
+    required void Function(_$jni.JObject surfaceHolder) clearVideoSurfaceHolder,
+    bool clearVideoSurfaceHolder$async,
+    required void Function(_$jni.JObject surfaceView) setVideoSurfaceView,
+    bool setVideoSurfaceView$async,
+    required void Function(_$jni.JObject surfaceView) clearVideoSurfaceView,
+    bool clearVideoSurfaceView$async,
+    required void Function(_$jni.JObject textureView) setVideoTextureView,
+    bool setVideoTextureView$async,
+    required void Function(_$jni.JObject textureView) clearVideoTextureView,
+    bool clearVideoTextureView$async,
+    required _$jni.JObject Function() getVideoSize,
+    required _$jni.JObject Function() getSurfaceSize,
+    required _$jni.JObject Function() getCurrentCues,
+    required _$jni.JObject Function() getDeviceInfo,
+    required int Function() getDeviceVolume,
+    required bool Function() isDeviceMuted,
+    required void Function(int i) setDeviceVolume,
+    bool setDeviceVolume$async,
+    required void Function(int i, int i1) setDeviceVolume$1,
+    bool setDeviceVolume$1$async,
+    required void Function() increaseDeviceVolume,
+    bool increaseDeviceVolume$async,
+    required void Function(int i) increaseDeviceVolume$1,
+    bool increaseDeviceVolume$1$async,
+    required void Function() decreaseDeviceVolume,
+    bool decreaseDeviceVolume$async,
+    required void Function(int i) decreaseDeviceVolume$1,
+    bool decreaseDeviceVolume$1$async,
+    required void Function(bool z) setDeviceMuted,
+    bool setDeviceMuted$async,
+    required void Function(bool z, int i) setDeviceMuted$1,
+    bool setDeviceMuted$1$async,
+    required void Function(AudioAttributes audioAttributes, bool z)
+        setAudioAttributes,
+    bool setAudioAttributes$async,
+  }) = _$Player;
+
+  _$jni.JObject getApplicationLooper();
+  void addListener(Player_Listener listener);
+  bool get addListener$async => false;
+  void removeListener(Player_Listener listener);
+  bool get removeListener$async => false;
+  void setMediaItems(_$jni.JList<MediaItem> list);
+  bool get setMediaItems$async => false;
+  void setMediaItems$1(_$jni.JList<MediaItem> list, bool z);
+  bool get setMediaItems$1$async => false;
+  void setMediaItems$2(_$jni.JList<MediaItem> list, int i, int j);
+  bool get setMediaItems$2$async => false;
+  void setMediaItem(MediaItem mediaItem);
+  bool get setMediaItem$async => false;
+  void setMediaItem$1(MediaItem mediaItem, int j);
+  bool get setMediaItem$1$async => false;
+  void setMediaItem$2(MediaItem mediaItem, bool z);
+  bool get setMediaItem$2$async => false;
+  void addMediaItem(MediaItem mediaItem);
+  bool get addMediaItem$async => false;
+  void addMediaItem$1(int i, MediaItem mediaItem);
+  bool get addMediaItem$1$async => false;
+  void addMediaItems(_$jni.JList<MediaItem> list);
+  bool get addMediaItems$async => false;
+  void addMediaItems$1(int i, _$jni.JList<MediaItem> list);
+  bool get addMediaItems$1$async => false;
+  void moveMediaItem(int i, int i1);
+  bool get moveMediaItem$async => false;
+  void moveMediaItems(int i, int i1, int i2);
+  bool get moveMediaItems$async => false;
+  void replaceMediaItem(int i, MediaItem mediaItem);
+  bool get replaceMediaItem$async => false;
+  void replaceMediaItems(int i, int i1, _$jni.JList<MediaItem> list);
+  bool get replaceMediaItems$async => false;
+  void removeMediaItem(int i);
+  bool get removeMediaItem$async => false;
+  void removeMediaItems(int i, int i1);
+  bool get removeMediaItems$async => false;
+  void clearMediaItems();
+  bool get clearMediaItems$async => false;
+  bool isCommandAvailable(int i);
+  bool canAdvertiseSession();
+  Player_Commands getAvailableCommands();
+  void prepare();
+  bool get prepare$async => false;
+  int getPlaybackState();
+  int getPlaybackSuppressionReason();
+  bool isPlaying();
+  _$jni.JObject getPlayerError();
+  void play();
+  bool get play$async => false;
+  void pause();
+  bool get pause$async => false;
+  void setPlayWhenReady(bool z);
+  bool get setPlayWhenReady$async => false;
+  bool getPlayWhenReady();
+  void setRepeatMode(int i);
+  bool get setRepeatMode$async => false;
+  int getRepeatMode();
+  void setShuffleModeEnabled(bool z);
+  bool get setShuffleModeEnabled$async => false;
+  bool getShuffleModeEnabled();
+  bool isLoading();
+  void seekToDefaultPosition();
+  bool get seekToDefaultPosition$async => false;
+  void seekToDefaultPosition$1(int i);
+  bool get seekToDefaultPosition$1$async => false;
+  void seekTo(int j);
+  bool get seekTo$async => false;
+  void seekTo$1(int i, int j);
+  bool get seekTo$1$async => false;
+  int getSeekBackIncrement();
+  void seekBack();
+  bool get seekBack$async => false;
+  int getSeekForwardIncrement();
+  void seekForward();
+  bool get seekForward$async => false;
+  bool hasPrevious();
+  bool hasPreviousWindow();
+  bool hasPreviousMediaItem();
+  void previous();
+  bool get previous$async => false;
+  void seekToPreviousWindow();
+  bool get seekToPreviousWindow$async => false;
+  void seekToPreviousMediaItem();
+  bool get seekToPreviousMediaItem$async => false;
+  int getMaxSeekToPreviousPosition();
+  void seekToPrevious();
+  bool get seekToPrevious$async => false;
+  bool hasNext();
+  bool hasNextWindow();
+  bool hasNextMediaItem();
+  void next();
+  bool get next$async => false;
+  void seekToNextWindow();
+  bool get seekToNextWindow$async => false;
+  void seekToNextMediaItem();
+  bool get seekToNextMediaItem$async => false;
+  void seekToNext();
+  bool get seekToNext$async => false;
+  void setPlaybackParameters(PlaybackParameters playbackParameters);
+  bool get setPlaybackParameters$async => false;
+  void setPlaybackSpeed(double f);
+  bool get setPlaybackSpeed$async => false;
+  PlaybackParameters getPlaybackParameters();
+  void stop();
+  bool get stop$async => false;
+  void release$1();
+  bool get release$1$async => false;
+  _$jni.JObject getCurrentTracks();
+  _$jni.JObject getTrackSelectionParameters();
+  void setTrackSelectionParameters(_$jni.JObject trackSelectionParameters);
+  bool get setTrackSelectionParameters$async => false;
+  _$jni.JObject getMediaMetadata();
+  _$jni.JObject getPlaylistMetadata();
+  void setPlaylistMetadata(_$jni.JObject mediaMetadata);
+  bool get setPlaylistMetadata$async => false;
+  _$jni.JObject getCurrentManifest();
+  _$jni.JObject getCurrentTimeline();
+  int getCurrentPeriodIndex();
+  int getCurrentWindowIndex();
+  int getCurrentMediaItemIndex();
+  int getNextWindowIndex();
+  int getNextMediaItemIndex();
+  int getPreviousWindowIndex();
+  int getPreviousMediaItemIndex();
+  MediaItem getCurrentMediaItem();
+  int getMediaItemCount();
+  MediaItem getMediaItemAt(int i);
+  int getDuration();
+  int getCurrentPosition();
+  int getBufferedPosition();
+  int getBufferedPercentage();
+  int getTotalBufferedDuration();
+  bool isCurrentWindowDynamic();
+  bool isCurrentMediaItemDynamic();
+  bool isCurrentWindowLive();
+  bool isCurrentMediaItemLive();
+  int getCurrentLiveOffset();
+  bool isCurrentWindowSeekable();
+  bool isCurrentMediaItemSeekable();
+  bool isPlayingAd();
+  int getCurrentAdGroupIndex();
+  int getCurrentAdIndexInAdGroup();
+  int getContentDuration();
+  int getContentPosition();
+  int getContentBufferedPosition();
+  AudioAttributes getAudioAttributes();
+  void setVolume(double f);
+  bool get setVolume$async => false;
+  double getVolume();
+  void clearVideoSurface();
+  bool get clearVideoSurface$async => false;
+  void clearVideoSurface$1(_$jni.JObject surface);
+  bool get clearVideoSurface$1$async => false;
+  void setVideoSurface(_$jni.JObject surface);
+  bool get setVideoSurface$async => false;
+  void setVideoSurfaceHolder(_$jni.JObject surfaceHolder);
+  bool get setVideoSurfaceHolder$async => false;
+  void clearVideoSurfaceHolder(_$jni.JObject surfaceHolder);
+  bool get clearVideoSurfaceHolder$async => false;
+  void setVideoSurfaceView(_$jni.JObject surfaceView);
+  bool get setVideoSurfaceView$async => false;
+  void clearVideoSurfaceView(_$jni.JObject surfaceView);
+  bool get clearVideoSurfaceView$async => false;
+  void setVideoTextureView(_$jni.JObject textureView);
+  bool get setVideoTextureView$async => false;
+  void clearVideoTextureView(_$jni.JObject textureView);
+  bool get clearVideoTextureView$async => false;
+  _$jni.JObject getVideoSize();
+  _$jni.JObject getSurfaceSize();
+  _$jni.JObject getCurrentCues();
+  _$jni.JObject getDeviceInfo();
+  int getDeviceVolume();
+  bool isDeviceMuted();
+  void setDeviceVolume(int i);
+  bool get setDeviceVolume$async => false;
+  void setDeviceVolume$1(int i, int i1);
+  bool get setDeviceVolume$1$async => false;
+  void increaseDeviceVolume();
+  bool get increaseDeviceVolume$async => false;
+  void increaseDeviceVolume$1(int i);
+  bool get increaseDeviceVolume$1$async => false;
+  void decreaseDeviceVolume();
+  bool get decreaseDeviceVolume$async => false;
+  void decreaseDeviceVolume$1(int i);
+  bool get decreaseDeviceVolume$1$async => false;
+  void setDeviceMuted(bool z);
+  bool get setDeviceMuted$async => false;
+  void setDeviceMuted$1(bool z, int i);
+  bool get setDeviceMuted$1$async => false;
+  void setAudioAttributes(AudioAttributes audioAttributes, bool z);
+  bool get setAudioAttributes$async => false;
+}
+
+final class _$Player with $Player {
+  _$Player({
+    required _$jni.JObject Function() getApplicationLooper,
+    required void Function(Player_Listener listener) addListener,
+    this.addListener$async = false,
+    required void Function(Player_Listener listener) removeListener,
+    this.removeListener$async = false,
+    required void Function(_$jni.JList<MediaItem> list) setMediaItems,
+    this.setMediaItems$async = false,
+    required void Function(_$jni.JList<MediaItem> list, bool z) setMediaItems$1,
+    this.setMediaItems$1$async = false,
+    required void Function(_$jni.JList<MediaItem> list, int i, int j)
+        setMediaItems$2,
+    this.setMediaItems$2$async = false,
+    required void Function(MediaItem mediaItem) setMediaItem,
+    this.setMediaItem$async = false,
+    required void Function(MediaItem mediaItem, int j) setMediaItem$1,
+    this.setMediaItem$1$async = false,
+    required void Function(MediaItem mediaItem, bool z) setMediaItem$2,
+    this.setMediaItem$2$async = false,
+    required void Function(MediaItem mediaItem) addMediaItem,
+    this.addMediaItem$async = false,
+    required void Function(int i, MediaItem mediaItem) addMediaItem$1,
+    this.addMediaItem$1$async = false,
+    required void Function(_$jni.JList<MediaItem> list) addMediaItems,
+    this.addMediaItems$async = false,
+    required void Function(int i, _$jni.JList<MediaItem> list) addMediaItems$1,
+    this.addMediaItems$1$async = false,
+    required void Function(int i, int i1) moveMediaItem,
+    this.moveMediaItem$async = false,
+    required void Function(int i, int i1, int i2) moveMediaItems,
+    this.moveMediaItems$async = false,
+    required void Function(int i, MediaItem mediaItem) replaceMediaItem,
+    this.replaceMediaItem$async = false,
+    required void Function(int i, int i1, _$jni.JList<MediaItem> list)
+        replaceMediaItems,
+    this.replaceMediaItems$async = false,
+    required void Function(int i) removeMediaItem,
+    this.removeMediaItem$async = false,
+    required void Function(int i, int i1) removeMediaItems,
+    this.removeMediaItems$async = false,
+    required void Function() clearMediaItems,
+    this.clearMediaItems$async = false,
+    required bool Function(int i) isCommandAvailable,
+    required bool Function() canAdvertiseSession,
+    required Player_Commands Function() getAvailableCommands,
+    required void Function() prepare,
+    this.prepare$async = false,
+    required int Function() getPlaybackState,
+    required int Function() getPlaybackSuppressionReason,
+    required bool Function() isPlaying,
+    required _$jni.JObject Function() getPlayerError,
+    required void Function() play,
+    this.play$async = false,
+    required void Function() pause,
+    this.pause$async = false,
+    required void Function(bool z) setPlayWhenReady,
+    this.setPlayWhenReady$async = false,
+    required bool Function() getPlayWhenReady,
+    required void Function(int i) setRepeatMode,
+    this.setRepeatMode$async = false,
+    required int Function() getRepeatMode,
+    required void Function(bool z) setShuffleModeEnabled,
+    this.setShuffleModeEnabled$async = false,
+    required bool Function() getShuffleModeEnabled,
+    required bool Function() isLoading,
+    required void Function() seekToDefaultPosition,
+    this.seekToDefaultPosition$async = false,
+    required void Function(int i) seekToDefaultPosition$1,
+    this.seekToDefaultPosition$1$async = false,
+    required void Function(int j) seekTo,
+    this.seekTo$async = false,
+    required void Function(int i, int j) seekTo$1,
+    this.seekTo$1$async = false,
+    required int Function() getSeekBackIncrement,
+    required void Function() seekBack,
+    this.seekBack$async = false,
+    required int Function() getSeekForwardIncrement,
+    required void Function() seekForward,
+    this.seekForward$async = false,
+    required bool Function() hasPrevious,
+    required bool Function() hasPreviousWindow,
+    required bool Function() hasPreviousMediaItem,
+    required void Function() previous,
+    this.previous$async = false,
+    required void Function() seekToPreviousWindow,
+    this.seekToPreviousWindow$async = false,
+    required void Function() seekToPreviousMediaItem,
+    this.seekToPreviousMediaItem$async = false,
+    required int Function() getMaxSeekToPreviousPosition,
+    required void Function() seekToPrevious,
+    this.seekToPrevious$async = false,
+    required bool Function() hasNext,
+    required bool Function() hasNextWindow,
+    required bool Function() hasNextMediaItem,
+    required void Function() next,
+    this.next$async = false,
+    required void Function() seekToNextWindow,
+    this.seekToNextWindow$async = false,
+    required void Function() seekToNextMediaItem,
+    this.seekToNextMediaItem$async = false,
+    required void Function() seekToNext,
+    this.seekToNext$async = false,
+    required void Function(PlaybackParameters playbackParameters)
+        setPlaybackParameters,
+    this.setPlaybackParameters$async = false,
+    required void Function(double f) setPlaybackSpeed,
+    this.setPlaybackSpeed$async = false,
+    required PlaybackParameters Function() getPlaybackParameters,
+    required void Function() stop,
+    this.stop$async = false,
+    required void Function() release$1,
+    this.release$1$async = false,
+    required _$jni.JObject Function() getCurrentTracks,
+    required _$jni.JObject Function() getTrackSelectionParameters,
+    required void Function(_$jni.JObject trackSelectionParameters)
+        setTrackSelectionParameters,
+    this.setTrackSelectionParameters$async = false,
+    required _$jni.JObject Function() getMediaMetadata,
+    required _$jni.JObject Function() getPlaylistMetadata,
+    required void Function(_$jni.JObject mediaMetadata) setPlaylistMetadata,
+    this.setPlaylistMetadata$async = false,
+    required _$jni.JObject Function() getCurrentManifest,
+    required _$jni.JObject Function() getCurrentTimeline,
+    required int Function() getCurrentPeriodIndex,
+    required int Function() getCurrentWindowIndex,
+    required int Function() getCurrentMediaItemIndex,
+    required int Function() getNextWindowIndex,
+    required int Function() getNextMediaItemIndex,
+    required int Function() getPreviousWindowIndex,
+    required int Function() getPreviousMediaItemIndex,
+    required MediaItem Function() getCurrentMediaItem,
+    required int Function() getMediaItemCount,
+    required MediaItem Function(int i) getMediaItemAt,
+    required int Function() getDuration,
+    required int Function() getCurrentPosition,
+    required int Function() getBufferedPosition,
+    required int Function() getBufferedPercentage,
+    required int Function() getTotalBufferedDuration,
+    required bool Function() isCurrentWindowDynamic,
+    required bool Function() isCurrentMediaItemDynamic,
+    required bool Function() isCurrentWindowLive,
+    required bool Function() isCurrentMediaItemLive,
+    required int Function() getCurrentLiveOffset,
+    required bool Function() isCurrentWindowSeekable,
+    required bool Function() isCurrentMediaItemSeekable,
+    required bool Function() isPlayingAd,
+    required int Function() getCurrentAdGroupIndex,
+    required int Function() getCurrentAdIndexInAdGroup,
+    required int Function() getContentDuration,
+    required int Function() getContentPosition,
+    required int Function() getContentBufferedPosition,
+    required AudioAttributes Function() getAudioAttributes,
+    required void Function(double f) setVolume,
+    this.setVolume$async = false,
+    required double Function() getVolume,
+    required void Function() clearVideoSurface,
+    this.clearVideoSurface$async = false,
+    required void Function(_$jni.JObject surface) clearVideoSurface$1,
+    this.clearVideoSurface$1$async = false,
+    required void Function(_$jni.JObject surface) setVideoSurface,
+    this.setVideoSurface$async = false,
+    required void Function(_$jni.JObject surfaceHolder) setVideoSurfaceHolder,
+    this.setVideoSurfaceHolder$async = false,
+    required void Function(_$jni.JObject surfaceHolder) clearVideoSurfaceHolder,
+    this.clearVideoSurfaceHolder$async = false,
+    required void Function(_$jni.JObject surfaceView) setVideoSurfaceView,
+    this.setVideoSurfaceView$async = false,
+    required void Function(_$jni.JObject surfaceView) clearVideoSurfaceView,
+    this.clearVideoSurfaceView$async = false,
+    required void Function(_$jni.JObject textureView) setVideoTextureView,
+    this.setVideoTextureView$async = false,
+    required void Function(_$jni.JObject textureView) clearVideoTextureView,
+    this.clearVideoTextureView$async = false,
+    required _$jni.JObject Function() getVideoSize,
+    required _$jni.JObject Function() getSurfaceSize,
+    required _$jni.JObject Function() getCurrentCues,
+    required _$jni.JObject Function() getDeviceInfo,
+    required int Function() getDeviceVolume,
+    required bool Function() isDeviceMuted,
+    required void Function(int i) setDeviceVolume,
+    this.setDeviceVolume$async = false,
+    required void Function(int i, int i1) setDeviceVolume$1,
+    this.setDeviceVolume$1$async = false,
+    required void Function() increaseDeviceVolume,
+    this.increaseDeviceVolume$async = false,
+    required void Function(int i) increaseDeviceVolume$1,
+    this.increaseDeviceVolume$1$async = false,
+    required void Function() decreaseDeviceVolume,
+    this.decreaseDeviceVolume$async = false,
+    required void Function(int i) decreaseDeviceVolume$1,
+    this.decreaseDeviceVolume$1$async = false,
+    required void Function(bool z) setDeviceMuted,
+    this.setDeviceMuted$async = false,
+    required void Function(bool z, int i) setDeviceMuted$1,
+    this.setDeviceMuted$1$async = false,
+    required void Function(AudioAttributes audioAttributes, bool z)
+        setAudioAttributes,
+    this.setAudioAttributes$async = false,
+  })  : _getApplicationLooper = getApplicationLooper,
+        _addListener = addListener,
+        _removeListener = removeListener,
+        _setMediaItems = setMediaItems,
+        _setMediaItems$1 = setMediaItems$1,
+        _setMediaItems$2 = setMediaItems$2,
+        _setMediaItem = setMediaItem,
+        _setMediaItem$1 = setMediaItem$1,
+        _setMediaItem$2 = setMediaItem$2,
+        _addMediaItem = addMediaItem,
+        _addMediaItem$1 = addMediaItem$1,
+        _addMediaItems = addMediaItems,
+        _addMediaItems$1 = addMediaItems$1,
+        _moveMediaItem = moveMediaItem,
+        _moveMediaItems = moveMediaItems,
+        _replaceMediaItem = replaceMediaItem,
+        _replaceMediaItems = replaceMediaItems,
+        _removeMediaItem = removeMediaItem,
+        _removeMediaItems = removeMediaItems,
+        _clearMediaItems = clearMediaItems,
+        _isCommandAvailable = isCommandAvailable,
+        _canAdvertiseSession = canAdvertiseSession,
+        _getAvailableCommands = getAvailableCommands,
+        _prepare = prepare,
+        _getPlaybackState = getPlaybackState,
+        _getPlaybackSuppressionReason = getPlaybackSuppressionReason,
+        _isPlaying = isPlaying,
+        _getPlayerError = getPlayerError,
+        _play = play,
+        _pause = pause,
+        _setPlayWhenReady = setPlayWhenReady,
+        _getPlayWhenReady = getPlayWhenReady,
+        _setRepeatMode = setRepeatMode,
+        _getRepeatMode = getRepeatMode,
+        _setShuffleModeEnabled = setShuffleModeEnabled,
+        _getShuffleModeEnabled = getShuffleModeEnabled,
+        _isLoading = isLoading,
+        _seekToDefaultPosition = seekToDefaultPosition,
+        _seekToDefaultPosition$1 = seekToDefaultPosition$1,
+        _seekTo = seekTo,
+        _seekTo$1 = seekTo$1,
+        _getSeekBackIncrement = getSeekBackIncrement,
+        _seekBack = seekBack,
+        _getSeekForwardIncrement = getSeekForwardIncrement,
+        _seekForward = seekForward,
+        _hasPrevious = hasPrevious,
+        _hasPreviousWindow = hasPreviousWindow,
+        _hasPreviousMediaItem = hasPreviousMediaItem,
+        _previous = previous,
+        _seekToPreviousWindow = seekToPreviousWindow,
+        _seekToPreviousMediaItem = seekToPreviousMediaItem,
+        _getMaxSeekToPreviousPosition = getMaxSeekToPreviousPosition,
+        _seekToPrevious = seekToPrevious,
+        _hasNext = hasNext,
+        _hasNextWindow = hasNextWindow,
+        _hasNextMediaItem = hasNextMediaItem,
+        _next = next,
+        _seekToNextWindow = seekToNextWindow,
+        _seekToNextMediaItem = seekToNextMediaItem,
+        _seekToNext = seekToNext,
+        _setPlaybackParameters = setPlaybackParameters,
+        _setPlaybackSpeed = setPlaybackSpeed,
+        _getPlaybackParameters = getPlaybackParameters,
+        _stop = stop,
+        _release$1 = release$1,
+        _getCurrentTracks = getCurrentTracks,
+        _getTrackSelectionParameters = getTrackSelectionParameters,
+        _setTrackSelectionParameters = setTrackSelectionParameters,
+        _getMediaMetadata = getMediaMetadata,
+        _getPlaylistMetadata = getPlaylistMetadata,
+        _setPlaylistMetadata = setPlaylistMetadata,
+        _getCurrentManifest = getCurrentManifest,
+        _getCurrentTimeline = getCurrentTimeline,
+        _getCurrentPeriodIndex = getCurrentPeriodIndex,
+        _getCurrentWindowIndex = getCurrentWindowIndex,
+        _getCurrentMediaItemIndex = getCurrentMediaItemIndex,
+        _getNextWindowIndex = getNextWindowIndex,
+        _getNextMediaItemIndex = getNextMediaItemIndex,
+        _getPreviousWindowIndex = getPreviousWindowIndex,
+        _getPreviousMediaItemIndex = getPreviousMediaItemIndex,
+        _getCurrentMediaItem = getCurrentMediaItem,
+        _getMediaItemCount = getMediaItemCount,
+        _getMediaItemAt = getMediaItemAt,
+        _getDuration = getDuration,
+        _getCurrentPosition = getCurrentPosition,
+        _getBufferedPosition = getBufferedPosition,
+        _getBufferedPercentage = getBufferedPercentage,
+        _getTotalBufferedDuration = getTotalBufferedDuration,
+        _isCurrentWindowDynamic = isCurrentWindowDynamic,
+        _isCurrentMediaItemDynamic = isCurrentMediaItemDynamic,
+        _isCurrentWindowLive = isCurrentWindowLive,
+        _isCurrentMediaItemLive = isCurrentMediaItemLive,
+        _getCurrentLiveOffset = getCurrentLiveOffset,
+        _isCurrentWindowSeekable = isCurrentWindowSeekable,
+        _isCurrentMediaItemSeekable = isCurrentMediaItemSeekable,
+        _isPlayingAd = isPlayingAd,
+        _getCurrentAdGroupIndex = getCurrentAdGroupIndex,
+        _getCurrentAdIndexInAdGroup = getCurrentAdIndexInAdGroup,
+        _getContentDuration = getContentDuration,
+        _getContentPosition = getContentPosition,
+        _getContentBufferedPosition = getContentBufferedPosition,
+        _getAudioAttributes = getAudioAttributes,
+        _setVolume = setVolume,
+        _getVolume = getVolume,
+        _clearVideoSurface = clearVideoSurface,
+        _clearVideoSurface$1 = clearVideoSurface$1,
+        _setVideoSurface = setVideoSurface,
+        _setVideoSurfaceHolder = setVideoSurfaceHolder,
+        _clearVideoSurfaceHolder = clearVideoSurfaceHolder,
+        _setVideoSurfaceView = setVideoSurfaceView,
+        _clearVideoSurfaceView = clearVideoSurfaceView,
+        _setVideoTextureView = setVideoTextureView,
+        _clearVideoTextureView = clearVideoTextureView,
+        _getVideoSize = getVideoSize,
+        _getSurfaceSize = getSurfaceSize,
+        _getCurrentCues = getCurrentCues,
+        _getDeviceInfo = getDeviceInfo,
+        _getDeviceVolume = getDeviceVolume,
+        _isDeviceMuted = isDeviceMuted,
+        _setDeviceVolume = setDeviceVolume,
+        _setDeviceVolume$1 = setDeviceVolume$1,
+        _increaseDeviceVolume = increaseDeviceVolume,
+        _increaseDeviceVolume$1 = increaseDeviceVolume$1,
+        _decreaseDeviceVolume = decreaseDeviceVolume,
+        _decreaseDeviceVolume$1 = decreaseDeviceVolume$1,
+        _setDeviceMuted = setDeviceMuted,
+        _setDeviceMuted$1 = setDeviceMuted$1,
+        _setAudioAttributes = setAudioAttributes;
+
+  final _$jni.JObject Function() _getApplicationLooper;
+  final void Function(Player_Listener listener) _addListener;
+  final bool addListener$async;
+  final void Function(Player_Listener listener) _removeListener;
+  final bool removeListener$async;
+  final void Function(_$jni.JList<MediaItem> list) _setMediaItems;
+  final bool setMediaItems$async;
+  final void Function(_$jni.JList<MediaItem> list, bool z) _setMediaItems$1;
+  final bool setMediaItems$1$async;
+  final void Function(_$jni.JList<MediaItem> list, int i, int j)
+      _setMediaItems$2;
+  final bool setMediaItems$2$async;
+  final void Function(MediaItem mediaItem) _setMediaItem;
+  final bool setMediaItem$async;
+  final void Function(MediaItem mediaItem, int j) _setMediaItem$1;
+  final bool setMediaItem$1$async;
+  final void Function(MediaItem mediaItem, bool z) _setMediaItem$2;
+  final bool setMediaItem$2$async;
+  final void Function(MediaItem mediaItem) _addMediaItem;
+  final bool addMediaItem$async;
+  final void Function(int i, MediaItem mediaItem) _addMediaItem$1;
+  final bool addMediaItem$1$async;
+  final void Function(_$jni.JList<MediaItem> list) _addMediaItems;
+  final bool addMediaItems$async;
+  final void Function(int i, _$jni.JList<MediaItem> list) _addMediaItems$1;
+  final bool addMediaItems$1$async;
+  final void Function(int i, int i1) _moveMediaItem;
+  final bool moveMediaItem$async;
+  final void Function(int i, int i1, int i2) _moveMediaItems;
+  final bool moveMediaItems$async;
+  final void Function(int i, MediaItem mediaItem) _replaceMediaItem;
+  final bool replaceMediaItem$async;
+  final void Function(int i, int i1, _$jni.JList<MediaItem> list)
+      _replaceMediaItems;
+  final bool replaceMediaItems$async;
+  final void Function(int i) _removeMediaItem;
+  final bool removeMediaItem$async;
+  final void Function(int i, int i1) _removeMediaItems;
+  final bool removeMediaItems$async;
+  final void Function() _clearMediaItems;
+  final bool clearMediaItems$async;
+  final bool Function(int i) _isCommandAvailable;
+  final bool Function() _canAdvertiseSession;
+  final Player_Commands Function() _getAvailableCommands;
+  final void Function() _prepare;
+  final bool prepare$async;
+  final int Function() _getPlaybackState;
+  final int Function() _getPlaybackSuppressionReason;
+  final bool Function() _isPlaying;
+  final _$jni.JObject Function() _getPlayerError;
+  final void Function() _play;
+  final bool play$async;
+  final void Function() _pause;
+  final bool pause$async;
+  final void Function(bool z) _setPlayWhenReady;
+  final bool setPlayWhenReady$async;
+  final bool Function() _getPlayWhenReady;
+  final void Function(int i) _setRepeatMode;
+  final bool setRepeatMode$async;
+  final int Function() _getRepeatMode;
+  final void Function(bool z) _setShuffleModeEnabled;
+  final bool setShuffleModeEnabled$async;
+  final bool Function() _getShuffleModeEnabled;
+  final bool Function() _isLoading;
+  final void Function() _seekToDefaultPosition;
+  final bool seekToDefaultPosition$async;
+  final void Function(int i) _seekToDefaultPosition$1;
+  final bool seekToDefaultPosition$1$async;
+  final void Function(int j) _seekTo;
+  final bool seekTo$async;
+  final void Function(int i, int j) _seekTo$1;
+  final bool seekTo$1$async;
+  final int Function() _getSeekBackIncrement;
+  final void Function() _seekBack;
+  final bool seekBack$async;
+  final int Function() _getSeekForwardIncrement;
+  final void Function() _seekForward;
+  final bool seekForward$async;
+  final bool Function() _hasPrevious;
+  final bool Function() _hasPreviousWindow;
+  final bool Function() _hasPreviousMediaItem;
+  final void Function() _previous;
+  final bool previous$async;
+  final void Function() _seekToPreviousWindow;
+  final bool seekToPreviousWindow$async;
+  final void Function() _seekToPreviousMediaItem;
+  final bool seekToPreviousMediaItem$async;
+  final int Function() _getMaxSeekToPreviousPosition;
+  final void Function() _seekToPrevious;
+  final bool seekToPrevious$async;
+  final bool Function() _hasNext;
+  final bool Function() _hasNextWindow;
+  final bool Function() _hasNextMediaItem;
+  final void Function() _next;
+  final bool next$async;
+  final void Function() _seekToNextWindow;
+  final bool seekToNextWindow$async;
+  final void Function() _seekToNextMediaItem;
+  final bool seekToNextMediaItem$async;
+  final void Function() _seekToNext;
+  final bool seekToNext$async;
+  final void Function(PlaybackParameters playbackParameters)
+      _setPlaybackParameters;
+  final bool setPlaybackParameters$async;
+  final void Function(double f) _setPlaybackSpeed;
+  final bool setPlaybackSpeed$async;
+  final PlaybackParameters Function() _getPlaybackParameters;
+  final void Function() _stop;
+  final bool stop$async;
+  final void Function() _release$1;
+  final bool release$1$async;
+  final _$jni.JObject Function() _getCurrentTracks;
+  final _$jni.JObject Function() _getTrackSelectionParameters;
+  final void Function(_$jni.JObject trackSelectionParameters)
+      _setTrackSelectionParameters;
+  final bool setTrackSelectionParameters$async;
+  final _$jni.JObject Function() _getMediaMetadata;
+  final _$jni.JObject Function() _getPlaylistMetadata;
+  final void Function(_$jni.JObject mediaMetadata) _setPlaylistMetadata;
+  final bool setPlaylistMetadata$async;
+  final _$jni.JObject Function() _getCurrentManifest;
+  final _$jni.JObject Function() _getCurrentTimeline;
+  final int Function() _getCurrentPeriodIndex;
+  final int Function() _getCurrentWindowIndex;
+  final int Function() _getCurrentMediaItemIndex;
+  final int Function() _getNextWindowIndex;
+  final int Function() _getNextMediaItemIndex;
+  final int Function() _getPreviousWindowIndex;
+  final int Function() _getPreviousMediaItemIndex;
+  final MediaItem Function() _getCurrentMediaItem;
+  final int Function() _getMediaItemCount;
+  final MediaItem Function(int i) _getMediaItemAt;
+  final int Function() _getDuration;
+  final int Function() _getCurrentPosition;
+  final int Function() _getBufferedPosition;
+  final int Function() _getBufferedPercentage;
+  final int Function() _getTotalBufferedDuration;
+  final bool Function() _isCurrentWindowDynamic;
+  final bool Function() _isCurrentMediaItemDynamic;
+  final bool Function() _isCurrentWindowLive;
+  final bool Function() _isCurrentMediaItemLive;
+  final int Function() _getCurrentLiveOffset;
+  final bool Function() _isCurrentWindowSeekable;
+  final bool Function() _isCurrentMediaItemSeekable;
+  final bool Function() _isPlayingAd;
+  final int Function() _getCurrentAdGroupIndex;
+  final int Function() _getCurrentAdIndexInAdGroup;
+  final int Function() _getContentDuration;
+  final int Function() _getContentPosition;
+  final int Function() _getContentBufferedPosition;
+  final AudioAttributes Function() _getAudioAttributes;
+  final void Function(double f) _setVolume;
+  final bool setVolume$async;
+  final double Function() _getVolume;
+  final void Function() _clearVideoSurface;
+  final bool clearVideoSurface$async;
+  final void Function(_$jni.JObject surface) _clearVideoSurface$1;
+  final bool clearVideoSurface$1$async;
+  final void Function(_$jni.JObject surface) _setVideoSurface;
+  final bool setVideoSurface$async;
+  final void Function(_$jni.JObject surfaceHolder) _setVideoSurfaceHolder;
+  final bool setVideoSurfaceHolder$async;
+  final void Function(_$jni.JObject surfaceHolder) _clearVideoSurfaceHolder;
+  final bool clearVideoSurfaceHolder$async;
+  final void Function(_$jni.JObject surfaceView) _setVideoSurfaceView;
+  final bool setVideoSurfaceView$async;
+  final void Function(_$jni.JObject surfaceView) _clearVideoSurfaceView;
+  final bool clearVideoSurfaceView$async;
+  final void Function(_$jni.JObject textureView) _setVideoTextureView;
+  final bool setVideoTextureView$async;
+  final void Function(_$jni.JObject textureView) _clearVideoTextureView;
+  final bool clearVideoTextureView$async;
+  final _$jni.JObject Function() _getVideoSize;
+  final _$jni.JObject Function() _getSurfaceSize;
+  final _$jni.JObject Function() _getCurrentCues;
+  final _$jni.JObject Function() _getDeviceInfo;
+  final int Function() _getDeviceVolume;
+  final bool Function() _isDeviceMuted;
+  final void Function(int i) _setDeviceVolume;
+  final bool setDeviceVolume$async;
+  final void Function(int i, int i1) _setDeviceVolume$1;
+  final bool setDeviceVolume$1$async;
+  final void Function() _increaseDeviceVolume;
+  final bool increaseDeviceVolume$async;
+  final void Function(int i) _increaseDeviceVolume$1;
+  final bool increaseDeviceVolume$1$async;
+  final void Function() _decreaseDeviceVolume;
+  final bool decreaseDeviceVolume$async;
+  final void Function(int i) _decreaseDeviceVolume$1;
+  final bool decreaseDeviceVolume$1$async;
+  final void Function(bool z) _setDeviceMuted;
+  final bool setDeviceMuted$async;
+  final void Function(bool z, int i) _setDeviceMuted$1;
+  final bool setDeviceMuted$1$async;
+  final void Function(AudioAttributes audioAttributes, bool z)
+      _setAudioAttributes;
+  final bool setAudioAttributes$async;
+
+  _$jni.JObject getApplicationLooper() {
+    return _getApplicationLooper();
+  }
+
+  void addListener(Player_Listener listener) {
+    return _addListener(listener);
+  }
+
+  void removeListener(Player_Listener listener) {
+    return _removeListener(listener);
+  }
+
+  void setMediaItems(_$jni.JList<MediaItem> list) {
+    return _setMediaItems(list);
+  }
+
+  void setMediaItems$1(_$jni.JList<MediaItem> list, bool z) {
+    return _setMediaItems$1(list, z);
+  }
+
+  void setMediaItems$2(_$jni.JList<MediaItem> list, int i, int j) {
+    return _setMediaItems$2(list, i, j);
+  }
+
+  void setMediaItem(MediaItem mediaItem) {
+    return _setMediaItem(mediaItem);
+  }
+
+  void setMediaItem$1(MediaItem mediaItem, int j) {
+    return _setMediaItem$1(mediaItem, j);
+  }
+
+  void setMediaItem$2(MediaItem mediaItem, bool z) {
+    return _setMediaItem$2(mediaItem, z);
+  }
+
+  void addMediaItem(MediaItem mediaItem) {
+    return _addMediaItem(mediaItem);
+  }
+
+  void addMediaItem$1(int i, MediaItem mediaItem) {
+    return _addMediaItem$1(i, mediaItem);
+  }
+
+  void addMediaItems(_$jni.JList<MediaItem> list) {
+    return _addMediaItems(list);
+  }
+
+  void addMediaItems$1(int i, _$jni.JList<MediaItem> list) {
+    return _addMediaItems$1(i, list);
+  }
+
+  void moveMediaItem(int i, int i1) {
+    return _moveMediaItem(i, i1);
+  }
+
+  void moveMediaItems(int i, int i1, int i2) {
+    return _moveMediaItems(i, i1, i2);
+  }
+
+  void replaceMediaItem(int i, MediaItem mediaItem) {
+    return _replaceMediaItem(i, mediaItem);
+  }
+
+  void replaceMediaItems(int i, int i1, _$jni.JList<MediaItem> list) {
+    return _replaceMediaItems(i, i1, list);
+  }
+
+  void removeMediaItem(int i) {
+    return _removeMediaItem(i);
+  }
+
+  void removeMediaItems(int i, int i1) {
+    return _removeMediaItems(i, i1);
+  }
+
+  void clearMediaItems() {
+    return _clearMediaItems();
+  }
+
+  bool isCommandAvailable(int i) {
+    return _isCommandAvailable(i);
+  }
+
+  bool canAdvertiseSession() {
+    return _canAdvertiseSession();
+  }
+
+  Player_Commands getAvailableCommands() {
+    return _getAvailableCommands();
+  }
+
+  void prepare() {
+    return _prepare();
+  }
+
+  int getPlaybackState() {
+    return _getPlaybackState();
+  }
+
+  int getPlaybackSuppressionReason() {
+    return _getPlaybackSuppressionReason();
+  }
+
+  bool isPlaying() {
+    return _isPlaying();
+  }
+
+  _$jni.JObject getPlayerError() {
+    return _getPlayerError();
+  }
+
+  void play() {
+    return _play();
+  }
+
+  void pause() {
+    return _pause();
+  }
+
+  void setPlayWhenReady(bool z) {
+    return _setPlayWhenReady(z);
+  }
+
+  bool getPlayWhenReady() {
+    return _getPlayWhenReady();
+  }
+
+  void setRepeatMode(int i) {
+    return _setRepeatMode(i);
+  }
+
+  int getRepeatMode() {
+    return _getRepeatMode();
+  }
+
+  void setShuffleModeEnabled(bool z) {
+    return _setShuffleModeEnabled(z);
+  }
+
+  bool getShuffleModeEnabled() {
+    return _getShuffleModeEnabled();
+  }
+
+  bool isLoading() {
+    return _isLoading();
+  }
+
+  void seekToDefaultPosition() {
+    return _seekToDefaultPosition();
+  }
+
+  void seekToDefaultPosition$1(int i) {
+    return _seekToDefaultPosition$1(i);
+  }
+
+  void seekTo(int j) {
+    return _seekTo(j);
+  }
+
+  void seekTo$1(int i, int j) {
+    return _seekTo$1(i, j);
+  }
+
+  int getSeekBackIncrement() {
+    return _getSeekBackIncrement();
+  }
+
+  void seekBack() {
+    return _seekBack();
+  }
+
+  int getSeekForwardIncrement() {
+    return _getSeekForwardIncrement();
+  }
+
+  void seekForward() {
+    return _seekForward();
+  }
+
+  bool hasPrevious() {
+    return _hasPrevious();
+  }
+
+  bool hasPreviousWindow() {
+    return _hasPreviousWindow();
+  }
+
+  bool hasPreviousMediaItem() {
+    return _hasPreviousMediaItem();
+  }
+
+  void previous() {
+    return _previous();
+  }
+
+  void seekToPreviousWindow() {
+    return _seekToPreviousWindow();
+  }
+
+  void seekToPreviousMediaItem() {
+    return _seekToPreviousMediaItem();
+  }
+
+  int getMaxSeekToPreviousPosition() {
+    return _getMaxSeekToPreviousPosition();
+  }
+
+  void seekToPrevious() {
+    return _seekToPrevious();
+  }
+
+  bool hasNext() {
+    return _hasNext();
+  }
+
+  bool hasNextWindow() {
+    return _hasNextWindow();
+  }
+
+  bool hasNextMediaItem() {
+    return _hasNextMediaItem();
+  }
+
+  void next() {
+    return _next();
+  }
+
+  void seekToNextWindow() {
+    return _seekToNextWindow();
+  }
+
+  void seekToNextMediaItem() {
+    return _seekToNextMediaItem();
+  }
+
+  void seekToNext() {
+    return _seekToNext();
+  }
+
+  void setPlaybackParameters(PlaybackParameters playbackParameters) {
+    return _setPlaybackParameters(playbackParameters);
+  }
+
+  void setPlaybackSpeed(double f) {
+    return _setPlaybackSpeed(f);
+  }
+
+  PlaybackParameters getPlaybackParameters() {
+    return _getPlaybackParameters();
+  }
+
+  void stop() {
+    return _stop();
+  }
+
+  void release$1() {
+    return _release$1();
+  }
+
+  _$jni.JObject getCurrentTracks() {
+    return _getCurrentTracks();
+  }
+
+  _$jni.JObject getTrackSelectionParameters() {
+    return _getTrackSelectionParameters();
+  }
+
+  void setTrackSelectionParameters(_$jni.JObject trackSelectionParameters) {
+    return _setTrackSelectionParameters(trackSelectionParameters);
+  }
+
+  _$jni.JObject getMediaMetadata() {
+    return _getMediaMetadata();
+  }
+
+  _$jni.JObject getPlaylistMetadata() {
+    return _getPlaylistMetadata();
+  }
+
+  void setPlaylistMetadata(_$jni.JObject mediaMetadata) {
+    return _setPlaylistMetadata(mediaMetadata);
+  }
+
+  _$jni.JObject getCurrentManifest() {
+    return _getCurrentManifest();
+  }
+
+  _$jni.JObject getCurrentTimeline() {
+    return _getCurrentTimeline();
+  }
+
+  int getCurrentPeriodIndex() {
+    return _getCurrentPeriodIndex();
+  }
+
+  int getCurrentWindowIndex() {
+    return _getCurrentWindowIndex();
+  }
+
+  int getCurrentMediaItemIndex() {
+    return _getCurrentMediaItemIndex();
+  }
+
+  int getNextWindowIndex() {
+    return _getNextWindowIndex();
+  }
+
+  int getNextMediaItemIndex() {
+    return _getNextMediaItemIndex();
+  }
+
+  int getPreviousWindowIndex() {
+    return _getPreviousWindowIndex();
+  }
+
+  int getPreviousMediaItemIndex() {
+    return _getPreviousMediaItemIndex();
+  }
+
+  MediaItem getCurrentMediaItem() {
+    return _getCurrentMediaItem();
+  }
+
+  int getMediaItemCount() {
+    return _getMediaItemCount();
+  }
+
+  MediaItem getMediaItemAt(int i) {
+    return _getMediaItemAt(i);
+  }
+
+  int getDuration() {
+    return _getDuration();
+  }
+
+  int getCurrentPosition() {
+    return _getCurrentPosition();
+  }
+
+  int getBufferedPosition() {
+    return _getBufferedPosition();
+  }
+
+  int getBufferedPercentage() {
+    return _getBufferedPercentage();
+  }
+
+  int getTotalBufferedDuration() {
+    return _getTotalBufferedDuration();
+  }
+
+  bool isCurrentWindowDynamic() {
+    return _isCurrentWindowDynamic();
+  }
+
+  bool isCurrentMediaItemDynamic() {
+    return _isCurrentMediaItemDynamic();
+  }
+
+  bool isCurrentWindowLive() {
+    return _isCurrentWindowLive();
+  }
+
+  bool isCurrentMediaItemLive() {
+    return _isCurrentMediaItemLive();
+  }
+
+  int getCurrentLiveOffset() {
+    return _getCurrentLiveOffset();
+  }
+
+  bool isCurrentWindowSeekable() {
+    return _isCurrentWindowSeekable();
+  }
+
+  bool isCurrentMediaItemSeekable() {
+    return _isCurrentMediaItemSeekable();
+  }
+
+  bool isPlayingAd() {
+    return _isPlayingAd();
+  }
+
+  int getCurrentAdGroupIndex() {
+    return _getCurrentAdGroupIndex();
+  }
+
+  int getCurrentAdIndexInAdGroup() {
+    return _getCurrentAdIndexInAdGroup();
+  }
+
+  int getContentDuration() {
+    return _getContentDuration();
+  }
+
+  int getContentPosition() {
+    return _getContentPosition();
+  }
+
+  int getContentBufferedPosition() {
+    return _getContentBufferedPosition();
+  }
+
+  AudioAttributes getAudioAttributes() {
+    return _getAudioAttributes();
+  }
+
+  void setVolume(double f) {
+    return _setVolume(f);
+  }
+
+  double getVolume() {
+    return _getVolume();
+  }
+
+  void clearVideoSurface() {
+    return _clearVideoSurface();
+  }
+
+  void clearVideoSurface$1(_$jni.JObject surface) {
+    return _clearVideoSurface$1(surface);
+  }
+
+  void setVideoSurface(_$jni.JObject surface) {
+    return _setVideoSurface(surface);
+  }
+
+  void setVideoSurfaceHolder(_$jni.JObject surfaceHolder) {
+    return _setVideoSurfaceHolder(surfaceHolder);
+  }
+
+  void clearVideoSurfaceHolder(_$jni.JObject surfaceHolder) {
+    return _clearVideoSurfaceHolder(surfaceHolder);
+  }
+
+  void setVideoSurfaceView(_$jni.JObject surfaceView) {
+    return _setVideoSurfaceView(surfaceView);
+  }
+
+  void clearVideoSurfaceView(_$jni.JObject surfaceView) {
+    return _clearVideoSurfaceView(surfaceView);
+  }
+
+  void setVideoTextureView(_$jni.JObject textureView) {
+    return _setVideoTextureView(textureView);
+  }
+
+  void clearVideoTextureView(_$jni.JObject textureView) {
+    return _clearVideoTextureView(textureView);
+  }
+
+  _$jni.JObject getVideoSize() {
+    return _getVideoSize();
+  }
+
+  _$jni.JObject getSurfaceSize() {
+    return _getSurfaceSize();
+  }
+
+  _$jni.JObject getCurrentCues() {
+    return _getCurrentCues();
+  }
+
+  _$jni.JObject getDeviceInfo() {
+    return _getDeviceInfo();
+  }
+
+  int getDeviceVolume() {
+    return _getDeviceVolume();
+  }
+
+  bool isDeviceMuted() {
+    return _isDeviceMuted();
+  }
+
+  void setDeviceVolume(int i) {
+    return _setDeviceVolume(i);
+  }
+
+  void setDeviceVolume$1(int i, int i1) {
+    return _setDeviceVolume$1(i, i1);
+  }
+
+  void increaseDeviceVolume() {
+    return _increaseDeviceVolume();
+  }
+
+  void increaseDeviceVolume$1(int i) {
+    return _increaseDeviceVolume$1(i);
+  }
+
+  void decreaseDeviceVolume() {
+    return _decreaseDeviceVolume();
+  }
+
+  void decreaseDeviceVolume$1(int i) {
+    return _decreaseDeviceVolume$1(i);
+  }
+
+  void setDeviceMuted(bool z) {
+    return _setDeviceMuted(z);
+  }
+
+  void setDeviceMuted$1(bool z, int i) {
+    return _setDeviceMuted$1(z, i);
+  }
+
+  void setAudioAttributes(AudioAttributes audioAttributes, bool z) {
+    return _setAudioAttributes(audioAttributes, z);
+  }
+}
+
+final class $Player$Type extends _$jni.JObjType<Player> {
+  @_$jni.internal
+  const $Player$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature => r'Landroidx/media3/common/Player;';
+
+  @_$jni.internal
+  @_$core.override
+  Player fromReference(_$jni.JReference reference) =>
+      Player.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($Player$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($Player$Type) && other is $Player$Type;
+  }
+}
+
+/// from: `androidx.media3.exoplayer.ExoPlayer$AudioComponent`
+class ExoPlayer_AudioComponent extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<ExoPlayer_AudioComponent> $type;
+
+  @_$jni.internal
+  ExoPlayer_AudioComponent.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'androidx/media3/exoplayer/ExoPlayer$AudioComponent');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $ExoPlayer_AudioComponent$Type();
+  static final _id_setAudioAttributes = _class.instanceMethodId(
+    r'setAudioAttributes',
+    r'(Landroidx/media3/common/AudioAttributes;Z)V',
+  );
+
+  static final _setAudioAttributes = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni
+                          .VarArgs<(_$jni.Pointer<_$jni.Void>, _$jni.Int32)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>, int)>();
+
+  /// from: `public abstract void setAudioAttributes(androidx.media3.common.AudioAttributes audioAttributes, boolean z)`
+  void setAudioAttributes(
+    AudioAttributes audioAttributes,
+    bool z,
+  ) {
+    _setAudioAttributes(
+            reference.pointer,
+            _id_setAudioAttributes as _$jni.JMethodIDPtr,
+            audioAttributes.reference.pointer,
+            z ? 1 : 0)
+        .check();
+  }
+
+  static final _id_getAudioAttributes = _class.instanceMethodId(
+    r'getAudioAttributes',
+    r'()Landroidx/media3/common/AudioAttributes;',
+  );
+
+  static final _getAudioAttributes = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract androidx.media3.common.AudioAttributes getAudioAttributes()`
+  /// The returned object must be released after use, by calling the [release] method.
+  AudioAttributes getAudioAttributes() {
+    return _getAudioAttributes(
+            reference.pointer, _id_getAudioAttributes as _$jni.JMethodIDPtr)
+        .object(const $AudioAttributes$Type());
+  }
+
+  static final _id_setAudioSessionId = _class.instanceMethodId(
+    r'setAudioSessionId',
+    r'(I)V',
+  );
+
+  static final _setAudioSessionId = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public abstract void setAudioSessionId(int i)`
+  void setAudioSessionId(
+    int i,
+  ) {
+    _setAudioSessionId(
+            reference.pointer, _id_setAudioSessionId as _$jni.JMethodIDPtr, i)
+        .check();
+  }
+
+  static final _id_getAudioSessionId = _class.instanceMethodId(
+    r'getAudioSessionId',
+    r'()I',
+  );
+
+  static final _getAudioSessionId = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract int getAudioSessionId()`
+  int getAudioSessionId() {
+    return _getAudioSessionId(
+            reference.pointer, _id_getAudioSessionId as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_setAuxEffectInfo = _class.instanceMethodId(
+    r'setAuxEffectInfo',
+    r'(Landroidx/media3/common/AuxEffectInfo;)V',
+  );
+
+  static final _setAuxEffectInfo = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void setAuxEffectInfo(androidx.media3.common.AuxEffectInfo auxEffectInfo)`
+  void setAuxEffectInfo(
+    _$jni.JObject auxEffectInfo,
+  ) {
+    _setAuxEffectInfo(
+            reference.pointer,
+            _id_setAuxEffectInfo as _$jni.JMethodIDPtr,
+            auxEffectInfo.reference.pointer)
+        .check();
+  }
+
+  static final _id_clearAuxEffectInfo = _class.instanceMethodId(
+    r'clearAuxEffectInfo',
+    r'()V',
+  );
+
+  static final _clearAuxEffectInfo = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract void clearAuxEffectInfo()`
+  void clearAuxEffectInfo() {
+    _clearAuxEffectInfo(
+            reference.pointer, _id_clearAuxEffectInfo as _$jni.JMethodIDPtr)
+        .check();
+  }
+
+  static final _id_setVolume = _class.instanceMethodId(
+    r'setVolume',
+    r'(F)V',
+  );
+
+  static final _setVolume = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Double,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, double)>();
+
+  /// from: `public abstract void setVolume(float f)`
+  void setVolume(
+    double f,
+  ) {
+    _setVolume(reference.pointer, _id_setVolume as _$jni.JMethodIDPtr, f)
+        .check();
+  }
+
+  static final _id_getVolume = _class.instanceMethodId(
+    r'getVolume',
+    r'()F',
+  );
+
+  static final _getVolume = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallFloatMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract float getVolume()`
+  double getVolume() {
+    return _getVolume(reference.pointer, _id_getVolume as _$jni.JMethodIDPtr)
+        .float;
+  }
+
+  static final _id_setSkipSilenceEnabled = _class.instanceMethodId(
+    r'setSkipSilenceEnabled',
+    r'(Z)V',
+  );
+
+  static final _setSkipSilenceEnabled = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public abstract void setSkipSilenceEnabled(boolean z)`
+  void setSkipSilenceEnabled(
+    bool z,
+  ) {
+    _setSkipSilenceEnabled(reference.pointer,
+            _id_setSkipSilenceEnabled as _$jni.JMethodIDPtr, z ? 1 : 0)
+        .check();
+  }
+
+  static final _id_getSkipSilenceEnabled = _class.instanceMethodId(
+    r'getSkipSilenceEnabled',
+    r'()Z',
+  );
+
+  static final _getSkipSilenceEnabled = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract boolean getSkipSilenceEnabled()`
+  bool getSkipSilenceEnabled() {
+    return _getSkipSilenceEnabled(
+            reference.pointer, _id_getSkipSilenceEnabled as _$jni.JMethodIDPtr)
+        .boolean;
+  }
+
+  /// Maps a specific port to the implemented interface.
+  static final _$core.Map<int, $ExoPlayer_AudioComponent> _$impls = {};
+  static _$jni.JObjectPtr _$invoke(
+    int port,
+    _$jni.JObjectPtr descriptor,
+    _$jni.JObjectPtr args,
+  ) {
+    return _$invokeMethod(
+      port,
+      _$jni.MethodInvocation.fromAddresses(
+        0,
+        descriptor.address,
+        args.address,
+      ),
+    );
+  }
+
+  static final _$jni.Pointer<
+          _$jni.NativeFunction<
+              _$jni.JObjectPtr Function(
+                  _$jni.Int64, _$jni.JObjectPtr, _$jni.JObjectPtr)>>
+      _$invokePointer = _$jni.Pointer.fromFunction(_$invoke);
+
+  static _$jni.Pointer<_$jni.Void> _$invokeMethod(
+    int $p,
+    _$jni.MethodInvocation $i,
+  ) {
+    try {
+      final $d = $i.methodDescriptor.toDartString(releaseOriginal: true);
+      final $a = $i.args;
+      if ($d ==
+          r'setAudioAttributes(Landroidx/media3/common/AudioAttributes;Z)V') {
+        _$impls[$p]!.setAudioAttributes(
+          $a[0].as(const $AudioAttributes$Type(), releaseOriginal: true),
+          $a[1]
+              .as(const _$jni.JBooleanType(), releaseOriginal: true)
+              .booleanValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'getAudioAttributes()Landroidx/media3/common/AudioAttributes;') {
+        final $r = _$impls[$p]!.getAudioAttributes();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d == r'setAudioSessionId(I)V') {
+        _$impls[$p]!.setAudioSessionId(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'getAudioSessionId()I') {
+        final $r = _$impls[$p]!.getAudioSessionId();
+        return _$jni.JInteger($r).reference.toPointer();
+      }
+      if ($d == r'setAuxEffectInfo(Landroidx/media3/common/AuxEffectInfo;)V') {
+        _$impls[$p]!.setAuxEffectInfo(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'clearAuxEffectInfo()V') {
+        _$impls[$p]!.clearAuxEffectInfo();
+        return _$jni.nullptr;
+      }
+      if ($d == r'setVolume(F)V') {
+        _$impls[$p]!.setVolume(
+          $a[0]
+              .as(const _$jni.JFloatType(), releaseOriginal: true)
+              .floatValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'getVolume()F') {
+        final $r = _$impls[$p]!.getVolume();
+        return _$jni.JFloat($r).reference.toPointer();
+      }
+      if ($d == r'setSkipSilenceEnabled(Z)V') {
+        _$impls[$p]!.setSkipSilenceEnabled(
+          $a[0]
+              .as(const _$jni.JBooleanType(), releaseOriginal: true)
+              .booleanValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'getSkipSilenceEnabled()Z') {
+        final $r = _$impls[$p]!.getSkipSilenceEnabled();
+        return _$jni.JBoolean($r).reference.toPointer();
+      }
+    } catch (e) {
+      return _$jni.ProtectedJniExtensions.newDartException(e);
+    }
+    return _$jni.nullptr;
+  }
+
+  static void implementIn(
+    _$jni.JImplementer implementer,
+    $ExoPlayer_AudioComponent $impl,
+  ) {
+    late final _$jni.RawReceivePort $p;
+    $p = _$jni.RawReceivePort(($m) {
+      if ($m == null) {
+        _$impls.remove($p.sendPort.nativePort);
+        $p.close();
+        return;
+      }
+      final $i = _$jni.MethodInvocation.fromMessage($m);
+      final $r = _$invokeMethod($p.sendPort.nativePort, $i);
+      _$jni.ProtectedJniExtensions.returnResult($i.result, $r);
+    });
+    implementer.add(
+      r'androidx.media3.exoplayer.ExoPlayer$AudioComponent',
+      $p,
+      _$invokePointer,
+      [
+        if ($impl.setAudioAttributes$async)
+          r'setAudioAttributes(Landroidx/media3/common/AudioAttributes;Z)V',
+        if ($impl.setAudioSessionId$async) r'setAudioSessionId(I)V',
+        if ($impl.setAuxEffectInfo$async)
+          r'setAuxEffectInfo(Landroidx/media3/common/AuxEffectInfo;)V',
+        if ($impl.clearAuxEffectInfo$async) r'clearAuxEffectInfo()V',
+        if ($impl.setVolume$async) r'setVolume(F)V',
+        if ($impl.setSkipSilenceEnabled$async) r'setSkipSilenceEnabled(Z)V',
+      ],
+    );
+    final $a = $p.sendPort.nativePort;
+    _$impls[$a] = $impl;
+  }
+
+  factory ExoPlayer_AudioComponent.implement(
+    $ExoPlayer_AudioComponent $impl,
+  ) {
+    final $i = _$jni.JImplementer();
+    implementIn($i, $impl);
+    return ExoPlayer_AudioComponent.fromReference(
+      $i.implementReference(),
+    );
+  }
+}
+
+abstract base mixin class $ExoPlayer_AudioComponent {
+  factory $ExoPlayer_AudioComponent({
+    required void Function(AudioAttributes audioAttributes, bool z)
+        setAudioAttributes,
+    bool setAudioAttributes$async,
+    required AudioAttributes Function() getAudioAttributes,
+    required void Function(int i) setAudioSessionId,
+    bool setAudioSessionId$async,
+    required int Function() getAudioSessionId,
+    required void Function(_$jni.JObject auxEffectInfo) setAuxEffectInfo,
+    bool setAuxEffectInfo$async,
+    required void Function() clearAuxEffectInfo,
+    bool clearAuxEffectInfo$async,
+    required void Function(double f) setVolume,
+    bool setVolume$async,
+    required double Function() getVolume,
+    required void Function(bool z) setSkipSilenceEnabled,
+    bool setSkipSilenceEnabled$async,
+    required bool Function() getSkipSilenceEnabled,
+  }) = _$ExoPlayer_AudioComponent;
+
+  void setAudioAttributes(AudioAttributes audioAttributes, bool z);
+  bool get setAudioAttributes$async => false;
+  AudioAttributes getAudioAttributes();
+  void setAudioSessionId(int i);
+  bool get setAudioSessionId$async => false;
+  int getAudioSessionId();
+  void setAuxEffectInfo(_$jni.JObject auxEffectInfo);
+  bool get setAuxEffectInfo$async => false;
+  void clearAuxEffectInfo();
+  bool get clearAuxEffectInfo$async => false;
+  void setVolume(double f);
+  bool get setVolume$async => false;
+  double getVolume();
+  void setSkipSilenceEnabled(bool z);
+  bool get setSkipSilenceEnabled$async => false;
+  bool getSkipSilenceEnabled();
+}
+
+final class _$ExoPlayer_AudioComponent with $ExoPlayer_AudioComponent {
+  _$ExoPlayer_AudioComponent({
+    required void Function(AudioAttributes audioAttributes, bool z)
+        setAudioAttributes,
+    this.setAudioAttributes$async = false,
+    required AudioAttributes Function() getAudioAttributes,
+    required void Function(int i) setAudioSessionId,
+    this.setAudioSessionId$async = false,
+    required int Function() getAudioSessionId,
+    required void Function(_$jni.JObject auxEffectInfo) setAuxEffectInfo,
+    this.setAuxEffectInfo$async = false,
+    required void Function() clearAuxEffectInfo,
+    this.clearAuxEffectInfo$async = false,
+    required void Function(double f) setVolume,
+    this.setVolume$async = false,
+    required double Function() getVolume,
+    required void Function(bool z) setSkipSilenceEnabled,
+    this.setSkipSilenceEnabled$async = false,
+    required bool Function() getSkipSilenceEnabled,
+  })  : _setAudioAttributes = setAudioAttributes,
+        _getAudioAttributes = getAudioAttributes,
+        _setAudioSessionId = setAudioSessionId,
+        _getAudioSessionId = getAudioSessionId,
+        _setAuxEffectInfo = setAuxEffectInfo,
+        _clearAuxEffectInfo = clearAuxEffectInfo,
+        _setVolume = setVolume,
+        _getVolume = getVolume,
+        _setSkipSilenceEnabled = setSkipSilenceEnabled,
+        _getSkipSilenceEnabled = getSkipSilenceEnabled;
+
+  final void Function(AudioAttributes audioAttributes, bool z)
+      _setAudioAttributes;
+  final bool setAudioAttributes$async;
+  final AudioAttributes Function() _getAudioAttributes;
+  final void Function(int i) _setAudioSessionId;
+  final bool setAudioSessionId$async;
+  final int Function() _getAudioSessionId;
+  final void Function(_$jni.JObject auxEffectInfo) _setAuxEffectInfo;
+  final bool setAuxEffectInfo$async;
+  final void Function() _clearAuxEffectInfo;
+  final bool clearAuxEffectInfo$async;
+  final void Function(double f) _setVolume;
+  final bool setVolume$async;
+  final double Function() _getVolume;
+  final void Function(bool z) _setSkipSilenceEnabled;
+  final bool setSkipSilenceEnabled$async;
+  final bool Function() _getSkipSilenceEnabled;
+
+  void setAudioAttributes(AudioAttributes audioAttributes, bool z) {
+    return _setAudioAttributes(audioAttributes, z);
+  }
+
+  AudioAttributes getAudioAttributes() {
+    return _getAudioAttributes();
+  }
+
+  void setAudioSessionId(int i) {
+    return _setAudioSessionId(i);
+  }
+
+  int getAudioSessionId() {
+    return _getAudioSessionId();
+  }
+
+  void setAuxEffectInfo(_$jni.JObject auxEffectInfo) {
+    return _setAuxEffectInfo(auxEffectInfo);
+  }
+
+  void clearAuxEffectInfo() {
+    return _clearAuxEffectInfo();
+  }
+
+  void setVolume(double f) {
+    return _setVolume(f);
+  }
+
+  double getVolume() {
+    return _getVolume();
+  }
+
+  void setSkipSilenceEnabled(bool z) {
+    return _setSkipSilenceEnabled(z);
+  }
+
+  bool getSkipSilenceEnabled() {
+    return _getSkipSilenceEnabled();
+  }
+}
+
+final class $ExoPlayer_AudioComponent$Type
+    extends _$jni.JObjType<ExoPlayer_AudioComponent> {
+  @_$jni.internal
+  const $ExoPlayer_AudioComponent$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Landroidx/media3/exoplayer/ExoPlayer$AudioComponent;';
+
+  @_$jni.internal
+  @_$core.override
+  ExoPlayer_AudioComponent fromReference(_$jni.JReference reference) =>
+      ExoPlayer_AudioComponent.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($ExoPlayer_AudioComponent$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($ExoPlayer_AudioComponent$Type) &&
+        other is $ExoPlayer_AudioComponent$Type;
+  }
+}
+
+/// from: `androidx.media3.exoplayer.ExoPlayer$AudioOffloadListener`
+class ExoPlayer_AudioOffloadListener extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<ExoPlayer_AudioOffloadListener> $type;
+
+  @_$jni.internal
+  ExoPlayer_AudioOffloadListener.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'androidx/media3/exoplayer/ExoPlayer$AudioOffloadListener');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $ExoPlayer_AudioOffloadListener$Type();
+  static final _id_onSleepingForOffloadChanged = _class.instanceMethodId(
+    r'onSleepingForOffloadChanged',
+    r'(Z)V',
+  );
+
+  static final _onSleepingForOffloadChanged =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr, _$jni.VarArgs<(_$jni.Int32,)>)>>(
+              'globalEnv_CallVoidMethod')
+          .asFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public void onSleepingForOffloadChanged(boolean z)`
+  void onSleepingForOffloadChanged(
+    bool z,
+  ) {
+    _onSleepingForOffloadChanged(reference.pointer,
+            _id_onSleepingForOffloadChanged as _$jni.JMethodIDPtr, z ? 1 : 0)
+        .check();
+  }
+
+  static final _id_onOffloadedPlayback = _class.instanceMethodId(
+    r'onOffloadedPlayback',
+    r'(Z)V',
+  );
+
+  static final _onOffloadedPlayback = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public void onOffloadedPlayback(boolean z)`
+  void onOffloadedPlayback(
+    bool z,
+  ) {
+    _onOffloadedPlayback(reference.pointer,
+            _id_onOffloadedPlayback as _$jni.JMethodIDPtr, z ? 1 : 0)
+        .check();
+  }
+
+  /// Maps a specific port to the implemented interface.
+  static final _$core.Map<int, $ExoPlayer_AudioOffloadListener> _$impls = {};
+  static _$jni.JObjectPtr _$invoke(
+    int port,
+    _$jni.JObjectPtr descriptor,
+    _$jni.JObjectPtr args,
+  ) {
+    return _$invokeMethod(
+      port,
+      _$jni.MethodInvocation.fromAddresses(
+        0,
+        descriptor.address,
+        args.address,
+      ),
+    );
+  }
+
+  static final _$jni.Pointer<
+          _$jni.NativeFunction<
+              _$jni.JObjectPtr Function(
+                  _$jni.Int64, _$jni.JObjectPtr, _$jni.JObjectPtr)>>
+      _$invokePointer = _$jni.Pointer.fromFunction(_$invoke);
+
+  static _$jni.Pointer<_$jni.Void> _$invokeMethod(
+    int $p,
+    _$jni.MethodInvocation $i,
+  ) {
+    try {
+      final $d = $i.methodDescriptor.toDartString(releaseOriginal: true);
+      final $a = $i.args;
+      if ($d == r'onSleepingForOffloadChanged(Z)V') {
+        _$impls[$p]!.onSleepingForOffloadChanged(
+          $a[0]
+              .as(const _$jni.JBooleanType(), releaseOriginal: true)
+              .booleanValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'onOffloadedPlayback(Z)V') {
+        _$impls[$p]!.onOffloadedPlayback(
+          $a[0]
+              .as(const _$jni.JBooleanType(), releaseOriginal: true)
+              .booleanValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+    } catch (e) {
+      return _$jni.ProtectedJniExtensions.newDartException(e);
+    }
+    return _$jni.nullptr;
+  }
+
+  static void implementIn(
+    _$jni.JImplementer implementer,
+    $ExoPlayer_AudioOffloadListener $impl,
+  ) {
+    late final _$jni.RawReceivePort $p;
+    $p = _$jni.RawReceivePort(($m) {
+      if ($m == null) {
+        _$impls.remove($p.sendPort.nativePort);
+        $p.close();
+        return;
+      }
+      final $i = _$jni.MethodInvocation.fromMessage($m);
+      final $r = _$invokeMethod($p.sendPort.nativePort, $i);
+      _$jni.ProtectedJniExtensions.returnResult($i.result, $r);
+    });
+    implementer.add(
+      r'androidx.media3.exoplayer.ExoPlayer$AudioOffloadListener',
+      $p,
+      _$invokePointer,
+      [
+        if ($impl.onSleepingForOffloadChanged$async)
+          r'onSleepingForOffloadChanged(Z)V',
+        if ($impl.onOffloadedPlayback$async) r'onOffloadedPlayback(Z)V',
+      ],
+    );
+    final $a = $p.sendPort.nativePort;
+    _$impls[$a] = $impl;
+  }
+
+  factory ExoPlayer_AudioOffloadListener.implement(
+    $ExoPlayer_AudioOffloadListener $impl,
+  ) {
+    final $i = _$jni.JImplementer();
+    implementIn($i, $impl);
+    return ExoPlayer_AudioOffloadListener.fromReference(
+      $i.implementReference(),
+    );
+  }
+}
+
+abstract base mixin class $ExoPlayer_AudioOffloadListener {
+  factory $ExoPlayer_AudioOffloadListener({
+    required void Function(bool z) onSleepingForOffloadChanged,
+    bool onSleepingForOffloadChanged$async,
+    required void Function(bool z) onOffloadedPlayback,
+    bool onOffloadedPlayback$async,
+  }) = _$ExoPlayer_AudioOffloadListener;
+
+  void onSleepingForOffloadChanged(bool z);
+  bool get onSleepingForOffloadChanged$async => false;
+  void onOffloadedPlayback(bool z);
+  bool get onOffloadedPlayback$async => false;
+}
+
+final class _$ExoPlayer_AudioOffloadListener
+    with $ExoPlayer_AudioOffloadListener {
+  _$ExoPlayer_AudioOffloadListener({
+    required void Function(bool z) onSleepingForOffloadChanged,
+    this.onSleepingForOffloadChanged$async = false,
+    required void Function(bool z) onOffloadedPlayback,
+    this.onOffloadedPlayback$async = false,
+  })  : _onSleepingForOffloadChanged = onSleepingForOffloadChanged,
+        _onOffloadedPlayback = onOffloadedPlayback;
+
+  final void Function(bool z) _onSleepingForOffloadChanged;
+  final bool onSleepingForOffloadChanged$async;
+  final void Function(bool z) _onOffloadedPlayback;
+  final bool onOffloadedPlayback$async;
+
+  void onSleepingForOffloadChanged(bool z) {
+    return _onSleepingForOffloadChanged(z);
+  }
+
+  void onOffloadedPlayback(bool z) {
+    return _onOffloadedPlayback(z);
+  }
+}
+
+final class $ExoPlayer_AudioOffloadListener$Type
+    extends _$jni.JObjType<ExoPlayer_AudioOffloadListener> {
+  @_$jni.internal
+  const $ExoPlayer_AudioOffloadListener$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Landroidx/media3/exoplayer/ExoPlayer$AudioOffloadListener;';
+
+  @_$jni.internal
+  @_$core.override
+  ExoPlayer_AudioOffloadListener fromReference(_$jni.JReference reference) =>
+      ExoPlayer_AudioOffloadListener.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($ExoPlayer_AudioOffloadListener$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($ExoPlayer_AudioOffloadListener$Type) &&
+        other is $ExoPlayer_AudioOffloadListener$Type;
+  }
+}
+
+/// from: `androidx.media3.exoplayer.ExoPlayer$Builder`
+class ExoPlayer_Builder extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<ExoPlayer_Builder> $type;
+
+  @_$jni.internal
+  ExoPlayer_Builder.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class =
+      _$jni.JClass.forName(r'androidx/media3/exoplayer/ExoPlayer$Builder');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $ExoPlayer_Builder$Type();
+  static final _id_new$ = _class.constructorId(
+    r'(Landroid/content/Context;)V',
+  );
+
+  static final _new$ = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_NewObject')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public void <init>(android.content.Context context)`
+  /// The returned object must be released after use, by calling the [release] method.
+  factory ExoPlayer_Builder(
+    _$jni.JObject context,
+  ) {
+    return ExoPlayer_Builder.fromReference(_new$(_class.reference.pointer,
+            _id_new$ as _$jni.JMethodIDPtr, context.reference.pointer)
+        .reference);
+  }
+
+  static final _id_new$1 = _class.constructorId(
+    r'(Landroid/content/Context;Landroidx/media3/exoplayer/RenderersFactory;)V',
+  );
+
+  static final _new$1 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<
+                      (
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>
+                      )>)>>('globalEnv_NewObject')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public void <init>(android.content.Context context, androidx.media3.exoplayer.RenderersFactory renderersFactory)`
+  /// The returned object must be released after use, by calling the [release] method.
+  factory ExoPlayer_Builder.new$1(
+    _$jni.JObject context,
+    _$jni.JObject renderersFactory,
+  ) {
+    return ExoPlayer_Builder.fromReference(_new$1(
+            _class.reference.pointer,
+            _id_new$1 as _$jni.JMethodIDPtr,
+            context.reference.pointer,
+            renderersFactory.reference.pointer)
+        .reference);
+  }
+
+  static final _id_new$2 = _class.constructorId(
+    r'(Landroid/content/Context;Landroidx/media3/exoplayer/source/MediaSource$Factory;)V',
+  );
+
+  static final _new$2 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<
+                      (
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>
+                      )>)>>('globalEnv_NewObject')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public void <init>(android.content.Context context, androidx.media3.exoplayer.source.MediaSource$Factory factory)`
+  /// The returned object must be released after use, by calling the [release] method.
+  factory ExoPlayer_Builder.new$2(
+    _$jni.JObject context,
+    _$jni.JObject factory,
+  ) {
+    return ExoPlayer_Builder.fromReference(_new$2(
+            _class.reference.pointer,
+            _id_new$2 as _$jni.JMethodIDPtr,
+            context.reference.pointer,
+            factory.reference.pointer)
+        .reference);
+  }
+
+  static final _id_new$3 = _class.constructorId(
+    r'(Landroid/content/Context;Landroidx/media3/exoplayer/RenderersFactory;Landroidx/media3/exoplayer/source/MediaSource$Factory;)V',
+  );
+
+  static final _new$3 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<
+                      (
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>
+                      )>)>>('globalEnv_NewObject')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public void <init>(android.content.Context context, androidx.media3.exoplayer.RenderersFactory renderersFactory, androidx.media3.exoplayer.source.MediaSource$Factory factory)`
+  /// The returned object must be released after use, by calling the [release] method.
+  factory ExoPlayer_Builder.new$3(
+    _$jni.JObject context,
+    _$jni.JObject renderersFactory,
+    _$jni.JObject factory,
+  ) {
+    return ExoPlayer_Builder.fromReference(_new$3(
+            _class.reference.pointer,
+            _id_new$3 as _$jni.JMethodIDPtr,
+            context.reference.pointer,
+            renderersFactory.reference.pointer,
+            factory.reference.pointer)
+        .reference);
+  }
+
+  static final _id_new$4 = _class.constructorId(
+    r'(Landroid/content/Context;Landroidx/media3/exoplayer/RenderersFactory;Landroidx/media3/exoplayer/source/MediaSource$Factory;Landroidx/media3/exoplayer/trackselection/TrackSelector;Landroidx/media3/exoplayer/LoadControl;Landroidx/media3/exoplayer/upstream/BandwidthMeter;Landroidx/media3/exoplayer/analytics/AnalyticsCollector;)V',
+  );
+
+  static final _new$4 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<
+                      (
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>
+                      )>)>>('globalEnv_NewObject')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public void <init>(android.content.Context context, androidx.media3.exoplayer.RenderersFactory renderersFactory, androidx.media3.exoplayer.source.MediaSource$Factory factory, androidx.media3.exoplayer.trackselection.TrackSelector trackSelector, androidx.media3.exoplayer.LoadControl loadControl, androidx.media3.exoplayer.upstream.BandwidthMeter bandwidthMeter, androidx.media3.exoplayer.analytics.AnalyticsCollector analyticsCollector)`
+  /// The returned object must be released after use, by calling the [release] method.
+  factory ExoPlayer_Builder.new$4(
+    _$jni.JObject context,
+    _$jni.JObject renderersFactory,
+    _$jni.JObject factory,
+    _$jni.JObject trackSelector,
+    _$jni.JObject loadControl,
+    _$jni.JObject bandwidthMeter,
+    _$jni.JObject analyticsCollector,
+  ) {
+    return ExoPlayer_Builder.fromReference(_new$4(
+            _class.reference.pointer,
+            _id_new$4 as _$jni.JMethodIDPtr,
+            context.reference.pointer,
+            renderersFactory.reference.pointer,
+            factory.reference.pointer,
+            trackSelector.reference.pointer,
+            loadControl.reference.pointer,
+            bandwidthMeter.reference.pointer,
+            analyticsCollector.reference.pointer)
+        .reference);
+  }
+
+  static final _id_experimentalSetForegroundModeTimeoutMs =
+      _class.instanceMethodId(
+    r'experimentalSetForegroundModeTimeoutMs',
+    r'(J)Landroidx/media3/exoplayer/ExoPlayer$Builder;',
+  );
+
+  static final _experimentalSetForegroundModeTimeoutMs =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr, _$jni.VarArgs<(_$jni.Int64,)>)>>(
+              'globalEnv_CallObjectMethod')
+          .asFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer$Builder experimentalSetForegroundModeTimeoutMs(long j)`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_Builder experimentalSetForegroundModeTimeoutMs(
+    int j,
+  ) {
+    return _experimentalSetForegroundModeTimeoutMs(reference.pointer,
+            _id_experimentalSetForegroundModeTimeoutMs as _$jni.JMethodIDPtr, j)
+        .object(const $ExoPlayer_Builder$Type());
+  }
+
+  static final _id_experimentalSetDynamicSchedulingEnabled =
+      _class.instanceMethodId(
+    r'experimentalSetDynamicSchedulingEnabled',
+    r'(Z)Landroidx/media3/exoplayer/ExoPlayer$Builder;',
+  );
+
+  static final _experimentalSetDynamicSchedulingEnabled =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr, _$jni.VarArgs<(_$jni.Int32,)>)>>(
+              'globalEnv_CallObjectMethod')
+          .asFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer$Builder experimentalSetDynamicSchedulingEnabled(boolean z)`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_Builder experimentalSetDynamicSchedulingEnabled(
+    bool z,
+  ) {
+    return _experimentalSetDynamicSchedulingEnabled(
+            reference.pointer,
+            _id_experimentalSetDynamicSchedulingEnabled as _$jni.JMethodIDPtr,
+            z ? 1 : 0)
+        .object(const $ExoPlayer_Builder$Type());
+  }
+
+  static final _id_setSuppressPlaybackOnUnsuitableOutput =
+      _class.instanceMethodId(
+    r'setSuppressPlaybackOnUnsuitableOutput',
+    r'(Z)Landroidx/media3/exoplayer/ExoPlayer$Builder;',
+  );
+
+  static final _setSuppressPlaybackOnUnsuitableOutput =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr, _$jni.VarArgs<(_$jni.Int32,)>)>>(
+              'globalEnv_CallObjectMethod')
+          .asFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer$Builder setSuppressPlaybackOnUnsuitableOutput(boolean z)`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_Builder setSuppressPlaybackOnUnsuitableOutput(
+    bool z,
+  ) {
+    return _setSuppressPlaybackOnUnsuitableOutput(
+            reference.pointer,
+            _id_setSuppressPlaybackOnUnsuitableOutput as _$jni.JMethodIDPtr,
+            z ? 1 : 0)
+        .object(const $ExoPlayer_Builder$Type());
+  }
+
+  static final _id_setRenderersFactory = _class.instanceMethodId(
+    r'setRenderersFactory',
+    r'(Landroidx/media3/exoplayer/RenderersFactory;)Landroidx/media3/exoplayer/ExoPlayer$Builder;',
+  );
+
+  static final _setRenderersFactory = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer$Builder setRenderersFactory(androidx.media3.exoplayer.RenderersFactory renderersFactory)`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_Builder setRenderersFactory(
+    _$jni.JObject renderersFactory,
+  ) {
+    return _setRenderersFactory(
+            reference.pointer,
+            _id_setRenderersFactory as _$jni.JMethodIDPtr,
+            renderersFactory.reference.pointer)
+        .object(const $ExoPlayer_Builder$Type());
+  }
+
+  static final _id_setMediaSourceFactory = _class.instanceMethodId(
+    r'setMediaSourceFactory',
+    r'(Landroidx/media3/exoplayer/source/MediaSource$Factory;)Landroidx/media3/exoplayer/ExoPlayer$Builder;',
+  );
+
+  static final _setMediaSourceFactory = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer$Builder setMediaSourceFactory(androidx.media3.exoplayer.source.MediaSource$Factory factory)`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_Builder setMediaSourceFactory(
+    _$jni.JObject factory,
+  ) {
+    return _setMediaSourceFactory(
+            reference.pointer,
+            _id_setMediaSourceFactory as _$jni.JMethodIDPtr,
+            factory.reference.pointer)
+        .object(const $ExoPlayer_Builder$Type());
+  }
+
+  static final _id_setTrackSelector = _class.instanceMethodId(
+    r'setTrackSelector',
+    r'(Landroidx/media3/exoplayer/trackselection/TrackSelector;)Landroidx/media3/exoplayer/ExoPlayer$Builder;',
+  );
+
+  static final _setTrackSelector = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer$Builder setTrackSelector(androidx.media3.exoplayer.trackselection.TrackSelector trackSelector)`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_Builder setTrackSelector(
+    _$jni.JObject trackSelector,
+  ) {
+    return _setTrackSelector(
+            reference.pointer,
+            _id_setTrackSelector as _$jni.JMethodIDPtr,
+            trackSelector.reference.pointer)
+        .object(const $ExoPlayer_Builder$Type());
+  }
+
+  static final _id_setLoadControl = _class.instanceMethodId(
+    r'setLoadControl',
+    r'(Landroidx/media3/exoplayer/LoadControl;)Landroidx/media3/exoplayer/ExoPlayer$Builder;',
+  );
+
+  static final _setLoadControl = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer$Builder setLoadControl(androidx.media3.exoplayer.LoadControl loadControl)`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_Builder setLoadControl(
+    _$jni.JObject loadControl,
+  ) {
+    return _setLoadControl(
+            reference.pointer,
+            _id_setLoadControl as _$jni.JMethodIDPtr,
+            loadControl.reference.pointer)
+        .object(const $ExoPlayer_Builder$Type());
+  }
+
+  static final _id_setBandwidthMeter = _class.instanceMethodId(
+    r'setBandwidthMeter',
+    r'(Landroidx/media3/exoplayer/upstream/BandwidthMeter;)Landroidx/media3/exoplayer/ExoPlayer$Builder;',
+  );
+
+  static final _setBandwidthMeter = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer$Builder setBandwidthMeter(androidx.media3.exoplayer.upstream.BandwidthMeter bandwidthMeter)`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_Builder setBandwidthMeter(
+    _$jni.JObject bandwidthMeter,
+  ) {
+    return _setBandwidthMeter(
+            reference.pointer,
+            _id_setBandwidthMeter as _$jni.JMethodIDPtr,
+            bandwidthMeter.reference.pointer)
+        .object(const $ExoPlayer_Builder$Type());
+  }
+
+  static final _id_setLooper = _class.instanceMethodId(
+    r'setLooper',
+    r'(Landroid/os/Looper;)Landroidx/media3/exoplayer/ExoPlayer$Builder;',
+  );
+
+  static final _setLooper = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer$Builder setLooper(android.os.Looper looper)`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_Builder setLooper(
+    _$jni.JObject looper,
+  ) {
+    return _setLooper(reference.pointer, _id_setLooper as _$jni.JMethodIDPtr,
+            looper.reference.pointer)
+        .object(const $ExoPlayer_Builder$Type());
+  }
+
+  static final _id_setAnalyticsCollector = _class.instanceMethodId(
+    r'setAnalyticsCollector',
+    r'(Landroidx/media3/exoplayer/analytics/AnalyticsCollector;)Landroidx/media3/exoplayer/ExoPlayer$Builder;',
+  );
+
+  static final _setAnalyticsCollector = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer$Builder setAnalyticsCollector(androidx.media3.exoplayer.analytics.AnalyticsCollector analyticsCollector)`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_Builder setAnalyticsCollector(
+    _$jni.JObject analyticsCollector,
+  ) {
+    return _setAnalyticsCollector(
+            reference.pointer,
+            _id_setAnalyticsCollector as _$jni.JMethodIDPtr,
+            analyticsCollector.reference.pointer)
+        .object(const $ExoPlayer_Builder$Type());
+  }
+
+  static final _id_setPriority = _class.instanceMethodId(
+    r'setPriority',
+    r'(I)Landroidx/media3/exoplayer/ExoPlayer$Builder;',
+  );
+
+  static final _setPriority = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer$Builder setPriority(int i)`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_Builder setPriority(
+    int i,
+  ) {
+    return _setPriority(
+            reference.pointer, _id_setPriority as _$jni.JMethodIDPtr, i)
+        .object(const $ExoPlayer_Builder$Type());
+  }
+
+  static final _id_setPriorityTaskManager = _class.instanceMethodId(
+    r'setPriorityTaskManager',
+    r'(Landroidx/media3/common/PriorityTaskManager;)Landroidx/media3/exoplayer/ExoPlayer$Builder;',
+  );
+
+  static final _setPriorityTaskManager = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer$Builder setPriorityTaskManager(androidx.media3.common.PriorityTaskManager priorityTaskManager)`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_Builder setPriorityTaskManager(
+    _$jni.JObject priorityTaskManager,
+  ) {
+    return _setPriorityTaskManager(
+            reference.pointer,
+            _id_setPriorityTaskManager as _$jni.JMethodIDPtr,
+            priorityTaskManager.reference.pointer)
+        .object(const $ExoPlayer_Builder$Type());
+  }
+
+  static final _id_setAudioAttributes = _class.instanceMethodId(
+    r'setAudioAttributes',
+    r'(Landroidx/media3/common/AudioAttributes;Z)Landroidx/media3/exoplayer/ExoPlayer$Builder;',
+  );
+
+  static final _setAudioAttributes = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni
+                          .VarArgs<(_$jni.Pointer<_$jni.Void>, _$jni.Int32)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>, int)>();
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer$Builder setAudioAttributes(androidx.media3.common.AudioAttributes audioAttributes, boolean z)`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_Builder setAudioAttributes(
+    AudioAttributes audioAttributes,
+    bool z,
+  ) {
+    return _setAudioAttributes(
+            reference.pointer,
+            _id_setAudioAttributes as _$jni.JMethodIDPtr,
+            audioAttributes.reference.pointer,
+            z ? 1 : 0)
+        .object(const $ExoPlayer_Builder$Type());
+  }
+
+  static final _id_setWakeMode = _class.instanceMethodId(
+    r'setWakeMode',
+    r'(I)Landroidx/media3/exoplayer/ExoPlayer$Builder;',
+  );
+
+  static final _setWakeMode = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer$Builder setWakeMode(int i)`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_Builder setWakeMode(
+    int i,
+  ) {
+    return _setWakeMode(
+            reference.pointer, _id_setWakeMode as _$jni.JMethodIDPtr, i)
+        .object(const $ExoPlayer_Builder$Type());
+  }
+
+  static final _id_setHandleAudioBecomingNoisy = _class.instanceMethodId(
+    r'setHandleAudioBecomingNoisy',
+    r'(Z)Landroidx/media3/exoplayer/ExoPlayer$Builder;',
+  );
+
+  static final _setHandleAudioBecomingNoisy =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr, _$jni.VarArgs<(_$jni.Int32,)>)>>(
+              'globalEnv_CallObjectMethod')
+          .asFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer$Builder setHandleAudioBecomingNoisy(boolean z)`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_Builder setHandleAudioBecomingNoisy(
+    bool z,
+  ) {
+    return _setHandleAudioBecomingNoisy(reference.pointer,
+            _id_setHandleAudioBecomingNoisy as _$jni.JMethodIDPtr, z ? 1 : 0)
+        .object(const $ExoPlayer_Builder$Type());
+  }
+
+  static final _id_setSkipSilenceEnabled = _class.instanceMethodId(
+    r'setSkipSilenceEnabled',
+    r'(Z)Landroidx/media3/exoplayer/ExoPlayer$Builder;',
+  );
+
+  static final _setSkipSilenceEnabled = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer$Builder setSkipSilenceEnabled(boolean z)`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_Builder setSkipSilenceEnabled(
+    bool z,
+  ) {
+    return _setSkipSilenceEnabled(reference.pointer,
+            _id_setSkipSilenceEnabled as _$jni.JMethodIDPtr, z ? 1 : 0)
+        .object(const $ExoPlayer_Builder$Type());
+  }
+
+  static final _id_setDeviceVolumeControlEnabled = _class.instanceMethodId(
+    r'setDeviceVolumeControlEnabled',
+    r'(Z)Landroidx/media3/exoplayer/ExoPlayer$Builder;',
+  );
+
+  static final _setDeviceVolumeControlEnabled =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr, _$jni.VarArgs<(_$jni.Int32,)>)>>(
+              'globalEnv_CallObjectMethod')
+          .asFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer$Builder setDeviceVolumeControlEnabled(boolean z)`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_Builder setDeviceVolumeControlEnabled(
+    bool z,
+  ) {
+    return _setDeviceVolumeControlEnabled(reference.pointer,
+            _id_setDeviceVolumeControlEnabled as _$jni.JMethodIDPtr, z ? 1 : 0)
+        .object(const $ExoPlayer_Builder$Type());
+  }
+
+  static final _id_setVideoScalingMode = _class.instanceMethodId(
+    r'setVideoScalingMode',
+    r'(I)Landroidx/media3/exoplayer/ExoPlayer$Builder;',
+  );
+
+  static final _setVideoScalingMode = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer$Builder setVideoScalingMode(int i)`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_Builder setVideoScalingMode(
+    int i,
+  ) {
+    return _setVideoScalingMode(
+            reference.pointer, _id_setVideoScalingMode as _$jni.JMethodIDPtr, i)
+        .object(const $ExoPlayer_Builder$Type());
+  }
+
+  static final _id_setVideoChangeFrameRateStrategy = _class.instanceMethodId(
+    r'setVideoChangeFrameRateStrategy',
+    r'(I)Landroidx/media3/exoplayer/ExoPlayer$Builder;',
+  );
+
+  static final _setVideoChangeFrameRateStrategy =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr, _$jni.VarArgs<(_$jni.Int32,)>)>>(
+              'globalEnv_CallObjectMethod')
+          .asFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer$Builder setVideoChangeFrameRateStrategy(int i)`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_Builder setVideoChangeFrameRateStrategy(
+    int i,
+  ) {
+    return _setVideoChangeFrameRateStrategy(reference.pointer,
+            _id_setVideoChangeFrameRateStrategy as _$jni.JMethodIDPtr, i)
+        .object(const $ExoPlayer_Builder$Type());
+  }
+
+  static final _id_setUseLazyPreparation = _class.instanceMethodId(
+    r'setUseLazyPreparation',
+    r'(Z)Landroidx/media3/exoplayer/ExoPlayer$Builder;',
+  );
+
+  static final _setUseLazyPreparation = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer$Builder setUseLazyPreparation(boolean z)`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_Builder setUseLazyPreparation(
+    bool z,
+  ) {
+    return _setUseLazyPreparation(reference.pointer,
+            _id_setUseLazyPreparation as _$jni.JMethodIDPtr, z ? 1 : 0)
+        .object(const $ExoPlayer_Builder$Type());
+  }
+
+  static final _id_setSeekParameters = _class.instanceMethodId(
+    r'setSeekParameters',
+    r'(Landroidx/media3/exoplayer/SeekParameters;)Landroidx/media3/exoplayer/ExoPlayer$Builder;',
+  );
+
+  static final _setSeekParameters = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer$Builder setSeekParameters(androidx.media3.exoplayer.SeekParameters seekParameters)`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_Builder setSeekParameters(
+    _$jni.JObject seekParameters,
+  ) {
+    return _setSeekParameters(
+            reference.pointer,
+            _id_setSeekParameters as _$jni.JMethodIDPtr,
+            seekParameters.reference.pointer)
+        .object(const $ExoPlayer_Builder$Type());
+  }
+
+  static final _id_setSeekBackIncrementMs = _class.instanceMethodId(
+    r'setSeekBackIncrementMs',
+    r'(J)Landroidx/media3/exoplayer/ExoPlayer$Builder;',
+  );
+
+  static final _setSeekBackIncrementMs = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int64,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer$Builder setSeekBackIncrementMs(long j)`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_Builder setSeekBackIncrementMs(
+    int j,
+  ) {
+    return _setSeekBackIncrementMs(reference.pointer,
+            _id_setSeekBackIncrementMs as _$jni.JMethodIDPtr, j)
+        .object(const $ExoPlayer_Builder$Type());
+  }
+
+  static final _id_setSeekForwardIncrementMs = _class.instanceMethodId(
+    r'setSeekForwardIncrementMs',
+    r'(J)Landroidx/media3/exoplayer/ExoPlayer$Builder;',
+  );
+
+  static final _setSeekForwardIncrementMs = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int64,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer$Builder setSeekForwardIncrementMs(long j)`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_Builder setSeekForwardIncrementMs(
+    int j,
+  ) {
+    return _setSeekForwardIncrementMs(reference.pointer,
+            _id_setSeekForwardIncrementMs as _$jni.JMethodIDPtr, j)
+        .object(const $ExoPlayer_Builder$Type());
+  }
+
+  static final _id_setMaxSeekToPreviousPositionMs = _class.instanceMethodId(
+    r'setMaxSeekToPreviousPositionMs',
+    r'(J)Landroidx/media3/exoplayer/ExoPlayer$Builder;',
+  );
+
+  static final _setMaxSeekToPreviousPositionMs =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr, _$jni.VarArgs<(_$jni.Int64,)>)>>(
+              'globalEnv_CallObjectMethod')
+          .asFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer$Builder setMaxSeekToPreviousPositionMs(long j)`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_Builder setMaxSeekToPreviousPositionMs(
+    int j,
+  ) {
+    return _setMaxSeekToPreviousPositionMs(reference.pointer,
+            _id_setMaxSeekToPreviousPositionMs as _$jni.JMethodIDPtr, j)
+        .object(const $ExoPlayer_Builder$Type());
+  }
+
+  static final _id_setReleaseTimeoutMs = _class.instanceMethodId(
+    r'setReleaseTimeoutMs',
+    r'(J)Landroidx/media3/exoplayer/ExoPlayer$Builder;',
+  );
+
+  static final _setReleaseTimeoutMs = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int64,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer$Builder setReleaseTimeoutMs(long j)`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_Builder setReleaseTimeoutMs(
+    int j,
+  ) {
+    return _setReleaseTimeoutMs(
+            reference.pointer, _id_setReleaseTimeoutMs as _$jni.JMethodIDPtr, j)
+        .object(const $ExoPlayer_Builder$Type());
+  }
+
+  static final _id_setDetachSurfaceTimeoutMs = _class.instanceMethodId(
+    r'setDetachSurfaceTimeoutMs',
+    r'(J)Landroidx/media3/exoplayer/ExoPlayer$Builder;',
+  );
+
+  static final _setDetachSurfaceTimeoutMs = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int64,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer$Builder setDetachSurfaceTimeoutMs(long j)`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_Builder setDetachSurfaceTimeoutMs(
+    int j,
+  ) {
+    return _setDetachSurfaceTimeoutMs(reference.pointer,
+            _id_setDetachSurfaceTimeoutMs as _$jni.JMethodIDPtr, j)
+        .object(const $ExoPlayer_Builder$Type());
+  }
+
+  static final _id_setPauseAtEndOfMediaItems = _class.instanceMethodId(
+    r'setPauseAtEndOfMediaItems',
+    r'(Z)Landroidx/media3/exoplayer/ExoPlayer$Builder;',
+  );
+
+  static final _setPauseAtEndOfMediaItems = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer$Builder setPauseAtEndOfMediaItems(boolean z)`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_Builder setPauseAtEndOfMediaItems(
+    bool z,
+  ) {
+    return _setPauseAtEndOfMediaItems(reference.pointer,
+            _id_setPauseAtEndOfMediaItems as _$jni.JMethodIDPtr, z ? 1 : 0)
+        .object(const $ExoPlayer_Builder$Type());
+  }
+
+  static final _id_setLivePlaybackSpeedControl = _class.instanceMethodId(
+    r'setLivePlaybackSpeedControl',
+    r'(Landroidx/media3/exoplayer/LivePlaybackSpeedControl;)Landroidx/media3/exoplayer/ExoPlayer$Builder;',
+  );
+
+  static final _setLivePlaybackSpeedControl =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JniResult Function(
+                          _$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr,
+                          _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+              'globalEnv_CallObjectMethod')
+          .asFunction<
+              _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer$Builder setLivePlaybackSpeedControl(androidx.media3.exoplayer.LivePlaybackSpeedControl livePlaybackSpeedControl)`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_Builder setLivePlaybackSpeedControl(
+    _$jni.JObject livePlaybackSpeedControl,
+  ) {
+    return _setLivePlaybackSpeedControl(
+            reference.pointer,
+            _id_setLivePlaybackSpeedControl as _$jni.JMethodIDPtr,
+            livePlaybackSpeedControl.reference.pointer)
+        .object(const $ExoPlayer_Builder$Type());
+  }
+
+  static final _id_setUsePlatformDiagnostics = _class.instanceMethodId(
+    r'setUsePlatformDiagnostics',
+    r'(Z)Landroidx/media3/exoplayer/ExoPlayer$Builder;',
+  );
+
+  static final _setUsePlatformDiagnostics = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer$Builder setUsePlatformDiagnostics(boolean z)`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_Builder setUsePlatformDiagnostics(
+    bool z,
+  ) {
+    return _setUsePlatformDiagnostics(reference.pointer,
+            _id_setUsePlatformDiagnostics as _$jni.JMethodIDPtr, z ? 1 : 0)
+        .object(const $ExoPlayer_Builder$Type());
+  }
+
+  static final _id_setClock = _class.instanceMethodId(
+    r'setClock',
+    r'(Landroidx/media3/common/util/Clock;)Landroidx/media3/exoplayer/ExoPlayer$Builder;',
+  );
+
+  static final _setClock = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer$Builder setClock(androidx.media3.common.util.Clock clock)`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_Builder setClock(
+    _$jni.JObject clock,
+  ) {
+    return _setClock(reference.pointer, _id_setClock as _$jni.JMethodIDPtr,
+            clock.reference.pointer)
+        .object(const $ExoPlayer_Builder$Type());
+  }
+
+  static final _id_setPlaybackLooper = _class.instanceMethodId(
+    r'setPlaybackLooper',
+    r'(Landroid/os/Looper;)Landroidx/media3/exoplayer/ExoPlayer$Builder;',
+  );
+
+  static final _setPlaybackLooper = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer$Builder setPlaybackLooper(android.os.Looper looper)`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_Builder setPlaybackLooper(
+    _$jni.JObject looper,
+  ) {
+    return _setPlaybackLooper(
+            reference.pointer,
+            _id_setPlaybackLooper as _$jni.JMethodIDPtr,
+            looper.reference.pointer)
+        .object(const $ExoPlayer_Builder$Type());
+  }
+
+  static final _id_setName = _class.instanceMethodId(
+    r'setName',
+    r'(Ljava/lang/String;)Landroidx/media3/exoplayer/ExoPlayer$Builder;',
+  );
+
+  static final _setName = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer$Builder setName(java.lang.String string)`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_Builder setName(
+    _$jni.JString string,
+  ) {
+    return _setName(reference.pointer, _id_setName as _$jni.JMethodIDPtr,
+            string.reference.pointer)
+        .object(const $ExoPlayer_Builder$Type());
+  }
+
+  static final _id_build = _class.instanceMethodId(
+    r'build',
+    r'()Landroidx/media3/exoplayer/ExoPlayer;',
+  );
+
+  static final _build = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer build()`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer build() {
+    return _build(reference.pointer, _id_build as _$jni.JMethodIDPtr)
+        .object(const $ExoPlayer$Type());
+  }
+}
+
+final class $ExoPlayer_Builder$Type extends _$jni.JObjType<ExoPlayer_Builder> {
+  @_$jni.internal
+  const $ExoPlayer_Builder$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature => r'Landroidx/media3/exoplayer/ExoPlayer$Builder;';
+
+  @_$jni.internal
+  @_$core.override
+  ExoPlayer_Builder fromReference(_$jni.JReference reference) =>
+      ExoPlayer_Builder.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($ExoPlayer_Builder$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($ExoPlayer_Builder$Type) &&
+        other is $ExoPlayer_Builder$Type;
+  }
+}
+
+/// from: `androidx.media3.exoplayer.ExoPlayer$DeviceComponent`
+class ExoPlayer_DeviceComponent extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<ExoPlayer_DeviceComponent> $type;
+
+  @_$jni.internal
+  ExoPlayer_DeviceComponent.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'androidx/media3/exoplayer/ExoPlayer$DeviceComponent');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $ExoPlayer_DeviceComponent$Type();
+  static final _id_getDeviceInfo = _class.instanceMethodId(
+    r'getDeviceInfo',
+    r'()Landroidx/media3/common/DeviceInfo;',
+  );
+
+  static final _getDeviceInfo = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract androidx.media3.common.DeviceInfo getDeviceInfo()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getDeviceInfo() {
+    return _getDeviceInfo(
+            reference.pointer, _id_getDeviceInfo as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_getDeviceVolume = _class.instanceMethodId(
+    r'getDeviceVolume',
+    r'()I',
+  );
+
+  static final _getDeviceVolume = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract int getDeviceVolume()`
+  int getDeviceVolume() {
+    return _getDeviceVolume(
+            reference.pointer, _id_getDeviceVolume as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_isDeviceMuted = _class.instanceMethodId(
+    r'isDeviceMuted',
+    r'()Z',
+  );
+
+  static final _isDeviceMuted = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract boolean isDeviceMuted()`
+  bool isDeviceMuted() {
+    return _isDeviceMuted(
+            reference.pointer, _id_isDeviceMuted as _$jni.JMethodIDPtr)
+        .boolean;
+  }
+
+  static final _id_setDeviceVolume = _class.instanceMethodId(
+    r'setDeviceVolume',
+    r'(I)V',
+  );
+
+  static final _setDeviceVolume = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public abstract void setDeviceVolume(int i)`
+  void setDeviceVolume(
+    int i,
+  ) {
+    _setDeviceVolume(
+            reference.pointer, _id_setDeviceVolume as _$jni.JMethodIDPtr, i)
+        .check();
+  }
+
+  static final _id_increaseDeviceVolume = _class.instanceMethodId(
+    r'increaseDeviceVolume',
+    r'()V',
+  );
+
+  static final _increaseDeviceVolume = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract void increaseDeviceVolume()`
+  void increaseDeviceVolume() {
+    _increaseDeviceVolume(
+            reference.pointer, _id_increaseDeviceVolume as _$jni.JMethodIDPtr)
+        .check();
+  }
+
+  static final _id_decreaseDeviceVolume = _class.instanceMethodId(
+    r'decreaseDeviceVolume',
+    r'()V',
+  );
+
+  static final _decreaseDeviceVolume = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract void decreaseDeviceVolume()`
+  void decreaseDeviceVolume() {
+    _decreaseDeviceVolume(
+            reference.pointer, _id_decreaseDeviceVolume as _$jni.JMethodIDPtr)
+        .check();
+  }
+
+  static final _id_setDeviceMuted = _class.instanceMethodId(
+    r'setDeviceMuted',
+    r'(Z)V',
+  );
+
+  static final _setDeviceMuted = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public abstract void setDeviceMuted(boolean z)`
+  void setDeviceMuted(
+    bool z,
+  ) {
+    _setDeviceMuted(reference.pointer, _id_setDeviceMuted as _$jni.JMethodIDPtr,
+            z ? 1 : 0)
+        .check();
+  }
+
+  /// Maps a specific port to the implemented interface.
+  static final _$core.Map<int, $ExoPlayer_DeviceComponent> _$impls = {};
+  static _$jni.JObjectPtr _$invoke(
+    int port,
+    _$jni.JObjectPtr descriptor,
+    _$jni.JObjectPtr args,
+  ) {
+    return _$invokeMethod(
+      port,
+      _$jni.MethodInvocation.fromAddresses(
+        0,
+        descriptor.address,
+        args.address,
+      ),
+    );
+  }
+
+  static final _$jni.Pointer<
+          _$jni.NativeFunction<
+              _$jni.JObjectPtr Function(
+                  _$jni.Int64, _$jni.JObjectPtr, _$jni.JObjectPtr)>>
+      _$invokePointer = _$jni.Pointer.fromFunction(_$invoke);
+
+  static _$jni.Pointer<_$jni.Void> _$invokeMethod(
+    int $p,
+    _$jni.MethodInvocation $i,
+  ) {
+    try {
+      final $d = $i.methodDescriptor.toDartString(releaseOriginal: true);
+      final $a = $i.args;
+      if ($d == r'getDeviceInfo()Landroidx/media3/common/DeviceInfo;') {
+        final $r = _$impls[$p]!.getDeviceInfo();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d == r'getDeviceVolume()I') {
+        final $r = _$impls[$p]!.getDeviceVolume();
+        return _$jni.JInteger($r).reference.toPointer();
+      }
+      if ($d == r'isDeviceMuted()Z') {
+        final $r = _$impls[$p]!.isDeviceMuted();
+        return _$jni.JBoolean($r).reference.toPointer();
+      }
+      if ($d == r'setDeviceVolume(I)V') {
+        _$impls[$p]!.setDeviceVolume(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'increaseDeviceVolume()V') {
+        _$impls[$p]!.increaseDeviceVolume();
+        return _$jni.nullptr;
+      }
+      if ($d == r'decreaseDeviceVolume()V') {
+        _$impls[$p]!.decreaseDeviceVolume();
+        return _$jni.nullptr;
+      }
+      if ($d == r'setDeviceMuted(Z)V') {
+        _$impls[$p]!.setDeviceMuted(
+          $a[0]
+              .as(const _$jni.JBooleanType(), releaseOriginal: true)
+              .booleanValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+    } catch (e) {
+      return _$jni.ProtectedJniExtensions.newDartException(e);
+    }
+    return _$jni.nullptr;
+  }
+
+  static void implementIn(
+    _$jni.JImplementer implementer,
+    $ExoPlayer_DeviceComponent $impl,
+  ) {
+    late final _$jni.RawReceivePort $p;
+    $p = _$jni.RawReceivePort(($m) {
+      if ($m == null) {
+        _$impls.remove($p.sendPort.nativePort);
+        $p.close();
+        return;
+      }
+      final $i = _$jni.MethodInvocation.fromMessage($m);
+      final $r = _$invokeMethod($p.sendPort.nativePort, $i);
+      _$jni.ProtectedJniExtensions.returnResult($i.result, $r);
+    });
+    implementer.add(
+      r'androidx.media3.exoplayer.ExoPlayer$DeviceComponent',
+      $p,
+      _$invokePointer,
+      [
+        if ($impl.setDeviceVolume$async) r'setDeviceVolume(I)V',
+        if ($impl.increaseDeviceVolume$async) r'increaseDeviceVolume()V',
+        if ($impl.decreaseDeviceVolume$async) r'decreaseDeviceVolume()V',
+        if ($impl.setDeviceMuted$async) r'setDeviceMuted(Z)V',
+      ],
+    );
+    final $a = $p.sendPort.nativePort;
+    _$impls[$a] = $impl;
+  }
+
+  factory ExoPlayer_DeviceComponent.implement(
+    $ExoPlayer_DeviceComponent $impl,
+  ) {
+    final $i = _$jni.JImplementer();
+    implementIn($i, $impl);
+    return ExoPlayer_DeviceComponent.fromReference(
+      $i.implementReference(),
+    );
+  }
+}
+
+abstract base mixin class $ExoPlayer_DeviceComponent {
+  factory $ExoPlayer_DeviceComponent({
+    required _$jni.JObject Function() getDeviceInfo,
+    required int Function() getDeviceVolume,
+    required bool Function() isDeviceMuted,
+    required void Function(int i) setDeviceVolume,
+    bool setDeviceVolume$async,
+    required void Function() increaseDeviceVolume,
+    bool increaseDeviceVolume$async,
+    required void Function() decreaseDeviceVolume,
+    bool decreaseDeviceVolume$async,
+    required void Function(bool z) setDeviceMuted,
+    bool setDeviceMuted$async,
+  }) = _$ExoPlayer_DeviceComponent;
+
+  _$jni.JObject getDeviceInfo();
+  int getDeviceVolume();
+  bool isDeviceMuted();
+  void setDeviceVolume(int i);
+  bool get setDeviceVolume$async => false;
+  void increaseDeviceVolume();
+  bool get increaseDeviceVolume$async => false;
+  void decreaseDeviceVolume();
+  bool get decreaseDeviceVolume$async => false;
+  void setDeviceMuted(bool z);
+  bool get setDeviceMuted$async => false;
+}
+
+final class _$ExoPlayer_DeviceComponent with $ExoPlayer_DeviceComponent {
+  _$ExoPlayer_DeviceComponent({
+    required _$jni.JObject Function() getDeviceInfo,
+    required int Function() getDeviceVolume,
+    required bool Function() isDeviceMuted,
+    required void Function(int i) setDeviceVolume,
+    this.setDeviceVolume$async = false,
+    required void Function() increaseDeviceVolume,
+    this.increaseDeviceVolume$async = false,
+    required void Function() decreaseDeviceVolume,
+    this.decreaseDeviceVolume$async = false,
+    required void Function(bool z) setDeviceMuted,
+    this.setDeviceMuted$async = false,
+  })  : _getDeviceInfo = getDeviceInfo,
+        _getDeviceVolume = getDeviceVolume,
+        _isDeviceMuted = isDeviceMuted,
+        _setDeviceVolume = setDeviceVolume,
+        _increaseDeviceVolume = increaseDeviceVolume,
+        _decreaseDeviceVolume = decreaseDeviceVolume,
+        _setDeviceMuted = setDeviceMuted;
+
+  final _$jni.JObject Function() _getDeviceInfo;
+  final int Function() _getDeviceVolume;
+  final bool Function() _isDeviceMuted;
+  final void Function(int i) _setDeviceVolume;
+  final bool setDeviceVolume$async;
+  final void Function() _increaseDeviceVolume;
+  final bool increaseDeviceVolume$async;
+  final void Function() _decreaseDeviceVolume;
+  final bool decreaseDeviceVolume$async;
+  final void Function(bool z) _setDeviceMuted;
+  final bool setDeviceMuted$async;
+
+  _$jni.JObject getDeviceInfo() {
+    return _getDeviceInfo();
+  }
+
+  int getDeviceVolume() {
+    return _getDeviceVolume();
+  }
+
+  bool isDeviceMuted() {
+    return _isDeviceMuted();
+  }
+
+  void setDeviceVolume(int i) {
+    return _setDeviceVolume(i);
+  }
+
+  void increaseDeviceVolume() {
+    return _increaseDeviceVolume();
+  }
+
+  void decreaseDeviceVolume() {
+    return _decreaseDeviceVolume();
+  }
+
+  void setDeviceMuted(bool z) {
+    return _setDeviceMuted(z);
+  }
+}
+
+final class $ExoPlayer_DeviceComponent$Type
+    extends _$jni.JObjType<ExoPlayer_DeviceComponent> {
+  @_$jni.internal
+  const $ExoPlayer_DeviceComponent$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Landroidx/media3/exoplayer/ExoPlayer$DeviceComponent;';
+
+  @_$jni.internal
+  @_$core.override
+  ExoPlayer_DeviceComponent fromReference(_$jni.JReference reference) =>
+      ExoPlayer_DeviceComponent.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($ExoPlayer_DeviceComponent$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($ExoPlayer_DeviceComponent$Type) &&
+        other is $ExoPlayer_DeviceComponent$Type;
+  }
+}
+
+/// from: `androidx.media3.exoplayer.ExoPlayer$PreloadConfiguration`
+class ExoPlayer_PreloadConfiguration extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<ExoPlayer_PreloadConfiguration> $type;
+
+  @_$jni.internal
+  ExoPlayer_PreloadConfiguration.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'androidx/media3/exoplayer/ExoPlayer$PreloadConfiguration');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $ExoPlayer_PreloadConfiguration$Type();
+  static final _id_DEFAULT = _class.staticFieldId(
+    r'DEFAULT',
+    r'Landroidx/media3/exoplayer/ExoPlayer$PreloadConfiguration;',
+  );
+
+  /// from: `static public final androidx.media3.exoplayer.ExoPlayer$PreloadConfiguration DEFAULT`
+  /// The returned object must be released after use, by calling the [release] method.
+  static ExoPlayer_PreloadConfiguration get DEFAULT =>
+      _id_DEFAULT.get(_class, const $ExoPlayer_PreloadConfiguration$Type());
+
+  static final _id_targetPreloadDurationUs = _class.instanceFieldId(
+    r'targetPreloadDurationUs',
+    r'J',
+  );
+
+  /// from: `public final long targetPreloadDurationUs`
+  int get targetPreloadDurationUs =>
+      _id_targetPreloadDurationUs.get(this, const _$jni.jlongType());
+
+  static final _id_new$ = _class.constructorId(
+    r'(J)V',
+  );
+
+  static final _new$ = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int64,)>)>>('globalEnv_NewObject')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public void <init>(long j)`
+  /// The returned object must be released after use, by calling the [release] method.
+  factory ExoPlayer_PreloadConfiguration(
+    int j,
+  ) {
+    return ExoPlayer_PreloadConfiguration.fromReference(
+        _new$(_class.reference.pointer, _id_new$ as _$jni.JMethodIDPtr, j)
+            .reference);
+  }
+}
+
+final class $ExoPlayer_PreloadConfiguration$Type
+    extends _$jni.JObjType<ExoPlayer_PreloadConfiguration> {
+  @_$jni.internal
+  const $ExoPlayer_PreloadConfiguration$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Landroidx/media3/exoplayer/ExoPlayer$PreloadConfiguration;';
+
+  @_$jni.internal
+  @_$core.override
+  ExoPlayer_PreloadConfiguration fromReference(_$jni.JReference reference) =>
+      ExoPlayer_PreloadConfiguration.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($ExoPlayer_PreloadConfiguration$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($ExoPlayer_PreloadConfiguration$Type) &&
+        other is $ExoPlayer_PreloadConfiguration$Type;
+  }
+}
+
+/// from: `androidx.media3.exoplayer.ExoPlayer$TextComponent`
+class ExoPlayer_TextComponent extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<ExoPlayer_TextComponent> $type;
+
+  @_$jni.internal
+  ExoPlayer_TextComponent.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'androidx/media3/exoplayer/ExoPlayer$TextComponent');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $ExoPlayer_TextComponent$Type();
+  static final _id_getCurrentCues = _class.instanceMethodId(
+    r'getCurrentCues',
+    r'()Landroidx/media3/common/text/CueGroup;',
+  );
+
+  static final _getCurrentCues = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract androidx.media3.common.text.CueGroup getCurrentCues()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getCurrentCues() {
+    return _getCurrentCues(
+            reference.pointer, _id_getCurrentCues as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  /// Maps a specific port to the implemented interface.
+  static final _$core.Map<int, $ExoPlayer_TextComponent> _$impls = {};
+  static _$jni.JObjectPtr _$invoke(
+    int port,
+    _$jni.JObjectPtr descriptor,
+    _$jni.JObjectPtr args,
+  ) {
+    return _$invokeMethod(
+      port,
+      _$jni.MethodInvocation.fromAddresses(
+        0,
+        descriptor.address,
+        args.address,
+      ),
+    );
+  }
+
+  static final _$jni.Pointer<
+          _$jni.NativeFunction<
+              _$jni.JObjectPtr Function(
+                  _$jni.Int64, _$jni.JObjectPtr, _$jni.JObjectPtr)>>
+      _$invokePointer = _$jni.Pointer.fromFunction(_$invoke);
+
+  static _$jni.Pointer<_$jni.Void> _$invokeMethod(
+    int $p,
+    _$jni.MethodInvocation $i,
+  ) {
+    try {
+      final $d = $i.methodDescriptor.toDartString(releaseOriginal: true);
+      final $a = $i.args;
+      if ($d == r'getCurrentCues()Landroidx/media3/common/text/CueGroup;') {
+        final $r = _$impls[$p]!.getCurrentCues();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+    } catch (e) {
+      return _$jni.ProtectedJniExtensions.newDartException(e);
+    }
+    return _$jni.nullptr;
+  }
+
+  static void implementIn(
+    _$jni.JImplementer implementer,
+    $ExoPlayer_TextComponent $impl,
+  ) {
+    late final _$jni.RawReceivePort $p;
+    $p = _$jni.RawReceivePort(($m) {
+      if ($m == null) {
+        _$impls.remove($p.sendPort.nativePort);
+        $p.close();
+        return;
+      }
+      final $i = _$jni.MethodInvocation.fromMessage($m);
+      final $r = _$invokeMethod($p.sendPort.nativePort, $i);
+      _$jni.ProtectedJniExtensions.returnResult($i.result, $r);
+    });
+    implementer.add(
+      r'androidx.media3.exoplayer.ExoPlayer$TextComponent',
+      $p,
+      _$invokePointer,
+      [],
+    );
+    final $a = $p.sendPort.nativePort;
+    _$impls[$a] = $impl;
+  }
+
+  factory ExoPlayer_TextComponent.implement(
+    $ExoPlayer_TextComponent $impl,
+  ) {
+    final $i = _$jni.JImplementer();
+    implementIn($i, $impl);
+    return ExoPlayer_TextComponent.fromReference(
+      $i.implementReference(),
+    );
+  }
+}
+
+abstract base mixin class $ExoPlayer_TextComponent {
+  factory $ExoPlayer_TextComponent({
+    required _$jni.JObject Function() getCurrentCues,
+  }) = _$ExoPlayer_TextComponent;
+
+  _$jni.JObject getCurrentCues();
+}
+
+final class _$ExoPlayer_TextComponent with $ExoPlayer_TextComponent {
+  _$ExoPlayer_TextComponent({
+    required _$jni.JObject Function() getCurrentCues,
+  }) : _getCurrentCues = getCurrentCues;
+
+  final _$jni.JObject Function() _getCurrentCues;
+
+  _$jni.JObject getCurrentCues() {
+    return _getCurrentCues();
+  }
+}
+
+final class $ExoPlayer_TextComponent$Type
+    extends _$jni.JObjType<ExoPlayer_TextComponent> {
+  @_$jni.internal
+  const $ExoPlayer_TextComponent$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Landroidx/media3/exoplayer/ExoPlayer$TextComponent;';
+
+  @_$jni.internal
+  @_$core.override
+  ExoPlayer_TextComponent fromReference(_$jni.JReference reference) =>
+      ExoPlayer_TextComponent.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($ExoPlayer_TextComponent$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($ExoPlayer_TextComponent$Type) &&
+        other is $ExoPlayer_TextComponent$Type;
+  }
+}
+
+/// from: `androidx.media3.exoplayer.ExoPlayer$VideoComponent`
+class ExoPlayer_VideoComponent extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<ExoPlayer_VideoComponent> $type;
+
+  @_$jni.internal
+  ExoPlayer_VideoComponent.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'androidx/media3/exoplayer/ExoPlayer$VideoComponent');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $ExoPlayer_VideoComponent$Type();
+  static final _id_setVideoScalingMode = _class.instanceMethodId(
+    r'setVideoScalingMode',
+    r'(I)V',
+  );
+
+  static final _setVideoScalingMode = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public abstract void setVideoScalingMode(int i)`
+  void setVideoScalingMode(
+    int i,
+  ) {
+    _setVideoScalingMode(
+            reference.pointer, _id_setVideoScalingMode as _$jni.JMethodIDPtr, i)
+        .check();
+  }
+
+  static final _id_getVideoScalingMode = _class.instanceMethodId(
+    r'getVideoScalingMode',
+    r'()I',
+  );
+
+  static final _getVideoScalingMode = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract int getVideoScalingMode()`
+  int getVideoScalingMode() {
+    return _getVideoScalingMode(
+            reference.pointer, _id_getVideoScalingMode as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_setVideoChangeFrameRateStrategy = _class.instanceMethodId(
+    r'setVideoChangeFrameRateStrategy',
+    r'(I)V',
+  );
+
+  static final _setVideoChangeFrameRateStrategy =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr, _$jni.VarArgs<(_$jni.Int32,)>)>>(
+              'globalEnv_CallVoidMethod')
+          .asFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public abstract void setVideoChangeFrameRateStrategy(int i)`
+  void setVideoChangeFrameRateStrategy(
+    int i,
+  ) {
+    _setVideoChangeFrameRateStrategy(reference.pointer,
+            _id_setVideoChangeFrameRateStrategy as _$jni.JMethodIDPtr, i)
+        .check();
+  }
+
+  static final _id_getVideoChangeFrameRateStrategy = _class.instanceMethodId(
+    r'getVideoChangeFrameRateStrategy',
+    r'()I',
+  );
+
+  static final _getVideoChangeFrameRateStrategy =
+      _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                    _$jni.Pointer<_$jni.Void>,
+                    _$jni.JMethodIDPtr,
+                  )>>('globalEnv_CallIntMethod')
+          .asFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>();
+
+  /// from: `public abstract int getVideoChangeFrameRateStrategy()`
+  int getVideoChangeFrameRateStrategy() {
+    return _getVideoChangeFrameRateStrategy(reference.pointer,
+            _id_getVideoChangeFrameRateStrategy as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_setVideoFrameMetadataListener = _class.instanceMethodId(
+    r'setVideoFrameMetadataListener',
+    r'(Landroidx/media3/exoplayer/video/VideoFrameMetadataListener;)V',
+  );
+
+  static final _setVideoFrameMetadataListener =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JThrowablePtr Function(
+                          _$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr,
+                          _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+              'globalEnv_CallVoidMethod')
+          .asFunction<
+              _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void setVideoFrameMetadataListener(androidx.media3.exoplayer.video.VideoFrameMetadataListener videoFrameMetadataListener)`
+  void setVideoFrameMetadataListener(
+    _$jni.JObject videoFrameMetadataListener,
+  ) {
+    _setVideoFrameMetadataListener(
+            reference.pointer,
+            _id_setVideoFrameMetadataListener as _$jni.JMethodIDPtr,
+            videoFrameMetadataListener.reference.pointer)
+        .check();
+  }
+
+  static final _id_clearVideoFrameMetadataListener = _class.instanceMethodId(
+    r'clearVideoFrameMetadataListener',
+    r'(Landroidx/media3/exoplayer/video/VideoFrameMetadataListener;)V',
+  );
+
+  static final _clearVideoFrameMetadataListener =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JThrowablePtr Function(
+                          _$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr,
+                          _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+              'globalEnv_CallVoidMethod')
+          .asFunction<
+              _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void clearVideoFrameMetadataListener(androidx.media3.exoplayer.video.VideoFrameMetadataListener videoFrameMetadataListener)`
+  void clearVideoFrameMetadataListener(
+    _$jni.JObject videoFrameMetadataListener,
+  ) {
+    _clearVideoFrameMetadataListener(
+            reference.pointer,
+            _id_clearVideoFrameMetadataListener as _$jni.JMethodIDPtr,
+            videoFrameMetadataListener.reference.pointer)
+        .check();
+  }
+
+  static final _id_setCameraMotionListener = _class.instanceMethodId(
+    r'setCameraMotionListener',
+    r'(Landroidx/media3/exoplayer/video/spherical/CameraMotionListener;)V',
+  );
+
+  static final _setCameraMotionListener = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void setCameraMotionListener(androidx.media3.exoplayer.video.spherical.CameraMotionListener cameraMotionListener)`
+  void setCameraMotionListener(
+    _$jni.JObject cameraMotionListener,
+  ) {
+    _setCameraMotionListener(
+            reference.pointer,
+            _id_setCameraMotionListener as _$jni.JMethodIDPtr,
+            cameraMotionListener.reference.pointer)
+        .check();
+  }
+
+  static final _id_clearCameraMotionListener = _class.instanceMethodId(
+    r'clearCameraMotionListener',
+    r'(Landroidx/media3/exoplayer/video/spherical/CameraMotionListener;)V',
+  );
+
+  static final _clearCameraMotionListener = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void clearCameraMotionListener(androidx.media3.exoplayer.video.spherical.CameraMotionListener cameraMotionListener)`
+  void clearCameraMotionListener(
+    _$jni.JObject cameraMotionListener,
+  ) {
+    _clearCameraMotionListener(
+            reference.pointer,
+            _id_clearCameraMotionListener as _$jni.JMethodIDPtr,
+            cameraMotionListener.reference.pointer)
+        .check();
+  }
+
+  static final _id_clearVideoSurface = _class.instanceMethodId(
+    r'clearVideoSurface',
+    r'()V',
+  );
+
+  static final _clearVideoSurface = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract void clearVideoSurface()`
+  void clearVideoSurface() {
+    _clearVideoSurface(
+            reference.pointer, _id_clearVideoSurface as _$jni.JMethodIDPtr)
+        .check();
+  }
+
+  static final _id_clearVideoSurface$1 = _class.instanceMethodId(
+    r'clearVideoSurface',
+    r'(Landroid/view/Surface;)V',
+  );
+
+  static final _clearVideoSurface$1 = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void clearVideoSurface(android.view.Surface surface)`
+  void clearVideoSurface$1(
+    _$jni.JObject surface,
+  ) {
+    _clearVideoSurface$1(
+            reference.pointer,
+            _id_clearVideoSurface$1 as _$jni.JMethodIDPtr,
+            surface.reference.pointer)
+        .check();
+  }
+
+  static final _id_setVideoSurface = _class.instanceMethodId(
+    r'setVideoSurface',
+    r'(Landroid/view/Surface;)V',
+  );
+
+  static final _setVideoSurface = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void setVideoSurface(android.view.Surface surface)`
+  void setVideoSurface(
+    _$jni.JObject surface,
+  ) {
+    _setVideoSurface(
+            reference.pointer,
+            _id_setVideoSurface as _$jni.JMethodIDPtr,
+            surface.reference.pointer)
+        .check();
+  }
+
+  static final _id_setVideoSurfaceHolder = _class.instanceMethodId(
+    r'setVideoSurfaceHolder',
+    r'(Landroid/view/SurfaceHolder;)V',
+  );
+
+  static final _setVideoSurfaceHolder = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void setVideoSurfaceHolder(android.view.SurfaceHolder surfaceHolder)`
+  void setVideoSurfaceHolder(
+    _$jni.JObject surfaceHolder,
+  ) {
+    _setVideoSurfaceHolder(
+            reference.pointer,
+            _id_setVideoSurfaceHolder as _$jni.JMethodIDPtr,
+            surfaceHolder.reference.pointer)
+        .check();
+  }
+
+  static final _id_clearVideoSurfaceHolder = _class.instanceMethodId(
+    r'clearVideoSurfaceHolder',
+    r'(Landroid/view/SurfaceHolder;)V',
+  );
+
+  static final _clearVideoSurfaceHolder = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void clearVideoSurfaceHolder(android.view.SurfaceHolder surfaceHolder)`
+  void clearVideoSurfaceHolder(
+    _$jni.JObject surfaceHolder,
+  ) {
+    _clearVideoSurfaceHolder(
+            reference.pointer,
+            _id_clearVideoSurfaceHolder as _$jni.JMethodIDPtr,
+            surfaceHolder.reference.pointer)
+        .check();
+  }
+
+  static final _id_setVideoSurfaceView = _class.instanceMethodId(
+    r'setVideoSurfaceView',
+    r'(Landroid/view/SurfaceView;)V',
+  );
+
+  static final _setVideoSurfaceView = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void setVideoSurfaceView(android.view.SurfaceView surfaceView)`
+  void setVideoSurfaceView(
+    _$jni.JObject surfaceView,
+  ) {
+    _setVideoSurfaceView(
+            reference.pointer,
+            _id_setVideoSurfaceView as _$jni.JMethodIDPtr,
+            surfaceView.reference.pointer)
+        .check();
+  }
+
+  static final _id_clearVideoSurfaceView = _class.instanceMethodId(
+    r'clearVideoSurfaceView',
+    r'(Landroid/view/SurfaceView;)V',
+  );
+
+  static final _clearVideoSurfaceView = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void clearVideoSurfaceView(android.view.SurfaceView surfaceView)`
+  void clearVideoSurfaceView(
+    _$jni.JObject surfaceView,
+  ) {
+    _clearVideoSurfaceView(
+            reference.pointer,
+            _id_clearVideoSurfaceView as _$jni.JMethodIDPtr,
+            surfaceView.reference.pointer)
+        .check();
+  }
+
+  static final _id_setVideoTextureView = _class.instanceMethodId(
+    r'setVideoTextureView',
+    r'(Landroid/view/TextureView;)V',
+  );
+
+  static final _setVideoTextureView = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void setVideoTextureView(android.view.TextureView textureView)`
+  void setVideoTextureView(
+    _$jni.JObject textureView,
+  ) {
+    _setVideoTextureView(
+            reference.pointer,
+            _id_setVideoTextureView as _$jni.JMethodIDPtr,
+            textureView.reference.pointer)
+        .check();
+  }
+
+  static final _id_clearVideoTextureView = _class.instanceMethodId(
+    r'clearVideoTextureView',
+    r'(Landroid/view/TextureView;)V',
+  );
+
+  static final _clearVideoTextureView = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void clearVideoTextureView(android.view.TextureView textureView)`
+  void clearVideoTextureView(
+    _$jni.JObject textureView,
+  ) {
+    _clearVideoTextureView(
+            reference.pointer,
+            _id_clearVideoTextureView as _$jni.JMethodIDPtr,
+            textureView.reference.pointer)
+        .check();
+  }
+
+  static final _id_getVideoSize = _class.instanceMethodId(
+    r'getVideoSize',
+    r'()Landroidx/media3/common/VideoSize;',
+  );
+
+  static final _getVideoSize = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract androidx.media3.common.VideoSize getVideoSize()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getVideoSize() {
+    return _getVideoSize(
+            reference.pointer, _id_getVideoSize as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  /// Maps a specific port to the implemented interface.
+  static final _$core.Map<int, $ExoPlayer_VideoComponent> _$impls = {};
+  static _$jni.JObjectPtr _$invoke(
+    int port,
+    _$jni.JObjectPtr descriptor,
+    _$jni.JObjectPtr args,
+  ) {
+    return _$invokeMethod(
+      port,
+      _$jni.MethodInvocation.fromAddresses(
+        0,
+        descriptor.address,
+        args.address,
+      ),
+    );
+  }
+
+  static final _$jni.Pointer<
+          _$jni.NativeFunction<
+              _$jni.JObjectPtr Function(
+                  _$jni.Int64, _$jni.JObjectPtr, _$jni.JObjectPtr)>>
+      _$invokePointer = _$jni.Pointer.fromFunction(_$invoke);
+
+  static _$jni.Pointer<_$jni.Void> _$invokeMethod(
+    int $p,
+    _$jni.MethodInvocation $i,
+  ) {
+    try {
+      final $d = $i.methodDescriptor.toDartString(releaseOriginal: true);
+      final $a = $i.args;
+      if ($d == r'setVideoScalingMode(I)V') {
+        _$impls[$p]!.setVideoScalingMode(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'getVideoScalingMode()I') {
+        final $r = _$impls[$p]!.getVideoScalingMode();
+        return _$jni.JInteger($r).reference.toPointer();
+      }
+      if ($d == r'setVideoChangeFrameRateStrategy(I)V') {
+        _$impls[$p]!.setVideoChangeFrameRateStrategy(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'getVideoChangeFrameRateStrategy()I') {
+        final $r = _$impls[$p]!.getVideoChangeFrameRateStrategy();
+        return _$jni.JInteger($r).reference.toPointer();
+      }
+      if ($d ==
+          r'setVideoFrameMetadataListener(Landroidx/media3/exoplayer/video/VideoFrameMetadataListener;)V') {
+        _$impls[$p]!.setVideoFrameMetadataListener(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'clearVideoFrameMetadataListener(Landroidx/media3/exoplayer/video/VideoFrameMetadataListener;)V') {
+        _$impls[$p]!.clearVideoFrameMetadataListener(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'setCameraMotionListener(Landroidx/media3/exoplayer/video/spherical/CameraMotionListener;)V') {
+        _$impls[$p]!.setCameraMotionListener(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'clearCameraMotionListener(Landroidx/media3/exoplayer/video/spherical/CameraMotionListener;)V') {
+        _$impls[$p]!.clearCameraMotionListener(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'clearVideoSurface()V') {
+        _$impls[$p]!.clearVideoSurface();
+        return _$jni.nullptr;
+      }
+      if ($d == r'clearVideoSurface(Landroid/view/Surface;)V') {
+        _$impls[$p]!.clearVideoSurface$1(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'setVideoSurface(Landroid/view/Surface;)V') {
+        _$impls[$p]!.setVideoSurface(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'setVideoSurfaceHolder(Landroid/view/SurfaceHolder;)V') {
+        _$impls[$p]!.setVideoSurfaceHolder(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'clearVideoSurfaceHolder(Landroid/view/SurfaceHolder;)V') {
+        _$impls[$p]!.clearVideoSurfaceHolder(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'setVideoSurfaceView(Landroid/view/SurfaceView;)V') {
+        _$impls[$p]!.setVideoSurfaceView(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'clearVideoSurfaceView(Landroid/view/SurfaceView;)V') {
+        _$impls[$p]!.clearVideoSurfaceView(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'setVideoTextureView(Landroid/view/TextureView;)V') {
+        _$impls[$p]!.setVideoTextureView(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'clearVideoTextureView(Landroid/view/TextureView;)V') {
+        _$impls[$p]!.clearVideoTextureView(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'getVideoSize()Landroidx/media3/common/VideoSize;') {
+        final $r = _$impls[$p]!.getVideoSize();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+    } catch (e) {
+      return _$jni.ProtectedJniExtensions.newDartException(e);
+    }
+    return _$jni.nullptr;
+  }
+
+  static void implementIn(
+    _$jni.JImplementer implementer,
+    $ExoPlayer_VideoComponent $impl,
+  ) {
+    late final _$jni.RawReceivePort $p;
+    $p = _$jni.RawReceivePort(($m) {
+      if ($m == null) {
+        _$impls.remove($p.sendPort.nativePort);
+        $p.close();
+        return;
+      }
+      final $i = _$jni.MethodInvocation.fromMessage($m);
+      final $r = _$invokeMethod($p.sendPort.nativePort, $i);
+      _$jni.ProtectedJniExtensions.returnResult($i.result, $r);
+    });
+    implementer.add(
+      r'androidx.media3.exoplayer.ExoPlayer$VideoComponent',
+      $p,
+      _$invokePointer,
+      [
+        if ($impl.setVideoScalingMode$async) r'setVideoScalingMode(I)V',
+        if ($impl.setVideoChangeFrameRateStrategy$async)
+          r'setVideoChangeFrameRateStrategy(I)V',
+        if ($impl.setVideoFrameMetadataListener$async)
+          r'setVideoFrameMetadataListener(Landroidx/media3/exoplayer/video/VideoFrameMetadataListener;)V',
+        if ($impl.clearVideoFrameMetadataListener$async)
+          r'clearVideoFrameMetadataListener(Landroidx/media3/exoplayer/video/VideoFrameMetadataListener;)V',
+        if ($impl.setCameraMotionListener$async)
+          r'setCameraMotionListener(Landroidx/media3/exoplayer/video/spherical/CameraMotionListener;)V',
+        if ($impl.clearCameraMotionListener$async)
+          r'clearCameraMotionListener(Landroidx/media3/exoplayer/video/spherical/CameraMotionListener;)V',
+        if ($impl.clearVideoSurface$async) r'clearVideoSurface()V',
+        if ($impl.clearVideoSurface$1$async)
+          r'clearVideoSurface(Landroid/view/Surface;)V',
+        if ($impl.setVideoSurface$async)
+          r'setVideoSurface(Landroid/view/Surface;)V',
+        if ($impl.setVideoSurfaceHolder$async)
+          r'setVideoSurfaceHolder(Landroid/view/SurfaceHolder;)V',
+        if ($impl.clearVideoSurfaceHolder$async)
+          r'clearVideoSurfaceHolder(Landroid/view/SurfaceHolder;)V',
+        if ($impl.setVideoSurfaceView$async)
+          r'setVideoSurfaceView(Landroid/view/SurfaceView;)V',
+        if ($impl.clearVideoSurfaceView$async)
+          r'clearVideoSurfaceView(Landroid/view/SurfaceView;)V',
+        if ($impl.setVideoTextureView$async)
+          r'setVideoTextureView(Landroid/view/TextureView;)V',
+        if ($impl.clearVideoTextureView$async)
+          r'clearVideoTextureView(Landroid/view/TextureView;)V',
+      ],
+    );
+    final $a = $p.sendPort.nativePort;
+    _$impls[$a] = $impl;
+  }
+
+  factory ExoPlayer_VideoComponent.implement(
+    $ExoPlayer_VideoComponent $impl,
+  ) {
+    final $i = _$jni.JImplementer();
+    implementIn($i, $impl);
+    return ExoPlayer_VideoComponent.fromReference(
+      $i.implementReference(),
+    );
+  }
+}
+
+abstract base mixin class $ExoPlayer_VideoComponent {
+  factory $ExoPlayer_VideoComponent({
+    required void Function(int i) setVideoScalingMode,
+    bool setVideoScalingMode$async,
+    required int Function() getVideoScalingMode,
+    required void Function(int i) setVideoChangeFrameRateStrategy,
+    bool setVideoChangeFrameRateStrategy$async,
+    required int Function() getVideoChangeFrameRateStrategy,
+    required void Function(_$jni.JObject videoFrameMetadataListener)
+        setVideoFrameMetadataListener,
+    bool setVideoFrameMetadataListener$async,
+    required void Function(_$jni.JObject videoFrameMetadataListener)
+        clearVideoFrameMetadataListener,
+    bool clearVideoFrameMetadataListener$async,
+    required void Function(_$jni.JObject cameraMotionListener)
+        setCameraMotionListener,
+    bool setCameraMotionListener$async,
+    required void Function(_$jni.JObject cameraMotionListener)
+        clearCameraMotionListener,
+    bool clearCameraMotionListener$async,
+    required void Function() clearVideoSurface,
+    bool clearVideoSurface$async,
+    required void Function(_$jni.JObject surface) clearVideoSurface$1,
+    bool clearVideoSurface$1$async,
+    required void Function(_$jni.JObject surface) setVideoSurface,
+    bool setVideoSurface$async,
+    required void Function(_$jni.JObject surfaceHolder) setVideoSurfaceHolder,
+    bool setVideoSurfaceHolder$async,
+    required void Function(_$jni.JObject surfaceHolder) clearVideoSurfaceHolder,
+    bool clearVideoSurfaceHolder$async,
+    required void Function(_$jni.JObject surfaceView) setVideoSurfaceView,
+    bool setVideoSurfaceView$async,
+    required void Function(_$jni.JObject surfaceView) clearVideoSurfaceView,
+    bool clearVideoSurfaceView$async,
+    required void Function(_$jni.JObject textureView) setVideoTextureView,
+    bool setVideoTextureView$async,
+    required void Function(_$jni.JObject textureView) clearVideoTextureView,
+    bool clearVideoTextureView$async,
+    required _$jni.JObject Function() getVideoSize,
+  }) = _$ExoPlayer_VideoComponent;
+
+  void setVideoScalingMode(int i);
+  bool get setVideoScalingMode$async => false;
+  int getVideoScalingMode();
+  void setVideoChangeFrameRateStrategy(int i);
+  bool get setVideoChangeFrameRateStrategy$async => false;
+  int getVideoChangeFrameRateStrategy();
+  void setVideoFrameMetadataListener(_$jni.JObject videoFrameMetadataListener);
+  bool get setVideoFrameMetadataListener$async => false;
+  void clearVideoFrameMetadataListener(
+      _$jni.JObject videoFrameMetadataListener);
+  bool get clearVideoFrameMetadataListener$async => false;
+  void setCameraMotionListener(_$jni.JObject cameraMotionListener);
+  bool get setCameraMotionListener$async => false;
+  void clearCameraMotionListener(_$jni.JObject cameraMotionListener);
+  bool get clearCameraMotionListener$async => false;
+  void clearVideoSurface();
+  bool get clearVideoSurface$async => false;
+  void clearVideoSurface$1(_$jni.JObject surface);
+  bool get clearVideoSurface$1$async => false;
+  void setVideoSurface(_$jni.JObject surface);
+  bool get setVideoSurface$async => false;
+  void setVideoSurfaceHolder(_$jni.JObject surfaceHolder);
+  bool get setVideoSurfaceHolder$async => false;
+  void clearVideoSurfaceHolder(_$jni.JObject surfaceHolder);
+  bool get clearVideoSurfaceHolder$async => false;
+  void setVideoSurfaceView(_$jni.JObject surfaceView);
+  bool get setVideoSurfaceView$async => false;
+  void clearVideoSurfaceView(_$jni.JObject surfaceView);
+  bool get clearVideoSurfaceView$async => false;
+  void setVideoTextureView(_$jni.JObject textureView);
+  bool get setVideoTextureView$async => false;
+  void clearVideoTextureView(_$jni.JObject textureView);
+  bool get clearVideoTextureView$async => false;
+  _$jni.JObject getVideoSize();
+}
+
+final class _$ExoPlayer_VideoComponent with $ExoPlayer_VideoComponent {
+  _$ExoPlayer_VideoComponent({
+    required void Function(int i) setVideoScalingMode,
+    this.setVideoScalingMode$async = false,
+    required int Function() getVideoScalingMode,
+    required void Function(int i) setVideoChangeFrameRateStrategy,
+    this.setVideoChangeFrameRateStrategy$async = false,
+    required int Function() getVideoChangeFrameRateStrategy,
+    required void Function(_$jni.JObject videoFrameMetadataListener)
+        setVideoFrameMetadataListener,
+    this.setVideoFrameMetadataListener$async = false,
+    required void Function(_$jni.JObject videoFrameMetadataListener)
+        clearVideoFrameMetadataListener,
+    this.clearVideoFrameMetadataListener$async = false,
+    required void Function(_$jni.JObject cameraMotionListener)
+        setCameraMotionListener,
+    this.setCameraMotionListener$async = false,
+    required void Function(_$jni.JObject cameraMotionListener)
+        clearCameraMotionListener,
+    this.clearCameraMotionListener$async = false,
+    required void Function() clearVideoSurface,
+    this.clearVideoSurface$async = false,
+    required void Function(_$jni.JObject surface) clearVideoSurface$1,
+    this.clearVideoSurface$1$async = false,
+    required void Function(_$jni.JObject surface) setVideoSurface,
+    this.setVideoSurface$async = false,
+    required void Function(_$jni.JObject surfaceHolder) setVideoSurfaceHolder,
+    this.setVideoSurfaceHolder$async = false,
+    required void Function(_$jni.JObject surfaceHolder) clearVideoSurfaceHolder,
+    this.clearVideoSurfaceHolder$async = false,
+    required void Function(_$jni.JObject surfaceView) setVideoSurfaceView,
+    this.setVideoSurfaceView$async = false,
+    required void Function(_$jni.JObject surfaceView) clearVideoSurfaceView,
+    this.clearVideoSurfaceView$async = false,
+    required void Function(_$jni.JObject textureView) setVideoTextureView,
+    this.setVideoTextureView$async = false,
+    required void Function(_$jni.JObject textureView) clearVideoTextureView,
+    this.clearVideoTextureView$async = false,
+    required _$jni.JObject Function() getVideoSize,
+  })  : _setVideoScalingMode = setVideoScalingMode,
+        _getVideoScalingMode = getVideoScalingMode,
+        _setVideoChangeFrameRateStrategy = setVideoChangeFrameRateStrategy,
+        _getVideoChangeFrameRateStrategy = getVideoChangeFrameRateStrategy,
+        _setVideoFrameMetadataListener = setVideoFrameMetadataListener,
+        _clearVideoFrameMetadataListener = clearVideoFrameMetadataListener,
+        _setCameraMotionListener = setCameraMotionListener,
+        _clearCameraMotionListener = clearCameraMotionListener,
+        _clearVideoSurface = clearVideoSurface,
+        _clearVideoSurface$1 = clearVideoSurface$1,
+        _setVideoSurface = setVideoSurface,
+        _setVideoSurfaceHolder = setVideoSurfaceHolder,
+        _clearVideoSurfaceHolder = clearVideoSurfaceHolder,
+        _setVideoSurfaceView = setVideoSurfaceView,
+        _clearVideoSurfaceView = clearVideoSurfaceView,
+        _setVideoTextureView = setVideoTextureView,
+        _clearVideoTextureView = clearVideoTextureView,
+        _getVideoSize = getVideoSize;
+
+  final void Function(int i) _setVideoScalingMode;
+  final bool setVideoScalingMode$async;
+  final int Function() _getVideoScalingMode;
+  final void Function(int i) _setVideoChangeFrameRateStrategy;
+  final bool setVideoChangeFrameRateStrategy$async;
+  final int Function() _getVideoChangeFrameRateStrategy;
+  final void Function(_$jni.JObject videoFrameMetadataListener)
+      _setVideoFrameMetadataListener;
+  final bool setVideoFrameMetadataListener$async;
+  final void Function(_$jni.JObject videoFrameMetadataListener)
+      _clearVideoFrameMetadataListener;
+  final bool clearVideoFrameMetadataListener$async;
+  final void Function(_$jni.JObject cameraMotionListener)
+      _setCameraMotionListener;
+  final bool setCameraMotionListener$async;
+  final void Function(_$jni.JObject cameraMotionListener)
+      _clearCameraMotionListener;
+  final bool clearCameraMotionListener$async;
+  final void Function() _clearVideoSurface;
+  final bool clearVideoSurface$async;
+  final void Function(_$jni.JObject surface) _clearVideoSurface$1;
+  final bool clearVideoSurface$1$async;
+  final void Function(_$jni.JObject surface) _setVideoSurface;
+  final bool setVideoSurface$async;
+  final void Function(_$jni.JObject surfaceHolder) _setVideoSurfaceHolder;
+  final bool setVideoSurfaceHolder$async;
+  final void Function(_$jni.JObject surfaceHolder) _clearVideoSurfaceHolder;
+  final bool clearVideoSurfaceHolder$async;
+  final void Function(_$jni.JObject surfaceView) _setVideoSurfaceView;
+  final bool setVideoSurfaceView$async;
+  final void Function(_$jni.JObject surfaceView) _clearVideoSurfaceView;
+  final bool clearVideoSurfaceView$async;
+  final void Function(_$jni.JObject textureView) _setVideoTextureView;
+  final bool setVideoTextureView$async;
+  final void Function(_$jni.JObject textureView) _clearVideoTextureView;
+  final bool clearVideoTextureView$async;
+  final _$jni.JObject Function() _getVideoSize;
+
+  void setVideoScalingMode(int i) {
+    return _setVideoScalingMode(i);
+  }
+
+  int getVideoScalingMode() {
+    return _getVideoScalingMode();
+  }
+
+  void setVideoChangeFrameRateStrategy(int i) {
+    return _setVideoChangeFrameRateStrategy(i);
+  }
+
+  int getVideoChangeFrameRateStrategy() {
+    return _getVideoChangeFrameRateStrategy();
+  }
+
+  void setVideoFrameMetadataListener(_$jni.JObject videoFrameMetadataListener) {
+    return _setVideoFrameMetadataListener(videoFrameMetadataListener);
+  }
+
+  void clearVideoFrameMetadataListener(
+      _$jni.JObject videoFrameMetadataListener) {
+    return _clearVideoFrameMetadataListener(videoFrameMetadataListener);
+  }
+
+  void setCameraMotionListener(_$jni.JObject cameraMotionListener) {
+    return _setCameraMotionListener(cameraMotionListener);
+  }
+
+  void clearCameraMotionListener(_$jni.JObject cameraMotionListener) {
+    return _clearCameraMotionListener(cameraMotionListener);
+  }
+
+  void clearVideoSurface() {
+    return _clearVideoSurface();
+  }
+
+  void clearVideoSurface$1(_$jni.JObject surface) {
+    return _clearVideoSurface$1(surface);
+  }
+
+  void setVideoSurface(_$jni.JObject surface) {
+    return _setVideoSurface(surface);
+  }
+
+  void setVideoSurfaceHolder(_$jni.JObject surfaceHolder) {
+    return _setVideoSurfaceHolder(surfaceHolder);
+  }
+
+  void clearVideoSurfaceHolder(_$jni.JObject surfaceHolder) {
+    return _clearVideoSurfaceHolder(surfaceHolder);
+  }
+
+  void setVideoSurfaceView(_$jni.JObject surfaceView) {
+    return _setVideoSurfaceView(surfaceView);
+  }
+
+  void clearVideoSurfaceView(_$jni.JObject surfaceView) {
+    return _clearVideoSurfaceView(surfaceView);
+  }
+
+  void setVideoTextureView(_$jni.JObject textureView) {
+    return _setVideoTextureView(textureView);
+  }
+
+  void clearVideoTextureView(_$jni.JObject textureView) {
+    return _clearVideoTextureView(textureView);
+  }
+
+  _$jni.JObject getVideoSize() {
+    return _getVideoSize();
+  }
+}
+
+final class $ExoPlayer_VideoComponent$Type
+    extends _$jni.JObjType<ExoPlayer_VideoComponent> {
+  @_$jni.internal
+  const $ExoPlayer_VideoComponent$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Landroidx/media3/exoplayer/ExoPlayer$VideoComponent;';
+
+  @_$jni.internal
+  @_$core.override
+  ExoPlayer_VideoComponent fromReference(_$jni.JReference reference) =>
+      ExoPlayer_VideoComponent.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($ExoPlayer_VideoComponent$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($ExoPlayer_VideoComponent$Type) &&
+        other is $ExoPlayer_VideoComponent$Type;
+  }
+}
+
+/// from: `androidx.media3.exoplayer.ExoPlayer`
+class ExoPlayer extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<ExoPlayer> $type;
+
+  @_$jni.internal
+  ExoPlayer.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class =
+      _$jni.JClass.forName(r'androidx/media3/exoplayer/ExoPlayer');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $ExoPlayer$Type();
+
+  /// from: `static public final long DEFAULT_RELEASE_TIMEOUT_MS`
+  static const DEFAULT_RELEASE_TIMEOUT_MS = 500;
+
+  /// from: `static public final long DEFAULT_DETACH_SURFACE_TIMEOUT_MS`
+  static const DEFAULT_DETACH_SURFACE_TIMEOUT_MS = 2000;
+  static final _id_getPlayerError = _class.instanceMethodId(
+    r'getPlayerError',
+    r'()Landroidx/media3/exoplayer/ExoPlaybackException;',
+  );
+
+  static final _getPlayerError = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract androidx.media3.exoplayer.ExoPlaybackException getPlayerError()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getPlayerError() {
+    return _getPlayerError(
+            reference.pointer, _id_getPlayerError as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_getAudioComponent = _class.instanceMethodId(
+    r'getAudioComponent',
+    r'()Landroidx/media3/exoplayer/ExoPlayer$AudioComponent;',
+  );
+
+  static final _getAudioComponent = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract androidx.media3.exoplayer.ExoPlayer$AudioComponent getAudioComponent()`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_AudioComponent getAudioComponent() {
+    return _getAudioComponent(
+            reference.pointer, _id_getAudioComponent as _$jni.JMethodIDPtr)
+        .object(const $ExoPlayer_AudioComponent$Type());
+  }
+
+  static final _id_getVideoComponent = _class.instanceMethodId(
+    r'getVideoComponent',
+    r'()Landroidx/media3/exoplayer/ExoPlayer$VideoComponent;',
+  );
+
+  static final _getVideoComponent = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract androidx.media3.exoplayer.ExoPlayer$VideoComponent getVideoComponent()`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_VideoComponent getVideoComponent() {
+    return _getVideoComponent(
+            reference.pointer, _id_getVideoComponent as _$jni.JMethodIDPtr)
+        .object(const $ExoPlayer_VideoComponent$Type());
+  }
+
+  static final _id_getTextComponent = _class.instanceMethodId(
+    r'getTextComponent',
+    r'()Landroidx/media3/exoplayer/ExoPlayer$TextComponent;',
+  );
+
+  static final _getTextComponent = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract androidx.media3.exoplayer.ExoPlayer$TextComponent getTextComponent()`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_TextComponent getTextComponent() {
+    return _getTextComponent(
+            reference.pointer, _id_getTextComponent as _$jni.JMethodIDPtr)
+        .object(const $ExoPlayer_TextComponent$Type());
+  }
+
+  static final _id_getDeviceComponent = _class.instanceMethodId(
+    r'getDeviceComponent',
+    r'()Landroidx/media3/exoplayer/ExoPlayer$DeviceComponent;',
+  );
+
+  static final _getDeviceComponent = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract androidx.media3.exoplayer.ExoPlayer$DeviceComponent getDeviceComponent()`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_DeviceComponent getDeviceComponent() {
+    return _getDeviceComponent(
+            reference.pointer, _id_getDeviceComponent as _$jni.JMethodIDPtr)
+        .object(const $ExoPlayer_DeviceComponent$Type());
+  }
+
+  static final _id_addAudioOffloadListener = _class.instanceMethodId(
+    r'addAudioOffloadListener',
+    r'(Landroidx/media3/exoplayer/ExoPlayer$AudioOffloadListener;)V',
+  );
+
+  static final _addAudioOffloadListener = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void addAudioOffloadListener(androidx.media3.exoplayer.ExoPlayer$AudioOffloadListener audioOffloadListener)`
+  void addAudioOffloadListener(
+    ExoPlayer_AudioOffloadListener audioOffloadListener,
+  ) {
+    _addAudioOffloadListener(
+            reference.pointer,
+            _id_addAudioOffloadListener as _$jni.JMethodIDPtr,
+            audioOffloadListener.reference.pointer)
+        .check();
+  }
+
+  static final _id_removeAudioOffloadListener = _class.instanceMethodId(
+    r'removeAudioOffloadListener',
+    r'(Landroidx/media3/exoplayer/ExoPlayer$AudioOffloadListener;)V',
+  );
+
+  static final _removeAudioOffloadListener =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JThrowablePtr Function(
+                          _$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr,
+                          _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+              'globalEnv_CallVoidMethod')
+          .asFunction<
+              _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void removeAudioOffloadListener(androidx.media3.exoplayer.ExoPlayer$AudioOffloadListener audioOffloadListener)`
+  void removeAudioOffloadListener(
+    ExoPlayer_AudioOffloadListener audioOffloadListener,
+  ) {
+    _removeAudioOffloadListener(
+            reference.pointer,
+            _id_removeAudioOffloadListener as _$jni.JMethodIDPtr,
+            audioOffloadListener.reference.pointer)
+        .check();
+  }
+
+  static final _id_getAnalyticsCollector = _class.instanceMethodId(
+    r'getAnalyticsCollector',
+    r'()Landroidx/media3/exoplayer/analytics/AnalyticsCollector;',
+  );
+
+  static final _getAnalyticsCollector = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract androidx.media3.exoplayer.analytics.AnalyticsCollector getAnalyticsCollector()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getAnalyticsCollector() {
+    return _getAnalyticsCollector(
+            reference.pointer, _id_getAnalyticsCollector as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_addAnalyticsListener = _class.instanceMethodId(
+    r'addAnalyticsListener',
+    r'(Landroidx/media3/exoplayer/analytics/AnalyticsListener;)V',
+  );
+
+  static final _addAnalyticsListener = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void addAnalyticsListener(androidx.media3.exoplayer.analytics.AnalyticsListener analyticsListener)`
+  void addAnalyticsListener(
+    _$jni.JObject analyticsListener,
+  ) {
+    _addAnalyticsListener(
+            reference.pointer,
+            _id_addAnalyticsListener as _$jni.JMethodIDPtr,
+            analyticsListener.reference.pointer)
+        .check();
+  }
+
+  static final _id_removeAnalyticsListener = _class.instanceMethodId(
+    r'removeAnalyticsListener',
+    r'(Landroidx/media3/exoplayer/analytics/AnalyticsListener;)V',
+  );
+
+  static final _removeAnalyticsListener = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void removeAnalyticsListener(androidx.media3.exoplayer.analytics.AnalyticsListener analyticsListener)`
+  void removeAnalyticsListener(
+    _$jni.JObject analyticsListener,
+  ) {
+    _removeAnalyticsListener(
+            reference.pointer,
+            _id_removeAnalyticsListener as _$jni.JMethodIDPtr,
+            analyticsListener.reference.pointer)
+        .check();
+  }
+
+  static final _id_getRendererCount = _class.instanceMethodId(
+    r'getRendererCount',
+    r'()I',
+  );
+
+  static final _getRendererCount = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract int getRendererCount()`
+  int getRendererCount() {
+    return _getRendererCount(
+            reference.pointer, _id_getRendererCount as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_getRendererType = _class.instanceMethodId(
+    r'getRendererType',
+    r'(I)I',
+  );
+
+  static final _getRendererType = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public abstract int getRendererType(int i)`
+  int getRendererType(
+    int i,
+  ) {
+    return _getRendererType(
+            reference.pointer, _id_getRendererType as _$jni.JMethodIDPtr, i)
+        .integer;
+  }
+
+  static final _id_getRenderer = _class.instanceMethodId(
+    r'getRenderer',
+    r'(I)Landroidx/media3/exoplayer/Renderer;',
+  );
+
+  static final _getRenderer = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public abstract androidx.media3.exoplayer.Renderer getRenderer(int i)`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getRenderer(
+    int i,
+  ) {
+    return _getRenderer(
+            reference.pointer, _id_getRenderer as _$jni.JMethodIDPtr, i)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_getTrackSelector = _class.instanceMethodId(
+    r'getTrackSelector',
+    r'()Landroidx/media3/exoplayer/trackselection/TrackSelector;',
+  );
+
+  static final _getTrackSelector = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract androidx.media3.exoplayer.trackselection.TrackSelector getTrackSelector()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getTrackSelector() {
+    return _getTrackSelector(
+            reference.pointer, _id_getTrackSelector as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_getCurrentTrackGroups = _class.instanceMethodId(
+    r'getCurrentTrackGroups',
+    r'()Landroidx/media3/exoplayer/source/TrackGroupArray;',
+  );
+
+  static final _getCurrentTrackGroups = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract androidx.media3.exoplayer.source.TrackGroupArray getCurrentTrackGroups()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getCurrentTrackGroups() {
+    return _getCurrentTrackGroups(
+            reference.pointer, _id_getCurrentTrackGroups as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_getCurrentTrackSelections = _class.instanceMethodId(
+    r'getCurrentTrackSelections',
+    r'()Landroidx/media3/exoplayer/trackselection/TrackSelectionArray;',
+  );
+
+  static final _getCurrentTrackSelections = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract androidx.media3.exoplayer.trackselection.TrackSelectionArray getCurrentTrackSelections()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getCurrentTrackSelections() {
+    return _getCurrentTrackSelections(reference.pointer,
+            _id_getCurrentTrackSelections as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_getPlaybackLooper = _class.instanceMethodId(
+    r'getPlaybackLooper',
+    r'()Landroid/os/Looper;',
+  );
+
+  static final _getPlaybackLooper = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract android.os.Looper getPlaybackLooper()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getPlaybackLooper() {
+    return _getPlaybackLooper(
+            reference.pointer, _id_getPlaybackLooper as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_getClock = _class.instanceMethodId(
+    r'getClock',
+    r'()Landroidx/media3/common/util/Clock;',
+  );
+
+  static final _getClock = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract androidx.media3.common.util.Clock getClock()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getClock() {
+    return _getClock(reference.pointer, _id_getClock as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_prepare = _class.instanceMethodId(
+    r'prepare',
+    r'(Landroidx/media3/exoplayer/source/MediaSource;)V',
+  );
+
+  static final _prepare = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void prepare(androidx.media3.exoplayer.source.MediaSource mediaSource)`
+  void prepare(
+    _$jni.JObject mediaSource,
+  ) {
+    _prepare(reference.pointer, _id_prepare as _$jni.JMethodIDPtr,
+            mediaSource.reference.pointer)
+        .check();
+  }
+
+  static final _id_prepare$1 = _class.instanceMethodId(
+    r'prepare',
+    r'(Landroidx/media3/exoplayer/source/MediaSource;ZZ)V',
+  );
+
+  static final _prepare$1 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<
+                      (
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Int32,
+                        _$jni.Int32
+                      )>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>, int, int)>();
+
+  /// from: `public abstract void prepare(androidx.media3.exoplayer.source.MediaSource mediaSource, boolean z, boolean z1)`
+  void prepare$1(
+    _$jni.JObject mediaSource,
+    bool z,
+    bool z1,
+  ) {
+    _prepare$1(reference.pointer, _id_prepare$1 as _$jni.JMethodIDPtr,
+            mediaSource.reference.pointer, z ? 1 : 0, z1 ? 1 : 0)
+        .check();
+  }
+
+  static final _id_setMediaSources = _class.instanceMethodId(
+    r'setMediaSources',
+    r'(Ljava/util/List;)V',
+  );
+
+  static final _setMediaSources = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void setMediaSources(java.util.List list)`
+  void setMediaSources(
+    _$jni.JList<_$jni.JObject> list,
+  ) {
+    _setMediaSources(reference.pointer,
+            _id_setMediaSources as _$jni.JMethodIDPtr, list.reference.pointer)
+        .check();
+  }
+
+  static final _id_setMediaSources$1 = _class.instanceMethodId(
+    r'setMediaSources',
+    r'(Ljava/util/List;Z)V',
+  );
+
+  static final _setMediaSources$1 = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni
+                          .VarArgs<(_$jni.Pointer<_$jni.Void>, _$jni.Int32)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>, int)>();
+
+  /// from: `public abstract void setMediaSources(java.util.List list, boolean z)`
+  void setMediaSources$1(
+    _$jni.JList<_$jni.JObject> list,
+    bool z,
+  ) {
+    _setMediaSources$1(
+            reference.pointer,
+            _id_setMediaSources$1 as _$jni.JMethodIDPtr,
+            list.reference.pointer,
+            z ? 1 : 0)
+        .check();
+  }
+
+  static final _id_setMediaSources$2 = _class.instanceMethodId(
+    r'setMediaSources',
+    r'(Ljava/util/List;IJ)V',
+  );
+
+  static final _setMediaSources$2 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<
+                      (
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Int32,
+                        _$jni.Int64
+                      )>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>, int, int)>();
+
+  /// from: `public abstract void setMediaSources(java.util.List list, int i, long j)`
+  void setMediaSources$2(
+    _$jni.JList<_$jni.JObject> list,
+    int i,
+    int j,
+  ) {
+    _setMediaSources$2(
+            reference.pointer,
+            _id_setMediaSources$2 as _$jni.JMethodIDPtr,
+            list.reference.pointer,
+            i,
+            j)
+        .check();
+  }
+
+  static final _id_setMediaSource = _class.instanceMethodId(
+    r'setMediaSource',
+    r'(Landroidx/media3/exoplayer/source/MediaSource;)V',
+  );
+
+  static final _setMediaSource = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void setMediaSource(androidx.media3.exoplayer.source.MediaSource mediaSource)`
+  void setMediaSource(
+    _$jni.JObject mediaSource,
+  ) {
+    _setMediaSource(reference.pointer, _id_setMediaSource as _$jni.JMethodIDPtr,
+            mediaSource.reference.pointer)
+        .check();
+  }
+
+  static final _id_setMediaSource$1 = _class.instanceMethodId(
+    r'setMediaSource',
+    r'(Landroidx/media3/exoplayer/source/MediaSource;J)V',
+  );
+
+  static final _setMediaSource$1 = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni
+                          .VarArgs<(_$jni.Pointer<_$jni.Void>, _$jni.Int64)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>, int)>();
+
+  /// from: `public abstract void setMediaSource(androidx.media3.exoplayer.source.MediaSource mediaSource, long j)`
+  void setMediaSource$1(
+    _$jni.JObject mediaSource,
+    int j,
+  ) {
+    _setMediaSource$1(
+            reference.pointer,
+            _id_setMediaSource$1 as _$jni.JMethodIDPtr,
+            mediaSource.reference.pointer,
+            j)
+        .check();
+  }
+
+  static final _id_setMediaSource$2 = _class.instanceMethodId(
+    r'setMediaSource',
+    r'(Landroidx/media3/exoplayer/source/MediaSource;Z)V',
+  );
+
+  static final _setMediaSource$2 = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni
+                          .VarArgs<(_$jni.Pointer<_$jni.Void>, _$jni.Int32)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>, int)>();
+
+  /// from: `public abstract void setMediaSource(androidx.media3.exoplayer.source.MediaSource mediaSource, boolean z)`
+  void setMediaSource$2(
+    _$jni.JObject mediaSource,
+    bool z,
+  ) {
+    _setMediaSource$2(
+            reference.pointer,
+            _id_setMediaSource$2 as _$jni.JMethodIDPtr,
+            mediaSource.reference.pointer,
+            z ? 1 : 0)
+        .check();
+  }
+
+  static final _id_addMediaSource = _class.instanceMethodId(
+    r'addMediaSource',
+    r'(Landroidx/media3/exoplayer/source/MediaSource;)V',
+  );
+
+  static final _addMediaSource = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void addMediaSource(androidx.media3.exoplayer.source.MediaSource mediaSource)`
+  void addMediaSource(
+    _$jni.JObject mediaSource,
+  ) {
+    _addMediaSource(reference.pointer, _id_addMediaSource as _$jni.JMethodIDPtr,
+            mediaSource.reference.pointer)
+        .check();
+  }
+
+  static final _id_addMediaSource$1 = _class.instanceMethodId(
+    r'addMediaSource',
+    r'(ILandroidx/media3/exoplayer/source/MediaSource;)V',
+  );
+
+  static final _addMediaSource$1 = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni
+                          .VarArgs<(_$jni.Int32, _$jni.Pointer<_$jni.Void>)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, int, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void addMediaSource(int i, androidx.media3.exoplayer.source.MediaSource mediaSource)`
+  void addMediaSource$1(
+    int i,
+    _$jni.JObject mediaSource,
+  ) {
+    _addMediaSource$1(
+            reference.pointer,
+            _id_addMediaSource$1 as _$jni.JMethodIDPtr,
+            i,
+            mediaSource.reference.pointer)
+        .check();
+  }
+
+  static final _id_addMediaSources = _class.instanceMethodId(
+    r'addMediaSources',
+    r'(Ljava/util/List;)V',
+  );
+
+  static final _addMediaSources = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void addMediaSources(java.util.List list)`
+  void addMediaSources(
+    _$jni.JList<_$jni.JObject> list,
+  ) {
+    _addMediaSources(reference.pointer,
+            _id_addMediaSources as _$jni.JMethodIDPtr, list.reference.pointer)
+        .check();
+  }
+
+  static final _id_addMediaSources$1 = _class.instanceMethodId(
+    r'addMediaSources',
+    r'(ILjava/util/List;)V',
+  );
+
+  static final _addMediaSources$1 = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni
+                          .VarArgs<(_$jni.Int32, _$jni.Pointer<_$jni.Void>)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, int, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void addMediaSources(int i, java.util.List list)`
+  void addMediaSources$1(
+    int i,
+    _$jni.JList<_$jni.JObject> list,
+  ) {
+    _addMediaSources$1(
+            reference.pointer,
+            _id_addMediaSources$1 as _$jni.JMethodIDPtr,
+            i,
+            list.reference.pointer)
+        .check();
+  }
+
+  static final _id_setShuffleOrder = _class.instanceMethodId(
+    r'setShuffleOrder',
+    r'(Landroidx/media3/exoplayer/source/ShuffleOrder;)V',
+  );
+
+  static final _setShuffleOrder = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void setShuffleOrder(androidx.media3.exoplayer.source.ShuffleOrder shuffleOrder)`
+  void setShuffleOrder(
+    _$jni.JObject shuffleOrder,
+  ) {
+    _setShuffleOrder(
+            reference.pointer,
+            _id_setShuffleOrder as _$jni.JMethodIDPtr,
+            shuffleOrder.reference.pointer)
+        .check();
+  }
+
+  static final _id_setPreloadConfiguration = _class.instanceMethodId(
+    r'setPreloadConfiguration',
+    r'(Landroidx/media3/exoplayer/ExoPlayer$PreloadConfiguration;)V',
+  );
+
+  static final _setPreloadConfiguration = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void setPreloadConfiguration(androidx.media3.exoplayer.ExoPlayer$PreloadConfiguration preloadConfiguration)`
+  void setPreloadConfiguration(
+    ExoPlayer_PreloadConfiguration preloadConfiguration,
+  ) {
+    _setPreloadConfiguration(
+            reference.pointer,
+            _id_setPreloadConfiguration as _$jni.JMethodIDPtr,
+            preloadConfiguration.reference.pointer)
+        .check();
+  }
+
+  static final _id_getPreloadConfiguration = _class.instanceMethodId(
+    r'getPreloadConfiguration',
+    r'()Landroidx/media3/exoplayer/ExoPlayer$PreloadConfiguration;',
+  );
+
+  static final _getPreloadConfiguration = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract androidx.media3.exoplayer.ExoPlayer$PreloadConfiguration getPreloadConfiguration()`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer_PreloadConfiguration getPreloadConfiguration() {
+    return _getPreloadConfiguration(reference.pointer,
+            _id_getPreloadConfiguration as _$jni.JMethodIDPtr)
+        .object(const $ExoPlayer_PreloadConfiguration$Type());
+  }
+
+  static final _id_replaceMediaItem = _class.instanceMethodId(
+    r'replaceMediaItem',
+    r'(ILandroidx/media3/common/MediaItem;)V',
+  );
+
+  static final _replaceMediaItem = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni
+                          .VarArgs<(_$jni.Int32, _$jni.Pointer<_$jni.Void>)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, int, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void replaceMediaItem(int i, androidx.media3.common.MediaItem mediaItem)`
+  void replaceMediaItem(
+    int i,
+    MediaItem mediaItem,
+  ) {
+    _replaceMediaItem(
+            reference.pointer,
+            _id_replaceMediaItem as _$jni.JMethodIDPtr,
+            i,
+            mediaItem.reference.pointer)
+        .check();
+  }
+
+  static final _id_replaceMediaItems = _class.instanceMethodId(
+    r'replaceMediaItems',
+    r'(IILjava/util/List;)V',
+  );
+
+  static final _replaceMediaItems = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<
+                      (
+                        _$jni.Int32,
+                        _$jni.Int32,
+                        _$jni.Pointer<_$jni.Void>
+                      )>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, int, int, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void replaceMediaItems(int i, int i1, java.util.List list)`
+  void replaceMediaItems(
+    int i,
+    int i1,
+    _$jni.JList<MediaItem> list,
+  ) {
+    _replaceMediaItems(
+            reference.pointer,
+            _id_replaceMediaItems as _$jni.JMethodIDPtr,
+            i,
+            i1,
+            list.reference.pointer)
+        .check();
+  }
+
+  static final _id_setAudioSessionId = _class.instanceMethodId(
+    r'setAudioSessionId',
+    r'(I)V',
+  );
+
+  static final _setAudioSessionId = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public abstract void setAudioSessionId(int i)`
+  void setAudioSessionId(
+    int i,
+  ) {
+    _setAudioSessionId(
+            reference.pointer, _id_setAudioSessionId as _$jni.JMethodIDPtr, i)
+        .check();
+  }
+
+  static final _id_getAudioSessionId = _class.instanceMethodId(
+    r'getAudioSessionId',
+    r'()I',
+  );
+
+  static final _getAudioSessionId = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract int getAudioSessionId()`
+  int getAudioSessionId() {
+    return _getAudioSessionId(
+            reference.pointer, _id_getAudioSessionId as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_setAuxEffectInfo = _class.instanceMethodId(
+    r'setAuxEffectInfo',
+    r'(Landroidx/media3/common/AuxEffectInfo;)V',
+  );
+
+  static final _setAuxEffectInfo = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void setAuxEffectInfo(androidx.media3.common.AuxEffectInfo auxEffectInfo)`
+  void setAuxEffectInfo(
+    _$jni.JObject auxEffectInfo,
+  ) {
+    _setAuxEffectInfo(
+            reference.pointer,
+            _id_setAuxEffectInfo as _$jni.JMethodIDPtr,
+            auxEffectInfo.reference.pointer)
+        .check();
+  }
+
+  static final _id_clearAuxEffectInfo = _class.instanceMethodId(
+    r'clearAuxEffectInfo',
+    r'()V',
+  );
+
+  static final _clearAuxEffectInfo = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract void clearAuxEffectInfo()`
+  void clearAuxEffectInfo() {
+    _clearAuxEffectInfo(
+            reference.pointer, _id_clearAuxEffectInfo as _$jni.JMethodIDPtr)
+        .check();
+  }
+
+  static final _id_setPreferredAudioDevice = _class.instanceMethodId(
+    r'setPreferredAudioDevice',
+    r'(Landroid/media/AudioDeviceInfo;)V',
+  );
+
+  static final _setPreferredAudioDevice = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void setPreferredAudioDevice(android.media.AudioDeviceInfo audioDeviceInfo)`
+  void setPreferredAudioDevice(
+    _$jni.JObject audioDeviceInfo,
+  ) {
+    _setPreferredAudioDevice(
+            reference.pointer,
+            _id_setPreferredAudioDevice as _$jni.JMethodIDPtr,
+            audioDeviceInfo.reference.pointer)
+        .check();
+  }
+
+  static final _id_setSkipSilenceEnabled = _class.instanceMethodId(
+    r'setSkipSilenceEnabled',
+    r'(Z)V',
+  );
+
+  static final _setSkipSilenceEnabled = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public abstract void setSkipSilenceEnabled(boolean z)`
+  void setSkipSilenceEnabled(
+    bool z,
+  ) {
+    _setSkipSilenceEnabled(reference.pointer,
+            _id_setSkipSilenceEnabled as _$jni.JMethodIDPtr, z ? 1 : 0)
+        .check();
+  }
+
+  static final _id_getSkipSilenceEnabled = _class.instanceMethodId(
+    r'getSkipSilenceEnabled',
+    r'()Z',
+  );
+
+  static final _getSkipSilenceEnabled = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract boolean getSkipSilenceEnabled()`
+  bool getSkipSilenceEnabled() {
+    return _getSkipSilenceEnabled(
+            reference.pointer, _id_getSkipSilenceEnabled as _$jni.JMethodIDPtr)
+        .boolean;
+  }
+
+  static final _id_setVideoEffects = _class.instanceMethodId(
+    r'setVideoEffects',
+    r'(Ljava/util/List;)V',
+  );
+
+  static final _setVideoEffects = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void setVideoEffects(java.util.List list)`
+  void setVideoEffects(
+    _$jni.JList<_$jni.JObject> list,
+  ) {
+    _setVideoEffects(reference.pointer,
+            _id_setVideoEffects as _$jni.JMethodIDPtr, list.reference.pointer)
+        .check();
+  }
+
+  static final _id_setVideoScalingMode = _class.instanceMethodId(
+    r'setVideoScalingMode',
+    r'(I)V',
+  );
+
+  static final _setVideoScalingMode = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public abstract void setVideoScalingMode(int i)`
+  void setVideoScalingMode(
+    int i,
+  ) {
+    _setVideoScalingMode(
+            reference.pointer, _id_setVideoScalingMode as _$jni.JMethodIDPtr, i)
+        .check();
+  }
+
+  static final _id_getVideoScalingMode = _class.instanceMethodId(
+    r'getVideoScalingMode',
+    r'()I',
+  );
+
+  static final _getVideoScalingMode = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract int getVideoScalingMode()`
+  int getVideoScalingMode() {
+    return _getVideoScalingMode(
+            reference.pointer, _id_getVideoScalingMode as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_setVideoChangeFrameRateStrategy = _class.instanceMethodId(
+    r'setVideoChangeFrameRateStrategy',
+    r'(I)V',
+  );
+
+  static final _setVideoChangeFrameRateStrategy =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr, _$jni.VarArgs<(_$jni.Int32,)>)>>(
+              'globalEnv_CallVoidMethod')
+          .asFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public abstract void setVideoChangeFrameRateStrategy(int i)`
+  void setVideoChangeFrameRateStrategy(
+    int i,
+  ) {
+    _setVideoChangeFrameRateStrategy(reference.pointer,
+            _id_setVideoChangeFrameRateStrategy as _$jni.JMethodIDPtr, i)
+        .check();
+  }
+
+  static final _id_getVideoChangeFrameRateStrategy = _class.instanceMethodId(
+    r'getVideoChangeFrameRateStrategy',
+    r'()I',
+  );
+
+  static final _getVideoChangeFrameRateStrategy =
+      _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                    _$jni.Pointer<_$jni.Void>,
+                    _$jni.JMethodIDPtr,
+                  )>>('globalEnv_CallIntMethod')
+          .asFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>();
+
+  /// from: `public abstract int getVideoChangeFrameRateStrategy()`
+  int getVideoChangeFrameRateStrategy() {
+    return _getVideoChangeFrameRateStrategy(reference.pointer,
+            _id_getVideoChangeFrameRateStrategy as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_setVideoFrameMetadataListener = _class.instanceMethodId(
+    r'setVideoFrameMetadataListener',
+    r'(Landroidx/media3/exoplayer/video/VideoFrameMetadataListener;)V',
+  );
+
+  static final _setVideoFrameMetadataListener =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JThrowablePtr Function(
+                          _$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr,
+                          _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+              'globalEnv_CallVoidMethod')
+          .asFunction<
+              _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void setVideoFrameMetadataListener(androidx.media3.exoplayer.video.VideoFrameMetadataListener videoFrameMetadataListener)`
+  void setVideoFrameMetadataListener(
+    _$jni.JObject videoFrameMetadataListener,
+  ) {
+    _setVideoFrameMetadataListener(
+            reference.pointer,
+            _id_setVideoFrameMetadataListener as _$jni.JMethodIDPtr,
+            videoFrameMetadataListener.reference.pointer)
+        .check();
+  }
+
+  static final _id_clearVideoFrameMetadataListener = _class.instanceMethodId(
+    r'clearVideoFrameMetadataListener',
+    r'(Landroidx/media3/exoplayer/video/VideoFrameMetadataListener;)V',
+  );
+
+  static final _clearVideoFrameMetadataListener =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JThrowablePtr Function(
+                          _$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr,
+                          _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+              'globalEnv_CallVoidMethod')
+          .asFunction<
+              _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void clearVideoFrameMetadataListener(androidx.media3.exoplayer.video.VideoFrameMetadataListener videoFrameMetadataListener)`
+  void clearVideoFrameMetadataListener(
+    _$jni.JObject videoFrameMetadataListener,
+  ) {
+    _clearVideoFrameMetadataListener(
+            reference.pointer,
+            _id_clearVideoFrameMetadataListener as _$jni.JMethodIDPtr,
+            videoFrameMetadataListener.reference.pointer)
+        .check();
+  }
+
+  static final _id_setCameraMotionListener = _class.instanceMethodId(
+    r'setCameraMotionListener',
+    r'(Landroidx/media3/exoplayer/video/spherical/CameraMotionListener;)V',
+  );
+
+  static final _setCameraMotionListener = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void setCameraMotionListener(androidx.media3.exoplayer.video.spherical.CameraMotionListener cameraMotionListener)`
+  void setCameraMotionListener(
+    _$jni.JObject cameraMotionListener,
+  ) {
+    _setCameraMotionListener(
+            reference.pointer,
+            _id_setCameraMotionListener as _$jni.JMethodIDPtr,
+            cameraMotionListener.reference.pointer)
+        .check();
+  }
+
+  static final _id_clearCameraMotionListener = _class.instanceMethodId(
+    r'clearCameraMotionListener',
+    r'(Landroidx/media3/exoplayer/video/spherical/CameraMotionListener;)V',
+  );
+
+  static final _clearCameraMotionListener = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void clearCameraMotionListener(androidx.media3.exoplayer.video.spherical.CameraMotionListener cameraMotionListener)`
+  void clearCameraMotionListener(
+    _$jni.JObject cameraMotionListener,
+  ) {
+    _clearCameraMotionListener(
+            reference.pointer,
+            _id_clearCameraMotionListener as _$jni.JMethodIDPtr,
+            cameraMotionListener.reference.pointer)
+        .check();
+  }
+
+  static final _id_createMessage = _class.instanceMethodId(
+    r'createMessage',
+    r'(Landroidx/media3/exoplayer/PlayerMessage$Target;)Landroidx/media3/exoplayer/PlayerMessage;',
+  );
+
+  static final _createMessage = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract androidx.media3.exoplayer.PlayerMessage createMessage(androidx.media3.exoplayer.PlayerMessage$Target target)`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject createMessage(
+    _$jni.JObject target,
+  ) {
+    return _createMessage(reference.pointer,
+            _id_createMessage as _$jni.JMethodIDPtr, target.reference.pointer)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_setSeekParameters = _class.instanceMethodId(
+    r'setSeekParameters',
+    r'(Landroidx/media3/exoplayer/SeekParameters;)V',
+  );
+
+  static final _setSeekParameters = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void setSeekParameters(androidx.media3.exoplayer.SeekParameters seekParameters)`
+  void setSeekParameters(
+    _$jni.JObject seekParameters,
+  ) {
+    _setSeekParameters(
+            reference.pointer,
+            _id_setSeekParameters as _$jni.JMethodIDPtr,
+            seekParameters.reference.pointer)
+        .check();
+  }
+
+  static final _id_getSeekParameters = _class.instanceMethodId(
+    r'getSeekParameters',
+    r'()Landroidx/media3/exoplayer/SeekParameters;',
+  );
+
+  static final _getSeekParameters = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract androidx.media3.exoplayer.SeekParameters getSeekParameters()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getSeekParameters() {
+    return _getSeekParameters(
+            reference.pointer, _id_getSeekParameters as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_setForegroundMode = _class.instanceMethodId(
+    r'setForegroundMode',
+    r'(Z)V',
+  );
+
+  static final _setForegroundMode = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public abstract void setForegroundMode(boolean z)`
+  void setForegroundMode(
+    bool z,
+  ) {
+    _setForegroundMode(reference.pointer,
+            _id_setForegroundMode as _$jni.JMethodIDPtr, z ? 1 : 0)
+        .check();
+  }
+
+  static final _id_setPauseAtEndOfMediaItems = _class.instanceMethodId(
+    r'setPauseAtEndOfMediaItems',
+    r'(Z)V',
+  );
+
+  static final _setPauseAtEndOfMediaItems = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public abstract void setPauseAtEndOfMediaItems(boolean z)`
+  void setPauseAtEndOfMediaItems(
+    bool z,
+  ) {
+    _setPauseAtEndOfMediaItems(reference.pointer,
+            _id_setPauseAtEndOfMediaItems as _$jni.JMethodIDPtr, z ? 1 : 0)
+        .check();
+  }
+
+  static final _id_getPauseAtEndOfMediaItems = _class.instanceMethodId(
+    r'getPauseAtEndOfMediaItems',
+    r'()Z',
+  );
+
+  static final _getPauseAtEndOfMediaItems = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract boolean getPauseAtEndOfMediaItems()`
+  bool getPauseAtEndOfMediaItems() {
+    return _getPauseAtEndOfMediaItems(reference.pointer,
+            _id_getPauseAtEndOfMediaItems as _$jni.JMethodIDPtr)
+        .boolean;
+  }
+
+  static final _id_getAudioFormat = _class.instanceMethodId(
+    r'getAudioFormat',
+    r'()Landroidx/media3/common/Format;',
+  );
+
+  static final _getAudioFormat = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract androidx.media3.common.Format getAudioFormat()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getAudioFormat() {
+    return _getAudioFormat(
+            reference.pointer, _id_getAudioFormat as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_getVideoFormat = _class.instanceMethodId(
+    r'getVideoFormat',
+    r'()Landroidx/media3/common/Format;',
+  );
+
+  static final _getVideoFormat = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract androidx.media3.common.Format getVideoFormat()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getVideoFormat() {
+    return _getVideoFormat(
+            reference.pointer, _id_getVideoFormat as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_getAudioDecoderCounters = _class.instanceMethodId(
+    r'getAudioDecoderCounters',
+    r'()Landroidx/media3/exoplayer/DecoderCounters;',
+  );
+
+  static final _getAudioDecoderCounters = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract androidx.media3.exoplayer.DecoderCounters getAudioDecoderCounters()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getAudioDecoderCounters() {
+    return _getAudioDecoderCounters(reference.pointer,
+            _id_getAudioDecoderCounters as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_getVideoDecoderCounters = _class.instanceMethodId(
+    r'getVideoDecoderCounters',
+    r'()Landroidx/media3/exoplayer/DecoderCounters;',
+  );
+
+  static final _getVideoDecoderCounters = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract androidx.media3.exoplayer.DecoderCounters getVideoDecoderCounters()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getVideoDecoderCounters() {
+    return _getVideoDecoderCounters(reference.pointer,
+            _id_getVideoDecoderCounters as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_setHandleAudioBecomingNoisy = _class.instanceMethodId(
+    r'setHandleAudioBecomingNoisy',
+    r'(Z)V',
+  );
+
+  static final _setHandleAudioBecomingNoisy =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr, _$jni.VarArgs<(_$jni.Int32,)>)>>(
+              'globalEnv_CallVoidMethod')
+          .asFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public abstract void setHandleAudioBecomingNoisy(boolean z)`
+  void setHandleAudioBecomingNoisy(
+    bool z,
+  ) {
+    _setHandleAudioBecomingNoisy(reference.pointer,
+            _id_setHandleAudioBecomingNoisy as _$jni.JMethodIDPtr, z ? 1 : 0)
+        .check();
+  }
+
+  static final _id_setWakeMode = _class.instanceMethodId(
+    r'setWakeMode',
+    r'(I)V',
+  );
+
+  static final _setWakeMode = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public abstract void setWakeMode(int i)`
+  void setWakeMode(
+    int i,
+  ) {
+    _setWakeMode(reference.pointer, _id_setWakeMode as _$jni.JMethodIDPtr, i)
+        .check();
+  }
+
+  static final _id_setPriority = _class.instanceMethodId(
+    r'setPriority',
+    r'(I)V',
+  );
+
+  static final _setPriority = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public abstract void setPriority(int i)`
+  void setPriority(
+    int i,
+  ) {
+    _setPriority(reference.pointer, _id_setPriority as _$jni.JMethodIDPtr, i)
+        .check();
+  }
+
+  static final _id_setPriorityTaskManager = _class.instanceMethodId(
+    r'setPriorityTaskManager',
+    r'(Landroidx/media3/common/PriorityTaskManager;)V',
+  );
+
+  static final _setPriorityTaskManager = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void setPriorityTaskManager(androidx.media3.common.PriorityTaskManager priorityTaskManager)`
+  void setPriorityTaskManager(
+    _$jni.JObject priorityTaskManager,
+  ) {
+    _setPriorityTaskManager(
+            reference.pointer,
+            _id_setPriorityTaskManager as _$jni.JMethodIDPtr,
+            priorityTaskManager.reference.pointer)
+        .check();
+  }
+
+  static final _id_isSleepingForOffload = _class.instanceMethodId(
+    r'isSleepingForOffload',
+    r'()Z',
+  );
+
+  static final _isSleepingForOffload = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract boolean isSleepingForOffload()`
+  bool isSleepingForOffload() {
+    return _isSleepingForOffload(
+            reference.pointer, _id_isSleepingForOffload as _$jni.JMethodIDPtr)
+        .boolean;
+  }
+
+  static final _id_isTunnelingEnabled = _class.instanceMethodId(
+    r'isTunnelingEnabled',
+    r'()Z',
+  );
+
+  static final _isTunnelingEnabled = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract boolean isTunnelingEnabled()`
+  bool isTunnelingEnabled() {
+    return _isTunnelingEnabled(
+            reference.pointer, _id_isTunnelingEnabled as _$jni.JMethodIDPtr)
+        .boolean;
+  }
+
+  static final _id_release$1 = _class.instanceMethodId(
+    r'release',
+    r'()V',
+  );
+
+  static final _release$1 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract void release()`
+  void release$1() {
+    _release$1(reference.pointer, _id_release$1 as _$jni.JMethodIDPtr).check();
+  }
+
+  static final _id_isReleased$1 = _class.instanceMethodId(
+    r'isReleased',
+    r'()Z',
+  );
+
+  static final _isReleased$1 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract boolean isReleased()`
+  bool isReleased$1() {
+    return _isReleased$1(
+            reference.pointer, _id_isReleased$1 as _$jni.JMethodIDPtr)
+        .boolean;
+  }
+
+  static final _id_setImageOutput = _class.instanceMethodId(
+    r'setImageOutput',
+    r'(Landroidx/media3/exoplayer/image/ImageOutput;)V',
+  );
+
+  static final _setImageOutput = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void setImageOutput(androidx.media3.exoplayer.image.ImageOutput imageOutput)`
+  void setImageOutput(
+    _$jni.JObject imageOutput,
+  ) {
+    _setImageOutput(reference.pointer, _id_setImageOutput as _$jni.JMethodIDPtr,
+            imageOutput.reference.pointer)
+        .check();
+  }
+
+  /// Maps a specific port to the implemented interface.
+  static final _$core.Map<int, $ExoPlayer> _$impls = {};
+  static _$jni.JObjectPtr _$invoke(
+    int port,
+    _$jni.JObjectPtr descriptor,
+    _$jni.JObjectPtr args,
+  ) {
+    return _$invokeMethod(
+      port,
+      _$jni.MethodInvocation.fromAddresses(
+        0,
+        descriptor.address,
+        args.address,
+      ),
+    );
+  }
+
+  static final _$jni.Pointer<
+          _$jni.NativeFunction<
+              _$jni.JObjectPtr Function(
+                  _$jni.Int64, _$jni.JObjectPtr, _$jni.JObjectPtr)>>
+      _$invokePointer = _$jni.Pointer.fromFunction(_$invoke);
+
+  static _$jni.Pointer<_$jni.Void> _$invokeMethod(
+    int $p,
+    _$jni.MethodInvocation $i,
+  ) {
+    try {
+      final $d = $i.methodDescriptor.toDartString(releaseOriginal: true);
+      final $a = $i.args;
+      if ($d ==
+          r'getPlayerError()Landroidx/media3/exoplayer/ExoPlaybackException;') {
+        final $r = _$impls[$p]!.getPlayerError();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d ==
+          r'getAudioComponent()Landroidx/media3/exoplayer/ExoPlayer$AudioComponent;') {
+        final $r = _$impls[$p]!.getAudioComponent();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d ==
+          r'getVideoComponent()Landroidx/media3/exoplayer/ExoPlayer$VideoComponent;') {
+        final $r = _$impls[$p]!.getVideoComponent();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d ==
+          r'getTextComponent()Landroidx/media3/exoplayer/ExoPlayer$TextComponent;') {
+        final $r = _$impls[$p]!.getTextComponent();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d ==
+          r'getDeviceComponent()Landroidx/media3/exoplayer/ExoPlayer$DeviceComponent;') {
+        final $r = _$impls[$p]!.getDeviceComponent();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d ==
+          r'addAudioOffloadListener(Landroidx/media3/exoplayer/ExoPlayer$AudioOffloadListener;)V') {
+        _$impls[$p]!.addAudioOffloadListener(
+          $a[0].as(const $ExoPlayer_AudioOffloadListener$Type(),
+              releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'removeAudioOffloadListener(Landroidx/media3/exoplayer/ExoPlayer$AudioOffloadListener;)V') {
+        _$impls[$p]!.removeAudioOffloadListener(
+          $a[0].as(const $ExoPlayer_AudioOffloadListener$Type(),
+              releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'getAnalyticsCollector()Landroidx/media3/exoplayer/analytics/AnalyticsCollector;') {
+        final $r = _$impls[$p]!.getAnalyticsCollector();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d ==
+          r'addAnalyticsListener(Landroidx/media3/exoplayer/analytics/AnalyticsListener;)V') {
+        _$impls[$p]!.addAnalyticsListener(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'removeAnalyticsListener(Landroidx/media3/exoplayer/analytics/AnalyticsListener;)V') {
+        _$impls[$p]!.removeAnalyticsListener(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'getRendererCount()I') {
+        final $r = _$impls[$p]!.getRendererCount();
+        return _$jni.JInteger($r).reference.toPointer();
+      }
+      if ($d == r'getRendererType(I)I') {
+        final $r = _$impls[$p]!.getRendererType(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return _$jni.JInteger($r).reference.toPointer();
+      }
+      if ($d == r'getRenderer(I)Landroidx/media3/exoplayer/Renderer;') {
+        final $r = _$impls[$p]!.getRenderer(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d ==
+          r'getTrackSelector()Landroidx/media3/exoplayer/trackselection/TrackSelector;') {
+        final $r = _$impls[$p]!.getTrackSelector();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d ==
+          r'getCurrentTrackGroups()Landroidx/media3/exoplayer/source/TrackGroupArray;') {
+        final $r = _$impls[$p]!.getCurrentTrackGroups();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d ==
+          r'getCurrentTrackSelections()Landroidx/media3/exoplayer/trackselection/TrackSelectionArray;') {
+        final $r = _$impls[$p]!.getCurrentTrackSelections();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d == r'getPlaybackLooper()Landroid/os/Looper;') {
+        final $r = _$impls[$p]!.getPlaybackLooper();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d == r'getClock()Landroidx/media3/common/util/Clock;') {
+        final $r = _$impls[$p]!.getClock();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d == r'prepare(Landroidx/media3/exoplayer/source/MediaSource;)V') {
+        _$impls[$p]!.prepare(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'prepare(Landroidx/media3/exoplayer/source/MediaSource;ZZ)V') {
+        _$impls[$p]!.prepare$1(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+          $a[1]
+              .as(const _$jni.JBooleanType(), releaseOriginal: true)
+              .booleanValue(releaseOriginal: true),
+          $a[2]
+              .as(const _$jni.JBooleanType(), releaseOriginal: true)
+              .booleanValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'setMediaSources(Ljava/util/List;)V') {
+        _$impls[$p]!.setMediaSources(
+          $a[0].as(const _$jni.JListType(_$jni.JObjectType()),
+              releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'setMediaSources(Ljava/util/List;Z)V') {
+        _$impls[$p]!.setMediaSources$1(
+          $a[0].as(const _$jni.JListType(_$jni.JObjectType()),
+              releaseOriginal: true),
+          $a[1]
+              .as(const _$jni.JBooleanType(), releaseOriginal: true)
+              .booleanValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'setMediaSources(Ljava/util/List;IJ)V') {
+        _$impls[$p]!.setMediaSources$2(
+          $a[0].as(const _$jni.JListType(_$jni.JObjectType()),
+              releaseOriginal: true),
+          $a[1]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+          $a[2]
+              .as(const _$jni.JLongType(), releaseOriginal: true)
+              .longValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'setMediaSource(Landroidx/media3/exoplayer/source/MediaSource;)V') {
+        _$impls[$p]!.setMediaSource(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'setMediaSource(Landroidx/media3/exoplayer/source/MediaSource;J)V') {
+        _$impls[$p]!.setMediaSource$1(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+          $a[1]
+              .as(const _$jni.JLongType(), releaseOriginal: true)
+              .longValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'setMediaSource(Landroidx/media3/exoplayer/source/MediaSource;Z)V') {
+        _$impls[$p]!.setMediaSource$2(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+          $a[1]
+              .as(const _$jni.JBooleanType(), releaseOriginal: true)
+              .booleanValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'addMediaSource(Landroidx/media3/exoplayer/source/MediaSource;)V') {
+        _$impls[$p]!.addMediaSource(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'addMediaSource(ILandroidx/media3/exoplayer/source/MediaSource;)V') {
+        _$impls[$p]!.addMediaSource$1(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+          $a[1].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'addMediaSources(Ljava/util/List;)V') {
+        _$impls[$p]!.addMediaSources(
+          $a[0].as(const _$jni.JListType(_$jni.JObjectType()),
+              releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'addMediaSources(ILjava/util/List;)V') {
+        _$impls[$p]!.addMediaSources$1(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+          $a[1].as(const _$jni.JListType(_$jni.JObjectType()),
+              releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'setShuffleOrder(Landroidx/media3/exoplayer/source/ShuffleOrder;)V') {
+        _$impls[$p]!.setShuffleOrder(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'setPreloadConfiguration(Landroidx/media3/exoplayer/ExoPlayer$PreloadConfiguration;)V') {
+        _$impls[$p]!.setPreloadConfiguration(
+          $a[0].as(const $ExoPlayer_PreloadConfiguration$Type(),
+              releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'getPreloadConfiguration()Landroidx/media3/exoplayer/ExoPlayer$PreloadConfiguration;') {
+        final $r = _$impls[$p]!.getPreloadConfiguration();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d == r'replaceMediaItem(ILandroidx/media3/common/MediaItem;)V') {
+        _$impls[$p]!.replaceMediaItem(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+          $a[1].as(const $MediaItem$Type(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'replaceMediaItems(IILjava/util/List;)V') {
+        _$impls[$p]!.replaceMediaItems(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+          $a[1]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+          $a[2].as(const _$jni.JListType($MediaItem$Type()),
+              releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'setAudioSessionId(I)V') {
+        _$impls[$p]!.setAudioSessionId(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'getAudioSessionId()I') {
+        final $r = _$impls[$p]!.getAudioSessionId();
+        return _$jni.JInteger($r).reference.toPointer();
+      }
+      if ($d == r'setAuxEffectInfo(Landroidx/media3/common/AuxEffectInfo;)V') {
+        _$impls[$p]!.setAuxEffectInfo(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'clearAuxEffectInfo()V') {
+        _$impls[$p]!.clearAuxEffectInfo();
+        return _$jni.nullptr;
+      }
+      if ($d == r'setPreferredAudioDevice(Landroid/media/AudioDeviceInfo;)V') {
+        _$impls[$p]!.setPreferredAudioDevice(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'setSkipSilenceEnabled(Z)V') {
+        _$impls[$p]!.setSkipSilenceEnabled(
+          $a[0]
+              .as(const _$jni.JBooleanType(), releaseOriginal: true)
+              .booleanValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'getSkipSilenceEnabled()Z') {
+        final $r = _$impls[$p]!.getSkipSilenceEnabled();
+        return _$jni.JBoolean($r).reference.toPointer();
+      }
+      if ($d == r'setVideoEffects(Ljava/util/List;)V') {
+        _$impls[$p]!.setVideoEffects(
+          $a[0].as(const _$jni.JListType(_$jni.JObjectType()),
+              releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'setVideoScalingMode(I)V') {
+        _$impls[$p]!.setVideoScalingMode(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'getVideoScalingMode()I') {
+        final $r = _$impls[$p]!.getVideoScalingMode();
+        return _$jni.JInteger($r).reference.toPointer();
+      }
+      if ($d == r'setVideoChangeFrameRateStrategy(I)V') {
+        _$impls[$p]!.setVideoChangeFrameRateStrategy(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'getVideoChangeFrameRateStrategy()I') {
+        final $r = _$impls[$p]!.getVideoChangeFrameRateStrategy();
+        return _$jni.JInteger($r).reference.toPointer();
+      }
+      if ($d ==
+          r'setVideoFrameMetadataListener(Landroidx/media3/exoplayer/video/VideoFrameMetadataListener;)V') {
+        _$impls[$p]!.setVideoFrameMetadataListener(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'clearVideoFrameMetadataListener(Landroidx/media3/exoplayer/video/VideoFrameMetadataListener;)V') {
+        _$impls[$p]!.clearVideoFrameMetadataListener(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'setCameraMotionListener(Landroidx/media3/exoplayer/video/spherical/CameraMotionListener;)V') {
+        _$impls[$p]!.setCameraMotionListener(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'clearCameraMotionListener(Landroidx/media3/exoplayer/video/spherical/CameraMotionListener;)V') {
+        _$impls[$p]!.clearCameraMotionListener(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'createMessage(Landroidx/media3/exoplayer/PlayerMessage$Target;)Landroidx/media3/exoplayer/PlayerMessage;') {
+        final $r = _$impls[$p]!.createMessage(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d ==
+          r'setSeekParameters(Landroidx/media3/exoplayer/SeekParameters;)V') {
+        _$impls[$p]!.setSeekParameters(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'getSeekParameters()Landroidx/media3/exoplayer/SeekParameters;') {
+        final $r = _$impls[$p]!.getSeekParameters();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d == r'setForegroundMode(Z)V') {
+        _$impls[$p]!.setForegroundMode(
+          $a[0]
+              .as(const _$jni.JBooleanType(), releaseOriginal: true)
+              .booleanValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'setPauseAtEndOfMediaItems(Z)V') {
+        _$impls[$p]!.setPauseAtEndOfMediaItems(
+          $a[0]
+              .as(const _$jni.JBooleanType(), releaseOriginal: true)
+              .booleanValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'getPauseAtEndOfMediaItems()Z') {
+        final $r = _$impls[$p]!.getPauseAtEndOfMediaItems();
+        return _$jni.JBoolean($r).reference.toPointer();
+      }
+      if ($d == r'getAudioFormat()Landroidx/media3/common/Format;') {
+        final $r = _$impls[$p]!.getAudioFormat();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d == r'getVideoFormat()Landroidx/media3/common/Format;') {
+        final $r = _$impls[$p]!.getVideoFormat();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d ==
+          r'getAudioDecoderCounters()Landroidx/media3/exoplayer/DecoderCounters;') {
+        final $r = _$impls[$p]!.getAudioDecoderCounters();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d ==
+          r'getVideoDecoderCounters()Landroidx/media3/exoplayer/DecoderCounters;') {
+        final $r = _$impls[$p]!.getVideoDecoderCounters();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d == r'setHandleAudioBecomingNoisy(Z)V') {
+        _$impls[$p]!.setHandleAudioBecomingNoisy(
+          $a[0]
+              .as(const _$jni.JBooleanType(), releaseOriginal: true)
+              .booleanValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'setWakeMode(I)V') {
+        _$impls[$p]!.setWakeMode(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'setPriority(I)V') {
+        _$impls[$p]!.setPriority(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'setPriorityTaskManager(Landroidx/media3/common/PriorityTaskManager;)V') {
+        _$impls[$p]!.setPriorityTaskManager(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'isSleepingForOffload()Z') {
+        final $r = _$impls[$p]!.isSleepingForOffload();
+        return _$jni.JBoolean($r).reference.toPointer();
+      }
+      if ($d == r'isTunnelingEnabled()Z') {
+        final $r = _$impls[$p]!.isTunnelingEnabled();
+        return _$jni.JBoolean($r).reference.toPointer();
+      }
+      if ($d == r'release()V') {
+        _$impls[$p]!.release$1();
+        return _$jni.nullptr;
+      }
+      if ($d == r'isReleased()Z') {
+        final $r = _$impls[$p]!.isReleased$1();
+        return _$jni.JBoolean($r).reference.toPointer();
+      }
+      if ($d ==
+          r'setImageOutput(Landroidx/media3/exoplayer/image/ImageOutput;)V') {
+        _$impls[$p]!.setImageOutput(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+    } catch (e) {
+      return _$jni.ProtectedJniExtensions.newDartException(e);
+    }
+    return _$jni.nullptr;
+  }
+
+  static void implementIn(
+    _$jni.JImplementer implementer,
+    $ExoPlayer $impl,
+  ) {
+    late final _$jni.RawReceivePort $p;
+    $p = _$jni.RawReceivePort(($m) {
+      if ($m == null) {
+        _$impls.remove($p.sendPort.nativePort);
+        $p.close();
+        return;
+      }
+      final $i = _$jni.MethodInvocation.fromMessage($m);
+      final $r = _$invokeMethod($p.sendPort.nativePort, $i);
+      _$jni.ProtectedJniExtensions.returnResult($i.result, $r);
+    });
+    implementer.add(
+      r'androidx.media3.exoplayer.ExoPlayer',
+      $p,
+      _$invokePointer,
+      [
+        if ($impl.addAudioOffloadListener$async)
+          r'addAudioOffloadListener(Landroidx/media3/exoplayer/ExoPlayer$AudioOffloadListener;)V',
+        if ($impl.removeAudioOffloadListener$async)
+          r'removeAudioOffloadListener(Landroidx/media3/exoplayer/ExoPlayer$AudioOffloadListener;)V',
+        if ($impl.addAnalyticsListener$async)
+          r'addAnalyticsListener(Landroidx/media3/exoplayer/analytics/AnalyticsListener;)V',
+        if ($impl.removeAnalyticsListener$async)
+          r'removeAnalyticsListener(Landroidx/media3/exoplayer/analytics/AnalyticsListener;)V',
+        if ($impl.prepare$async)
+          r'prepare(Landroidx/media3/exoplayer/source/MediaSource;)V',
+        if ($impl.prepare$1$async)
+          r'prepare(Landroidx/media3/exoplayer/source/MediaSource;ZZ)V',
+        if ($impl.setMediaSources$async) r'setMediaSources(Ljava/util/List;)V',
+        if ($impl.setMediaSources$1$async)
+          r'setMediaSources(Ljava/util/List;Z)V',
+        if ($impl.setMediaSources$2$async)
+          r'setMediaSources(Ljava/util/List;IJ)V',
+        if ($impl.setMediaSource$async)
+          r'setMediaSource(Landroidx/media3/exoplayer/source/MediaSource;)V',
+        if ($impl.setMediaSource$1$async)
+          r'setMediaSource(Landroidx/media3/exoplayer/source/MediaSource;J)V',
+        if ($impl.setMediaSource$2$async)
+          r'setMediaSource(Landroidx/media3/exoplayer/source/MediaSource;Z)V',
+        if ($impl.addMediaSource$async)
+          r'addMediaSource(Landroidx/media3/exoplayer/source/MediaSource;)V',
+        if ($impl.addMediaSource$1$async)
+          r'addMediaSource(ILandroidx/media3/exoplayer/source/MediaSource;)V',
+        if ($impl.addMediaSources$async) r'addMediaSources(Ljava/util/List;)V',
+        if ($impl.addMediaSources$1$async)
+          r'addMediaSources(ILjava/util/List;)V',
+        if ($impl.setShuffleOrder$async)
+          r'setShuffleOrder(Landroidx/media3/exoplayer/source/ShuffleOrder;)V',
+        if ($impl.setPreloadConfiguration$async)
+          r'setPreloadConfiguration(Landroidx/media3/exoplayer/ExoPlayer$PreloadConfiguration;)V',
+        if ($impl.replaceMediaItem$async)
+          r'replaceMediaItem(ILandroidx/media3/common/MediaItem;)V',
+        if ($impl.replaceMediaItems$async)
+          r'replaceMediaItems(IILjava/util/List;)V',
+        if ($impl.setAudioSessionId$async) r'setAudioSessionId(I)V',
+        if ($impl.setAuxEffectInfo$async)
+          r'setAuxEffectInfo(Landroidx/media3/common/AuxEffectInfo;)V',
+        if ($impl.clearAuxEffectInfo$async) r'clearAuxEffectInfo()V',
+        if ($impl.setPreferredAudioDevice$async)
+          r'setPreferredAudioDevice(Landroid/media/AudioDeviceInfo;)V',
+        if ($impl.setSkipSilenceEnabled$async) r'setSkipSilenceEnabled(Z)V',
+        if ($impl.setVideoEffects$async) r'setVideoEffects(Ljava/util/List;)V',
+        if ($impl.setVideoScalingMode$async) r'setVideoScalingMode(I)V',
+        if ($impl.setVideoChangeFrameRateStrategy$async)
+          r'setVideoChangeFrameRateStrategy(I)V',
+        if ($impl.setVideoFrameMetadataListener$async)
+          r'setVideoFrameMetadataListener(Landroidx/media3/exoplayer/video/VideoFrameMetadataListener;)V',
+        if ($impl.clearVideoFrameMetadataListener$async)
+          r'clearVideoFrameMetadataListener(Landroidx/media3/exoplayer/video/VideoFrameMetadataListener;)V',
+        if ($impl.setCameraMotionListener$async)
+          r'setCameraMotionListener(Landroidx/media3/exoplayer/video/spherical/CameraMotionListener;)V',
+        if ($impl.clearCameraMotionListener$async)
+          r'clearCameraMotionListener(Landroidx/media3/exoplayer/video/spherical/CameraMotionListener;)V',
+        if ($impl.setSeekParameters$async)
+          r'setSeekParameters(Landroidx/media3/exoplayer/SeekParameters;)V',
+        if ($impl.setForegroundMode$async) r'setForegroundMode(Z)V',
+        if ($impl.setPauseAtEndOfMediaItems$async)
+          r'setPauseAtEndOfMediaItems(Z)V',
+        if ($impl.setHandleAudioBecomingNoisy$async)
+          r'setHandleAudioBecomingNoisy(Z)V',
+        if ($impl.setWakeMode$async) r'setWakeMode(I)V',
+        if ($impl.setPriority$async) r'setPriority(I)V',
+        if ($impl.setPriorityTaskManager$async)
+          r'setPriorityTaskManager(Landroidx/media3/common/PriorityTaskManager;)V',
+        if ($impl.release$1$async) r'release()V',
+        if ($impl.setImageOutput$async)
+          r'setImageOutput(Landroidx/media3/exoplayer/image/ImageOutput;)V',
+      ],
+    );
+    final $a = $p.sendPort.nativePort;
+    _$impls[$a] = $impl;
+  }
+
+  factory ExoPlayer.implement(
+    $ExoPlayer $impl,
+  ) {
+    final $i = _$jni.JImplementer();
+    implementIn($i, $impl);
+    return ExoPlayer.fromReference(
+      $i.implementReference(),
+    );
+  }
+}
+
+abstract base mixin class $ExoPlayer {
+  factory $ExoPlayer({
+    required _$jni.JObject Function() getPlayerError,
+    required ExoPlayer_AudioComponent Function() getAudioComponent,
+    required ExoPlayer_VideoComponent Function() getVideoComponent,
+    required ExoPlayer_TextComponent Function() getTextComponent,
+    required ExoPlayer_DeviceComponent Function() getDeviceComponent,
+    required void Function(ExoPlayer_AudioOffloadListener audioOffloadListener)
+        addAudioOffloadListener,
+    bool addAudioOffloadListener$async,
+    required void Function(ExoPlayer_AudioOffloadListener audioOffloadListener)
+        removeAudioOffloadListener,
+    bool removeAudioOffloadListener$async,
+    required _$jni.JObject Function() getAnalyticsCollector,
+    required void Function(_$jni.JObject analyticsListener)
+        addAnalyticsListener,
+    bool addAnalyticsListener$async,
+    required void Function(_$jni.JObject analyticsListener)
+        removeAnalyticsListener,
+    bool removeAnalyticsListener$async,
+    required int Function() getRendererCount,
+    required int Function(int i) getRendererType,
+    required _$jni.JObject Function(int i) getRenderer,
+    required _$jni.JObject Function() getTrackSelector,
+    required _$jni.JObject Function() getCurrentTrackGroups,
+    required _$jni.JObject Function() getCurrentTrackSelections,
+    required _$jni.JObject Function() getPlaybackLooper,
+    required _$jni.JObject Function() getClock,
+    required void Function(_$jni.JObject mediaSource) prepare,
+    bool prepare$async,
+    required void Function(_$jni.JObject mediaSource, bool z, bool z1)
+        prepare$1,
+    bool prepare$1$async,
+    required void Function(_$jni.JList<_$jni.JObject> list) setMediaSources,
+    bool setMediaSources$async,
+    required void Function(_$jni.JList<_$jni.JObject> list, bool z)
+        setMediaSources$1,
+    bool setMediaSources$1$async,
+    required void Function(_$jni.JList<_$jni.JObject> list, int i, int j)
+        setMediaSources$2,
+    bool setMediaSources$2$async,
+    required void Function(_$jni.JObject mediaSource) setMediaSource,
+    bool setMediaSource$async,
+    required void Function(_$jni.JObject mediaSource, int j) setMediaSource$1,
+    bool setMediaSource$1$async,
+    required void Function(_$jni.JObject mediaSource, bool z) setMediaSource$2,
+    bool setMediaSource$2$async,
+    required void Function(_$jni.JObject mediaSource) addMediaSource,
+    bool addMediaSource$async,
+    required void Function(int i, _$jni.JObject mediaSource) addMediaSource$1,
+    bool addMediaSource$1$async,
+    required void Function(_$jni.JList<_$jni.JObject> list) addMediaSources,
+    bool addMediaSources$async,
+    required void Function(int i, _$jni.JList<_$jni.JObject> list)
+        addMediaSources$1,
+    bool addMediaSources$1$async,
+    required void Function(_$jni.JObject shuffleOrder) setShuffleOrder,
+    bool setShuffleOrder$async,
+    required void Function(ExoPlayer_PreloadConfiguration preloadConfiguration)
+        setPreloadConfiguration,
+    bool setPreloadConfiguration$async,
+    required ExoPlayer_PreloadConfiguration Function() getPreloadConfiguration,
+    required void Function(int i, MediaItem mediaItem) replaceMediaItem,
+    bool replaceMediaItem$async,
+    required void Function(int i, int i1, _$jni.JList<MediaItem> list)
+        replaceMediaItems,
+    bool replaceMediaItems$async,
+    required void Function(int i) setAudioSessionId,
+    bool setAudioSessionId$async,
+    required int Function() getAudioSessionId,
+    required void Function(_$jni.JObject auxEffectInfo) setAuxEffectInfo,
+    bool setAuxEffectInfo$async,
+    required void Function() clearAuxEffectInfo,
+    bool clearAuxEffectInfo$async,
+    required void Function(_$jni.JObject audioDeviceInfo)
+        setPreferredAudioDevice,
+    bool setPreferredAudioDevice$async,
+    required void Function(bool z) setSkipSilenceEnabled,
+    bool setSkipSilenceEnabled$async,
+    required bool Function() getSkipSilenceEnabled,
+    required void Function(_$jni.JList<_$jni.JObject> list) setVideoEffects,
+    bool setVideoEffects$async,
+    required void Function(int i) setVideoScalingMode,
+    bool setVideoScalingMode$async,
+    required int Function() getVideoScalingMode,
+    required void Function(int i) setVideoChangeFrameRateStrategy,
+    bool setVideoChangeFrameRateStrategy$async,
+    required int Function() getVideoChangeFrameRateStrategy,
+    required void Function(_$jni.JObject videoFrameMetadataListener)
+        setVideoFrameMetadataListener,
+    bool setVideoFrameMetadataListener$async,
+    required void Function(_$jni.JObject videoFrameMetadataListener)
+        clearVideoFrameMetadataListener,
+    bool clearVideoFrameMetadataListener$async,
+    required void Function(_$jni.JObject cameraMotionListener)
+        setCameraMotionListener,
+    bool setCameraMotionListener$async,
+    required void Function(_$jni.JObject cameraMotionListener)
+        clearCameraMotionListener,
+    bool clearCameraMotionListener$async,
+    required _$jni.JObject Function(_$jni.JObject target) createMessage,
+    required void Function(_$jni.JObject seekParameters) setSeekParameters,
+    bool setSeekParameters$async,
+    required _$jni.JObject Function() getSeekParameters,
+    required void Function(bool z) setForegroundMode,
+    bool setForegroundMode$async,
+    required void Function(bool z) setPauseAtEndOfMediaItems,
+    bool setPauseAtEndOfMediaItems$async,
+    required bool Function() getPauseAtEndOfMediaItems,
+    required _$jni.JObject Function() getAudioFormat,
+    required _$jni.JObject Function() getVideoFormat,
+    required _$jni.JObject Function() getAudioDecoderCounters,
+    required _$jni.JObject Function() getVideoDecoderCounters,
+    required void Function(bool z) setHandleAudioBecomingNoisy,
+    bool setHandleAudioBecomingNoisy$async,
+    required void Function(int i) setWakeMode,
+    bool setWakeMode$async,
+    required void Function(int i) setPriority,
+    bool setPriority$async,
+    required void Function(_$jni.JObject priorityTaskManager)
+        setPriorityTaskManager,
+    bool setPriorityTaskManager$async,
+    required bool Function() isSleepingForOffload,
+    required bool Function() isTunnelingEnabled,
+    required void Function() release$1,
+    bool release$1$async,
+    required bool Function() isReleased$1,
+    required void Function(_$jni.JObject imageOutput) setImageOutput,
+    bool setImageOutput$async,
+  }) = _$ExoPlayer;
+
+  _$jni.JObject getPlayerError();
+  ExoPlayer_AudioComponent getAudioComponent();
+  ExoPlayer_VideoComponent getVideoComponent();
+  ExoPlayer_TextComponent getTextComponent();
+  ExoPlayer_DeviceComponent getDeviceComponent();
+  void addAudioOffloadListener(
+      ExoPlayer_AudioOffloadListener audioOffloadListener);
+  bool get addAudioOffloadListener$async => false;
+  void removeAudioOffloadListener(
+      ExoPlayer_AudioOffloadListener audioOffloadListener);
+  bool get removeAudioOffloadListener$async => false;
+  _$jni.JObject getAnalyticsCollector();
+  void addAnalyticsListener(_$jni.JObject analyticsListener);
+  bool get addAnalyticsListener$async => false;
+  void removeAnalyticsListener(_$jni.JObject analyticsListener);
+  bool get removeAnalyticsListener$async => false;
+  int getRendererCount();
+  int getRendererType(int i);
+  _$jni.JObject getRenderer(int i);
+  _$jni.JObject getTrackSelector();
+  _$jni.JObject getCurrentTrackGroups();
+  _$jni.JObject getCurrentTrackSelections();
+  _$jni.JObject getPlaybackLooper();
+  _$jni.JObject getClock();
+  void prepare(_$jni.JObject mediaSource);
+  bool get prepare$async => false;
+  void prepare$1(_$jni.JObject mediaSource, bool z, bool z1);
+  bool get prepare$1$async => false;
+  void setMediaSources(_$jni.JList<_$jni.JObject> list);
+  bool get setMediaSources$async => false;
+  void setMediaSources$1(_$jni.JList<_$jni.JObject> list, bool z);
+  bool get setMediaSources$1$async => false;
+  void setMediaSources$2(_$jni.JList<_$jni.JObject> list, int i, int j);
+  bool get setMediaSources$2$async => false;
+  void setMediaSource(_$jni.JObject mediaSource);
+  bool get setMediaSource$async => false;
+  void setMediaSource$1(_$jni.JObject mediaSource, int j);
+  bool get setMediaSource$1$async => false;
+  void setMediaSource$2(_$jni.JObject mediaSource, bool z);
+  bool get setMediaSource$2$async => false;
+  void addMediaSource(_$jni.JObject mediaSource);
+  bool get addMediaSource$async => false;
+  void addMediaSource$1(int i, _$jni.JObject mediaSource);
+  bool get addMediaSource$1$async => false;
+  void addMediaSources(_$jni.JList<_$jni.JObject> list);
+  bool get addMediaSources$async => false;
+  void addMediaSources$1(int i, _$jni.JList<_$jni.JObject> list);
+  bool get addMediaSources$1$async => false;
+  void setShuffleOrder(_$jni.JObject shuffleOrder);
+  bool get setShuffleOrder$async => false;
+  void setPreloadConfiguration(
+      ExoPlayer_PreloadConfiguration preloadConfiguration);
+  bool get setPreloadConfiguration$async => false;
+  ExoPlayer_PreloadConfiguration getPreloadConfiguration();
+  void replaceMediaItem(int i, MediaItem mediaItem);
+  bool get replaceMediaItem$async => false;
+  void replaceMediaItems(int i, int i1, _$jni.JList<MediaItem> list);
+  bool get replaceMediaItems$async => false;
+  void setAudioSessionId(int i);
+  bool get setAudioSessionId$async => false;
+  int getAudioSessionId();
+  void setAuxEffectInfo(_$jni.JObject auxEffectInfo);
+  bool get setAuxEffectInfo$async => false;
+  void clearAuxEffectInfo();
+  bool get clearAuxEffectInfo$async => false;
+  void setPreferredAudioDevice(_$jni.JObject audioDeviceInfo);
+  bool get setPreferredAudioDevice$async => false;
+  void setSkipSilenceEnabled(bool z);
+  bool get setSkipSilenceEnabled$async => false;
+  bool getSkipSilenceEnabled();
+  void setVideoEffects(_$jni.JList<_$jni.JObject> list);
+  bool get setVideoEffects$async => false;
+  void setVideoScalingMode(int i);
+  bool get setVideoScalingMode$async => false;
+  int getVideoScalingMode();
+  void setVideoChangeFrameRateStrategy(int i);
+  bool get setVideoChangeFrameRateStrategy$async => false;
+  int getVideoChangeFrameRateStrategy();
+  void setVideoFrameMetadataListener(_$jni.JObject videoFrameMetadataListener);
+  bool get setVideoFrameMetadataListener$async => false;
+  void clearVideoFrameMetadataListener(
+      _$jni.JObject videoFrameMetadataListener);
+  bool get clearVideoFrameMetadataListener$async => false;
+  void setCameraMotionListener(_$jni.JObject cameraMotionListener);
+  bool get setCameraMotionListener$async => false;
+  void clearCameraMotionListener(_$jni.JObject cameraMotionListener);
+  bool get clearCameraMotionListener$async => false;
+  _$jni.JObject createMessage(_$jni.JObject target);
+  void setSeekParameters(_$jni.JObject seekParameters);
+  bool get setSeekParameters$async => false;
+  _$jni.JObject getSeekParameters();
+  void setForegroundMode(bool z);
+  bool get setForegroundMode$async => false;
+  void setPauseAtEndOfMediaItems(bool z);
+  bool get setPauseAtEndOfMediaItems$async => false;
+  bool getPauseAtEndOfMediaItems();
+  _$jni.JObject getAudioFormat();
+  _$jni.JObject getVideoFormat();
+  _$jni.JObject getAudioDecoderCounters();
+  _$jni.JObject getVideoDecoderCounters();
+  void setHandleAudioBecomingNoisy(bool z);
+  bool get setHandleAudioBecomingNoisy$async => false;
+  void setWakeMode(int i);
+  bool get setWakeMode$async => false;
+  void setPriority(int i);
+  bool get setPriority$async => false;
+  void setPriorityTaskManager(_$jni.JObject priorityTaskManager);
+  bool get setPriorityTaskManager$async => false;
+  bool isSleepingForOffload();
+  bool isTunnelingEnabled();
+  void release$1();
+  bool get release$1$async => false;
+  bool isReleased$1();
+  void setImageOutput(_$jni.JObject imageOutput);
+  bool get setImageOutput$async => false;
+}
+
+final class _$ExoPlayer with $ExoPlayer {
+  _$ExoPlayer({
+    required _$jni.JObject Function() getPlayerError,
+    required ExoPlayer_AudioComponent Function() getAudioComponent,
+    required ExoPlayer_VideoComponent Function() getVideoComponent,
+    required ExoPlayer_TextComponent Function() getTextComponent,
+    required ExoPlayer_DeviceComponent Function() getDeviceComponent,
+    required void Function(ExoPlayer_AudioOffloadListener audioOffloadListener)
+        addAudioOffloadListener,
+    this.addAudioOffloadListener$async = false,
+    required void Function(ExoPlayer_AudioOffloadListener audioOffloadListener)
+        removeAudioOffloadListener,
+    this.removeAudioOffloadListener$async = false,
+    required _$jni.JObject Function() getAnalyticsCollector,
+    required void Function(_$jni.JObject analyticsListener)
+        addAnalyticsListener,
+    this.addAnalyticsListener$async = false,
+    required void Function(_$jni.JObject analyticsListener)
+        removeAnalyticsListener,
+    this.removeAnalyticsListener$async = false,
+    required int Function() getRendererCount,
+    required int Function(int i) getRendererType,
+    required _$jni.JObject Function(int i) getRenderer,
+    required _$jni.JObject Function() getTrackSelector,
+    required _$jni.JObject Function() getCurrentTrackGroups,
+    required _$jni.JObject Function() getCurrentTrackSelections,
+    required _$jni.JObject Function() getPlaybackLooper,
+    required _$jni.JObject Function() getClock,
+    required void Function(_$jni.JObject mediaSource) prepare,
+    this.prepare$async = false,
+    required void Function(_$jni.JObject mediaSource, bool z, bool z1)
+        prepare$1,
+    this.prepare$1$async = false,
+    required void Function(_$jni.JList<_$jni.JObject> list) setMediaSources,
+    this.setMediaSources$async = false,
+    required void Function(_$jni.JList<_$jni.JObject> list, bool z)
+        setMediaSources$1,
+    this.setMediaSources$1$async = false,
+    required void Function(_$jni.JList<_$jni.JObject> list, int i, int j)
+        setMediaSources$2,
+    this.setMediaSources$2$async = false,
+    required void Function(_$jni.JObject mediaSource) setMediaSource,
+    this.setMediaSource$async = false,
+    required void Function(_$jni.JObject mediaSource, int j) setMediaSource$1,
+    this.setMediaSource$1$async = false,
+    required void Function(_$jni.JObject mediaSource, bool z) setMediaSource$2,
+    this.setMediaSource$2$async = false,
+    required void Function(_$jni.JObject mediaSource) addMediaSource,
+    this.addMediaSource$async = false,
+    required void Function(int i, _$jni.JObject mediaSource) addMediaSource$1,
+    this.addMediaSource$1$async = false,
+    required void Function(_$jni.JList<_$jni.JObject> list) addMediaSources,
+    this.addMediaSources$async = false,
+    required void Function(int i, _$jni.JList<_$jni.JObject> list)
+        addMediaSources$1,
+    this.addMediaSources$1$async = false,
+    required void Function(_$jni.JObject shuffleOrder) setShuffleOrder,
+    this.setShuffleOrder$async = false,
+    required void Function(ExoPlayer_PreloadConfiguration preloadConfiguration)
+        setPreloadConfiguration,
+    this.setPreloadConfiguration$async = false,
+    required ExoPlayer_PreloadConfiguration Function() getPreloadConfiguration,
+    required void Function(int i, MediaItem mediaItem) replaceMediaItem,
+    this.replaceMediaItem$async = false,
+    required void Function(int i, int i1, _$jni.JList<MediaItem> list)
+        replaceMediaItems,
+    this.replaceMediaItems$async = false,
+    required void Function(int i) setAudioSessionId,
+    this.setAudioSessionId$async = false,
+    required int Function() getAudioSessionId,
+    required void Function(_$jni.JObject auxEffectInfo) setAuxEffectInfo,
+    this.setAuxEffectInfo$async = false,
+    required void Function() clearAuxEffectInfo,
+    this.clearAuxEffectInfo$async = false,
+    required void Function(_$jni.JObject audioDeviceInfo)
+        setPreferredAudioDevice,
+    this.setPreferredAudioDevice$async = false,
+    required void Function(bool z) setSkipSilenceEnabled,
+    this.setSkipSilenceEnabled$async = false,
+    required bool Function() getSkipSilenceEnabled,
+    required void Function(_$jni.JList<_$jni.JObject> list) setVideoEffects,
+    this.setVideoEffects$async = false,
+    required void Function(int i) setVideoScalingMode,
+    this.setVideoScalingMode$async = false,
+    required int Function() getVideoScalingMode,
+    required void Function(int i) setVideoChangeFrameRateStrategy,
+    this.setVideoChangeFrameRateStrategy$async = false,
+    required int Function() getVideoChangeFrameRateStrategy,
+    required void Function(_$jni.JObject videoFrameMetadataListener)
+        setVideoFrameMetadataListener,
+    this.setVideoFrameMetadataListener$async = false,
+    required void Function(_$jni.JObject videoFrameMetadataListener)
+        clearVideoFrameMetadataListener,
+    this.clearVideoFrameMetadataListener$async = false,
+    required void Function(_$jni.JObject cameraMotionListener)
+        setCameraMotionListener,
+    this.setCameraMotionListener$async = false,
+    required void Function(_$jni.JObject cameraMotionListener)
+        clearCameraMotionListener,
+    this.clearCameraMotionListener$async = false,
+    required _$jni.JObject Function(_$jni.JObject target) createMessage,
+    required void Function(_$jni.JObject seekParameters) setSeekParameters,
+    this.setSeekParameters$async = false,
+    required _$jni.JObject Function() getSeekParameters,
+    required void Function(bool z) setForegroundMode,
+    this.setForegroundMode$async = false,
+    required void Function(bool z) setPauseAtEndOfMediaItems,
+    this.setPauseAtEndOfMediaItems$async = false,
+    required bool Function() getPauseAtEndOfMediaItems,
+    required _$jni.JObject Function() getAudioFormat,
+    required _$jni.JObject Function() getVideoFormat,
+    required _$jni.JObject Function() getAudioDecoderCounters,
+    required _$jni.JObject Function() getVideoDecoderCounters,
+    required void Function(bool z) setHandleAudioBecomingNoisy,
+    this.setHandleAudioBecomingNoisy$async = false,
+    required void Function(int i) setWakeMode,
+    this.setWakeMode$async = false,
+    required void Function(int i) setPriority,
+    this.setPriority$async = false,
+    required void Function(_$jni.JObject priorityTaskManager)
+        setPriorityTaskManager,
+    this.setPriorityTaskManager$async = false,
+    required bool Function() isSleepingForOffload,
+    required bool Function() isTunnelingEnabled,
+    required void Function() release$1,
+    this.release$1$async = false,
+    required bool Function() isReleased$1,
+    required void Function(_$jni.JObject imageOutput) setImageOutput,
+    this.setImageOutput$async = false,
+  })  : _getPlayerError = getPlayerError,
+        _getAudioComponent = getAudioComponent,
+        _getVideoComponent = getVideoComponent,
+        _getTextComponent = getTextComponent,
+        _getDeviceComponent = getDeviceComponent,
+        _addAudioOffloadListener = addAudioOffloadListener,
+        _removeAudioOffloadListener = removeAudioOffloadListener,
+        _getAnalyticsCollector = getAnalyticsCollector,
+        _addAnalyticsListener = addAnalyticsListener,
+        _removeAnalyticsListener = removeAnalyticsListener,
+        _getRendererCount = getRendererCount,
+        _getRendererType = getRendererType,
+        _getRenderer = getRenderer,
+        _getTrackSelector = getTrackSelector,
+        _getCurrentTrackGroups = getCurrentTrackGroups,
+        _getCurrentTrackSelections = getCurrentTrackSelections,
+        _getPlaybackLooper = getPlaybackLooper,
+        _getClock = getClock,
+        _prepare = prepare,
+        _prepare$1 = prepare$1,
+        _setMediaSources = setMediaSources,
+        _setMediaSources$1 = setMediaSources$1,
+        _setMediaSources$2 = setMediaSources$2,
+        _setMediaSource = setMediaSource,
+        _setMediaSource$1 = setMediaSource$1,
+        _setMediaSource$2 = setMediaSource$2,
+        _addMediaSource = addMediaSource,
+        _addMediaSource$1 = addMediaSource$1,
+        _addMediaSources = addMediaSources,
+        _addMediaSources$1 = addMediaSources$1,
+        _setShuffleOrder = setShuffleOrder,
+        _setPreloadConfiguration = setPreloadConfiguration,
+        _getPreloadConfiguration = getPreloadConfiguration,
+        _replaceMediaItem = replaceMediaItem,
+        _replaceMediaItems = replaceMediaItems,
+        _setAudioSessionId = setAudioSessionId,
+        _getAudioSessionId = getAudioSessionId,
+        _setAuxEffectInfo = setAuxEffectInfo,
+        _clearAuxEffectInfo = clearAuxEffectInfo,
+        _setPreferredAudioDevice = setPreferredAudioDevice,
+        _setSkipSilenceEnabled = setSkipSilenceEnabled,
+        _getSkipSilenceEnabled = getSkipSilenceEnabled,
+        _setVideoEffects = setVideoEffects,
+        _setVideoScalingMode = setVideoScalingMode,
+        _getVideoScalingMode = getVideoScalingMode,
+        _setVideoChangeFrameRateStrategy = setVideoChangeFrameRateStrategy,
+        _getVideoChangeFrameRateStrategy = getVideoChangeFrameRateStrategy,
+        _setVideoFrameMetadataListener = setVideoFrameMetadataListener,
+        _clearVideoFrameMetadataListener = clearVideoFrameMetadataListener,
+        _setCameraMotionListener = setCameraMotionListener,
+        _clearCameraMotionListener = clearCameraMotionListener,
+        _createMessage = createMessage,
+        _setSeekParameters = setSeekParameters,
+        _getSeekParameters = getSeekParameters,
+        _setForegroundMode = setForegroundMode,
+        _setPauseAtEndOfMediaItems = setPauseAtEndOfMediaItems,
+        _getPauseAtEndOfMediaItems = getPauseAtEndOfMediaItems,
+        _getAudioFormat = getAudioFormat,
+        _getVideoFormat = getVideoFormat,
+        _getAudioDecoderCounters = getAudioDecoderCounters,
+        _getVideoDecoderCounters = getVideoDecoderCounters,
+        _setHandleAudioBecomingNoisy = setHandleAudioBecomingNoisy,
+        _setWakeMode = setWakeMode,
+        _setPriority = setPriority,
+        _setPriorityTaskManager = setPriorityTaskManager,
+        _isSleepingForOffload = isSleepingForOffload,
+        _isTunnelingEnabled = isTunnelingEnabled,
+        _release$1 = release$1,
+        _isReleased$1 = isReleased$1,
+        _setImageOutput = setImageOutput;
+
+  final _$jni.JObject Function() _getPlayerError;
+  final ExoPlayer_AudioComponent Function() _getAudioComponent;
+  final ExoPlayer_VideoComponent Function() _getVideoComponent;
+  final ExoPlayer_TextComponent Function() _getTextComponent;
+  final ExoPlayer_DeviceComponent Function() _getDeviceComponent;
+  final void Function(ExoPlayer_AudioOffloadListener audioOffloadListener)
+      _addAudioOffloadListener;
+  final bool addAudioOffloadListener$async;
+  final void Function(ExoPlayer_AudioOffloadListener audioOffloadListener)
+      _removeAudioOffloadListener;
+  final bool removeAudioOffloadListener$async;
+  final _$jni.JObject Function() _getAnalyticsCollector;
+  final void Function(_$jni.JObject analyticsListener) _addAnalyticsListener;
+  final bool addAnalyticsListener$async;
+  final void Function(_$jni.JObject analyticsListener) _removeAnalyticsListener;
+  final bool removeAnalyticsListener$async;
+  final int Function() _getRendererCount;
+  final int Function(int i) _getRendererType;
+  final _$jni.JObject Function(int i) _getRenderer;
+  final _$jni.JObject Function() _getTrackSelector;
+  final _$jni.JObject Function() _getCurrentTrackGroups;
+  final _$jni.JObject Function() _getCurrentTrackSelections;
+  final _$jni.JObject Function() _getPlaybackLooper;
+  final _$jni.JObject Function() _getClock;
+  final void Function(_$jni.JObject mediaSource) _prepare;
+  final bool prepare$async;
+  final void Function(_$jni.JObject mediaSource, bool z, bool z1) _prepare$1;
+  final bool prepare$1$async;
+  final void Function(_$jni.JList<_$jni.JObject> list) _setMediaSources;
+  final bool setMediaSources$async;
+  final void Function(_$jni.JList<_$jni.JObject> list, bool z)
+      _setMediaSources$1;
+  final bool setMediaSources$1$async;
+  final void Function(_$jni.JList<_$jni.JObject> list, int i, int j)
+      _setMediaSources$2;
+  final bool setMediaSources$2$async;
+  final void Function(_$jni.JObject mediaSource) _setMediaSource;
+  final bool setMediaSource$async;
+  final void Function(_$jni.JObject mediaSource, int j) _setMediaSource$1;
+  final bool setMediaSource$1$async;
+  final void Function(_$jni.JObject mediaSource, bool z) _setMediaSource$2;
+  final bool setMediaSource$2$async;
+  final void Function(_$jni.JObject mediaSource) _addMediaSource;
+  final bool addMediaSource$async;
+  final void Function(int i, _$jni.JObject mediaSource) _addMediaSource$1;
+  final bool addMediaSource$1$async;
+  final void Function(_$jni.JList<_$jni.JObject> list) _addMediaSources;
+  final bool addMediaSources$async;
+  final void Function(int i, _$jni.JList<_$jni.JObject> list)
+      _addMediaSources$1;
+  final bool addMediaSources$1$async;
+  final void Function(_$jni.JObject shuffleOrder) _setShuffleOrder;
+  final bool setShuffleOrder$async;
+  final void Function(ExoPlayer_PreloadConfiguration preloadConfiguration)
+      _setPreloadConfiguration;
+  final bool setPreloadConfiguration$async;
+  final ExoPlayer_PreloadConfiguration Function() _getPreloadConfiguration;
+  final void Function(int i, MediaItem mediaItem) _replaceMediaItem;
+  final bool replaceMediaItem$async;
+  final void Function(int i, int i1, _$jni.JList<MediaItem> list)
+      _replaceMediaItems;
+  final bool replaceMediaItems$async;
+  final void Function(int i) _setAudioSessionId;
+  final bool setAudioSessionId$async;
+  final int Function() _getAudioSessionId;
+  final void Function(_$jni.JObject auxEffectInfo) _setAuxEffectInfo;
+  final bool setAuxEffectInfo$async;
+  final void Function() _clearAuxEffectInfo;
+  final bool clearAuxEffectInfo$async;
+  final void Function(_$jni.JObject audioDeviceInfo) _setPreferredAudioDevice;
+  final bool setPreferredAudioDevice$async;
+  final void Function(bool z) _setSkipSilenceEnabled;
+  final bool setSkipSilenceEnabled$async;
+  final bool Function() _getSkipSilenceEnabled;
+  final void Function(_$jni.JList<_$jni.JObject> list) _setVideoEffects;
+  final bool setVideoEffects$async;
+  final void Function(int i) _setVideoScalingMode;
+  final bool setVideoScalingMode$async;
+  final int Function() _getVideoScalingMode;
+  final void Function(int i) _setVideoChangeFrameRateStrategy;
+  final bool setVideoChangeFrameRateStrategy$async;
+  final int Function() _getVideoChangeFrameRateStrategy;
+  final void Function(_$jni.JObject videoFrameMetadataListener)
+      _setVideoFrameMetadataListener;
+  final bool setVideoFrameMetadataListener$async;
+  final void Function(_$jni.JObject videoFrameMetadataListener)
+      _clearVideoFrameMetadataListener;
+  final bool clearVideoFrameMetadataListener$async;
+  final void Function(_$jni.JObject cameraMotionListener)
+      _setCameraMotionListener;
+  final bool setCameraMotionListener$async;
+  final void Function(_$jni.JObject cameraMotionListener)
+      _clearCameraMotionListener;
+  final bool clearCameraMotionListener$async;
+  final _$jni.JObject Function(_$jni.JObject target) _createMessage;
+  final void Function(_$jni.JObject seekParameters) _setSeekParameters;
+  final bool setSeekParameters$async;
+  final _$jni.JObject Function() _getSeekParameters;
+  final void Function(bool z) _setForegroundMode;
+  final bool setForegroundMode$async;
+  final void Function(bool z) _setPauseAtEndOfMediaItems;
+  final bool setPauseAtEndOfMediaItems$async;
+  final bool Function() _getPauseAtEndOfMediaItems;
+  final _$jni.JObject Function() _getAudioFormat;
+  final _$jni.JObject Function() _getVideoFormat;
+  final _$jni.JObject Function() _getAudioDecoderCounters;
+  final _$jni.JObject Function() _getVideoDecoderCounters;
+  final void Function(bool z) _setHandleAudioBecomingNoisy;
+  final bool setHandleAudioBecomingNoisy$async;
+  final void Function(int i) _setWakeMode;
+  final bool setWakeMode$async;
+  final void Function(int i) _setPriority;
+  final bool setPriority$async;
+  final void Function(_$jni.JObject priorityTaskManager)
+      _setPriorityTaskManager;
+  final bool setPriorityTaskManager$async;
+  final bool Function() _isSleepingForOffload;
+  final bool Function() _isTunnelingEnabled;
+  final void Function() _release$1;
+  final bool release$1$async;
+  final bool Function() _isReleased$1;
+  final void Function(_$jni.JObject imageOutput) _setImageOutput;
+  final bool setImageOutput$async;
+
+  _$jni.JObject getPlayerError() {
+    return _getPlayerError();
+  }
+
+  ExoPlayer_AudioComponent getAudioComponent() {
+    return _getAudioComponent();
+  }
+
+  ExoPlayer_VideoComponent getVideoComponent() {
+    return _getVideoComponent();
+  }
+
+  ExoPlayer_TextComponent getTextComponent() {
+    return _getTextComponent();
+  }
+
+  ExoPlayer_DeviceComponent getDeviceComponent() {
+    return _getDeviceComponent();
+  }
+
+  void addAudioOffloadListener(
+      ExoPlayer_AudioOffloadListener audioOffloadListener) {
+    return _addAudioOffloadListener(audioOffloadListener);
+  }
+
+  void removeAudioOffloadListener(
+      ExoPlayer_AudioOffloadListener audioOffloadListener) {
+    return _removeAudioOffloadListener(audioOffloadListener);
+  }
+
+  _$jni.JObject getAnalyticsCollector() {
+    return _getAnalyticsCollector();
+  }
+
+  void addAnalyticsListener(_$jni.JObject analyticsListener) {
+    return _addAnalyticsListener(analyticsListener);
+  }
+
+  void removeAnalyticsListener(_$jni.JObject analyticsListener) {
+    return _removeAnalyticsListener(analyticsListener);
+  }
+
+  int getRendererCount() {
+    return _getRendererCount();
+  }
+
+  int getRendererType(int i) {
+    return _getRendererType(i);
+  }
+
+  _$jni.JObject getRenderer(int i) {
+    return _getRenderer(i);
+  }
+
+  _$jni.JObject getTrackSelector() {
+    return _getTrackSelector();
+  }
+
+  _$jni.JObject getCurrentTrackGroups() {
+    return _getCurrentTrackGroups();
+  }
+
+  _$jni.JObject getCurrentTrackSelections() {
+    return _getCurrentTrackSelections();
+  }
+
+  _$jni.JObject getPlaybackLooper() {
+    return _getPlaybackLooper();
+  }
+
+  _$jni.JObject getClock() {
+    return _getClock();
+  }
+
+  void prepare(_$jni.JObject mediaSource) {
+    return _prepare(mediaSource);
+  }
+
+  void prepare$1(_$jni.JObject mediaSource, bool z, bool z1) {
+    return _prepare$1(mediaSource, z, z1);
+  }
+
+  void setMediaSources(_$jni.JList<_$jni.JObject> list) {
+    return _setMediaSources(list);
+  }
+
+  void setMediaSources$1(_$jni.JList<_$jni.JObject> list, bool z) {
+    return _setMediaSources$1(list, z);
+  }
+
+  void setMediaSources$2(_$jni.JList<_$jni.JObject> list, int i, int j) {
+    return _setMediaSources$2(list, i, j);
+  }
+
+  void setMediaSource(_$jni.JObject mediaSource) {
+    return _setMediaSource(mediaSource);
+  }
+
+  void setMediaSource$1(_$jni.JObject mediaSource, int j) {
+    return _setMediaSource$1(mediaSource, j);
+  }
+
+  void setMediaSource$2(_$jni.JObject mediaSource, bool z) {
+    return _setMediaSource$2(mediaSource, z);
+  }
+
+  void addMediaSource(_$jni.JObject mediaSource) {
+    return _addMediaSource(mediaSource);
+  }
+
+  void addMediaSource$1(int i, _$jni.JObject mediaSource) {
+    return _addMediaSource$1(i, mediaSource);
+  }
+
+  void addMediaSources(_$jni.JList<_$jni.JObject> list) {
+    return _addMediaSources(list);
+  }
+
+  void addMediaSources$1(int i, _$jni.JList<_$jni.JObject> list) {
+    return _addMediaSources$1(i, list);
+  }
+
+  void setShuffleOrder(_$jni.JObject shuffleOrder) {
+    return _setShuffleOrder(shuffleOrder);
+  }
+
+  void setPreloadConfiguration(
+      ExoPlayer_PreloadConfiguration preloadConfiguration) {
+    return _setPreloadConfiguration(preloadConfiguration);
+  }
+
+  ExoPlayer_PreloadConfiguration getPreloadConfiguration() {
+    return _getPreloadConfiguration();
+  }
+
+  void replaceMediaItem(int i, MediaItem mediaItem) {
+    return _replaceMediaItem(i, mediaItem);
+  }
+
+  void replaceMediaItems(int i, int i1, _$jni.JList<MediaItem> list) {
+    return _replaceMediaItems(i, i1, list);
+  }
+
+  void setAudioSessionId(int i) {
+    return _setAudioSessionId(i);
+  }
+
+  int getAudioSessionId() {
+    return _getAudioSessionId();
+  }
+
+  void setAuxEffectInfo(_$jni.JObject auxEffectInfo) {
+    return _setAuxEffectInfo(auxEffectInfo);
+  }
+
+  void clearAuxEffectInfo() {
+    return _clearAuxEffectInfo();
+  }
+
+  void setPreferredAudioDevice(_$jni.JObject audioDeviceInfo) {
+    return _setPreferredAudioDevice(audioDeviceInfo);
+  }
+
+  void setSkipSilenceEnabled(bool z) {
+    return _setSkipSilenceEnabled(z);
+  }
+
+  bool getSkipSilenceEnabled() {
+    return _getSkipSilenceEnabled();
+  }
+
+  void setVideoEffects(_$jni.JList<_$jni.JObject> list) {
+    return _setVideoEffects(list);
+  }
+
+  void setVideoScalingMode(int i) {
+    return _setVideoScalingMode(i);
+  }
+
+  int getVideoScalingMode() {
+    return _getVideoScalingMode();
+  }
+
+  void setVideoChangeFrameRateStrategy(int i) {
+    return _setVideoChangeFrameRateStrategy(i);
+  }
+
+  int getVideoChangeFrameRateStrategy() {
+    return _getVideoChangeFrameRateStrategy();
+  }
+
+  void setVideoFrameMetadataListener(_$jni.JObject videoFrameMetadataListener) {
+    return _setVideoFrameMetadataListener(videoFrameMetadataListener);
+  }
+
+  void clearVideoFrameMetadataListener(
+      _$jni.JObject videoFrameMetadataListener) {
+    return _clearVideoFrameMetadataListener(videoFrameMetadataListener);
+  }
+
+  void setCameraMotionListener(_$jni.JObject cameraMotionListener) {
+    return _setCameraMotionListener(cameraMotionListener);
+  }
+
+  void clearCameraMotionListener(_$jni.JObject cameraMotionListener) {
+    return _clearCameraMotionListener(cameraMotionListener);
+  }
+
+  _$jni.JObject createMessage(_$jni.JObject target) {
+    return _createMessage(target);
+  }
+
+  void setSeekParameters(_$jni.JObject seekParameters) {
+    return _setSeekParameters(seekParameters);
+  }
+
+  _$jni.JObject getSeekParameters() {
+    return _getSeekParameters();
+  }
+
+  void setForegroundMode(bool z) {
+    return _setForegroundMode(z);
+  }
+
+  void setPauseAtEndOfMediaItems(bool z) {
+    return _setPauseAtEndOfMediaItems(z);
+  }
+
+  bool getPauseAtEndOfMediaItems() {
+    return _getPauseAtEndOfMediaItems();
+  }
+
+  _$jni.JObject getAudioFormat() {
+    return _getAudioFormat();
+  }
+
+  _$jni.JObject getVideoFormat() {
+    return _getVideoFormat();
+  }
+
+  _$jni.JObject getAudioDecoderCounters() {
+    return _getAudioDecoderCounters();
+  }
+
+  _$jni.JObject getVideoDecoderCounters() {
+    return _getVideoDecoderCounters();
+  }
+
+  void setHandleAudioBecomingNoisy(bool z) {
+    return _setHandleAudioBecomingNoisy(z);
+  }
+
+  void setWakeMode(int i) {
+    return _setWakeMode(i);
+  }
+
+  void setPriority(int i) {
+    return _setPriority(i);
+  }
+
+  void setPriorityTaskManager(_$jni.JObject priorityTaskManager) {
+    return _setPriorityTaskManager(priorityTaskManager);
+  }
+
+  bool isSleepingForOffload() {
+    return _isSleepingForOffload();
+  }
+
+  bool isTunnelingEnabled() {
+    return _isTunnelingEnabled();
+  }
+
+  void release$1() {
+    return _release$1();
+  }
+
+  bool isReleased$1() {
+    return _isReleased$1();
+  }
+
+  void setImageOutput(_$jni.JObject imageOutput) {
+    return _setImageOutput(imageOutput);
+  }
+}
+
+final class $ExoPlayer$Type extends _$jni.JObjType<ExoPlayer> {
+  @_$jni.internal
+  const $ExoPlayer$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature => r'Landroidx/media3/exoplayer/ExoPlayer;';
+
+  @_$jni.internal
+  @_$core.override
+  ExoPlayer fromReference(_$jni.JReference reference) =>
+      ExoPlayer.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($ExoPlayer$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($ExoPlayer$Type) && other is $ExoPlayer$Type;
+  }
+}
+
+/// from: `androidx.media3.common.PlaybackParameters`
+class PlaybackParameters extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<PlaybackParameters> $type;
+
+  @_$jni.internal
+  PlaybackParameters.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class =
+      _$jni.JClass.forName(r'androidx/media3/common/PlaybackParameters');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $PlaybackParameters$Type();
+  static final _id_DEFAULT = _class.staticFieldId(
+    r'DEFAULT',
+    r'Landroidx/media3/common/PlaybackParameters;',
+  );
+
+  /// from: `static public final androidx.media3.common.PlaybackParameters DEFAULT`
+  /// The returned object must be released after use, by calling the [release] method.
+  static PlaybackParameters get DEFAULT =>
+      _id_DEFAULT.get(_class, const $PlaybackParameters$Type());
+
+  static final _id_speed = _class.instanceFieldId(
+    r'speed',
+    r'F',
+  );
+
+  /// from: `public final float speed`
+  double get speed => _id_speed.get(this, const _$jni.jfloatType());
+
+  static final _id_pitch = _class.instanceFieldId(
+    r'pitch',
+    r'F',
+  );
+
+  /// from: `public final float pitch`
+  double get pitch => _id_pitch.get(this, const _$jni.jfloatType());
+
+  static final _id_new$ = _class.constructorId(
+    r'(F)V',
+  );
+
+  static final _new$ = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Double,)>)>>('globalEnv_NewObject')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, double)>();
+
+  /// from: `public void <init>(float f)`
+  /// The returned object must be released after use, by calling the [release] method.
+  factory PlaybackParameters(
+    double f,
+  ) {
+    return PlaybackParameters.fromReference(
+        _new$(_class.reference.pointer, _id_new$ as _$jni.JMethodIDPtr, f)
+            .reference);
+  }
+
+  static final _id_new$1 = _class.constructorId(
+    r'(FF)V',
+  );
+
+  static final _new$1 = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Double, _$jni.Double)>)>>(
+          'globalEnv_NewObject')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, double, double)>();
+
+  /// from: `public void <init>(float f, float f1)`
+  /// The returned object must be released after use, by calling the [release] method.
+  factory PlaybackParameters.new$1(
+    double f,
+    double f1,
+  ) {
+    return PlaybackParameters.fromReference(
+        _new$1(_class.reference.pointer, _id_new$1 as _$jni.JMethodIDPtr, f, f1)
+            .reference);
+  }
+
+  static final _id_getMediaTimeUsForPlayoutTimeMs = _class.instanceMethodId(
+    r'getMediaTimeUsForPlayoutTimeMs',
+    r'(J)J',
+  );
+
+  static final _getMediaTimeUsForPlayoutTimeMs =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr, _$jni.VarArgs<(_$jni.Int64,)>)>>(
+              'globalEnv_CallLongMethod')
+          .asFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public long getMediaTimeUsForPlayoutTimeMs(long j)`
+  int getMediaTimeUsForPlayoutTimeMs(
+    int j,
+  ) {
+    return _getMediaTimeUsForPlayoutTimeMs(reference.pointer,
+            _id_getMediaTimeUsForPlayoutTimeMs as _$jni.JMethodIDPtr, j)
+        .long;
+  }
+
+  static final _id_withSpeed = _class.instanceMethodId(
+    r'withSpeed',
+    r'(F)Landroidx/media3/common/PlaybackParameters;',
+  );
+
+  static final _withSpeed = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni
+                      .VarArgs<(_$jni.Double,)>)>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, double)>();
+
+  /// from: `public androidx.media3.common.PlaybackParameters withSpeed(float f)`
+  /// The returned object must be released after use, by calling the [release] method.
+  PlaybackParameters withSpeed(
+    double f,
+  ) {
+    return _withSpeed(reference.pointer, _id_withSpeed as _$jni.JMethodIDPtr, f)
+        .object(const $PlaybackParameters$Type());
+  }
+
+  static final _id_equals = _class.instanceMethodId(
+    r'equals',
+    r'(Ljava/lang/Object;)Z',
+  );
+
+  static final _equals = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public boolean equals(java.lang.Object object)`
+  bool equals(
+    _$jni.JObject object,
+  ) {
+    return _equals(reference.pointer, _id_equals as _$jni.JMethodIDPtr,
+            object.reference.pointer)
+        .boolean;
+  }
+
+  static final _id_hashCode$1 = _class.instanceMethodId(
+    r'hashCode',
+    r'()I',
+  );
+
+  static final _hashCode$1 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public int hashCode()`
+  int hashCode$1() {
+    return _hashCode$1(reference.pointer, _id_hashCode$1 as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_toString$1 = _class.instanceMethodId(
+    r'toString',
+    r'()Ljava/lang/String;',
+  );
+
+  static final _toString$1 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public java.lang.String toString()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JString toString$1() {
+    return _toString$1(reference.pointer, _id_toString$1 as _$jni.JMethodIDPtr)
+        .object(const _$jni.JStringType());
+  }
+
+  static final _id_toBundle = _class.instanceMethodId(
+    r'toBundle',
+    r'()Landroid/os/Bundle;',
+  );
+
+  static final _toBundle = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public android.os.Bundle toBundle()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject toBundle() {
+    return _toBundle(reference.pointer, _id_toBundle as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_fromBundle = _class.staticMethodId(
+    r'fromBundle',
+    r'(Landroid/os/Bundle;)Landroidx/media3/common/PlaybackParameters;',
+  );
+
+  static final _fromBundle = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallStaticObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `static public androidx.media3.common.PlaybackParameters fromBundle(android.os.Bundle bundle)`
+  /// The returned object must be released after use, by calling the [release] method.
+  static PlaybackParameters fromBundle(
+    _$jni.JObject bundle,
+  ) {
+    return _fromBundle(_class.reference.pointer,
+            _id_fromBundle as _$jni.JMethodIDPtr, bundle.reference.pointer)
+        .object(const $PlaybackParameters$Type());
+  }
+}
+
+final class $PlaybackParameters$Type
+    extends _$jni.JObjType<PlaybackParameters> {
+  @_$jni.internal
+  const $PlaybackParameters$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature => r'Landroidx/media3/common/PlaybackParameters;';
+
+  @_$jni.internal
+  @_$core.override
+  PlaybackParameters fromReference(_$jni.JReference reference) =>
+      PlaybackParameters.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($PlaybackParameters$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($PlaybackParameters$Type) &&
+        other is $PlaybackParameters$Type;
+  }
+}
+
 /// from: `io.flutter.plugins.videoplayer.VideoPlayer`
 class VideoPlayer extends _$jni.JObject {
   @_$jni.internal
@@ -51,6 +23030,20 @@ class VideoPlayer extends _$jni.JObject {
 
   /// The type which includes information such as the signature of this class.
   static const type = $VideoPlayer$Type();
+  static final _id_exoPlayer = _class.instanceFieldId(
+    r'exoPlayer',
+    r'Landroidx/media3/exoplayer/ExoPlayer;',
+  );
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer exoPlayer`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer get exoPlayer => _id_exoPlayer.get(this, const $ExoPlayer$Type());
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer exoPlayer`
+  /// The returned object must be released after use, by calling the [release] method.
+  set exoPlayer(ExoPlayer value) =>
+      _id_exoPlayer.set(this, const $ExoPlayer$Type(), value);
+
   static final _id_onSurfaceCreated = _class.instanceMethodId(
     r'onSurfaceCreated',
     r'()V',

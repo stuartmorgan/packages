@@ -3,6 +3,7 @@
 // found in the LICENSE file.
 
 import 'dart:async';
+import 'dart:math' as math;
 
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -17,7 +18,7 @@ import 'messages.g.dart';
 class AndroidVideoPlayer extends VideoPlayerPlatform {
   final AndroidVideoPlayerApi _api = AndroidVideoPlayerApi();
 
-  Map<int, VideoPlayer> _playersByTextureId = <int, VideoPlayer>{};
+  final Map<int, VideoPlayer> _playersByTextureId = <int, VideoPlayer>{};
 
   /// Registers this class as the default instance of [PathProviderPlatform].
   static void registerWith() {
@@ -30,7 +31,10 @@ class AndroidVideoPlayer extends VideoPlayerPlatform {
   }
 
   @override
-  Future<void> dispose(int textureId) {
+  Future<void> dispose(int textureId) async {
+    await _eventSubscription?.cancel();
+    // TODO(stuartmorgan): Figure out how to unwind disposeAllPlayers so dispose
+    // doesn't have to be native.
     return _api.dispose(TextureMessage(textureId: textureId));
   }
 
@@ -82,87 +86,116 @@ class AndroidVideoPlayer extends VideoPlayerPlatform {
 
   @override
   Future<void> setLooping(int textureId, bool looping) async {
-    _playerFor(textureId).setLooping(looping);
+    _exoplayerAsPlayerFor(textureId).setRepeatMode(
+        looping ? Player.REPEAT_MODE_ALL : Player.REPEAT_MODE_OFF);
   }
 
   @override
   Future<void> play(int textureId) async {
-    _playerFor(textureId).play();
+    _exoplayerAsPlayerFor(textureId).play();
   }
 
   @override
   Future<void> pause(int textureId) async {
-    _playerFor(textureId).pause();
+    _exoplayerAsPlayerFor(textureId).pause();
   }
 
   @override
   Future<void> setVolume(int textureId, double volume) async {
-    _playerFor(textureId).setVolume(volume);
+    final double limited = math.max(0, math.min(1, volume));
+    _exoplayerAsPlayerFor(textureId).setVolume(limited);
   }
 
   @override
   Future<void> setPlaybackSpeed(int textureId, double speed) async {
     assert(speed > 0);
-    _playerFor(textureId).setPlaybackSpeed(speed);
+
+    // Pitch and skipSilence are not currently exposed via the plugin's API, so
+    // always just use the default values.
+    final PlaybackParameters playbackParameters = PlaybackParameters(speed);
+    _exoplayerAsPlayerFor(textureId).setPlaybackParameters(playbackParameters);
   }
 
   @override
   Future<void> seekTo(int textureId, Duration position) async {
-    _playerFor(textureId).seekTo(position.inMilliseconds);
+    _exoplayerAsPlayerFor(textureId).seekTo(position.inMilliseconds);
   }
 
   @override
   Future<Duration> getPosition(int textureId) async {
-    final VideoPlayer player = _playerFor(textureId);
-    final int position = player.getPosition();
+    final Player player = _exoplayerAsPlayerFor(textureId);
+    final int position = player.getCurrentPosition();
     // TODO(stuartmorgan): Find a better place to trigger this; this is a hack
     // that relies on the fact that `getPosition` is polled to drive buffering
     // updates as a side-effect. If nothing else, this could be its own timer.
+    final int bufferPosition = player.getBufferedPosition();
     unawaited(() async {
-      player.sendBufferingUpdate();
+      _synthesizeBufferUpdate(bufferPosition);
     }());
     return Duration(milliseconds: position);
   }
 
+  final StreamController<VideoEvent> _eventStreamController =
+      StreamController<VideoEvent>.broadcast();
+  StreamSubscription<dynamic>? _eventSubscription;
+
+  void _synthesizeBufferUpdate(int bufferPosition) {
+    _eventStreamController.add(VideoEvent(
+      buffered: <DurationRange>[
+        DurationRange(
+          Duration.zero,
+          Duration(milliseconds: bufferPosition),
+        )
+      ],
+      eventType: VideoEventType.bufferingUpdate,
+    ));
+  }
+
   @override
   Stream<VideoEvent> videoEventsFor(int textureId) {
-    return _eventChannelFor(textureId)
+    _eventSubscription = _eventChannelFor(textureId)
         .receiveBroadcastStream()
-        .map((dynamic event) {
+        .listen((dynamic event) {
       final Map<dynamic, dynamic> map = event as Map<dynamic, dynamic>;
       switch (map['event']) {
         case 'initialized':
-          return VideoEvent(
+          _eventStreamController.add(VideoEvent(
             eventType: VideoEventType.initialized,
             duration: Duration(milliseconds: map['duration'] as int),
             size: Size((map['width'] as num?)?.toDouble() ?? 0.0,
                 (map['height'] as num?)?.toDouble() ?? 0.0),
             rotationCorrection: map['rotationCorrection'] as int? ?? 0,
-          );
+          ));
         case 'completed':
-          return VideoEvent(
+          _eventStreamController.add(VideoEvent(
             eventType: VideoEventType.completed,
-          );
+          ));
         case 'bufferingUpdate':
           final List<dynamic> values = map['values'] as List<dynamic>;
 
-          return VideoEvent(
+          _eventStreamController.add(VideoEvent(
             buffered: values.map<DurationRange>(_toDurationRange).toList(),
             eventType: VideoEventType.bufferingUpdate,
-          );
+          ));
         case 'bufferingStart':
-          return VideoEvent(eventType: VideoEventType.bufferingStart);
+          _eventStreamController
+              .add(VideoEvent(eventType: VideoEventType.bufferingStart));
         case 'bufferingEnd':
-          return VideoEvent(eventType: VideoEventType.bufferingEnd);
+          _eventStreamController
+              .add(VideoEvent(eventType: VideoEventType.bufferingEnd));
         case 'isPlayingStateUpdate':
-          return VideoEvent(
+          _eventStreamController.add(VideoEvent(
             eventType: VideoEventType.isPlayingStateUpdate,
             isPlaying: map['isPlaying'] as bool,
-          );
+          ));
         default:
-          return VideoEvent(eventType: VideoEventType.unknown);
+          _eventStreamController
+              .add(VideoEvent(eventType: VideoEventType.unknown));
       }
+    }, onError: (Object e) {
+      _eventStreamController.addError(e);
     });
+    return _eventStreamController.stream;
   }
 
   @override
@@ -178,6 +211,15 @@ class AndroidVideoPlayer extends VideoPlayerPlatform {
 
   VideoPlayer _playerFor(int textureId) {
     return _playersByTextureId[textureId]!;
+  }
+
+  ExoPlayer _exoplayerFor(int textureId) {
+    return _playersByTextureId[textureId]!.exoPlayer;
+  }
+
+  // Workaround for https://github.com/dart-lang/native/issues/1653
+  Player _exoplayerAsPlayerFor(int textureId) {
+    return _playersByTextureId[textureId]!.exoPlayer.as(Player.type);
   }
 
   EventChannel _eventChannelFor(int textureId) {
