@@ -35,41 +35,53 @@ class AndroidVideoPlayer extends VideoPlayerPlatform {
     await _eventSubscription?.cancel();
     // TODO(stuartmorgan): Figure out how to unwind disposeAllPlayers so dispose
     // doesn't have to be native.
-    return _api.dispose(TextureMessage(textureId: textureId));
+    return _api.dispose(textureId);
   }
 
   @override
   Future<int?> create(DataSource dataSource) async {
-    String? asset;
-    String? packageName;
-    String? uri;
+    String uri;
     String? formatHint;
     Map<String, String> httpHeaders = <String, String>{};
     switch (dataSource.sourceType) {
       case DataSourceType.asset:
-        asset = dataSource.asset;
-        packageName = dataSource.package;
+        final String? asset = dataSource.asset;
+        if (asset == null) {
+          throw ArgumentError('asset must not be null for asset data source');
+        }
+        final String assetKey =
+            await _api.keyForAsset(asset, dataSource.package);
+        uri = 'asset:///$assetKey';
       case DataSourceType.network:
-        uri = dataSource.uri;
+        final String? sourceUri = dataSource.uri;
+        if (sourceUri == null) {
+          throw ArgumentError('uri must not be null for network data source');
+        }
+        uri = sourceUri;
         formatHint = _videoFormatStringMap[dataSource.formatHint];
         httpHeaders = dataSource.httpHeaders;
       case DataSourceType.file:
-        uri = dataSource.uri;
+        final String? sourceUri = dataSource.uri;
+        if (sourceUri == null) {
+          throw ArgumentError('uri must not be null for file data source');
+        }
+        uri = sourceUri;
         httpHeaders = dataSource.httpHeaders;
       case DataSourceType.contentUri:
-        uri = dataSource.uri;
+        final String? sourceUri = dataSource.uri;
+        if (sourceUri == null) {
+          throw ArgumentError('uri must not be null for content data source');
+        }
+        uri = sourceUri;
     }
-    final CreateMessage message = CreateMessage(
-      asset: asset,
-      packageName: packageName,
-      uri: uri,
-      httpHeaders: httpHeaders,
-      formatHint: formatHint,
-    );
 
-    final TextureMessage response = await _api.create(message);
-    await _transferPlayer(response.textureId);
-    return response.textureId;
+    final int textureId = await _api.create(
+      uri,
+      httpHeaders,
+      formatHint,
+    );
+    await _transferPlayer(textureId);
+    return textureId;
   }
 
   // Workaround to get a native-side-created object over to Dart.
@@ -205,8 +217,7 @@ class AndroidVideoPlayer extends VideoPlayerPlatform {
 
   @override
   Future<void> setMixWithOthers(bool mixWithOthers) {
-    return _api
-        .setMixWithOthers(MixWithOthersMessage(mixWithOthers: mixWithOthers));
+    return _api.setMixWithOthers(mixWithOthers);
   }
 
   VideoPlayer _playerFor(int textureId) {

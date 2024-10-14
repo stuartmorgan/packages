@@ -8,18 +8,17 @@ import android.content.Context;
 import android.os.Build;
 import android.util.LongSparseArray;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import io.flutter.FlutterInjector;
 import io.flutter.Log;
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.plugin.common.EventChannel;
 import io.flutter.plugins.videoplayer.Messages.AndroidVideoPlayerApi;
-import io.flutter.plugins.videoplayer.Messages.CreateMessage;
-import io.flutter.plugins.videoplayer.Messages.MixWithOthersMessage;
-import io.flutter.plugins.videoplayer.Messages.TextureMessage;
 import io.flutter.view.TextureRegistry;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Map;
 import javax.net.ssl.HttpsURLConnection;
 
 /** Android platform implementation of the VideoPlayerPlugin. */
@@ -88,27 +87,30 @@ public class VideoPlayerPlugin implements FlutterPlugin, AndroidVideoPlayerApi {
     disposeAllPlayers();
   }
 
-  public @NonNull TextureMessage create(@NonNull CreateMessage arg) {
+  @NonNull
+  @Override
+  public String keyForAsset(@NonNull String asset, @Nullable String packageName) {
+    if (packageName != null) {
+      return flutterState.keyForAssetAndPackageName.get(asset, packageName);
+    } else {
+      return flutterState.keyForAsset.get(asset);
+    }
+  }
+
+  public @NonNull Long create(
+      @NonNull String uri, @NonNull Map<String, String> httpHeaders, @Nullable String formatHint) {
     TextureRegistry.SurfaceProducer handle = flutterState.textureRegistry.createSurfaceProducer();
     EventChannel eventChannel =
         new EventChannel(
             flutterState.binaryMessenger, "flutter.io/videoPlayer/videoEvents" + handle.id());
 
     final VideoAsset videoAsset;
-    if (arg.getAsset() != null) {
-      String assetLookupKey;
-      if (arg.getPackageName() != null) {
-        assetLookupKey =
-            flutterState.keyForAssetAndPackageName.get(arg.getAsset(), arg.getPackageName());
-      } else {
-        assetLookupKey = flutterState.keyForAsset.get(arg.getAsset());
-      }
-      videoAsset = VideoAsset.fromAssetUrl("asset:///" + assetLookupKey);
-    } else if (arg.getUri().startsWith("rtsp://")) {
-      videoAsset = VideoAsset.fromRtspUrl(arg.getUri());
+    if (uri.startsWith("asset://")) {
+      videoAsset = VideoAsset.fromAssetUrl(uri);
+    } else if (uri.startsWith("rtsp://")) {
+      videoAsset = VideoAsset.fromRtspUrl(uri);
     } else {
       VideoAsset.StreamingFormat streamingFormat = VideoAsset.StreamingFormat.UNKNOWN;
-      String formatHint = arg.getFormatHint();
       if (formatHint != null) {
         switch (formatHint) {
           case "ss":
@@ -122,7 +124,7 @@ public class VideoPlayerPlugin implements FlutterPlugin, AndroidVideoPlayerApi {
             break;
         }
       }
-      videoAsset = VideoAsset.fromRemoteUrl(arg.getUri(), streamingFormat, arg.getHttpHeaders());
+      videoAsset = VideoAsset.fromRemoteUrl(uri, streamingFormat, httpHeaders);
     }
     videoPlayers.put(
         handle.id(),
@@ -133,7 +135,7 @@ public class VideoPlayerPlugin implements FlutterPlugin, AndroidVideoPlayerApi {
             videoAsset,
             options));
 
-    return new TextureMessage.Builder().setTextureId(handle.id()).build();
+    return handle.id();
   }
 
   @Override
@@ -142,15 +144,15 @@ public class VideoPlayerPlugin implements FlutterPlugin, AndroidVideoPlayerApi {
     transfer.players.put(key, videoPlayers.get(textureId));
   }
 
-  public void dispose(@NonNull TextureMessage arg) {
-    VideoPlayer player = videoPlayers.get(arg.getTextureId());
+  public void dispose(@NonNull Long textureId) {
+    VideoPlayer player = videoPlayers.get(textureId);
     player.dispose();
-    videoPlayers.remove(arg.getTextureId());
+    videoPlayers.remove(textureId);
   }
 
   @Override
-  public void setMixWithOthers(@NonNull MixWithOthersMessage arg) {
-    options.mixWithOthers = arg.getMixWithOthers();
+  public void setMixWithOthers(@NonNull Boolean mixWithOthers) {
+    options.mixWithOthers = mixWithOthers;
   }
 
   private interface KeyForAssetFn {

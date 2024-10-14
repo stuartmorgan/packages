@@ -13,54 +13,12 @@ import 'package:pigeon/pigeon.dart';
   ),
   copyrightHeader: 'pigeons/copyright.txt',
 ))
-class TextureMessage {
-  TextureMessage(this.textureId);
-  int textureId;
-}
-
-class LoopingMessage {
-  LoopingMessage(this.textureId, this.isLooping);
-  int textureId;
-  bool isLooping;
-}
-
-class VolumeMessage {
-  VolumeMessage(this.textureId, this.volume);
-  int textureId;
-  double volume;
-}
-
-class PlaybackSpeedMessage {
-  PlaybackSpeedMessage(this.textureId, this.speed);
-  int textureId;
-  double speed;
-}
-
-class PositionMessage {
-  PositionMessage(this.textureId, this.position);
-  int textureId;
-  int position;
-}
-
-class CreateMessage {
-  CreateMessage({required this.httpHeaders});
-  String? asset;
-  String? uri;
-  String? packageName;
-  String? formatHint;
-  Map<String, String> httpHeaders;
-}
-
-class MixWithOthersMessage {
-  MixWithOthersMessage(this.mixWithOthers);
-  bool mixWithOthers;
-}
-
 @HostApi(dartHostTestHandler: 'TestHostVideoPlayerApi')
 abstract class AndroidVideoPlayerApi {
   void initialize();
-  TextureMessage create(CreateMessage msg);
+  String keyForAsset(String asset, String? packageName);
+  int create(String uri, Map<String, String> httpHeaders, String? formatHint);
   void cacheInstance(String key, int textureId);
-  void dispose(TextureMessage msg);
-  void setMixWithOthers(MixWithOthersMessage msg);
+  void dispose(int textureId);
+  void setMixWithOthers(bool mixWithOthers);
 }
