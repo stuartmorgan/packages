@@ -39,9 +39,7 @@ abstract class TestHostVideoPlayerApi {
       TestDefaultBinaryMessengerBinding.instance;
   static const MessageCodec<Object?> pigeonChannelCodec = _PigeonCodec();
 
-  void initialize();
-
-  String keyForAsset(String asset, String? packageName);
+  void initialize(String key);
 
   int create(String uri, Map<String, String> httpHeaders, String? formatHint);
 
@@ -72,42 +70,15 @@ abstract class TestHostVideoPlayerApi {
         _testBinaryMessengerBinding!.defaultBinaryMessenger
             .setMockDecodedMessageHandler<Object?>(pigeonVar_channel,
                 (Object? message) async {
-          try {
-            api.initialize();
-            return wrapResponse(empty: true);
-          } on PlatformException catch (e) {
-            return wrapResponse(error: e);
-          } catch (e) {
-            return wrapResponse(
-                error: PlatformException(code: 'error', message: e.toString()));
-          }
-        });
-      }
-    }
-    {
-      final BasicMessageChannel<
-          Object?> pigeonVar_channel = BasicMessageChannel<
-              Object?>(
-          'dev.flutter.pigeon.video_player_android.AndroidVideoPlayerApi.keyForAsset$messageChannelSuffix',
-          pigeonChannelCodec,
-          binaryMessenger: binaryMessenger);
-      if (api == null) {
-        _testBinaryMessengerBinding!.defaultBinaryMessenger
-            .setMockDecodedMessageHandler<Object?>(pigeonVar_channel, null);
-      } else {
-        _testBinaryMessengerBinding!.defaultBinaryMessenger
-            .setMockDecodedMessageHandler<Object?>(pigeonVar_channel,
-                (Object? message) async {
           assert(message != null,
-              'Argument for dev.flutter.pigeon.video_player_android.AndroidVideoPlayerApi.keyForAsset was null.');
+              'Argument for dev.flutter.pigeon.video_player_android.AndroidVideoPlayerApi.initialize was null.');
           final List<Object?> args = (message as List<Object?>?)!;
-          final String? arg_asset = (args[0] as String?);
-          assert(arg_asset != null,
-              'Argument for dev.flutter.pigeon.video_player_android.AndroidVideoPlayerApi.keyForAsset was null, expected non-null String.');
-          final String? arg_packageName = (args[1] as String?);
+          final String? arg_key = (args[0] as String?);
+          assert(arg_key != null,
+              'Argument for dev.flutter.pigeon.video_player_android.AndroidVideoPlayerApi.initialize was null, expected non-null String.');
           try {
-            final String output = api.keyForAsset(arg_asset!, arg_packageName);
-            return <Object?>[output];
+            api.initialize(arg_key!);
+            return wrapResponse(empty: true);
           } on PlatformException catch (e) {
             return wrapResponse(error: e);
           } catch (e) {

@@ -79,10 +79,7 @@ public class Messages {
   /** Generated interface from Pigeon that represents a handler of messages from Flutter. */
   public interface AndroidVideoPlayerApi {
 
-    void initialize();
-
-    @NonNull
-    String keyForAsset(@NonNull String asset, @Nullable String packageName);
+    void initialize(@NonNull String key);
 
     @NonNull
     Long create(
@@ -123,35 +120,11 @@ public class Messages {
           channel.setMessageHandler(
               (message, reply) -> {
                 ArrayList<Object> wrapped = new ArrayList<>();
-                try {
-                  api.initialize();
-                  wrapped.add(0, null);
-                } catch (Throwable exception) {
-                  wrapped = wrapError(exception);
-                }
-                reply.reply(wrapped);
-              });
-        } else {
-          channel.setMessageHandler(null);
-        }
-      }
-      {
-        BasicMessageChannel<Object> channel =
-            new BasicMessageChannel<>(
-                binaryMessenger,
-                "dev.flutter.pigeon.video_player_android.AndroidVideoPlayerApi.keyForAsset"
-                    + messageChannelSuffix,
-                getCodec());
-        if (api != null) {
-          channel.setMessageHandler(
-              (message, reply) -> {
-                ArrayList<Object> wrapped = new ArrayList<>();
                 ArrayList<Object> args = (ArrayList<Object>) message;
-                String assetArg = (String) args.get(0);
-                String packageNameArg = (String) args.get(1);
+                String keyArg = (String) args.get(0);
                 try {
-                  String output = api.keyForAsset(assetArg, packageNameArg);
-                  wrapped.add(0, output);
+                  api.initialize(keyArg);
+                  wrapped.add(0, null);
                 } catch (Throwable exception) {
                   wrapped = wrapError(exception);
                 }

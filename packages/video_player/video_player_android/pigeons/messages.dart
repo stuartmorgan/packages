@@ -15,8 +15,7 @@ import 'package:pigeon/pigeon.dart';
 ))
 @HostApi(dartHostTestHandler: 'TestHostVideoPlayerApi')
 abstract class AndroidVideoPlayerApi {
-  void initialize();
-  String keyForAsset(String asset, String? packageName);
+  void initialize(String key);
   int create(String uri, Map<String, String> httpHeaders, String? formatHint);
   void cacheInstance(String key, int textureId);
   void dispose(int textureId);

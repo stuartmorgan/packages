@@ -18,6 +18,7 @@ import 'messages.g.dart';
 class AndroidVideoPlayer extends VideoPlayerPlatform {
   final AndroidVideoPlayerApi _api = AndroidVideoPlayerApi();
 
+  late final FlutterState_Wrapper _pluginState;
   final Map<int, VideoPlayer> _playersByTextureId = <int, VideoPlayer>{};
 
   /// Registers this class as the default instance of [PathProviderPlatform].
@@ -26,8 +27,14 @@ class AndroidVideoPlayer extends VideoPlayerPlatform {
   }
 
   @override
-  Future<void> init() {
-    return _api.initialize();
+  Future<void> init() async {
+    // This is in theory racy, but fine for a temporary workaround in the
+    // prototype.
+    final String transferId = '${DateTime.now().microsecondsSinceEpoch}';
+    await _api.initialize(transferId);
+    _pluginState = VideoPlayerGlobalTransfer.getInstance()
+        .state
+        .remove(JString.fromString(transferId))!;
   }
 
   @override
@@ -46,11 +53,15 @@ class AndroidVideoPlayer extends VideoPlayerPlatform {
     switch (dataSource.sourceType) {
       case DataSourceType.asset:
         final String? asset = dataSource.asset;
+        final String? package = dataSource.package;
         if (asset == null) {
           throw ArgumentError('asset must not be null for asset data source');
         }
-        final String assetKey =
-            await _api.keyForAsset(asset, dataSource.package);
+        final String assetKey = (package == null
+                ? _pluginState.state.keyForAsset.get(JString.fromString(asset))
+                : _pluginState.state.keyForAssetAndPackageName.get(
+                    JString.fromString(asset), JString.fromString(package)))
+            .toDartString();
         uri = 'asset:///$assetKey';
       case DataSourceType.network:
         final String? sourceUri = dataSource.uri;

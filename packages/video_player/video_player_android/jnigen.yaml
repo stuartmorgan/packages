@@ -13,3 +13,4 @@ classes:
   - 'androidx.media3.common.PlaybackParameters'
   - 'io.flutter.plugins.videoplayer.VideoPlayer'
   - 'io.flutter.plugins.videoplayer.VideoPlayerGlobalTransfer'
+  - 'io.flutter.plugins.videoplayer.FlutterState'

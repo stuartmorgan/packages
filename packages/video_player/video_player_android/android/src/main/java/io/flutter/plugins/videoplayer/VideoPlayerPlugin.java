@@ -4,7 +4,6 @@
 
 package io.flutter.plugins.videoplayer;
 
-import android.content.Context;
 import android.os.Build;
 import android.util.LongSparseArray;
 import androidx.annotation.NonNull;
@@ -12,7 +11,6 @@ import androidx.annotation.Nullable;
 import io.flutter.FlutterInjector;
 import io.flutter.Log;
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
-import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.plugin.common.EventChannel;
 import io.flutter.plugins.videoplayer.Messages.AndroidVideoPlayerApi;
 import io.flutter.view.TextureRegistry;
@@ -25,7 +23,7 @@ import javax.net.ssl.HttpsURLConnection;
 public class VideoPlayerPlugin implements FlutterPlugin, AndroidVideoPlayerApi {
   private static final String TAG = "VideoPlayerPlugin";
   private final LongSparseArray<VideoPlayer> videoPlayers = new LongSparseArray<>();
-  private FlutterState flutterState;
+  private final @NonNull FlutterState.Wrapper flutterState = new FlutterState.Wrapper(null);
   private final VideoPlayerOptions options = new VideoPlayerOptions();
 
   /** Register this with the v2 embedding for the plugin to respond to lifecycle callbacks. */
@@ -47,23 +45,23 @@ public class VideoPlayerPlugin implements FlutterPlugin, AndroidVideoPlayerApi {
     }
 
     final FlutterInjector injector = FlutterInjector.instance();
-    this.flutterState =
+    flutterState.state =
         new FlutterState(
             binding.getApplicationContext(),
             binding.getBinaryMessenger(),
             injector.flutterLoader()::getLookupKeyForAsset,
             injector.flutterLoader()::getLookupKeyForAsset,
             binding.getTextureRegistry());
-    flutterState.startListening(this, binding.getBinaryMessenger());
+    AndroidVideoPlayerApi.setUp(binding.getBinaryMessenger(), this);
   }
 
   @Override
   public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
-    if (flutterState == null) {
+    if (flutterState.state == null) {
       Log.wtf(TAG, "Detached from the engine before registering to it.");
     }
-    flutterState.stopListening(binding.getBinaryMessenger());
-    flutterState = null;
+    AndroidVideoPlayerApi.setUp(binding.getBinaryMessenger(), null);
+    flutterState.state = null;
     onDestroy();
   }
 
@@ -83,26 +81,19 @@ public class VideoPlayerPlugin implements FlutterPlugin, AndroidVideoPlayerApi {
     disposeAllPlayers();
   }
 
-  public void initialize() {
+  public void initialize(@NonNull String transferKey) {
     disposeAllPlayers();
-  }
-
-  @NonNull
-  @Override
-  public String keyForAsset(@NonNull String asset, @Nullable String packageName) {
-    if (packageName != null) {
-      return flutterState.keyForAssetAndPackageName.get(asset, packageName);
-    } else {
-      return flutterState.keyForAsset.get(asset);
-    }
+    VideoPlayerGlobalTransfer transfer = VideoPlayerGlobalTransfer.getInstance();
+    transfer.state.put(transferKey, flutterState);
   }
 
   public @NonNull Long create(
       @NonNull String uri, @NonNull Map<String, String> httpHeaders, @Nullable String formatHint) {
-    TextureRegistry.SurfaceProducer handle = flutterState.textureRegistry.createSurfaceProducer();
+    TextureRegistry.SurfaceProducer handle =
+        flutterState.state.textureRegistry.createSurfaceProducer();
     EventChannel eventChannel =
         new EventChannel(
-            flutterState.binaryMessenger, "flutter.io/videoPlayer/videoEvents" + handle.id());
+            flutterState.state.binaryMessenger, "flutter.io/videoPlayer/videoEvents" + handle.id());
 
     final VideoAsset videoAsset;
     if (uri.startsWith("asset://")) {
@@ -129,7 +120,7 @@ public class VideoPlayerPlugin implements FlutterPlugin, AndroidVideoPlayerApi {
     videoPlayers.put(
         handle.id(),
         VideoPlayer.create(
-            flutterState.applicationContext,
+            flutterState.state.applicationContext,
             VideoPlayerEventCallbacks.bindTo(eventChannel),
             handle,
             videoAsset,
@@ -153,42 +144,5 @@ public class VideoPlayerPlugin implements FlutterPlugin, AndroidVideoPlayerApi {
   @Override
   public void setMixWithOthers(@NonNull Boolean mixWithOthers) {
     options.mixWithOthers = mixWithOthers;
-  }
-
-  private interface KeyForAssetFn {
-    String get(String asset);
-  }
-
-  private interface KeyForAssetAndPackageName {
-    String get(String asset, String packageName);
-  }
-
-  private static final class FlutterState {
-    final Context applicationContext;
-    final BinaryMessenger binaryMessenger;
-    final KeyForAssetFn keyForAsset;
-    final KeyForAssetAndPackageName keyForAssetAndPackageName;
-    final TextureRegistry textureRegistry;
-
-    FlutterState(
-        Context applicationContext,
-        BinaryMessenger messenger,
-        KeyForAssetFn keyForAsset,
-        KeyForAssetAndPackageName keyForAssetAndPackageName,
-        TextureRegistry textureRegistry) {
-      this.applicationContext = applicationContext;
-      this.binaryMessenger = messenger;
-      this.keyForAsset = keyForAsset;
-      this.keyForAssetAndPackageName = keyForAssetAndPackageName;
-      this.textureRegistry = textureRegistry;
-    }
-
-    void startListening(VideoPlayerPlugin methodCallHandler, BinaryMessenger messenger) {
-      AndroidVideoPlayerApi.setUp(messenger, methodCallHandler);
-    }
-
-    void stopListening(BinaryMessenger messenger) {
-      AndroidVideoPlayerApi.setUp(messenger, null);
-    }
   }
 }
