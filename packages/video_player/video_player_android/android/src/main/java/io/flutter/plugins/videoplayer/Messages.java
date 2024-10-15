@@ -83,11 +83,10 @@ public class Messages {
 
     @NonNull
     Long create(
-        @NonNull String uri, @NonNull Map<String, String> httpHeaders, @Nullable String formatHint);
-
-    void cacheInstance(@NonNull String key, @NonNull Long textureId);
-
-    void dispose(@NonNull Long textureId);
+        @NonNull String uri,
+        @NonNull Map<String, String> httpHeaders,
+        @Nullable String formatHint,
+        @NonNull String transferKey);
 
     void setMixWithOthers(@NonNull Boolean mixWithOthers);
 
@@ -149,60 +148,10 @@ public class Messages {
                 String uriArg = (String) args.get(0);
                 Map<String, String> httpHeadersArg = (Map<String, String>) args.get(1);
                 String formatHintArg = (String) args.get(2);
+                String transferKeyArg = (String) args.get(3);
                 try {
-                  Long output = api.create(uriArg, httpHeadersArg, formatHintArg);
+                  Long output = api.create(uriArg, httpHeadersArg, formatHintArg, transferKeyArg);
                   wrapped.add(0, output);
-                } catch (Throwable exception) {
-                  wrapped = wrapError(exception);
-                }
-                reply.reply(wrapped);
-              });
-        } else {
-          channel.setMessageHandler(null);
-        }
-      }
-      {
-        BasicMessageChannel<Object> channel =
-            new BasicMessageChannel<>(
-                binaryMessenger,
-                "dev.flutter.pigeon.video_player_android.AndroidVideoPlayerApi.cacheInstance"
-                    + messageChannelSuffix,
-                getCodec());
-        if (api != null) {
-          channel.setMessageHandler(
-              (message, reply) -> {
-                ArrayList<Object> wrapped = new ArrayList<>();
-                ArrayList<Object> args = (ArrayList<Object>) message;
-                String keyArg = (String) args.get(0);
-                Long textureIdArg = (Long) args.get(1);
-                try {
-                  api.cacheInstance(keyArg, textureIdArg);
-                  wrapped.add(0, null);
-                } catch (Throwable exception) {
-                  wrapped = wrapError(exception);
-                }
-                reply.reply(wrapped);
-              });
-        } else {
-          channel.setMessageHandler(null);
-        }
-      }
-      {
-        BasicMessageChannel<Object> channel =
-            new BasicMessageChannel<>(
-                binaryMessenger,
-                "dev.flutter.pigeon.video_player_android.AndroidVideoPlayerApi.dispose"
-                    + messageChannelSuffix,
-                getCodec());
-        if (api != null) {
-          channel.setMessageHandler(
-              (message, reply) -> {
-                ArrayList<Object> wrapped = new ArrayList<>();
-                ArrayList<Object> args = (ArrayList<Object>) message;
-                Long textureIdArg = (Long) args.get(0);
-                try {
-                  api.dispose(textureIdArg);
-                  wrapped.add(0, null);
                 } catch (Throwable exception) {
                   wrapped = wrapError(exception);
                 }

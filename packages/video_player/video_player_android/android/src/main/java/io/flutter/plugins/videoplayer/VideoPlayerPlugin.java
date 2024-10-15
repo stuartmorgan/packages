@@ -4,7 +4,6 @@
 
 package io.flutter.plugins.videoplayer;
 
-import android.os.Build;
 import android.util.LongSparseArray;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,15 +13,11 @@ import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.plugin.common.EventChannel;
 import io.flutter.plugins.videoplayer.Messages.AndroidVideoPlayerApi;
 import io.flutter.view.TextureRegistry;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
 import java.util.Map;
-import javax.net.ssl.HttpsURLConnection;
 
 /** Android platform implementation of the VideoPlayerPlugin. */
 public class VideoPlayerPlugin implements FlutterPlugin, AndroidVideoPlayerApi {
   private static final String TAG = "VideoPlayerPlugin";
-  private final LongSparseArray<VideoPlayer> videoPlayers = new LongSparseArray<>();
   private final @NonNull FlutterState.Wrapper flutterState = new FlutterState.Wrapper(null);
   private final VideoPlayerOptions options = new VideoPlayerOptions();
 
@@ -56,33 +51,18 @@ public class VideoPlayerPlugin implements FlutterPlugin, AndroidVideoPlayerApi {
     }
     AndroidVideoPlayerApi.setUp(binding.getBinaryMessenger(), null);
     flutterState.state = null;
-    onDestroy();
-  }
-
-  private void disposeAllPlayers() {
-    for (int i = 0; i < videoPlayers.size(); i++) {
-      videoPlayers.valueAt(i).dispose();
-    }
-    videoPlayers.clear();
-  }
-
-  public void onDestroy() {
-    // The whole FlutterView is being destroyed. Here we release resources acquired for all
-    // instances
-    // of VideoPlayer. Once https://github.com/flutter/flutter/issues/19358 is resolved this may
-    // be replaced with just asserting that videoPlayers.isEmpty().
-    // https://github.com/flutter/flutter/issues/20989 tracks this.
-    disposeAllPlayers();
   }
 
   public void initialize(@NonNull String transferKey) {
-    disposeAllPlayers();
     VideoPlayerGlobalTransfer transfer = VideoPlayerGlobalTransfer.getInstance();
     transfer.state.put(transferKey, flutterState);
   }
 
   public @NonNull Long create(
-      @NonNull String uri, @NonNull Map<String, String> httpHeaders, @Nullable String formatHint) {
+      @NonNull String uri,
+      @NonNull Map<String, String> httpHeaders,
+      @Nullable String formatHint,
+      @NonNull String transferKey) {
     TextureRegistry.SurfaceProducer handle =
         flutterState.state.textureRegistry.createSurfaceProducer();
     EventChannel eventChannel =
@@ -111,8 +91,9 @@ public class VideoPlayerPlugin implements FlutterPlugin, AndroidVideoPlayerApi {
       }
       videoAsset = VideoAsset.fromRemoteUrl(uri, streamingFormat, httpHeaders);
     }
-    videoPlayers.put(
-        handle.id(),
+    VideoPlayerGlobalTransfer transfer = VideoPlayerGlobalTransfer.getInstance();
+    transfer.players.put(
+        transferKey,
         VideoPlayer.create(
             flutterState.state.applicationContext,
             VideoPlayerEventCallbacks.bindTo(eventChannel),
@@ -121,18 +102,6 @@ public class VideoPlayerPlugin implements FlutterPlugin, AndroidVideoPlayerApi {
             options));
 
     return handle.id();
-  }
-
-  @Override
-  public void cacheInstance(@NonNull String key, @NonNull Long textureId) {
-    VideoPlayerGlobalTransfer transfer = VideoPlayerGlobalTransfer.getInstance();
-    transfer.players.put(key, videoPlayers.get(textureId));
-  }
-
-  public void dispose(@NonNull Long textureId) {
-    VideoPlayer player = videoPlayers.get(textureId);
-    player.dispose();
-    videoPlayers.remove(textureId);
   }
 
   @Override

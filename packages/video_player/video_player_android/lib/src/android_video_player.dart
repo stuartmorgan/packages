@@ -33,10 +33,25 @@ class AndroidVideoPlayer extends VideoPlayerPlatform {
 
   void _onDetachedFromEngine(FlutterPlugin_FlutterPluginBinding binding) {
     debugPrint('stuartmorgan: _onDetachedFromEngine');
+    _disposeAllPlayers();
+  }
+
+  // TODO(stuartmorgan): Unwind all of this after ensuring player disposal;
+  // it doesn't look like any of this is ever called. Need to make sure
+  // surfaceProducer.release is actually being called somewhere though.
+  void _disposeAllPlayers() {
+    for (final VideoPlayer player in _playersByTextureId.values) {
+      debugPrint('stuartmorgan: Actually disposing something');
+      player.dispose();
+    }
+    _playersByTextureId.clear();
   }
 
   @override
   Future<void> init() async {
+    // TODO(stuartmorgan): Test hot reload/restart to see if this is needed now
+    // that ownership is on the Dart side.
+    _disposeAllPlayers();
     // This is in theory racy, but fine for a temporary workaround in the
     // prototype.
     final String transferId = '${DateTime.now().microsecondsSinceEpoch}';
@@ -53,9 +68,7 @@ class AndroidVideoPlayer extends VideoPlayerPlatform {
   @override
   Future<void> dispose(int textureId) async {
     await _eventSubscription?.cancel();
-    // TODO(stuartmorgan): Figure out how to unwind disposeAllPlayers so dispose
-    // doesn't have to be native.
-    return _api.dispose(textureId);
+    _playerFor(textureId).dispose();
   }
 
   @override
@@ -99,25 +112,16 @@ class AndroidVideoPlayer extends VideoPlayerPlatform {
         uri = sourceUri;
     }
 
-    final int textureId = await _api.create(
-      uri,
-      httpHeaders,
-      formatHint,
-    );
-    await _transferPlayer(textureId);
-    return textureId;
-  }
-
-  // Workaround to get a native-side-created object over to Dart.
-  Future<void> _transferPlayer(int textureId) async {
     // This is in theory racy, but fine for a temporary workaround in the
     // prototype.
-    final String transferId =
-        '$textureId-${DateTime.now().microsecondsSinceEpoch}';
-    await _api.cacheInstance(transferId, textureId);
+    final String transferId = '$uri-${DateTime.now().microsecondsSinceEpoch}';
+    final int textureId =
+        await _api.create(uri, httpHeaders, formatHint, transferId);
     _playersByTextureId[textureId] = VideoPlayerGlobalTransfer.getInstance()
         .players
         .remove(JString.fromString(transferId))!;
+
+    return textureId;
   }
 
   @override

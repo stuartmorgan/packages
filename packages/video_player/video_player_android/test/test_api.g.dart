@@ -41,11 +41,8 @@ abstract class TestHostVideoPlayerApi {
 
   void initialize(String key);
 
-  int create(String uri, Map<String, String> httpHeaders, String? formatHint);
-
-  void cacheInstance(String key, int textureId);
-
-  void dispose(int textureId);
+  int create(String uri, Map<String, String> httpHeaders, String? formatHint,
+      String transferKey);
 
   void setMixWithOthers(bool mixWithOthers);
 
@@ -113,77 +110,13 @@ abstract class TestHostVideoPlayerApi {
           assert(arg_httpHeaders != null,
               'Argument for dev.flutter.pigeon.video_player_android.AndroidVideoPlayerApi.create was null, expected non-null Map<String, String>.');
           final String? arg_formatHint = (args[2] as String?);
+          final String? arg_transferKey = (args[3] as String?);
+          assert(arg_transferKey != null,
+              'Argument for dev.flutter.pigeon.video_player_android.AndroidVideoPlayerApi.create was null, expected non-null String.');
           try {
-            final int output =
-                api.create(arg_uri!, arg_httpHeaders!, arg_formatHint);
+            final int output = api.create(
+                arg_uri!, arg_httpHeaders!, arg_formatHint, arg_transferKey!);
             return <Object?>[output];
-          } on PlatformException catch (e) {
-            return wrapResponse(error: e);
-          } catch (e) {
-            return wrapResponse(
-                error: PlatformException(code: 'error', message: e.toString()));
-          }
-        });
-      }
-    }
-    {
-      final BasicMessageChannel<
-          Object?> pigeonVar_channel = BasicMessageChannel<
-              Object?>(
-          'dev.flutter.pigeon.video_player_android.AndroidVideoPlayerApi.cacheInstance$messageChannelSuffix',
-          pigeonChannelCodec,
-          binaryMessenger: binaryMessenger);
-      if (api == null) {
-        _testBinaryMessengerBinding!.defaultBinaryMessenger
-            .setMockDecodedMessageHandler<Object?>(pigeonVar_channel, null);
-      } else {
-        _testBinaryMessengerBinding!.defaultBinaryMessenger
-            .setMockDecodedMessageHandler<Object?>(pigeonVar_channel,
-                (Object? message) async {
-          assert(message != null,
-              'Argument for dev.flutter.pigeon.video_player_android.AndroidVideoPlayerApi.cacheInstance was null.');
-          final List<Object?> args = (message as List<Object?>?)!;
-          final String? arg_key = (args[0] as String?);
-          assert(arg_key != null,
-              'Argument for dev.flutter.pigeon.video_player_android.AndroidVideoPlayerApi.cacheInstance was null, expected non-null String.');
-          final int? arg_textureId = (args[1] as int?);
-          assert(arg_textureId != null,
-              'Argument for dev.flutter.pigeon.video_player_android.AndroidVideoPlayerApi.cacheInstance was null, expected non-null int.');
-          try {
-            api.cacheInstance(arg_key!, arg_textureId!);
-            return wrapResponse(empty: true);
-          } on PlatformException catch (e) {
-            return wrapResponse(error: e);
-          } catch (e) {
-            return wrapResponse(
-                error: PlatformException(code: 'error', message: e.toString()));
-          }
-        });
-      }
-    }
-    {
-      final BasicMessageChannel<
-          Object?> pigeonVar_channel = BasicMessageChannel<
-              Object?>(
-          'dev.flutter.pigeon.video_player_android.AndroidVideoPlayerApi.dispose$messageChannelSuffix',
-          pigeonChannelCodec,
-          binaryMessenger: binaryMessenger);
-      if (api == null) {
-        _testBinaryMessengerBinding!.defaultBinaryMessenger
-            .setMockDecodedMessageHandler<Object?>(pigeonVar_channel, null);
-      } else {
-        _testBinaryMessengerBinding!.defaultBinaryMessenger
-            .setMockDecodedMessageHandler<Object?>(pigeonVar_channel,
-                (Object? message) async {
-          assert(message != null,
-              'Argument for dev.flutter.pigeon.video_player_android.AndroidVideoPlayerApi.dispose was null.');
-          final List<Object?> args = (message as List<Object?>?)!;
-          final int? arg_textureId = (args[0] as int?);
-          assert(arg_textureId != null,
-              'Argument for dev.flutter.pigeon.video_player_android.AndroidVideoPlayerApi.dispose was null, expected non-null int.');
-          try {
-            api.dispose(arg_textureId!);
-            return wrapResponse(empty: true);
           } on PlatformException catch (e) {
             return wrapResponse(error: e);
           } catch (e) {
