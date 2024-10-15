@@ -34,18 +34,6 @@ public class VideoPlayerPlugin implements FlutterPlugin, AndroidVideoPlayerApi {
     if (flutterState.state != null && flutterState.state.engineListener != null) {
       flutterState.state.engineListener.onAttachedToEngine(binding);
     }
-    if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-      try {
-        HttpsURLConnection.setDefaultSSLSocketFactory(new CustomSSLSocketFactory());
-      } catch (KeyManagementException | NoSuchAlgorithmException e) {
-        Log.w(
-            TAG,
-            "Failed to enable TLSv1.1 and TLSv1.2 Protocols for API level 19 and below.\n"
-                + "For more information about Socket Security, please consult the following link:\n"
-                + "https://developer.android.com/reference/javax/net/ssl/SSLSocket",
-            e);
-      }
-    }
 
     final FlutterInjector injector = FlutterInjector.instance();
     flutterState.state =
