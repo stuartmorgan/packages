@@ -23013,257 +23013,341 @@ final class $PlaybackParameters$Type
   }
 }
 
-/// from: `io.flutter.plugins.videoplayer.VideoPlayer`
-class VideoPlayer extends _$jni.JObject {
+/// from: `io.flutter.embedding.engine.plugins.FlutterPlugin$FlutterAssets`
+class FlutterPlugin_FlutterAssets extends _$jni.JObject {
   @_$jni.internal
   @_$core.override
-  final _$jni.JObjType<VideoPlayer> $type;
+  final _$jni.JObjType<FlutterPlugin_FlutterAssets> $type;
 
   @_$jni.internal
-  VideoPlayer.fromReference(
-    _$jni.JReference reference,
-  )   : $type = type,
-        super.fromReference(reference);
-
-  static final _class =
-      _$jni.JClass.forName(r'io/flutter/plugins/videoplayer/VideoPlayer');
-
-  /// The type which includes information such as the signature of this class.
-  static const type = $VideoPlayer$Type();
-  static final _id_exoPlayer = _class.instanceFieldId(
-    r'exoPlayer',
-    r'Landroidx/media3/exoplayer/ExoPlayer;',
-  );
-
-  /// from: `public androidx.media3.exoplayer.ExoPlayer exoPlayer`
-  /// The returned object must be released after use, by calling the [release] method.
-  ExoPlayer get exoPlayer => _id_exoPlayer.get(this, const $ExoPlayer$Type());
-
-  /// from: `public androidx.media3.exoplayer.ExoPlayer exoPlayer`
-  /// The returned object must be released after use, by calling the [release] method.
-  set exoPlayer(ExoPlayer value) =>
-      _id_exoPlayer.set(this, const $ExoPlayer$Type(), value);
-
-  static final _id_onSurfaceCreated = _class.instanceMethodId(
-    r'onSurfaceCreated',
-    r'()V',
-  );
-
-  static final _onSurfaceCreated = _$jni.ProtectedJniExtensions.lookup<
-          _$jni.NativeFunction<
-              _$jni.JThrowablePtr Function(
-                _$jni.Pointer<_$jni.Void>,
-                _$jni.JMethodIDPtr,
-              )>>('globalEnv_CallVoidMethod')
-      .asFunction<
-          _$jni.JThrowablePtr Function(
-            _$jni.Pointer<_$jni.Void>,
-            _$jni.JMethodIDPtr,
-          )>();
-
-  /// from: `public void onSurfaceCreated()`
-  void onSurfaceCreated() {
-    _onSurfaceCreated(
-            reference.pointer, _id_onSurfaceCreated as _$jni.JMethodIDPtr)
-        .check();
-  }
-
-  static final _id_onSurfaceDestroyed = _class.instanceMethodId(
-    r'onSurfaceDestroyed',
-    r'()V',
-  );
-
-  static final _onSurfaceDestroyed = _$jni.ProtectedJniExtensions.lookup<
-          _$jni.NativeFunction<
-              _$jni.JThrowablePtr Function(
-                _$jni.Pointer<_$jni.Void>,
-                _$jni.JMethodIDPtr,
-              )>>('globalEnv_CallVoidMethod')
-      .asFunction<
-          _$jni.JThrowablePtr Function(
-            _$jni.Pointer<_$jni.Void>,
-            _$jni.JMethodIDPtr,
-          )>();
-
-  /// from: `public void onSurfaceDestroyed()`
-  void onSurfaceDestroyed() {
-    _onSurfaceDestroyed(
-            reference.pointer, _id_onSurfaceDestroyed as _$jni.JMethodIDPtr)
-        .check();
-  }
-
-  static final _id_dispose = _class.instanceMethodId(
-    r'dispose',
-    r'()V',
-  );
-
-  static final _dispose = _$jni.ProtectedJniExtensions.lookup<
-          _$jni.NativeFunction<
-              _$jni.JThrowablePtr Function(
-                _$jni.Pointer<_$jni.Void>,
-                _$jni.JMethodIDPtr,
-              )>>('globalEnv_CallVoidMethod')
-      .asFunction<
-          _$jni.JThrowablePtr Function(
-            _$jni.Pointer<_$jni.Void>,
-            _$jni.JMethodIDPtr,
-          )>();
-
-  /// from: `public void dispose()`
-  void dispose() {
-    _dispose(reference.pointer, _id_dispose as _$jni.JMethodIDPtr).check();
-  }
-}
-
-final class $VideoPlayer$Type extends _$jni.JObjType<VideoPlayer> {
-  @_$jni.internal
-  const $VideoPlayer$Type();
-
-  @_$jni.internal
-  @_$core.override
-  String get signature => r'Lio/flutter/plugins/videoplayer/VideoPlayer;';
-
-  @_$jni.internal
-  @_$core.override
-  VideoPlayer fromReference(_$jni.JReference reference) =>
-      VideoPlayer.fromReference(reference);
-
-  @_$jni.internal
-  @_$core.override
-  _$jni.JObjType get superType => const _$jni.JObjectType();
-
-  @_$jni.internal
-  @_$core.override
-  final superCount = 1;
-
-  @_$core.override
-  int get hashCode => ($VideoPlayer$Type).hashCode;
-
-  @_$core.override
-  bool operator ==(Object other) {
-    return other.runtimeType == ($VideoPlayer$Type) &&
-        other is $VideoPlayer$Type;
-  }
-}
-
-/// from: `io.flutter.plugins.videoplayer.VideoPlayerGlobalTransfer`
-class VideoPlayerGlobalTransfer extends _$jni.JObject {
-  @_$jni.internal
-  @_$core.override
-  final _$jni.JObjType<VideoPlayerGlobalTransfer> $type;
-
-  @_$jni.internal
-  VideoPlayerGlobalTransfer.fromReference(
+  FlutterPlugin_FlutterAssets.fromReference(
     _$jni.JReference reference,
   )   : $type = type,
         super.fromReference(reference);
 
   static final _class = _$jni.JClass.forName(
-      r'io/flutter/plugins/videoplayer/VideoPlayerGlobalTransfer');
+      r'io/flutter/embedding/engine/plugins/FlutterPlugin$FlutterAssets');
 
   /// The type which includes information such as the signature of this class.
-  static const type = $VideoPlayerGlobalTransfer$Type();
-  static final _id_players = _class.instanceFieldId(
-    r'players',
-    r'Ljava/util/Map;',
+  static const type = $FlutterPlugin_FlutterAssets$Type();
+  static final _id_getAssetFilePathByName = _class.instanceMethodId(
+    r'getAssetFilePathByName',
+    r'(Ljava/lang/String;)Ljava/lang/String;',
   );
 
-  /// from: `public java.util.Map players`
-  /// The returned object must be released after use, by calling the [release] method.
-  _$jni.JMap<_$jni.JString, VideoPlayer> get players => _id_players.get(
-      this, const _$jni.JMapType(_$jni.JStringType(), $VideoPlayer$Type()));
-
-  /// from: `public java.util.Map players`
-  /// The returned object must be released after use, by calling the [release] method.
-  set players(_$jni.JMap<_$jni.JString, VideoPlayer> value) => _id_players.set(
-      this,
-      const _$jni.JMapType(_$jni.JStringType(), $VideoPlayer$Type()),
-      value);
-
-  static final _id_state = _class.instanceFieldId(
-    r'state',
-    r'Ljava/util/Map;',
-  );
-
-  /// from: `public java.util.Map state`
-  /// The returned object must be released after use, by calling the [release] method.
-  _$jni.JMap<_$jni.JString, FlutterState_Wrapper> get state => _id_state.get(
-      this,
-      const _$jni.JMapType(_$jni.JStringType(), $FlutterState_Wrapper$Type()));
-
-  /// from: `public java.util.Map state`
-  /// The returned object must be released after use, by calling the [release] method.
-  set state(_$jni.JMap<_$jni.JString, FlutterState_Wrapper> value) =>
-      _id_state.set(
-          this,
-          const _$jni.JMapType(
-              _$jni.JStringType(), $FlutterState_Wrapper$Type()),
-          value);
-
-  static final _id_new$ = _class.constructorId(
-    r'()V',
-  );
-
-  static final _new$ = _$jni.ProtectedJniExtensions.lookup<
-          _$jni.NativeFunction<
-              _$jni.JniResult Function(
-                _$jni.Pointer<_$jni.Void>,
-                _$jni.JMethodIDPtr,
-              )>>('globalEnv_NewObject')
+  static final _getAssetFilePathByName = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
       .asFunction<
-          _$jni.JniResult Function(
-            _$jni.Pointer<_$jni.Void>,
-            _$jni.JMethodIDPtr,
-          )>();
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
 
-  /// from: `public void <init>()`
+  /// from: `public abstract java.lang.String getAssetFilePathByName(java.lang.String string)`
   /// The returned object must be released after use, by calling the [release] method.
-  factory VideoPlayerGlobalTransfer() {
-    return VideoPlayerGlobalTransfer.fromReference(
-        _new$(_class.reference.pointer, _id_new$ as _$jni.JMethodIDPtr)
-            .reference);
+  _$jni.JString getAssetFilePathByName(
+    _$jni.JString string,
+  ) {
+    return _getAssetFilePathByName(
+            reference.pointer,
+            _id_getAssetFilePathByName as _$jni.JMethodIDPtr,
+            string.reference.pointer)
+        .object(const _$jni.JStringType());
   }
 
-  static final _id_getInstance = _class.staticMethodId(
-    r'getInstance',
-    r'()Lio/flutter/plugins/videoplayer/VideoPlayerGlobalTransfer;',
+  static final _id_getAssetFilePathByName$1 = _class.instanceMethodId(
+    r'getAssetFilePathByName',
+    r'(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;',
   );
 
-  static final _getInstance = _$jni.ProtectedJniExtensions.lookup<
+  static final _getAssetFilePathByName$1 = _$jni.ProtectedJniExtensions.lookup<
           _$jni.NativeFunction<
               _$jni.JniResult Function(
-                _$jni.Pointer<_$jni.Void>,
-                _$jni.JMethodIDPtr,
-              )>>('globalEnv_CallStaticObjectMethod')
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<
+                      (
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>
+                      )>)>>('globalEnv_CallObjectMethod')
       .asFunction<
           _$jni.JniResult Function(
-            _$jni.Pointer<_$jni.Void>,
-            _$jni.JMethodIDPtr,
-          )>();
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>)>();
 
-  /// from: `static public io.flutter.plugins.videoplayer.VideoPlayerGlobalTransfer getInstance()`
+  /// from: `public abstract java.lang.String getAssetFilePathByName(java.lang.String string, java.lang.String string1)`
   /// The returned object must be released after use, by calling the [release] method.
-  static VideoPlayerGlobalTransfer getInstance() {
-    return _getInstance(
-            _class.reference.pointer, _id_getInstance as _$jni.JMethodIDPtr)
-        .object(const $VideoPlayerGlobalTransfer$Type());
+  _$jni.JString getAssetFilePathByName$1(
+    _$jni.JString string,
+    _$jni.JString string1,
+  ) {
+    return _getAssetFilePathByName$1(
+            reference.pointer,
+            _id_getAssetFilePathByName$1 as _$jni.JMethodIDPtr,
+            string.reference.pointer,
+            string1.reference.pointer)
+        .object(const _$jni.JStringType());
+  }
+
+  static final _id_getAssetFilePathBySubpath = _class.instanceMethodId(
+    r'getAssetFilePathBySubpath',
+    r'(Ljava/lang/String;)Ljava/lang/String;',
+  );
+
+  static final _getAssetFilePathBySubpath = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract java.lang.String getAssetFilePathBySubpath(java.lang.String string)`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JString getAssetFilePathBySubpath(
+    _$jni.JString string,
+  ) {
+    return _getAssetFilePathBySubpath(
+            reference.pointer,
+            _id_getAssetFilePathBySubpath as _$jni.JMethodIDPtr,
+            string.reference.pointer)
+        .object(const _$jni.JStringType());
+  }
+
+  static final _id_getAssetFilePathBySubpath$1 = _class.instanceMethodId(
+    r'getAssetFilePathBySubpath',
+    r'(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;',
+  );
+
+  static final _getAssetFilePathBySubpath$1 =
+      _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<
+                          (
+                            _$jni.Pointer<_$jni.Void>,
+                            _$jni.Pointer<_$jni.Void>
+                          )>)>>('globalEnv_CallObjectMethod')
+          .asFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract java.lang.String getAssetFilePathBySubpath(java.lang.String string, java.lang.String string1)`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JString getAssetFilePathBySubpath$1(
+    _$jni.JString string,
+    _$jni.JString string1,
+  ) {
+    return _getAssetFilePathBySubpath$1(
+            reference.pointer,
+            _id_getAssetFilePathBySubpath$1 as _$jni.JMethodIDPtr,
+            string.reference.pointer,
+            string1.reference.pointer)
+        .object(const _$jni.JStringType());
+  }
+
+  /// Maps a specific port to the implemented interface.
+  static final _$core.Map<int, $FlutterPlugin_FlutterAssets> _$impls = {};
+  static _$jni.JObjectPtr _$invoke(
+    int port,
+    _$jni.JObjectPtr descriptor,
+    _$jni.JObjectPtr args,
+  ) {
+    return _$invokeMethod(
+      port,
+      _$jni.MethodInvocation.fromAddresses(
+        0,
+        descriptor.address,
+        args.address,
+      ),
+    );
+  }
+
+  static final _$jni.Pointer<
+          _$jni.NativeFunction<
+              _$jni.JObjectPtr Function(
+                  _$jni.Int64, _$jni.JObjectPtr, _$jni.JObjectPtr)>>
+      _$invokePointer = _$jni.Pointer.fromFunction(_$invoke);
+
+  static _$jni.Pointer<_$jni.Void> _$invokeMethod(
+    int $p,
+    _$jni.MethodInvocation $i,
+  ) {
+    try {
+      final $d = $i.methodDescriptor.toDartString(releaseOriginal: true);
+      final $a = $i.args;
+      if ($d ==
+          r'getAssetFilePathByName(Ljava/lang/String;)Ljava/lang/String;') {
+        final $r = _$impls[$p]!.getAssetFilePathByName(
+          $a[0].as(const _$jni.JStringType(), releaseOriginal: true),
+        );
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d ==
+          r'getAssetFilePathByName(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;') {
+        final $r = _$impls[$p]!.getAssetFilePathByName$1(
+          $a[0].as(const _$jni.JStringType(), releaseOriginal: true),
+          $a[1].as(const _$jni.JStringType(), releaseOriginal: true),
+        );
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d ==
+          r'getAssetFilePathBySubpath(Ljava/lang/String;)Ljava/lang/String;') {
+        final $r = _$impls[$p]!.getAssetFilePathBySubpath(
+          $a[0].as(const _$jni.JStringType(), releaseOriginal: true),
+        );
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d ==
+          r'getAssetFilePathBySubpath(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;') {
+        final $r = _$impls[$p]!.getAssetFilePathBySubpath$1(
+          $a[0].as(const _$jni.JStringType(), releaseOriginal: true),
+          $a[1].as(const _$jni.JStringType(), releaseOriginal: true),
+        );
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+    } catch (e) {
+      return _$jni.ProtectedJniExtensions.newDartException(e);
+    }
+    return _$jni.nullptr;
+  }
+
+  static void implementIn(
+    _$jni.JImplementer implementer,
+    $FlutterPlugin_FlutterAssets $impl,
+  ) {
+    late final _$jni.RawReceivePort $p;
+    $p = _$jni.RawReceivePort(($m) {
+      if ($m == null) {
+        _$impls.remove($p.sendPort.nativePort);
+        $p.close();
+        return;
+      }
+      final $i = _$jni.MethodInvocation.fromMessage($m);
+      final $r = _$invokeMethod($p.sendPort.nativePort, $i);
+      _$jni.ProtectedJniExtensions.returnResult($i.result, $r);
+    });
+    implementer.add(
+      r'io.flutter.embedding.engine.plugins.FlutterPlugin$FlutterAssets',
+      $p,
+      _$invokePointer,
+      [],
+    );
+    final $a = $p.sendPort.nativePort;
+    _$impls[$a] = $impl;
+  }
+
+  factory FlutterPlugin_FlutterAssets.implement(
+    $FlutterPlugin_FlutterAssets $impl,
+  ) {
+    final $i = _$jni.JImplementer();
+    implementIn($i, $impl);
+    return FlutterPlugin_FlutterAssets.fromReference(
+      $i.implementReference(),
+    );
   }
 }
 
-final class $VideoPlayerGlobalTransfer$Type
-    extends _$jni.JObjType<VideoPlayerGlobalTransfer> {
+abstract base mixin class $FlutterPlugin_FlutterAssets {
+  factory $FlutterPlugin_FlutterAssets({
+    required _$jni.JString Function(_$jni.JString string)
+        getAssetFilePathByName,
+    required _$jni.JString Function(_$jni.JString string, _$jni.JString string1)
+        getAssetFilePathByName$1,
+    required _$jni.JString Function(_$jni.JString string)
+        getAssetFilePathBySubpath,
+    required _$jni.JString Function(_$jni.JString string, _$jni.JString string1)
+        getAssetFilePathBySubpath$1,
+  }) = _$FlutterPlugin_FlutterAssets;
+
+  _$jni.JString getAssetFilePathByName(_$jni.JString string);
+  _$jni.JString getAssetFilePathByName$1(
+      _$jni.JString string, _$jni.JString string1);
+  _$jni.JString getAssetFilePathBySubpath(_$jni.JString string);
+  _$jni.JString getAssetFilePathBySubpath$1(
+      _$jni.JString string, _$jni.JString string1);
+}
+
+final class _$FlutterPlugin_FlutterAssets with $FlutterPlugin_FlutterAssets {
+  _$FlutterPlugin_FlutterAssets({
+    required _$jni.JString Function(_$jni.JString string)
+        getAssetFilePathByName,
+    required _$jni.JString Function(_$jni.JString string, _$jni.JString string1)
+        getAssetFilePathByName$1,
+    required _$jni.JString Function(_$jni.JString string)
+        getAssetFilePathBySubpath,
+    required _$jni.JString Function(_$jni.JString string, _$jni.JString string1)
+        getAssetFilePathBySubpath$1,
+  })  : _getAssetFilePathByName = getAssetFilePathByName,
+        _getAssetFilePathByName$1 = getAssetFilePathByName$1,
+        _getAssetFilePathBySubpath = getAssetFilePathBySubpath,
+        _getAssetFilePathBySubpath$1 = getAssetFilePathBySubpath$1;
+
+  final _$jni.JString Function(_$jni.JString string) _getAssetFilePathByName;
+  final _$jni.JString Function(_$jni.JString string, _$jni.JString string1)
+      _getAssetFilePathByName$1;
+  final _$jni.JString Function(_$jni.JString string) _getAssetFilePathBySubpath;
+  final _$jni.JString Function(_$jni.JString string, _$jni.JString string1)
+      _getAssetFilePathBySubpath$1;
+
+  _$jni.JString getAssetFilePathByName(_$jni.JString string) {
+    return _getAssetFilePathByName(string);
+  }
+
+  _$jni.JString getAssetFilePathByName$1(
+      _$jni.JString string, _$jni.JString string1) {
+    return _getAssetFilePathByName$1(string, string1);
+  }
+
+  _$jni.JString getAssetFilePathBySubpath(_$jni.JString string) {
+    return _getAssetFilePathBySubpath(string);
+  }
+
+  _$jni.JString getAssetFilePathBySubpath$1(
+      _$jni.JString string, _$jni.JString string1) {
+    return _getAssetFilePathBySubpath$1(string, string1);
+  }
+}
+
+final class $FlutterPlugin_FlutterAssets$Type
+    extends _$jni.JObjType<FlutterPlugin_FlutterAssets> {
   @_$jni.internal
-  const $VideoPlayerGlobalTransfer$Type();
+  const $FlutterPlugin_FlutterAssets$Type();
 
   @_$jni.internal
   @_$core.override
   String get signature =>
-      r'Lio/flutter/plugins/videoplayer/VideoPlayerGlobalTransfer;';
+      r'Lio/flutter/embedding/engine/plugins/FlutterPlugin$FlutterAssets;';
 
   @_$jni.internal
   @_$core.override
-  VideoPlayerGlobalTransfer fromReference(_$jni.JReference reference) =>
-      VideoPlayerGlobalTransfer.fromReference(reference);
+  FlutterPlugin_FlutterAssets fromReference(_$jni.JReference reference) =>
+      FlutterPlugin_FlutterAssets.fromReference(reference);
 
   @_$jni.internal
   @_$core.override
@@ -23274,12 +23358,789 @@ final class $VideoPlayerGlobalTransfer$Type
   final superCount = 1;
 
   @_$core.override
-  int get hashCode => ($VideoPlayerGlobalTransfer$Type).hashCode;
+  int get hashCode => ($FlutterPlugin_FlutterAssets$Type).hashCode;
 
   @_$core.override
   bool operator ==(Object other) {
-    return other.runtimeType == ($VideoPlayerGlobalTransfer$Type) &&
-        other is $VideoPlayerGlobalTransfer$Type;
+    return other.runtimeType == ($FlutterPlugin_FlutterAssets$Type) &&
+        other is $FlutterPlugin_FlutterAssets$Type;
+  }
+}
+
+/// from: `io.flutter.embedding.engine.plugins.FlutterPlugin$FlutterPluginBinding`
+class FlutterPlugin_FlutterPluginBinding extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<FlutterPlugin_FlutterPluginBinding> $type;
+
+  @_$jni.internal
+  FlutterPlugin_FlutterPluginBinding.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'io/flutter/embedding/engine/plugins/FlutterPlugin$FlutterPluginBinding');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $FlutterPlugin_FlutterPluginBinding$Type();
+  static final _id_new$ = _class.constructorId(
+    r'(Landroid/content/Context;Lio/flutter/embedding/engine/FlutterEngine;Lio/flutter/plugin/common/BinaryMessenger;Lio/flutter/view/TextureRegistry;Lio/flutter/plugin/platform/PlatformViewRegistry;Lio/flutter/embedding/engine/plugins/FlutterPlugin$FlutterAssets;Lio/flutter/embedding/engine/FlutterEngineGroup;)V',
+  );
+
+  static final _new$ = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<
+                      (
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>
+                      )>)>>('globalEnv_NewObject')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public void <init>(android.content.Context context, io.flutter.embedding.engine.FlutterEngine flutterEngine, io.flutter.plugin.common.BinaryMessenger binaryMessenger, io.flutter.view.TextureRegistry textureRegistry, io.flutter.plugin.platform.PlatformViewRegistry platformViewRegistry, io.flutter.embedding.engine.plugins.FlutterPlugin$FlutterAssets flutterAssets, io.flutter.embedding.engine.FlutterEngineGroup flutterEngineGroup)`
+  /// The returned object must be released after use, by calling the [release] method.
+  factory FlutterPlugin_FlutterPluginBinding(
+    _$jni.JObject context,
+    _$jni.JObject flutterEngine,
+    _$jni.JObject binaryMessenger,
+    _$jni.JObject textureRegistry,
+    _$jni.JObject platformViewRegistry,
+    FlutterPlugin_FlutterAssets flutterAssets,
+    _$jni.JObject flutterEngineGroup,
+  ) {
+    return FlutterPlugin_FlutterPluginBinding.fromReference(_new$(
+            _class.reference.pointer,
+            _id_new$ as _$jni.JMethodIDPtr,
+            context.reference.pointer,
+            flutterEngine.reference.pointer,
+            binaryMessenger.reference.pointer,
+            textureRegistry.reference.pointer,
+            platformViewRegistry.reference.pointer,
+            flutterAssets.reference.pointer,
+            flutterEngineGroup.reference.pointer)
+        .reference);
+  }
+
+  static final _id_getApplicationContext = _class.instanceMethodId(
+    r'getApplicationContext',
+    r'()Landroid/content/Context;',
+  );
+
+  static final _getApplicationContext = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public android.content.Context getApplicationContext()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getApplicationContext() {
+    return _getApplicationContext(
+            reference.pointer, _id_getApplicationContext as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_getFlutterEngine = _class.instanceMethodId(
+    r'getFlutterEngine',
+    r'()Lio/flutter/embedding/engine/FlutterEngine;',
+  );
+
+  static final _getFlutterEngine = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public io.flutter.embedding.engine.FlutterEngine getFlutterEngine()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getFlutterEngine() {
+    return _getFlutterEngine(
+            reference.pointer, _id_getFlutterEngine as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_getBinaryMessenger = _class.instanceMethodId(
+    r'getBinaryMessenger',
+    r'()Lio/flutter/plugin/common/BinaryMessenger;',
+  );
+
+  static final _getBinaryMessenger = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public io.flutter.plugin.common.BinaryMessenger getBinaryMessenger()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getBinaryMessenger() {
+    return _getBinaryMessenger(
+            reference.pointer, _id_getBinaryMessenger as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_getTextureRegistry = _class.instanceMethodId(
+    r'getTextureRegistry',
+    r'()Lio/flutter/view/TextureRegistry;',
+  );
+
+  static final _getTextureRegistry = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public io.flutter.view.TextureRegistry getTextureRegistry()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getTextureRegistry() {
+    return _getTextureRegistry(
+            reference.pointer, _id_getTextureRegistry as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_getPlatformViewRegistry = _class.instanceMethodId(
+    r'getPlatformViewRegistry',
+    r'()Lio/flutter/plugin/platform/PlatformViewRegistry;',
+  );
+
+  static final _getPlatformViewRegistry = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public io.flutter.plugin.platform.PlatformViewRegistry getPlatformViewRegistry()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getPlatformViewRegistry() {
+    return _getPlatformViewRegistry(reference.pointer,
+            _id_getPlatformViewRegistry as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_getFlutterAssets = _class.instanceMethodId(
+    r'getFlutterAssets',
+    r'()Lio/flutter/embedding/engine/plugins/FlutterPlugin$FlutterAssets;',
+  );
+
+  static final _getFlutterAssets = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public io.flutter.embedding.engine.plugins.FlutterPlugin$FlutterAssets getFlutterAssets()`
+  /// The returned object must be released after use, by calling the [release] method.
+  FlutterPlugin_FlutterAssets getFlutterAssets() {
+    return _getFlutterAssets(
+            reference.pointer, _id_getFlutterAssets as _$jni.JMethodIDPtr)
+        .object(const $FlutterPlugin_FlutterAssets$Type());
+  }
+
+  static final _id_getEngineGroup = _class.instanceMethodId(
+    r'getEngineGroup',
+    r'()Lio/flutter/embedding/engine/FlutterEngineGroup;',
+  );
+
+  static final _getEngineGroup = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public io.flutter.embedding.engine.FlutterEngineGroup getEngineGroup()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getEngineGroup() {
+    return _getEngineGroup(
+            reference.pointer, _id_getEngineGroup as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+}
+
+final class $FlutterPlugin_FlutterPluginBinding$Type
+    extends _$jni.JObjType<FlutterPlugin_FlutterPluginBinding> {
+  @_$jni.internal
+  const $FlutterPlugin_FlutterPluginBinding$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Lio/flutter/embedding/engine/plugins/FlutterPlugin$FlutterPluginBinding;';
+
+  @_$jni.internal
+  @_$core.override
+  FlutterPlugin_FlutterPluginBinding fromReference(
+          _$jni.JReference reference) =>
+      FlutterPlugin_FlutterPluginBinding.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($FlutterPlugin_FlutterPluginBinding$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($FlutterPlugin_FlutterPluginBinding$Type) &&
+        other is $FlutterPlugin_FlutterPluginBinding$Type;
+  }
+}
+
+/// from: `io.flutter.embedding.engine.plugins.FlutterPlugin`
+class FlutterPlugin extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<FlutterPlugin> $type;
+
+  @_$jni.internal
+  FlutterPlugin.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'io/flutter/embedding/engine/plugins/FlutterPlugin');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $FlutterPlugin$Type();
+  static final _id_onAttachedToEngine = _class.instanceMethodId(
+    r'onAttachedToEngine',
+    r'(Lio/flutter/embedding/engine/plugins/FlutterPlugin$FlutterPluginBinding;)V',
+  );
+
+  static final _onAttachedToEngine = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void onAttachedToEngine(io.flutter.embedding.engine.plugins.FlutterPlugin$FlutterPluginBinding flutterPluginBinding)`
+  void onAttachedToEngine(
+    FlutterPlugin_FlutterPluginBinding flutterPluginBinding,
+  ) {
+    _onAttachedToEngine(
+            reference.pointer,
+            _id_onAttachedToEngine as _$jni.JMethodIDPtr,
+            flutterPluginBinding.reference.pointer)
+        .check();
+  }
+
+  static final _id_onDetachedFromEngine = _class.instanceMethodId(
+    r'onDetachedFromEngine',
+    r'(Lio/flutter/embedding/engine/plugins/FlutterPlugin$FlutterPluginBinding;)V',
+  );
+
+  static final _onDetachedFromEngine = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void onDetachedFromEngine(io.flutter.embedding.engine.plugins.FlutterPlugin$FlutterPluginBinding flutterPluginBinding)`
+  void onDetachedFromEngine(
+    FlutterPlugin_FlutterPluginBinding flutterPluginBinding,
+  ) {
+    _onDetachedFromEngine(
+            reference.pointer,
+            _id_onDetachedFromEngine as _$jni.JMethodIDPtr,
+            flutterPluginBinding.reference.pointer)
+        .check();
+  }
+
+  /// Maps a specific port to the implemented interface.
+  static final _$core.Map<int, $FlutterPlugin> _$impls = {};
+  static _$jni.JObjectPtr _$invoke(
+    int port,
+    _$jni.JObjectPtr descriptor,
+    _$jni.JObjectPtr args,
+  ) {
+    return _$invokeMethod(
+      port,
+      _$jni.MethodInvocation.fromAddresses(
+        0,
+        descriptor.address,
+        args.address,
+      ),
+    );
+  }
+
+  static final _$jni.Pointer<
+          _$jni.NativeFunction<
+              _$jni.JObjectPtr Function(
+                  _$jni.Int64, _$jni.JObjectPtr, _$jni.JObjectPtr)>>
+      _$invokePointer = _$jni.Pointer.fromFunction(_$invoke);
+
+  static _$jni.Pointer<_$jni.Void> _$invokeMethod(
+    int $p,
+    _$jni.MethodInvocation $i,
+  ) {
+    try {
+      final $d = $i.methodDescriptor.toDartString(releaseOriginal: true);
+      final $a = $i.args;
+      if ($d ==
+          r'onAttachedToEngine(Lio/flutter/embedding/engine/plugins/FlutterPlugin$FlutterPluginBinding;)V') {
+        _$impls[$p]!.onAttachedToEngine(
+          $a[0].as(const $FlutterPlugin_FlutterPluginBinding$Type(),
+              releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'onDetachedFromEngine(Lio/flutter/embedding/engine/plugins/FlutterPlugin$FlutterPluginBinding;)V') {
+        _$impls[$p]!.onDetachedFromEngine(
+          $a[0].as(const $FlutterPlugin_FlutterPluginBinding$Type(),
+              releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+    } catch (e) {
+      return _$jni.ProtectedJniExtensions.newDartException(e);
+    }
+    return _$jni.nullptr;
+  }
+
+  static void implementIn(
+    _$jni.JImplementer implementer,
+    $FlutterPlugin $impl,
+  ) {
+    late final _$jni.RawReceivePort $p;
+    $p = _$jni.RawReceivePort(($m) {
+      if ($m == null) {
+        _$impls.remove($p.sendPort.nativePort);
+        $p.close();
+        return;
+      }
+      final $i = _$jni.MethodInvocation.fromMessage($m);
+      final $r = _$invokeMethod($p.sendPort.nativePort, $i);
+      _$jni.ProtectedJniExtensions.returnResult($i.result, $r);
+    });
+    implementer.add(
+      r'io.flutter.embedding.engine.plugins.FlutterPlugin',
+      $p,
+      _$invokePointer,
+      [
+        if ($impl.onAttachedToEngine$async)
+          r'onAttachedToEngine(Lio/flutter/embedding/engine/plugins/FlutterPlugin$FlutterPluginBinding;)V',
+        if ($impl.onDetachedFromEngine$async)
+          r'onDetachedFromEngine(Lio/flutter/embedding/engine/plugins/FlutterPlugin$FlutterPluginBinding;)V',
+      ],
+    );
+    final $a = $p.sendPort.nativePort;
+    _$impls[$a] = $impl;
+  }
+
+  factory FlutterPlugin.implement(
+    $FlutterPlugin $impl,
+  ) {
+    final $i = _$jni.JImplementer();
+    implementIn($i, $impl);
+    return FlutterPlugin.fromReference(
+      $i.implementReference(),
+    );
+  }
+}
+
+abstract base mixin class $FlutterPlugin {
+  factory $FlutterPlugin({
+    required void Function(
+            FlutterPlugin_FlutterPluginBinding flutterPluginBinding)
+        onAttachedToEngine,
+    bool onAttachedToEngine$async,
+    required void Function(
+            FlutterPlugin_FlutterPluginBinding flutterPluginBinding)
+        onDetachedFromEngine,
+    bool onDetachedFromEngine$async,
+  }) = _$FlutterPlugin;
+
+  void onAttachedToEngine(
+      FlutterPlugin_FlutterPluginBinding flutterPluginBinding);
+  bool get onAttachedToEngine$async => false;
+  void onDetachedFromEngine(
+      FlutterPlugin_FlutterPluginBinding flutterPluginBinding);
+  bool get onDetachedFromEngine$async => false;
+}
+
+final class _$FlutterPlugin with $FlutterPlugin {
+  _$FlutterPlugin({
+    required void Function(
+            FlutterPlugin_FlutterPluginBinding flutterPluginBinding)
+        onAttachedToEngine,
+    this.onAttachedToEngine$async = false,
+    required void Function(
+            FlutterPlugin_FlutterPluginBinding flutterPluginBinding)
+        onDetachedFromEngine,
+    this.onDetachedFromEngine$async = false,
+  })  : _onAttachedToEngine = onAttachedToEngine,
+        _onDetachedFromEngine = onDetachedFromEngine;
+
+  final void Function(FlutterPlugin_FlutterPluginBinding flutterPluginBinding)
+      _onAttachedToEngine;
+  final bool onAttachedToEngine$async;
+  final void Function(FlutterPlugin_FlutterPluginBinding flutterPluginBinding)
+      _onDetachedFromEngine;
+  final bool onDetachedFromEngine$async;
+
+  void onAttachedToEngine(
+      FlutterPlugin_FlutterPluginBinding flutterPluginBinding) {
+    return _onAttachedToEngine(flutterPluginBinding);
+  }
+
+  void onDetachedFromEngine(
+      FlutterPlugin_FlutterPluginBinding flutterPluginBinding) {
+    return _onDetachedFromEngine(flutterPluginBinding);
+  }
+}
+
+final class $FlutterPlugin$Type extends _$jni.JObjType<FlutterPlugin> {
+  @_$jni.internal
+  const $FlutterPlugin$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Lio/flutter/embedding/engine/plugins/FlutterPlugin;';
+
+  @_$jni.internal
+  @_$core.override
+  FlutterPlugin fromReference(_$jni.JReference reference) =>
+      FlutterPlugin.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($FlutterPlugin$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($FlutterPlugin$Type) &&
+        other is $FlutterPlugin$Type;
+  }
+}
+
+/// from: `io.flutter.plugins.videoplayer.FlutterEngineListener`
+class FlutterEngineListener extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<FlutterEngineListener> $type;
+
+  @_$jni.internal
+  FlutterEngineListener.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'io/flutter/plugins/videoplayer/FlutterEngineListener');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $FlutterEngineListener$Type();
+  static final _id_onAttachedToEngine = _class.instanceMethodId(
+    r'onAttachedToEngine',
+    r'(Lio/flutter/embedding/engine/plugins/FlutterPlugin$FlutterPluginBinding;)V',
+  );
+
+  static final _onAttachedToEngine = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void onAttachedToEngine(io.flutter.embedding.engine.plugins.FlutterPlugin$FlutterPluginBinding flutterPluginBinding)`
+  void onAttachedToEngine(
+    FlutterPlugin_FlutterPluginBinding flutterPluginBinding,
+  ) {
+    _onAttachedToEngine(
+            reference.pointer,
+            _id_onAttachedToEngine as _$jni.JMethodIDPtr,
+            flutterPluginBinding.reference.pointer)
+        .check();
+  }
+
+  static final _id_onDetachedFromEngine = _class.instanceMethodId(
+    r'onDetachedFromEngine',
+    r'(Lio/flutter/embedding/engine/plugins/FlutterPlugin$FlutterPluginBinding;)V',
+  );
+
+  static final _onDetachedFromEngine = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void onDetachedFromEngine(io.flutter.embedding.engine.plugins.FlutterPlugin$FlutterPluginBinding flutterPluginBinding)`
+  void onDetachedFromEngine(
+    FlutterPlugin_FlutterPluginBinding flutterPluginBinding,
+  ) {
+    _onDetachedFromEngine(
+            reference.pointer,
+            _id_onDetachedFromEngine as _$jni.JMethodIDPtr,
+            flutterPluginBinding.reference.pointer)
+        .check();
+  }
+
+  /// Maps a specific port to the implemented interface.
+  static final _$core.Map<int, $FlutterEngineListener> _$impls = {};
+  static _$jni.JObjectPtr _$invoke(
+    int port,
+    _$jni.JObjectPtr descriptor,
+    _$jni.JObjectPtr args,
+  ) {
+    return _$invokeMethod(
+      port,
+      _$jni.MethodInvocation.fromAddresses(
+        0,
+        descriptor.address,
+        args.address,
+      ),
+    );
+  }
+
+  static final _$jni.Pointer<
+          _$jni.NativeFunction<
+              _$jni.JObjectPtr Function(
+                  _$jni.Int64, _$jni.JObjectPtr, _$jni.JObjectPtr)>>
+      _$invokePointer = _$jni.Pointer.fromFunction(_$invoke);
+
+  static _$jni.Pointer<_$jni.Void> _$invokeMethod(
+    int $p,
+    _$jni.MethodInvocation $i,
+  ) {
+    try {
+      final $d = $i.methodDescriptor.toDartString(releaseOriginal: true);
+      final $a = $i.args;
+      if ($d ==
+          r'onAttachedToEngine(Lio/flutter/embedding/engine/plugins/FlutterPlugin$FlutterPluginBinding;)V') {
+        _$impls[$p]!.onAttachedToEngine(
+          $a[0].as(const $FlutterPlugin_FlutterPluginBinding$Type(),
+              releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'onDetachedFromEngine(Lio/flutter/embedding/engine/plugins/FlutterPlugin$FlutterPluginBinding;)V') {
+        _$impls[$p]!.onDetachedFromEngine(
+          $a[0].as(const $FlutterPlugin_FlutterPluginBinding$Type(),
+              releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+    } catch (e) {
+      return _$jni.ProtectedJniExtensions.newDartException(e);
+    }
+    return _$jni.nullptr;
+  }
+
+  static void implementIn(
+    _$jni.JImplementer implementer,
+    $FlutterEngineListener $impl,
+  ) {
+    late final _$jni.RawReceivePort $p;
+    $p = _$jni.RawReceivePort(($m) {
+      if ($m == null) {
+        _$impls.remove($p.sendPort.nativePort);
+        $p.close();
+        return;
+      }
+      final $i = _$jni.MethodInvocation.fromMessage($m);
+      final $r = _$invokeMethod($p.sendPort.nativePort, $i);
+      _$jni.ProtectedJniExtensions.returnResult($i.result, $r);
+    });
+    implementer.add(
+      r'io.flutter.plugins.videoplayer.FlutterEngineListener',
+      $p,
+      _$invokePointer,
+      [
+        if ($impl.onAttachedToEngine$async)
+          r'onAttachedToEngine(Lio/flutter/embedding/engine/plugins/FlutterPlugin$FlutterPluginBinding;)V',
+        if ($impl.onDetachedFromEngine$async)
+          r'onDetachedFromEngine(Lio/flutter/embedding/engine/plugins/FlutterPlugin$FlutterPluginBinding;)V',
+      ],
+    );
+    final $a = $p.sendPort.nativePort;
+    _$impls[$a] = $impl;
+  }
+
+  factory FlutterEngineListener.implement(
+    $FlutterEngineListener $impl,
+  ) {
+    final $i = _$jni.JImplementer();
+    implementIn($i, $impl);
+    return FlutterEngineListener.fromReference(
+      $i.implementReference(),
+    );
+  }
+}
+
+abstract base mixin class $FlutterEngineListener {
+  factory $FlutterEngineListener({
+    required void Function(
+            FlutterPlugin_FlutterPluginBinding flutterPluginBinding)
+        onAttachedToEngine,
+    bool onAttachedToEngine$async,
+    required void Function(
+            FlutterPlugin_FlutterPluginBinding flutterPluginBinding)
+        onDetachedFromEngine,
+    bool onDetachedFromEngine$async,
+  }) = _$FlutterEngineListener;
+
+  void onAttachedToEngine(
+      FlutterPlugin_FlutterPluginBinding flutterPluginBinding);
+  bool get onAttachedToEngine$async => false;
+  void onDetachedFromEngine(
+      FlutterPlugin_FlutterPluginBinding flutterPluginBinding);
+  bool get onDetachedFromEngine$async => false;
+}
+
+final class _$FlutterEngineListener with $FlutterEngineListener {
+  _$FlutterEngineListener({
+    required void Function(
+            FlutterPlugin_FlutterPluginBinding flutterPluginBinding)
+        onAttachedToEngine,
+    this.onAttachedToEngine$async = false,
+    required void Function(
+            FlutterPlugin_FlutterPluginBinding flutterPluginBinding)
+        onDetachedFromEngine,
+    this.onDetachedFromEngine$async = false,
+  })  : _onAttachedToEngine = onAttachedToEngine,
+        _onDetachedFromEngine = onDetachedFromEngine;
+
+  final void Function(FlutterPlugin_FlutterPluginBinding flutterPluginBinding)
+      _onAttachedToEngine;
+  final bool onAttachedToEngine$async;
+  final void Function(FlutterPlugin_FlutterPluginBinding flutterPluginBinding)
+      _onDetachedFromEngine;
+  final bool onDetachedFromEngine$async;
+
+  void onAttachedToEngine(
+      FlutterPlugin_FlutterPluginBinding flutterPluginBinding) {
+    return _onAttachedToEngine(flutterPluginBinding);
+  }
+
+  void onDetachedFromEngine(
+      FlutterPlugin_FlutterPluginBinding flutterPluginBinding) {
+    return _onDetachedFromEngine(flutterPluginBinding);
+  }
+}
+
+final class $FlutterEngineListener$Type
+    extends _$jni.JObjType<FlutterEngineListener> {
+  @_$jni.internal
+  const $FlutterEngineListener$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Lio/flutter/plugins/videoplayer/FlutterEngineListener;';
+
+  @_$jni.internal
+  @_$core.override
+  FlutterEngineListener fromReference(_$jni.JReference reference) =>
+      FlutterEngineListener.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($FlutterEngineListener$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($FlutterEngineListener$Type) &&
+        other is $FlutterEngineListener$Type;
   }
 }
 
@@ -23810,6 +24671,21 @@ class FlutterState extends _$jni.JObject {
   /// The returned object must be released after use, by calling the [release] method.
   _$jni.JObject get textureRegistry =>
       _id_textureRegistry.get(this, const _$jni.JObjectType());
+
+  static final _id_engineListener = _class.instanceFieldId(
+    r'engineListener',
+    r'Lio/flutter/plugins/videoplayer/FlutterEngineListener;',
+  );
+
+  /// from: `public io.flutter.plugins.videoplayer.FlutterEngineListener engineListener`
+  /// The returned object must be released after use, by calling the [release] method.
+  FlutterEngineListener get engineListener =>
+      _id_engineListener.get(this, const $FlutterEngineListener$Type());
+
+  /// from: `public io.flutter.plugins.videoplayer.FlutterEngineListener engineListener`
+  /// The returned object must be released after use, by calling the [release] method.
+  set engineListener(FlutterEngineListener value) =>
+      _id_engineListener.set(this, const $FlutterEngineListener$Type(), value);
 }
 
 final class $FlutterState$Type extends _$jni.JObjType<FlutterState> {
@@ -23840,5 +24716,275 @@ final class $FlutterState$Type extends _$jni.JObjType<FlutterState> {
   bool operator ==(Object other) {
     return other.runtimeType == ($FlutterState$Type) &&
         other is $FlutterState$Type;
+  }
+}
+
+/// from: `io.flutter.plugins.videoplayer.VideoPlayer`
+class VideoPlayer extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<VideoPlayer> $type;
+
+  @_$jni.internal
+  VideoPlayer.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class =
+      _$jni.JClass.forName(r'io/flutter/plugins/videoplayer/VideoPlayer');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $VideoPlayer$Type();
+  static final _id_exoPlayer = _class.instanceFieldId(
+    r'exoPlayer',
+    r'Landroidx/media3/exoplayer/ExoPlayer;',
+  );
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer exoPlayer`
+  /// The returned object must be released after use, by calling the [release] method.
+  ExoPlayer get exoPlayer => _id_exoPlayer.get(this, const $ExoPlayer$Type());
+
+  /// from: `public androidx.media3.exoplayer.ExoPlayer exoPlayer`
+  /// The returned object must be released after use, by calling the [release] method.
+  set exoPlayer(ExoPlayer value) =>
+      _id_exoPlayer.set(this, const $ExoPlayer$Type(), value);
+
+  static final _id_onSurfaceCreated = _class.instanceMethodId(
+    r'onSurfaceCreated',
+    r'()V',
+  );
+
+  static final _onSurfaceCreated = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public void onSurfaceCreated()`
+  void onSurfaceCreated() {
+    _onSurfaceCreated(
+            reference.pointer, _id_onSurfaceCreated as _$jni.JMethodIDPtr)
+        .check();
+  }
+
+  static final _id_onSurfaceDestroyed = _class.instanceMethodId(
+    r'onSurfaceDestroyed',
+    r'()V',
+  );
+
+  static final _onSurfaceDestroyed = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public void onSurfaceDestroyed()`
+  void onSurfaceDestroyed() {
+    _onSurfaceDestroyed(
+            reference.pointer, _id_onSurfaceDestroyed as _$jni.JMethodIDPtr)
+        .check();
+  }
+
+  static final _id_dispose = _class.instanceMethodId(
+    r'dispose',
+    r'()V',
+  );
+
+  static final _dispose = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public void dispose()`
+  void dispose() {
+    _dispose(reference.pointer, _id_dispose as _$jni.JMethodIDPtr).check();
+  }
+}
+
+final class $VideoPlayer$Type extends _$jni.JObjType<VideoPlayer> {
+  @_$jni.internal
+  const $VideoPlayer$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature => r'Lio/flutter/plugins/videoplayer/VideoPlayer;';
+
+  @_$jni.internal
+  @_$core.override
+  VideoPlayer fromReference(_$jni.JReference reference) =>
+      VideoPlayer.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($VideoPlayer$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($VideoPlayer$Type) &&
+        other is $VideoPlayer$Type;
+  }
+}
+
+/// from: `io.flutter.plugins.videoplayer.VideoPlayerGlobalTransfer`
+class VideoPlayerGlobalTransfer extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<VideoPlayerGlobalTransfer> $type;
+
+  @_$jni.internal
+  VideoPlayerGlobalTransfer.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'io/flutter/plugins/videoplayer/VideoPlayerGlobalTransfer');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $VideoPlayerGlobalTransfer$Type();
+  static final _id_players = _class.instanceFieldId(
+    r'players',
+    r'Ljava/util/Map;',
+  );
+
+  /// from: `public java.util.Map players`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JMap<_$jni.JString, VideoPlayer> get players => _id_players.get(
+      this, const _$jni.JMapType(_$jni.JStringType(), $VideoPlayer$Type()));
+
+  /// from: `public java.util.Map players`
+  /// The returned object must be released after use, by calling the [release] method.
+  set players(_$jni.JMap<_$jni.JString, VideoPlayer> value) => _id_players.set(
+      this,
+      const _$jni.JMapType(_$jni.JStringType(), $VideoPlayer$Type()),
+      value);
+
+  static final _id_state = _class.instanceFieldId(
+    r'state',
+    r'Ljava/util/Map;',
+  );
+
+  /// from: `public java.util.Map state`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JMap<_$jni.JString, FlutterState_Wrapper> get state => _id_state.get(
+      this,
+      const _$jni.JMapType(_$jni.JStringType(), $FlutterState_Wrapper$Type()));
+
+  /// from: `public java.util.Map state`
+  /// The returned object must be released after use, by calling the [release] method.
+  set state(_$jni.JMap<_$jni.JString, FlutterState_Wrapper> value) =>
+      _id_state.set(
+          this,
+          const _$jni.JMapType(
+              _$jni.JStringType(), $FlutterState_Wrapper$Type()),
+          value);
+
+  static final _id_new$ = _class.constructorId(
+    r'()V',
+  );
+
+  static final _new$ = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_NewObject')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public void <init>()`
+  /// The returned object must be released after use, by calling the [release] method.
+  factory VideoPlayerGlobalTransfer() {
+    return VideoPlayerGlobalTransfer.fromReference(
+        _new$(_class.reference.pointer, _id_new$ as _$jni.JMethodIDPtr)
+            .reference);
+  }
+
+  static final _id_getInstance = _class.staticMethodId(
+    r'getInstance',
+    r'()Lio/flutter/plugins/videoplayer/VideoPlayerGlobalTransfer;',
+  );
+
+  static final _getInstance = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallStaticObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `static public io.flutter.plugins.videoplayer.VideoPlayerGlobalTransfer getInstance()`
+  /// The returned object must be released after use, by calling the [release] method.
+  static VideoPlayerGlobalTransfer getInstance() {
+    return _getInstance(
+            _class.reference.pointer, _id_getInstance as _$jni.JMethodIDPtr)
+        .object(const $VideoPlayerGlobalTransfer$Type());
+  }
+}
+
+final class $VideoPlayerGlobalTransfer$Type
+    extends _$jni.JObjType<VideoPlayerGlobalTransfer> {
+  @_$jni.internal
+  const $VideoPlayerGlobalTransfer$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Lio/flutter/plugins/videoplayer/VideoPlayerGlobalTransfer;';
+
+  @_$jni.internal
+  @_$core.override
+  VideoPlayerGlobalTransfer fromReference(_$jni.JReference reference) =>
+      VideoPlayerGlobalTransfer.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($VideoPlayerGlobalTransfer$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($VideoPlayerGlobalTransfer$Type) &&
+        other is $VideoPlayerGlobalTransfer$Type;
   }
 }

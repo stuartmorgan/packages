@@ -26,6 +26,15 @@ class AndroidVideoPlayer extends VideoPlayerPlatform {
     VideoPlayerPlatform.instance = AndroidVideoPlayer();
   }
 
+  void _onAttachedToEngine(FlutterPlugin_FlutterPluginBinding binding) {
+    // TODO(stuartmorgan): Remove this; presumably it will never be called.
+    debugPrint('stuartmorgan: _onAttachedToEngine');
+  }
+
+  void _onDetachedFromEngine(FlutterPlugin_FlutterPluginBinding binding) {
+    debugPrint('stuartmorgan: _onDetachedFromEngine');
+  }
+
   @override
   Future<void> init() async {
     // This is in theory racy, but fine for a temporary workaround in the
@@ -35,6 +44,10 @@ class AndroidVideoPlayer extends VideoPlayerPlatform {
     _pluginState = VideoPlayerGlobalTransfer.getInstance()
         .state
         .remove(JString.fromString(transferId))!;
+    _pluginState.state.engineListener = FlutterEngineListener.implement(
+        $FlutterEngineListener(
+            onAttachedToEngine: _onAttachedToEngine,
+            onDetachedFromEngine: _onDetachedFromEngine));
   }
 
   @override

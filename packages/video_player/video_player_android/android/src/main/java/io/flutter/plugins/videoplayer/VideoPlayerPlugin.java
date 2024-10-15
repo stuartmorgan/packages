@@ -31,6 +31,9 @@ public class VideoPlayerPlugin implements FlutterPlugin, AndroidVideoPlayerApi {
 
   @Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding binding) {
+    if (flutterState.state != null && flutterState.state.engineListener != null) {
+      flutterState.state.engineListener.onAttachedToEngine(binding);
+    }
     if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
       try {
         HttpsURLConnection.setDefaultSSLSocketFactory(new CustomSSLSocketFactory());
@@ -59,6 +62,9 @@ public class VideoPlayerPlugin implements FlutterPlugin, AndroidVideoPlayerApi {
   public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
     if (flutterState.state == null) {
       Log.wtf(TAG, "Detached from the engine before registering to it.");
+    }
+    if (flutterState.state != null && flutterState.state.engineListener != null) {
+      flutterState.state.engineListener.onDetachedFromEngine(binding);
     }
     AndroidVideoPlayerApi.setUp(binding.getBinaryMessenger(), null);
     flutterState.state = null;
