@@ -23013,6 +23013,726 @@ final class $PlaybackParameters$Type
   }
 }
 
+/// from: `io.flutter.plugin.common.EventChannel$EventSink`
+class EventChannel_EventSink extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<EventChannel_EventSink> $type;
+
+  @_$jni.internal
+  EventChannel_EventSink.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class =
+      _$jni.JClass.forName(r'io/flutter/plugin/common/EventChannel$EventSink');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $EventChannel_EventSink$Type();
+  static final _id_success = _class.instanceMethodId(
+    r'success',
+    r'(Ljava/lang/Object;)V',
+  );
+
+  static final _success = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void success(java.lang.Object object)`
+  void success(
+    _$jni.JObject object,
+  ) {
+    _success(reference.pointer, _id_success as _$jni.JMethodIDPtr,
+            object.reference.pointer)
+        .check();
+  }
+
+  static final _id_error = _class.instanceMethodId(
+    r'error',
+    r'(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Object;)V',
+  );
+
+  static final _error = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<
+                      (
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>
+                      )>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void error(java.lang.String string, java.lang.String string1, java.lang.Object object)`
+  void error(
+    _$jni.JString string,
+    _$jni.JString string1,
+    _$jni.JObject object,
+  ) {
+    _error(
+            reference.pointer,
+            _id_error as _$jni.JMethodIDPtr,
+            string.reference.pointer,
+            string1.reference.pointer,
+            object.reference.pointer)
+        .check();
+  }
+
+  static final _id_endOfStream = _class.instanceMethodId(
+    r'endOfStream',
+    r'()V',
+  );
+
+  static final _endOfStream = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract void endOfStream()`
+  void endOfStream() {
+    _endOfStream(reference.pointer, _id_endOfStream as _$jni.JMethodIDPtr)
+        .check();
+  }
+
+  /// Maps a specific port to the implemented interface.
+  static final _$core.Map<int, $EventChannel_EventSink> _$impls = {};
+  static _$jni.JObjectPtr _$invoke(
+    int port,
+    _$jni.JObjectPtr descriptor,
+    _$jni.JObjectPtr args,
+  ) {
+    return _$invokeMethod(
+      port,
+      _$jni.MethodInvocation.fromAddresses(
+        0,
+        descriptor.address,
+        args.address,
+      ),
+    );
+  }
+
+  static final _$jni.Pointer<
+          _$jni.NativeFunction<
+              _$jni.JObjectPtr Function(
+                  _$jni.Int64, _$jni.JObjectPtr, _$jni.JObjectPtr)>>
+      _$invokePointer = _$jni.Pointer.fromFunction(_$invoke);
+
+  static _$jni.Pointer<_$jni.Void> _$invokeMethod(
+    int $p,
+    _$jni.MethodInvocation $i,
+  ) {
+    try {
+      final $d = $i.methodDescriptor.toDartString(releaseOriginal: true);
+      final $a = $i.args;
+      if ($d == r'success(Ljava/lang/Object;)V') {
+        _$impls[$p]!.success(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'error(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Object;)V') {
+        _$impls[$p]!.error(
+          $a[0].as(const _$jni.JStringType(), releaseOriginal: true),
+          $a[1].as(const _$jni.JStringType(), releaseOriginal: true),
+          $a[2].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'endOfStream()V') {
+        _$impls[$p]!.endOfStream();
+        return _$jni.nullptr;
+      }
+    } catch (e) {
+      return _$jni.ProtectedJniExtensions.newDartException(e);
+    }
+    return _$jni.nullptr;
+  }
+
+  static void implementIn(
+    _$jni.JImplementer implementer,
+    $EventChannel_EventSink $impl,
+  ) {
+    late final _$jni.RawReceivePort $p;
+    $p = _$jni.RawReceivePort(($m) {
+      if ($m == null) {
+        _$impls.remove($p.sendPort.nativePort);
+        $p.close();
+        return;
+      }
+      final $i = _$jni.MethodInvocation.fromMessage($m);
+      final $r = _$invokeMethod($p.sendPort.nativePort, $i);
+      _$jni.ProtectedJniExtensions.returnResult($i.result, $r);
+    });
+    implementer.add(
+      r'io.flutter.plugin.common.EventChannel$EventSink',
+      $p,
+      _$invokePointer,
+      [
+        if ($impl.success$async) r'success(Ljava/lang/Object;)V',
+        if ($impl.error$async)
+          r'error(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Object;)V',
+        if ($impl.endOfStream$async) r'endOfStream()V',
+      ],
+    );
+    final $a = $p.sendPort.nativePort;
+    _$impls[$a] = $impl;
+  }
+
+  factory EventChannel_EventSink.implement(
+    $EventChannel_EventSink $impl,
+  ) {
+    final $i = _$jni.JImplementer();
+    implementIn($i, $impl);
+    return EventChannel_EventSink.fromReference(
+      $i.implementReference(),
+    );
+  }
+}
+
+abstract base mixin class $EventChannel_EventSink {
+  factory $EventChannel_EventSink({
+    required void Function(_$jni.JObject object) success,
+    bool success$async,
+    required void Function(
+            _$jni.JString string, _$jni.JString string1, _$jni.JObject object)
+        error,
+    bool error$async,
+    required void Function() endOfStream,
+    bool endOfStream$async,
+  }) = _$EventChannel_EventSink;
+
+  void success(_$jni.JObject object);
+  bool get success$async => false;
+  void error(_$jni.JString string, _$jni.JString string1, _$jni.JObject object);
+  bool get error$async => false;
+  void endOfStream();
+  bool get endOfStream$async => false;
+}
+
+final class _$EventChannel_EventSink with $EventChannel_EventSink {
+  _$EventChannel_EventSink({
+    required void Function(_$jni.JObject object) success,
+    this.success$async = false,
+    required void Function(
+            _$jni.JString string, _$jni.JString string1, _$jni.JObject object)
+        error,
+    this.error$async = false,
+    required void Function() endOfStream,
+    this.endOfStream$async = false,
+  })  : _success = success,
+        _error = error,
+        _endOfStream = endOfStream;
+
+  final void Function(_$jni.JObject object) _success;
+  final bool success$async;
+  final void Function(
+      _$jni.JString string, _$jni.JString string1, _$jni.JObject object) _error;
+  final bool error$async;
+  final void Function() _endOfStream;
+  final bool endOfStream$async;
+
+  void success(_$jni.JObject object) {
+    return _success(object);
+  }
+
+  void error(
+      _$jni.JString string, _$jni.JString string1, _$jni.JObject object) {
+    return _error(string, string1, object);
+  }
+
+  void endOfStream() {
+    return _endOfStream();
+  }
+}
+
+final class $EventChannel_EventSink$Type
+    extends _$jni.JObjType<EventChannel_EventSink> {
+  @_$jni.internal
+  const $EventChannel_EventSink$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature => r'Lio/flutter/plugin/common/EventChannel$EventSink;';
+
+  @_$jni.internal
+  @_$core.override
+  EventChannel_EventSink fromReference(_$jni.JReference reference) =>
+      EventChannel_EventSink.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($EventChannel_EventSink$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($EventChannel_EventSink$Type) &&
+        other is $EventChannel_EventSink$Type;
+  }
+}
+
+/// from: `io.flutter.plugin.common.EventChannel$StreamHandler`
+class EventChannel_StreamHandler extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<EventChannel_StreamHandler> $type;
+
+  @_$jni.internal
+  EventChannel_StreamHandler.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'io/flutter/plugin/common/EventChannel$StreamHandler');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $EventChannel_StreamHandler$Type();
+  static final _id_onListen = _class.instanceMethodId(
+    r'onListen',
+    r'(Ljava/lang/Object;Lio/flutter/plugin/common/EventChannel$EventSink;)V',
+  );
+
+  static final _onListen = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<
+                      (
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>
+                      )>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void onListen(java.lang.Object object, io.flutter.plugin.common.EventChannel$EventSink eventSink)`
+  void onListen(
+    _$jni.JObject object,
+    EventChannel_EventSink eventSink,
+  ) {
+    _onListen(reference.pointer, _id_onListen as _$jni.JMethodIDPtr,
+            object.reference.pointer, eventSink.reference.pointer)
+        .check();
+  }
+
+  static final _id_onCancel = _class.instanceMethodId(
+    r'onCancel',
+    r'(Ljava/lang/Object;)V',
+  );
+
+  static final _onCancel = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void onCancel(java.lang.Object object)`
+  void onCancel(
+    _$jni.JObject object,
+  ) {
+    _onCancel(reference.pointer, _id_onCancel as _$jni.JMethodIDPtr,
+            object.reference.pointer)
+        .check();
+  }
+
+  /// Maps a specific port to the implemented interface.
+  static final _$core.Map<int, $EventChannel_StreamHandler> _$impls = {};
+  static _$jni.JObjectPtr _$invoke(
+    int port,
+    _$jni.JObjectPtr descriptor,
+    _$jni.JObjectPtr args,
+  ) {
+    return _$invokeMethod(
+      port,
+      _$jni.MethodInvocation.fromAddresses(
+        0,
+        descriptor.address,
+        args.address,
+      ),
+    );
+  }
+
+  static final _$jni.Pointer<
+          _$jni.NativeFunction<
+              _$jni.JObjectPtr Function(
+                  _$jni.Int64, _$jni.JObjectPtr, _$jni.JObjectPtr)>>
+      _$invokePointer = _$jni.Pointer.fromFunction(_$invoke);
+
+  static _$jni.Pointer<_$jni.Void> _$invokeMethod(
+    int $p,
+    _$jni.MethodInvocation $i,
+  ) {
+    try {
+      final $d = $i.methodDescriptor.toDartString(releaseOriginal: true);
+      final $a = $i.args;
+      if ($d ==
+          r'onListen(Ljava/lang/Object;Lio/flutter/plugin/common/EventChannel$EventSink;)V') {
+        _$impls[$p]!.onListen(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+          $a[1].as(const $EventChannel_EventSink$Type(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'onCancel(Ljava/lang/Object;)V') {
+        _$impls[$p]!.onCancel(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+    } catch (e) {
+      return _$jni.ProtectedJniExtensions.newDartException(e);
+    }
+    return _$jni.nullptr;
+  }
+
+  static void implementIn(
+    _$jni.JImplementer implementer,
+    $EventChannel_StreamHandler $impl,
+  ) {
+    late final _$jni.RawReceivePort $p;
+    $p = _$jni.RawReceivePort(($m) {
+      if ($m == null) {
+        _$impls.remove($p.sendPort.nativePort);
+        $p.close();
+        return;
+      }
+      final $i = _$jni.MethodInvocation.fromMessage($m);
+      final $r = _$invokeMethod($p.sendPort.nativePort, $i);
+      _$jni.ProtectedJniExtensions.returnResult($i.result, $r);
+    });
+    implementer.add(
+      r'io.flutter.plugin.common.EventChannel$StreamHandler',
+      $p,
+      _$invokePointer,
+      [
+        if ($impl.onListen$async)
+          r'onListen(Ljava/lang/Object;Lio/flutter/plugin/common/EventChannel$EventSink;)V',
+        if ($impl.onCancel$async) r'onCancel(Ljava/lang/Object;)V',
+      ],
+    );
+    final $a = $p.sendPort.nativePort;
+    _$impls[$a] = $impl;
+  }
+
+  factory EventChannel_StreamHandler.implement(
+    $EventChannel_StreamHandler $impl,
+  ) {
+    final $i = _$jni.JImplementer();
+    implementIn($i, $impl);
+    return EventChannel_StreamHandler.fromReference(
+      $i.implementReference(),
+    );
+  }
+}
+
+abstract base mixin class $EventChannel_StreamHandler {
+  factory $EventChannel_StreamHandler({
+    required void Function(
+            _$jni.JObject object, EventChannel_EventSink eventSink)
+        onListen,
+    bool onListen$async,
+    required void Function(_$jni.JObject object) onCancel,
+    bool onCancel$async,
+  }) = _$EventChannel_StreamHandler;
+
+  void onListen(_$jni.JObject object, EventChannel_EventSink eventSink);
+  bool get onListen$async => false;
+  void onCancel(_$jni.JObject object);
+  bool get onCancel$async => false;
+}
+
+final class _$EventChannel_StreamHandler with $EventChannel_StreamHandler {
+  _$EventChannel_StreamHandler({
+    required void Function(
+            _$jni.JObject object, EventChannel_EventSink eventSink)
+        onListen,
+    this.onListen$async = false,
+    required void Function(_$jni.JObject object) onCancel,
+    this.onCancel$async = false,
+  })  : _onListen = onListen,
+        _onCancel = onCancel;
+
+  final void Function(_$jni.JObject object, EventChannel_EventSink eventSink)
+      _onListen;
+  final bool onListen$async;
+  final void Function(_$jni.JObject object) _onCancel;
+  final bool onCancel$async;
+
+  void onListen(_$jni.JObject object, EventChannel_EventSink eventSink) {
+    return _onListen(object, eventSink);
+  }
+
+  void onCancel(_$jni.JObject object) {
+    return _onCancel(object);
+  }
+}
+
+final class $EventChannel_StreamHandler$Type
+    extends _$jni.JObjType<EventChannel_StreamHandler> {
+  @_$jni.internal
+  const $EventChannel_StreamHandler$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Lio/flutter/plugin/common/EventChannel$StreamHandler;';
+
+  @_$jni.internal
+  @_$core.override
+  EventChannel_StreamHandler fromReference(_$jni.JReference reference) =>
+      EventChannel_StreamHandler.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($EventChannel_StreamHandler$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($EventChannel_StreamHandler$Type) &&
+        other is $EventChannel_StreamHandler$Type;
+  }
+}
+
+/// from: `io.flutter.plugin.common.EventChannel`
+class EventChannel extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<EventChannel> $type;
+
+  @_$jni.internal
+  EventChannel.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class =
+      _$jni.JClass.forName(r'io/flutter/plugin/common/EventChannel');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $EventChannel$Type();
+  static final _id_new$ = _class.constructorId(
+    r'(Lio/flutter/plugin/common/BinaryMessenger;Ljava/lang/String;)V',
+  );
+
+  static final _new$ = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<
+                      (
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>
+                      )>)>>('globalEnv_NewObject')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public void <init>(io.flutter.plugin.common.BinaryMessenger binaryMessenger, java.lang.String string)`
+  /// The returned object must be released after use, by calling the [release] method.
+  factory EventChannel(
+    _$jni.JObject binaryMessenger,
+    _$jni.JString string,
+  ) {
+    return EventChannel.fromReference(_new$(
+            _class.reference.pointer,
+            _id_new$ as _$jni.JMethodIDPtr,
+            binaryMessenger.reference.pointer,
+            string.reference.pointer)
+        .reference);
+  }
+
+  static final _id_new$1 = _class.constructorId(
+    r'(Lio/flutter/plugin/common/BinaryMessenger;Ljava/lang/String;Lio/flutter/plugin/common/MethodCodec;)V',
+  );
+
+  static final _new$1 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<
+                      (
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>
+                      )>)>>('globalEnv_NewObject')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public void <init>(io.flutter.plugin.common.BinaryMessenger binaryMessenger, java.lang.String string, io.flutter.plugin.common.MethodCodec methodCodec)`
+  /// The returned object must be released after use, by calling the [release] method.
+  factory EventChannel.new$1(
+    _$jni.JObject binaryMessenger,
+    _$jni.JString string,
+    _$jni.JObject methodCodec,
+  ) {
+    return EventChannel.fromReference(_new$1(
+            _class.reference.pointer,
+            _id_new$1 as _$jni.JMethodIDPtr,
+            binaryMessenger.reference.pointer,
+            string.reference.pointer,
+            methodCodec.reference.pointer)
+        .reference);
+  }
+
+  static final _id_new$2 = _class.constructorId(
+    r'(Lio/flutter/plugin/common/BinaryMessenger;Ljava/lang/String;Lio/flutter/plugin/common/MethodCodec;Lio/flutter/plugin/common/BinaryMessenger$TaskQueue;)V',
+  );
+
+  static final _new$2 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<
+                      (
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>
+                      )>)>>('globalEnv_NewObject')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public void <init>(io.flutter.plugin.common.BinaryMessenger binaryMessenger, java.lang.String string, io.flutter.plugin.common.MethodCodec methodCodec, io.flutter.plugin.common.BinaryMessenger$TaskQueue taskQueue)`
+  /// The returned object must be released after use, by calling the [release] method.
+  factory EventChannel.new$2(
+    _$jni.JObject binaryMessenger,
+    _$jni.JString string,
+    _$jni.JObject methodCodec,
+    _$jni.JObject taskQueue,
+  ) {
+    return EventChannel.fromReference(_new$2(
+            _class.reference.pointer,
+            _id_new$2 as _$jni.JMethodIDPtr,
+            binaryMessenger.reference.pointer,
+            string.reference.pointer,
+            methodCodec.reference.pointer,
+            taskQueue.reference.pointer)
+        .reference);
+  }
+
+  static final _id_setStreamHandler = _class.instanceMethodId(
+    r'setStreamHandler',
+    r'(Lio/flutter/plugin/common/EventChannel$StreamHandler;)V',
+  );
+
+  static final _setStreamHandler = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public void setStreamHandler(io.flutter.plugin.common.EventChannel$StreamHandler streamHandler)`
+  void setStreamHandler(
+    EventChannel_StreamHandler streamHandler,
+  ) {
+    _setStreamHandler(
+            reference.pointer,
+            _id_setStreamHandler as _$jni.JMethodIDPtr,
+            streamHandler.reference.pointer)
+        .check();
+  }
+}
+
+final class $EventChannel$Type extends _$jni.JObjType<EventChannel> {
+  @_$jni.internal
+  const $EventChannel$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature => r'Lio/flutter/plugin/common/EventChannel;';
+
+  @_$jni.internal
+  @_$core.override
+  EventChannel fromReference(_$jni.JReference reference) =>
+      EventChannel.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($EventChannel$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($EventChannel$Type) &&
+        other is $EventChannel$Type;
+  }
+}
+
 /// from: `io.flutter.embedding.engine.plugins.FlutterPlugin$FlutterAssets`
 class FlutterPlugin_FlutterAssets extends _$jni.JObject {
   @_$jni.internal
@@ -23421,7 +24141,7 @@ class FlutterPlugin_FlutterPluginBinding extends _$jni.JObject {
     _$jni.JObject context,
     _$jni.JObject flutterEngine,
     _$jni.JObject binaryMessenger,
-    _$jni.JObject textureRegistry,
+    TextureRegistry textureRegistry,
     _$jni.JObject platformViewRegistry,
     FlutterPlugin_FlutterAssets flutterAssets,
     _$jni.JObject flutterEngineGroup,
@@ -23533,10 +24253,10 @@ class FlutterPlugin_FlutterPluginBinding extends _$jni.JObject {
 
   /// from: `public io.flutter.view.TextureRegistry getTextureRegistry()`
   /// The returned object must be released after use, by calling the [release] method.
-  _$jni.JObject getTextureRegistry() {
+  TextureRegistry getTextureRegistry() {
     return _getTextureRegistry(
             reference.pointer, _id_getTextureRegistry as _$jni.JMethodIDPtr)
-        .object(const _$jni.JObjectType());
+        .object(const $TextureRegistry$Type());
   }
 
   static final _id_getPlatformViewRegistry = _class.instanceMethodId(
@@ -24669,8 +25389,8 @@ class FlutterState extends _$jni.JObject {
 
   /// from: `public final io.flutter.view.TextureRegistry textureRegistry`
   /// The returned object must be released after use, by calling the [release] method.
-  _$jni.JObject get textureRegistry =>
-      _id_textureRegistry.get(this, const _$jni.JObjectType());
+  TextureRegistry get textureRegistry =>
+      _id_textureRegistry.get(this, const $TextureRegistry$Type());
 
   static final _id_engineListener = _class.instanceFieldId(
     r'engineListener',
@@ -24719,6 +25439,340 @@ final class $FlutterState$Type extends _$jni.JObjType<FlutterState> {
   }
 }
 
+/// from: `io.flutter.plugins.videoplayer.VideoAsset$StreamingFormat`
+class VideoAsset_StreamingFormat extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<VideoAsset_StreamingFormat> $type;
+
+  @_$jni.internal
+  VideoAsset_StreamingFormat.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'io/flutter/plugins/videoplayer/VideoAsset$StreamingFormat');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $VideoAsset_StreamingFormat$Type();
+  static final _id_UNKNOWN = _class.staticFieldId(
+    r'UNKNOWN',
+    r'Lio/flutter/plugins/videoplayer/VideoAsset$StreamingFormat;',
+  );
+
+  /// from: `static public final io.flutter.plugins.videoplayer.VideoAsset$StreamingFormat UNKNOWN`
+  /// The returned object must be released after use, by calling the [release] method.
+  static VideoAsset_StreamingFormat get UNKNOWN =>
+      _id_UNKNOWN.get(_class, const $VideoAsset_StreamingFormat$Type());
+
+  static final _id_SMOOTH = _class.staticFieldId(
+    r'SMOOTH',
+    r'Lio/flutter/plugins/videoplayer/VideoAsset$StreamingFormat;',
+  );
+
+  /// from: `static public final io.flutter.plugins.videoplayer.VideoAsset$StreamingFormat SMOOTH`
+  /// The returned object must be released after use, by calling the [release] method.
+  static VideoAsset_StreamingFormat get SMOOTH =>
+      _id_SMOOTH.get(_class, const $VideoAsset_StreamingFormat$Type());
+
+  static final _id_DYNAMIC_ADAPTIVE = _class.staticFieldId(
+    r'DYNAMIC_ADAPTIVE',
+    r'Lio/flutter/plugins/videoplayer/VideoAsset$StreamingFormat;',
+  );
+
+  /// from: `static public final io.flutter.plugins.videoplayer.VideoAsset$StreamingFormat DYNAMIC_ADAPTIVE`
+  /// The returned object must be released after use, by calling the [release] method.
+  static VideoAsset_StreamingFormat get DYNAMIC_ADAPTIVE => _id_DYNAMIC_ADAPTIVE
+      .get(_class, const $VideoAsset_StreamingFormat$Type());
+
+  static final _id_HTTP_LIVE = _class.staticFieldId(
+    r'HTTP_LIVE',
+    r'Lio/flutter/plugins/videoplayer/VideoAsset$StreamingFormat;',
+  );
+
+  /// from: `static public final io.flutter.plugins.videoplayer.VideoAsset$StreamingFormat HTTP_LIVE`
+  /// The returned object must be released after use, by calling the [release] method.
+  static VideoAsset_StreamingFormat get HTTP_LIVE =>
+      _id_HTTP_LIVE.get(_class, const $VideoAsset_StreamingFormat$Type());
+
+  static final _id_values = _class.staticMethodId(
+    r'values',
+    r'()[Lio/flutter/plugins/videoplayer/VideoAsset$StreamingFormat;',
+  );
+
+  static final _values = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallStaticObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `static public io.flutter.plugins.videoplayer.VideoAsset$StreamingFormat[] values()`
+  /// The returned object must be released after use, by calling the [release] method.
+  static _$jni.JArray<VideoAsset_StreamingFormat> values() {
+    return _values(_class.reference.pointer, _id_values as _$jni.JMethodIDPtr)
+        .object(const _$jni.JArrayType($VideoAsset_StreamingFormat$Type()));
+  }
+
+  static final _id_valueOf = _class.staticMethodId(
+    r'valueOf',
+    r'(Ljava/lang/String;)Lio/flutter/plugins/videoplayer/VideoAsset$StreamingFormat;',
+  );
+
+  static final _valueOf = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallStaticObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `static public io.flutter.plugins.videoplayer.VideoAsset$StreamingFormat valueOf(java.lang.String string)`
+  /// The returned object must be released after use, by calling the [release] method.
+  static VideoAsset_StreamingFormat valueOf(
+    _$jni.JString string,
+  ) {
+    return _valueOf(_class.reference.pointer, _id_valueOf as _$jni.JMethodIDPtr,
+            string.reference.pointer)
+        .object(const $VideoAsset_StreamingFormat$Type());
+  }
+}
+
+final class $VideoAsset_StreamingFormat$Type
+    extends _$jni.JObjType<VideoAsset_StreamingFormat> {
+  @_$jni.internal
+  const $VideoAsset_StreamingFormat$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Lio/flutter/plugins/videoplayer/VideoAsset$StreamingFormat;';
+
+  @_$jni.internal
+  @_$core.override
+  VideoAsset_StreamingFormat fromReference(_$jni.JReference reference) =>
+      VideoAsset_StreamingFormat.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($VideoAsset_StreamingFormat$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($VideoAsset_StreamingFormat$Type) &&
+        other is $VideoAsset_StreamingFormat$Type;
+  }
+}
+
+/// from: `io.flutter.plugins.videoplayer.VideoAsset`
+class VideoAsset extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<VideoAsset> $type;
+
+  @_$jni.internal
+  VideoAsset.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class =
+      _$jni.JClass.forName(r'io/flutter/plugins/videoplayer/VideoAsset');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $VideoAsset$Type();
+  static final _id_fromAssetUrl = _class.staticMethodId(
+    r'fromAssetUrl',
+    r'(Ljava/lang/String;)Lio/flutter/plugins/videoplayer/VideoAsset;',
+  );
+
+  static final _fromAssetUrl = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallStaticObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `static public io.flutter.plugins.videoplayer.VideoAsset fromAssetUrl(java.lang.String string)`
+  /// The returned object must be released after use, by calling the [release] method.
+  static VideoAsset fromAssetUrl(
+    _$jni.JString string,
+  ) {
+    return _fromAssetUrl(_class.reference.pointer,
+            _id_fromAssetUrl as _$jni.JMethodIDPtr, string.reference.pointer)
+        .object(const $VideoAsset$Type());
+  }
+
+  static final _id_fromRemoteUrl = _class.staticMethodId(
+    r'fromRemoteUrl',
+    r'(Ljava/lang/String;Lio/flutter/plugins/videoplayer/VideoAsset$StreamingFormat;Ljava/util/Map;)Lio/flutter/plugins/videoplayer/VideoAsset;',
+  );
+
+  static final _fromRemoteUrl = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<
+                      (
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>
+                      )>)>>('globalEnv_CallStaticObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `static public io.flutter.plugins.videoplayer.VideoAsset fromRemoteUrl(java.lang.String string, io.flutter.plugins.videoplayer.VideoAsset$StreamingFormat streamingFormat, java.util.Map map)`
+  /// The returned object must be released after use, by calling the [release] method.
+  static VideoAsset fromRemoteUrl(
+    _$jni.JString string,
+    VideoAsset_StreamingFormat streamingFormat,
+    _$jni.JMap<_$jni.JString, _$jni.JString> map,
+  ) {
+    return _fromRemoteUrl(
+            _class.reference.pointer,
+            _id_fromRemoteUrl as _$jni.JMethodIDPtr,
+            string.reference.pointer,
+            streamingFormat.reference.pointer,
+            map.reference.pointer)
+        .object(const $VideoAsset$Type());
+  }
+
+  static final _id_fromRtspUrl = _class.staticMethodId(
+    r'fromRtspUrl',
+    r'(Ljava/lang/String;)Lio/flutter/plugins/videoplayer/VideoAsset;',
+  );
+
+  static final _fromRtspUrl = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallStaticObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `static public io.flutter.plugins.videoplayer.VideoAsset fromRtspUrl(java.lang.String string)`
+  /// The returned object must be released after use, by calling the [release] method.
+  static VideoAsset fromRtspUrl(
+    _$jni.JString string,
+  ) {
+    return _fromRtspUrl(_class.reference.pointer,
+            _id_fromRtspUrl as _$jni.JMethodIDPtr, string.reference.pointer)
+        .object(const $VideoAsset$Type());
+  }
+
+  static final _id_getMediaItem = _class.instanceMethodId(
+    r'getMediaItem',
+    r'()Landroidx/media3/common/MediaItem;',
+  );
+
+  static final _getMediaItem = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract androidx.media3.common.MediaItem getMediaItem()`
+  /// The returned object must be released after use, by calling the [release] method.
+  MediaItem getMediaItem() {
+    return _getMediaItem(
+            reference.pointer, _id_getMediaItem as _$jni.JMethodIDPtr)
+        .object(const $MediaItem$Type());
+  }
+
+  static final _id_getMediaSourceFactory = _class.instanceMethodId(
+    r'getMediaSourceFactory',
+    r'(Landroid/content/Context;)Landroidx/media3/exoplayer/source/MediaSource$Factory;',
+  );
+
+  static final _getMediaSourceFactory = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract androidx.media3.exoplayer.source.MediaSource$Factory getMediaSourceFactory(android.content.Context context)`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getMediaSourceFactory(
+    _$jni.JObject context,
+  ) {
+    return _getMediaSourceFactory(
+            reference.pointer,
+            _id_getMediaSourceFactory as _$jni.JMethodIDPtr,
+            context.reference.pointer)
+        .object(const _$jni.JObjectType());
+  }
+}
+
+final class $VideoAsset$Type extends _$jni.JObjType<VideoAsset> {
+  @_$jni.internal
+  const $VideoAsset$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature => r'Lio/flutter/plugins/videoplayer/VideoAsset;';
+
+  @_$jni.internal
+  @_$core.override
+  VideoAsset fromReference(_$jni.JReference reference) =>
+      VideoAsset.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($VideoAsset$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($VideoAsset$Type) && other is $VideoAsset$Type;
+  }
+}
+
 /// from: `io.flutter.plugins.videoplayer.VideoPlayer`
 class VideoPlayer extends _$jni.JObject {
   @_$jni.internal
@@ -24749,6 +25803,54 @@ class VideoPlayer extends _$jni.JObject {
   /// The returned object must be released after use, by calling the [release] method.
   set exoPlayer(ExoPlayer value) =>
       _id_exoPlayer.set(this, const $ExoPlayer$Type(), value);
+
+  static final _id_create = _class.staticMethodId(
+    r'create',
+    r'(Landroid/content/Context;Lio/flutter/plugins/videoplayer/VideoPlayerCallbacks;Lio/flutter/view/TextureRegistry$SurfaceProducer;Lio/flutter/plugins/videoplayer/VideoAsset;Z)Lio/flutter/plugins/videoplayer/VideoPlayer;',
+  );
+
+  static final _create = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<
+                      (
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Int32
+                      )>)>>('globalEnv_CallStaticObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>,
+              int)>();
+
+  /// from: `static public io.flutter.plugins.videoplayer.VideoPlayer create(android.content.Context context, io.flutter.plugins.videoplayer.VideoPlayerCallbacks videoPlayerCallbacks, io.flutter.view.TextureRegistry$SurfaceProducer surfaceProducer, io.flutter.plugins.videoplayer.VideoAsset videoAsset, boolean z)`
+  /// The returned object must be released after use, by calling the [release] method.
+  static VideoPlayer create(
+    _$jni.JObject context,
+    _$jni.JObject videoPlayerCallbacks,
+    TextureRegistry_SurfaceProducer surfaceProducer,
+    VideoAsset videoAsset,
+    bool z,
+  ) {
+    return _create(
+            _class.reference.pointer,
+            _id_create as _$jni.JMethodIDPtr,
+            context.reference.pointer,
+            videoPlayerCallbacks.reference.pointer,
+            surfaceProducer.reference.pointer,
+            videoAsset.reference.pointer,
+            z ? 1 : 0)
+        .object(const $VideoPlayer$Type());
+  }
 
   static final _id_onSurfaceCreated = _class.instanceMethodId(
     r'onSurfaceCreated',
@@ -24849,6 +25951,273 @@ final class $VideoPlayer$Type extends _$jni.JObjType<VideoPlayer> {
   bool operator ==(Object other) {
     return other.runtimeType == ($VideoPlayer$Type) &&
         other is $VideoPlayer$Type;
+  }
+}
+
+/// from: `io.flutter.plugins.videoplayer.VideoPlayerEventCallbacks`
+class VideoPlayerEventCallbacks extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<VideoPlayerEventCallbacks> $type;
+
+  @_$jni.internal
+  VideoPlayerEventCallbacks.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'io/flutter/plugins/videoplayer/VideoPlayerEventCallbacks');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $VideoPlayerEventCallbacks$Type();
+  static final _id_bindTo = _class.staticMethodId(
+    r'bindTo',
+    r'(Lio/flutter/plugin/common/EventChannel;)Lio/flutter/plugins/videoplayer/VideoPlayerEventCallbacks;',
+  );
+
+  static final _bindTo = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallStaticObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `static public io.flutter.plugins.videoplayer.VideoPlayerEventCallbacks bindTo(io.flutter.plugin.common.EventChannel eventChannel)`
+  /// The returned object must be released after use, by calling the [release] method.
+  static VideoPlayerEventCallbacks bindTo(
+    EventChannel eventChannel,
+  ) {
+    return _bindTo(_class.reference.pointer, _id_bindTo as _$jni.JMethodIDPtr,
+            eventChannel.reference.pointer)
+        .object(const $VideoPlayerEventCallbacks$Type());
+  }
+
+  static final _id_onInitialized = _class.instanceMethodId(
+    r'onInitialized',
+    r'(IIJI)V',
+  );
+
+  static final _onInitialized = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<
+                      (
+                        _$jni.Int32,
+                        _$jni.Int32,
+                        _$jni.Int64,
+                        _$jni.Int32
+                      )>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, int, int, int, int)>();
+
+  /// from: `public void onInitialized(int i, int i1, long j, int i2)`
+  void onInitialized(
+    int i,
+    int i1,
+    int j,
+    int i2,
+  ) {
+    _onInitialized(reference.pointer, _id_onInitialized as _$jni.JMethodIDPtr,
+            i, i1, j, i2)
+        .check();
+  }
+
+  static final _id_onBufferingStart = _class.instanceMethodId(
+    r'onBufferingStart',
+    r'()V',
+  );
+
+  static final _onBufferingStart = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public void onBufferingStart()`
+  void onBufferingStart() {
+    _onBufferingStart(
+            reference.pointer, _id_onBufferingStart as _$jni.JMethodIDPtr)
+        .check();
+  }
+
+  static final _id_onBufferingUpdate = _class.instanceMethodId(
+    r'onBufferingUpdate',
+    r'(J)V',
+  );
+
+  static final _onBufferingUpdate = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int64,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public void onBufferingUpdate(long j)`
+  void onBufferingUpdate(
+    int j,
+  ) {
+    _onBufferingUpdate(
+            reference.pointer, _id_onBufferingUpdate as _$jni.JMethodIDPtr, j)
+        .check();
+  }
+
+  static final _id_onBufferingEnd = _class.instanceMethodId(
+    r'onBufferingEnd',
+    r'()V',
+  );
+
+  static final _onBufferingEnd = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public void onBufferingEnd()`
+  void onBufferingEnd() {
+    _onBufferingEnd(reference.pointer, _id_onBufferingEnd as _$jni.JMethodIDPtr)
+        .check();
+  }
+
+  static final _id_onCompleted = _class.instanceMethodId(
+    r'onCompleted',
+    r'()V',
+  );
+
+  static final _onCompleted = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public void onCompleted()`
+  void onCompleted() {
+    _onCompleted(reference.pointer, _id_onCompleted as _$jni.JMethodIDPtr)
+        .check();
+  }
+
+  static final _id_onError = _class.instanceMethodId(
+    r'onError',
+    r'(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Object;)V',
+  );
+
+  static final _onError = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<
+                      (
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>,
+                        _$jni.Pointer<_$jni.Void>
+                      )>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>,
+              _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public void onError(java.lang.String string, java.lang.String string1, java.lang.Object object)`
+  void onError(
+    _$jni.JString string,
+    _$jni.JString string1,
+    _$jni.JObject object,
+  ) {
+    _onError(
+            reference.pointer,
+            _id_onError as _$jni.JMethodIDPtr,
+            string.reference.pointer,
+            string1.reference.pointer,
+            object.reference.pointer)
+        .check();
+  }
+
+  static final _id_onIsPlayingStateUpdate = _class.instanceMethodId(
+    r'onIsPlayingStateUpdate',
+    r'(Z)V',
+  );
+
+  static final _onIsPlayingStateUpdate = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public void onIsPlayingStateUpdate(boolean z)`
+  void onIsPlayingStateUpdate(
+    bool z,
+  ) {
+    _onIsPlayingStateUpdate(reference.pointer,
+            _id_onIsPlayingStateUpdate as _$jni.JMethodIDPtr, z ? 1 : 0)
+        .check();
+  }
+}
+
+final class $VideoPlayerEventCallbacks$Type
+    extends _$jni.JObjType<VideoPlayerEventCallbacks> {
+  @_$jni.internal
+  const $VideoPlayerEventCallbacks$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Lio/flutter/plugins/videoplayer/VideoPlayerEventCallbacks;';
+
+  @_$jni.internal
+  @_$core.override
+  VideoPlayerEventCallbacks fromReference(_$jni.JReference reference) =>
+      VideoPlayerEventCallbacks.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($VideoPlayerEventCallbacks$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($VideoPlayerEventCallbacks$Type) &&
+        other is $VideoPlayerEventCallbacks$Type;
   }
 }
 
@@ -24986,5 +26355,2446 @@ final class $VideoPlayerGlobalTransfer$Type
   bool operator ==(Object other) {
     return other.runtimeType == ($VideoPlayerGlobalTransfer$Type) &&
         other is $VideoPlayerGlobalTransfer$Type;
+  }
+}
+
+/// from: `io.flutter.view.TextureRegistry$GLTextureConsumer`
+class TextureRegistry_GLTextureConsumer extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<TextureRegistry_GLTextureConsumer> $type;
+
+  @_$jni.internal
+  TextureRegistry_GLTextureConsumer.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'io/flutter/view/TextureRegistry$GLTextureConsumer');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $TextureRegistry_GLTextureConsumer$Type();
+  static final _id_getSurfaceTexture = _class.instanceMethodId(
+    r'getSurfaceTexture',
+    r'()Landroid/graphics/SurfaceTexture;',
+  );
+
+  static final _getSurfaceTexture = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract android.graphics.SurfaceTexture getSurfaceTexture()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getSurfaceTexture() {
+    return _getSurfaceTexture(
+            reference.pointer, _id_getSurfaceTexture as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  /// Maps a specific port to the implemented interface.
+  static final _$core.Map<int, $TextureRegistry_GLTextureConsumer> _$impls = {};
+  static _$jni.JObjectPtr _$invoke(
+    int port,
+    _$jni.JObjectPtr descriptor,
+    _$jni.JObjectPtr args,
+  ) {
+    return _$invokeMethod(
+      port,
+      _$jni.MethodInvocation.fromAddresses(
+        0,
+        descriptor.address,
+        args.address,
+      ),
+    );
+  }
+
+  static final _$jni.Pointer<
+          _$jni.NativeFunction<
+              _$jni.JObjectPtr Function(
+                  _$jni.Int64, _$jni.JObjectPtr, _$jni.JObjectPtr)>>
+      _$invokePointer = _$jni.Pointer.fromFunction(_$invoke);
+
+  static _$jni.Pointer<_$jni.Void> _$invokeMethod(
+    int $p,
+    _$jni.MethodInvocation $i,
+  ) {
+    try {
+      final $d = $i.methodDescriptor.toDartString(releaseOriginal: true);
+      final $a = $i.args;
+      if ($d == r'getSurfaceTexture()Landroid/graphics/SurfaceTexture;') {
+        final $r = _$impls[$p]!.getSurfaceTexture();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+    } catch (e) {
+      return _$jni.ProtectedJniExtensions.newDartException(e);
+    }
+    return _$jni.nullptr;
+  }
+
+  static void implementIn(
+    _$jni.JImplementer implementer,
+    $TextureRegistry_GLTextureConsumer $impl,
+  ) {
+    late final _$jni.RawReceivePort $p;
+    $p = _$jni.RawReceivePort(($m) {
+      if ($m == null) {
+        _$impls.remove($p.sendPort.nativePort);
+        $p.close();
+        return;
+      }
+      final $i = _$jni.MethodInvocation.fromMessage($m);
+      final $r = _$invokeMethod($p.sendPort.nativePort, $i);
+      _$jni.ProtectedJniExtensions.returnResult($i.result, $r);
+    });
+    implementer.add(
+      r'io.flutter.view.TextureRegistry$GLTextureConsumer',
+      $p,
+      _$invokePointer,
+      [],
+    );
+    final $a = $p.sendPort.nativePort;
+    _$impls[$a] = $impl;
+  }
+
+  factory TextureRegistry_GLTextureConsumer.implement(
+    $TextureRegistry_GLTextureConsumer $impl,
+  ) {
+    final $i = _$jni.JImplementer();
+    implementIn($i, $impl);
+    return TextureRegistry_GLTextureConsumer.fromReference(
+      $i.implementReference(),
+    );
+  }
+}
+
+abstract base mixin class $TextureRegistry_GLTextureConsumer {
+  factory $TextureRegistry_GLTextureConsumer({
+    required _$jni.JObject Function() getSurfaceTexture,
+  }) = _$TextureRegistry_GLTextureConsumer;
+
+  _$jni.JObject getSurfaceTexture();
+}
+
+final class _$TextureRegistry_GLTextureConsumer
+    with $TextureRegistry_GLTextureConsumer {
+  _$TextureRegistry_GLTextureConsumer({
+    required _$jni.JObject Function() getSurfaceTexture,
+  }) : _getSurfaceTexture = getSurfaceTexture;
+
+  final _$jni.JObject Function() _getSurfaceTexture;
+
+  _$jni.JObject getSurfaceTexture() {
+    return _getSurfaceTexture();
+  }
+}
+
+final class $TextureRegistry_GLTextureConsumer$Type
+    extends _$jni.JObjType<TextureRegistry_GLTextureConsumer> {
+  @_$jni.internal
+  const $TextureRegistry_GLTextureConsumer$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Lio/flutter/view/TextureRegistry$GLTextureConsumer;';
+
+  @_$jni.internal
+  @_$core.override
+  TextureRegistry_GLTextureConsumer fromReference(_$jni.JReference reference) =>
+      TextureRegistry_GLTextureConsumer.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($TextureRegistry_GLTextureConsumer$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($TextureRegistry_GLTextureConsumer$Type) &&
+        other is $TextureRegistry_GLTextureConsumer$Type;
+  }
+}
+
+/// from: `io.flutter.view.TextureRegistry$ImageConsumer`
+class TextureRegistry_ImageConsumer extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<TextureRegistry_ImageConsumer> $type;
+
+  @_$jni.internal
+  TextureRegistry_ImageConsumer.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class =
+      _$jni.JClass.forName(r'io/flutter/view/TextureRegistry$ImageConsumer');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $TextureRegistry_ImageConsumer$Type();
+  static final _id_acquireLatestImage = _class.instanceMethodId(
+    r'acquireLatestImage',
+    r'()Landroid/media/Image;',
+  );
+
+  static final _acquireLatestImage = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract android.media.Image acquireLatestImage()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject acquireLatestImage() {
+    return _acquireLatestImage(
+            reference.pointer, _id_acquireLatestImage as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  /// Maps a specific port to the implemented interface.
+  static final _$core.Map<int, $TextureRegistry_ImageConsumer> _$impls = {};
+  static _$jni.JObjectPtr _$invoke(
+    int port,
+    _$jni.JObjectPtr descriptor,
+    _$jni.JObjectPtr args,
+  ) {
+    return _$invokeMethod(
+      port,
+      _$jni.MethodInvocation.fromAddresses(
+        0,
+        descriptor.address,
+        args.address,
+      ),
+    );
+  }
+
+  static final _$jni.Pointer<
+          _$jni.NativeFunction<
+              _$jni.JObjectPtr Function(
+                  _$jni.Int64, _$jni.JObjectPtr, _$jni.JObjectPtr)>>
+      _$invokePointer = _$jni.Pointer.fromFunction(_$invoke);
+
+  static _$jni.Pointer<_$jni.Void> _$invokeMethod(
+    int $p,
+    _$jni.MethodInvocation $i,
+  ) {
+    try {
+      final $d = $i.methodDescriptor.toDartString(releaseOriginal: true);
+      final $a = $i.args;
+      if ($d == r'acquireLatestImage()Landroid/media/Image;') {
+        final $r = _$impls[$p]!.acquireLatestImage();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+    } catch (e) {
+      return _$jni.ProtectedJniExtensions.newDartException(e);
+    }
+    return _$jni.nullptr;
+  }
+
+  static void implementIn(
+    _$jni.JImplementer implementer,
+    $TextureRegistry_ImageConsumer $impl,
+  ) {
+    late final _$jni.RawReceivePort $p;
+    $p = _$jni.RawReceivePort(($m) {
+      if ($m == null) {
+        _$impls.remove($p.sendPort.nativePort);
+        $p.close();
+        return;
+      }
+      final $i = _$jni.MethodInvocation.fromMessage($m);
+      final $r = _$invokeMethod($p.sendPort.nativePort, $i);
+      _$jni.ProtectedJniExtensions.returnResult($i.result, $r);
+    });
+    implementer.add(
+      r'io.flutter.view.TextureRegistry$ImageConsumer',
+      $p,
+      _$invokePointer,
+      [],
+    );
+    final $a = $p.sendPort.nativePort;
+    _$impls[$a] = $impl;
+  }
+
+  factory TextureRegistry_ImageConsumer.implement(
+    $TextureRegistry_ImageConsumer $impl,
+  ) {
+    final $i = _$jni.JImplementer();
+    implementIn($i, $impl);
+    return TextureRegistry_ImageConsumer.fromReference(
+      $i.implementReference(),
+    );
+  }
+}
+
+abstract base mixin class $TextureRegistry_ImageConsumer {
+  factory $TextureRegistry_ImageConsumer({
+    required _$jni.JObject Function() acquireLatestImage,
+  }) = _$TextureRegistry_ImageConsumer;
+
+  _$jni.JObject acquireLatestImage();
+}
+
+final class _$TextureRegistry_ImageConsumer
+    with $TextureRegistry_ImageConsumer {
+  _$TextureRegistry_ImageConsumer({
+    required _$jni.JObject Function() acquireLatestImage,
+  }) : _acquireLatestImage = acquireLatestImage;
+
+  final _$jni.JObject Function() _acquireLatestImage;
+
+  _$jni.JObject acquireLatestImage() {
+    return _acquireLatestImage();
+  }
+}
+
+final class $TextureRegistry_ImageConsumer$Type
+    extends _$jni.JObjType<TextureRegistry_ImageConsumer> {
+  @_$jni.internal
+  const $TextureRegistry_ImageConsumer$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature => r'Lio/flutter/view/TextureRegistry$ImageConsumer;';
+
+  @_$jni.internal
+  @_$core.override
+  TextureRegistry_ImageConsumer fromReference(_$jni.JReference reference) =>
+      TextureRegistry_ImageConsumer.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($TextureRegistry_ImageConsumer$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($TextureRegistry_ImageConsumer$Type) &&
+        other is $TextureRegistry_ImageConsumer$Type;
+  }
+}
+
+/// from: `io.flutter.view.TextureRegistry$ImageTextureEntry`
+class TextureRegistry_ImageTextureEntry extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<TextureRegistry_ImageTextureEntry> $type;
+
+  @_$jni.internal
+  TextureRegistry_ImageTextureEntry.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'io/flutter/view/TextureRegistry$ImageTextureEntry');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $TextureRegistry_ImageTextureEntry$Type();
+  static final _id_pushImage = _class.instanceMethodId(
+    r'pushImage',
+    r'(Landroid/media/Image;)V',
+  );
+
+  static final _pushImage = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void pushImage(android.media.Image image)`
+  void pushImage(
+    _$jni.JObject image,
+  ) {
+    _pushImage(reference.pointer, _id_pushImage as _$jni.JMethodIDPtr,
+            image.reference.pointer)
+        .check();
+  }
+
+  /// Maps a specific port to the implemented interface.
+  static final _$core.Map<int, $TextureRegistry_ImageTextureEntry> _$impls = {};
+  static _$jni.JObjectPtr _$invoke(
+    int port,
+    _$jni.JObjectPtr descriptor,
+    _$jni.JObjectPtr args,
+  ) {
+    return _$invokeMethod(
+      port,
+      _$jni.MethodInvocation.fromAddresses(
+        0,
+        descriptor.address,
+        args.address,
+      ),
+    );
+  }
+
+  static final _$jni.Pointer<
+          _$jni.NativeFunction<
+              _$jni.JObjectPtr Function(
+                  _$jni.Int64, _$jni.JObjectPtr, _$jni.JObjectPtr)>>
+      _$invokePointer = _$jni.Pointer.fromFunction(_$invoke);
+
+  static _$jni.Pointer<_$jni.Void> _$invokeMethod(
+    int $p,
+    _$jni.MethodInvocation $i,
+  ) {
+    try {
+      final $d = $i.methodDescriptor.toDartString(releaseOriginal: true);
+      final $a = $i.args;
+      if ($d == r'pushImage(Landroid/media/Image;)V') {
+        _$impls[$p]!.pushImage(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+    } catch (e) {
+      return _$jni.ProtectedJniExtensions.newDartException(e);
+    }
+    return _$jni.nullptr;
+  }
+
+  static void implementIn(
+    _$jni.JImplementer implementer,
+    $TextureRegistry_ImageTextureEntry $impl,
+  ) {
+    late final _$jni.RawReceivePort $p;
+    $p = _$jni.RawReceivePort(($m) {
+      if ($m == null) {
+        _$impls.remove($p.sendPort.nativePort);
+        $p.close();
+        return;
+      }
+      final $i = _$jni.MethodInvocation.fromMessage($m);
+      final $r = _$invokeMethod($p.sendPort.nativePort, $i);
+      _$jni.ProtectedJniExtensions.returnResult($i.result, $r);
+    });
+    implementer.add(
+      r'io.flutter.view.TextureRegistry$ImageTextureEntry',
+      $p,
+      _$invokePointer,
+      [
+        if ($impl.pushImage$async) r'pushImage(Landroid/media/Image;)V',
+      ],
+    );
+    final $a = $p.sendPort.nativePort;
+    _$impls[$a] = $impl;
+  }
+
+  factory TextureRegistry_ImageTextureEntry.implement(
+    $TextureRegistry_ImageTextureEntry $impl,
+  ) {
+    final $i = _$jni.JImplementer();
+    implementIn($i, $impl);
+    return TextureRegistry_ImageTextureEntry.fromReference(
+      $i.implementReference(),
+    );
+  }
+}
+
+abstract base mixin class $TextureRegistry_ImageTextureEntry {
+  factory $TextureRegistry_ImageTextureEntry({
+    required void Function(_$jni.JObject image) pushImage,
+    bool pushImage$async,
+  }) = _$TextureRegistry_ImageTextureEntry;
+
+  void pushImage(_$jni.JObject image);
+  bool get pushImage$async => false;
+}
+
+final class _$TextureRegistry_ImageTextureEntry
+    with $TextureRegistry_ImageTextureEntry {
+  _$TextureRegistry_ImageTextureEntry({
+    required void Function(_$jni.JObject image) pushImage,
+    this.pushImage$async = false,
+  }) : _pushImage = pushImage;
+
+  final void Function(_$jni.JObject image) _pushImage;
+  final bool pushImage$async;
+
+  void pushImage(_$jni.JObject image) {
+    return _pushImage(image);
+  }
+}
+
+final class $TextureRegistry_ImageTextureEntry$Type
+    extends _$jni.JObjType<TextureRegistry_ImageTextureEntry> {
+  @_$jni.internal
+  const $TextureRegistry_ImageTextureEntry$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Lio/flutter/view/TextureRegistry$ImageTextureEntry;';
+
+  @_$jni.internal
+  @_$core.override
+  TextureRegistry_ImageTextureEntry fromReference(_$jni.JReference reference) =>
+      TextureRegistry_ImageTextureEntry.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($TextureRegistry_ImageTextureEntry$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($TextureRegistry_ImageTextureEntry$Type) &&
+        other is $TextureRegistry_ImageTextureEntry$Type;
+  }
+}
+
+/// from: `io.flutter.view.TextureRegistry$OnFrameConsumedListener`
+class TextureRegistry_OnFrameConsumedListener extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<TextureRegistry_OnFrameConsumedListener> $type;
+
+  @_$jni.internal
+  TextureRegistry_OnFrameConsumedListener.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'io/flutter/view/TextureRegistry$OnFrameConsumedListener');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $TextureRegistry_OnFrameConsumedListener$Type();
+  static final _id_onFrameConsumed = _class.instanceMethodId(
+    r'onFrameConsumed',
+    r'()V',
+  );
+
+  static final _onFrameConsumed = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract void onFrameConsumed()`
+  void onFrameConsumed() {
+    _onFrameConsumed(
+            reference.pointer, _id_onFrameConsumed as _$jni.JMethodIDPtr)
+        .check();
+  }
+
+  /// Maps a specific port to the implemented interface.
+  static final _$core.Map<int, $TextureRegistry_OnFrameConsumedListener>
+      _$impls = {};
+  static _$jni.JObjectPtr _$invoke(
+    int port,
+    _$jni.JObjectPtr descriptor,
+    _$jni.JObjectPtr args,
+  ) {
+    return _$invokeMethod(
+      port,
+      _$jni.MethodInvocation.fromAddresses(
+        0,
+        descriptor.address,
+        args.address,
+      ),
+    );
+  }
+
+  static final _$jni.Pointer<
+          _$jni.NativeFunction<
+              _$jni.JObjectPtr Function(
+                  _$jni.Int64, _$jni.JObjectPtr, _$jni.JObjectPtr)>>
+      _$invokePointer = _$jni.Pointer.fromFunction(_$invoke);
+
+  static _$jni.Pointer<_$jni.Void> _$invokeMethod(
+    int $p,
+    _$jni.MethodInvocation $i,
+  ) {
+    try {
+      final $d = $i.methodDescriptor.toDartString(releaseOriginal: true);
+      final $a = $i.args;
+      if ($d == r'onFrameConsumed()V') {
+        _$impls[$p]!.onFrameConsumed();
+        return _$jni.nullptr;
+      }
+    } catch (e) {
+      return _$jni.ProtectedJniExtensions.newDartException(e);
+    }
+    return _$jni.nullptr;
+  }
+
+  static void implementIn(
+    _$jni.JImplementer implementer,
+    $TextureRegistry_OnFrameConsumedListener $impl,
+  ) {
+    late final _$jni.RawReceivePort $p;
+    $p = _$jni.RawReceivePort(($m) {
+      if ($m == null) {
+        _$impls.remove($p.sendPort.nativePort);
+        $p.close();
+        return;
+      }
+      final $i = _$jni.MethodInvocation.fromMessage($m);
+      final $r = _$invokeMethod($p.sendPort.nativePort, $i);
+      _$jni.ProtectedJniExtensions.returnResult($i.result, $r);
+    });
+    implementer.add(
+      r'io.flutter.view.TextureRegistry$OnFrameConsumedListener',
+      $p,
+      _$invokePointer,
+      [
+        if ($impl.onFrameConsumed$async) r'onFrameConsumed()V',
+      ],
+    );
+    final $a = $p.sendPort.nativePort;
+    _$impls[$a] = $impl;
+  }
+
+  factory TextureRegistry_OnFrameConsumedListener.implement(
+    $TextureRegistry_OnFrameConsumedListener $impl,
+  ) {
+    final $i = _$jni.JImplementer();
+    implementIn($i, $impl);
+    return TextureRegistry_OnFrameConsumedListener.fromReference(
+      $i.implementReference(),
+    );
+  }
+}
+
+abstract base mixin class $TextureRegistry_OnFrameConsumedListener {
+  factory $TextureRegistry_OnFrameConsumedListener({
+    required void Function() onFrameConsumed,
+    bool onFrameConsumed$async,
+  }) = _$TextureRegistry_OnFrameConsumedListener;
+
+  void onFrameConsumed();
+  bool get onFrameConsumed$async => false;
+}
+
+final class _$TextureRegistry_OnFrameConsumedListener
+    with $TextureRegistry_OnFrameConsumedListener {
+  _$TextureRegistry_OnFrameConsumedListener({
+    required void Function() onFrameConsumed,
+    this.onFrameConsumed$async = false,
+  }) : _onFrameConsumed = onFrameConsumed;
+
+  final void Function() _onFrameConsumed;
+  final bool onFrameConsumed$async;
+
+  void onFrameConsumed() {
+    return _onFrameConsumed();
+  }
+}
+
+final class $TextureRegistry_OnFrameConsumedListener$Type
+    extends _$jni.JObjType<TextureRegistry_OnFrameConsumedListener> {
+  @_$jni.internal
+  const $TextureRegistry_OnFrameConsumedListener$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Lio/flutter/view/TextureRegistry$OnFrameConsumedListener;';
+
+  @_$jni.internal
+  @_$core.override
+  TextureRegistry_OnFrameConsumedListener fromReference(
+          _$jni.JReference reference) =>
+      TextureRegistry_OnFrameConsumedListener.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($TextureRegistry_OnFrameConsumedListener$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType ==
+            ($TextureRegistry_OnFrameConsumedListener$Type) &&
+        other is $TextureRegistry_OnFrameConsumedListener$Type;
+  }
+}
+
+/// from: `io.flutter.view.TextureRegistry$OnTrimMemoryListener`
+class TextureRegistry_OnTrimMemoryListener extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<TextureRegistry_OnTrimMemoryListener> $type;
+
+  @_$jni.internal
+  TextureRegistry_OnTrimMemoryListener.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'io/flutter/view/TextureRegistry$OnTrimMemoryListener');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $TextureRegistry_OnTrimMemoryListener$Type();
+  static final _id_onTrimMemory = _class.instanceMethodId(
+    r'onTrimMemory',
+    r'(I)V',
+  );
+
+  static final _onTrimMemory = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public abstract void onTrimMemory(int i)`
+  void onTrimMemory(
+    int i,
+  ) {
+    _onTrimMemory(reference.pointer, _id_onTrimMemory as _$jni.JMethodIDPtr, i)
+        .check();
+  }
+
+  /// Maps a specific port to the implemented interface.
+  static final _$core.Map<int, $TextureRegistry_OnTrimMemoryListener> _$impls =
+      {};
+  static _$jni.JObjectPtr _$invoke(
+    int port,
+    _$jni.JObjectPtr descriptor,
+    _$jni.JObjectPtr args,
+  ) {
+    return _$invokeMethod(
+      port,
+      _$jni.MethodInvocation.fromAddresses(
+        0,
+        descriptor.address,
+        args.address,
+      ),
+    );
+  }
+
+  static final _$jni.Pointer<
+          _$jni.NativeFunction<
+              _$jni.JObjectPtr Function(
+                  _$jni.Int64, _$jni.JObjectPtr, _$jni.JObjectPtr)>>
+      _$invokePointer = _$jni.Pointer.fromFunction(_$invoke);
+
+  static _$jni.Pointer<_$jni.Void> _$invokeMethod(
+    int $p,
+    _$jni.MethodInvocation $i,
+  ) {
+    try {
+      final $d = $i.methodDescriptor.toDartString(releaseOriginal: true);
+      final $a = $i.args;
+      if ($d == r'onTrimMemory(I)V') {
+        _$impls[$p]!.onTrimMemory(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+    } catch (e) {
+      return _$jni.ProtectedJniExtensions.newDartException(e);
+    }
+    return _$jni.nullptr;
+  }
+
+  static void implementIn(
+    _$jni.JImplementer implementer,
+    $TextureRegistry_OnTrimMemoryListener $impl,
+  ) {
+    late final _$jni.RawReceivePort $p;
+    $p = _$jni.RawReceivePort(($m) {
+      if ($m == null) {
+        _$impls.remove($p.sendPort.nativePort);
+        $p.close();
+        return;
+      }
+      final $i = _$jni.MethodInvocation.fromMessage($m);
+      final $r = _$invokeMethod($p.sendPort.nativePort, $i);
+      _$jni.ProtectedJniExtensions.returnResult($i.result, $r);
+    });
+    implementer.add(
+      r'io.flutter.view.TextureRegistry$OnTrimMemoryListener',
+      $p,
+      _$invokePointer,
+      [
+        if ($impl.onTrimMemory$async) r'onTrimMemory(I)V',
+      ],
+    );
+    final $a = $p.sendPort.nativePort;
+    _$impls[$a] = $impl;
+  }
+
+  factory TextureRegistry_OnTrimMemoryListener.implement(
+    $TextureRegistry_OnTrimMemoryListener $impl,
+  ) {
+    final $i = _$jni.JImplementer();
+    implementIn($i, $impl);
+    return TextureRegistry_OnTrimMemoryListener.fromReference(
+      $i.implementReference(),
+    );
+  }
+}
+
+abstract base mixin class $TextureRegistry_OnTrimMemoryListener {
+  factory $TextureRegistry_OnTrimMemoryListener({
+    required void Function(int i) onTrimMemory,
+    bool onTrimMemory$async,
+  }) = _$TextureRegistry_OnTrimMemoryListener;
+
+  void onTrimMemory(int i);
+  bool get onTrimMemory$async => false;
+}
+
+final class _$TextureRegistry_OnTrimMemoryListener
+    with $TextureRegistry_OnTrimMemoryListener {
+  _$TextureRegistry_OnTrimMemoryListener({
+    required void Function(int i) onTrimMemory,
+    this.onTrimMemory$async = false,
+  }) : _onTrimMemory = onTrimMemory;
+
+  final void Function(int i) _onTrimMemory;
+  final bool onTrimMemory$async;
+
+  void onTrimMemory(int i) {
+    return _onTrimMemory(i);
+  }
+}
+
+final class $TextureRegistry_OnTrimMemoryListener$Type
+    extends _$jni.JObjType<TextureRegistry_OnTrimMemoryListener> {
+  @_$jni.internal
+  const $TextureRegistry_OnTrimMemoryListener$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Lio/flutter/view/TextureRegistry$OnTrimMemoryListener;';
+
+  @_$jni.internal
+  @_$core.override
+  TextureRegistry_OnTrimMemoryListener fromReference(
+          _$jni.JReference reference) =>
+      TextureRegistry_OnTrimMemoryListener.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($TextureRegistry_OnTrimMemoryListener$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($TextureRegistry_OnTrimMemoryListener$Type) &&
+        other is $TextureRegistry_OnTrimMemoryListener$Type;
+  }
+}
+
+/// from: `io.flutter.view.TextureRegistry$SurfaceProducer$Callback`
+class TextureRegistry_SurfaceProducer_Callback extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<TextureRegistry_SurfaceProducer_Callback> $type;
+
+  @_$jni.internal
+  TextureRegistry_SurfaceProducer_Callback.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'io/flutter/view/TextureRegistry$SurfaceProducer$Callback');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $TextureRegistry_SurfaceProducer_Callback$Type();
+  static final _id_onSurfaceCreated = _class.instanceMethodId(
+    r'onSurfaceCreated',
+    r'()V',
+  );
+
+  static final _onSurfaceCreated = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public void onSurfaceCreated()`
+  void onSurfaceCreated() {
+    _onSurfaceCreated(
+            reference.pointer, _id_onSurfaceCreated as _$jni.JMethodIDPtr)
+        .check();
+  }
+
+  static final _id_onSurfaceAvailable = _class.instanceMethodId(
+    r'onSurfaceAvailable',
+    r'()V',
+  );
+
+  static final _onSurfaceAvailable = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public void onSurfaceAvailable()`
+  void onSurfaceAvailable() {
+    _onSurfaceAvailable(
+            reference.pointer, _id_onSurfaceAvailable as _$jni.JMethodIDPtr)
+        .check();
+  }
+
+  static final _id_onSurfaceDestroyed = _class.instanceMethodId(
+    r'onSurfaceDestroyed',
+    r'()V',
+  );
+
+  static final _onSurfaceDestroyed = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract void onSurfaceDestroyed()`
+  void onSurfaceDestroyed() {
+    _onSurfaceDestroyed(
+            reference.pointer, _id_onSurfaceDestroyed as _$jni.JMethodIDPtr)
+        .check();
+  }
+
+  /// Maps a specific port to the implemented interface.
+  static final _$core.Map<int, $TextureRegistry_SurfaceProducer_Callback>
+      _$impls = {};
+  static _$jni.JObjectPtr _$invoke(
+    int port,
+    _$jni.JObjectPtr descriptor,
+    _$jni.JObjectPtr args,
+  ) {
+    return _$invokeMethod(
+      port,
+      _$jni.MethodInvocation.fromAddresses(
+        0,
+        descriptor.address,
+        args.address,
+      ),
+    );
+  }
+
+  static final _$jni.Pointer<
+          _$jni.NativeFunction<
+              _$jni.JObjectPtr Function(
+                  _$jni.Int64, _$jni.JObjectPtr, _$jni.JObjectPtr)>>
+      _$invokePointer = _$jni.Pointer.fromFunction(_$invoke);
+
+  static _$jni.Pointer<_$jni.Void> _$invokeMethod(
+    int $p,
+    _$jni.MethodInvocation $i,
+  ) {
+    try {
+      final $d = $i.methodDescriptor.toDartString(releaseOriginal: true);
+      final $a = $i.args;
+      if ($d == r'onSurfaceCreated()V') {
+        _$impls[$p]!.onSurfaceCreated();
+        return _$jni.nullptr;
+      }
+      if ($d == r'onSurfaceAvailable()V') {
+        _$impls[$p]!.onSurfaceAvailable();
+        return _$jni.nullptr;
+      }
+      if ($d == r'onSurfaceDestroyed()V') {
+        _$impls[$p]!.onSurfaceDestroyed();
+        return _$jni.nullptr;
+      }
+    } catch (e) {
+      return _$jni.ProtectedJniExtensions.newDartException(e);
+    }
+    return _$jni.nullptr;
+  }
+
+  static void implementIn(
+    _$jni.JImplementer implementer,
+    $TextureRegistry_SurfaceProducer_Callback $impl,
+  ) {
+    late final _$jni.RawReceivePort $p;
+    $p = _$jni.RawReceivePort(($m) {
+      if ($m == null) {
+        _$impls.remove($p.sendPort.nativePort);
+        $p.close();
+        return;
+      }
+      final $i = _$jni.MethodInvocation.fromMessage($m);
+      final $r = _$invokeMethod($p.sendPort.nativePort, $i);
+      _$jni.ProtectedJniExtensions.returnResult($i.result, $r);
+    });
+    implementer.add(
+      r'io.flutter.view.TextureRegistry$SurfaceProducer$Callback',
+      $p,
+      _$invokePointer,
+      [
+        if ($impl.onSurfaceCreated$async) r'onSurfaceCreated()V',
+        if ($impl.onSurfaceAvailable$async) r'onSurfaceAvailable()V',
+        if ($impl.onSurfaceDestroyed$async) r'onSurfaceDestroyed()V',
+      ],
+    );
+    final $a = $p.sendPort.nativePort;
+    _$impls[$a] = $impl;
+  }
+
+  factory TextureRegistry_SurfaceProducer_Callback.implement(
+    $TextureRegistry_SurfaceProducer_Callback $impl,
+  ) {
+    final $i = _$jni.JImplementer();
+    implementIn($i, $impl);
+    return TextureRegistry_SurfaceProducer_Callback.fromReference(
+      $i.implementReference(),
+    );
+  }
+}
+
+abstract base mixin class $TextureRegistry_SurfaceProducer_Callback {
+  factory $TextureRegistry_SurfaceProducer_Callback({
+    required void Function() onSurfaceCreated,
+    bool onSurfaceCreated$async,
+    required void Function() onSurfaceAvailable,
+    bool onSurfaceAvailable$async,
+    required void Function() onSurfaceDestroyed,
+    bool onSurfaceDestroyed$async,
+  }) = _$TextureRegistry_SurfaceProducer_Callback;
+
+  void onSurfaceCreated();
+  bool get onSurfaceCreated$async => false;
+  void onSurfaceAvailable();
+  bool get onSurfaceAvailable$async => false;
+  void onSurfaceDestroyed();
+  bool get onSurfaceDestroyed$async => false;
+}
+
+final class _$TextureRegistry_SurfaceProducer_Callback
+    with $TextureRegistry_SurfaceProducer_Callback {
+  _$TextureRegistry_SurfaceProducer_Callback({
+    required void Function() onSurfaceCreated,
+    this.onSurfaceCreated$async = false,
+    required void Function() onSurfaceAvailable,
+    this.onSurfaceAvailable$async = false,
+    required void Function() onSurfaceDestroyed,
+    this.onSurfaceDestroyed$async = false,
+  })  : _onSurfaceCreated = onSurfaceCreated,
+        _onSurfaceAvailable = onSurfaceAvailable,
+        _onSurfaceDestroyed = onSurfaceDestroyed;
+
+  final void Function() _onSurfaceCreated;
+  final bool onSurfaceCreated$async;
+  final void Function() _onSurfaceAvailable;
+  final bool onSurfaceAvailable$async;
+  final void Function() _onSurfaceDestroyed;
+  final bool onSurfaceDestroyed$async;
+
+  void onSurfaceCreated() {
+    return _onSurfaceCreated();
+  }
+
+  void onSurfaceAvailable() {
+    return _onSurfaceAvailable();
+  }
+
+  void onSurfaceDestroyed() {
+    return _onSurfaceDestroyed();
+  }
+}
+
+final class $TextureRegistry_SurfaceProducer_Callback$Type
+    extends _$jni.JObjType<TextureRegistry_SurfaceProducer_Callback> {
+  @_$jni.internal
+  const $TextureRegistry_SurfaceProducer_Callback$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Lio/flutter/view/TextureRegistry$SurfaceProducer$Callback;';
+
+  @_$jni.internal
+  @_$core.override
+  TextureRegistry_SurfaceProducer_Callback fromReference(
+          _$jni.JReference reference) =>
+      TextureRegistry_SurfaceProducer_Callback.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($TextureRegistry_SurfaceProducer_Callback$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType ==
+            ($TextureRegistry_SurfaceProducer_Callback$Type) &&
+        other is $TextureRegistry_SurfaceProducer_Callback$Type;
+  }
+}
+
+/// from: `io.flutter.view.TextureRegistry$SurfaceProducer`
+class TextureRegistry_SurfaceProducer extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<TextureRegistry_SurfaceProducer> $type;
+
+  @_$jni.internal
+  TextureRegistry_SurfaceProducer.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class =
+      _$jni.JClass.forName(r'io/flutter/view/TextureRegistry$SurfaceProducer');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $TextureRegistry_SurfaceProducer$Type();
+  static final _id_setSize = _class.instanceMethodId(
+    r'setSize',
+    r'(II)V',
+  );
+
+  static final _setSize = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Int32, _$jni.Int32)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int, int)>();
+
+  /// from: `public abstract void setSize(int i, int i1)`
+  void setSize(
+    int i,
+    int i1,
+  ) {
+    _setSize(reference.pointer, _id_setSize as _$jni.JMethodIDPtr, i, i1)
+        .check();
+  }
+
+  static final _id_getWidth = _class.instanceMethodId(
+    r'getWidth',
+    r'()I',
+  );
+
+  static final _getWidth = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract int getWidth()`
+  int getWidth() {
+    return _getWidth(reference.pointer, _id_getWidth as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_getHeight = _class.instanceMethodId(
+    r'getHeight',
+    r'()I',
+  );
+
+  static final _getHeight = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallIntMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract int getHeight()`
+  int getHeight() {
+    return _getHeight(reference.pointer, _id_getHeight as _$jni.JMethodIDPtr)
+        .integer;
+  }
+
+  static final _id_getSurface = _class.instanceMethodId(
+    r'getSurface',
+    r'()Landroid/view/Surface;',
+  );
+
+  static final _getSurface = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract android.view.Surface getSurface()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject getSurface() {
+    return _getSurface(reference.pointer, _id_getSurface as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_setCallback = _class.instanceMethodId(
+    r'setCallback',
+    r'(Lio/flutter/view/TextureRegistry$SurfaceProducer$Callback;)V',
+  );
+
+  static final _setCallback = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract void setCallback(io.flutter.view.TextureRegistry$SurfaceProducer$Callback callback)`
+  void setCallback(
+    TextureRegistry_SurfaceProducer_Callback callback,
+  ) {
+    _setCallback(reference.pointer, _id_setCallback as _$jni.JMethodIDPtr,
+            callback.reference.pointer)
+        .check();
+  }
+
+  static final _id_scheduleFrame = _class.instanceMethodId(
+    r'scheduleFrame',
+    r'()V',
+  );
+
+  static final _scheduleFrame = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract void scheduleFrame()`
+  void scheduleFrame() {
+    _scheduleFrame(reference.pointer, _id_scheduleFrame as _$jni.JMethodIDPtr)
+        .check();
+  }
+
+  static final _id_handlesCropAndRotation = _class.instanceMethodId(
+    r'handlesCropAndRotation',
+    r'()Z',
+  );
+
+  static final _handlesCropAndRotation = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallBooleanMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract boolean handlesCropAndRotation()`
+  bool handlesCropAndRotation() {
+    return _handlesCropAndRotation(
+            reference.pointer, _id_handlesCropAndRotation as _$jni.JMethodIDPtr)
+        .boolean;
+  }
+
+  /// Maps a specific port to the implemented interface.
+  static final _$core.Map<int, $TextureRegistry_SurfaceProducer> _$impls = {};
+  static _$jni.JObjectPtr _$invoke(
+    int port,
+    _$jni.JObjectPtr descriptor,
+    _$jni.JObjectPtr args,
+  ) {
+    return _$invokeMethod(
+      port,
+      _$jni.MethodInvocation.fromAddresses(
+        0,
+        descriptor.address,
+        args.address,
+      ),
+    );
+  }
+
+  static final _$jni.Pointer<
+          _$jni.NativeFunction<
+              _$jni.JObjectPtr Function(
+                  _$jni.Int64, _$jni.JObjectPtr, _$jni.JObjectPtr)>>
+      _$invokePointer = _$jni.Pointer.fromFunction(_$invoke);
+
+  static _$jni.Pointer<_$jni.Void> _$invokeMethod(
+    int $p,
+    _$jni.MethodInvocation $i,
+  ) {
+    try {
+      final $d = $i.methodDescriptor.toDartString(releaseOriginal: true);
+      final $a = $i.args;
+      if ($d == r'setSize(II)V') {
+        _$impls[$p]!.setSize(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+          $a[1]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'getWidth()I') {
+        final $r = _$impls[$p]!.getWidth();
+        return _$jni.JInteger($r).reference.toPointer();
+      }
+      if ($d == r'getHeight()I') {
+        final $r = _$impls[$p]!.getHeight();
+        return _$jni.JInteger($r).reference.toPointer();
+      }
+      if ($d == r'getSurface()Landroid/view/Surface;') {
+        final $r = _$impls[$p]!.getSurface();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d ==
+          r'setCallback(Lio/flutter/view/TextureRegistry$SurfaceProducer$Callback;)V') {
+        _$impls[$p]!.setCallback(
+          $a[0].as(const $TextureRegistry_SurfaceProducer_Callback$Type(),
+              releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d == r'scheduleFrame()V') {
+        _$impls[$p]!.scheduleFrame();
+        return _$jni.nullptr;
+      }
+      if ($d == r'handlesCropAndRotation()Z') {
+        final $r = _$impls[$p]!.handlesCropAndRotation();
+        return _$jni.JBoolean($r).reference.toPointer();
+      }
+    } catch (e) {
+      return _$jni.ProtectedJniExtensions.newDartException(e);
+    }
+    return _$jni.nullptr;
+  }
+
+  static void implementIn(
+    _$jni.JImplementer implementer,
+    $TextureRegistry_SurfaceProducer $impl,
+  ) {
+    late final _$jni.RawReceivePort $p;
+    $p = _$jni.RawReceivePort(($m) {
+      if ($m == null) {
+        _$impls.remove($p.sendPort.nativePort);
+        $p.close();
+        return;
+      }
+      final $i = _$jni.MethodInvocation.fromMessage($m);
+      final $r = _$invokeMethod($p.sendPort.nativePort, $i);
+      _$jni.ProtectedJniExtensions.returnResult($i.result, $r);
+    });
+    implementer.add(
+      r'io.flutter.view.TextureRegistry$SurfaceProducer',
+      $p,
+      _$invokePointer,
+      [
+        if ($impl.setSize$async) r'setSize(II)V',
+        if ($impl.setCallback$async)
+          r'setCallback(Lio/flutter/view/TextureRegistry$SurfaceProducer$Callback;)V',
+        if ($impl.scheduleFrame$async) r'scheduleFrame()V',
+      ],
+    );
+    final $a = $p.sendPort.nativePort;
+    _$impls[$a] = $impl;
+  }
+
+  factory TextureRegistry_SurfaceProducer.implement(
+    $TextureRegistry_SurfaceProducer $impl,
+  ) {
+    final $i = _$jni.JImplementer();
+    implementIn($i, $impl);
+    return TextureRegistry_SurfaceProducer.fromReference(
+      $i.implementReference(),
+    );
+  }
+}
+
+abstract base mixin class $TextureRegistry_SurfaceProducer {
+  factory $TextureRegistry_SurfaceProducer({
+    required void Function(int i, int i1) setSize,
+    bool setSize$async,
+    required int Function() getWidth,
+    required int Function() getHeight,
+    required _$jni.JObject Function() getSurface,
+    required void Function(TextureRegistry_SurfaceProducer_Callback callback)
+        setCallback,
+    bool setCallback$async,
+    required void Function() scheduleFrame,
+    bool scheduleFrame$async,
+    required bool Function() handlesCropAndRotation,
+  }) = _$TextureRegistry_SurfaceProducer;
+
+  void setSize(int i, int i1);
+  bool get setSize$async => false;
+  int getWidth();
+  int getHeight();
+  _$jni.JObject getSurface();
+  void setCallback(TextureRegistry_SurfaceProducer_Callback callback);
+  bool get setCallback$async => false;
+  void scheduleFrame();
+  bool get scheduleFrame$async => false;
+  bool handlesCropAndRotation();
+}
+
+final class _$TextureRegistry_SurfaceProducer
+    with $TextureRegistry_SurfaceProducer {
+  _$TextureRegistry_SurfaceProducer({
+    required void Function(int i, int i1) setSize,
+    this.setSize$async = false,
+    required int Function() getWidth,
+    required int Function() getHeight,
+    required _$jni.JObject Function() getSurface,
+    required void Function(TextureRegistry_SurfaceProducer_Callback callback)
+        setCallback,
+    this.setCallback$async = false,
+    required void Function() scheduleFrame,
+    this.scheduleFrame$async = false,
+    required bool Function() handlesCropAndRotation,
+  })  : _setSize = setSize,
+        _getWidth = getWidth,
+        _getHeight = getHeight,
+        _getSurface = getSurface,
+        _setCallback = setCallback,
+        _scheduleFrame = scheduleFrame,
+        _handlesCropAndRotation = handlesCropAndRotation;
+
+  final void Function(int i, int i1) _setSize;
+  final bool setSize$async;
+  final int Function() _getWidth;
+  final int Function() _getHeight;
+  final _$jni.JObject Function() _getSurface;
+  final void Function(TextureRegistry_SurfaceProducer_Callback callback)
+      _setCallback;
+  final bool setCallback$async;
+  final void Function() _scheduleFrame;
+  final bool scheduleFrame$async;
+  final bool Function() _handlesCropAndRotation;
+
+  void setSize(int i, int i1) {
+    return _setSize(i, i1);
+  }
+
+  int getWidth() {
+    return _getWidth();
+  }
+
+  int getHeight() {
+    return _getHeight();
+  }
+
+  _$jni.JObject getSurface() {
+    return _getSurface();
+  }
+
+  void setCallback(TextureRegistry_SurfaceProducer_Callback callback) {
+    return _setCallback(callback);
+  }
+
+  void scheduleFrame() {
+    return _scheduleFrame();
+  }
+
+  bool handlesCropAndRotation() {
+    return _handlesCropAndRotation();
+  }
+}
+
+final class $TextureRegistry_SurfaceProducer$Type
+    extends _$jni.JObjType<TextureRegistry_SurfaceProducer> {
+  @_$jni.internal
+  const $TextureRegistry_SurfaceProducer$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature => r'Lio/flutter/view/TextureRegistry$SurfaceProducer;';
+
+  @_$jni.internal
+  @_$core.override
+  TextureRegistry_SurfaceProducer fromReference(_$jni.JReference reference) =>
+      TextureRegistry_SurfaceProducer.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($TextureRegistry_SurfaceProducer$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($TextureRegistry_SurfaceProducer$Type) &&
+        other is $TextureRegistry_SurfaceProducer$Type;
+  }
+}
+
+/// from: `io.flutter.view.TextureRegistry$SurfaceTextureEntry`
+class TextureRegistry_SurfaceTextureEntry extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<TextureRegistry_SurfaceTextureEntry> $type;
+
+  @_$jni.internal
+  TextureRegistry_SurfaceTextureEntry.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class = _$jni.JClass.forName(
+      r'io/flutter/view/TextureRegistry$SurfaceTextureEntry');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $TextureRegistry_SurfaceTextureEntry$Type();
+  static final _id_surfaceTexture = _class.instanceMethodId(
+    r'surfaceTexture',
+    r'()Landroid/graphics/SurfaceTexture;',
+  );
+
+  static final _surfaceTexture = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract android.graphics.SurfaceTexture surfaceTexture()`
+  /// The returned object must be released after use, by calling the [release] method.
+  _$jni.JObject surfaceTexture() {
+    return _surfaceTexture(
+            reference.pointer, _id_surfaceTexture as _$jni.JMethodIDPtr)
+        .object(const _$jni.JObjectType());
+  }
+
+  static final _id_setOnFrameConsumedListener = _class.instanceMethodId(
+    r'setOnFrameConsumedListener',
+    r'(Lio/flutter/view/TextureRegistry$OnFrameConsumedListener;)V',
+  );
+
+  static final _setOnFrameConsumedListener =
+      _$jni.ProtectedJniExtensions.lookup<
+                  _$jni.NativeFunction<
+                      _$jni.JThrowablePtr Function(
+                          _$jni.Pointer<_$jni.Void>,
+                          _$jni.JMethodIDPtr,
+                          _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+              'globalEnv_CallVoidMethod')
+          .asFunction<
+              _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public void setOnFrameConsumedListener(io.flutter.view.TextureRegistry$OnFrameConsumedListener onFrameConsumedListener)`
+  void setOnFrameConsumedListener(
+    TextureRegistry_OnFrameConsumedListener onFrameConsumedListener,
+  ) {
+    _setOnFrameConsumedListener(
+            reference.pointer,
+            _id_setOnFrameConsumedListener as _$jni.JMethodIDPtr,
+            onFrameConsumedListener.reference.pointer)
+        .check();
+  }
+
+  static final _id_setOnTrimMemoryListener = _class.instanceMethodId(
+    r'setOnTrimMemoryListener',
+    r'(Lio/flutter/view/TextureRegistry$OnTrimMemoryListener;)V',
+  );
+
+  static final _setOnTrimMemoryListener = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JThrowablePtr Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public void setOnTrimMemoryListener(io.flutter.view.TextureRegistry$OnTrimMemoryListener onTrimMemoryListener)`
+  void setOnTrimMemoryListener(
+    TextureRegistry_OnTrimMemoryListener onTrimMemoryListener,
+  ) {
+    _setOnTrimMemoryListener(
+            reference.pointer,
+            _id_setOnTrimMemoryListener as _$jni.JMethodIDPtr,
+            onTrimMemoryListener.reference.pointer)
+        .check();
+  }
+
+  /// Maps a specific port to the implemented interface.
+  static final _$core.Map<int, $TextureRegistry_SurfaceTextureEntry> _$impls =
+      {};
+  static _$jni.JObjectPtr _$invoke(
+    int port,
+    _$jni.JObjectPtr descriptor,
+    _$jni.JObjectPtr args,
+  ) {
+    return _$invokeMethod(
+      port,
+      _$jni.MethodInvocation.fromAddresses(
+        0,
+        descriptor.address,
+        args.address,
+      ),
+    );
+  }
+
+  static final _$jni.Pointer<
+          _$jni.NativeFunction<
+              _$jni.JObjectPtr Function(
+                  _$jni.Int64, _$jni.JObjectPtr, _$jni.JObjectPtr)>>
+      _$invokePointer = _$jni.Pointer.fromFunction(_$invoke);
+
+  static _$jni.Pointer<_$jni.Void> _$invokeMethod(
+    int $p,
+    _$jni.MethodInvocation $i,
+  ) {
+    try {
+      final $d = $i.methodDescriptor.toDartString(releaseOriginal: true);
+      final $a = $i.args;
+      if ($d == r'surfaceTexture()Landroid/graphics/SurfaceTexture;') {
+        final $r = _$impls[$p]!.surfaceTexture();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d ==
+          r'setOnFrameConsumedListener(Lio/flutter/view/TextureRegistry$OnFrameConsumedListener;)V') {
+        _$impls[$p]!.setOnFrameConsumedListener(
+          $a[0].as(const $TextureRegistry_OnFrameConsumedListener$Type(),
+              releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+      if ($d ==
+          r'setOnTrimMemoryListener(Lio/flutter/view/TextureRegistry$OnTrimMemoryListener;)V') {
+        _$impls[$p]!.setOnTrimMemoryListener(
+          $a[0].as(const $TextureRegistry_OnTrimMemoryListener$Type(),
+              releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+    } catch (e) {
+      return _$jni.ProtectedJniExtensions.newDartException(e);
+    }
+    return _$jni.nullptr;
+  }
+
+  static void implementIn(
+    _$jni.JImplementer implementer,
+    $TextureRegistry_SurfaceTextureEntry $impl,
+  ) {
+    late final _$jni.RawReceivePort $p;
+    $p = _$jni.RawReceivePort(($m) {
+      if ($m == null) {
+        _$impls.remove($p.sendPort.nativePort);
+        $p.close();
+        return;
+      }
+      final $i = _$jni.MethodInvocation.fromMessage($m);
+      final $r = _$invokeMethod($p.sendPort.nativePort, $i);
+      _$jni.ProtectedJniExtensions.returnResult($i.result, $r);
+    });
+    implementer.add(
+      r'io.flutter.view.TextureRegistry$SurfaceTextureEntry',
+      $p,
+      _$invokePointer,
+      [
+        if ($impl.setOnFrameConsumedListener$async)
+          r'setOnFrameConsumedListener(Lio/flutter/view/TextureRegistry$OnFrameConsumedListener;)V',
+        if ($impl.setOnTrimMemoryListener$async)
+          r'setOnTrimMemoryListener(Lio/flutter/view/TextureRegistry$OnTrimMemoryListener;)V',
+      ],
+    );
+    final $a = $p.sendPort.nativePort;
+    _$impls[$a] = $impl;
+  }
+
+  factory TextureRegistry_SurfaceTextureEntry.implement(
+    $TextureRegistry_SurfaceTextureEntry $impl,
+  ) {
+    final $i = _$jni.JImplementer();
+    implementIn($i, $impl);
+    return TextureRegistry_SurfaceTextureEntry.fromReference(
+      $i.implementReference(),
+    );
+  }
+}
+
+abstract base mixin class $TextureRegistry_SurfaceTextureEntry {
+  factory $TextureRegistry_SurfaceTextureEntry({
+    required _$jni.JObject Function() surfaceTexture,
+    required void Function(
+            TextureRegistry_OnFrameConsumedListener onFrameConsumedListener)
+        setOnFrameConsumedListener,
+    bool setOnFrameConsumedListener$async,
+    required void Function(
+            TextureRegistry_OnTrimMemoryListener onTrimMemoryListener)
+        setOnTrimMemoryListener,
+    bool setOnTrimMemoryListener$async,
+  }) = _$TextureRegistry_SurfaceTextureEntry;
+
+  _$jni.JObject surfaceTexture();
+  void setOnFrameConsumedListener(
+      TextureRegistry_OnFrameConsumedListener onFrameConsumedListener);
+  bool get setOnFrameConsumedListener$async => false;
+  void setOnTrimMemoryListener(
+      TextureRegistry_OnTrimMemoryListener onTrimMemoryListener);
+  bool get setOnTrimMemoryListener$async => false;
+}
+
+final class _$TextureRegistry_SurfaceTextureEntry
+    with $TextureRegistry_SurfaceTextureEntry {
+  _$TextureRegistry_SurfaceTextureEntry({
+    required _$jni.JObject Function() surfaceTexture,
+    required void Function(
+            TextureRegistry_OnFrameConsumedListener onFrameConsumedListener)
+        setOnFrameConsumedListener,
+    this.setOnFrameConsumedListener$async = false,
+    required void Function(
+            TextureRegistry_OnTrimMemoryListener onTrimMemoryListener)
+        setOnTrimMemoryListener,
+    this.setOnTrimMemoryListener$async = false,
+  })  : _surfaceTexture = surfaceTexture,
+        _setOnFrameConsumedListener = setOnFrameConsumedListener,
+        _setOnTrimMemoryListener = setOnTrimMemoryListener;
+
+  final _$jni.JObject Function() _surfaceTexture;
+  final void Function(
+          TextureRegistry_OnFrameConsumedListener onFrameConsumedListener)
+      _setOnFrameConsumedListener;
+  final bool setOnFrameConsumedListener$async;
+  final void Function(TextureRegistry_OnTrimMemoryListener onTrimMemoryListener)
+      _setOnTrimMemoryListener;
+  final bool setOnTrimMemoryListener$async;
+
+  _$jni.JObject surfaceTexture() {
+    return _surfaceTexture();
+  }
+
+  void setOnFrameConsumedListener(
+      TextureRegistry_OnFrameConsumedListener onFrameConsumedListener) {
+    return _setOnFrameConsumedListener(onFrameConsumedListener);
+  }
+
+  void setOnTrimMemoryListener(
+      TextureRegistry_OnTrimMemoryListener onTrimMemoryListener) {
+    return _setOnTrimMemoryListener(onTrimMemoryListener);
+  }
+}
+
+final class $TextureRegistry_SurfaceTextureEntry$Type
+    extends _$jni.JObjType<TextureRegistry_SurfaceTextureEntry> {
+  @_$jni.internal
+  const $TextureRegistry_SurfaceTextureEntry$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature =>
+      r'Lio/flutter/view/TextureRegistry$SurfaceTextureEntry;';
+
+  @_$jni.internal
+  @_$core.override
+  TextureRegistry_SurfaceTextureEntry fromReference(
+          _$jni.JReference reference) =>
+      TextureRegistry_SurfaceTextureEntry.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($TextureRegistry_SurfaceTextureEntry$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($TextureRegistry_SurfaceTextureEntry$Type) &&
+        other is $TextureRegistry_SurfaceTextureEntry$Type;
+  }
+}
+
+/// from: `io.flutter.view.TextureRegistry$TextureEntry`
+class TextureRegistry_TextureEntry extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<TextureRegistry_TextureEntry> $type;
+
+  @_$jni.internal
+  TextureRegistry_TextureEntry.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class =
+      _$jni.JClass.forName(r'io/flutter/view/TextureRegistry$TextureEntry');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $TextureRegistry_TextureEntry$Type();
+  static final _id_id = _class.instanceMethodId(
+    r'id',
+    r'()J',
+  );
+
+  static final _id = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallLongMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract long id()`
+  int id() {
+    return _id(reference.pointer, _id_id as _$jni.JMethodIDPtr).long;
+  }
+
+  static final _id_release$1 = _class.instanceMethodId(
+    r'release',
+    r'()V',
+  );
+
+  static final _release$1 = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract void release()`
+  void release$1() {
+    _release$1(reference.pointer, _id_release$1 as _$jni.JMethodIDPtr).check();
+  }
+
+  /// Maps a specific port to the implemented interface.
+  static final _$core.Map<int, $TextureRegistry_TextureEntry> _$impls = {};
+  static _$jni.JObjectPtr _$invoke(
+    int port,
+    _$jni.JObjectPtr descriptor,
+    _$jni.JObjectPtr args,
+  ) {
+    return _$invokeMethod(
+      port,
+      _$jni.MethodInvocation.fromAddresses(
+        0,
+        descriptor.address,
+        args.address,
+      ),
+    );
+  }
+
+  static final _$jni.Pointer<
+          _$jni.NativeFunction<
+              _$jni.JObjectPtr Function(
+                  _$jni.Int64, _$jni.JObjectPtr, _$jni.JObjectPtr)>>
+      _$invokePointer = _$jni.Pointer.fromFunction(_$invoke);
+
+  static _$jni.Pointer<_$jni.Void> _$invokeMethod(
+    int $p,
+    _$jni.MethodInvocation $i,
+  ) {
+    try {
+      final $d = $i.methodDescriptor.toDartString(releaseOriginal: true);
+      final $a = $i.args;
+      if ($d == r'id()J') {
+        final $r = _$impls[$p]!.id();
+        return _$jni.JLong($r).reference.toPointer();
+      }
+      if ($d == r'release()V') {
+        _$impls[$p]!.release$1();
+        return _$jni.nullptr;
+      }
+    } catch (e) {
+      return _$jni.ProtectedJniExtensions.newDartException(e);
+    }
+    return _$jni.nullptr;
+  }
+
+  static void implementIn(
+    _$jni.JImplementer implementer,
+    $TextureRegistry_TextureEntry $impl,
+  ) {
+    late final _$jni.RawReceivePort $p;
+    $p = _$jni.RawReceivePort(($m) {
+      if ($m == null) {
+        _$impls.remove($p.sendPort.nativePort);
+        $p.close();
+        return;
+      }
+      final $i = _$jni.MethodInvocation.fromMessage($m);
+      final $r = _$invokeMethod($p.sendPort.nativePort, $i);
+      _$jni.ProtectedJniExtensions.returnResult($i.result, $r);
+    });
+    implementer.add(
+      r'io.flutter.view.TextureRegistry$TextureEntry',
+      $p,
+      _$invokePointer,
+      [
+        if ($impl.release$1$async) r'release()V',
+      ],
+    );
+    final $a = $p.sendPort.nativePort;
+    _$impls[$a] = $impl;
+  }
+
+  factory TextureRegistry_TextureEntry.implement(
+    $TextureRegistry_TextureEntry $impl,
+  ) {
+    final $i = _$jni.JImplementer();
+    implementIn($i, $impl);
+    return TextureRegistry_TextureEntry.fromReference(
+      $i.implementReference(),
+    );
+  }
+}
+
+abstract base mixin class $TextureRegistry_TextureEntry {
+  factory $TextureRegistry_TextureEntry({
+    required int Function() id,
+    required void Function() release$1,
+    bool release$1$async,
+  }) = _$TextureRegistry_TextureEntry;
+
+  int id();
+  void release$1();
+  bool get release$1$async => false;
+}
+
+final class _$TextureRegistry_TextureEntry with $TextureRegistry_TextureEntry {
+  _$TextureRegistry_TextureEntry({
+    required int Function() id,
+    required void Function() release$1,
+    this.release$1$async = false,
+  })  : _id = id,
+        _release$1 = release$1;
+
+  final int Function() _id;
+  final void Function() _release$1;
+  final bool release$1$async;
+
+  int id() {
+    return _id();
+  }
+
+  void release$1() {
+    return _release$1();
+  }
+}
+
+final class $TextureRegistry_TextureEntry$Type
+    extends _$jni.JObjType<TextureRegistry_TextureEntry> {
+  @_$jni.internal
+  const $TextureRegistry_TextureEntry$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature => r'Lio/flutter/view/TextureRegistry$TextureEntry;';
+
+  @_$jni.internal
+  @_$core.override
+  TextureRegistry_TextureEntry fromReference(_$jni.JReference reference) =>
+      TextureRegistry_TextureEntry.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($TextureRegistry_TextureEntry$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($TextureRegistry_TextureEntry$Type) &&
+        other is $TextureRegistry_TextureEntry$Type;
+  }
+}
+
+/// from: `io.flutter.view.TextureRegistry`
+class TextureRegistry extends _$jni.JObject {
+  @_$jni.internal
+  @_$core.override
+  final _$jni.JObjType<TextureRegistry> $type;
+
+  @_$jni.internal
+  TextureRegistry.fromReference(
+    _$jni.JReference reference,
+  )   : $type = type,
+        super.fromReference(reference);
+
+  static final _class =
+      _$jni.JClass.forName(r'io/flutter/view/TextureRegistry');
+
+  /// The type which includes information such as the signature of this class.
+  static const type = $TextureRegistry$Type();
+  static final _id_createSurfaceProducer = _class.instanceMethodId(
+    r'createSurfaceProducer',
+    r'()Lio/flutter/view/TextureRegistry$SurfaceProducer;',
+  );
+
+  static final _createSurfaceProducer = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract io.flutter.view.TextureRegistry$SurfaceProducer createSurfaceProducer()`
+  /// The returned object must be released after use, by calling the [release] method.
+  TextureRegistry_SurfaceProducer createSurfaceProducer() {
+    return _createSurfaceProducer(
+            reference.pointer, _id_createSurfaceProducer as _$jni.JMethodIDPtr)
+        .object(const $TextureRegistry_SurfaceProducer$Type());
+  }
+
+  static final _id_createSurfaceTexture = _class.instanceMethodId(
+    r'createSurfaceTexture',
+    r'()Lio/flutter/view/TextureRegistry$SurfaceTextureEntry;',
+  );
+
+  static final _createSurfaceTexture = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract io.flutter.view.TextureRegistry$SurfaceTextureEntry createSurfaceTexture()`
+  /// The returned object must be released after use, by calling the [release] method.
+  TextureRegistry_SurfaceTextureEntry createSurfaceTexture() {
+    return _createSurfaceTexture(
+            reference.pointer, _id_createSurfaceTexture as _$jni.JMethodIDPtr)
+        .object(const $TextureRegistry_SurfaceTextureEntry$Type());
+  }
+
+  static final _id_registerSurfaceTexture = _class.instanceMethodId(
+    r'registerSurfaceTexture',
+    r'(Landroid/graphics/SurfaceTexture;)Lio/flutter/view/TextureRegistry$SurfaceTextureEntry;',
+  );
+
+  static final _registerSurfaceTexture = _$jni.ProtectedJniExtensions.lookup<
+              _$jni.NativeFunction<
+                  _$jni.JniResult Function(
+                      _$jni.Pointer<_$jni.Void>,
+                      _$jni.JMethodIDPtr,
+                      _$jni.VarArgs<(_$jni.Pointer<_$jni.Void>,)>)>>(
+          'globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(_$jni.Pointer<_$jni.Void>,
+              _$jni.JMethodIDPtr, _$jni.Pointer<_$jni.Void>)>();
+
+  /// from: `public abstract io.flutter.view.TextureRegistry$SurfaceTextureEntry registerSurfaceTexture(android.graphics.SurfaceTexture surfaceTexture)`
+  /// The returned object must be released after use, by calling the [release] method.
+  TextureRegistry_SurfaceTextureEntry registerSurfaceTexture(
+    _$jni.JObject surfaceTexture,
+  ) {
+    return _registerSurfaceTexture(
+            reference.pointer,
+            _id_registerSurfaceTexture as _$jni.JMethodIDPtr,
+            surfaceTexture.reference.pointer)
+        .object(const $TextureRegistry_SurfaceTextureEntry$Type());
+  }
+
+  static final _id_createImageTexture = _class.instanceMethodId(
+    r'createImageTexture',
+    r'()Lio/flutter/view/TextureRegistry$ImageTextureEntry;',
+  );
+
+  static final _createImageTexture = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JniResult Function(
+                _$jni.Pointer<_$jni.Void>,
+                _$jni.JMethodIDPtr,
+              )>>('globalEnv_CallObjectMethod')
+      .asFunction<
+          _$jni.JniResult Function(
+            _$jni.Pointer<_$jni.Void>,
+            _$jni.JMethodIDPtr,
+          )>();
+
+  /// from: `public abstract io.flutter.view.TextureRegistry$ImageTextureEntry createImageTexture()`
+  /// The returned object must be released after use, by calling the [release] method.
+  TextureRegistry_ImageTextureEntry createImageTexture() {
+    return _createImageTexture(
+            reference.pointer, _id_createImageTexture as _$jni.JMethodIDPtr)
+        .object(const $TextureRegistry_ImageTextureEntry$Type());
+  }
+
+  static final _id_onTrimMemory = _class.instanceMethodId(
+    r'onTrimMemory',
+    r'(I)V',
+  );
+
+  static final _onTrimMemory = _$jni.ProtectedJniExtensions.lookup<
+          _$jni.NativeFunction<
+              _$jni.JThrowablePtr Function(
+                  _$jni.Pointer<_$jni.Void>,
+                  _$jni.JMethodIDPtr,
+                  _$jni.VarArgs<(_$jni.Int32,)>)>>('globalEnv_CallVoidMethod')
+      .asFunction<
+          _$jni.JThrowablePtr Function(
+              _$jni.Pointer<_$jni.Void>, _$jni.JMethodIDPtr, int)>();
+
+  /// from: `public void onTrimMemory(int i)`
+  void onTrimMemory(
+    int i,
+  ) {
+    _onTrimMemory(reference.pointer, _id_onTrimMemory as _$jni.JMethodIDPtr, i)
+        .check();
+  }
+
+  /// Maps a specific port to the implemented interface.
+  static final _$core.Map<int, $TextureRegistry> _$impls = {};
+  static _$jni.JObjectPtr _$invoke(
+    int port,
+    _$jni.JObjectPtr descriptor,
+    _$jni.JObjectPtr args,
+  ) {
+    return _$invokeMethod(
+      port,
+      _$jni.MethodInvocation.fromAddresses(
+        0,
+        descriptor.address,
+        args.address,
+      ),
+    );
+  }
+
+  static final _$jni.Pointer<
+          _$jni.NativeFunction<
+              _$jni.JObjectPtr Function(
+                  _$jni.Int64, _$jni.JObjectPtr, _$jni.JObjectPtr)>>
+      _$invokePointer = _$jni.Pointer.fromFunction(_$invoke);
+
+  static _$jni.Pointer<_$jni.Void> _$invokeMethod(
+    int $p,
+    _$jni.MethodInvocation $i,
+  ) {
+    try {
+      final $d = $i.methodDescriptor.toDartString(releaseOriginal: true);
+      final $a = $i.args;
+      if ($d ==
+          r'createSurfaceProducer()Lio/flutter/view/TextureRegistry$SurfaceProducer;') {
+        final $r = _$impls[$p]!.createSurfaceProducer();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d ==
+          r'createSurfaceTexture()Lio/flutter/view/TextureRegistry$SurfaceTextureEntry;') {
+        final $r = _$impls[$p]!.createSurfaceTexture();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d ==
+          r'registerSurfaceTexture(Landroid/graphics/SurfaceTexture;)Lio/flutter/view/TextureRegistry$SurfaceTextureEntry;') {
+        final $r = _$impls[$p]!.registerSurfaceTexture(
+          $a[0].as(const _$jni.JObjectType(), releaseOriginal: true),
+        );
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d ==
+          r'createImageTexture()Lio/flutter/view/TextureRegistry$ImageTextureEntry;') {
+        final $r = _$impls[$p]!.createImageTexture();
+        return ($r as _$jni.JObject)
+            .as(const _$jni.JObjectType())
+            .reference
+            .toPointer();
+      }
+      if ($d == r'onTrimMemory(I)V') {
+        _$impls[$p]!.onTrimMemory(
+          $a[0]
+              .as(const _$jni.JIntegerType(), releaseOriginal: true)
+              .intValue(releaseOriginal: true),
+        );
+        return _$jni.nullptr;
+      }
+    } catch (e) {
+      return _$jni.ProtectedJniExtensions.newDartException(e);
+    }
+    return _$jni.nullptr;
+  }
+
+  static void implementIn(
+    _$jni.JImplementer implementer,
+    $TextureRegistry $impl,
+  ) {
+    late final _$jni.RawReceivePort $p;
+    $p = _$jni.RawReceivePort(($m) {
+      if ($m == null) {
+        _$impls.remove($p.sendPort.nativePort);
+        $p.close();
+        return;
+      }
+      final $i = _$jni.MethodInvocation.fromMessage($m);
+      final $r = _$invokeMethod($p.sendPort.nativePort, $i);
+      _$jni.ProtectedJniExtensions.returnResult($i.result, $r);
+    });
+    implementer.add(
+      r'io.flutter.view.TextureRegistry',
+      $p,
+      _$invokePointer,
+      [
+        if ($impl.onTrimMemory$async) r'onTrimMemory(I)V',
+      ],
+    );
+    final $a = $p.sendPort.nativePort;
+    _$impls[$a] = $impl;
+  }
+
+  factory TextureRegistry.implement(
+    $TextureRegistry $impl,
+  ) {
+    final $i = _$jni.JImplementer();
+    implementIn($i, $impl);
+    return TextureRegistry.fromReference(
+      $i.implementReference(),
+    );
+  }
+}
+
+abstract base mixin class $TextureRegistry {
+  factory $TextureRegistry({
+    required TextureRegistry_SurfaceProducer Function() createSurfaceProducer,
+    required TextureRegistry_SurfaceTextureEntry Function()
+        createSurfaceTexture,
+    required TextureRegistry_SurfaceTextureEntry Function(
+            _$jni.JObject surfaceTexture)
+        registerSurfaceTexture,
+    required TextureRegistry_ImageTextureEntry Function() createImageTexture,
+    required void Function(int i) onTrimMemory,
+    bool onTrimMemory$async,
+  }) = _$TextureRegistry;
+
+  TextureRegistry_SurfaceProducer createSurfaceProducer();
+  TextureRegistry_SurfaceTextureEntry createSurfaceTexture();
+  TextureRegistry_SurfaceTextureEntry registerSurfaceTexture(
+      _$jni.JObject surfaceTexture);
+  TextureRegistry_ImageTextureEntry createImageTexture();
+  void onTrimMemory(int i);
+  bool get onTrimMemory$async => false;
+}
+
+final class _$TextureRegistry with $TextureRegistry {
+  _$TextureRegistry({
+    required TextureRegistry_SurfaceProducer Function() createSurfaceProducer,
+    required TextureRegistry_SurfaceTextureEntry Function()
+        createSurfaceTexture,
+    required TextureRegistry_SurfaceTextureEntry Function(
+            _$jni.JObject surfaceTexture)
+        registerSurfaceTexture,
+    required TextureRegistry_ImageTextureEntry Function() createImageTexture,
+    required void Function(int i) onTrimMemory,
+    this.onTrimMemory$async = false,
+  })  : _createSurfaceProducer = createSurfaceProducer,
+        _createSurfaceTexture = createSurfaceTexture,
+        _registerSurfaceTexture = registerSurfaceTexture,
+        _createImageTexture = createImageTexture,
+        _onTrimMemory = onTrimMemory;
+
+  final TextureRegistry_SurfaceProducer Function() _createSurfaceProducer;
+  final TextureRegistry_SurfaceTextureEntry Function() _createSurfaceTexture;
+  final TextureRegistry_SurfaceTextureEntry Function(
+      _$jni.JObject surfaceTexture) _registerSurfaceTexture;
+  final TextureRegistry_ImageTextureEntry Function() _createImageTexture;
+  final void Function(int i) _onTrimMemory;
+  final bool onTrimMemory$async;
+
+  TextureRegistry_SurfaceProducer createSurfaceProducer() {
+    return _createSurfaceProducer();
+  }
+
+  TextureRegistry_SurfaceTextureEntry createSurfaceTexture() {
+    return _createSurfaceTexture();
+  }
+
+  TextureRegistry_SurfaceTextureEntry registerSurfaceTexture(
+      _$jni.JObject surfaceTexture) {
+    return _registerSurfaceTexture(surfaceTexture);
+  }
+
+  TextureRegistry_ImageTextureEntry createImageTexture() {
+    return _createImageTexture();
+  }
+
+  void onTrimMemory(int i) {
+    return _onTrimMemory(i);
+  }
+}
+
+final class $TextureRegistry$Type extends _$jni.JObjType<TextureRegistry> {
+  @_$jni.internal
+  const $TextureRegistry$Type();
+
+  @_$jni.internal
+  @_$core.override
+  String get signature => r'Lio/flutter/view/TextureRegistry;';
+
+  @_$jni.internal
+  @_$core.override
+  TextureRegistry fromReference(_$jni.JReference reference) =>
+      TextureRegistry.fromReference(reference);
+
+  @_$jni.internal
+  @_$core.override
+  _$jni.JObjType get superType => const _$jni.JObjectType();
+
+  @_$jni.internal
+  @_$core.override
+  final superCount = 1;
+
+  @_$core.override
+  int get hashCode => ($TextureRegistry$Type).hashCode;
+
+  @_$core.override
+  bool operator ==(Object other) {
+    return other.runtimeType == ($TextureRegistry$Type) &&
+        other is $TextureRegistry$Type;
   }
 }

@@ -41,11 +41,6 @@ abstract class TestHostVideoPlayerApi {
 
   void initialize(String key);
 
-  int create(String uri, Map<String, String> httpHeaders, String? formatHint,
-      String transferKey);
-
-  void setMixWithOthers(bool mixWithOthers);
-
   static void setUp(
     TestHostVideoPlayerApi? api, {
     BinaryMessenger? binaryMessenger,
@@ -75,79 +70,6 @@ abstract class TestHostVideoPlayerApi {
               'Argument for dev.flutter.pigeon.video_player_android.AndroidVideoPlayerApi.initialize was null, expected non-null String.');
           try {
             api.initialize(arg_key!);
-            return wrapResponse(empty: true);
-          } on PlatformException catch (e) {
-            return wrapResponse(error: e);
-          } catch (e) {
-            return wrapResponse(
-                error: PlatformException(code: 'error', message: e.toString()));
-          }
-        });
-      }
-    }
-    {
-      final BasicMessageChannel<
-          Object?> pigeonVar_channel = BasicMessageChannel<
-              Object?>(
-          'dev.flutter.pigeon.video_player_android.AndroidVideoPlayerApi.create$messageChannelSuffix',
-          pigeonChannelCodec,
-          binaryMessenger: binaryMessenger);
-      if (api == null) {
-        _testBinaryMessengerBinding!.defaultBinaryMessenger
-            .setMockDecodedMessageHandler<Object?>(pigeonVar_channel, null);
-      } else {
-        _testBinaryMessengerBinding!.defaultBinaryMessenger
-            .setMockDecodedMessageHandler<Object?>(pigeonVar_channel,
-                (Object? message) async {
-          assert(message != null,
-              'Argument for dev.flutter.pigeon.video_player_android.AndroidVideoPlayerApi.create was null.');
-          final List<Object?> args = (message as List<Object?>?)!;
-          final String? arg_uri = (args[0] as String?);
-          assert(arg_uri != null,
-              'Argument for dev.flutter.pigeon.video_player_android.AndroidVideoPlayerApi.create was null, expected non-null String.');
-          final Map<String, String>? arg_httpHeaders =
-              (args[1] as Map<Object?, Object?>?)?.cast<String, String>();
-          assert(arg_httpHeaders != null,
-              'Argument for dev.flutter.pigeon.video_player_android.AndroidVideoPlayerApi.create was null, expected non-null Map<String, String>.');
-          final String? arg_formatHint = (args[2] as String?);
-          final String? arg_transferKey = (args[3] as String?);
-          assert(arg_transferKey != null,
-              'Argument for dev.flutter.pigeon.video_player_android.AndroidVideoPlayerApi.create was null, expected non-null String.');
-          try {
-            final int output = api.create(
-                arg_uri!, arg_httpHeaders!, arg_formatHint, arg_transferKey!);
-            return <Object?>[output];
-          } on PlatformException catch (e) {
-            return wrapResponse(error: e);
-          } catch (e) {
-            return wrapResponse(
-                error: PlatformException(code: 'error', message: e.toString()));
-          }
-        });
-      }
-    }
-    {
-      final BasicMessageChannel<
-          Object?> pigeonVar_channel = BasicMessageChannel<
-              Object?>(
-          'dev.flutter.pigeon.video_player_android.AndroidVideoPlayerApi.setMixWithOthers$messageChannelSuffix',
-          pigeonChannelCodec,
-          binaryMessenger: binaryMessenger);
-      if (api == null) {
-        _testBinaryMessengerBinding!.defaultBinaryMessenger
-            .setMockDecodedMessageHandler<Object?>(pigeonVar_channel, null);
-      } else {
-        _testBinaryMessengerBinding!.defaultBinaryMessenger
-            .setMockDecodedMessageHandler<Object?>(pigeonVar_channel,
-                (Object? message) async {
-          assert(message != null,
-              'Argument for dev.flutter.pigeon.video_player_android.AndroidVideoPlayerApi.setMixWithOthers was null.');
-          final List<Object?> args = (message as List<Object?>?)!;
-          final bool? arg_mixWithOthers = (args[0] as bool?);
-          assert(arg_mixWithOthers != null,
-              'Argument for dev.flutter.pigeon.video_player_android.AndroidVideoPlayerApi.setMixWithOthers was null, expected non-null bool.');
-          try {
-            api.setMixWithOthers(arg_mixWithOthers!);
             return wrapResponse(empty: true);
           } on PlatformException catch (e) {
             return wrapResponse(error: e);

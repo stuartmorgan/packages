@@ -16,7 +16,6 @@ import io.flutter.plugin.common.StandardMessageCodec;
 import java.io.ByteArrayOutputStream;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
-import java.util.Map;
 
 /** Generated class from Pigeon. */
 @SuppressWarnings({"unused", "unchecked", "CodeBlock2Expr", "RedundantSuppression", "serial"})
@@ -81,15 +80,6 @@ public class Messages {
 
     void initialize(@NonNull String key);
 
-    @NonNull
-    Long create(
-        @NonNull String uri,
-        @NonNull Map<String, String> httpHeaders,
-        @Nullable String formatHint,
-        @NonNull String transferKey);
-
-    void setMixWithOthers(@NonNull Boolean mixWithOthers);
-
     /** The codec used by AndroidVideoPlayerApi. */
     static @NonNull MessageCodec<Object> getCodec() {
       return PigeonCodec.INSTANCE;
@@ -123,59 +113,6 @@ public class Messages {
                 String keyArg = (String) args.get(0);
                 try {
                   api.initialize(keyArg);
-                  wrapped.add(0, null);
-                } catch (Throwable exception) {
-                  wrapped = wrapError(exception);
-                }
-                reply.reply(wrapped);
-              });
-        } else {
-          channel.setMessageHandler(null);
-        }
-      }
-      {
-        BasicMessageChannel<Object> channel =
-            new BasicMessageChannel<>(
-                binaryMessenger,
-                "dev.flutter.pigeon.video_player_android.AndroidVideoPlayerApi.create"
-                    + messageChannelSuffix,
-                getCodec());
-        if (api != null) {
-          channel.setMessageHandler(
-              (message, reply) -> {
-                ArrayList<Object> wrapped = new ArrayList<>();
-                ArrayList<Object> args = (ArrayList<Object>) message;
-                String uriArg = (String) args.get(0);
-                Map<String, String> httpHeadersArg = (Map<String, String>) args.get(1);
-                String formatHintArg = (String) args.get(2);
-                String transferKeyArg = (String) args.get(3);
-                try {
-                  Long output = api.create(uriArg, httpHeadersArg, formatHintArg, transferKeyArg);
-                  wrapped.add(0, output);
-                } catch (Throwable exception) {
-                  wrapped = wrapError(exception);
-                }
-                reply.reply(wrapped);
-              });
-        } else {
-          channel.setMessageHandler(null);
-        }
-      }
-      {
-        BasicMessageChannel<Object> channel =
-            new BasicMessageChannel<>(
-                binaryMessenger,
-                "dev.flutter.pigeon.video_player_android.AndroidVideoPlayerApi.setMixWithOthers"
-                    + messageChannelSuffix,
-                getCodec());
-        if (api != null) {
-          channel.setMessageHandler(
-              (message, reply) -> {
-                ArrayList<Object> wrapped = new ArrayList<>();
-                ArrayList<Object> args = (ArrayList<Object>) message;
-                Boolean mixWithOthersArg = (Boolean) args.get(0);
-                try {
-                  api.setMixWithOthers(mixWithOthersArg);
                   wrapped.add(0, null);
                 } catch (Throwable exception) {
                   wrapped = wrapError(exception);

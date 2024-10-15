@@ -20,7 +20,7 @@ public final class VideoPlayer implements TextureRegistry.SurfaceProducer.Callba
   @NonNull private final MediaItem mediaItem;
   @NonNull private final TextureRegistry.SurfaceProducer surfaceProducer;
   @NonNull private final VideoPlayerCallbacks videoPlayerEvents;
-  @NonNull private final VideoPlayerOptions options;
+  @NonNull private boolean mixWithOthers;
   @NonNull public ExoPlayer exoPlayer;
   @Nullable private ExoPlayerState savedStateDuring;
 
@@ -35,12 +35,12 @@ public final class VideoPlayer implements TextureRegistry.SurfaceProducer.Callba
    * @return a video player instance.
    */
   @NonNull
-  static VideoPlayer create(
+  public static VideoPlayer create(
       @NonNull Context context,
       @NonNull VideoPlayerCallbacks events,
       @NonNull TextureRegistry.SurfaceProducer surfaceProducer,
       @NonNull VideoAsset asset,
-      @NonNull VideoPlayerOptions options) {
+      boolean mixWithOthers) {
     return new VideoPlayer(
         () -> {
           ExoPlayer.Builder builder =
@@ -51,7 +51,7 @@ public final class VideoPlayer implements TextureRegistry.SurfaceProducer.Callba
         events,
         surfaceProducer,
         asset.getMediaItem(),
-        options);
+        mixWithOthers);
   }
 
   /** A closure-compatible signature since {@link java.util.function.Supplier} is API level 24. */
@@ -70,12 +70,12 @@ public final class VideoPlayer implements TextureRegistry.SurfaceProducer.Callba
       @NonNull VideoPlayerCallbacks events,
       @NonNull TextureRegistry.SurfaceProducer surfaceProducer,
       @NonNull MediaItem mediaItem,
-      @NonNull VideoPlayerOptions options) {
+      boolean mixWithOthers) {
     this.exoPlayerProvider = exoPlayerProvider;
     this.videoPlayerEvents = events;
     this.surfaceProducer = surfaceProducer;
     this.mediaItem = mediaItem;
-    this.options = options;
+    this.mixWithOthers = mixWithOthers;
     this.exoPlayer = createVideoPlayer();
     surfaceProducer.setCallback(this);
   }
@@ -107,7 +107,7 @@ public final class VideoPlayer implements TextureRegistry.SurfaceProducer.Callba
 
     boolean wasInitialized = savedStateDuring != null;
     exoPlayer.addListener(new ExoPlayerEventListener(exoPlayer, videoPlayerEvents, wasInitialized));
-    setAudioAttributes(exoPlayer, options.mixWithOthers);
+    setAudioAttributes(exoPlayer, mixWithOthers);
 
     return exoPlayer;
   }

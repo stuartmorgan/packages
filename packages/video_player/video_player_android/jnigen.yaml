@@ -11,8 +11,13 @@ classes:
   - 'androidx.media3.common.Player'
   - 'androidx.media3.exoplayer.ExoPlayer'
   - 'androidx.media3.common.PlaybackParameters'
+  # TODO(stuartmorgan): Eliminate this.
+  - 'io.flutter.plugin.common.EventChannel'
   - 'io.flutter.embedding.engine.plugins.FlutterPlugin'
   - 'io.flutter.plugins.videoplayer.FlutterEngineListener'
   - 'io.flutter.plugins.videoplayer.FlutterState'
+  - 'io.flutter.plugins.videoplayer.VideoAsset'
   - 'io.flutter.plugins.videoplayer.VideoPlayer'
+  - 'io.flutter.plugins.videoplayer.VideoPlayerEventCallbacks'
   - 'io.flutter.plugins.videoplayer.VideoPlayerGlobalTransfer'
+  - 'io.flutter.view.TextureRegistry'

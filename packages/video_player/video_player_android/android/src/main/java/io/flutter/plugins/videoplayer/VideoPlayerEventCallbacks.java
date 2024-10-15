@@ -14,10 +14,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-final class VideoPlayerEventCallbacks implements VideoPlayerCallbacks {
+public final class VideoPlayerEventCallbacks implements VideoPlayerCallbacks {
   private final EventChannel.EventSink eventSink;
 
-  static VideoPlayerEventCallbacks bindTo(EventChannel eventChannel) {
+  public static VideoPlayerEventCallbacks bindTo(EventChannel eventChannel) {
     QueuingEventSink eventSink = new QueuingEventSink();
     eventChannel.setStreamHandler(
         new EventChannel.StreamHandler() {

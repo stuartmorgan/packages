@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /** A video to be played by {@link VideoPlayer}. */
-abstract class VideoAsset {
+public abstract class VideoAsset {
   /**
    * Returns an asset from a local {@code asset:///} URL, i.e. an on-device asset.
    *
@@ -21,7 +21,7 @@ abstract class VideoAsset {
    * @return the asset.
    */
   @NonNull
-  static VideoAsset fromAssetUrl(@NonNull String assetUrl) {
+  public static VideoAsset fromAssetUrl(@NonNull String assetUrl) {
     if (!assetUrl.startsWith("asset:///")) {
       throw new IllegalArgumentException("assetUrl must start with 'asset:///'");
     }
@@ -37,7 +37,7 @@ abstract class VideoAsset {
    * @return the asset.
    */
   @NonNull
-  static VideoAsset fromRemoteUrl(
+  public static VideoAsset fromRemoteUrl(
       @Nullable String remoteUrl,
       @NonNull StreamingFormat streamingFormat,
       @NonNull Map<String, String> httpHeaders) {
@@ -51,7 +51,7 @@ abstract class VideoAsset {
    * @return the asset.
    */
   @NonNull
-  static VideoAsset fromRtspUrl(@NonNull String rtspUrl) {
+  public static VideoAsset fromRtspUrl(@NonNull String rtspUrl) {
     if (!rtspUrl.startsWith("rtsp://")) {
       throw new IllegalArgumentException("rtspUrl must start with 'rtsp://'");
     }
@@ -70,7 +70,7 @@ abstract class VideoAsset {
    * @return media item.
    */
   @NonNull
-  abstract MediaItem getMediaItem();
+  public abstract MediaItem getMediaItem();
 
   /**
    * Returns the configured media source factory, if needed for this asset type.
@@ -78,10 +78,10 @@ abstract class VideoAsset {
    * @param context application context.
    * @return configured factory, or {@code null} if not needed for this asset type.
    */
-  abstract MediaSource.Factory getMediaSourceFactory(Context context);
+  public abstract MediaSource.Factory getMediaSourceFactory(Context context);
 
   /** Streaming formats that can be provided to the video player as a hint. */
-  enum StreamingFormat {
+  public enum StreamingFormat {
     /** Default, if the format is either not known or not another valid format. */
     UNKNOWN,
 

@@ -10,7 +10,8 @@ import 'package:flutter/widgets.dart';
 import 'package:jni/jni.dart';
 import 'package:video_player_platform_interface/video_player_platform_interface.dart';
 
-import 'ffi_bindings.dart';
+import 'ffi_bindings.dart' hide EventChannel;
+import 'ffi_bindings.dart' as jnigen show EventChannel;
 import 'messages.g.dart';
 
 /// An Android implementation of [VideoPlayerPlatform] that uses the
@@ -18,8 +19,10 @@ import 'messages.g.dart';
 class AndroidVideoPlayer extends VideoPlayerPlatform {
   final AndroidVideoPlayerApi _api = AndroidVideoPlayerApi();
 
+  final Completer<void> _initialized = Completer<void>();
   late final FlutterState_Wrapper _pluginState;
   final Map<int, VideoPlayer> _playersByTextureId = <int, VideoPlayer>{};
+  bool _mixWithOthers = false;
 
   /// Registers this class as the default instance of [PathProviderPlatform].
   static void registerWith() {
@@ -63,6 +66,7 @@ class AndroidVideoPlayer extends VideoPlayerPlatform {
         $FlutterEngineListener(
             onAttachedToEngine: _onAttachedToEngine,
             onDetachedFromEngine: _onDetachedFromEngine));
+    _initialized.complete();
   }
 
   @override
@@ -73,9 +77,8 @@ class AndroidVideoPlayer extends VideoPlayerPlatform {
 
   @override
   Future<int?> create(DataSource dataSource) async {
-    String uri;
-    String? formatHint;
-    Map<String, String> httpHeaders = <String, String>{};
+    await _initialized.future;
+    final VideoAsset videoAsset;
     switch (dataSource.sourceType) {
       case DataSourceType.asset:
         final String? asset = dataSource.asset;
@@ -88,38 +91,41 @@ class AndroidVideoPlayer extends VideoPlayerPlatform {
                 : _pluginState.state.keyForAssetAndPackageName.get(
                     JString.fromString(asset), JString.fromString(package)))
             .toDartString();
-        uri = 'asset:///$assetKey';
+        videoAsset =
+            VideoAsset.fromAssetUrl(JString.fromString('asset:///$assetKey'));
       case DataSourceType.network:
-        final String? sourceUri = dataSource.uri;
-        if (sourceUri == null) {
-          throw ArgumentError('uri must not be null for network data source');
-        }
-        uri = sourceUri;
-        formatHint = _videoFormatStringMap[dataSource.formatHint];
-        httpHeaders = dataSource.httpHeaders;
       case DataSourceType.file:
-        final String? sourceUri = dataSource.uri;
-        if (sourceUri == null) {
-          throw ArgumentError('uri must not be null for file data source');
-        }
-        uri = sourceUri;
-        httpHeaders = dataSource.httpHeaders;
       case DataSourceType.contentUri:
-        final String? sourceUri = dataSource.uri;
-        if (sourceUri == null) {
-          throw ArgumentError('uri must not be null for content data source');
+        final String? uri = dataSource.uri;
+        if (uri == null) {
+          throw ArgumentError(
+              'uri must not be null for data source ${dataSource.sourceType.name}');
         }
-        uri = sourceUri;
+        if (uri.startsWith('rtsp://')) {
+          videoAsset = VideoAsset.fromRtspUrl(JString.fromString(uri));
+        } else {
+          final VideoAsset_StreamingFormat streamingFormat =
+              _streamingFormatForVideoFormat(dataSource.formatHint);
+          videoAsset = VideoAsset.fromRemoteUrl(JString.fromString(uri),
+              streamingFormat, _convertStringMap(dataSource.httpHeaders));
+        }
     }
 
-    // This is in theory racy, but fine for a temporary workaround in the
-    // prototype.
-    final String transferId = '$uri-${DateTime.now().microsecondsSinceEpoch}';
-    final int textureId =
-        await _api.create(uri, httpHeaders, formatHint, transferId);
-    _playersByTextureId[textureId] = VideoPlayerGlobalTransfer.getInstance()
-        .players
-        .remove(JString.fromString(transferId))!;
+    final TextureRegistry_SurfaceProducer handle =
+        _pluginState.state.textureRegistry.createSurfaceProducer();
+    // Cast is workaround for https://github.com/dart-lang/native/issues/1653.
+    final int textureId = handle.as(TextureRegistry_TextureEntry.type).id();
+
+    final jnigen.EventChannel eventChannel = jnigen.EventChannel(
+        _pluginState.state.binaryMessenger,
+        JString.fromString('flutter.io/videoPlayer/videoEvents$textureId'));
+
+    _playersByTextureId[textureId] = VideoPlayer.create(
+        _pluginState.state.applicationContext,
+        VideoPlayerEventCallbacks.bindTo(eventChannel),
+        handle,
+        videoAsset,
+        _mixWithOthers);
 
     return textureId;
   }
@@ -244,8 +250,8 @@ class AndroidVideoPlayer extends VideoPlayerPlatform {
   }
 
   @override
-  Future<void> setMixWithOthers(bool mixWithOthers) {
-    return _api.setMixWithOthers(mixWithOthers);
+  Future<void> setMixWithOthers(bool mixWithOthers) async {
+    _mixWithOthers = mixWithOthers;
   }
 
   VideoPlayer _playerFor(int textureId) {
@@ -265,13 +271,30 @@ class AndroidVideoPlayer extends VideoPlayerPlatform {
     return EventChannel('flutter.io/videoPlayer/videoEvents$textureId');
   }
 
-  static const Map<VideoFormat, String> _videoFormatStringMap =
-      <VideoFormat, String>{
-    VideoFormat.ss: 'ss',
-    VideoFormat.hls: 'hls',
-    VideoFormat.dash: 'dash',
-    VideoFormat.other: 'other',
-  };
+  VideoAsset_StreamingFormat _streamingFormatForVideoFormat(
+      VideoFormat? format) {
+    return switch (format) {
+      VideoFormat.dash => VideoAsset_StreamingFormat.DYNAMIC_ADAPTIVE,
+      VideoFormat.hls => VideoAsset_StreamingFormat.HTTP_LIVE,
+      VideoFormat.ss => VideoAsset_StreamingFormat.SMOOTH,
+      VideoFormat.other => VideoAsset_StreamingFormat.UNKNOWN,
+      null => VideoAsset_StreamingFormat.UNKNOWN,
+    };
+    // The enum comes from a different package, which could get a new value at
+    // any time, so provide a fallback that ensures this won't break when used
+    // with a version that contains new values. This is deliberately outside
+    // the switch rather than a `default` so that the linter will flag the
+    // switch as needing an update.
+    // ignore: dead_code
+    return VideoAsset_StreamingFormat.UNKNOWN;
+  }
+
+  JMap<JString, JString> _convertStringMap(Map<String, String> map) {
+    return map
+        .map((String key, String value) => MapEntry<JString, JString>(
+            JString.fromString(key), JString.fromString(value)))
+        .toJMap(JString.type, JString.type);
+  }
 
   DurationRange _toDurationRange(dynamic value) {
     final List<dynamic> pair = value as List<dynamic>;
