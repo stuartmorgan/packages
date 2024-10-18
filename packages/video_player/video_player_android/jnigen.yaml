@@ -6,12 +6,14 @@ output:
     path: lib/src/ffi_bindings.dart
     structure: single_file
 classes:
+  - 'android.content.Context'
   - 'androidx.media3.common.AudioAttributes'
   - 'androidx.media3.common.MediaItem'
   - 'androidx.media3.common.Player'
   - 'androidx.media3.exoplayer.ExoPlayer'
   - 'androidx.media3.common.PlaybackParameters'
-  # TODO(stuartmorgan): Eliminate this.
+  # TODO(stuartmorgan): Eliminate these.
+  - 'io.flutter.plugin.common.BinaryMessenger'
   - 'io.flutter.plugin.common.EventChannel'
   - 'io.flutter.embedding.engine.plugins.FlutterPlugin'
   - 'io.flutter.plugins.videoplayer.FlutterEngineListener'

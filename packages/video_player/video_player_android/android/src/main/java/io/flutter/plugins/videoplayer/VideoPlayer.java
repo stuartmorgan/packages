@@ -19,6 +19,7 @@ public final class VideoPlayer implements TextureRegistry.SurfaceProducer.Callba
   @NonNull private final ExoPlayerProvider exoPlayerProvider;
   @NonNull private final MediaItem mediaItem;
   @NonNull private final TextureRegistry.SurfaceProducer surfaceProducer;
+  @NonNull private final SurfaceProducerDelegate surfaceProducerDelegate;
   @NonNull private final VideoPlayerCallbacks videoPlayerEvents;
   @NonNull private boolean mixWithOthers;
   @NonNull public ExoPlayer exoPlayer;
@@ -39,6 +40,7 @@ public final class VideoPlayer implements TextureRegistry.SurfaceProducer.Callba
       @NonNull Context context,
       @NonNull VideoPlayerCallbacks events,
       @NonNull TextureRegistry.SurfaceProducer surfaceProducer,
+      @NonNull SurfaceProducerDelegate surfaceDelegate,
       @NonNull VideoAsset asset,
       boolean mixWithOthers) {
     return new VideoPlayer(
@@ -50,6 +52,7 @@ public final class VideoPlayer implements TextureRegistry.SurfaceProducer.Callba
         },
         events,
         surfaceProducer,
+        surfaceDelegate,
         asset.getMediaItem(),
         mixWithOthers);
   }
@@ -64,16 +67,24 @@ public final class VideoPlayer implements TextureRegistry.SurfaceProducer.Callba
     ExoPlayer get();
   }
 
+  /** A delegate to forward SurfaceProducer.Callback methods to. */
+  public interface SurfaceProducerDelegate {
+    void onSurfaceAvailable();
+    void onSurfaceDestroyed();
+  }
+
   @VisibleForTesting
   VideoPlayer(
       @NonNull ExoPlayerProvider exoPlayerProvider,
       @NonNull VideoPlayerCallbacks events,
       @NonNull TextureRegistry.SurfaceProducer surfaceProducer,
+      @NonNull SurfaceProducerDelegate surfaceDelegate,
       @NonNull MediaItem mediaItem,
       boolean mixWithOthers) {
     this.exoPlayerProvider = exoPlayerProvider;
     this.videoPlayerEvents = events;
     this.surfaceProducer = surfaceProducer;
+    this.surfaceProducerDelegate = surfaceDelegate;
     this.mediaItem = mediaItem;
     this.mixWithOthers = mixWithOthers;
     this.exoPlayer = createVideoPlayer();
@@ -84,6 +95,7 @@ public final class VideoPlayer implements TextureRegistry.SurfaceProducer.Callba
   // TODO(matanlurey): https://github.com/flutter/flutter/issues/155131.
   @SuppressWarnings({"deprecation", "removal"})
   public void onSurfaceCreated() {
+    surfaceProducerDelegate.onSurfaceAvailable();
     if (savedStateDuring != null) {
       exoPlayer = createVideoPlayer();
       savedStateDuring.restore(exoPlayer);
@@ -93,6 +105,7 @@ public final class VideoPlayer implements TextureRegistry.SurfaceProducer.Callba
 
   @RestrictTo(RestrictTo.Scope.LIBRARY)
   public void onSurfaceDestroyed() {
+    surfaceProducerDelegate.onSurfaceDestroyed();
     exoPlayer.stop();
     savedStateDuring = ExoPlayerState.save(exoPlayer);
     exoPlayer.release();
