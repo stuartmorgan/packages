@@ -38,7 +38,7 @@ class HeatmapController {
     from platformHeatmap: PlatformHeatmap,
     mapView: GMSMapView
   ) {
-    heatmapTileLayer.weightedData = platformHeatmap.data.map({ $0.toGMUWeightedLatLng() })
+    heatmapTileLayer.weightedData = platformHeatmap.data.map { $0.toGMUWeightedLatLng() }
     if let gradient = platformHeatmap.gradient {
       heatmapTileLayer.gradient = gradient.toGMUGradient()
     }

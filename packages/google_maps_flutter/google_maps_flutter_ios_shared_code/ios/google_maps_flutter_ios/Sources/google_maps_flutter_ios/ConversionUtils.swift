@@ -156,7 +156,7 @@ extension PlatformHeatmapGradient {
     let colors = gradient.colors.map { PlatformColor.make(from: $0) }
     return PlatformHeatmapGradient(
       colors: colors,
-      startPoints: gradient.startPoints.map({ $0.doubleValue }),
+      startPoints: gradient.startPoints.map { $0.doubleValue },
       colorMapSize: Int64(gradient.mapSize)
     )
   }
@@ -166,7 +166,7 @@ extension PlatformHeatmapGradient {
     let colors = colors.map { $0.toUIColor() }
     return GMUGradient(
       colors: colors,
-      startPoints: startPoints.map({ $0 as NSNumber }),
+      startPoints: startPoints.map { $0 as NSNumber },
       colorMapSize: UInt(colorMapSize)
     )
   }

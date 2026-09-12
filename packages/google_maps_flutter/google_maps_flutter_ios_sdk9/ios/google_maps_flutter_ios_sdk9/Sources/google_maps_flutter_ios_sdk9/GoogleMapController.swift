@@ -430,8 +430,8 @@ public class GoogleMapController: NSObject, GMSMapViewDelegate, FlutterPlatformV
       mapView.mapType = mapType.gmsMapViewType
     }
     if let zoomData = config.minMaxZoomPreference {
-      let minZoom = zoomData.min.map({ Float($0) }) ?? kGMSMinZoomLevel
-      let maxZoom = zoomData.max.map({ Float($0) }) ?? kGMSMaxZoomLevel
+      let minZoom = zoomData.min.map { Float($0) } ?? kGMSMinZoomLevel
+      let maxZoom = zoomData.max.map { Float($0) } ?? kGMSMaxZoomLevel
       mapView.setMinZoom(minZoom, maxZoom: maxZoom)
     }
     if let padding = config.padding {
